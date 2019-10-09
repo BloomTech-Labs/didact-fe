@@ -4,10 +4,9 @@ import {Form, Field, withFormik} from "formik";
 import * as Yup from 'yup';
 
 const RegisterForm = ({errors, touched}) => {
-    const classes = useStyles();
     return (
         <>
-            <Form className = {classes.MainForm}>
+            <Form>
                 <Field type= "text" name = "email" placeholder = "Email"></Field>
                 {touched.email && errors.email && <p>{errors.email}</p>}
                 <Field type= "text" name = "password" placeholder = "Password"></Field>
@@ -17,7 +16,7 @@ const RegisterForm = ({errors, touched}) => {
                 <Field type= "text" name = "last_name" placeholder = "Last Name"></Field>
                 {touched.last_name && errors.last_name && <p>{errors.last_name}</p>}
                 <div>
-                <button className = {classes.Button} type="submit">Register</button>
+                <button type="submit">Register</button>
                 </div>
             </Form>
         </>
@@ -47,7 +46,6 @@ const FormikRegisterForm = withFormik({
                 console.log(res);
             })
             .catch(err => console.log(err))
-        resetForm()
     }
 
 })(RegisterForm);
