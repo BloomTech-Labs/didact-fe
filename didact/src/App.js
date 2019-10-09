@@ -19,6 +19,8 @@ function App() {
           Learn React
         </a>
       </header>
+      <Link to="/login">Login</Link>
+      <Link to="/dashboard">Dashboard</Link>
     </div>
   );
 }
