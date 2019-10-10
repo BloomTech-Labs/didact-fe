@@ -3,7 +3,10 @@ import axios from "axios";
 import {Form, Field, withFormik} from "formik";
 import * as Yup from 'yup';
 
-const RegisterForm = ({errors, touched}) => {
+const RegisterForm = ({errors, touched, status, history}) => {
+    console.log(status);
+    console.log(history);
+
     return (
         <>
             <Form>
@@ -39,13 +42,8 @@ const FormikRegisterForm = withFormik({
         first_name: Yup.string().required("First Name is required" ),
         last_name: Yup.string().required("Last Name is required" ),
     }),
-    handleSubmit(values){
-        axios
-            .post("http://localhost:3333/example", values)
-            .then(res => {
-                console.log(res);
-            })
-            .catch(err => console.log(err))
+    handleSubmit(values, {setStatus}){
+        setStatus(values);
     }
 
 })(RegisterForm);

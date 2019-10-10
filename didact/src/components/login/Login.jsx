@@ -1,10 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import axios from "axios";
 import {Form, Field, withFormik} from "formik";
 import * as Yup from 'yup';
+import { loginAction } from '../../store/actions';
+import {useDispatch} from 'react-redux';
 
-const LoginForm = ({errors, touched}) => {
- 
+const LoginForm = ({errors, touched, history, status}) => {
+    // const dispatch = useDispatch();
+    // console.log(props);
+    // console.log(history);
+    useEffect(() => {
+        if(status) {
+            // dispatch(loginAction(history, status));
+       
+        }
+    }, [])
+
     return (
         <>
             <Form>
@@ -30,17 +41,14 @@ const FormikLoginForm = withFormik({
 
     validationSchema: Yup.object().shape({
         email: Yup.string().required("Email is required").email(),
-        password: Yup.string().required("Password is required" ),
+        password: Yup.string().required("Password is required" )
     }),
-    handleSubmit(values){
-        axios
-            .post("http://localhost:3333/example", values)
-            .then(res => {
-                console.log(res);
-            })
-            .catch(err => console.log(err))
-    }
+    handleSubmit(values, {setStatus}){
+       setStatus(values);
+       
 
-})(LoginForm);
+    },
+
+})(LoginForm, useDispatch);
 
 export default FormikLoginForm;
