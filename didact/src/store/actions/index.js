@@ -53,5 +53,6 @@ export {
     REGISTER_SUCCESS,
     REGISTER_FAILURE,
     loginAction,
-    testEndPoint
+    testEndPoint,
+    registerAction
 } from './onboardingActions'

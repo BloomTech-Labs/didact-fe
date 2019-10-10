@@ -40,3 +40,13 @@ export const loginAction = (history, form) => dispatch => {
                 dispatch({type: LOGIN_FAILURE, payload: err})
             })
 }
+
+export const registerAction = props => dispatch => {
+    dispatch({ type: REGISTER_START });
+    axios
+      .post("", props)
+      .then(res => {
+        dispatch({ type: REGISTER_SUCCESS, payload: res.data });
+      })
+      .catch(err => dispatch({ type: REGISTER_FAILURE, payload: err }));
+  };

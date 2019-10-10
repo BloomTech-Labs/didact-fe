@@ -2,11 +2,12 @@ import React from "react";
 import axios from "axios";
 import {Form, Field, withFormik} from "formik";
 import * as Yup from 'yup';
+import { registerAction } from '../../store/actions';
+import {useDispatch} from 'react-redux';
 
-const RegisterForm = ({errors, touched, status, history}) => {
-    console.log(status);
-    console.log(history);
-
+const RegisterForm = (props) => {
+    const {errors, touched, status, history} = props;
+   
     return (
         <>
             <Form>
@@ -42,10 +43,22 @@ const FormikRegisterForm = withFormik({
         first_name: Yup.string().required("First Name is required" ),
         last_name: Yup.string().required("Last Name is required" ),
     }),
-    handleSubmit(values, {setStatus}){
-        setStatus(values);
+    handleSubmit(values, props){
+        console.log(props.props.history)
+        props.props.dispatch(registerAction(values))
     }
 
 })(RegisterForm);
 
-export default FormikRegisterForm;
+const FormikRegisterWrapper = props =>
+{
+    const dispatch = useDispatch();
+    console.log(dispatch)
+    return (
+        <>
+            <FormikRegisterForm dispatch={dispatch} history={props.history}/>
+        </>
+    )
+}
+
+export default FormikRegisterWrapper;
