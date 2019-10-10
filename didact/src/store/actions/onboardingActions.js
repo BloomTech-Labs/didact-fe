@@ -1,4 +1,5 @@
-import axios from 'axios';
+import axiosWithAuth from '../../utils/axiosWithAuth';
+import axios from "axios";
 
 export const TEST_DATA_START = 'TEST_DATA_START';
 export const TEST_DATA_SUCCESS = 'TEST_DATA_SUCCESS';
@@ -12,7 +13,8 @@ export const REGISTER_FAILURE = 'REGISTER_FAILURE';
 
 export const testEndPoint = form => dispatch => {
     dispatch({type: TEST_DATA_START})
-    axios.get(``)
+    axiosWithAuth()
+    .get(`https://didactlms-staging.herokuapp.com/api/courses`)
     .then(res => {
         console.log(res)
         dispatch({type: TEST_DATA_SUCCESS, payload: res})
@@ -26,7 +28,7 @@ export const loginAction = (history, form) => dispatch => {
 
     dispatch({type: LOGIN_START})
 
-    axios.post(`http://localhost:5000/api/auth/login`, form)
+    axios.post(`https://didactlms-staging.herokuapp.com/api/auth/login`, form)
         .then(res => 
             {
                 console.log(`first res from login:`, res)
@@ -44,8 +46,9 @@ export const loginAction = (history, form) => dispatch => {
 export const registerAction = props => dispatch => {
     dispatch({ type: REGISTER_START });
     axios
-      .post("", props)
+      .post("https://didactlms-staging.herokuapp.com/api/auth/register", props)
       .then(res => {
+        console.log(res)
         dispatch({ type: REGISTER_SUCCESS, payload: res.data });
       })
       .catch(err => dispatch({ type: REGISTER_FAILURE, payload: err }));
