@@ -1,18 +1,19 @@
 import React, {useEffect} from "react";
-import { testEndPoint } from "../../store/actions";
+import { courseEndPoint } from "../../store/actions";
 import { useDispatch, useSelector } from "react-redux";
+import Course from './courses/Course'
 
 function Dashboard(props) {
     const dispatch = useDispatch();
     const state = useSelector(state => state)
 
     useEffect(() => {
-        // state.testEndPoint()
+        dispatch(courseEndPoint())
     }, []);
-    console.log(state.test)
+    console.log(state.courses)
     return (
         <>
-        {state.test ? <h2>{state.test.message}</h2> : <h2>Not Connected</h2>}
+    {state.courses ? state.courses.map(course => <Course course={course} />) : null}
         </>
     )
 };

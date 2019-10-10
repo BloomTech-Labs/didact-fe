@@ -43,9 +43,6 @@
 // }
 
 export {
-    TEST_DATA_START,
-    TEST_DATA_SUCCESS,
-    TEST_DATA_FAILURE,
     LOGIN_START,
     LOGIN_SUCCESS,
     LOGIN_FAILURE,
@@ -53,6 +50,12 @@ export {
     REGISTER_SUCCESS,
     REGISTER_FAILURE,
     loginAction,
-    testEndPoint,
     registerAction
 } from './onboardingActions'
+
+export {
+    COURSE_DATA_START,
+    COURSE_DATA_SUCCESS,
+    COURSE_DATA_FAILURE,
+    courseEndPoint
+} from './courses'
