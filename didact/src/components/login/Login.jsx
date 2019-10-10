@@ -5,17 +5,10 @@ import * as Yup from 'yup';
 import { loginAction } from '../../store/actions';
 import {useDispatch} from 'react-redux';
 
-const LoginForm = ({errors, touched, history, status}) => {
-    // const dispatch = useDispatch();
-    // console.log(props);
-    // console.log(history);
-    useEffect(() => {
-        if(status) {
-            // dispatch(loginAction(history, status));
-       
-        }
-    }, [])
 
+
+const LoginForm = (props) => {
+    const {errors, touched, history, status} = props
     return (
         <>
             <Form>
@@ -43,12 +36,22 @@ const FormikLoginForm = withFormik({
         email: Yup.string().required("Email is required").email(),
         password: Yup.string().required("Password is required" )
     }),
-    handleSubmit(values, {setStatus}){
-       setStatus(values);
-       
-
+    handleSubmit(values, props){
+        console.log(props.props.history)
+        props.props.dispatch(loginAction(props.props.history, values))
     },
 
 })(LoginForm, useDispatch);
 
-export default FormikLoginForm;
+const FormikLoginWrapper = props =>
+{
+    const dispatch = useDispatch();
+    console.log(dispatch)
+    return (
+        <>
+            <FormikLoginForm dispatch={dispatch} history={props.history}/>
+        </>
+    )
+}
+
+export default FormikLoginWrapper;
