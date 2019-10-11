@@ -1,8 +1,7 @@
 import React from "react";
-import axios from "axios";
 import {Form, Field, withFormik} from "formik";
 import * as Yup from 'yup';
-import { registerAction } from '../../store/actions';
+import { registerAction, registerWithFacebook, registerWithGoogle } from '../../store/actions';
 import {useDispatch} from 'react-redux';
 
 const RegisterForm = (props) => {
@@ -50,13 +49,23 @@ const FormikRegisterForm = withFormik({
 
 })(RegisterForm);
 
-const FormikRegisterWrapper = props =>
+const FormikRegisterWrapper = ({history}) =>
 {
     const dispatch = useDispatch();
+    const facebookSignup = () => {
+        dispatch(registerWithFacebook(history))
+
+    }
+    const googleSignup = () => {
+        dispatch(registerWithGoogle(history))
+
+    }
     console.log(dispatch)
     return (
         <>
-            <FormikRegisterForm dispatch={dispatch} history={props.history}/>
+            <FormikRegisterForm dispatch={dispatch} history={history}/>
+            <button onClick={() => facebookSignup()}>Sign Up With Facebook</button>
+            <button onClick={() => googleSignup()}>Sign Up With Google</button>
         </>
     )
 }
