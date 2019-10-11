@@ -10,7 +10,7 @@ export const courseEndPoint =() => dispatch => {
     axiosWithAuth()
     .get(`https://didactlms-staging.herokuapp.com/api/courses`)
     .then(res => {
-        console.log('course api response: ', res)
+        // console.log('course api response: ', res)
         dispatch({type: COURSE_DATA_SUCCESS, payload: res.data})
     })
     .catch(err => {

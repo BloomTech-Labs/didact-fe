@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Routes from "./utils/Routes";
 import { Mixpanel } from './utils/mixpanel';
