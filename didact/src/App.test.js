@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import {BrowserRouter as Router} from 'react-router-dom'
-import {render, waitForDomChange} from '@testing-library/react';
+import {render, waitForDomChange, wait, getByText} from '@testing-library/react';
 
 
 describe('<App />', () => {
@@ -12,20 +12,14 @@ describe('<App />', () => {
     ReactDOM.unmountComponentAtNode(div);
   });
 
-  // it('renders Hello World', () => {
-  //   const app = render(<Router><App /></Router>);
-
-  //   app.getByText(/App/i)
-  
-  // });
-  it('renders a course', () => {
-    // const container = document.createElement('div')
-    const container = render(<Router><App /></Router>);
-  waitForDomChange({ container })
-    .then(() => container.getByText(/Learning how to learn/i))
-    .catch(err => console.log(`Error you need to deal with: ${err}`))
-  // container.append(document.createElement('p'))
-// if 👆 was the only code affecting the container and it was not run,
-// waitForDomChange would throw an error
-  })
+  // it('renders a course', async () => {
+  //   const container = render(<Router><App /></Router>);
+  // waitForDomChange({ container })
+  //   .then(() => console.log('dom change'))
+  //   .catch(err => console.log(`Error you need to deal with: ${err}`))
+  //   container.getByText(/Learning how to learn/i)
+  // await wait(() =>
+  // expect(getByText("Learning how to learn")).toBeInTheDocument()
+  // );
+  // })
 })
