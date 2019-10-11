@@ -1,5 +1,4 @@
 import React from "react";
-import axios from "axios";
 import {Form, Field, withFormik} from "formik";
 import * as Yup from 'yup';
 import { registerAction } from '../../store/actions';
