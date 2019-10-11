@@ -1,5 +1,5 @@
 import mixpanel from 'mixpanel-browser';
-mixpanel.init(process.env.REACT_APP_MIXPANEL, {api_host: 'api.didactlms.com' });//mixpanel token stored in netlify.
+mixpanel.init(process.env.REACT_APP_MIXPANEL);//mixpanel token stored in netlify.
 let env_check = process.env.NODE_ENV === 'production';
 
 
