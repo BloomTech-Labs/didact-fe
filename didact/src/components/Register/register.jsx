@@ -11,9 +11,9 @@ const RegisterForm = (props) => {
     return (
         <>
             <Form>
-                <Field type= "text" name = "email" placeholder = "Email"></Field>
+                <Field type= "email" name = "email" placeholder = "Email"></Field>
                 {touched.email && errors.email && <p>{errors.email}</p>}
-                <Field type= "text" name = "password" placeholder = "Password"></Field>
+                <Field type= "password" name = "password" placeholder = "Password"></Field>
                 {touched.password && errors.password && <p>{errors.password}</p>}
                 <Field type= "text" name = "first_name" placeholder = "First Name"></Field>
                 {touched.first_name && errors.first_name && <p>{errors.first_name}</p>}
@@ -38,14 +38,14 @@ const FormikRegisterForm = withFormik({
     },
 
     validationSchema: Yup.object().shape({
-        email: Yup.string().required("Email is required").email(),
+        email: Yup.string().required("Email is required").email("Must be an Email"),
         password: Yup.string().required("Password is required" ),
         first_name: Yup.string().required("First Name is required" ),
         last_name: Yup.string().required("Last Name is required" ),
     }),
     handleSubmit(values, props){
         console.log(props.props.history)
-        props.props.dispatch(registerAction(values))
+        props.props.dispatch(registerAction(props.props.history, values))
     }
 
 })(RegisterForm);

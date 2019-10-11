@@ -12,9 +12,9 @@ const LoginForm = (props) => {
     return (
         <>
             <Form>
-                <Field type= "text" name = "email" placeholder = "Email"></Field>
+                <Field type= "email" name = "email" placeholder = "Email"></Field>
                 {touched.email && errors.email && <p>{errors.email}</p>}
-                <Field type= "text" name = "password" placeholder = "Password"></Field>
+                <Field type= "password" name = "password" placeholder = "Password"></Field>
                 {touched.password && errors.password && <p>{errors.password}</p>}
                 <div>
                 <button type="submit">Login</button>

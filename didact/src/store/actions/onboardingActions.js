@@ -28,13 +28,15 @@ export const loginAction = (history, form) => dispatch => {
             })
 }
 
-export const registerAction = props => dispatch => {
+export const registerAction = (history, form) => dispatch => {
     dispatch({ type: REGISTER_START });
     axios
-      .post("https://didactlms-staging.herokuapp.com/api/auth/register", props)
+      .post("https://didactlms-staging.herokuapp.com/api/auth/register", form)
       .then(res => {
         console.log(res)
         dispatch({ type: REGISTER_SUCCESS, payload: res.data });
+        localStorage.setItem("token", res.data.token)
       })
+      .then(res => history.push("/dashboard"))
       .catch(err => dispatch({ type: REGISTER_FAILURE, payload: err }));
   };
