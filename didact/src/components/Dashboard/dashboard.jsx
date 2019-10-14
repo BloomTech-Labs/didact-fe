@@ -13,7 +13,7 @@ function Dashboard(props) {
     console.log(state.courses)
     return (
         <>
-    {state.courses ? state.courses.map(course => <Course course={course} />) : null}
+    {state.courses ? state.courses.map(course => <Course key={course.id} course={course} />) : null}
         </>
     )
 };
