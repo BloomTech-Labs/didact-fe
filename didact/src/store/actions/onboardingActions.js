@@ -1,3 +1,4 @@
+
 import axios from "axios";
 import axiosWithAuth from '../../utils/axiosWithAuth';
 
@@ -19,14 +20,12 @@ export const loginAction = (history, form) => dispatch => {
     axios.post(`https://didactlms-staging.herokuapp.com/api/auth/login`, form)
         .then(res => 
             {
-                console.log(`first res from login:`, res)
                 localStorage.setItem("token", res.data.token)
                 dispatch({type: LOGIN_SUCCESS, payload: res})
             })
         .then(res => history.push("/dashboard"))
         .catch(err => 
             {
-                console.log(`err from login:`, err)
                 dispatch({type: LOGIN_FAILURE, payload: err})
             })
 }
@@ -36,7 +35,6 @@ export const registerAction = (history, form) => dispatch => {
     axios
       .post("https://didactlms-staging.herokuapp.com/api/auth/register", form)
       .then(res => {
-        console.log(res)
         dispatch({ type: REGISTER_SUCCESS, payload: res.data });
         localStorage.setItem("token", res.data.token)
       })

@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Redirect } from "react-router-dom";
+import { Route} from "react-router-dom";
 import PrivateRoute from "./PrivateRoute";
 import FormikLoginForm from "../components/login/Login.jsx";
 import FormikRegisterForm from "../components/Register/register.jsx";
