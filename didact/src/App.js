@@ -8,7 +8,7 @@ function App() {
   return (
     <div className="App">
       <Routes />
-      <button onClick={() => Mixpanel.track('test button')} > Mixpanel Test </button>
+      {/* <button onClick={() => Mixpanel.track('test button')} > Mixpanel Test </button> */}
     </div>
   );
 }

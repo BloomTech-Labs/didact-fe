@@ -51,23 +51,11 @@ const FormikRegisterForm = withFormik({
 const FormikRegisterWrapper = ({history}) =>
 {
     const dispatch = useDispatch();
-<<<<<<< HEAD
-=======
-    const facebookSignup = () => {
-        dispatch(registerWithFacebook(history))
-
-    }
-    const googleSignup = () => {
-        dispatch(registerWithGoogle(history))
-
-    }
-    console.log(dispatch)
->>>>>>> e6657782b4b1632d358c83435a776def3a1eb882
     return (
         <>
             <FormikRegisterForm dispatch={dispatch} history={history}/>
-            <button onClick={() => facebookSignup()}>Sign Up With Facebook</button>
-            <button onClick={() => googleSignup()}>Sign Up With Google</button>
+            {/* <button onClick={() => facebookSignup()}>Sign Up With Facebook</button>
+            <button onClick={() => googleSignup()}>Sign Up With Google</button> */}
         </>
     )
 }
