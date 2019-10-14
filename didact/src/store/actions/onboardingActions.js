@@ -1,4 +1,5 @@
 import axios from "axios";
+import axiosWithAuth from '../../utils/axiosWithAuth';
 
 export const LOGIN_START = 'LOGIN_START';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
@@ -6,12 +7,9 @@ export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 export const REGISTER_START = 'REGISTER_START';
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 export const REGISTER_FAILURE = 'REGISTER_FAILURE';
-export const FACEBOOK_START = 'FACEBOOK_START';
-export const FACEBOOK_SUCCESS = 'FACEBOOK_SUCCESS';
-export const FACEBOOK_FAILURE = 'FACEBOOK_FAILURE';
-export const GOOGLE_START = 'GOOGLE_START';
-export const GOOGLE_SUCCESS = 'GOOGLE_SUCCESS';
-export const GOOGLE_FAILURE = 'GOOGLE_FAILURE';
+export const VERIFY_START = 'VERIFY_START';
+export const VERIFY_SUCCESS = 'VERIFY_SUCCESS';
+export const VERIFY_FAILURE = 'VERIFY_FAILURE';
 
 
 export const loginAction = (history, form) => dispatch => {
@@ -46,26 +44,13 @@ export const registerAction = (history, form) => dispatch => {
       .catch(err => dispatch({ type: REGISTER_FAILURE, payload: err }));
   };
 
-export const registerWithFacebook = (history) => dispatch => {
-    dispatch({type: FACEBOOK_START});
-    axios.post(`http://didactlms-staging.herokuapp.com/api/auth/facebook`)
+export const verifyToken = (props) => dispatch => {
+    console.log('props in action: ', props)
+    dispatch({type: VERIFY_START})
+    axiosWithAuth().get(`https://didactlms-staging.herokuapp.com/api/auth`)
     .then(res => {
-        console.log('facebook res: ', res)
-        dispatch({type: FACEBOOK_SUCCESS, payload: res.data})
-        localStorage.setItem("token", res.data.token)
+        dispatch({type: VERIFY_SUCCESS, payload: res.data})
     })
-    .then(res => history.push("/dashboard"))
-    .catch(err => dispatch({type:FACEBOOK_FAILURE, payload: err}))
-}
-
-export const registerWithGoogle = (history) => dispatch => {
-    dispatch({type: GOOGLE_START});
-    axios.post(`http://didactlms-staging.herokuapp.com/api/auth/google`)
-    .then(res => {
-        console.log('facebook res: ', res)
-        dispatch({type: GOOGLE_SUCCESS, payload: res.data})
-        localStorage.setItem("token", res.data.token)
-    })
-    .then(res => history.push("/dashboard"))
-    .catch(err => dispatch({type:GOOGLE_FAILURE, payload: err}))
+    .then(props.props.history.push('/dashboard'))
+    .catch(err => dispatch({type: VERIFY_FAILURE, payload: err}))
 }

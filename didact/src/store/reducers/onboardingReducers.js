@@ -5,12 +5,9 @@ import {
     REGISTER_START, 
     REGISTER_SUCCESS, 
     REGISTER_FAILURE,
-    FACEBOOK_START,
-    FACEBOOK_SUCCESS,
-    FACEBOOK_FAILURE,
-    GOOGLE_START,
-    GOOGLE_SUCCESS,
-    GOOGLE_FAILURE } from '../actions'
+    VERIFY_START,
+    VERIFY_SUCCESS,
+    VERIFY_FAILURE } from '../actions'
 
 const initialState = {
     isLoading: false,
@@ -59,42 +56,24 @@ export const onboardingReducer = (state = initialState, action) => {
                 };
 
     //  Facebook Login/Register
-        case FACEBOOK_START:
+        case VERIFY_START:
             return {
                 ...state,
                 isLoading: true,
                 error: ""
                 };
-        case FACEBOOK_SUCCESS: 
+        case VERIFY_SUCCESS: 
             return {
                 ...state,
                 isLoading: false,
                 error: ""
                 };
-        case FACEBOOK_FAILURE:
+        case VERIFY_FAILURE:
             return {
                 ...state,
                 error: action.payload
                 };
 
-    //  Google Login/Register
-        case GOOGLE_START:
-            return {
-                ...state,
-                isLoading: true,
-                error: ""
-                };
-        case GOOGLE_SUCCESS: 
-            return {
-                ...state,
-                isLoading: false,
-                error: ""
-                };
-        case GOOGLE_FAILURE:
-            return {
-                ...state,
-                error: action.payload
-                };
         default:
             return state;
     }
