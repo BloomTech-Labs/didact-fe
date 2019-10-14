@@ -12,7 +12,7 @@ const Auth = (props) => {
         if(token) {
             dispatch(verifyToken(props))
         }
-    }, [])
+    }, [dispatch, props, token])
 
     return (
         <></>
