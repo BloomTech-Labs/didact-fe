@@ -49,6 +49,6 @@ export const verifyToken = (props) => dispatch => {
     .then(res => {
         dispatch({type: VERIFY_SUCCESS, payload: res.data})
     })
-    .then(props.props.history.push('/dashboard'))
+    .then(props.history.push('/dashboard'))
     .catch(err => dispatch({type: VERIFY_FAILURE, payload: err}))
 }
