@@ -47,6 +47,8 @@ const FormikLoginWrapper = props =>
     return (
         <>
             <FormikLoginForm dispatch={dispatch} history={props.history}/>
+            <a href="http://didactlms-staging.herokuapp.com/api/auth/facebook">Sign In With Facebook</a>
+            <a href="http://didactlms-staging.herokuapp.com/api/auth/google">Sign In With Google</a>
         </>
     )
 }

@@ -6,16 +6,12 @@ export {
     REGISTER_START,
     REGISTER_SUCCESS,
     REGISTER_FAILURE,
-    FACEBOOK_START,
-    FACEBOOK_SUCCESS,
-    FACEBOOK_FAILURE,
-    GOOGLE_START,
-    GOOGLE_SUCCESS,
-    GOOGLE_FAILURE,
+    VERIFY_START,
+    VERIFY_SUCCESS,
+    VERIFY_FAILURE,
     loginAction,
     registerAction,
-    registerWithFacebook,
-    registerWithGoogle
+    verifyToken
 } from './onboardingActions'
 
 export {
