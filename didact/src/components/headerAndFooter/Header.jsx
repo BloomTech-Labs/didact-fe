@@ -79,6 +79,11 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
     padding: theme.spacing(3),
   },
+  contentMobile: {
+    flexGrow: 1,
+    padding: theme.spacing(3),
+    marginLeft: "50px",
+  },
   contentShadow: {
     background: "rgba(0, 0, 0, 0.8)",
     filter: "brightness(50%)",
@@ -90,6 +95,7 @@ const useStyles = makeStyles(theme => ({
     height:"100%",
     flexGrow: 1,
     padding: theme.spacing(3),
+    marginLeft: "50px",
   },
   drawer: {
     width: 0,
@@ -383,7 +389,7 @@ function Header() {
         </div>
         {sideList()}
       </Drawer>
-      <main className={openMobile ? classes.contentShadow :classes.content}>
+      <main className={openMobile ? classes.contentShadow :classes.contentMobile}>
         <div className={classes.toolbar} />
         {routedContent()}
         {/*************************ADD COMPONENTS HERE *********************** */}
