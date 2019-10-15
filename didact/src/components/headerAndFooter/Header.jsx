@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
-
-import "../../App.css";
+import Dashboard from '../Dashboard/dashboard';
+import Course from "../Dashboard/courses/Course";
+import { courseEndPoint } from "../../store/actions/index.js";
+import { useDispatch, useSelector } from "react-redux";
 
 import clsx from "clsx";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
@@ -28,18 +30,36 @@ const drawerWidth = 240;
 const useStyles = makeStyles(theme => ({
   root: {
     display: "flex",
+    backgroundColor: "lightgray"
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
+    transition: theme.transitions.create(['width', 'margin'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
     borderRadius: "10px 10px 10px 10px",
     backgroundColor: 'gray'
   },
-  appBarMobile: {
-    zIndex: theme.zIndex.drawer + 1,
+  appBarDesktop: {
+    width: `calc(100% - 100px)`,
+    margin: "10px",
+    borderRadius: "10px 10px 10px 10px",
     backgroundColor: 'gray'
+  },
+  appBarShift: {
+    marginLeft: drawerWidth,
+    width: `calc(100% - (${drawerWidth}px + 30px))`,
+    transition: theme.transitions.create(['width', 'margin'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
   },
   menuButton: {
     marginRight: 36,
+  },
+  menuButtonDesktop: {
+    marginRight: theme.spacing(.5),
   },
   hide: {
     display: "none",
@@ -51,6 +71,9 @@ const useStyles = makeStyles(theme => ({
   },
   drawerOpen: {
     width: drawerWidth,
+    height: "800px",
+    margin: "10px",
+    borderRadius: 15,
     transition: theme.transitions.create("width", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
@@ -65,6 +88,9 @@ const useStyles = makeStyles(theme => ({
     width: theme.spacing(7) + 1,
     [theme.breakpoints.up("sm")]: {
       width: theme.spacing(9) + 1,
+      margin: "10px 10px 10px 10px",
+      height: "800px",
+      borderRadius: 15
     },
   },
 
@@ -93,6 +119,11 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
     padding: theme.spacing(3),
   },
+  contentDesktop: {
+    flexGrow: 1,
+    backgroundColor: theme.palette.background.default,
+    padding: theme.spacing(3),
+  },
   placeholderDiv: {
     display: "flex",
     justifyContent: "center",
@@ -110,23 +141,23 @@ const useStyles = makeStyles(theme => ({
   placeHolder2: {
     backgroundColor: "lightgray",
     width: "200px",
-    height: "150px",
+    height: "120px",
     borderRadius: 15,
     margin: "10px 0",
   },
   placeHolderClosed: {
     backgroundColor: "gray",
-    width: "100%",
+    width: "80%",
     margin: "10px 10px 10px 10px",
     height: "100px",
-    borderRadius: 15,
+    borderRadius: 25,
   },
   placeHolderClosed2: {
     backgroundColor: "lightgray",
-    width: "100%",
+    width: "80%",
     margin: "10px",
-    height: "150px",
-    borderRadius: 15,
+    height: "120px",
+    borderRadius: 25,
   },
   list: {
     width: 230,
@@ -153,6 +184,9 @@ const useStyles = makeStyles(theme => ({
       color: "black",
     },
   },
+  titleDesktop: {
+    flexGrow: 1,
+  },
 }));
 
 function Header() {
@@ -174,10 +208,20 @@ function Header() {
     setLeft(!left);
   };
 
-  const handleDrawerToggle = () => {
-    toggleDrawer();
+  const handleDrawerOpen = () => {
     setOpen(!open);
   };
+
+  // const handleDrawerClose = () => {
+  //   setOpen(false);
+  // };
+
+  const dispatch = useDispatch();
+  const state = useSelector(state => state);
+
+  useEffect(() => {
+    dispatch(courseEndPoint());
+  }, [dispatch]);
 
   const sideList = side => (
     <div
@@ -186,7 +230,6 @@ function Header() {
       onClick={toggleDrawer(side, false)}
       onKeyDown={toggleDrawer(side, false)}
     >
-      {phoneSize ? <div className={classes.spacing}></div> : null}
 
       <List>
         <ListItem
@@ -240,83 +283,9 @@ function Header() {
     </div>
   );
 
-  return (
-    <div className={classes.root}>
-      <CssBaseline />
-      <AppBar
-        position="fixed"
-        className={phoneSize ? classes.appBarMobile : classes.appBar}
-      >
-        <Toolbar>
-          {phoneSize ? (
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              onClick={handleDrawerToggle}
-              edge="start"
-              className={classes.menuButton}
-            >
-              <MenuIcon />
-            </IconButton>
-          ) : (
-            <IconButton
-              edge="start"
-              color="inherit"
-              onClick={toggleDrawer("left", true)}
-            >
-              <MenuIcon />
-            </IconButton>
-          )}
-          <Typography variant="h6" className={classes.title}>
-            Didact
-          </Typography>
-          <div className={classes.toolbarIcons}>
-            <Button className={classes.iconToolBar} color="inherit">
-              first
-            </Button>
-            <Button className={classes.iconToolBar} color="inherit">
-              second
-            </Button>
-            <Button className={classes.iconToolBar} color="inherit">
-              third
-            </Button>
-            {!phoneSize ? <Button color="inherit">User Name</Button> : null}
-            <div className={classes.iconImage}></div>
-          </div>
-        </Toolbar>
-      </AppBar>
-      {/* Panel changes with mobile vs desktop */}
-      {phoneSize ? (
-        <Drawer
-          variant="permanent"
-          className={clsx(classes.drawer, {
-            [classes.drawerOpen]: open,
-            [classes.drawerClose]: !open,
-          })}
-          classes={{
-            paper: clsx({
-              [classes.drawerOpen]: open,
-              [classes.drawerClose]: !open,
-            }),
-          }}
-          open={open}
-        >
-          {sideList("left")}
-        </Drawer>
-      ) : (
-        // DESKTOP PANEL BELOW
-        <Drawer open={left} onClose={toggleDrawer("left", false)}>
-          <div className={classes.placeholderDiv}>
-            <div className={classes.placeHolder} />
-            <div className={classes.placeHolder2} />
-          </div>
-          {sideList("left")}
-        </Drawer>
-      )}
-
-      {/* Panel change end */}
-      <main className={classes.content}>
-        <div className={classes.toolbar} />
+  const routedContent = () => {
+    return (
+    <div>
         {phoneSize ? (
           open ? (
             <div className={classes.placeholderDiv}>
@@ -330,12 +299,236 @@ function Header() {
             </div>
           )
         ) : null}
-      </main>
+        {state.coursesReducer.courses
+        ? state.coursesReducer.courses.map(course => (
+            <Course key={course.id} course={course} />
+          ))
+        : null}
     </div>
-    // <>
-    //  {state.coursesReducer.courses ? state.coursesReducer.courses.map(course => <Course key={course.id} course={course} />) : null}
-    // </>
-  );
+    )
+  };
+
+
+  return (
+    <>
+    {phoneSize ? (
+    <div className={classes.root}>
+      <CssBaseline />
+      <AppBar
+        position="fixed"
+        className={classes.appBar}
+      >
+        <Toolbar>
+            <IconButton
+              edge="start"
+              color="inherit"
+              onClick={toggleDrawer("left", true)}
+            >
+              <MenuIcon />
+            </IconButton>
+          <Typography variant="h6" className={classes.title}>
+            Didact
+          </Typography>
+          <div className={classes.toolbarIcons}>
+            <Button className={classes.iconToolBar} color="inherit">
+              first
+            </Button>
+            <Button className={classes.iconToolBar} color="inherit">
+              second
+            </Button>
+            <Button className={classes.iconToolBar} color="inherit">
+              third
+            </Button>
+            <div className={classes.iconImage}></div>
+          </div>
+        </Toolbar>
+      </AppBar>
+         <Drawer open={left} onClose={toggleDrawer("left", false)}>
+          {sideList("left")}
+        </Drawer>
+        <main className={classes.content}>
+        <div className={classes.toolbar} />
+        {routedContent()}
+       </main>
+    </div>
+        ) : (
+          
+    //       <div className={classes.rootDesktop}>
+    //     <Drawer
+    //     variant="permanent"
+    //     className={clsx(classes.drawer, {
+    //       [classes.drawerOpen]: open,
+    //       [classes.drawerClose]: !open,
+    //     })}
+    //     classes={{
+    //       paper: clsx({
+    //         [classes.drawerOpen]: open,
+    //         [classes.drawerClose]: !open,
+    //       }),
+    //     }}
+    //     open={open}
+    //   >
+    //     {sideList("left")}
+    //   </Drawer>
+    //   <main className={classes.contentDesktop}>
+    //     <div  />
+    //     <CssBaseline />
+    //     <AppBar position="static" className={clsx(classes.appBar, {
+    //       [classes.appBarShift]: open,
+    //     })}>
+    //         <Toolbar>
+    //         <IconButton
+    //         color="inherit"
+    //         aria-label="open drawer"
+    //         onClick={handleDrawerOpen}
+    //         edge="start"
+    //         className={clsx(classes.menuButtonDesktop, {
+    //           [classes.hide]: open,
+              
+    //         })}
+    //       >
+    //         <MenuIcon />
+    //       </IconButton>
+    //           <Typography variant="h6" className={classes.titleDesktop}>
+    //             Didact
+    //           </Typography>
+    //           <div className={classes.toolbarIcons}>
+    //         <Button className={classes.iconToolBar} color="inherit">
+    //           first
+    //         </Button>
+    //         <Button className={classes.iconToolBar} color="inherit">
+    //           second
+    //         </Button>
+    //         <Button className={classes.iconToolBar} color="inherit">
+    //           third
+    //         </Button>
+    //         {!phoneSize ? <Button color="inherit">User Name</Button> : null}
+    //         <div className={classes.iconImage}></div>
+    //       </div>
+    //         </Toolbar>
+    //       </AppBar>
+    //     {routedContent()}
+    //    </main>
+    // </div>
+    <div className={classes.root}>
+    <CssBaseline />
+    <AppBar
+      // position="absolute"
+      className={clsx(classes.appBarDesktop, {
+        [classes.appBarShift]: open,
+      })}
+    >
+      <Toolbar>
+        <Typography variant="h6">
+          Didact
+        </Typography>
+        <div className={classes.toolbarIcons}>
+            <Button className={classes.iconToolBar} color="inherit">
+               first
+            </Button>
+             <Button className={classes.iconToolBar} color="inherit">
+             second
+            </Button>
+            <Button className={classes.iconToolBar} color="inherit">
+               third
+            </Button>
+            <Button color="inherit">User Name</Button>
+            <div className={classes.iconImage}></div>
+        </div>
+      </Toolbar>
+    </AppBar>
+    <Drawer
+      variant="permanent"
+      className={clsx(classes.drawer, {
+        [classes.drawerOpen]: open,
+        [classes.drawerClose]: !open,
+      })}
+      classes={{
+        paper: clsx({
+          [classes.drawerOpen]: open,
+          [classes.drawerClose]: !open,
+        }),
+      }}
+      open={open}
+    >
+      <div className={classes.toolbar}>
+      <IconButton
+          color="inherit"
+          aria-label="open drawer"
+          onClick={handleDrawerOpen}
+          edge="start"
+          className={classes.menuButtonDesktop}
+        >
+          <MenuIcon />
+        </IconButton>
+      </div>
+      {open ? (<div className={classes.placeholderDiv}>
+            <div className={classes.placeHolder} />
+            <div className={classes.placeHolder2} />
+          </div>) : (
+      <div className={classes.placeholderDiv}>
+            <div className={classes.placeHolderClosed} />
+            <div className={classes.placeHolderClosed2} />
+          </div>
+          )}
+      <List>
+        <ListItem
+          className={classes.hoverTab}
+          button
+          component={NavLink}
+          to="/dashboard"
+          style={{ textDecoration: "none" }}
+          activeClassName={classes.activeTab}
+          key="Dashboard"
+        >
+          <ListItemIcon>
+            <InboxIcon />
+          </ListItemIcon>
+          <ListItemText primary="Dashboard" />
+        </ListItem>
+      </List>
+
+      <List>
+        <ListItem button key="Activity">
+          <ListItemIcon>
+            <InboxIcon />
+          </ListItemIcon>
+          <ListItemText primary="Activity" />
+        </ListItem>
+      </List>
+      <List>
+        <ListItem button key="Courses">
+          <ListItemIcon>
+            <InboxIcon />
+          </ListItemIcon>
+          <ListItemText primary="Courses" />
+        </ListItem>
+      </List>
+      <List>
+        <ListItem button key="Learning Paths">
+          <ListItemIcon>
+            <InboxIcon />
+          </ListItemIcon>
+          <ListItemText primary="Learning Paths" />
+        </ListItem>
+      </List>
+      <List>
+        <ListItem button key="Profile">
+          <ListItemIcon>
+            <InboxIcon />
+          </ListItemIcon>
+          <ListItemText primary="Profile" />
+        </ListItem>
+      </List>
+    </Drawer>
+    <main className={classes.content}>
+      <div className={classes.toolbar} />
+      {routedContent()}
+    </main>
+  </div>
+     )}  
+     </>
+    );
 }
 
 export default Header;
