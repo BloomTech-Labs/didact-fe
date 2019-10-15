@@ -7,6 +7,9 @@ export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 export const REGISTER_START = 'REGISTER_START';
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 export const REGISTER_FAILURE = 'REGISTER_FAILURE';
+export const VERIFY_START = 'VERIFY_START';
+export const VERIFY_SUCCESS = 'VERIFY_SUCCESS';
+export const VERIFY_FAILURE = 'VERIFY_FAILURE';
 
 
 export const loginAction = (history, form) => dispatch => {
@@ -37,3 +40,17 @@ export const registerAction = (history, form) => dispatch => {
       .then(res => history.push("/dashboard"))
       .catch(err => dispatch({ type: REGISTER_FAILURE, payload: err }));
   };
+
+export const verifyToken = (props) => dispatch => {
+    console.log('props in action: ', props)
+    console.log(localStorage.getItem('token'))
+    const token = localStorage.getItem('token')
+    dispatch({type: VERIFY_START})
+    axios.post(`https://didactlms-staging.herokuapp.com/api/auth`, {'token': token})
+    .then(res => {
+        console.log(res)
+        dispatch({type: VERIFY_SUCCESS, payload: res.data})
+    })
+    .then(props.history.push('/dashboard'))
+    .catch(err => dispatch({type: VERIFY_FAILURE, payload: err}))
+}

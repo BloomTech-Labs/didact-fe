@@ -1,8 +1,8 @@
 import React from "react";
 import {Form, Field, withFormik} from "formik";
 import * as Yup from 'yup';
-import { registerAction } from '../../store/actions';
-import {useDispatch} from 'react-redux';
+import { registerAction, registerWithFacebook, registerWithGoogle } from '../../store/actions';
+import { useDispatch } from 'react-redux';
 
 const RegisterForm = (props) => {
     const {errors, touched} = props;
@@ -48,12 +48,18 @@ const FormikRegisterForm = withFormik({
 
 })(RegisterForm);
 
-const FormikRegisterWrapper = props =>
+const FormikRegisterWrapper = ({history}) =>
 {
     const dispatch = useDispatch();
+
+   
+    console.log(dispatch)
     return (
         <>
-            <FormikRegisterForm dispatch={dispatch} history={props.history}/>
+            <FormikRegisterForm dispatch={dispatch} history={history}/>
+            <a href="http://didactlms-staging.herokuapp.com/api/auth/facebook">Sign Up With Facebook</a>
+            <a href="http://didactlms-staging.herokuapp.com/api/auth/google">Sign Up With Google</a>
+
         </>
     )
 }
