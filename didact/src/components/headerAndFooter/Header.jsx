@@ -101,7 +101,7 @@ const useStyles = makeStyles(theme => ({
     width: drawerWidth,
     height: "800px",
     margin: "10px",
-    borderRadius: 15,
+    borderRadius: "15px",
     transition: theme.transitions.create("width", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
@@ -115,18 +115,18 @@ const useStyles = makeStyles(theme => ({
     overflowX: "hidden",
     width: theme.spacing(7) + 1,
     [theme.breakpoints.up("sm")]: {
-      width: theme.spacing(9) + 1,
+      width: theme.spacing(8) + 1,
       margin: "10px 10px 10px 10px",
       height: "800px",
-      borderRadius: 15
+      borderRadius: "15px"
     },
   },
   drawerOpenMobile: {
     position: 'absolute',
     width: drawerWidth,
     height: "500px",
-    margin: "37px 0 10px 10px",
-    borderRadius: 15,
+    margin: "37px 0 10px 5px",
+    borderRadius: "15px",
     transition: theme.transitions.create("width", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
@@ -139,14 +139,14 @@ const useStyles = makeStyles(theme => ({
     }),
     overflow: "hidden",
     height: "500px",
-    margin: "73px 10px 10px 20px",
-    borderRadius: 15,
+    margin: "73px 10px 10px 10px",
+    borderRadius: "15px",
     position: 'fixed',
     width: theme.spacing(7) + 1,
     [theme.breakpoints.up("sm")]: {
       width: theme.spacing(7) + 1,
-      margin: "10px 10px 10px 10px",
-      borderRadius: '50%',
+      // margin: "10px 10px 10px 10px",
+      // borderRadius: '50%',
     },
   },
   
@@ -217,7 +217,7 @@ function Header() {
   const classes = useStyles();
   const theme = useTheme();
   // const tabletSize = useMediaQuery("(max-width:770px");
-  const phoneSize = useMediaQuery("(max-width:600px)");
+  const phoneSize = useMediaQuery("(max-width:770px)");
   const [open, setOpen] = React.useState(true);
   const [openMobile, setOpenMobile] = React.useState(false);
 
@@ -225,7 +225,7 @@ function Header() {
     setOpen(!open);
   };
   
-  const handleDrawerOpenMobile = event => {
+  const handleDrawerOpenMobile = () => event => {
     if (
       event &&
       event.type === "keydown" &&
@@ -368,13 +368,13 @@ function Header() {
             [classes.drawerCloseMobile]: !openMobile,
           }),
         }}
-        open={open}
+        open={openMobile}
       >
         <div className={classes.toolbar}>
         <IconButton
             color="inherit"
             aria-label="open drawer"
-            onClick={handleDrawerOpenMobile}
+            onClick={handleDrawerOpenMobile()}
             edge="start"
             className={classes.menuButtonMobile}
           >
