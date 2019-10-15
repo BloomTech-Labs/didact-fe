@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import Dashboard from '../Dashboard/dashboard';
-import Course from "../Dashboard/courses/Course";
 import { courseEndPoint } from "../../store/actions/index.js";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -49,14 +48,17 @@ const useStyles = makeStyles(theme => ({
     borderRadius: "10px 10px 10px 10px",
     backgroundColor: 'gray',
     color: 'lightgray',
-    position: 'fixed'
+    position: 'fixed',
+    
+
   },
   appBarDesktop: {
     width: `calc(100% - 100px)`,
     margin: "10px",
     borderRadius: "10px 10px 10px 10px",
     backgroundColor: 'gray',
-    color: 'lightgray'
+    color: 'lightgray',
+    position: 'fixed'
   },
   appBarShift: {
     marginLeft: drawerWidth,
@@ -77,17 +79,24 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
     padding: theme.spacing(3),
   },
-  contentMobile: {
+  contentShadow: {
+    background: "rgba(0, 0, 0, 0.8)",
+    filter: "brightness(50%)",
+    zIndex:100,
+    position:"absolute",
+    top:0,
+    left:0,
+    width:"100%",
+    height:"100%",
     flexGrow: 1,
-    backgroundColor: theme.palette.background.default,
-    // padding: theme.spacing(3),
+    padding: theme.spacing(3),
   },
   drawer: {
     width: 0,
     flexShrink: 0,
-    whiteSpace: "nowrap",
-    
+    whiteSpace: "nowrap"
   },
+  
   drawerOpen: {
     width: drawerWidth,
     height: "800px",
@@ -113,10 +122,10 @@ const useStyles = makeStyles(theme => ({
     },
   },
   drawerOpenMobile: {
+    position: 'absolute',
     width: drawerWidth,
     height: "500px",
-    margin: "10px",
-    marginTop: "75px",
+    margin: "37px 0 10px 10px",
     borderRadius: 15,
     transition: theme.transitions.create("width", {
       easing: theme.transitions.easing.sharp,
@@ -128,14 +137,16 @@ const useStyles = makeStyles(theme => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    overflowX: "hidden",
+    overflow: "hidden",
     height: "500px",
-    marginTop: "75px",
+    margin: "73px 10px 10px 20px",
     borderRadius: 15,
+    position: 'fixed',
     width: theme.spacing(7) + 1,
     [theme.breakpoints.up("sm")]: {
-      width: theme.spacing(9) + 1,
+      width: theme.spacing(7) + 1,
       margin: "10px 10px 10px 10px",
+      borderRadius: '50%',
     },
   },
   
@@ -148,24 +159,20 @@ const useStyles = makeStyles(theme => ({
   iconToolBar: {
     margin: "0 5px",
   },
-  list: {
-    width: 230,
-    marginTop: "50px",
-    // position: 'sticky',
-    // zIndex: -1,
-   
-  },
-  listClosed: {
-    width: "90px",
-    marginTop: "50px",
-  },
-  menuButton: {
-    marginRight: 36,
+  menuButtonMobile: {
+    marginRight: '-4px'
   },
   menuButtonDesktop: {
     marginRight: theme.spacing(.5),
   },
   placeholderDiv: {
+    display: "flex",
+    justifyContent: "center",
+    alignContent: "space-evenly",
+    margin: "20px 0",
+    flexFlow: "column wrap",
+  },
+  placeholderDivShadowed: {
     display: "flex",
     justifyContent: "center",
     alignContent: "space-evenly",
@@ -185,20 +192,6 @@ const useStyles = makeStyles(theme => ({
     height: "120px",
     borderRadius: 15,
     margin: "10px 0",
-  },
-  placeHolderClosed: {
-    backgroundColor: "gray",
-    width: "80%",
-    margin: "10px 10px 10px 10px",
-    height: "100px",
-    borderRadius: 25,
-  },
-  placeHolderClosed2: {
-    backgroundColor: "#ebe8e1",
-    width: "80%",
-    margin: "10px",
-    height: "120px",
-    borderRadius: 25,
   },
   spacing: {
     marginTop: "60px",
@@ -223,13 +216,16 @@ const useStyles = makeStyles(theme => ({
 function Header() {
   const classes = useStyles();
   const theme = useTheme();
-  const desktopSize = useMediaQuery("(min-width:600px)");
+  // const tabletSize = useMediaQuery("(max-width:770px");
   const phoneSize = useMediaQuery("(max-width:600px)");
   const [open, setOpen] = React.useState(true);
   const [openMobile, setOpenMobile] = React.useState(false);
-  const [left, setLeft] = React.useState(false);
 
-  const toggleDrawer = () => event => {
+  const handleDrawerOpen = () => {
+    setOpen(!open);
+  };
+  
+  const handleDrawerOpenMobile = event => {
     if (
       event &&
       event.type === "keydown" &&
@@ -237,13 +233,6 @@ function Header() {
     ) {
       return;
     }
-    setLeft(!left);
-  };
-
-  const handleDrawerOpen = () => {
-    setOpen(!open);
-  };
-  const handleDrawerOpenMobile = () => {
     setOpenMobile(!openMobile);
   };
 
@@ -256,142 +245,8 @@ function Header() {
   }, [dispatch]);
 
   const sideList = side => (
-    <div
-      className={classes.list}
-      onClick={toggleDrawer(side, false)}
-      onKeyDown={toggleDrawer(side, false)}
-    >
-
-      <List>
-        <ListItem
-          button
-          component={NavLink}
-          to="/dashboard"
-          style={{ textDecoration: "none" }}
-          activeClassName={classes.activeTab}
-          key="Dashboard"
-        >
-          <ListItemIcon>
-            <InboxIcon />
-          </ListItemIcon>
-          <ListItemText primary="Dashboard"/>
-        </ListItem>
-      </List>
-
-      <List>
-        <ListItem button key="Activity">
-          <ListItemIcon>
-            <InboxIcon />
-          </ListItemIcon>
-          <ListItemText primary="Activity" />
-        </ListItem>
-      </List>
-      <List>
-        <ListItem button key="Courses">
-          <ListItemIcon>
-            <InboxIcon />
-          </ListItemIcon>
-          <ListItemText primary="Courses" />
-        </ListItem>
-      </List>
-      <List>
-        <ListItem button key="Learning Paths">
-          <ListItemIcon>
-            <InboxIcon />
-          </ListItemIcon>
-          <ListItemText primary="Learning Paths" />
-        </ListItem>
-      </List>
-      <List>
-        <ListItem button key="Profile">
-          <ListItemIcon>
-            <InboxIcon />
-          </ListItemIcon>
-          <ListItemText primary="Profile" />
-        </ListItem>
-      </List>
-    </div>
-  );
-
-//** */ Can Add Components Below **********************
-  const routedContent = () => {
-    return (
-    <div>
-        {phoneSize ? (
-          open ? (
-            <div className={classes.placeholderDiv}>
-              <div className={classes.placeHolder} />
-              <div className={classes.placeHolder2} />
-            </div>
-          ) : (
-            <div className={classes.placeholderDiv}>
-              <div className={classes.placeHolderClosed} />
-              <div className={classes.placeHolderClosed2} />
-            </div>
-          )
-        ) : null}
-         <Dashboard />
-    </div>
-    )
-  };
-
-
-  return (
-    // MOBILE CODE ****************************************************************************
     <>
-    {phoneSize ? (
-      <div className={classes.root}>
-      <CssBaseline />
-      <AppBar
-        // position="absolute"
-        className={clsx(classes.appBarMobile, {
-          // [classes.appBarShift]: openMobile,
-        })}
-      >
-        <Toolbar>
-          <Typography variant="h5">
-            Didact
-          </Typography>
-          <div className={classes.toolbarIcons}>
-              <Button className={classes.iconToolBar} color="inherit">
-                 first
-              </Button>
-               <Button className={classes.iconToolBar} color="inherit">
-               second
-              </Button>
-              <Button className={classes.iconToolBar} color="inherit">
-                 third
-              </Button>
-              <div className={classes.iconImage}></div>
-          </div>
-        </Toolbar>
-      </AppBar>
-      <Drawer
-        variant="permanent"
-        className={clsx(classes.drawer, {
-          [classes.drawerOpenMobile]: openMobile,
-          [classes.drawerCloseMobile]: !openMobile,
-        })}
-        classes={{
-          paper: clsx({
-            [classes.drawerOpenMobile]: openMobile,
-            [classes.drawerCloseMobile]: !openMobile,
-          }),
-        }}
-        openMobile={openMobile}
-      >
-        <div className={classes.toolbar}>
-        <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpenMobile}
-            edge="start"
-            className={classes.menuButtonDesktop}
-          >
-            <MenuIcon />
-          </IconButton>
-        </div>
-        <List className={classes.hoverTab}>
+     <List className={classes.hoverTab}>
           <ListItem
             className={classes.hoverTab}
             button
@@ -445,8 +300,90 @@ function Header() {
             <ListItemText className = {classes.arrow} primary=">" />
           </ListItem>
         </List>
+    </>
+  );
+
+//** */ Can Add Components Below **********************
+  const routedContent = () => {
+    return (
+    <div>
+        {phoneSize ? (
+          open ? (
+            <div className={classes.placeholderDiv}>
+              <div className={classes.placeHolder} />
+              <div className={classes.placeHolder2} />
+            </div>
+          ) : (
+            <div className={classes.placeholderDiv}>
+              <div className={classes.placeHolder} />
+              <div className={classes.placeHolder2} />
+            </div>
+          )
+        ) : null}
+         <Dashboard />
+    </div>
+    )
+  };
+
+
+  return (
+    // MOBILE CODE ****************************************************************************
+    <>
+    {phoneSize ? (
+      <div className={classes.root}>
+      <CssBaseline />
+      <AppBar
+        // position="absolute"
+        className={clsx(classes.appBarMobile, {
+          // [classes.appBarShift]: openMobile,
+        })}
+      >
+        <Toolbar>
+          <Typography variant="h5">
+            Didact
+          </Typography>
+          <div className={classes.toolbarIcons}>
+              <Button className={classes.iconToolBar} color="inherit">
+                 first
+              </Button>
+               <Button className={classes.iconToolBar} color="inherit">
+               second
+              </Button>
+              <Button className={classes.iconToolBar} color="inherit">
+                 third
+              </Button>
+              <div className={classes.iconImage}></div>
+          </div>
+        </Toolbar>
+      </AppBar>
+      <Drawer
+        variant="permanent"
+        className={clsx(classes.drawer, {
+          [classes.drawerOpenMobile]: openMobile,
+          [classes.drawerCloseMobile]: !openMobile,
+        })}
+        classes={{
+          paper: clsx({
+            [classes.drawerOpenMobile]: openMobile,
+            [classes.drawerCloseMobile]: !openMobile,
+          }),
+        }}
+        open={open}
+      >
+        <div className={classes.toolbar}>
+        <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            onClick={handleDrawerOpenMobile}
+            edge="start"
+            className={classes.menuButtonMobile}
+          >
+            <MenuIcon />
+          </IconButton>
+        </div>
+        {sideList()}
       </Drawer>
-      <main className={classes.content}>
+      <main className={openMobile ? classes.contentShadow :classes.content}>
         <div className={classes.toolbar} />
         {routedContent()}
         {/*************************ADD COMPONENTS HERE *********************** */}
@@ -518,60 +455,7 @@ function Header() {
             <div className={classes.placeHolderClosed2} />
           </div>
           )}
-      <List className={classes.hoverTab}>
-        <ListItem
-          className={classes.hoverTab}
-          button
-          component={NavLink}
-          to="/dashboard"
-          style={{ textDecoration: "none" }}
-          activeClassName={classes.activeTab}
-          key="Dashboard"
-        >
-          <ListItemIcon>
-            <InboxIcon />
-          </ListItemIcon>
-          <ListItemText primary="Dashboard" />
-          <ListItemText className = {classes.arrow} primary=">" />
-        </ListItem>
-      </List>
-
-      <List className={classes.hoverTab}>
-        <ListItem button key="Activity">
-          <ListItemIcon>
-            <InboxIcon />
-          </ListItemIcon>
-          <ListItemText primary="Activity" />
-          <ListItemText className = {classes.arrow} primary=">" />
-        </ListItem>
-      </List>
-      <List className={classes.hoverTab}>
-        <ListItem button key="Courses">
-          <ListItemIcon>
-            <InboxIcon />
-          </ListItemIcon>
-          <ListItemText primary="Courses" />
-          <ListItemText className = {classes.arrow} primary=">" />
-        </ListItem>
-      </List>
-      <List className={classes.hoverTab}>
-        <ListItem button key="Learning Paths">
-          <ListItemIcon>
-            <InboxIcon />
-          </ListItemIcon>
-          <ListItemText primary="Learning Paths" />
-          <ListItemText className = {classes.arrow} primary=">" />
-        </ListItem>
-      </List>
-      <List className={classes.hoverTab}>
-        <ListItem button key="Profile">
-          <ListItemIcon>
-            <InboxIcon />
-          </ListItemIcon>
-          <ListItemText primary="Profile" />
-          <ListItemText className = {classes.arrow} primary=">" />
-        </ListItem>
-      </List>
+     {sideList()}
     </Drawer>
     <main className={classes.content}>
       <div className={classes.toolbar} />
