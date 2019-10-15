@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
-
-import "../../App.css";
+import Dashboard from '../Dashboard/dashboard';
+import Course from "../Dashboard/courses/Course";
+import { courseEndPoint } from "../../store/actions/index.js";
+import { useDispatch, useSelector } from "react-redux";
 
 import clsx from "clsx";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
@@ -28,29 +30,69 @@ const drawerWidth = 240;
 const useStyles = makeStyles(theme => ({
   root: {
     display: "flex",
+    backgroundColor: "lightgray"
   },
-  appBar: {
-    zIndex: theme.zIndex.drawer + 1,
-    borderRadius: "10px 10px 10px 10px",
-    backgroundColor: 'gray'
+  activeTab: {
+    backgroundColor: "gray",
+    borderRadius: "0 20px 20px 0",
+    width: "215px",
+    color: "white",
+    "&:hover": {
+      backgroundColor: "gray",
+    borderRadius: "0 20px 20px 0",
+    width: "215px",
+    color: "white",
+    },
   },
   appBarMobile: {
-    zIndex: theme.zIndex.drawer + 1,
-    backgroundColor: 'gray'
+    width: `calc(100%)`,
+    borderRadius: "10px 10px 10px 10px",
+    backgroundColor: 'gray',
+    color: 'lightgray',
+    position: 'fixed'
   },
-  menuButton: {
-    marginRight: 36,
+  appBarDesktop: {
+    width: `calc(100% - 100px)`,
+    margin: "10px",
+    borderRadius: "10px 10px 10px 10px",
+    backgroundColor: 'gray',
+    color: 'lightgray'
   },
-  hide: {
-    display: "none",
+  appBarShift: {
+    marginLeft: drawerWidth,
+    width: `calc(100% - (${drawerWidth}px + 30px))`,
+    transition: theme.transitions.create(['width', 'margin'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  },
+  arrow: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+    alignContent: 'center',
+    color: "white",
+      
+  },
+  content: {
+    flexGrow: 1,
+    padding: theme.spacing(3),
+  },
+  contentMobile: {
+    flexGrow: 1,
+    backgroundColor: theme.palette.background.default,
+    // padding: theme.spacing(3),
   },
   drawer: {
     width: 0,
     flexShrink: 0,
     whiteSpace: "nowrap",
+    
   },
   drawerOpen: {
     width: drawerWidth,
+    height: "800px",
+    margin: "10px",
+    borderRadius: 15,
     transition: theme.transitions.create("width", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
@@ -65,33 +107,63 @@ const useStyles = makeStyles(theme => ({
     width: theme.spacing(7) + 1,
     [theme.breakpoints.up("sm")]: {
       width: theme.spacing(9) + 1,
+      margin: "10px 10px 10px 10px",
+      height: "800px",
+      borderRadius: 15
     },
   },
-
-  toolbar: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "flex-end",
-    padding: theme.spacing(0, 1),
-    ...theme.mixins.toolbar,
+  drawerOpenMobile: {
+    width: drawerWidth,
+    height: "500px",
+    margin: "10px",
+    marginTop: "75px",
+    borderRadius: 15,
+    transition: theme.transitions.create("width", {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
   },
-  toolbarIcons: {
-    display: "flex",
-    justifyContent: "flex-end",
-    width: "100%",
+  drawerCloseMobile: {
+    transition: theme.transitions.create("width", {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+    overflowX: "hidden",
+    height: "500px",
+    marginTop: "75px",
+    borderRadius: 15,
+    width: theme.spacing(7) + 1,
+    [theme.breakpoints.up("sm")]: {
+      width: theme.spacing(9) + 1,
+      margin: "10px 10px 10px 10px",
+    },
   },
+  
   iconImage: {
     width: "40px",
     height: "40px",
-    backgroundColor: "lightgray",
+    backgroundColor: "#ebe8e1",
     borderRadius: "50%",
   },
   iconToolBar: {
     margin: "0 5px",
   },
-  content: {
-    flexGrow: 1,
-    padding: theme.spacing(3),
+  list: {
+    width: 230,
+    marginTop: "50px",
+    // position: 'sticky',
+    // zIndex: -1,
+   
+  },
+  listClosed: {
+    width: "90px",
+    marginTop: "50px",
+  },
+  menuButton: {
+    marginRight: 36,
+  },
+  menuButtonDesktop: {
+    marginRight: theme.spacing(.5),
   },
   placeholderDiv: {
     display: "flex",
@@ -108,50 +180,43 @@ const useStyles = makeStyles(theme => ({
     margin: "10px 0",
   },
   placeHolder2: {
-    backgroundColor: "lightgray",
+    backgroundColor: "#ebe8e1",
     width: "200px",
-    height: "150px",
+    height: "120px",
     borderRadius: 15,
     margin: "10px 0",
   },
   placeHolderClosed: {
     backgroundColor: "gray",
-    width: "100%",
+    width: "80%",
     margin: "10px 10px 10px 10px",
     height: "100px",
-    borderRadius: 15,
+    borderRadius: 25,
   },
   placeHolderClosed2: {
-    backgroundColor: "lightgray",
-    width: "100%",
+    backgroundColor: "#ebe8e1",
+    width: "80%",
     margin: "10px",
-    height: "150px",
-    borderRadius: 15,
-  },
-  list: {
-    width: 230,
+    height: "120px",
+    borderRadius: 25,
   },
   spacing: {
     marginTop: "60px",
   },
-  leftPanelButton: {
-    width: "240px",
+  titleDesktop: {
+    flexGrow: 1,
+  },
+  toolbar: {
     display: "flex",
-    justifyContent: "space-evenly",
+    alignItems: "center",
+    justifyContent: "flex-end",
+    padding: theme.spacing(0, 1),
+    ...theme.mixins.toolbar,
   },
-  activeTab: {
-    backgroundColor: "gray",
-    borderRadius: "0 10px 10px 0",
-    width: "215px",
-    color: "black",
-  },
-  hoverTab: {
-    "&:hover": {
-      backgroundColor: "gray",
-      borderRadius: "0 10px 10px 0",
-      width: "215px",
-      color: "black",
-    },
+  toolbarIcons: {
+    display: "flex",
+    justifyContent: "flex-end",
+    width: "100%",
   },
 }));
 
@@ -160,7 +225,8 @@ function Header() {
   const theme = useTheme();
   const desktopSize = useMediaQuery("(min-width:600px)");
   const phoneSize = useMediaQuery("(max-width:600px)");
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
+  const [openMobile, setOpenMobile] = React.useState(false);
   const [left, setLeft] = React.useState(false);
 
   const toggleDrawer = () => event => {
@@ -174,23 +240,30 @@ function Header() {
     setLeft(!left);
   };
 
-  const handleDrawerToggle = () => {
-    toggleDrawer();
+  const handleDrawerOpen = () => {
     setOpen(!open);
   };
+  const handleDrawerOpenMobile = () => {
+    setOpenMobile(!openMobile);
+  };
+
+
+  const dispatch = useDispatch();
+  const state = useSelector(state => state);
+
+  useEffect(() => {
+    dispatch(courseEndPoint());
+  }, [dispatch]);
 
   const sideList = side => (
     <div
       className={classes.list}
-      role="presentation"
       onClick={toggleDrawer(side, false)}
       onKeyDown={toggleDrawer(side, false)}
     >
-      {phoneSize ? <div className={classes.spacing}></div> : null}
 
       <List>
         <ListItem
-          className={classes.hoverTab}
           button
           component={NavLink}
           to="/dashboard"
@@ -201,7 +274,7 @@ function Header() {
           <ListItemIcon>
             <InboxIcon />
           </ListItemIcon>
-          <ListItemText primary="Dashboard" />
+          <ListItemText primary="Dashboard"/>
         </ListItem>
       </List>
 
@@ -240,83 +313,10 @@ function Header() {
     </div>
   );
 
-  return (
-    <div className={classes.root}>
-      <CssBaseline />
-      <AppBar
-        position="fixed"
-        className={phoneSize ? classes.appBarMobile : classes.appBar}
-      >
-        <Toolbar>
-          {phoneSize ? (
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              onClick={handleDrawerToggle}
-              edge="start"
-              className={classes.menuButton}
-            >
-              <MenuIcon />
-            </IconButton>
-          ) : (
-            <IconButton
-              edge="start"
-              color="inherit"
-              onClick={toggleDrawer("left", true)}
-            >
-              <MenuIcon />
-            </IconButton>
-          )}
-          <Typography variant="h6" className={classes.title}>
-            Didact
-          </Typography>
-          <div className={classes.toolbarIcons}>
-            <Button className={classes.iconToolBar} color="inherit">
-              first
-            </Button>
-            <Button className={classes.iconToolBar} color="inherit">
-              second
-            </Button>
-            <Button className={classes.iconToolBar} color="inherit">
-              third
-            </Button>
-            {!phoneSize ? <Button color="inherit">User Name</Button> : null}
-            <div className={classes.iconImage}></div>
-          </div>
-        </Toolbar>
-      </AppBar>
-      {/* Panel changes with mobile vs desktop */}
-      {phoneSize ? (
-        <Drawer
-          variant="permanent"
-          className={clsx(classes.drawer, {
-            [classes.drawerOpen]: open,
-            [classes.drawerClose]: !open,
-          })}
-          classes={{
-            paper: clsx({
-              [classes.drawerOpen]: open,
-              [classes.drawerClose]: !open,
-            }),
-          }}
-          open={open}
-        >
-          {sideList("left")}
-        </Drawer>
-      ) : (
-        // DESKTOP PANEL BELOW
-        <Drawer open={left} onClose={toggleDrawer("left", false)}>
-          <div className={classes.placeholderDiv}>
-            <div className={classes.placeHolder} />
-            <div className={classes.placeHolder2} />
-          </div>
-          {sideList("left")}
-        </Drawer>
-      )}
-
-      {/* Panel change end */}
-      <main className={classes.content}>
-        <div className={classes.toolbar} />
+//** */ Can Add Components Below **********************
+  const routedContent = () => {
+    return (
+    <div>
         {phoneSize ? (
           open ? (
             <div className={classes.placeholderDiv}>
@@ -330,12 +330,258 @@ function Header() {
             </div>
           )
         ) : null}
+         <Dashboard />
+    </div>
+    )
+  };
+
+
+  return (
+    // MOBILE CODE ****************************************************************************
+    <>
+    {phoneSize ? (
+      <div className={classes.root}>
+      <CssBaseline />
+      <AppBar
+        // position="absolute"
+        className={clsx(classes.appBarMobile, {
+          // [classes.appBarShift]: openMobile,
+        })}
+      >
+        <Toolbar>
+          <Typography variant="h5">
+            Didact
+          </Typography>
+          <div className={classes.toolbarIcons}>
+              <Button className={classes.iconToolBar} color="inherit">
+                 first
+              </Button>
+               <Button className={classes.iconToolBar} color="inherit">
+               second
+              </Button>
+              <Button className={classes.iconToolBar} color="inherit">
+                 third
+              </Button>
+              <div className={classes.iconImage}></div>
+          </div>
+        </Toolbar>
+      </AppBar>
+      <Drawer
+        variant="permanent"
+        className={clsx(classes.drawer, {
+          [classes.drawerOpenMobile]: openMobile,
+          [classes.drawerCloseMobile]: !openMobile,
+        })}
+        classes={{
+          paper: clsx({
+            [classes.drawerOpenMobile]: openMobile,
+            [classes.drawerCloseMobile]: !openMobile,
+          }),
+        }}
+        openMobile={openMobile}
+      >
+        <div className={classes.toolbar}>
+        <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            onClick={handleDrawerOpenMobile}
+            edge="start"
+            className={classes.menuButtonDesktop}
+          >
+            <MenuIcon />
+          </IconButton>
+        </div>
+        <List className={classes.hoverTab}>
+          <ListItem
+            className={classes.hoverTab}
+            button
+            component={NavLink}
+            to="/dashboard"
+            style={{ textDecoration: "none" }}
+            activeClassName={classes.activeTab}
+            key="Dashboard"
+          >
+            <ListItemIcon>
+              <InboxIcon />
+            </ListItemIcon>
+            <ListItemText primary="Dashboard" />
+            <ListItemText className = {classes.arrow} primary=">" />
+          </ListItem>
+        </List>
+  
+        <List className={classes.hoverTab}>
+          <ListItem button key="Activity">
+            <ListItemIcon>
+              <InboxIcon />
+            </ListItemIcon>
+            <ListItemText primary="Activity" />
+            <ListItemText className = {classes.arrow} primary=">" />
+          </ListItem>
+        </List>
+        <List className={classes.hoverTab}>
+          <ListItem button key="Courses">
+            <ListItemIcon>
+              <InboxIcon />
+            </ListItemIcon>
+            <ListItemText primary="Courses" />
+            <ListItemText className = {classes.arrow} primary=">" />
+          </ListItem>
+        </List>
+        <List className={classes.hoverTab}>
+          <ListItem button key="Learning Paths">
+            <ListItemIcon>
+              <InboxIcon />
+            </ListItemIcon>
+            <ListItemText primary="Learning Paths" />
+            <ListItemText className = {classes.arrow} primary=">" />
+          </ListItem>
+        </List>
+        <List className={classes.hoverTab}>
+          <ListItem button key="Profile">
+            <ListItemIcon>
+              <InboxIcon />
+            </ListItemIcon>
+            <ListItemText primary="Profile" />
+            <ListItemText className = {classes.arrow} primary=">" />
+          </ListItem>
+        </List>
+      </Drawer>
+      <main className={classes.content}>
+        <div className={classes.toolbar} />
+        {routedContent()}
+        {/*************************ADD COMPONENTS HERE *********************** */}
       </main>
     </div>
-    // <>
-    //  {state.coursesReducer.courses ? state.coursesReducer.courses.map(course => <Course key={course.id} course={course} />) : null}
-    // </>
-  );
+        ) 
+        // END OF MOBILE CODE *******************************************************************
+        : 
+        // BEGINNING OF DESKTOP CODE ************************************************************
+        (
+    <div className={classes.root}>
+    <CssBaseline />
+    <AppBar
+      // position="absolute"
+      className={clsx(classes.appBarDesktop, {
+        [classes.appBarShift]: open,
+      })}
+    >
+      <Toolbar>
+        <Typography variant="h5">
+          Didact
+        </Typography>
+        <div className={classes.toolbarIcons}>
+            <Button className={classes.iconToolBar} color="inherit">
+               first
+            </Button>
+             <Button className={classes.iconToolBar} color="inherit">
+             second
+            </Button>
+            <Button className={classes.iconToolBar} color="inherit">
+               third
+            </Button>
+            <Button color="inherit">User Name</Button>
+            <div className={classes.iconImage}></div>
+        </div>
+      </Toolbar>
+    </AppBar>
+    <Drawer
+      variant="permanent"
+      className={clsx(classes.drawer, {
+        [classes.drawerOpen]: open,
+        [classes.drawerClose]: !open,
+      })}
+      classes={{
+        paper: clsx({
+          [classes.drawerOpen]: open,
+          [classes.drawerClose]: !open,
+        }),
+      }}
+      open={open}
+    >
+      <div className={classes.toolbar}>
+      <IconButton
+          color="inherit"
+          aria-label="open drawer"
+          onClick={handleDrawerOpen}
+          edge="start"
+          className={classes.menuButtonDesktop}
+        >
+          <MenuIcon />
+        </IconButton>
+      </div>
+      {open ? (<div className={classes.placeholderDiv}>
+            <div className={classes.placeHolder} />
+            <div className={classes.placeHolder2} />
+          </div>) : (
+      <div className={classes.placeholderDiv}>
+            <div className={classes.placeHolderClosed} />
+            <div className={classes.placeHolderClosed2} />
+          </div>
+          )}
+      <List className={classes.hoverTab}>
+        <ListItem
+          className={classes.hoverTab}
+          button
+          component={NavLink}
+          to="/dashboard"
+          style={{ textDecoration: "none" }}
+          activeClassName={classes.activeTab}
+          key="Dashboard"
+        >
+          <ListItemIcon>
+            <InboxIcon />
+          </ListItemIcon>
+          <ListItemText primary="Dashboard" />
+          <ListItemText className = {classes.arrow} primary=">" />
+        </ListItem>
+      </List>
+
+      <List className={classes.hoverTab}>
+        <ListItem button key="Activity">
+          <ListItemIcon>
+            <InboxIcon />
+          </ListItemIcon>
+          <ListItemText primary="Activity" />
+          <ListItemText className = {classes.arrow} primary=">" />
+        </ListItem>
+      </List>
+      <List className={classes.hoverTab}>
+        <ListItem button key="Courses">
+          <ListItemIcon>
+            <InboxIcon />
+          </ListItemIcon>
+          <ListItemText primary="Courses" />
+          <ListItemText className = {classes.arrow} primary=">" />
+        </ListItem>
+      </List>
+      <List className={classes.hoverTab}>
+        <ListItem button key="Learning Paths">
+          <ListItemIcon>
+            <InboxIcon />
+          </ListItemIcon>
+          <ListItemText primary="Learning Paths" />
+          <ListItemText className = {classes.arrow} primary=">" />
+        </ListItem>
+      </List>
+      <List className={classes.hoverTab}>
+        <ListItem button key="Profile">
+          <ListItemIcon>
+            <InboxIcon />
+          </ListItemIcon>
+          <ListItemText primary="Profile" />
+          <ListItemText className = {classes.arrow} primary=">" />
+        </ListItem>
+      </List>
+    </Drawer>
+    <main className={classes.content}>
+      <div className={classes.toolbar} />
+      {routedContent()}
+      {/*************************ADD COMPONENTS HERE *********************** */}
+    </main>
+  </div>
+     )}  
+     </>
+    );
 }
 
 export default Header;
