@@ -71,7 +71,7 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'flex-end',
     alignContent: 'center',
     color: "white",
-    
+      
   },
   content: {
     flexGrow: 1,
