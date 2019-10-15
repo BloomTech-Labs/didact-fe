@@ -32,20 +32,25 @@ const useStyles = makeStyles(theme => ({
     display: "flex",
     backgroundColor: "lightgray"
   },
+  activeTab: {
+    backgroundColor: "gray",
+    borderRadius: "0 10px 10px 0",
+    width: "215px",
+    color: "black",
+  },
   appBar: {
-    zIndex: theme.zIndex.drawer + 1,
-    transition: theme.transitions.create(['width', 'margin'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
+    // zIndex: theme.zIndex.drawer - 1,
     borderRadius: "10px 10px 10px 10px",
-    backgroundColor: 'gray'
+    backgroundColor: 'gray',
+    color: 'lightgray',
+    position: 'fixed'
   },
   appBarDesktop: {
     width: `calc(100% - 100px)`,
     margin: "10px",
     borderRadius: "10px 10px 10px 10px",
-    backgroundColor: 'gray'
+    backgroundColor: 'gray',
+    color: 'lightgray'
   },
   appBarShift: {
     marginLeft: drawerWidth,
@@ -55,19 +60,20 @@ const useStyles = makeStyles(theme => ({
       duration: theme.transitions.duration.enteringScreen,
     }),
   },
-  menuButton: {
-    marginRight: 36,
+  content: {
+    flexGrow: 1,
+    padding: theme.spacing(3),
   },
-  menuButtonDesktop: {
-    marginRight: theme.spacing(.5),
-  },
-  hide: {
-    display: "none",
+  contentDesktop: {
+    flexGrow: 1,
+    backgroundColor: theme.palette.background.default,
+    padding: theme.spacing(3),
   },
   drawer: {
     width: 0,
     flexShrink: 0,
     whiteSpace: "nowrap",
+    
   },
   drawerOpen: {
     width: drawerWidth,
@@ -93,36 +99,39 @@ const useStyles = makeStyles(theme => ({
       borderRadius: 15
     },
   },
-
-  toolbar: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "flex-end",
-    padding: theme.spacing(0, 1),
-    ...theme.mixins.toolbar,
-  },
-  toolbarIcons: {
-    display: "flex",
-    justifyContent: "flex-end",
-    width: "100%",
+  hoverTab: {
+    "&:hover": {
+      backgroundColor: "gray",
+      borderRadius: "0 10px 10px 0",
+      width: "215px",
+      color: "black",
+    },
   },
   iconImage: {
     width: "40px",
     height: "40px",
-    backgroundColor: "lightgray",
+    backgroundColor: "#ebe8e1",
     borderRadius: "50%",
   },
   iconToolBar: {
     margin: "0 5px",
   },
-  content: {
-    flexGrow: 1,
-    padding: theme.spacing(3),
+  list: {
+    width: 230,
+    marginTop: "50px",
+    // position: 'sticky',
+    // zIndex: -1,
+   
   },
-  contentDesktop: {
-    flexGrow: 1,
-    backgroundColor: theme.palette.background.default,
-    padding: theme.spacing(3),
+  listClosed: {
+    width: "90px",
+    marginTop: "50px",
+  },
+  menuButton: {
+    marginRight: 36,
+  },
+  menuButtonDesktop: {
+    marginRight: theme.spacing(.5),
   },
   placeholderDiv: {
     display: "flex",
@@ -139,7 +148,7 @@ const useStyles = makeStyles(theme => ({
     margin: "10px 0",
   },
   placeHolder2: {
-    backgroundColor: "lightgray",
+    backgroundColor: "#ebe8e1",
     width: "200px",
     height: "120px",
     borderRadius: 15,
@@ -153,39 +162,29 @@ const useStyles = makeStyles(theme => ({
     borderRadius: 25,
   },
   placeHolderClosed2: {
-    backgroundColor: "lightgray",
+    backgroundColor: "#ebe8e1",
     width: "80%",
     margin: "10px",
     height: "120px",
     borderRadius: 25,
   },
-  list: {
-    width: 230,
-  },
   spacing: {
     marginTop: "60px",
   },
-  leftPanelButton: {
-    width: "240px",
-    display: "flex",
-    justifyContent: "space-evenly",
-  },
-  activeTab: {
-    backgroundColor: "gray",
-    borderRadius: "0 10px 10px 0",
-    width: "215px",
-    color: "black",
-  },
-  hoverTab: {
-    "&:hover": {
-      backgroundColor: "gray",
-      borderRadius: "0 10px 10px 0",
-      width: "215px",
-      color: "black",
-    },
-  },
   titleDesktop: {
     flexGrow: 1,
+  },
+  toolbar: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "flex-end",
+    padding: theme.spacing(0, 1),
+    ...theme.mixins.toolbar,
+  },
+  toolbarIcons: {
+    display: "flex",
+    justifyContent: "flex-end",
+    width: "100%",
   },
 }));
 
@@ -194,7 +193,7 @@ function Header() {
   const theme = useTheme();
   const desktopSize = useMediaQuery("(min-width:600px)");
   const phoneSize = useMediaQuery("(max-width:600px)");
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
   const [left, setLeft] = React.useState(false);
 
   const toggleDrawer = () => event => {
@@ -212,9 +211,6 @@ function Header() {
     setOpen(!open);
   };
 
-  // const handleDrawerClose = () => {
-  //   setOpen(false);
-  // };
 
   const dispatch = useDispatch();
   const state = useSelector(state => state);
@@ -226,7 +222,6 @@ function Header() {
   const sideList = side => (
     <div
       className={classes.list}
-      role="presentation"
       onClick={toggleDrawer(side, false)}
       onKeyDown={toggleDrawer(side, false)}
     >
@@ -283,6 +278,58 @@ function Header() {
     </div>
   );
 
+  const sideListClosed = () => (
+    <div
+    className={classes.listClosed}
+  >
+
+    <List>
+      <ListItem
+        className={classes.hoverTab}
+        button
+        component={NavLink}
+        to="/dashboard"
+        style={{ textDecoration: "none" }}
+        activeClassName={classes.activeTab}
+        key="Dashboard"
+      >
+        <ListItemIcon>
+          <InboxIcon />
+        </ListItemIcon>
+      </ListItem>
+    </List>
+
+    <List>
+      <ListItem button key="Activity">
+        <ListItemIcon>
+          <InboxIcon />
+        </ListItemIcon>
+      </ListItem>
+    </List>
+    <List>
+      <ListItem button key="Courses">
+        <ListItemIcon>
+          <InboxIcon />
+        </ListItemIcon>
+      </ListItem>
+    </List>
+    <List>
+      <ListItem button key="Learning Paths">
+        <ListItemIcon>
+          <InboxIcon />
+        </ListItemIcon>
+      </ListItem>
+    </List>
+    <List>
+      <ListItem button key="Profile">
+        <ListItemIcon>
+          <InboxIcon />
+        </ListItemIcon>
+      </ListItem>
+    </List>
+  </div>
+);
+
   const routedContent = () => {
     return (
     <div>
@@ -299,21 +346,17 @@ function Header() {
             </div>
           )
         ) : null}
-        {state.coursesReducer.courses
-        ? state.coursesReducer.courses.map(course => (
-            <Course key={course.id} course={course} />
-          ))
-        : null}
+         <Dashboard />
     </div>
     )
   };
 
 
   return (
+    // MOBILE CODE ****************************************************************************
     <>
     {phoneSize ? (
     <div className={classes.root}>
-      <CssBaseline />
       <AppBar
         position="fixed"
         className={classes.appBar}
@@ -343,73 +386,20 @@ function Header() {
           </div>
         </Toolbar>
       </AppBar>
-         <Drawer open={left} onClose={toggleDrawer("left", false)}>
+         <Drawer  open={left} onClose={toggleDrawer("left", false)}>
           {sideList("left")}
         </Drawer>
         <main className={classes.content}>
         <div className={classes.toolbar} />
+        {/*************************ADD COMPONENTS HERE *********************** */}
         {routedContent()}
        </main>
     </div>
-        ) : (
-          
-    //       <div className={classes.rootDesktop}>
-    //     <Drawer
-    //     variant="permanent"
-    //     className={clsx(classes.drawer, {
-    //       [classes.drawerOpen]: open,
-    //       [classes.drawerClose]: !open,
-    //     })}
-    //     classes={{
-    //       paper: clsx({
-    //         [classes.drawerOpen]: open,
-    //         [classes.drawerClose]: !open,
-    //       }),
-    //     }}
-    //     open={open}
-    //   >
-    //     {sideList("left")}
-    //   </Drawer>
-    //   <main className={classes.contentDesktop}>
-    //     <div  />
-    //     <CssBaseline />
-    //     <AppBar position="static" className={clsx(classes.appBar, {
-    //       [classes.appBarShift]: open,
-    //     })}>
-    //         <Toolbar>
-    //         <IconButton
-    //         color="inherit"
-    //         aria-label="open drawer"
-    //         onClick={handleDrawerOpen}
-    //         edge="start"
-    //         className={clsx(classes.menuButtonDesktop, {
-    //           [classes.hide]: open,
-              
-    //         })}
-    //       >
-    //         <MenuIcon />
-    //       </IconButton>
-    //           <Typography variant="h6" className={classes.titleDesktop}>
-    //             Didact
-    //           </Typography>
-    //           <div className={classes.toolbarIcons}>
-    //         <Button className={classes.iconToolBar} color="inherit">
-    //           first
-    //         </Button>
-    //         <Button className={classes.iconToolBar} color="inherit">
-    //           second
-    //         </Button>
-    //         <Button className={classes.iconToolBar} color="inherit">
-    //           third
-    //         </Button>
-    //         {!phoneSize ? <Button color="inherit">User Name</Button> : null}
-    //         <div className={classes.iconImage}></div>
-    //       </div>
-    //         </Toolbar>
-    //       </AppBar>
-    //     {routedContent()}
-    //    </main>
-    // </div>
+        ) 
+        // END OF MOBILE CODE *******************************************************************
+        : 
+        // BEGINNING OF DESKTOP CODE ************************************************************
+        (
     <div className={classes.root}>
     <CssBaseline />
     <AppBar
@@ -419,7 +409,7 @@ function Header() {
       })}
     >
       <Toolbar>
-        <Typography variant="h6">
+        <Typography variant="h5">
           Didact
         </Typography>
         <div className={classes.toolbarIcons}>
@@ -524,6 +514,7 @@ function Header() {
     <main className={classes.content}>
       <div className={classes.toolbar} />
       {routedContent()}
+      {/*************************ADD COMPONENTS HERE *********************** */}
     </main>
   </div>
      )}  
