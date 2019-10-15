@@ -34,9 +34,15 @@ const useStyles = makeStyles(theme => ({
   },
   activeTab: {
     backgroundColor: "gray",
-    borderRadius: "0 10px 10px 0",
+    borderRadius: "0 20px 20px 0",
     width: "215px",
-    color: "black",
+    color: "white",
+    "&:hover": {
+      backgroundColor: "gray",
+    borderRadius: "0 20px 20px 0",
+    width: "215px",
+    color: "white",
+    },
   },
   appBar: {
     // zIndex: theme.zIndex.drawer - 1,
@@ -59,6 +65,13 @@ const useStyles = makeStyles(theme => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
+  },
+  arrow: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+    alignContent: 'center',
+    color: "white",
+    
   },
   content: {
     flexGrow: 1,
@@ -99,14 +112,11 @@ const useStyles = makeStyles(theme => ({
       borderRadius: 15
     },
   },
-  hoverTab: {
-    "&:hover": {
-      backgroundColor: "gray",
-      borderRadius: "0 10px 10px 0",
-      width: "215px",
-      color: "black",
-    },
-  },
+  // hoverTab: {
+  //   "&:hover": {
+  //     color: 'lightgray',
+  //   },
+  // },
   iconImage: {
     width: "40px",
     height: "40px",
@@ -228,7 +238,6 @@ function Header() {
 
       <List>
         <ListItem
-          className={classes.hoverTab}
           button
           component={NavLink}
           to="/dashboard"
@@ -239,7 +248,7 @@ function Header() {
           <ListItemIcon>
             <InboxIcon />
           </ListItemIcon>
-          <ListItemText primary="Dashboard" />
+          <ListItemText primary="Dashboard"/>
         </ListItem>
       </List>
 
@@ -461,7 +470,7 @@ function Header() {
             <div className={classes.placeHolderClosed2} />
           </div>
           )}
-      <List>
+      <List className={classes.hoverTab}>
         <ListItem
           className={classes.hoverTab}
           button
@@ -475,39 +484,44 @@ function Header() {
             <InboxIcon />
           </ListItemIcon>
           <ListItemText primary="Dashboard" />
+          <ListItemText className = {classes.arrow} primary=">" />
         </ListItem>
       </List>
 
-      <List>
+      <List className={classes.hoverTab}>
         <ListItem button key="Activity">
           <ListItemIcon>
             <InboxIcon />
           </ListItemIcon>
           <ListItemText primary="Activity" />
+          <ListItemText className = {classes.arrow} primary=">" />
         </ListItem>
       </List>
-      <List>
+      <List className={classes.hoverTab}>
         <ListItem button key="Courses">
           <ListItemIcon>
             <InboxIcon />
           </ListItemIcon>
           <ListItemText primary="Courses" />
+          <ListItemText className = {classes.arrow} primary=">" />
         </ListItem>
       </List>
-      <List>
+      <List className={classes.hoverTab}>
         <ListItem button key="Learning Paths">
           <ListItemIcon>
             <InboxIcon />
           </ListItemIcon>
           <ListItemText primary="Learning Paths" />
+          <ListItemText className = {classes.arrow} primary=">" />
         </ListItem>
       </List>
-      <List>
+      <List className={classes.hoverTab}>
         <ListItem button key="Profile">
           <ListItemIcon>
             <InboxIcon />
           </ListItemIcon>
           <ListItemText primary="Profile" />
+          <ListItemText className = {classes.arrow} primary=">" />
         </ListItem>
       </List>
     </Drawer>
