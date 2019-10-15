@@ -234,7 +234,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function HomePage(props) {
+function Header(props) {
   console.log(props)
 
   const classes = useStyles();
@@ -259,16 +259,13 @@ function HomePage(props) {
     setOpenMobile(!openMobile);
   };
 
+  const closeHandleClick = () => {
+    if(openMobile) setOpenMobile(false)
+  }
 
-  const dispatch = useDispatch();
-  const state = useSelector(state => state);
 
-  useEffect(() => {
-    dispatch(courseEndPoint());
-  }, [dispatch]);
-
-  const sideList = side => (
-    <>
+  const sideList = () => (
+    <div>
      <List className={classes.hoverTab}>
           <ListItem
             className={classes.hoverTab}
@@ -297,7 +294,13 @@ function HomePage(props) {
           </ListItem>
         </List>
         <List className={classes.hoverTab}>
-          <ListItem button key="Courses">
+          <ListItem className={classes.hoverTab}
+            button
+            component={NavLink}
+            to="/addcourse"
+            style={{ textDecoration: "none" }}
+            activeClassName={classes.activeTab}
+            key="Add Course">
             <ListItemIcon>
               <InboxIcon />
             </ListItemIcon>
@@ -323,7 +326,7 @@ function HomePage(props) {
             <ListItemText className = {classes.arrow} primary=">" />
           </ListItem>
         </List>
-    </>
+    </div>
   );
 
 //** */ Can Add Components Below **********************
@@ -344,6 +347,7 @@ function HomePage(props) {
             </div>
           )
         ) : null}
+   {/*************************ADD COMPONENTS HERE *********************** */}
        {(props.location.pathname === '/addcourse') ? <AddCourse/> :
         (props.location.pathname === '/dashboard') ? <Dashboard /> :
           null}  
@@ -357,7 +361,7 @@ function HomePage(props) {
     // MOBILE CODE ****************************************************************************
     <>
     {phoneSize ? (
-      <div className={classes.root}>
+      <div className={classes.root} onClick={() => closeHandleClick()}>
       <CssBaseline />
       <AppBar
         // position="absolute"
@@ -413,7 +417,6 @@ function HomePage(props) {
       <main className={openMobile ? classes.contentShadow :classes.contentMobile}>
         <div className={classes.toolbar} />
         {routedContent()}
-        {/*************************ADD COMPONENTS HERE *********************** */}
       </main>
     </div>
         ) 
@@ -487,7 +490,6 @@ function HomePage(props) {
     <main className={classes.content}>
       <div className={classes.toolbar} />
       {routedContent()}
-      {/*************************ADD COMPONENTS HERE *********************** */}
     </main>
   </div>
      )}  
@@ -495,4 +497,4 @@ function HomePage(props) {
     );
 }
 
-export default HomePage;
+export default Header;
