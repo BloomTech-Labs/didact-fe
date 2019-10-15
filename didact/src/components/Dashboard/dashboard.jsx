@@ -16,6 +16,7 @@ function Dashboard() {
 
   return (
     <div>
+      {/* <Header/> */}
       {state.coursesReducer.courses
         ? state.coursesReducer.courses.map(course => (
             <Course key={course.id} course={course} />
