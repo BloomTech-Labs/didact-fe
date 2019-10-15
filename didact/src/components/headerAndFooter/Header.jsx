@@ -82,7 +82,7 @@ const useStyles = makeStyles(theme => ({
   contentMobile: {
     flexGrow: 1,
     padding: theme.spacing(3),
-    marginLeft: "50px",
+    paddingLeft: "80px",
   },
   contentShadow: {
     background: "rgba(0, 0, 0, 0.8)",
@@ -95,7 +95,7 @@ const useStyles = makeStyles(theme => ({
     height:"100%",
     flexGrow: 1,
     padding: theme.spacing(3),
-    marginLeft: "50px",
+    paddingLeft: "80px",
   },
   drawer: {
     width: 0,
