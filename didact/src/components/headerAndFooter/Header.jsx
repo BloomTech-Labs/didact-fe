@@ -287,58 +287,7 @@ function Header() {
     </div>
   );
 
-  const sideListClosed = () => (
-    <div
-    className={classes.listClosed}
-  >
-
-    <List>
-      <ListItem
-        className={classes.hoverTab}
-        button
-        component={NavLink}
-        to="/dashboard"
-        style={{ textDecoration: "none" }}
-        activeClassName={classes.activeTab}
-        key="Dashboard"
-      >
-        <ListItemIcon>
-          <InboxIcon />
-        </ListItemIcon>
-      </ListItem>
-    </List>
-
-    <List>
-      <ListItem button key="Activity">
-        <ListItemIcon>
-          <InboxIcon />
-        </ListItemIcon>
-      </ListItem>
-    </List>
-    <List>
-      <ListItem button key="Courses">
-        <ListItemIcon>
-          <InboxIcon />
-        </ListItemIcon>
-      </ListItem>
-    </List>
-    <List>
-      <ListItem button key="Learning Paths">
-        <ListItemIcon>
-          <InboxIcon />
-        </ListItemIcon>
-      </ListItem>
-    </List>
-    <List>
-      <ListItem button key="Profile">
-        <ListItemIcon>
-          <InboxIcon />
-        </ListItemIcon>
-      </ListItem>
-    </List>
-  </div>
-);
-
+//********************* */ Can Add Components Below **********************
   const routedContent = () => {
     return (
     <div>
