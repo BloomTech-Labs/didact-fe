@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import { addCourse } from '../../../store/actions';
+import { useDispatch } from "react-redux";
+
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import clsx from "clsx";
@@ -32,54 +35,81 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexWrap: 'wrap',
   },
-  borderRadius: {
-    borderRadius: "15px",
+  input: {
+    backgroundColor: '#F4F8FA',
+    filter: "brightness(95%)",
+    borderRadius: 15,
+    
+  },
+  inputDescription: {
+    backgroundColor: '#F4F8FA',
+    filter: "brightness(95%)",
+    borderRadius: 15,
+    margin: '-16px -10px -16px -10px',
+    padding: '10px',
+   
   },
   titleOrInstructorFields: {
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
     width: '45%',
-    backgroundColor: '#F4F8FA',
-    filter: "brightness(107%)"
-  
+    [`& fieldset`]: {
+      borderRadius: 15,
+    },
   },
   descriptionField: {
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
-    width: '93%',
-    height: '150px',
-    backgroundColor: '#F4F8FA',
-    filter: "brightness(107%)"
-  },
-  blackUnderline: {
-    '&:after': {
-      borderBottom: 'black solid 2px',
-      color: 'black',
+    width: '94%',
+    [`& fieldset`]: {
+      borderRadius: 15,
+      margin: "3px"
+      
     },
   },
+  // blackUnderline: {
+  //   '&:after': {
+  //     borderBottom: 'black solid 2px',
+  //     color: 'black',
+  //   },
+  // },
   courseUrlField: {
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
     width: '93%',
-    backgroundColor: '#F4F8FA',
-    filter: "brightness(107%)"
+    [`& fieldset`]: {
+      borderRadius: 15,
+    },
   }
 }));
 
-const labelStyle = {
-    color: 'black'
-}
+// const labelStyle = {
+//     color: 'black'
+// }
 
 const CssTextField = withStyles({
   root: {
     '& label.Mui-focused': {
       color: 'gray',
     },
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: 'gray',
+      },
+      '&:hover fieldset': {
+        borderColor: 'gray',
+      },
+      '&.Mui-focused fieldset': {
+        border: '1px solid gray',
+      },
+  
   },
+},
 })(TextField);
 
 export default function AddCourse() {
   const classes = useStyles();
+  const dispatch = useDispatch();
   const [values, setValues] = useState({
     name: "",
     foreign_instructors: "",
@@ -91,13 +121,19 @@ export default function AddCourse() {
     setValues({ ...values, [name]: event.target.value });
   };
 
+  const handleSubmit = event => {
+    event.preventDefault();
+    console.log(values)
+    dispatch(addCourse(values));
+  }
+
   return (
     <Card className={classes.card}>
       <CardContent>
         <Typography className={classes.title}  gutterBottom>
           Course Overview
         </Typography>
-        <form className={classes.container} noValidate autoComplete="off">
+        <form onSubmit={handleSubmit} className={classes.container} noValidate autoComplete="off">
             <CssTextField
                 id="standard-name"
                 label='Name'
@@ -105,11 +141,9 @@ export default function AddCourse() {
                 value={values.name}
                 onChange={handleChange('name')}
                 margin="normal"
-                variant="filled"
-                style={{onFocus: labelStyle}}
-                InputProps={{ classes: { underline: classes.blackUnderline } }}
-                // InputLabelProps={{ classes: {focused: classes.label}}}
-                // onFocus={style={labelStyle}}
+                variant="outlined"
+                placeholder="Name"
+                InputProps={{ classes: { underline: classes.blackUnderline, input: classes.input}}}
             />
             <CssTextField
                 id="standard-name"
@@ -118,8 +152,9 @@ export default function AddCourse() {
                 value={values.foreign_instructors}
                 onChange={handleChange('foreign_instructors')}
                 margin="normal"
-                variant="filled"
-                InputProps={{ classes: { underline: classes.blackUnderline } }}
+                variant="outlined"
+                placeholder="Instructors"
+                InputProps={{ classes: { underline: classes.blackUnderline, input: classes.input}}}
             />
             <CssTextField
                 id="standard-name"
@@ -128,10 +163,11 @@ export default function AddCourse() {
                 value={values.description}
                 onChange={handleChange('description')}
                 margin="normal"
-                multiline
+                multiline={true}
                 rows='6'
-                variant="filled" 
-                InputProps={{ classes: { underline: classes.blackUnderline } }}
+                variant="outlined"
+                placeholder="Description"
+                InputProps={{ classes: {underline: classes.blackUnderline, input: classes.inputDescription}}}
             />
             <CssTextField
                 id="standard-name"
@@ -140,14 +176,16 @@ export default function AddCourse() {
                 value={values.link}
                 onChange={handleChange('link')}
                 margin="normal"
-                variant="filled"
-                InputProps={{ classes: { underline: classes.blackUnderline } }}
+                variant="outlined"
+                placeholder="Course Url"
+                InputProps={{ classes: { underline: classes.blackUnderline, input: classes.input}}}
             />
+            <Button type='submit' size="small" variant="contained" className={classes.button} >Add Course</Button>
         </form>
       </CardContent>
-      <CardActions>
-        <Button size="small" variant="contained" className={classes.button} >Add Course</Button>
-      </CardActions>
+      {/* <CardActions>
+        <Button type='submit' size="small" variant="contained" className={classes.button} >Add Course</Button>
+      </CardActions> */}
     </Card>
   );
 }
