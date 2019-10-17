@@ -3,7 +3,6 @@ import { courseEndPoint } from "../../store/actions/index.js";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, Route } from "react-router-dom";
 import Course from "./courses/Course";
-import Header from "../headerAndFooter/Header"
 
 
 function Dashboard() {
@@ -16,7 +15,6 @@ function Dashboard() {
 
   return (
     <div>
-      {/* <Header/> */}
       {state.coursesReducer.courses
         ? state.coursesReducer.courses.map(course => (
             <Course key={course.id} course={course} />
