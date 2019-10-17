@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/core/styles'
 
 const drawerWidth = 240;
 
-const useStyles = makeStyles(theme => ({
+const headerStyles = makeStyles(theme => ({
     appBarDesktop: {
         width: `calc(100% - 100px)`,
         margin: "10px",
@@ -42,4 +42,4 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-export default useStyles;
+export default headerStyles;

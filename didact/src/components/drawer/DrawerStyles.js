@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/core/styles'
 
 const drawerWidth = 240;
 
-const useStyles = makeStyles(theme => ({
+const drawerStyles = makeStyles(theme => ({
     
     activeTab: {
         backgroundColor: "gray",
@@ -27,13 +27,13 @@ const useStyles = makeStyles(theme => ({
         width: 0,
         flexShrink: 0,
         whiteSpace: "nowrap",
-        marginRight: '10px'
       },
       
       drawerOpen: {
         width: "240px",
-        height: "800px",
+        height: "calc(100% - 270px)",
         margin: "10px",
+        marginTop: "270px",
         borderRadius: "15px",
         transition: theme.transitions.create("width", {
           easing: theme.transitions.easing.sharp,
@@ -45,13 +45,14 @@ const useStyles = makeStyles(theme => ({
           easing: theme.transitions.easing.sharp,
           duration: theme.transitions.duration.leavingScreen,
         }),
-        
+
         overflowX: "hidden",
         width: theme.spacing(7) + 1,
         [theme.breakpoints.up("sm")]: {
           width: theme.spacing(8) + 1, 
           margin: "10px",
-          height: "800px",
+          marginTop: "270px",
+          height: "calc(100% - 270px)",
           borderRadius: "15px",
         },
       },
@@ -75,7 +76,8 @@ const useStyles = makeStyles(theme => ({
         height: "500px",
         margin: "73px 10px 10px 10px",
         borderRadius: "15px",
-        // position: 'relative',
+        position: 'fixed',
+        zIndex: 1,
         width: theme.spacing(7) + 1,
         [theme.breakpoints.up("sm")]: {
           width: theme.spacing(7) + 1,
@@ -91,7 +93,7 @@ const useStyles = makeStyles(theme => ({
         display: "flex",
         justifyContent: "center",
         alignContent: "space-evenly",
-        margin: "20px 0",
+        margin: "10px 0",
         flexFlow: "column wrap",
     },
     placeholderDivShadowed: {
@@ -106,15 +108,30 @@ const useStyles = makeStyles(theme => ({
         width: "200px",
         height: "100px",
         borderRadius: 15,
-        margin: "10px 0",
+        margin: "0 0 10px 0",
     }, 
     placeHolder2: {
         backgroundColor: "#ebe8e1",
         width: "200px",
         height: "120px",
         borderRadius: 15,
-        margin: "10px 0",
+        margin: "0 0 0 0",
     },
+    placeHolderClosed: {
+        backgroundColor: "gray",
+        width: "50px",
+        height: "100px",
+        borderRadius: 15,
+        marginTop: "0",
+      },
+      placeHolder2Closed: {
+        backgroundColor: "#ebe8e1",
+        width: "50px",
+        height: "120px",
+        borderRadius: 15,
+        margin: "10px 0 0 0",
+      },
+
     toolbar: {
         display: "flex",
         alignItems: "center",
@@ -124,4 +141,4 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-export default useStyles;
+export default drawerStyles;

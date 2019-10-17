@@ -1,14 +1,15 @@
 import React from 'react'
 
-import useStyles from './ContentStyles'
+import contentStyles from './ContentStyles'
 
 import Dashboard from '../dashboard/Dashboard'
 import AddCourse from '../courses/AddCourse'
+
+
   
 const Content = (props) => {
-    console.log(props)
 
-    const classes = useStyles()
+    const classes = contentStyles()
 
     const open = props.open
     const phoneSize = props.phoneSize
