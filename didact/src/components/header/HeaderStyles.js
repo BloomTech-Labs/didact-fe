@@ -20,7 +20,7 @@ const headerStyles = makeStyles(theme => ({
     },
     appBarShift: {
         marginLeft: "240px",
-        width: `calc(100% - (${drawerWidth}px + 30px))`,
+        width: `calc(100% - (240px + 30px))`,
         transition: theme.transitions.create(['width', 'margin'], {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.enteringScreen,
