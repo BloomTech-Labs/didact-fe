@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import Routes from "./utils/Routes";
+import Routes from "./Routes";
 // import Header from './components/headerAndFooter/Header'
 import { Mixpanel } from './utils/mixpanel';
 
