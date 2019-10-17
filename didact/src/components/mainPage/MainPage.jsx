@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { courseEndPoint } from "../../store/actions/index.js";
+import { courseEndPoint, verifyToken } from "../../store/actions/index.js";
 import { useDispatch, useSelector } from "react-redux";
 
 import { PageFlex } from './PageStyles'
@@ -101,6 +101,7 @@ function MainPage(props) {
         dispatch(courseEndPoint());
     }, [dispatch]);
 
+   
 
     return (
         // MOBILE CODE ****************************************************************************

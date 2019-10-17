@@ -38,9 +38,9 @@ export const registerAction = (history, form) => dispatch => {
         .catch(err => dispatch({ type: REGISTER_FAILURE, payload: err }));
 };
 
-export const verifyToken = (props) => dispatch => {
-    console.log('props in action: ', props)
-    console.log(localStorage.getItem('token'))
+export const verifyToken = () => dispatch => {
+    // console.log('props in action: ', props)
+    // console.log(localStorage.getItem('token'))
     const token = localStorage.getItem('token')
     dispatch({ type: VERIFY_START })
     axios.post(`https://didactlms-staging.herokuapp.com/api/auth`, { 'token': token })
@@ -48,6 +48,6 @@ export const verifyToken = (props) => dispatch => {
             console.log(res)
             dispatch({ type: VERIFY_SUCCESS, payload: res.data })
         })
-        .then(props.history.push('/'))
+        // .then(props.history.push('/'))
         .catch(err => dispatch({ type: VERIFY_FAILURE, payload: err }))
 }
