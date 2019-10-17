@@ -29,7 +29,6 @@ import HeaderComponent from '../header/Header'
 import MobileHeaderComponent from '../header/MobileHeader'
 import Content from '../content/Content'
 
-const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
     root: {

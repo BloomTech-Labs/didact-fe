@@ -19,7 +19,7 @@ export const useStyles = makeStyles(theme => ({
         position: 'fixed',
     },
     appBarShift: {
-        marginLeft: drawerWidth,
+        marginLeft: "240px",
         width: `calc(100% - (${drawerWidth}px + 30px))`,
         transition: theme.transitions.create(['width', 'margin'], {
             easing: theme.transitions.easing.sharp,

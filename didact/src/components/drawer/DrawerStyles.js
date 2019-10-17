@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles'
 const drawerWidth = 240;
 
 export const useStyles = makeStyles(theme => ({
+    
     activeTab: {
         backgroundColor: "gray",
         borderRadius: "0 20px 20px 0",
@@ -30,7 +31,7 @@ export const useStyles = makeStyles(theme => ({
       },
       
       drawerOpen: {
-        width: drawerWidth,
+        width: "240px",
         height: "800px",
         margin: "10px",
         borderRadius: "15px",
@@ -56,7 +57,7 @@ export const useStyles = makeStyles(theme => ({
       },
       drawerOpenMobile: {
         position: 'absolute',
-        width: drawerWidth,
+        width: "240px",
         height: "500px",
         margin: "37px 0 10px 5px",
         borderRadius: "15px",
