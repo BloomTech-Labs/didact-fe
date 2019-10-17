@@ -9,83 +9,83 @@ export const useStyles = makeStyles(theme => ({
         width: "215px",
         color: "white",
         "&:hover": {
-            backgroundColor: "gray",
-            borderRadius: "0 20px 20px 0",
-            width: "215px",
-            color: "white",
+          backgroundColor: "gray",
+        borderRadius: "0 20px 20px 0",
+        width: "215px",
+        color: "white",
         },
-    },
-    arrow: {
+      },
+      arrow: {
         display: 'flex',
         justifyContent: 'flex-end',
         alignContent: 'center',
         color: "white",
-
-    },
-    drawer: {
+          
+      },
+      drawer: {
         width: 0,
         flexShrink: 0,
-        whiteSpace: "nowrap"
-    },
-
-    drawerOpen: {
+        whiteSpace: "nowrap",
+        marginRight: '10px'
+      },
+      
+      drawerOpen: {
         width: drawerWidth,
         height: "800px",
         margin: "10px",
         borderRadius: "15px",
         transition: theme.transitions.create("width", {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.enteringScreen,
+          easing: theme.transitions.easing.sharp,
+          duration: theme.transitions.duration.enteringScreen,
         }),
-    },
-    drawerClose: {
+      },
+      drawerClose: {
         transition: theme.transitions.create("width", {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.leavingScreen,
+          easing: theme.transitions.easing.sharp,
+          duration: theme.transitions.duration.leavingScreen,
         }),
+        
         overflowX: "hidden",
         width: theme.spacing(7) + 1,
         [theme.breakpoints.up("sm")]: {
-            width: theme.spacing(8) + 1,
-            margin: "10px 10px 10px 10px",
-            height: "800px",
-            borderRadius: "15px"
+          width: theme.spacing(8) + 1, 
+          margin: "10px",
+          height: "800px",
+          borderRadius: "15px",
         },
-    },
-    drawerOpenMobile: {
+      },
+      drawerOpenMobile: {
         position: 'absolute',
         width: drawerWidth,
         height: "500px",
         margin: "37px 0 10px 5px",
         borderRadius: "15px",
         transition: theme.transitions.create("width", {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.enteringScreen,
+          easing: theme.transitions.easing.sharp,
+          duration: theme.transitions.duration.enteringScreen,
         }),
-    },
-    drawerCloseMobile: {
+      },
+      drawerCloseMobile: {
         transition: theme.transitions.create("width", {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.leavingScreen,
+          easing: theme.transitions.easing.sharp,
+          duration: theme.transitions.duration.leavingScreen,
         }),
         overflow: "hidden",
         height: "500px",
         margin: "73px 10px 10px 10px",
         borderRadius: "15px",
-        position: 'fixed',
+        // position: 'relative',
         width: theme.spacing(7) + 1,
         [theme.breakpoints.up("sm")]: {
-            width: theme.spacing(7) + 1,
-            // margin: "10px 10px 10px 10px",
-            // borderRadius: '50%',
+          width: theme.spacing(7) + 1,
         },
-    },
+      },
     menuButtonMobile: {
         marginRight: '-4px'
     },
     menuButtonDesktop: {
-        marginRight: theme.spacing(.5),
-    },
+        marginLeft: theme.spacing(1),
+      },
     placeholderDiv: {
         display: "flex",
         justifyContent: "center",
@@ -106,7 +106,7 @@ export const useStyles = makeStyles(theme => ({
         height: "100px",
         borderRadius: 15,
         margin: "10px 0",
-    },
+    }, 
     placeHolder2: {
         backgroundColor: "#ebe8e1",
         width: "200px",

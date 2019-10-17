@@ -8,7 +8,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 
-const Header = (props) => {
+const HeaderComponent = (props) => {
 
     const classes = useStyles();
 
@@ -42,4 +42,4 @@ const Header = (props) => {
     )
 }
 
-export default Header;
+export default HeaderComponent;

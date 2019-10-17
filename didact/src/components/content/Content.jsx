@@ -23,10 +23,10 @@ const Content = (props) => {
                         <div className={classes.placeHolder2} />
                     </div>
                 ) : (
-                        <div className={classes.placeholderDiv}>
-                            <div className={classes.placeHolder} />
-                            <div className={classes.placeHolder2} />
-                        </div>
+                    <div className={classes.placeholderDiv}>
+                    <div className={classes.placeHolder} />
+                    <div className={classes.placeHolder2} />
+                </div>
                     )
             ) : null}
             {(props.location.pathname === '/addcourse') ? <AddCourse/> :

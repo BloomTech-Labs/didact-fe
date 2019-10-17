@@ -34,6 +34,7 @@ const useStyles = makeStyles(theme => ({
   container: {
     display: 'flex',
     flexWrap: 'wrap',
+    // margin: '10px',
   },
   input: {
     backgroundColor: '#F4F8FA',
@@ -60,7 +61,7 @@ const useStyles = makeStyles(theme => ({
   descriptionField: {
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
-    width: '94%',
+    width: '93%',
     [`& fieldset`]: {
       borderRadius: 15,
       margin: "3px"
