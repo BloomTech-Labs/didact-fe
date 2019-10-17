@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { addCourse } from '../../../store/actions';
+import { addCourse } from '../../store/actions';
 import { useDispatch } from "react-redux";
 
 import { makeStyles, withStyles } from '@material-ui/core/styles';
