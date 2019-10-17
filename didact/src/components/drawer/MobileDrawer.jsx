@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import useStyles from "./DrawerStyles";
+import drawerStyles from "./DrawerStyles";
 
 import clsx from "clsx";
 import Drawer from '@material-ui/core/Drawer'
@@ -10,7 +10,7 @@ import MenuIcon from '@material-ui/icons/Menu'
 import SideList from './SideList'
 
 const MobileDrawerComponent = (props) => {
-    const classes = useStyles();
+    const classes = drawerStyles();
 
     const openMobile = props.openMobile
 

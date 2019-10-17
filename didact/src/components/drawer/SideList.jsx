@@ -1,7 +1,7 @@
 import React from 'react'
 import { NavLink } from "react-router-dom";
 
-import useStyles from "./DrawerStyles";
+import drawerStyles from "./DrawerStyles";
 
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
@@ -11,10 +11,11 @@ import InboxIcon from "@material-ui/icons/MoveToInbox";
 
 export const SideList = () => {
 
-    const classes = useStyles();
+    const classes = drawerStyles();
 
     return (
         <>
+            
             <List className={classes.hoverTab}>
                 <ListItem
                     className={classes.hoverTab}

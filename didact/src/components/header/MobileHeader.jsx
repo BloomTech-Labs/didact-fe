@@ -1,6 +1,6 @@
 import React from 'react'
 
-import useStyles from './HeaderStyles'
+import headerStyles from './HeaderStyles'
 
 import clsx from 'clsx'
 import AppBar from "@material-ui/core/AppBar";
@@ -10,7 +10,7 @@ import Button from "@material-ui/core/Button";
 
 const MobileHeaderComponent = (props) => {
 
-    const classes = useStyles();
+    const classes = headerStyles();
 
     const open = props.open
 

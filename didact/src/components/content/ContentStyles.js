@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles'
 
-const useStyles = makeStyles(theme => ({
+const contentStyles = makeStyles(theme => ({
 
     placeholderDiv: {
         display: "flex",
@@ -32,4 +32,4 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-export default useStyles;
+export default contentStyles;
