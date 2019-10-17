@@ -61,7 +61,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-function MainPage() {
+function MainPage(props) {
     const classes = useStyles();
     const theme = useTheme();
     // const tabletSize = useMediaQuery("(max-width:770px");
@@ -111,7 +111,7 @@ function MainPage() {
                             <MobileHeaderComponent />
                             <main className={openMobile ? classes.contentShadow : classes.contentMobile}>
                                 <div className={classes.toolbar} />
-                                <Content phoneSize={phoneSize} open={open} />
+                                <Content phoneSize={phoneSize} open={open} {...props}/>
                                 {/*************************ADD COMPONENTS HERE *********************** */}
                             </main>
                         </div>
@@ -132,7 +132,7 @@ function MainPage() {
                                 <HeaderComponent open={open} />
                                 <main className={classes.content}>
                                     <div className={classes.toolbar} />
-                                    <Content phoneSize={phoneSize} open={open} />
+                                    <Content phoneSize={phoneSize} open={open} {...props}/>
                                     {/*************************ADD COMPONENTS HERE *********************** */}
                                 </main>
                             </div>

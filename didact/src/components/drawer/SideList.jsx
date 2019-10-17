@@ -43,7 +43,13 @@ export const SideList = () => {
                 </ListItem>
             </List>
             <List className={classes.hoverTab}>
-                <ListItem button key="Courses">
+                <ListItem className={classes.hoverTab}
+                    button
+                    component={NavLink}
+                    to="/addcourse"
+                    style={{ textDecoration: "none" }}
+                    activeClassName={classes.activeTab}
+                    key="Add Course">
                     <ListItemIcon>
                         <InboxIcon />
                     </ListItemIcon>

@@ -11,8 +11,9 @@ function Dashboard() {
 
   useEffect(() => {
     dispatch(courseEndPoint());
+ 
   }, [dispatch]);
-
+ 
   return (
     <div>
       {state.coursesReducer.courses
