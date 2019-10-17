@@ -1,7 +1,5 @@
 import React from 'react'
-
-// import headerStyles from './HeaderStyles'
-
+import { makeStyles } from '@material-ui/core/styles'
 import clsx from 'clsx'
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";

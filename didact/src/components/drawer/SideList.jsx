@@ -1,7 +1,6 @@
 import React from 'react'
 import { NavLink } from "react-router-dom";
-
-// import drawerStyles from "./DrawerStyles";
+import { makeStyles } from '@material-ui/core/styles'
 
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";

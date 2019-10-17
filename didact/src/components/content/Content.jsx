@@ -1,6 +1,5 @@
 import React from 'react'
-
-// import contentStyles from './ContentStyles'
+import { makeStyles } from '@material-ui/core/styles'
 
 import Dashboard from '../dashboard/Dashboard'
 import AddCourse from '../courses/AddCourse'
