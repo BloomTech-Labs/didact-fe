@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux';
 const RegisterForm = (props) => {
     const {errors, touched} = props;
    
-    return (
+    return (  
         <>
             <Form>
                 <Field type= "email" name = "email" placeholder = "Email"></Field>
