@@ -6,6 +6,7 @@ import { Mixpanel } from './utils/mixpanel';
 
 
 function App() {
+
   return (
     <div className="App">
       <Routes />

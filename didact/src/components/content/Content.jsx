@@ -2,7 +2,7 @@ import React from 'react'
 
 import useStyles from './ContentStyles'
 
-import Dashboard from '../Dashboard/dashboard'
+import Dashboard from '../dashboard/Dashboard'
 
 const Content = (props) => {
     const classes = useStyles()

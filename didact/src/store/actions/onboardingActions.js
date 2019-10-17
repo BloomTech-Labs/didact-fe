@@ -20,7 +20,7 @@ export const loginAction = (history, form) => dispatch => {
             localStorage.setItem("token", res.data.token)
             dispatch({ type: LOGIN_SUCCESS, payload: res })
         })
-        .then(res => history.push("/dashboard"))
+        .then(res => history.push("/"))
         .catch(err => {
             dispatch({ type: LOGIN_FAILURE, payload: err })
         })
@@ -34,7 +34,7 @@ export const registerAction = (history, form) => dispatch => {
             dispatch({ type: REGISTER_SUCCESS, payload: res.data });
             localStorage.setItem("token", res.data.token)
         })
-        .then(res => history.push("/dashboard"))
+        .then(res => history.push("/"))
         .catch(err => dispatch({ type: REGISTER_FAILURE, payload: err }));
 };
 
@@ -48,6 +48,6 @@ export const verifyToken = (props) => dispatch => {
             console.log(res)
             dispatch({ type: VERIFY_SUCCESS, payload: res.data })
         })
-        .then(props.history.push('/dashboard'))
+        .then(props.history.push('/'))
         .catch(err => dispatch({ type: VERIFY_FAILURE, payload: err }))
 }
