@@ -64,4 +64,4 @@ const FormikRegisterWrapper = ({history}) =>
     )
 }
 
-export default FormikRegisterWrapper;
+export default FormikRegisterWrapper; 
