@@ -3,7 +3,6 @@ import { courseEndPoint } from "../../store/actions/index.js";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, Route } from "react-router-dom";
 import Course from "./courses/Course";
-import Header from "../headerAndFooter/Header"
 
 
 function Dashboard() {
@@ -12,8 +11,9 @@ function Dashboard() {
 
   useEffect(() => {
     dispatch(courseEndPoint());
+ 
   }, [dispatch]);
-
+ 
   return (
     <div>
       {/* <Header/> */}

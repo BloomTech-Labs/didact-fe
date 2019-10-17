@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import Dashboard from '../Dashboard/dashboard';
-import Course from "../Dashboard/courses/Course";
+import AddCourse from '../Dashboard/courses/AddCourse'
 import { courseEndPoint } from "../../store/actions/index.js";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -49,14 +49,17 @@ const useStyles = makeStyles(theme => ({
     borderRadius: "10px 10px 10px 10px",
     backgroundColor: 'gray',
     color: 'lightgray',
-    position: 'fixed'
+    position: 'fixed',
+    
+
   },
   appBarDesktop: {
     width: `calc(100% - 100px)`,
     margin: "10px",
     borderRadius: "10px 10px 10px 10px",
     backgroundColor: 'gray',
-    color: 'lightgray'
+    color: 'lightgray',
+    // position: 'fixed'
   },
   appBarShift: {
     marginLeft: drawerWidth,
@@ -71,7 +74,7 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'flex-end',
     alignContent: 'center',
     color: "white",
-    
+      
   },
   content: {
     flexGrow: 1,
@@ -79,20 +82,33 @@ const useStyles = makeStyles(theme => ({
   },
   contentMobile: {
     flexGrow: 1,
-    backgroundColor: theme.palette.background.default,
-    // padding: theme.spacing(3),
+    padding: theme.spacing(3),
+    paddingLeft: "80px",
+  },
+  contentShadow: {
+    background: "rgba(0, 0, 0, 0.8)",
+    filter: "brightness(50%)",
+    zIndex:100,
+    position:"absolute",
+    top:0,
+    left:0,
+    width:"100%",
+    height:"100%",
+    flexGrow: 1,
+    padding: theme.spacing(3),
+    paddingLeft: "80px",
   },
   drawer: {
     width: 0,
     flexShrink: 0,
-    whiteSpace: "nowrap",
-    
+    whiteSpace: "nowrap"
   },
+  
   drawerOpen: {
     width: drawerWidth,
     height: "800px",
     margin: "10px",
-    borderRadius: 15,
+    borderRadius: "15px",
     transition: theme.transitions.create("width", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
@@ -106,18 +122,18 @@ const useStyles = makeStyles(theme => ({
     overflowX: "hidden",
     width: theme.spacing(7) + 1,
     [theme.breakpoints.up("sm")]: {
-      width: theme.spacing(9) + 1,
-      margin: "10px 10px 10px 10px",
+      width: theme.spacing(8) + 1, 
+      margin: "10px",
       height: "800px",
-      borderRadius: 15
+      borderRadius: "15px",
     },
   },
   drawerOpenMobile: {
+    position: 'absolute',
     width: drawerWidth,
     height: "500px",
-    margin: "10px",
-    marginTop: "75px",
-    borderRadius: 15,
+    margin: "37px 0 10px 5px",
+    borderRadius: "15px",
     transition: theme.transitions.create("width", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
@@ -128,14 +144,16 @@ const useStyles = makeStyles(theme => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    overflowX: "hidden",
+    overflow: "hidden",
     height: "500px",
-    marginTop: "75px",
-    borderRadius: 15,
+    margin: "73px 10px 10px 10px",
+    borderRadius: "15px",
+    position: 'fixed',
     width: theme.spacing(7) + 1,
     [theme.breakpoints.up("sm")]: {
-      width: theme.spacing(9) + 1,
-      margin: "10px 10px 10px 10px",
+      width: theme.spacing(7) + 1,
+      // margin: "10px 10px 10px 10px",
+      // borderRadius: '50%',
     },
   },
   
@@ -148,24 +166,20 @@ const useStyles = makeStyles(theme => ({
   iconToolBar: {
     margin: "0 5px",
   },
-  list: {
-    width: 230,
-    marginTop: "50px",
-    // position: 'sticky',
-    // zIndex: -1,
-   
-  },
-  listClosed: {
-    width: "90px",
-    marginTop: "50px",
-  },
-  menuButton: {
-    marginRight: 36,
+  menuButtonMobile: {
+    marginRight: '-4px'
   },
   menuButtonDesktop: {
-    marginRight: theme.spacing(.5),
+    marginLeft: theme.spacing(1),
   },
   placeholderDiv: {
+    display: "flex",
+    justifyContent: "center",
+    alignContent: "space-evenly",
+    margin: "20px 0",
+    flexFlow: "column wrap",
+  },
+  placeholderDivShadowed: {
     display: "flex",
     justifyContent: "center",
     alignContent: "space-evenly",
@@ -188,17 +202,17 @@ const useStyles = makeStyles(theme => ({
   },
   placeHolderClosed: {
     backgroundColor: "gray",
-    width: "80%",
-    margin: "10px 10px 10px 10px",
+    width: "50px",
     height: "100px",
-    borderRadius: 25,
+    borderRadius: 15,
+    marginTop: "-10px",
   },
-  placeHolderClosed2: {
+  placeHolder2Closed: {
     backgroundColor: "#ebe8e1",
-    width: "80%",
-    margin: "10px",
+    width: "50px",
     height: "120px",
-    borderRadius: 25,
+    borderRadius: 15,
+    margin: "10px 0",
   },
   spacing: {
     marginTop: "60px",
@@ -220,16 +234,21 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function Header() {
+function Header(props) {
+  console.log(props)
+
   const classes = useStyles();
   const theme = useTheme();
-  const desktopSize = useMediaQuery("(min-width:600px)");
-  const phoneSize = useMediaQuery("(max-width:600px)");
+  // const tabletSize = useMediaQuery("(max-width:770px");
+  const phoneSize = useMediaQuery("(max-width:770px)");
   const [open, setOpen] = React.useState(true);
   const [openMobile, setOpenMobile] = React.useState(false);
-  const [left, setLeft] = React.useState(false);
 
-  const toggleDrawer = () => event => {
+  const handleDrawerOpen = () => {
+    setOpen(!open);
+  };
+  
+  const handleDrawerOpenMobile = () => event => {
     if (
       event &&
       event.type === "keydown" &&
@@ -237,84 +256,82 @@ function Header() {
     ) {
       return;
     }
-    setLeft(!left);
-  };
-
-  const handleDrawerOpen = () => {
-    setOpen(!open);
-  };
-  const handleDrawerOpenMobile = () => {
     setOpenMobile(!openMobile);
   };
 
+  const closeHandleClick = () => {
+    if(openMobile) setOpenMobile(false)
+  }
 
-  const dispatch = useDispatch();
-  const state = useSelector(state => state);
 
-  useEffect(() => {
-    dispatch(courseEndPoint());
-  }, [dispatch]);
-
-  const sideList = side => (
-    <div
-      className={classes.list}
-      onClick={toggleDrawer(side, false)}
-      onKeyDown={toggleDrawer(side, false)}
-    >
-
-      <List>
-        <ListItem
-          button
-          component={NavLink}
-          to="/dashboard"
-          style={{ textDecoration: "none" }}
-          activeClassName={classes.activeTab}
-          key="Dashboard"
-        >
-          <ListItemIcon>
-            <InboxIcon />
-          </ListItemIcon>
-          <ListItemText primary="Dashboard"/>
-        </ListItem>
-      </List>
-
-      <List>
-        <ListItem button key="Activity">
-          <ListItemIcon>
-            <InboxIcon />
-          </ListItemIcon>
-          <ListItemText primary="Activity" />
-        </ListItem>
-      </List>
-      <List>
-        <ListItem button key="Courses">
-          <ListItemIcon>
-            <InboxIcon />
-          </ListItemIcon>
-          <ListItemText primary="Courses" />
-        </ListItem>
-      </List>
-      <List>
-        <ListItem button key="Learning Paths">
-          <ListItemIcon>
-            <InboxIcon />
-          </ListItemIcon>
-          <ListItemText primary="Learning Paths" />
-        </ListItem>
-      </List>
-      <List>
-        <ListItem button key="Profile">
-          <ListItemIcon>
-            <InboxIcon />
-          </ListItemIcon>
-          <ListItemText primary="Profile" />
-        </ListItem>
-      </List>
+  const sideList = () => (
+    <div>
+     <List className={classes.hoverTab}>
+          <ListItem
+            className={classes.hoverTab}
+            button
+            component={NavLink}
+            to="/dashboard"
+            style={{ textDecoration: "none" }}
+            activeClassName={classes.activeTab}
+            key="Dashboard"
+          >
+            <ListItemIcon>
+              <InboxIcon />
+            </ListItemIcon>
+            <ListItemText primary="Dashboard" />
+            <ListItemText className = {classes.arrow} primary=">" />
+          </ListItem>
+        </List>
+  
+        <List className={classes.hoverTab}>
+          <ListItem button key="Activity">
+            <ListItemIcon>
+              <InboxIcon />
+            </ListItemIcon>
+            <ListItemText primary="Activity" />
+            <ListItemText className = {classes.arrow} primary=">" />
+          </ListItem>
+        </List>
+        <List className={classes.hoverTab}>
+          <ListItem className={classes.hoverTab}
+            button
+            component={NavLink}
+            to="/addcourse"
+            style={{ textDecoration: "none" }}
+            activeClassName={classes.activeTab}
+            key="Add Course">
+            <ListItemIcon>
+              <InboxIcon />
+            </ListItemIcon>
+            <ListItemText primary="Courses" />
+            <ListItemText className = {classes.arrow} primary=">" />
+          </ListItem>
+        </List>
+        <List className={classes.hoverTab}>
+          <ListItem button key="Learning Paths">
+            <ListItemIcon>
+              <InboxIcon />
+            </ListItemIcon>
+            <ListItemText primary="Learning Paths" />
+            <ListItemText className = {classes.arrow} primary=">" />
+          </ListItem>
+        </List>
+        <List className={classes.hoverTab}>
+          <ListItem button key="Profile">
+            <ListItemIcon>
+              <InboxIcon />
+            </ListItemIcon>
+            <ListItemText primary="Profile" />
+            <ListItemText className = {classes.arrow} primary=">" />
+          </ListItem>
+        </List>
     </div>
   );
 
 //** */ Can Add Components Below **********************
   const routedContent = () => {
+
     return (
     <div>
         {phoneSize ? (
@@ -325,12 +342,16 @@ function Header() {
             </div>
           ) : (
             <div className={classes.placeholderDiv}>
-              <div className={classes.placeHolderClosed} />
-              <div className={classes.placeHolderClosed2} />
+              <div className={classes.placeHolder} />
+              <div className={classes.placeHolder2} />
             </div>
           )
         ) : null}
-         <Dashboard />
+   {/*************************ADD COMPONENTS HERE *********************** */}
+       {(props.location.pathname === '/addcourse') ? <AddCourse/> :
+        (props.location.pathname === '/dashboard') ? <Dashboard /> :
+          null}  
+         
     </div>
     )
   };
@@ -340,7 +361,7 @@ function Header() {
     // MOBILE CODE ****************************************************************************
     <>
     {phoneSize ? (
-      <div className={classes.root}>
+      <div className={classes.root} onClick={() => closeHandleClick()}>
       <CssBaseline />
       <AppBar
         // position="absolute"
@@ -378,78 +399,24 @@ function Header() {
             [classes.drawerCloseMobile]: !openMobile,
           }),
         }}
-        openMobile={openMobile}
+        open={openMobile}
       >
         <div className={classes.toolbar}>
         <IconButton
             color="inherit"
             aria-label="open drawer"
-            onClick={handleDrawerOpenMobile}
+            onClick={handleDrawerOpenMobile()}
             edge="start"
-            className={classes.menuButtonDesktop}
+            className={classes.menuButtonMobile}
           >
             <MenuIcon />
           </IconButton>
         </div>
-        <List className={classes.hoverTab}>
-          <ListItem
-            className={classes.hoverTab}
-            button
-            component={NavLink}
-            to="/dashboard"
-            style={{ textDecoration: "none" }}
-            activeClassName={classes.activeTab}
-            key="Dashboard"
-          >
-            <ListItemIcon>
-              <InboxIcon />
-            </ListItemIcon>
-            <ListItemText primary="Dashboard" />
-            <ListItemText className = {classes.arrow} primary=">" />
-          </ListItem>
-        </List>
-  
-        <List className={classes.hoverTab}>
-          <ListItem button key="Activity">
-            <ListItemIcon>
-              <InboxIcon />
-            </ListItemIcon>
-            <ListItemText primary="Activity" />
-            <ListItemText className = {classes.arrow} primary=">" />
-          </ListItem>
-        </List>
-        <List className={classes.hoverTab}>
-          <ListItem button key="Courses">
-            <ListItemIcon>
-              <InboxIcon />
-            </ListItemIcon>
-            <ListItemText primary="Courses" />
-            <ListItemText className = {classes.arrow} primary=">" />
-          </ListItem>
-        </List>
-        <List className={classes.hoverTab}>
-          <ListItem button key="Learning Paths">
-            <ListItemIcon>
-              <InboxIcon />
-            </ListItemIcon>
-            <ListItemText primary="Learning Paths" />
-            <ListItemText className = {classes.arrow} primary=">" />
-          </ListItem>
-        </List>
-        <List className={classes.hoverTab}>
-          <ListItem button key="Profile">
-            <ListItemIcon>
-              <InboxIcon />
-            </ListItemIcon>
-            <ListItemText primary="Profile" />
-            <ListItemText className = {classes.arrow} primary=">" />
-          </ListItem>
-        </List>
+        {sideList()}
       </Drawer>
-      <main className={classes.content}>
+      <main className={openMobile ? classes.contentShadow :classes.contentMobile}>
         <div className={classes.toolbar} />
         {routedContent()}
-        {/*************************ADD COMPONENTS HERE *********************** */}
       </main>
     </div>
         ) 
@@ -513,70 +480,16 @@ function Header() {
             <div className={classes.placeHolder} />
             <div className={classes.placeHolder2} />
           </div>) : (
-      <div className={classes.placeholderDiv}>
+            <div className={classes.placeholderDiv}>
             <div className={classes.placeHolderClosed} />
-            <div className={classes.placeHolderClosed2} />
+            <div className={classes.placeHolder2Closed} />
           </div>
           )}
-      <List className={classes.hoverTab}>
-        <ListItem
-          className={classes.hoverTab}
-          button
-          component={NavLink}
-          to="/dashboard"
-          style={{ textDecoration: "none" }}
-          activeClassName={classes.activeTab}
-          key="Dashboard"
-        >
-          <ListItemIcon>
-            <InboxIcon />
-          </ListItemIcon>
-          <ListItemText primary="Dashboard" />
-          <ListItemText className = {classes.arrow} primary=">" />
-        </ListItem>
-      </List>
-
-      <List className={classes.hoverTab}>
-        <ListItem button key="Activity">
-          <ListItemIcon>
-            <InboxIcon />
-          </ListItemIcon>
-          <ListItemText primary="Activity" />
-          <ListItemText className = {classes.arrow} primary=">" />
-        </ListItem>
-      </List>
-      <List className={classes.hoverTab}>
-        <ListItem button key="Courses">
-          <ListItemIcon>
-            <InboxIcon />
-          </ListItemIcon>
-          <ListItemText primary="Courses" />
-          <ListItemText className = {classes.arrow} primary=">" />
-        </ListItem>
-      </List>
-      <List className={classes.hoverTab}>
-        <ListItem button key="Learning Paths">
-          <ListItemIcon>
-            <InboxIcon />
-          </ListItemIcon>
-          <ListItemText primary="Learning Paths" />
-          <ListItemText className = {classes.arrow} primary=">" />
-        </ListItem>
-      </List>
-      <List className={classes.hoverTab}>
-        <ListItem button key="Profile">
-          <ListItemIcon>
-            <InboxIcon />
-          </ListItemIcon>
-          <ListItemText primary="Profile" />
-          <ListItemText className = {classes.arrow} primary=">" />
-        </ListItem>
-      </List>
+     {sideList()}
     </Drawer>
     <main className={classes.content}>
       <div className={classes.toolbar} />
       {routedContent()}
-      {/*************************ADD COMPONENTS HERE *********************** */}
     </main>
   </div>
      )}  
