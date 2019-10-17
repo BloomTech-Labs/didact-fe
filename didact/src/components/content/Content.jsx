@@ -4,7 +4,7 @@ import useStyles from './ContentStyles'
 
 import Dashboard from '../dashboard/Dashboard'
 import AddCourse from '../courses/AddCourse'
- 
+  
 const Content = (props) => {
     console.log(props)
 
