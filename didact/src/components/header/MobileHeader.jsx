@@ -11,7 +11,7 @@ import Button from "@material-ui/core/Button";
 const MobileHeaderComponent = (props) => {
 
     const classes = headerStyles();
-
+    console.log(classes)
     const open = props.open
 
     return (

@@ -67,6 +67,7 @@ const useStyles = makeStyles(theme => ({
 
 function MainPage(props) {
     const classes = useStyles();
+   
     const theme = useTheme();
     // const tabletSize = useMediaQuery("(max-width:770px");
     const phoneSize = useMediaQuery("(max-width:770px)");

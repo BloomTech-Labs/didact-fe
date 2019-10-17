@@ -11,7 +11,7 @@ import SideList from './SideList'
 
 const DrawerComponent = (props) => {
     const classes = drawerStyles();
-
+   
     const open = props.open
 
     return (
