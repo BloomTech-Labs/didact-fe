@@ -68,7 +68,7 @@ const MobileDrawerComponent = (props) => {
             position: 'absolute',
             width: "240px",
             height: "500px",
-            margin: "37px 0 10px 5px",
+            margin: "37px 10px 10px 5px",
             borderRadius: "15px",
             transition: theme.transitions.create("width", {
               easing: theme.transitions.easing.sharp,
@@ -82,7 +82,7 @@ const MobileDrawerComponent = (props) => {
             }),
             overflow: "hidden",
             height: "500px",
-            margin: "73px 10px 10px 10px",
+            margin: "73px 10px 0px 10px",
             borderRadius: "15px",
             position: 'fixed',
             zIndex: 1,

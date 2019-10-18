@@ -6,6 +6,8 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 
+import Profile from '../profile/Profile'
+
 const MobileHeaderComponent = (props) => {
 
         const headerStyles = makeStyles(theme => ({
@@ -72,7 +74,7 @@ const MobileHeaderComponent = (props) => {
                     <Button className={classes.iconToolBar} color="inherit">
                         third
                     </Button>
-                    <div className={classes.iconImage}></div>
+                   <Profile />
                 </div>
             </Toolbar>
         </AppBar>

@@ -33,11 +33,12 @@ import Content from '../content/Content'
 const useStyles = makeStyles(theme => ({
     root: {
         display: "flex",
-        backgroundColor: "lightgray"
+        backgroundColor: "lightgray",
     },
     content: {
         flexGrow: 1,
         padding: theme.spacing(3),
+       
     },
     contentMobile: {
         flexGrow: 1,
@@ -54,6 +55,7 @@ const useStyles = makeStyles(theme => ({
         width: "100%",
         height: "100%",
         flexGrow: 1,
+        paddingLeft: "80px",
         padding: theme.spacing(3),
     },
     toolbar: {
