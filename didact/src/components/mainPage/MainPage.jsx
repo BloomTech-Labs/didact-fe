@@ -39,7 +39,6 @@ const useStyles = makeStyles(theme => ({
     content: {
         flexGrow: 1,
         padding: theme.spacing(3),
-       
     },
     contentMobile: {
         flexGrow: 1,
@@ -138,7 +137,7 @@ function MainPage(props) {
                             <div>
                                 <DrawerComponent handleDrawerOpen={handleDrawerOpen} open={open} />
                             </div>
-                            <div>
+                            <div style={{width: "100%"}}>
                                 <HeaderComponent open={open} />
                                 <main className={classes.content}>
                                     <div className={classes.toolbar} />
