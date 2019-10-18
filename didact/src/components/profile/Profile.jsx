@@ -53,7 +53,7 @@ const useStyles = makeStyles(theme => ({
     display: "flex",
     alignItems: "flex-start",
     justifyContent: "flex-end",
-    marginRight: "50px",
+    marginRight: "35px",
     marginTop: "23px",
   },
   modalMobile: {
