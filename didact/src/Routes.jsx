@@ -28,9 +28,9 @@ const Routes = () => {
         <Route path="/login" component={FormikLoginForm} >
             {tokenVerified ? <Redirect to='/dashboard' /> : null}
         </Route>
-        <PrivateRoute exact path="/dashboard" component={MainPage}>
+        <Route exact path="/dashboard" component={MainPage}>
             {tokenVerified ? null : <Redirect to='/login' />}
-        </PrivateRoute>
+        </Route>
 
         <Route path="/register" component={FormikRegisterForm} >
             {tokenVerified ? <Redirect to='/dashboard' /> : null}

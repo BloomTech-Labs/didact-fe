@@ -10,7 +10,7 @@ const Auth = (props) => {
 
     useEffect(() => {
         if(token) {
-            dispatch(verifyToken(props));
+            dispatch(verifyToken());
         }
     }, [dispatch, props, token])
 
