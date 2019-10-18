@@ -58,6 +58,7 @@ const useStyles = makeStyles(theme => ({
         flexGrow: 1,
         paddingLeft: "80px",
         padding: theme.spacing(3),
+        overflow: "hidden",
     },
     toolbar: {
         display: "flex",

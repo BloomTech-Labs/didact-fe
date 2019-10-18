@@ -65,7 +65,7 @@ const DrawerComponent = (props) => {
             },
           },
           drawerOpenMobile: {
-            position: 'absolute',
+            position: 'fixed',
             width: "240px",
             height: "500px",
             margin: "37px 0 10px 5px",
