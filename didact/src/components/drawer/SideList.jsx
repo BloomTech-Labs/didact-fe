@@ -7,6 +7,12 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
+import DashboardIcon from '@material-ui/icons/Dashboard';
+import FolderOpenIcon from '@material-ui/icons/FolderOpen';
+import EventIcon from '@material-ui/icons/Event';
+import SettingsIcon from '@material-ui/icons/Settings';
+import PersonIcon from '@material-ui/icons/Person';
+import DoneAllIcon from '@material-ui/icons/DoneAll';
 
 const SideList = () => {
 
@@ -28,125 +34,15 @@ const SideList = () => {
             display: 'flex',
             justifyContent: 'flex-end',
             alignContent: 'center',
-            color: "white",
-              
+            color: "white", 
           },
-          drawer: {
-            width: 0,
-            flexShrink: 0,
-            whiteSpace: "nowrap",
-          },
+          hoverTab: {
+              "&:hover": {
+                  backgroundColor: "white",
+                  color: "black",
+              },
+          }
           
-          drawerOpen: {
-            width: "240px",
-            height: "calc(100% - 270px)",
-            margin: "10px",
-            marginTop: "270px",
-            borderRadius: "15px",
-            transition: theme.transitions.create("width", {
-              easing: theme.transitions.easing.sharp,
-              duration: theme.transitions.duration.enteringScreen,
-            }),
-          },
-          drawerClose: {
-            transition: theme.transitions.create("width", {
-              easing: theme.transitions.easing.sharp,
-              duration: theme.transitions.duration.leavingScreen,
-            }),
-    
-            overflowX: "hidden",
-            width: theme.spacing(7) + 1,
-            [theme.breakpoints.up("sm")]: {
-              width: theme.spacing(8) + 1, 
-              margin: "10px",
-              marginTop: "270px",
-              height: "calc(100% - 270px)",
-              borderRadius: "15px",
-            },
-          },
-          drawerOpenMobile: {
-            position: 'absolute',
-            width: "240px",
-            height: "500px",
-            margin: "37px 0 10px 5px",
-            borderRadius: "15px",
-            transition: theme.transitions.create("width", {
-              easing: theme.transitions.easing.sharp,
-              duration: theme.transitions.duration.enteringScreen,
-            }),
-          },
-          drawerCloseMobile: {
-            transition: theme.transitions.create("width", {
-              easing: theme.transitions.easing.sharp,
-              duration: theme.transitions.duration.leavingScreen,
-            }),
-            overflow: "hidden",
-            height: "500px",
-            margin: "73px 10px 10px 10px",
-            borderRadius: "15px",
-            position: 'fixed',
-            zIndex: 1,
-            width: theme.spacing(7) + 1,
-            [theme.breakpoints.up("sm")]: {
-              width: theme.spacing(7) + 1,
-            },
-          },
-        menuButtonMobile: {
-            marginRight: '-4px'
-        },
-        menuButtonDesktop: {
-            marginLeft: theme.spacing(1),
-          },
-        placeholderDiv: {
-            display: "flex",
-            justifyContent: "center",
-            alignContent: "space-evenly",
-            margin: "10px 0",
-            flexFlow: "column wrap",
-        },
-        placeholderDivShadowed: {
-            display: "flex",
-            justifyContent: "center",
-            alignContent: "space-evenly",
-            margin: "20px 0",
-            flexFlow: "column wrap",
-        },
-        placeHolder: {
-            backgroundColor: "gray",
-            width: "200px",
-            height: "100px",
-            borderRadius: 15,
-            margin: "0 0 10px 0",
-        }, 
-        placeHolder2: {
-            backgroundColor: "#ebe8e1",
-            width: "200px",
-            height: "120px",
-            borderRadius: 15,
-            margin: "0 0 0 0",
-        },
-        placeHolderClosed: {
-            backgroundColor: "gray",
-            width: "50px",
-            height: "100px",
-            borderRadius: 15,
-            marginTop: "0",
-          },
-          placeHolder2Closed: {
-            backgroundColor: "#ebe8e1",
-            width: "50px",
-            height: "120px",
-            borderRadius: 15,
-            margin: "10px 0 0 0",
-          },
-    
-        toolbar: {
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "flex-end",
-            padding: theme.spacing(0, 1),
-            ...theme.mixins.toolbar,
-        }
     }));
 
     const classes = drawerStyles();
@@ -154,9 +50,8 @@ const SideList = () => {
     return (
         <>
             
-            <List className={classes.hoverTab}>
-                <ListItem
-                    className={classes.hoverTab}
+            <List>
+                <ListItem className = {classes.hoverTab}
                     button
                     component={NavLink}
                     to="/dashboard"
@@ -165,15 +60,15 @@ const SideList = () => {
                     key="Dashboard"
                 >
                     <ListItemIcon>
-                        <InboxIcon />
+                        <DashboardIcon />
                     </ListItemIcon>
                     <ListItemText primary="Dashboard" />
                     <ListItemText className={classes.arrow} primary=">" />
                 </ListItem>
             </List>
 
-            <List className={classes.hoverTab}>
-                <ListItem button key="Activity">
+            <List >
+                <ListItem button key="Activity" className = {classes.hoverTab}>
                     <ListItemIcon>
                         <InboxIcon />
                     </ListItemIcon>
@@ -181,8 +76,9 @@ const SideList = () => {
                     <ListItemText className={classes.arrow} primary=">" />
                 </ListItem>
             </List>
-            <List className={classes.hoverTab}>
-                <ListItem className={classes.hoverTab}
+            <List >
+                <ListItem 
+                    className = {classes.hoverTab}
                     button
                     component={NavLink}
                     to="/addcourse"
@@ -190,14 +86,14 @@ const SideList = () => {
                     activeClassName={classes.activeTab}
                     key="Add Course">
                     <ListItemIcon>
-                        <InboxIcon />
+                        <FolderOpenIcon />
                     </ListItemIcon>
                     <ListItemText primary="Courses" />
                     <ListItemText className={classes.arrow} primary=">" />
                 </ListItem>
             </List>
-            <List className={classes.hoverTab}>
-                <ListItem button key="Learning Paths">
+            <List >
+                <ListItem className = {classes.hoverTab} button key="Learning Paths">
                     <ListItemIcon>
                         <InboxIcon />
                     </ListItemIcon>
@@ -205,10 +101,37 @@ const SideList = () => {
                     <ListItemText className={classes.arrow} primary=">" />
                 </ListItem>
             </List>
-            <List className={classes.hoverTab}>
-                <ListItem button key="Profile">
+            <List >
+                <ListItem className = {classes.hoverTab} button key="Tasks">
                     <ListItemIcon>
-                        <InboxIcon />
+                        <DoneAllIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Tasks" />
+                    <ListItemText className={classes.arrow} primary=">" />
+                </ListItem>
+            </List>
+            <List >
+                <ListItem className = {classes.hoverTab} button key="Calendar">
+                    <ListItemIcon>
+                        <EventIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Calendar" />
+                    <ListItemText className={classes.arrow} primary=">" />
+                </ListItem>
+            </List>
+            <List >
+                <ListItem className = {classes.hoverTab} button key="Tools">
+                    <ListItemIcon>
+                        <SettingsIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Tools" />
+                    <ListItemText className={classes.arrow} primary=">" />
+                </ListItem>
+            </List>
+            <List >
+                <ListItem className = {classes.hoverTab} button key="Profile">
+                    <ListItemIcon>
+                        <PersonIcon />
                     </ListItemIcon>
                     <ListItemText primary="Profile" />
                     <ListItemText className={classes.arrow} primary=">" />

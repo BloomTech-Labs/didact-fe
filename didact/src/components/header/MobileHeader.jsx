@@ -5,6 +5,10 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
+import DashboardIcon from '@material-ui/icons/Dashboard';
+import MessageIcon from '@material-ui/icons/Message';
+
+import Profile from '../profile/Profile'
 
 const MobileHeaderComponent = (props) => {
 
@@ -64,15 +68,15 @@ const MobileHeaderComponent = (props) => {
                 </Typography>
                 <div className={classes.toolbarIcons}>
                     <Button className={classes.iconToolBar} color="inherit">
-                        first
+                        <DashboardIcon />
                     </Button>
                     <Button className={classes.iconToolBar} color="inherit">
-                        second
+                        <MessageIcon />
                     </Button>
                     <Button className={classes.iconToolBar} color="inherit">
                         third
                     </Button>
-                    <div className={classes.iconImage}></div>
+                   <Profile />
                 </div>
             </Toolbar>
         </AppBar>

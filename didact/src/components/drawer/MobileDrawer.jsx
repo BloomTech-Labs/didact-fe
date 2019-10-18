@@ -67,8 +67,8 @@ const MobileDrawerComponent = (props) => {
           drawerOpenMobile: {
             position: 'absolute',
             width: "240px",
-            height: "500px",
-            margin: "37px 0 10px 5px",
+            height: '580px',
+            margin: "37px 10px 10px 5px",
             borderRadius: "15px",
             transition: theme.transitions.create("width", {
               easing: theme.transitions.easing.sharp,
@@ -81,8 +81,8 @@ const MobileDrawerComponent = (props) => {
               duration: theme.transitions.duration.leavingScreen,
             }),
             overflow: "hidden",
-            height: "500px",
-            margin: "73px 10px 10px 10px",
+            height: '580px',
+            margin: "73px 10px 0px 10px",
             borderRadius: "15px",
             position: 'fixed',
             zIndex: 1,
