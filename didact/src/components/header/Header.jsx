@@ -14,7 +14,7 @@ const HeaderComponent = (props) => {
 
     const headerStyles = makeStyles(theme => ({
     appBarDesktop: {
-        width: `calc(100vw- 100px)`,
+        width: `calc(100% - 100px)`,
         margin: "10px 10px 10px 10px",
         borderRadius: "10px 10px 10px 10px",
         backgroundColor: 'gray',

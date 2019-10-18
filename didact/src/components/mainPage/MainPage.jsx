@@ -34,6 +34,7 @@ const useStyles = makeStyles(theme => ({
     root: {
         display: "flex",
         backgroundColor: "lightgray",
+       
     },
     content: {
         flexGrow: 1,
