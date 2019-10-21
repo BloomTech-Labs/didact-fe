@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { courseEndPoint } from "../../store/actions/index.js";
+import { courseEndPoint, verifyToken } from "../../store/actions/index.js";
 import { useDispatch, useSelector } from "react-redux";
 
 import { PageFlex } from './PageStyles'
@@ -19,12 +19,19 @@ import Content from '../content/Content'
 const useStyles = makeStyles(theme => ({
     root: {
         display: "flex",
-        backgroundColor: "lightgray"
+        backgroundColor: "lightgray",
+       
     },
     content: {
         flexGrow: 1,
         padding: theme.spacing(3),
+       
     },
+    contentMobile: {
+        flexGrow: 1,
+        padding: theme.spacing(3),
+        paddingLeft: "80px",
+      },
     contentShadow: {
         background: "rgba(0, 0, 0, 0.8)",
         filter: "brightness(50%)",
@@ -35,7 +42,9 @@ const useStyles = makeStyles(theme => ({
         width: "100%",
         height: "100%",
         flexGrow: 1,
+        paddingLeft: "80px",
         padding: theme.spacing(3),
+        overflow: "hidden",
     },
     toolbar: {
         display: "flex",
@@ -48,6 +57,7 @@ const useStyles = makeStyles(theme => ({
 
 function MainPage(props) {
     const classes = useStyles();
+   
     const theme = useTheme();
     // const tabletSize = useMediaQuery("(max-width:770px");
     const phoneSize = useMediaQuery("(max-width:770px)");
@@ -81,6 +91,7 @@ function MainPage(props) {
         dispatch(courseEndPoint());
     }, [dispatch]);
 
+   
 
     return (
         // MOBILE CODE ****************************************************************************
