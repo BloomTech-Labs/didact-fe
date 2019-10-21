@@ -9,33 +9,51 @@ import { makeStyles, withStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
     header: {
-
+        width: '50%',
+        margin: '0 auto',
+        '& *': {
+            textAlign: 'left'
+        }
     },
     container: {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        border: "solid blue"
+        width: '45%',
+        border: 'solid #9B9B9B 1.2px',
+        borderRadius: '1%',
+        margin: '0 auto',
+        padding: '2%'
     },
     namePlate: {
         display: 'flex',
-        justifyContent: 'space-around',
-        paddingBottom: '4%',
-        border: "solid",
-        width: "45%",
+        justifyContent: 'space-between',
+        width: "70%",
+        height:'2.7em',
         "& *": {
-            padding: "1%",
+            border: 'solid #9B9B9B 1.2px',
+            backgroundColor: '#B9B8B8'
         }
     },
     passPlate: {
         display: 'flex',
         flexDirection: 'column',
-        width: "45%",
-        border: 'solid red',
+        justifyContent: 'space-evenly',
+        width: "70%",
+        height: '15em',
         "& *": {
-            border: 'solid yellow'
+            border: 'solid #9B9B9B 1.2px',
+            backgroundColor: '#B9B8B8',
+            height:'18%'
         }
+    },
+    signUpButton: {
+        width: '70%',
+        height:'2.7em',
+        textAlign: 'center',
+        backgroundColor: '#5A5A5A',
+        color: 'white'
     }
   }));
   
@@ -47,29 +65,35 @@ const RegisterForm = (props) => {
         <>
             <div className={classes.header}>
                 <h1>Signup</h1>
-                <h5>Subtitle</h5>
+                <h5>This might a good place for a subtitle</h5>
             </div>
-            <Form>
-                <div className={classes.container}>
-                    <div className={classes.namePlate}>
-                        <Field type= "text" name = "first_name" placeholder = "First Name"></Field>
-                        {touched.first_name && errors.first_name && <p>{errors.first_name}</p>}
-                        <Field type= "text" name = "last_name" placeholder = "Last Name"></Field>
-                        {touched.last_name && errors.last_name && <p>{errors.last_name}</p>}
+            <div className={classes.formWrapper}>
+                <Form>
+                    <div className={classes.container}>
+                        <div className={classes.namePlate}>
+                            <Field type= "text" name = "first_name" placeholder = "First Name"></Field>
+                            {touched.first_name && errors.first_name && <p>{errors.first_name}</p>}
+                            <Field type= "text" name = "last_name" placeholder = "Last Name"></Field>
+                            {touched.last_name && errors.last_name && <p>{errors.last_name}</p>}
+                        </div>
+                        <div className={classes.passPlate}>
+                            <Field type= "email" name = "email" placeholder = "Email"></Field>
+                            {touched.email && errors.email && <p>{errors.email}</p>}
+                            <Field type= "password" name = "password" placeholder = "Password"></Field>
+                            {touched.password && errors.password && <p>{errors.password}</p>}
+                            <Field type= "password" name = "confirm-password" placeholder = "Confirm Password"></Field>
+                            {touched.password && errors.password && <p>{errors.password}</p>}
+                        </div>
+                        <button className={classes.signUpButton} type="submit">Signup Now</button>
                     </div>
-                    <div className={classes.passPlate}>
-                        <Field type= "email" name = "email" placeholder = "Email"></Field>
-                        {touched.email && errors.email && <p>{errors.email}</p>}
-                        <Field type= "password" name = "password" placeholder = "Password"></Field>
-                        {touched.password && errors.password && <p>{errors.password}</p>}
-                        <Field type= "password" name = "confirm-password" placeholder = "Confirm Password"></Field>
-                        {touched.password && errors.password && <p>{errors.password}</p>}
-                    </div>
-                    <div>
-                        <button type="submit">Sign Up</button>
-                    </div>
-                </div>
-            </Form>
+                </Form>
+            </div>
+            <div className={classes.footer}>
+                {/* Google Login */}
+                <button>Signup with Google</button>
+                {/* Facebook Login */}
+                <button>Signup with Facebook</button>
+            </div>
         </>
     )
 }
