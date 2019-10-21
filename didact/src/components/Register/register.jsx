@@ -4,22 +4,81 @@ import * as Yup from 'yup';
 import { registerAction, registerWithFacebook, registerWithGoogle } from '../../store/actions';
 import { useDispatch } from 'react-redux';
 
+import { makeStyles, withStyles } from '@material-ui/core/styles';
+
+
+const useStyles = makeStyles(theme => ({
+    header: {
+
+    },
+    container: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        border: "solid blue"
+    },
+    namePlate: {
+        display: 'flex',
+        justifyContent: 'space-around',
+        paddingBottom: '4%',
+        border: "solid",
+        width: "45%",
+        "& *": {
+            padding: "1%",
+        }
+    },
+    passPlate: {
+        display: 'flex',
+        flexDirection: 'column',
+        width: "45%",
+        height: '40%',
+        margin: '0 auto',
+        paddingBottom: '4%',
+        border: 'solid red',
+        "& div": {
+            "& *":{
+                border: 'solid yellow'
+            }
+        }
+    }
+  }));
+  
 const RegisterForm = (props) => {
+    const classes = useStyles();
     const {errors, touched} = props;
    
     return (
         <>
+            <div className={classes.header}>
+                <h1>Signup</h1>
+                <h5>Subtitle</h5>
+            </div>
             <Form>
-                <Field type= "email" name = "email" placeholder = "Email"></Field>
-                {touched.email && errors.email && <p>{errors.email}</p>}
-                <Field type= "password" name = "password" placeholder = "Password"></Field>
-                {touched.password && errors.password && <p>{errors.password}</p>}
-                <Field type= "text" name = "first_name" placeholder = "First Name"></Field>
-                {touched.first_name && errors.first_name && <p>{errors.first_name}</p>}
-                <Field type= "text" name = "last_name" placeholder = "Last Name"></Field>
-                {touched.last_name && errors.last_name && <p>{errors.last_name}</p>}
-                <div>
-                <button type="submit">Register</button>
+                <div className={classes.container}>
+                    <div className={classes.namePlate}>
+                        <Field type= "text" name = "first_name" placeholder = "First Name"></Field>
+                        {touched.first_name && errors.first_name && <p>{errors.first_name}</p>}
+                        <Field type= "text" name = "last_name" placeholder = "Last Name"></Field>
+                        {touched.last_name && errors.last_name && <p>{errors.last_name}</p>}
+                    </div>
+                    <div className={classes.passPlate}>
+                        <div>
+                            <Field type= "email" name = "email" placeholder = "Email"></Field>
+                            {touched.email && errors.email && <p>{errors.email}</p>}
+                        </div>
+                        <div>
+                            <Field type= "password" name = "password" placeholder = "Password"></Field>
+                            {touched.password && errors.password && <p>{errors.password}</p>}
+                        </div>
+                        <div>
+                            <Field type= "password" name = "confirm-password" placeholder = "Confirm Password"></Field>
+                            {touched.password && errors.password && <p>{errors.password}</p>}
+                        </div>
+                    </div>
+                    <div>
+                        <button type="submit">Sign Up</button>
+                    </div>
                 </div>
             </Form>
         </>
