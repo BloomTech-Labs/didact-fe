@@ -33,10 +33,11 @@ export const courseEndPoint =() => dispatch => {
 
 export const getCourseById =(id) => dispatch => {
     dispatch({type: SINGLE_COURSE_DATA_START})
+    console.log(id)
     axiosWithAuth()
     .get(`https://didactlms-staging.herokuapp.com/api/courses/${id}`)
     .then(res => {
-        // console.log('single course api response: ', res)
+        console.log('single course api response: ', res.data)
         dispatch({type: SINGLE_COURSE_DATA_SUCCESS, payload: res.data})
     })
     .catch(err => {
@@ -61,16 +62,18 @@ export const addCourse =(values, props) => dispatch => {
     })
 }
 
-export const editCourse =(id, values) => dispatch => {
+export const editCourse =(id, changes) => dispatch => {
     dispatch({type: EDIT_COURSE_DATA_START})
+    console.log("CHANGES!: ", changes)
     axiosWithAuth()
-    .put(`https://didactlms-staging.herokuapp.com/api/courses/${id}`, values)
+    .put(`https://didactlms-staging.herokuapp.com/api/courses/${id}`, {changes})
     .then(res => {
         // console.log('edit course api response: ', res)
-        dispatch({type: EDIT_COURSE_DATA_SUCCESS, payload: res.data})
+        dispatch({type: EDIT_COURSE_DATA_SUCCESS, payload: changes})
     })
     .catch(err => {
-        dispatch({type: EDIT_COURSE_DATA_FAILURE, payload: err})
+        console.log("Error in editcourse", err.message)
+        dispatch({type: EDIT_COURSE_DATA_FAILURE, payload: err.message})
     })
 }
 

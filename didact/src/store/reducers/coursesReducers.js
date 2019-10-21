@@ -19,7 +19,8 @@ import {
 const initialState = {
     courses: [],
     isLoading: false,
-    error: ''
+    error: '',
+    course: {}
 }
 
 export const coursesReducer = (state = initialState, action) => {
@@ -56,7 +57,7 @@ export const coursesReducer = (state = initialState, action) => {
         case SINGLE_COURSE_DATA_SUCCESS:
             return {
                 ...state,
-                courses: action.payload,
+                course: action.payload,
                 isLoading: false,
                 error: ""
         };
@@ -96,9 +97,10 @@ export const coursesReducer = (state = initialState, action) => {
                 error: ''
             };
         case EDIT_COURSE_DATA_SUCCESS:
+            console.log("EDIT_COURSE: ", action.payload)
             return {
                 ...state,
-                courses: action.payload,
+                course: action.payload,
                 isLoading: false,
                 error: ""
         };

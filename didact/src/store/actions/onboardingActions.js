@@ -45,7 +45,7 @@ export const verifyToken = (history) => dispatch => {
     dispatch({ type: VERIFY_START })
     axios.post(`https://didactlms-staging.herokuapp.com/api/auth`, { 'token': token })
         .then(res => {
-            console.log(res)
+            // console.log(res)
             dispatch({ type: VERIFY_SUCCESS, payload: res.data })
         })
         // .then(props.history.push('/'))
