@@ -25,21 +25,34 @@ const Routes = () => {
     return (
         <>
         
-        <Route path="/login" component={FormikLoginForm} >
-            {tokenVerified ? <Redirect to='/dashboard' /> : null}
-        </Route>
-        <PrivateRoute exact path="/dashboard" component={MainPage}>
-            {tokenVerified ? null : <Redirect to='/login' />}
-        </PrivateRoute>
+            <Route path="/login" component={FormikLoginForm} >
+                {tokenVerified ? <Redirect to='/dashboard' /> : null}
+            </Route>
+            <Route path="/register" component={FormikRegisterForm} >
+                {tokenVerified ? <Redirect to='/dashboard' /> : null}
+            </Route>
+            <Route path='/auth' component={Auth} />
+            
+            <Route path='/dashboard' render={routeProps =>
+            (
+                <MainPage {...routeProps} page={'dashboard'} />
+            )} >
+                {tokenVerified ? null : <Redirect to='/login' />}
+            </Route>
 
-        <Route path="/register" component={FormikRegisterForm} >
-            {tokenVerified ? <Redirect to='/dashboard' /> : null}
-        </Route>
-        <Route path='/auth' component={Auth} />
-        <PrivateRoute path='/addcourse' component={MainPage} />
-        <Route exact path="/">
-            {tokenVerified ? <Redirect to="/dashboard" /> : <Redirect to='/register' />}
-        </Route>
+            <Route path='/addcourse' render={routeProps =>
+            (
+                <MainPage {...routeProps} page={'addcourse'} />
+            )} >
+                {tokenVerified ? null : <Redirect to='/login' />}
+            </Route>
+
+            <Route path='/courses/:id' render={routeProps =>
+            (
+                <MainPage {...routeProps} page={'courses'} />
+            )} >
+                {tokenVerified ? null : <Redirect to='/login' />}
+            </Route>
         </>
     )
 };
