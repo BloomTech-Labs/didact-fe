@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles'
 
 import Dashboard from '../dashboard/Dashboard'
 import AddCourse from '../courses/AddCourse'
-import Course from '../courses/Course'
+import DetailedCourse from '../courses/DetailedCourse'
 
   
 const Content = (props) => {
@@ -74,7 +74,9 @@ const Content = (props) => {
                     case ('addcourse'):
                         return <AddCourse />
                     case ('courses'):
-                        return <Course id={props.match.params.id} />
+                        return <DetailedCourse id={props.match.params.id} />
+                    case ('editcourse'):
+                        return <EditCourse id={props.match.params.id} />
                     default:
                         break;
                 }

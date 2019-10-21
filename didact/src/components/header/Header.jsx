@@ -61,7 +61,6 @@ const HeaderComponent = (props) => {
 }));
 
     const classes = headerStyles();
-    console.log(classes.appBarDesktop)
     // const [openProfile, setOpenProfile] = React.useState(false);
     const open = props.open
 
@@ -77,7 +76,7 @@ const HeaderComponent = (props) => {
         <>
         {/* {openProfile ? 
        (  */}
-           <AppBar
+            <AppBar
             className={clsx(classes.appBarDesktop, {
                 [classes.appBarShift]: open,
             })}
