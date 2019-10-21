@@ -104,7 +104,10 @@ function MainPage(props) {
         dispatch(courseEndPoint());
     }, [dispatch]);
 
-   
+    useEffect(_ =>
+        {
+            dispatch(verifyToken(props.history))
+        }, [])
 
     return (
         // MOBILE CODE ****************************************************************************
