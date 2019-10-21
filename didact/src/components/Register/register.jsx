@@ -53,7 +53,26 @@ const useStyles = makeStyles(theme => ({
         height:'2.7em',
         textAlign: 'center',
         backgroundColor: '#5A5A5A',
-        color: 'white'
+        color: 'white',
+        border: 'transparent',
+        borderRadius: '5%'
+    },
+    footer: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        width: '50%',
+        height: '2.7em',
+        margin: '0 auto',
+        paddingTop: '2%',
+        "& *":{
+            height:'100%',
+            backgroundColor: '#5A5A5A',
+            color: 'white',
+            border: 'transparent',
+            borderRadius: '5%',
+            width: '33%',
+            textDecoration: 'none'
+        }
     }
   }));
   
@@ -71,8 +90,10 @@ const RegisterForm = (props) => {
                 <Form>
                     <div className={classes.container}>
                         <div className={classes.namePlate}>
+                            <label for="first_name">First Name</label>
                             <Field type= "text" name = "first_name" placeholder = "First Name"></Field>
                             {touched.first_name && errors.first_name && <p>{errors.first_name}</p>}
+                            <label for="last_name">Last Name</label>
                             <Field type= "text" name = "last_name" placeholder = "Last Name"></Field>
                             {touched.last_name && errors.last_name && <p>{errors.last_name}</p>}
                         </div>
@@ -87,12 +108,6 @@ const RegisterForm = (props) => {
                         <button className={classes.signUpButton} type="submit">Signup Now</button>
                     </div>
                 </Form>
-            </div>
-            <div className={classes.footer}>
-                {/* Google Login */}
-                <button>Signup with Google</button>
-                {/* Facebook Login */}
-                <button>Signup with Facebook</button>
             </div>
         </>
     )
@@ -123,15 +138,16 @@ const FormikRegisterForm = withFormik({
 const FormikRegisterWrapper = ({history}) =>
 {
     const dispatch = useDispatch();
-
+    const classes = useStyles();
    
     console.log(dispatch)
     return (
         <>
             <FormikRegisterForm dispatch={dispatch} history={history}/>
+            <div className={classes.footer}>
             <a href="http://didactlms-staging.herokuapp.com/api/auth/facebook">Sign Up With Facebook</a>
             <a href="http://didactlms-staging.herokuapp.com/api/auth/google">Sign Up With Google</a>
-
+            </div>
         </>
     )
 }
