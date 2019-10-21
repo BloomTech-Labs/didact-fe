@@ -38,7 +38,7 @@ export const registerAction = (history, form) => dispatch => {
         .catch(err => dispatch({ type: REGISTER_FAILURE, payload: err }));
 };
 
-export const verifyToken = () => dispatch => {
+export const verifyToken = (history) => dispatch => {
     // console.log('props in action: ', props)
     // console.log(localStorage.getItem('token'))
     const token = localStorage.getItem('token')
@@ -49,5 +49,10 @@ export const verifyToken = () => dispatch => {
             dispatch({ type: VERIFY_SUCCESS, payload: res.data })
         })
         // .then(props.history.push('/'))
-        .catch(err => dispatch({ type: VERIFY_FAILURE, payload: err }))
+        .catch(err => 
+            {
+                dispatch({ type: VERIFY_FAILURE, payload: err })
+                localStorage.removeItem('token')
+                history.push('/login')
+            })
 }

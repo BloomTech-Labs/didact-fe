@@ -5,7 +5,6 @@ import Dashboard from '../dashboard/Dashboard'
 import AddCourse from '../courses/AddCourse'
 import DetailedCourse from '../courses/DetailedCourse'
 
-  
 const Content = (props) => {
 
     const contentStyles = makeStyles(theme => ({
@@ -75,8 +74,8 @@ const Content = (props) => {
                         return <AddCourse />
                     case ('courses'):
                         return <DetailedCourse id={props.match.params.id} />
-                    case ('editcourse'):
-                        return <EditCourse id={props.match.params.id} />
+                    // case ('editcourse'):
+                    //     return <EditCourse id={props.match.params.id} />
                     default:
                         break;
                 }
