@@ -3,10 +3,9 @@ import { makeStyles } from '@material-ui/core/styles'
 
 import Dashboard from '../dashboard/Dashboard'
 import AddCourse from '../courses/AddCourse'
+import DetailedCourse from '../courses/DetailedCourse'
 import EditCourse from '../courses/EditCourse'
 
-
-  
 const Content = (props) => {
 
     const contentStyles = makeStyles(theme => ({
@@ -45,6 +44,7 @@ const Content = (props) => {
 
     const open = props.open
     const phoneSize = props.phoneSize
+    
 
     return (
 
@@ -62,12 +62,22 @@ const Content = (props) => {
                 </div>
                     )
             ) : null}
-            {(props.location.pathname === '/addcourse') ? <AddCourse props = {props}/> :
-            (props.location.pathname === '/dashboard') ? <Dashboard /> :
-            // (props.location.pathname === '/editcourse') ? <EditCourse props = {props}/> :
-            (props.match.url === `/editcourse/${props.match.params.id}`) ? <EditCourse props = {props}/> :
-          null}  
-            {/* <Dashboard /> */}
+            {(() =>
+            {
+                switch(props.page)
+                {
+                    case ('dashboard'):
+                        return <Dashboard />
+                    case ('addcourse'):
+                        return <AddCourse props = {props}/>
+                    case ('courses'):
+                        return <DetailedCourse id={props.match.params.id} />
+                    case ('editcourse'):
+                        return <EditCourse id={props.match.params.id} props={props}/>
+                    default:
+                        break;
+                }
+            })()}
         </div>
     )
 }
