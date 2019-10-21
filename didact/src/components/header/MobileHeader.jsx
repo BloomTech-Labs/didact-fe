@@ -12,8 +12,6 @@ const MobileHeaderComponent = (props) => {
 
     const classes = useStyles();
 
-    const open = props.open
-
     return (
         <AppBar
             className={clsx(classes.appBarMobile, {

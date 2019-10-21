@@ -4,9 +4,8 @@ import useStyles from './ContentStyles'
 
 import Dashboard from '../dashboard/Dashboard'
 import AddCourse from '../courses/AddCourse'
-  
+
 const Content = (props) => {
-    console.log(props)
 
     const classes = useStyles()
 
@@ -30,9 +29,8 @@ const Content = (props) => {
                     )
             ) : null}
             {(props.location.pathname === '/addcourse') ? <AddCourse/> :
-            (props.location.pathname === '/dashboard') ? <Dashboard /> :
-          null}  
-            {/* <Dashboard /> */}
+            (props.location.pathname === '/') ? <Dashboard /> :
+            null}
         </div>
     )
 }

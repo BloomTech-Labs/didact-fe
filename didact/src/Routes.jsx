@@ -14,16 +14,16 @@ const Routes = () => {
         <>
         
         <Route path="/login" component={FormikLoginForm} >
-            {token ? <Redirect to='/dashboard' /> : null}
+            {token ? <Redirect to='/' /> : null}
         </Route>
-        <PrivateRoute exact path="/dashboard" component={MainPage} />
+        <PrivateRoute exact path="/" component={MainPage} />
         <Route path="/register" component={FormikRegisterForm} >
-            {token ? <Redirect to='/dashboard' /> : null}
+            {token ? <Redirect to='/' /> : null}
         </Route>
         <Route path='/auth' component={Auth} />
         <PrivateRoute path='/addcourse' component={MainPage} />
         <Route exact path="/">
-            {token ? <Redirect to="/dashboard" /> : <Redirect to='/register' />}
+            {token ? <Redirect to="/" /> : <Redirect to='/register' />}
         </Route>
         </>
     )

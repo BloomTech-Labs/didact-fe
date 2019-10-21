@@ -20,7 +20,7 @@ export const SideList = () => {
                     className={classes.hoverTab}
                     button
                     component={NavLink}
-                    to="/dashboard"
+                    to="/"
                     style={{ textDecoration: "none" }}
                     activeClassName={classes.activeTab}
                     key="Dashboard"
