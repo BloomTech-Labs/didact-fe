@@ -11,7 +11,8 @@ export {
     VERIFY_FAILURE,
     loginAction,
     registerAction,
-    verifyToken
+    verifyToken,
+    verifySocial
 } from './onboardingActions'
 
 export {

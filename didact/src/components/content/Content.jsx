@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles'
 
 import Dashboard from '../dashboard/Dashboard'
 import AddCourse from '../courses/AddCourse'
+import EditCourse from '../courses/EditCourse'
 
 
   
@@ -61,8 +62,10 @@ const Content = (props) => {
                 </div>
                     )
             ) : null}
-            {(props.location.pathname === '/addcourse') ? <AddCourse/> :
+            {(props.location.pathname === '/addcourse') ? <AddCourse props = {props}/> :
             (props.location.pathname === '/dashboard') ? <Dashboard /> :
+            // (props.location.pathname === '/editcourse') ? <EditCourse props = {props}/> :
+            (props.match.url === `/editcourse/${props.match.params.id}`) ? <EditCourse props = {props}/> :
           null}  
             {/* <Dashboard /> */}
         </div>
