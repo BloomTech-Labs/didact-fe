@@ -32,14 +32,9 @@ const useStyles = makeStyles(theme => ({
         display: 'flex',
         flexDirection: 'column',
         width: "45%",
-        height: '40%',
-        margin: '0 auto',
-        paddingBottom: '4%',
         border: 'solid red',
-        "& div": {
-            "& *":{
-                border: 'solid yellow'
-            }
+        "& *": {
+            border: 'solid yellow'
         }
     }
   }));
@@ -63,18 +58,12 @@ const RegisterForm = (props) => {
                         {touched.last_name && errors.last_name && <p>{errors.last_name}</p>}
                     </div>
                     <div className={classes.passPlate}>
-                        <div>
-                            <Field type= "email" name = "email" placeholder = "Email"></Field>
-                            {touched.email && errors.email && <p>{errors.email}</p>}
-                        </div>
-                        <div>
-                            <Field type= "password" name = "password" placeholder = "Password"></Field>
-                            {touched.password && errors.password && <p>{errors.password}</p>}
-                        </div>
-                        <div>
-                            <Field type= "password" name = "confirm-password" placeholder = "Confirm Password"></Field>
-                            {touched.password && errors.password && <p>{errors.password}</p>}
-                        </div>
+                        <Field type= "email" name = "email" placeholder = "Email"></Field>
+                        {touched.email && errors.email && <p>{errors.email}</p>}
+                        <Field type= "password" name = "password" placeholder = "Password"></Field>
+                        {touched.password && errors.password && <p>{errors.password}</p>}
+                        <Field type= "password" name = "confirm-password" placeholder = "Confirm Password"></Field>
+                        {touched.password && errors.password && <p>{errors.password}</p>}
                     </div>
                     <div>
                         <button type="submit">Sign Up</button>
