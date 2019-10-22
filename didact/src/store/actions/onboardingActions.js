@@ -45,15 +45,23 @@ export const verifyToken = (history) => dispatch => {
     dispatch({ type: VERIFY_START })
     axios.post(`https://didactlms-staging.herokuapp.com/api/auth`, { 'token': token })
         .then(res => {
+<<<<<<< HEAD
             // console.log(res)
+=======
+            console.log('res from verify token',res)
+>>>>>>> 48ce8dafd9fe6426efd37181271b45f1bcf13eb3
             dispatch({ type: VERIFY_SUCCESS, payload: res.data })
         })
         // .then(props.history.push('/'))
         .catch(err => 
             {
+                console.log('should be removing token')
                 dispatch({ type: VERIFY_FAILURE, payload: err })
                 localStorage.removeItem('token')
-                history.push('/login')
+            })
+        .finally(blah =>
+            {
+                if(!localStorage.getItem('token')) history.push('/login')
             })
 }
 

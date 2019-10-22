@@ -14,7 +14,9 @@ const Tags = ({course}) => {
         setOpenForm(!openForm)
     }
 
-    const handleSubmit = ()
+    const handleSubmit = () => {
+
+    }
 
     return (
         <>
