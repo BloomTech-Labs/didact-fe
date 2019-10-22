@@ -1,7 +1,7 @@
 import React from "react"
 import {Form, Field, withFormik} from "formik";
 import * as Yup from 'yup';
-import { registerAction, registerWithFacebook, registerWithGoogle } from '../../store/actions';
+import { registerAction } from '../../store/actions';
 import { useDispatch } from 'react-redux';
 
 const RegisterForm = (props) => {
