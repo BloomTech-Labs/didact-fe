@@ -41,7 +41,7 @@ export const registerAction = (history, form) => dispatch => {
 export const verifyToken = (history) => dispatch => {
     // console.log('props in action: ', props)
     // console.log(localStorage.getItem('token'))
-    const token = localStorage.getItem('token') 
+    const token = localStorage.getItem('token')
     dispatch({ type: VERIFY_START })
     axios.post(`https://didactlms-staging.herokuapp.com/api/auth`, { 'token': token })
         .then(res => {
