@@ -44,6 +44,9 @@ export {
     GET_SECTION_DETAILS_START,
     GET_SECTION_DETAILS_SUCCESS,
     GET_SECTION_DETAILS_FAIL,
+    GET_DETAILED_COURSE_START,
+    GET_DETAILED_COURSE_SUCCESS,
+    GET_DETAILED_COURSE_FAIL,
     getSectionsByCourseId,
     getDetailedCourse
 } from './sections'

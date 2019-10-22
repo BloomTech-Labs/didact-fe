@@ -14,12 +14,16 @@ import {
     DELETE_COURSE_DATA_START,
     DELETE_COURSE_DATA_SUCCESS,
     DELETE_COURSE_DATA_FAILURE,
+    GET_DETAILED_COURSE_START,
+    GET_DETAILED_COURSE_SUCCESS,
+    GET_DETAILED_COURSE_FAIL,
   } from '../actions'
 
 const initialState = {
     courses: [],
     isLoading: false,
-    error: ''
+    error: '',
+    detailedCourse: {}
 }
 
 export const coursesReducer = (state = initialState, action) => {
@@ -129,6 +133,26 @@ export const coursesReducer = (state = initialState, action) => {
                 isLoading: false,
                 error: action.payload
             };
+        // GET DETAILED COURSE
+        case GET_DETAILED_COURSE_START:
+            return {
+                ...state,
+                isLoading: true,
+                error: "",
+            }
+        case GET_DETAILED_COURSE_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                detailedCourse: action.payload,
+                error: "",
+            }
+        case GET_DETAILED_COURSE_FAIL:
+            return {
+                ...state,
+                isLoading: false,
+                error: action.payload,
+            }
         default:
             return state;
     }
