@@ -90,20 +90,18 @@ const RegisterForm = (props) => {
                 <Form>
                     <div className={classes.container}>
                         <div className={classes.namePlate}>
-                            <label for="first_name">First Name</label>
-                            <Field type= "text" name = "first_name" placeholder = "First Name"></Field>
-                            {touched.first_name && errors.first_name && <p>{errors.first_name}</p>}
-                            <label for="last_name">Last Name</label>
+                            <Field label="test" type= "text" name = "first_name" placeholder = "First Name"></Field>
+                            {/* {touched.first_name && errors.first_name && <p>{errors.first_name}</p>} */}
                             <Field type= "text" name = "last_name" placeholder = "Last Name"></Field>
-                            {touched.last_name && errors.last_name && <p>{errors.last_name}</p>}
+                            {/* {touched.last_name && errors.last_name && <p>{errors.last_name}</p>} */}
                         </div>
                         <div className={classes.passPlate}>
                             <Field type= "email" name = "email" placeholder = "Email"></Field>
-                            {touched.email && errors.email && <p>{errors.email}</p>}
+                            {/* {touched.email && errors.email && <p>{errors.email}</p>} */}
                             <Field type= "password" name = "password" placeholder = "Password"></Field>
-                            {touched.password && errors.password && <p>{errors.password}</p>}
+                            {/* {touched.password && errors.password && <p>{errors.password}</p>} */}
                             <Field type= "password" name = "confirm-password" placeholder = "Confirm Password"></Field>
-                            {touched.password && errors.password && <p>{errors.password}</p>}
+                            {/* {touched.password && errors.password && <p>{errors.password}</p>} */}
                         </div>
                         <button className={classes.signUpButton} type="submit">Signup Now</button>
                     </div>
