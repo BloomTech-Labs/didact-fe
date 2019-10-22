@@ -7,6 +7,10 @@ export const GET_SECTION_DETAILS_START = "GET_SECTION_DETAILS_START"
 export const GET_SECTION_DETAILS_SUCCESS = "GET_SECTION_DETAILS_SUCCESS"
 export const GET_SECTION_DETAILS_FAIL = "GET_SECTION_DETAILS_FAIL"
 
+export const GET_DETAILED_COURSE_START = "GET_DETAILED_COURSE_START"
+export const GET_DETAILED_COURSE_SUCCESS = "GET_DETAILED_COURSE_SUCCESS"
+export const GET_DETAILED_COURSE_FAIL = "GET_DETAILED_COURSE_FAIL"
+
 const baseURL = "https://didactlms-staging.herokuapp.com/api/courses/"
 
 export const getSectionsByCourseId = (id) => dispatch =>
@@ -25,15 +29,48 @@ export const getSectionsByCourseId = (id) => dispatch =>
         })
 }
 
-// export const courseEndPoint =() => dispatch => {
-//     dispatch({type: COURSE_DATA_START})
-//     axiosWithAuth()
-//     .get(`https://didactlms-staging.herokuapp.com/api/courses`)
-//     .then(res => {
-//         // console.log('all courses api response: ', res)
-//         dispatch({type: COURSE_DATA_SUCCESS, payload: res.data})
-//     })
-//     .catch(err => {
-//         dispatch({type: COURSE_DATA_FAILURE, payload: err})
-//     })
-// }
+export const getDetailedCourse = (id) => dispatch =>
+{
+    dispatch({ type: GET_DETAILED_COURSE_START })
+    let sections = []
+    let course
+    axiosWithAuth()
+    .get(`${baseURL}${id}`)
+    .then(res =>
+    {
+        course = res.data
+        axiosWithAuth()
+        .get(`${baseURL}${id}/sections`)
+        .then(res =>
+        {
+            res.data.sections.forEach(el =>
+            {
+                axiosWithAuth()
+                .get(`${baseURL}${id}/sections/${el.id}`)
+                .then(details =>
+                {
+                    sections.push({
+                        section: el,
+                        details: details.data.courseSection
+                    })
+                })
+            })
+            
+        })
+        .then(blah =>
+        {
+            let detailedCourse = 
+            {
+                course,
+                sections
+            }
+            console.log('detailedCourse', detailedCourse)
+            dispatch({ type: GET_DETAILED_COURSE_SUCCESS, payload: detailedCourse })
+        })
+    })
+    .catch(err =>
+    {
+        console.log(`err from get detailed course`, err)
+        dispatch({ type: GET_DETAILED_COURSE_FAIL, payload: err })
+    })
+}
