@@ -16,7 +16,17 @@ export const DELETE_COURSE_DATA_START = 'DELETE_COURSE_DATA_START';
 export const DELETE_COURSE_DATA_SUCCESS = 'DELETE_COURSE_DATA_SUCCESS';
 export const DELETE_COURSE_DATA_FAILURE = 'DELETE_COURSE_DATA_FAILURE';
 
+export const ADD_TAG_TO_COURSE_START = "ADD_TAG_TO_COURSE_START"
+export const ADD_TAG_TO_COURSE_SUCCESS = "ADD_TAG_TO_COURSE_SUCCESS"
+export const ADD_TAG_TO_COURSE_FAIL = "ADD_TAG_TO_COURSE_FAIL"
+export const ADD_SECTION_START = "ADD_SECTION_START"
+export const ADD_SECTION_SUCCESS = "ADD_SECTION_SUCCESS"
+export const ADD_SECTION_FAIL = "ADD_SECTION_FAIL"
+export const UPDATE_SECTION_START = "UPDATE_SECTION_START"
+export const UPDATE_SECTION_SUCCESS = "UPDATE_SECTION_SUCCESS"
+export const UPDATE_SECTION_FAIL = "UPDATE_SECTION_FAIL"
 
+const baseURL = 'https://didactlms-staging.herokuapp.com/api/courses/'
 
 export const courseEndPoint =() => dispatch => {
     dispatch({type: COURSE_DATA_START})
@@ -80,5 +90,50 @@ export const deleteCourse =(id) => dispatch => {
     })
     .catch(err => {
         dispatch({type: DELETE_COURSE_DATA_FAILURE, payload: err})
+    })
+}
+
+export const addTagToCourse = (id, tag) => dispatch =>
+{
+    dispatch({ type: ADD_TAG_TO_COURSE_START })
+    axiosWithAuth()
+    .post(`${baseURL}${id}/tags`, tag)
+    .then(res => 
+        {
+            console.log('res from add tag to course', res)
+            dispatch({ type: ADD_TAG_TO_COURSE_SUCCESS })
+        })
+    .catch(err => {
+        dispatch({ type: ADD_TAG_TO_COURSE_FAIL, payload: err })
+    })
+}
+
+export const addSectionToCourse = (id, sectionObj) => dispatch =>
+{
+    dispatch({ type: ADD_SECTION_START })
+    axiosWithAuth()
+    .post(`${baseURL}${id}/sections`, sectionObj)
+    .then(res => 
+        {
+            console.log('res from add section to course', res)
+            dispatch({ type: ADD_SECTION_SUCCESS })
+        })
+    .catch(err => {
+        dispatch({ type: ADD_SECTION_FAIL, payload: err })
+    })
+}
+
+export const updateSection = (id, changes) => dispatch =>
+{
+    dispatch({ type: UPDATE_SECTION_START })
+    axiosWithAuth()
+    .put(`${baseURL}${id}/sections`, changes)
+    .then(res => 
+        {
+            console.log('res from add section to course', res)
+            dispatch({ type: UPDATE_SECTION_SUCCESS })
+        })
+    .catch(err => {
+        dispatch({ type: UPDATE_SECTION_FAIL, payload: err })
     })
 }

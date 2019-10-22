@@ -30,11 +30,19 @@ export {
     DELETE_COURSE_DATA_START,
     DELETE_COURSE_DATA_SUCCESS,
     DELETE_COURSE_DATA_FAILURE,
+    ADD_TAG_TO_COURSE_START,
+    ADD_TAG_TO_COURSE_SUCCESS,
+    ADD_TAG_TO_COURSE_FAIL,
+    ADD_SECTION_START,
+    ADD_SECTION_SUCCESS,
+    ADD_SECTION_FAIL,
     courseEndPoint,
     getCourseById,
     addCourse,
     editCourse,
-    deleteCourse
+    deleteCourse,
+    addTagToCourse,
+    addSectionToCourse
 } from './courses'
 
 export {
