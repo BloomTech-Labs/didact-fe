@@ -1,11 +1,5 @@
-<<<<<<< HEAD
-import React from "react";
-
-import useStyles from "./DrawerStyles";
-=======
 import React, { useEffect, useState } from "react";
 import { makeStyles } from '@material-ui/core/styles'
->>>>>>> 1a9a4db68f09a42d2337fa6c2e0945c4b5f5abfc
 
 import clsx from "clsx";
 import Drawer from '@material-ui/core/Drawer'

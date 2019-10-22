@@ -1,6 +1,8 @@
 import React, { useEffect } from "react"
 import {useSelector, useDispatch} from "react-redux"
-import { getSectionsByCourseId } from '../../store/actions/index.js'
+import { getSectionsByCourseId, getCourseById } from '../../store/actions/index.js'
+
+import { DetailedCourseWrapper } from './DetailedCourseStyles'
 
 const DetailedCourse = props =>
 {
@@ -10,20 +12,40 @@ const DetailedCourse = props =>
         {
             dispatch(getSectionsByCourseId(props.id))
         }, [dispatch])
+        
+    useEffect(_ => 
+        {
+        dispatch(getCourseById(props.id))
+        }, [dispatch])
 
-    console.log(props.id)
-    console.log('sections', state.sectionsReducer)
+    const course = state.coursesReducer.courses
+    const sections = state.sectionsReducer.sections
+
+    console.log(course.tags)
+    console.log(sections)
     return (
-        <>
-            {state.sectionsReducer.sections && state.sectionsReducer.sections.map((el, index) => 
+        <DetailedCourseWrapper>
+            <div>
+                <h1>{course.name}</h1>
+                <p>{course.description}</p>
+                {course.tags && course.tags.map((tag, index) =>{
+                    return (
+                        <span key={index} className="tag">{tag}</span>
+                    )
+                })
+
+                }
+            </div>
+            {sections && sections.map((el, index) => 
             {
+                console.log(index)
                 return (
                     <div key={index}>
-                        {el.name}
+                        <h3>{`Lesson ${index+1}: ${el.name}`}</h3>
                     </div>
                 )
             })}
-        </>
+        </DetailedCourseWrapper>
     )
 }
 

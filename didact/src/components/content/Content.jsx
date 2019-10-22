@@ -61,11 +61,6 @@ const Content = (props) => {
                 </div>
                     )
             ) : null}
-<<<<<<< HEAD
-            {(props.location.pathname === '/addcourse') ? <AddCourse/> :
-            (props.location.pathname === '/') ? <Dashboard /> :
-            null}
-=======
             {/* {(props.location.pathname === '/addcourse') ? <AddCourse/> :
             (props.location.pathname === '/dashboard') ? <Dashboard /> :
           null}   */}
@@ -85,7 +80,6 @@ const Content = (props) => {
                         break;
                 }
             })()}
->>>>>>> 6b36575806ca73e9ac5d0316e26d9496227f7000
         </div>
     )
 }
