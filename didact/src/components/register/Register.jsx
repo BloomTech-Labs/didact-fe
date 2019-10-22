@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react"
 import {Form, Field, withFormik} from "formik";
 import * as Yup from 'yup';
 import { registerAction, registerWithFacebook, registerWithGoogle } from '../../store/actions';
@@ -79,8 +79,8 @@ const useStyles = makeStyles(theme => ({
 const RegisterForm = (props) => {
     const classes = useStyles();
     const {errors, touched} = props;
-   
-    return (
+    
+    return (  
         <>
             <div className={classes.header}>
                 <h1>Signup</h1>
@@ -150,4 +150,4 @@ const FormikRegisterWrapper = ({history}) =>
     )
 }
 
-export default FormikRegisterWrapper;
+export default FormikRegisterWrapper; 
