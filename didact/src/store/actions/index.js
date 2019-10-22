@@ -36,3 +36,13 @@ export {
     editCourse,
     deleteCourse
 } from './courses'
+
+export {
+    GET_SECTIONS_START,
+    GET_SECTIONS_SUCCESS,
+    GET_SECTIONS_FAIL,
+    GET_SECTION_DETAILS_START,
+    GET_SECTION_DETAILS_SUCCESS,
+    GET_SECTION_DETAILS_FAIL,
+    getSectionsByCourseId
+} from './sections'

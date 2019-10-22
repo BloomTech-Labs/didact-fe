@@ -32,7 +32,7 @@ function Dashboard() {
       </CourseMenuDiv>
       {state.coursesReducer.courses
         ? state.coursesReducer.courses.map((course,index) => (
-            <CourseDiv className="course">
+            <CourseDiv className="course" key={index}>
               <div className="picture">
                 {/* Picture */}
               </div>
