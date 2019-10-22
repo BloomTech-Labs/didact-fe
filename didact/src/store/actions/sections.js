@@ -29,48 +29,85 @@ export const getSectionsByCourseId = (id) => dispatch =>
         })
 }
 
-export const getDetailedCourse = (id) => dispatch =>
+export const getDetailedCourse = (id) => async dispatch =>
 {
     dispatch({ type: GET_DETAILED_COURSE_START })
     let sections = []
     let course
-    axiosWithAuth()
-    .get(`${baseURL}${id}`)
-    .then(res =>
+    try
     {
-        course = res.data
-        axiosWithAuth()
-        .get(`${baseURL}${id}/sections`)
-        .then(res =>
+        let courseRes = await axiosWithAuth().get(`${baseURL}${id}`)
+        course = courseRes.data
+        let sectionsRes = await axiosWithAuth().get(`${baseURL}${id}/sections`)
+        let sectionData = sectionsRes.data.sections
+    
+        for(let i=0; i<sectionData.length; i++)
         {
-            res.data.sections.forEach(el =>
-            {
-                axiosWithAuth()
-                .get(`${baseURL}${id}/sections/${el.id}`)
-                .then(details =>
-                {
-                    sections.push({
-                        section: el,
-                        details: details.data.courseSection
-                    })
-                })
+            let detailsRes = await axiosWithAuth().get(`${baseURL}${id}/sections/${sectionData[i].id}`)
+            sections.push({
+                section: sectionData[i],
+                details: detailsRes.data.courseSection
             })
-            
-        })
-        .then(blah =>
+        }
+    
+        let detailedCourse = 
         {
-            let detailedCourse = 
-            {
-                course,
-                sections
-            }
-            console.log('detailedCourse', detailedCourse)
-            dispatch({ type: GET_DETAILED_COURSE_SUCCESS, payload: detailedCourse })
-        })
-    })
-    .catch(err =>
+            course,
+            sections
+        }
+    
+        console.log('detailedCourse', detailedCourse)
+        await dispatch({ type: GET_DETAILED_COURSE_SUCCESS, payload: detailedCourse })
+    }
+    catch(err)
     {
         console.log(`err from get detailed course`, err)
         dispatch({ type: GET_DETAILED_COURSE_FAIL, payload: err })
-    })
+    }
 }
+
+// export const getDetailedCourse = (id) => dispatch =>
+// {
+//     dispatch({ type: GET_DETAILED_COURSE_START })
+//     let sections = []
+//     let course
+//     axiosWithAuth()
+//     .get(`${baseURL}${id}`)
+//     .then(res =>
+//     {
+//         course = res.data
+//         axiosWithAuth()
+//         .get(`${baseURL}${id}/sections`)
+//         .then(res =>
+//         {
+//             res.data.sections.forEach(el =>
+//             {
+//                 axiosWithAuth()
+//                 .get(`${baseURL}${id}/sections/${el.id}`)
+//                 .then(details =>
+//                 {
+//                     sections.push({
+//                         section: el,
+//                         details: details.data.courseSection
+//                     })
+//                 })
+//             })
+            
+//         })
+//         .then(blah =>
+//         {
+//             let detailedCourse = 
+//             {
+//                 course,
+//                 sections
+//             }
+//             console.log('detailedCourse', detailedCourse)
+//             dispatch({ type: GET_DETAILED_COURSE_SUCCESS, payload: detailedCourse })
+//         })
+//     })
+//     .catch(err =>
+//     {
+//         console.log(`err from get detailed course`, err)
+//         dispatch({ type: GET_DETAILED_COURSE_FAIL, payload: err })
+//     })
+// }
