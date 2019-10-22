@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { PageFlex } from './PageStyles'
 
 import { makeStyles, useTheme } from "@material-ui/core/styles";
+import AppBar from "@material-ui/core/AppBar";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import DrawerComponent from '../drawer/Drawer'

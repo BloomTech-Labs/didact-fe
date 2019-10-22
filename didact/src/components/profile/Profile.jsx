@@ -40,7 +40,8 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: "#ebe8e1",
     borderRadius: "50%",
     outline: 0,
-    cursor: 'pointer'
+    cursor: 'pointer',
+    border: 'none'
   },
   iconImageProfile: {
     width: "75px",
