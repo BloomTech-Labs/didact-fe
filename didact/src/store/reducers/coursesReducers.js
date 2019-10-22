@@ -17,6 +17,12 @@ import {
     GET_DETAILED_COURSE_START,
     GET_DETAILED_COURSE_SUCCESS,
     GET_DETAILED_COURSE_FAIL,
+    ADD_TAG_TO_COURSE_START,
+    ADD_TAG_TO_COURSE_SUCCESS,
+    ADD_TAG_TO_COURSE_FAIL,
+    ADD_SECTION_START,
+    ADD_SECTION_SUCCESS,
+    ADD_SECTION_FAIL,
   } from '../actions'
 
 const initialState = {
@@ -148,6 +154,26 @@ export const coursesReducer = (state = initialState, action) => {
                 error: "",
             }
         case GET_DETAILED_COURSE_FAIL:
+            return {
+                ...state,
+                isLoading: false,
+                error: action.payload,
+            }
+        // ADD TAG TO COURSE
+        case ADD_TAG_TO_COURSE_START:
+            return {
+                ...state,
+                isLoading: true,
+                error: "",
+            }
+        case ADD_TAG_TO_COURSE_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+        
+                error: "",
+            }
+        case ADD_TAG_TO_COURSE_FAIL:
             return {
                 ...state,
                 isLoading: false,
