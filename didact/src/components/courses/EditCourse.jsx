@@ -2,12 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getCourseById, getSectionsByCourseId, editCourse  } from '../../store/actions'
 import {CoursesCard, CourseMenuDiv, CourseDiv } from '../dashboard/DashboardStyles';
-import AddCourse from './AddCourse';
+import Tags from './Tags'
 
 const EditCourse = (props) => {
-    const state = useSelector(state => state)
+    const course = useSelector(state => state.coursesReducer.course)
     const dispatch = useDispatch()
-    const course = state.coursesReducer.course
     const values = {...course}
     const [courseEdit, setCourseEdit] = useState(false)
     const [changes, setChanges] = useState({
@@ -19,8 +18,8 @@ const EditCourse = (props) => {
         link: ""
     })
     
-    console.log("course", state.coursesReducer.course)
-    console.log('state', state)
+    // console.log("course", state.coursesReducer.course)
+    // console.log('state', state)
     console.log('props in edit course', props)
     console.log("changes: ", changes)
 
@@ -81,11 +80,7 @@ const EditCourse = (props) => {
         </CoursesCard>
         )
         }
-        <CoursesCard>
-            {course.tags ? course.tags.map(tag => {
-              return(<p>{tag}</p>)  
-            }) : null}
-        </CoursesCard>
+        <Tags course = {course}/>
         </div>
     )
 }
