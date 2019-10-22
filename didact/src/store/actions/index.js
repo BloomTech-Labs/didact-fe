@@ -47,3 +47,17 @@ export {
     GET_SECTION_DETAILS_FAIL,
     getSectionsByCourseId
 } from './sections'
+
+export {
+    TAGS_DATA_START,
+    TAGS_DATA_SUCCESS,
+    TAGS_DATA_FAILURE,
+    ADD_TAGS_START,
+    ADD_TAGS_SUCCESS,
+    ADD_TAGS_FAILURE,
+    DELETE_TAGS_START,
+    DELETE_TAGS_SUCCESS,
+    DELETE_TAGS_FAILURE,
+    addTag,
+    getTags
+} from './tags'
