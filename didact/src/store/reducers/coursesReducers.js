@@ -100,7 +100,11 @@ export const coursesReducer = (state = initialState, action) => {
             console.log("EDIT_COURSE: ", action.payload)
             return {
                 ...state,
-                course: action.payload,
+                course: {
+                    ...state.course, 
+                    ...action.payload
+                },
+                // course: action.payload,
                 isLoading: false,
                 error: ""
         };

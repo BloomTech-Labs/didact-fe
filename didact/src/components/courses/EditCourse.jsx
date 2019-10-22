@@ -8,8 +8,10 @@ const EditCourse = (props) => {
     const state = useSelector(state => state)
     const dispatch = useDispatch()
     const course = state.coursesReducer.course
+    const values = {...course}
     const [courseEdit, setCourseEdit] = useState(false)
     const [changes, setChanges] = useState({
+       
         name: "",
         description: "",
         foreign_instructors: "",
@@ -25,10 +27,11 @@ const EditCourse = (props) => {
     useEffect(() => {
         dispatch(getCourseById(props.id))
         // dispatch(getSectionsByCourseId(props.id))
-    }, [])
+    }, [props.id, dispatch])
    
     useEffect(() => {
         setChanges({
+            ...changes,
             name: course.name,
             description: course.description,
             foreign_instructors: course.foreign_instructors,
@@ -65,7 +68,7 @@ const EditCourse = (props) => {
             <p>{course.link}</p>
             <button onClick = {toggleEdit}>Edit Course</button>
         </CoursesCard>
-        ) : (
+      ) : (
         <CoursesCard>
             <form onSubmit = {handleCourseSubmit}>
                 <input name='name' type="text" placeholder="name" value={changes.name} onChange = {handleChange} />
@@ -76,7 +79,6 @@ const EditCourse = (props) => {
                 <button>Submit Edit</button>
             </form>
         </CoursesCard>
-
         )
         }
         <CoursesCard>
