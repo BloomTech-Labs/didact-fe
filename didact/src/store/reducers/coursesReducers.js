@@ -14,6 +14,7 @@ import {
     DELETE_COURSE_DATA_START,
     DELETE_COURSE_DATA_SUCCESS,
     DELETE_COURSE_DATA_FAILURE,
+    UPDATE_TAGS
   } from '../actions'
 
 const initialState = {
@@ -134,6 +135,17 @@ export const coursesReducer = (state = initialState, action) => {
                 ...state,
                 isLoading: false,
                 error: action.payload
+            }; 
+        case UPDATE_TAGS:
+            console.log(action.payload)
+            console.log(state.course.tags)
+            return {
+                ...state,
+                isLoading: false,
+                course: {
+                    tags: [...state.course.tags, action.payload.tag]
+                },
+                error: ""
             };
         default:
             return state;

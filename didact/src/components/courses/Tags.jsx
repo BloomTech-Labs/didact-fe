@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { addTag, getTags } from '../../store/actions'
 import { useSelector, useDispatch } from 'react-redux';
 import { CoursesCard, CourseMenuDiv, CourseDiv } from '../dashboard/DashboardStyles';
@@ -10,11 +10,16 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
+// import MenuItem from '@material-ui/core/MenuItem';
+// import FormControl from '@material-ui/core/FormControl';
+// import Select from '@material-ui/core/Select';
+// import InputLabel from '@material-ui/core/InputLabel';
 
 const useStyles = makeStyles(theme => ({
     card: {
         minWidth: 275,
         borderRadius: 15,
+        maxWidth: 500
     },
     button: {
         boxShadow: 'none',
@@ -24,7 +29,7 @@ const useStyles = makeStyles(theme => ({
     },
     tagDisplay: {
         display: 'flex',
-        flexDirection: 'row',
+        flexFlow: 'row wrap',
     },
     title: {
         fontSize: 14,
@@ -59,6 +64,10 @@ const useStyles = makeStyles(theme => ({
         flexWrap: 'wrap',
         // margin: '10px',
     },
+    formControl: {
+        margin: theme.spacing(1),
+        minWidth: 120,
+    },
 }));
 
 const CssTextField = withStyles({
@@ -82,56 +91,108 @@ const CssTextField = withStyles({
 })(TextField);
 
 const Tags = (props) => {
+
+
     console.log(props)
     const classes = useStyles();
     const dispatch = useDispatch()
+    const allTags = useSelector(state => state.tagsReducer.tags)
     const [openForm, setOpenForm] = useState(false)
     const [tag, setTag] = useState({
-        name: ''
+        tag: ''
     });
 
+    // const inputLabel = React.useRef("100");
+    // const [labelWidth, setLabelWidth] = React.useState(0);
+    // React.useEffect(() => {
+    //     setLabelWidth(inputLabel.current.offsetWidth);
+    // }, []);
+
+
+    // const [values, setValues] = React.useState({
+    //     age: '',
+    //     name: 'hai',
+    //   });
+
+
+
+    useEffect(() => {
+        dispatch(getTags())
+    }, [])
+ 
     const handleChange = name => event => {
-    setTag({ ...tag, [name]: event.target.value });
-  };
+        setTag({ ...tag, [name]: event.target.value });
+       
+    };
 
     const handleClick = () => {
         setOpenForm(!openForm)
     }
 
+    console.log("props", props.props)
     const handleSubmit = event => {
         event.preventDefault()
-        dispatch(addTag(props.course.id, tag))
+        dispatch(addTag(props.props.props.match.params.id, tag))
+        setTag({tag: ''})
     }
+
+    const handleSubmitSelect = event => {
+        event.preventDefault()
+        dispatch(addTag(props.props.props.match.params.id, tag))
+        setTag({tag: ''})
+    }
+    // const handleChangeSelect = event => {
+    //     setValues(oldValues => ({
+    //       ...oldValues,
+    //       [event.target.name]: event.target.value,
+    //     }));
+    //   };
 
     return (
         <>
             <Card className={classes.card}>
                 <CardContent className={classes.tagDisplay}>
-                    {props.course.tags ? props.course.tags.map(tag => {
+                    {props.course.tags ? props.course.tags.map((tag, i) => {
                         return (
-                            <Typography className={classes.title} color="textSecondary" gutterBottom>
+                            <Typography key={i} className={classes.title} color="textSecondary" gutterBottom>
                                 {tag}
                             </Typography>
                         )
                     }) : null}
                 </CardContent>
                 <CardActions>
-                    <Button onClick = {handleClick} type='submit' size="small" variant="contained" className={classes.button} >Add Tag</Button>
+                    <Button onClick={handleClick} type='submit' size="small" variant="contained" className={classes.button} >New Tag</Button>
                 </CardActions>
                 {openForm ? (
-                    <form onSubmit={handleSubmit} className={classes.container} noValidate autoComplete="off">
-                        <CssTextField
-                            id="standard-name"
-                            label='Add Tag'
-                            className={classes.titleOrInstructorFields}
-                            value={tag.name}
-                            onChange={handleChange('name')}
-                            margin="normal"
-                            variant="outlined"
-                            placeholder="Name"
-                            InputProps={{ classes: { input: classes.input } }}
-                        />
-                    </form>
+                    <>
+                        <form onSubmit={handleSubmit} className={classes.container} noValidate autoComplete="off">
+                            <CssTextField
+                                id="standard-name"
+                                label='Add Tag'
+                                className={classes.titleOrInstructorFields}
+                                value={tag.name}
+                                onChange={handleChange('tag')}
+                                margin="normal"
+                                variant="outlined"
+                                placeholder="Name"
+                                InputProps={{ classes: { input: classes.input } }}
+                            />
+                        </form>
+                        <form>
+                            <select
+                                onChange={handleChange('tag')}
+                             >
+                                <option>Pick a Tag:</option>
+                                {allTags.map(el => {
+                                            return (<option key={el.id} value={el.name} >{el.name}</option>)
+                                        })}
+                             </select>
+                            <CardActions>
+                                     <Button onClick={handleSubmitSelect} type='submit' size="small" variant="contained" className={classes.button} >Add Tag</Button>
+                            </CardActions>
+                        </form>
+
+                    </>
                 ) : null}
             </Card>
         </>

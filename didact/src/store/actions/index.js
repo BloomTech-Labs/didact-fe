@@ -31,6 +31,7 @@ export {
     DELETE_COURSE_DATA_START,
     DELETE_COURSE_DATA_SUCCESS,
     DELETE_COURSE_DATA_FAILURE,
+    UPDATE_TAGS,
     courseEndPoint,
     getCourseById,
     addCourse,

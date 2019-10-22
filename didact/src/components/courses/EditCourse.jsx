@@ -143,8 +143,8 @@ const EditCourse = (props) => {
 
     // console.log("course", state.coursesReducer.course)
     // console.log('state', state)
-    console.log('props in edit course', props)
-    console.log("changes: ", changes)
+    // console.log('props in edit course', props)
+    // console.log("changes: ", changes)
 
     useEffect(() => {
         dispatch(getCourseById(props.id))
@@ -299,7 +299,7 @@ const EditCourse = (props) => {
                     </CoursesCard>
                 )
             }
-            <Tags course={course} />
+            <Tags course={course} props={props}/>
         </div>
     )
 }

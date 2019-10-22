@@ -50,10 +50,10 @@ export const tagsReducer = (state = initialState, action) =>
             return {
                 ...state,
                 isLoading: false,
-                courseTags: action.payload,
+                courseTags: [...state.courseTags, action.payload],
                 error: "",
             }
-        case ADD_TAGS_SUCCESS:
+        case ADD_TAGS_FAILURE:
             return {
                 ...state,
                 isLoading: false,
@@ -72,7 +72,7 @@ export const tagsReducer = (state = initialState, action) =>
                 courseTags: action.payload,
                 error: "",
             }
-        case DELETE_TAGS_SUCCESS:
+        case DELETE_TAGS_FAILURE:
             return {
                 ...state,
                 isLoading: false,
