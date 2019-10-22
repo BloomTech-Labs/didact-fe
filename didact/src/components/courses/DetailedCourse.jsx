@@ -1,8 +1,8 @@
 import React, { useEffect } from "react"
 import {useSelector, useDispatch} from "react-redux"
-import { getSectionsByCourseId, getCourseById } from '../../store/actions/index.js'
 
 import { DetailedCourseWrapper } from './DetailedCourseStyles'
+import { getSectionsByCourseId, getDetailedCourse } from '../../store/actions/index.js'
 
 const DetailedCourse = props =>
 {
@@ -11,6 +11,7 @@ const DetailedCourse = props =>
     useEffect(_ =>
         {
             dispatch(getSectionsByCourseId(props.id))
+            dispatch(getDetailedCourse(props.id))
         }, [dispatch])
         
     useEffect(_ => 
