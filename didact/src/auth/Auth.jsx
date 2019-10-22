@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { verifyToken } from '../store/actions';
+import { verifySocial } from '../store/actions';
 
 const Auth = (props) => {
     const dispatch = useDispatch();
@@ -10,7 +10,7 @@ const Auth = (props) => {
 
     useEffect(() => {
         if(token) {
-            dispatch(verifyToken(props));
+            dispatch(verifySocial(props));
         }
     }, [dispatch, props, token])
 

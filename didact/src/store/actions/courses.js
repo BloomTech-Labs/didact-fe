@@ -59,14 +59,17 @@ export const getCourseById =(id) => dispatch => {
     })
 }
 
-export const addCourse =(values) => dispatch => {
+export const addCourse =(values, props) => dispatch => {
     dispatch({type: ADD_COURSE_DATA_START})
     axiosWithAuth()
     .post(`${baseURL}`, values)
     .then(res => {
-        // console.log('add course api response: ', res)
+        console.log('add course api response: ', res)
+        console.log('props ', props)
         dispatch({type: ADD_COURSE_DATA_SUCCESS, payload: res.data})
+        return res.data
     })
+    .then(response => props.history.push(`/editcourse/${response.id}`))
     .catch(err => {
         dispatch({type: ADD_COURSE_DATA_FAIL, payload: err})
     })

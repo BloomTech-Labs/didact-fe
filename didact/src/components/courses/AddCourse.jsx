@@ -108,8 +108,9 @@ const CssTextField = withStyles({
 },
 })(TextField);
 
-export default function AddCourse() {
+export default function AddCourse(props) {
   const classes = useStyles();
+  console.log('props in componet', props)
   const dispatch = useDispatch();
   const [values, setValues] = useState({
     name: "",
@@ -125,7 +126,7 @@ export default function AddCourse() {
   const handleSubmit = event => {
     event.preventDefault();
     console.log(values)
-    dispatch(addCourse(values));
+    dispatch(addCourse(values, props.props));
   }
 
   return (
