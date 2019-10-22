@@ -1,6 +1,6 @@
 import React, { useEffect } from "react"
 import {useSelector, useDispatch} from "react-redux"
-import { getSectionsByCourseId } from '../../store/actions/index.js'
+import { getSectionsByCourseId, getDetailedCourse } from '../../store/actions/index.js'
 
 const DetailedCourse = props =>
 {
@@ -9,10 +9,9 @@ const DetailedCourse = props =>
     useEffect(_ =>
         {
             dispatch(getSectionsByCourseId(props.id))
+            dispatch(getDetailedCourse(props.id))
         }, [dispatch])
 
-    console.log(props.id)
-    console.log('sections', state.sectionsReducer)
     return (
         <>
             {state.sectionsReducer.sections && state.sectionsReducer.sections.map((el, index) => 
