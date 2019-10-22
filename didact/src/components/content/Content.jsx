@@ -1,7 +1,7 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 
-import Dashboard from '../dashboard/Dashboard'
+import Dashboard from '../Dashboard/Dashboard'
 import AddCourse from '../courses/AddCourse'
 import DetailedCourse from '../courses/DetailedCourse'
 

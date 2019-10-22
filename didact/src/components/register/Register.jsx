@@ -13,7 +13,7 @@ const useStyles = makeStyles(theme => ({
         margin: '0 auto',
         '& *': {
             textAlign: 'left'
-        }
+        } //test
     },
     container: {
         display: 'flex',
@@ -33,7 +33,7 @@ const useStyles = makeStyles(theme => ({
         height:'2.7em',
         "& *": {
             border: 'solid #9B9B9B 1.2px',
-            backgroundColor: '#B9B8B8'
+            backgroundColor: '#F7F7F7'
         }
     },
     passPlate: {
@@ -44,7 +44,7 @@ const useStyles = makeStyles(theme => ({
         height: '15em',
         "& *": {
             border: 'solid #9B9B9B 1.2px',
-            backgroundColor: '#B9B8B8',
+            backgroundColor: '#F7F7F7',
             height:'18%'
         }
     },
