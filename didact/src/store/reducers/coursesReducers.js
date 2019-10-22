@@ -29,7 +29,7 @@ const initialState = {
     courses: [],
     isLoading: false,
     error: '',
-    detailedCourse: {}
+    detailedCourse: {},
 }
 
 export const coursesReducer = (state = initialState, action) => {
@@ -170,10 +170,28 @@ export const coursesReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoading: false,
-        
                 error: "",
             }
         case ADD_TAG_TO_COURSE_FAIL:
+            return {
+                ...state,
+                isLoading: false,
+                error: action.payload,
+            }
+        // ADD SECTION TO COURSE
+        case ADD_SECTION_START:
+            return {
+                ...state,
+                isLoading: true,
+                error: "",
+            }
+        case ADD_SECTION_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                error: "",
+            }
+        case ADD_SECTION_FAIL:
             return {
                 ...state,
                 isLoading: false,

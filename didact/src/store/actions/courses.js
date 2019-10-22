@@ -22,6 +22,9 @@ export const ADD_TAG_TO_COURSE_FAIL = "ADD_TAG_TO_COURSE_FAIL"
 export const ADD_SECTION_START = "ADD_SECTION_START"
 export const ADD_SECTION_SUCCESS = "ADD_SECTION_SUCCESS"
 export const ADD_SECTION_FAIL = "ADD_SECTION_FAIL"
+export const UPDATE_SECTION_START = "UPDATE_SECTION_START"
+export const UPDATE_SECTION_SUCCESS = "UPDATE_SECTION_SUCCESS"
+export const UPDATE_SECTION_FAIL = "UPDATE_SECTION_FAIL"
 
 const baseURL = 'https://didactlms-staging.herokuapp.com/api/courses/'
 
@@ -90,8 +93,6 @@ export const deleteCourse =(id) => dispatch => {
     })
 }
 
-
-
 export const addTagToCourse = (id, tag) => dispatch =>
 {
     dispatch({ type: ADD_TAG_TO_COURSE_START })
@@ -111,7 +112,7 @@ export const addSectionToCourse = (id, sectionObj) => dispatch =>
 {
     dispatch({ type: ADD_SECTION_START })
     axiosWithAuth()
-    .post(`${baseURL}${id}/sections`)
+    .post(`${baseURL}${id}/sections`, sectionObj)
     .then(res => 
         {
             console.log('res from add section to course', res)
@@ -119,5 +120,20 @@ export const addSectionToCourse = (id, sectionObj) => dispatch =>
         })
     .catch(err => {
         dispatch({ type: ADD_SECTION_FAIL, payload: err })
+    })
+}
+
+export const updateSection = (id, changes) => dispatch =>
+{
+    dispatch({ type: UPDATE_SECTION_START })
+    axiosWithAuth()
+    .put(`${baseURL}${id}/sections`, changes)
+    .then(res => 
+        {
+            console.log('res from add section to course', res)
+            dispatch({ type: UPDATE_SECTION_SUCCESS })
+        })
+    .catch(err => {
+        dispatch({ type: UPDATE_SECTION_FAIL, payload: err })
     })
 }
