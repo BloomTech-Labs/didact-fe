@@ -1,4 +1,4 @@
-import styled from './node_modules/styled-components'
+import styled from 'styled-components'
 
 export const CoursesCard = styled.div`
     display: flex;

@@ -1,10 +1,10 @@
-import React, { useEffect } from "./node_modules/react";
+import React, { useEffect } from "react";
 import { courseEndPoint } from "../../store/actions/index.js";
-import { useDispatch, useSelector } from "./node_modules/react-redux";
-import { NavLink, Route, Link } from "./node_modules/react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { NavLink, Route, Link } from "react-router-dom";
 import Course from "../courses/Course";
 
-import ReactTooltip from './node_modules/react-tooltip'
+import ReactTooltip from 'react-tooltip'
 
 import {CoursesCard, CourseMenuDiv, CourseDiv } from './DashboardStyles'
 
