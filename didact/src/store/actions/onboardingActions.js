@@ -41,13 +41,7 @@ export const registerAction = (history, form) => dispatch => {
 export const verifyToken = (history) => dispatch => {
     // console.log('props in action: ', props)
     // console.log(localStorage.getItem('token'))
-<<<<<<< HEAD
-    const token = localStorage.getItem('token') 
-    if(!token) history.push('/login') 
-    else {
-=======
     const token = localStorage.getItem('token')
->>>>>>> d2ce33af9568a6cfbe1ed191b4b89bcf55535df7
     dispatch({ type: VERIFY_START })
     axios.post(`https://didactlms-staging.herokuapp.com/api/auth`, { 'token': token })
         .then(res => {
@@ -59,21 +53,9 @@ export const verifyToken = (history) => dispatch => {
             {
                 console.log('should be removing token')
                 dispatch({ type: VERIFY_FAILURE, payload: err })
-<<<<<<< HEAD
-                localStorage.removeItem('token')
-            })
-        }
-        // .finally(blah =>
-        //     {
-        //         console.log(history)
-                
-                
-        //     })
-=======
                 await localStorage.removeItem('token')
                 await history.push('/login')
             })
->>>>>>> d2ce33af9568a6cfbe1ed191b4b89bcf55535df7
 }
 
 export const verifySocial = (props) => dispatch => {
