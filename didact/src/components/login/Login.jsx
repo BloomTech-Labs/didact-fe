@@ -11,7 +11,7 @@ const useStyles = makeStyles(theme => ({
         width: '50%',
         margin: '0 auto',
         '& *': {
-            textAlign: 'left'
+            textAlign: 'center'
         } //testtest
     },
     container: {
@@ -29,6 +29,7 @@ const useStyles = makeStyles(theme => ({
     email: {
         width: "70%",
         "& *": {
+            width: '80%',
             border: 'solid #9B9B9B 1.2px',
             backgroundColor: '#F7F7F7',
             height:'2.5em'
@@ -37,13 +38,14 @@ const useStyles = makeStyles(theme => ({
     password: {
         width: "70%",
         "& *": {
+            width: '80%',
             border: 'solid #9B9B9B 1.2px',
             backgroundColor: '#F7F7F7',
             height:'2.5em'
         }
     },
     loginButton: {
-        width: '70%',
+        width: '25%',
         height:'2.7em',
         textAlign: 'center',
         backgroundColor: '#5A5A5A',
