@@ -4,13 +4,11 @@ import { useDispatch } from "react-redux";
 
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import clsx from "clsx";
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
-import InputLabel from '@material-ui/core/InputLabel';
+
 
 const useStyles = makeStyles(theme => ({
   
@@ -108,8 +106,9 @@ const CssTextField = withStyles({
 },
 })(TextField);
 
-export default function AddCourse() {
+export default function AddCourse(props) {
   const classes = useStyles();
+  console.log('props in componet', props)
   const dispatch = useDispatch();
   const [values, setValues] = useState({
     name: "",
@@ -125,7 +124,7 @@ export default function AddCourse() {
   const handleSubmit = event => {
     event.preventDefault();
     console.log(values)
-    dispatch(addCourse(values));
+    dispatch(addCourse(values, props.props));
   }
 
   return (

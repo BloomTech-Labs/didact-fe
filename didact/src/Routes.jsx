@@ -1,19 +1,19 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { Route, Redirect} from "react-router-dom";
 import FormikLoginForm from "./components/login/Login.jsx";
 import FormikRegisterForm from "./components/Register/Register.jsx";
 import Auth from './auth/Auth';
-import MainPage from './components/mainPage/MainPage'
+import MainPage from './components/mainPage/MainPage';
 
 const Routes = () => {
 
     return (
         <>
             <Route path="/login" component={FormikLoginForm} >
-                {localStorage.getItem('token') ? <Redirect to='/dashboard' /> : null}
+                {/* {!token ? null : <Redirect to='/dashboard' />} */}
             </Route>
             <Route path="/register" component={FormikRegisterForm} >
-                {localStorage.getItem('token') ? <Redirect to='/dashboard' /> : null}
+                {/* {!token ? <Redirect to='/dashboard' /> : null} */}
             </Route>
             <Route path='/auth' component={Auth} />
             <Route path='/dashboard' render={routeProps =>
@@ -27,6 +27,10 @@ const Routes = () => {
             <Route path='/addcourse' render={routeProps =>
             (
                 <MainPage {...routeProps} page={'addcourse'} />
+            )} />
+            <Route path='/editcourse/:id' render={routeProps =>
+            (
+                <MainPage {...routeProps} page={'editcourse'} />
             )} />
             <Route path='/courses/:id' render={routeProps =>
             (

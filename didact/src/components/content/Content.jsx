@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import Dashboard from '../Dashboard/Dashboard'
 import AddCourse from '../courses/AddCourse'
 import DetailedCourse from '../courses/DetailedCourse'
+import EditCourse from '../courses/EditCourse'
 
 const Content = (props) => {
 
@@ -61,9 +62,6 @@ const Content = (props) => {
                 </div>
                     )
             ) : null}
-            {/* {(props.location.pathname === '/addcourse') ? <AddCourse/> :
-            (props.location.pathname === '/dashboard') ? <Dashboard /> :
-          null}   */}
             {(() =>
             {
                 switch(props.page)
@@ -71,11 +69,11 @@ const Content = (props) => {
                     case ('dashboard'):
                         return <Dashboard />
                     case ('addcourse'):
-                        return <AddCourse />
+                        return <AddCourse props = {props}/>
                     case ('courses'):
                         return <DetailedCourse id={props.match.params.id} />
-                    // case ('editcourse'):
-                    //     return <EditCourse id={props.match.params.id} />
+                    case ('editcourse'):
+                        return <EditCourse id={props.match.params.id} props={props}/>
                     default:
                         break;
                 }

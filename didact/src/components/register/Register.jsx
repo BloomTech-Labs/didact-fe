@@ -1,7 +1,7 @@
 import React from "react"
 import {Form, Field, withFormik} from "formik";
 import * as Yup from 'yup';
-import { registerAction, registerWithFacebook, registerWithGoogle } from '../../store/actions';
+import { registerAction } from '../../store/actions';
 import { useDispatch } from 'react-redux';
 
 import { makeStyles, withStyles } from '@material-ui/core/styles';
@@ -79,7 +79,10 @@ const useStyles = makeStyles(theme => ({
 const RegisterForm = (props) => {
     const classes = useStyles();
     const {errors, touched} = props;
-    
+    if(localStorage.getItem('token'))
+    {
+        props.history.push('/')
+    }
     return (  
         <>
             <div className={classes.header}>
