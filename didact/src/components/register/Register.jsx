@@ -1,10 +1,10 @@
-import React from "react"
-import {Form, Field, withFormik} from "formik";
-import * as Yup from 'yup';
+import React from "./node_modules/react"
+import {Form, Field, withFormik} from "./node_modules/formik";
+import * as Yup from './node_modules/yup';
 import { registerAction } from '../../store/actions';
-import { useDispatch } from 'react-redux';
+import { useDispatch } from './node_modules/react-redux';
 
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { makeStyles, withStyles } from './node_modules/@material-ui/core/styles';
 
 
 const useStyles = makeStyles(theme => ({
