@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { Route, Redirect} from "react-router-dom";
 import FormikLoginForm from "./components/login/Login.jsx";
 import FormikRegisterForm from "./components/register/Register.jsx";
@@ -10,10 +10,10 @@ const Routes = () => {
     return (
         <>
             <Route path="/login" component={FormikLoginForm} >
-                {localStorage.getItem('token') ? <Redirect to='/dashboard' /> : null}
+                {/* {!token ? null : <Redirect to='/dashboard' />} */}
             </Route>
             <Route path="/register" component={FormikRegisterForm} >
-                {localStorage.getItem('token') ? <Redirect to='/dashboard' /> : null}
+                {/* {!token ? <Redirect to='/dashboard' /> : null} */}
             </Route>
             <Route path='/auth' component={Auth} />
             <Route path='/dashboard' render={routeProps =>

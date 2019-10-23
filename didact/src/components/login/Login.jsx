@@ -7,6 +7,10 @@ import {useDispatch} from 'react-redux';
 
 
 const LoginForm = (props) => {
+    if(localStorage.getItem('token'))
+    {
+        props.history.push('/')
+    }
     const {errors, touched} = props
     return (
         <>
