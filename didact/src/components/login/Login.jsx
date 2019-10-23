@@ -19,28 +19,27 @@ const useStyles = makeStyles(theme => ({
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
+        justifyContent: 'space-evenly',
         width: '45%',
+        height: '10em',
         border: 'solid #9B9B9B 1.2px',
         borderRadius: '1%',
-        margin: '0 auto',
-        padding: '2%'
+        margin: '0 auto'
     },
     email: {
         width: "70%",
-        height: '15em',
         "& *": {
             border: 'solid #9B9B9B 1.2px',
             backgroundColor: '#F7F7F7',
-            height:'18%'
+            height:'2.5em'
         }
     },
     password: {
         width: "70%",
-        height: '15em',
         "& *": {
             border: 'solid #9B9B9B 1.2px',
             backgroundColor: '#F7F7F7',
-            height:'18%'
+            height:'2.5em'
         }
     },
     loginButton: {
@@ -51,6 +50,9 @@ const useStyles = makeStyles(theme => ({
         color: 'white',
         border: 'transparent',
         borderRadius: '5%'
+    },
+    buttonContainer: {
+        paddingTop: '2%'
     },
     footer: {
         display: 'flex',
@@ -95,7 +97,7 @@ const LoginForm = (props) => {
                         {/* {touched.password && errors.password && <p>{errors.password}</p>} */}
                     </div>
                 </div>
-                <div>
+                <div className={classes.buttonContainer}>
                 <button className={classes.loginButton} type="submit">Login</button>
                 </div>
             </Form>
