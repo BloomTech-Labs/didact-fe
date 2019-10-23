@@ -81,7 +81,7 @@ export const editCourse =(id, changes) => dispatch => {
     dispatch({type: EDIT_COURSE_DATA_START})
     console.log("CHANGES!: ", changes)
     axiosWithAuth()
-    .put(`${baseURL}${id}`, changes)
+    .put(`${baseURL}${id}`, {changes})
     .then(res => {
         // console.log('edit course api response: ', res)
         dispatch({type: EDIT_COURSE_DATA_SUCCESS, payload: changes})
@@ -91,13 +91,14 @@ export const editCourse =(id, changes) => dispatch => {
     })
 }
 
+//TODO: test this
 export const deleteCourse =(id) => dispatch => {
     dispatch({type: DELETE_COURSE_DATA_START})
     axiosWithAuth()
     .delete(`${baseURL}${id}`)
     .then(res => {
         // console.log('edit course api response: ', res)
-        dispatch({type: DELETE_COURSE_DATA_SUCCESS, payload: res.data})
+        dispatch({type: DELETE_COURSE_DATA_SUCCESS, payload: id})
     })
     .catch(err => {
         dispatch({type: DELETE_COURSE_DATA_FAIL, payload: err})

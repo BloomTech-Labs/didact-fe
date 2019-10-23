@@ -143,7 +143,7 @@ export const coursesReducer = (state = initialState, action) => {
         case DELETE_COURSE_DATA_SUCCESS:
             return {
                 ...state,
-                courses: action.payload,
+                courses: state.courses.filter(el => el.id !== action.payload),
                 isLoading: false,
                 error: ""
         };
