@@ -13,6 +13,7 @@ import {
     EDIT_COURSE_DATA_FAIL,
     DELETE_COURSE_DATA_START,
     DELETE_COURSE_DATA_SUCCESS,
+    UPDATE_TAGS,
     DELETE_COURSE_DATA_FAIL,
     ADD_TAG_TO_COURSE_START,
     ADD_TAG_TO_COURSE_SUCCESS,
@@ -35,6 +36,7 @@ const initialState = {
     courses: [],
     isLoading: false,
     error: '',
+    course: {},
     detailedCourse: {},
     sections: []
 }
@@ -73,7 +75,7 @@ export const coursesReducer = (state = initialState, action) => {
         case SINGLE_COURSE_DATA_SUCCESS:
             return {
                 ...state,
-                courses: action.payload,
+                course: action.payload,
                 isLoading: false,
                 error: ""
         };
@@ -113,9 +115,14 @@ export const coursesReducer = (state = initialState, action) => {
                 error: ''
             };
         case EDIT_COURSE_DATA_SUCCESS:
+            console.log("EDIT_COURSE: ", action.payload)
             return {
                 ...state,
-                courses: action.payload,
+                course: {
+                    ...state.course, 
+                    ...action.payload
+                },
+                // course: action.payload,
                 isLoading: false,
                 error: ""
         };
@@ -145,6 +152,17 @@ export const coursesReducer = (state = initialState, action) => {
                 ...state,
                 isLoading: false,
                 error: action.payload
+            }; 
+        case UPDATE_TAGS:
+            console.log(action.payload)
+            console.log(state.course.tags)
+            return {
+                ...state,
+                isLoading: false,
+                course: {
+                    tags: [...state.course.tags, action.payload.tag]
+                },
+                error: ""
             };
         // GET DETAILED COURSE
         case GET_DETAILED_COURSE_START:

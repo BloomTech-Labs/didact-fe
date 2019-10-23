@@ -11,9 +11,10 @@ export const ADD_COURSE_DATA_SUCCESS = 'ADD_COURSE_DATA_SUCCESS';
 export const ADD_COURSE_DATA_FAIL = 'ADD_COURSE_DATA_FAIL';
 export const EDIT_COURSE_DATA_START = 'EDIT_COURSE_DATA_START';
 export const EDIT_COURSE_DATA_SUCCESS = 'EDIT_COURSE_DATA_SUCCESS';
-export const EDIT_COURSE_DATA_FAIL = 'EDIT_COURSE_DATA_FAIL';
+export const EDIT_COURSE_DATA_FAIL = 'EDIT_COURSE_DATA_FAIL'; 
 export const DELETE_COURSE_DATA_START = 'DELETE_COURSE_DATA_START';
 export const DELETE_COURSE_DATA_SUCCESS = 'DELETE_COURSE_DATA_SUCCESS';
+export const UPDATE_TAGS = 'UPDATE_TAGS';
 export const DELETE_COURSE_DATA_FAIL = 'DELETE_COURSE_DATA_FAIL';
 export const ADD_TAG_TO_COURSE_START = "ADD_TAG_TO_COURSE_START"
 export const ADD_TAG_TO_COURSE_SUCCESS = "ADD_TAG_TO_COURSE_SUCCESS"
@@ -48,10 +49,11 @@ export const courseEndPoint =() => dispatch => {
 
 export const getCourseById =(id) => dispatch => {
     dispatch({type: SINGLE_COURSE_DATA_START})
+    console.log(id)
     axiosWithAuth()
     .get(`${baseURL}${id}`)
     .then(res => {
-        // console.log('single course api response: ', res)
+        console.log('single course api response: ', res.data)
         dispatch({type: SINGLE_COURSE_DATA_SUCCESS, payload: res.data})
     })
     .catch(err => {
@@ -75,13 +77,14 @@ export const addCourse =(values, props) => dispatch => {
     })
 }
 
-export const editCourse =(id, values) => dispatch => {
+export const editCourse =(id, changes) => dispatch => {
     dispatch({type: EDIT_COURSE_DATA_START})
+    console.log("CHANGES!: ", changes)
     axiosWithAuth()
-    .put(`${baseURL}${id}`, values)
+    .put(`${baseURL}${id}`, changes)
     .then(res => {
         // console.log('edit course api response: ', res)
-        dispatch({type: EDIT_COURSE_DATA_SUCCESS, payload: res.data})
+        dispatch({type: EDIT_COURSE_DATA_SUCCESS, payload: changes})
     })
     .catch(err => {
         dispatch({type: EDIT_COURSE_DATA_FAIL, payload: err})

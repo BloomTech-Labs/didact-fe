@@ -30,6 +30,7 @@ export {
     EDIT_COURSE_DATA_FAIL,
     DELETE_COURSE_DATA_START,
     DELETE_COURSE_DATA_SUCCESS,
+    UPDATE_TAGS,
     DELETE_COURSE_DATA_FAIL,
     ADD_TAG_TO_COURSE_START,
     ADD_TAG_TO_COURSE_SUCCESS,
@@ -58,6 +59,19 @@ export {
     getDetailedCourse,
 } from './courses'
 
+export {
+    TAGS_DATA_START,
+    TAGS_DATA_SUCCESS,
+    TAGS_DATA_FAILURE,
+    ADD_TAGS_START,
+    ADD_TAGS_SUCCESS,
+    ADD_TAGS_FAILURE,
+    DELETE_TAGS_START,
+    DELETE_TAGS_SUCCESS,
+    DELETE_TAGS_FAILURE,
+    addTag,
+    getTags
+} from './tags'
 // export {
 //     GET_SECTIONS_START,
 //     GET_SECTIONS_SUCCESS,

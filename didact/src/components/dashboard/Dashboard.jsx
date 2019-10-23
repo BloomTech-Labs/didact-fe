@@ -12,9 +12,9 @@ function Dashboard() {
   const dispatch = useDispatch();
   const state = useSelector(state => state);
 
-  useEffect(() => {
-    dispatch(courseEndPoint());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(courseEndPoint());
+  // }, [dispatch]);
 
   return (
     // <div></div>

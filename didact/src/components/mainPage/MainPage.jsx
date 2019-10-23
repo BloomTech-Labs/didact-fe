@@ -8,7 +8,6 @@ import { makeStyles, useTheme } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
-
 import DrawerComponent from '../drawer/Drawer'
 import MobileDrawerComponent from '../drawer/MobileDrawer'
 import HeaderComponent from '../header/Header'
@@ -63,6 +62,11 @@ function MainPage(props) {
     const [open, setOpen] = React.useState(true);
     const [openMobile, setOpenMobile] = React.useState(false);
 
+    useEffect(_ =>
+        {
+           dispatch(verifyToken(props.history))
+        }, [localStorage.getItem("token")])
+
     const handleDrawerOpen = () => {
         setOpen(!open);
     };
@@ -86,14 +90,8 @@ function MainPage(props) {
     const dispatch = useDispatch();
     const state = useSelector(state => state);
 
-    useEffect(() => {
-        dispatch(courseEndPoint());
-    }, [dispatch]);
+ 
 
-    useEffect(_ =>
-        {
-            dispatch(verifyToken(props.history))
-        }, [])
 
     return (
         // MOBILE CODE ****************************************************************************
