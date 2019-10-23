@@ -20,7 +20,7 @@ export const loginAction = (history, form) => dispatch => {
             localStorage.setItem("token", res.data.token)
             dispatch({ type: LOGIN_SUCCESS, payload: res })
         })
-        .then(res => history.push("/"))
+        .then(res => history.push("/dashboard"))
         .catch(err => {
             dispatch({ type: LOGIN_FAILURE, payload: err })
         })
@@ -34,7 +34,7 @@ export const registerAction = (history, form) => dispatch => {
             dispatch({ type: REGISTER_SUCCESS, payload: res.data });
             localStorage.setItem("token", res.data.token)
         })
-        .then(res => history.push("/"))
+        .then(res => history.push("/dashboard"))
         .catch(err => dispatch({ type: REGISTER_FAILURE, payload: err }));
 };
 
@@ -42,6 +42,8 @@ export const verifyToken = (history) => dispatch => {
     // console.log('props in action: ', props)
     // console.log(localStorage.getItem('token'))
     const token = localStorage.getItem('token') 
+    if(!token) history.push('/login') 
+    else {
     dispatch({ type: VERIFY_START })
     axios.post(`https://didactlms-staging.herokuapp.com/api/auth`, { 'token': token })
         .then(res => {
@@ -55,10 +57,13 @@ export const verifyToken = (history) => dispatch => {
                 dispatch({ type: VERIFY_FAILURE, payload: err })
                 localStorage.removeItem('token')
             })
-        .finally(blah =>
-            {
-                if(!localStorage.getItem('token')) history.push('/login')
-            })
+        }
+        // .finally(blah =>
+        //     {
+        //         console.log(history)
+                
+                
+        //     })
 }
 
 export const verifySocial = (props) => dispatch => {

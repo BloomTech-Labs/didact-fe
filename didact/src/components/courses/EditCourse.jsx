@@ -228,7 +228,7 @@ const EditCourse = (props) => {
                     </CardActions>
                   </Card>
                 ) : (
-                    <CoursesCard>
+                    
                         <Card className={classes.card}>
                             <CardContent>
                                 <Typography className={classes.title} gutterBottom>
@@ -296,7 +296,7 @@ const EditCourse = (props) => {
                                 </form>
                             </CardContent>
                         </Card>
-                    </CoursesCard>
+                
                 )
             }
             <Tags course={course} props={props}/>

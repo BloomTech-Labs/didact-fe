@@ -7,12 +7,14 @@ import MainPage from './components/mainPage/MainPage';
 import EditCourse from './components/courses/EditCourse';
 
 const Routes = () => {
-
+     
     return (
         <>
             <Route path="/login" component={FormikLoginForm} >
-                {localStorage.getItem('token') ? <Redirect to='/dashboard' /> : null}
+                {/* {console.log(localStorage.getItem('token'))} */}
+                {!localStorage.getItem('token') ? null : <Redirect to='/dashboard' />}
             </Route>
+            
             <Route path="/register" component={FormikRegisterForm} >
                 {localStorage.getItem('token') ? <Redirect to='/dashboard' /> : null}
             </Route>

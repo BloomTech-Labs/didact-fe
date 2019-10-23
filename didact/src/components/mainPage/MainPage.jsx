@@ -62,6 +62,11 @@ function MainPage(props) {
     const [open, setOpen] = React.useState(true);
     const [openMobile, setOpenMobile] = React.useState(false);
 
+    useEffect(_ =>
+        {
+           dispatch(verifyToken(props.history))
+        }, [localStorage.getItem("token")])
+
     const handleDrawerOpen = () => {
         setOpen(!open);
     };
@@ -85,14 +90,8 @@ function MainPage(props) {
     const dispatch = useDispatch();
     const state = useSelector(state => state);
 
-    useEffect(() => {
-        dispatch(courseEndPoint());
-    }, [dispatch]);
+ 
 
-    useEffect(_ =>
-        {
-            dispatch(verifyToken(props.history))
-        }, [])
 
     return (
         // MOBILE CODE ****************************************************************************
