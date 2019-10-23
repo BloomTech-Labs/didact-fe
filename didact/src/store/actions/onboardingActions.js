@@ -49,15 +49,12 @@ export const verifyToken = (history) => dispatch => {
             dispatch({ type: VERIFY_SUCCESS, payload: res.data })
         })
         // .then(props.history.push('/'))
-        .catch(err => 
+        .catch( async (err) => 
             {
                 console.log('should be removing token')
                 dispatch({ type: VERIFY_FAILURE, payload: err })
-                localStorage.removeItem('token')
-            })
-        .finally(blah =>
-            {
-                if(!localStorage.getItem('token')) history.push('/login')
+                await localStorage.removeItem('token')
+                await history.push('/login')
             })
 }
 

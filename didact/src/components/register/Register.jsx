@@ -6,7 +6,10 @@ import { useDispatch } from 'react-redux';
 
 const RegisterForm = (props) => {
     const {errors, touched} = props;
-    
+    if(localStorage.getItem('token'))
+    {
+        props.history.push('/')
+    }
     return (  
         <>
             <Form>
