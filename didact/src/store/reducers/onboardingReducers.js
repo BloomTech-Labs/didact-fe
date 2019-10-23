@@ -11,7 +11,8 @@ import {
 
 const initialState = {
     isLoading: false,
-    error: ''
+    error: '',
+    tokenVerified: false
 }
 
 export const onboardingReducer = (state = initialState, action) => {
@@ -66,12 +67,14 @@ export const onboardingReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoading: false,
-                error: ""
+                error: "",
+                tokenVerified: true
                 };
         case VERIFY_FAILURE:
             return {
                 ...state,
-                error: action.payload
+                error: action.payload,
+                tokenVerified: false
                 };
 
         default:
