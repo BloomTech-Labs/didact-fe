@@ -17,15 +17,18 @@ import TextField from '@material-ui/core/TextField';
 
 const useStyles = makeStyles(theme => ({
     card: {
-        minWidth: 275,
+        width: '50vw',
+        maxWidth: 500,
+        minWidth: 375,
         borderRadius: 15,
-        maxWidth: 500
+        margin: '10px 0'
     },
     button: {
         boxShadow: 'none',
         borderRadius: '15px',
         background: '#EBE8E1',
         marginLeft: '76.5%',
+       
     },
     tagDisplay: {
         display: 'flex',

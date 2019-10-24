@@ -39,10 +39,11 @@ const DrawerComponent = (props) => {
           
           drawerOpen: {
             width: "240px",
-            height: "calc(100% - 270px)",
+            height: "600px",
             margin: "10px",
             marginTop: "210px",
             borderRadius: "15px",
+            overflowY:"hidden",
             transition: theme.transitions.create("width", {
               easing: theme.transitions.easing.sharp,
               duration: theme.transitions.duration.enteringScreen,
@@ -55,12 +56,13 @@ const DrawerComponent = (props) => {
             }),
     
             overflowX: "hidden",
+            overflowY:"hidden",
             width: theme.spacing(7) + 1,
             [theme.breakpoints.up("sm")]: {
               width: theme.spacing(8) + 1, 
               margin: "10px",
               marginTop: "210px",
-              height: "calc(100% - 270px)",
+              height: "600px",
               borderRadius: "15px",
             },
           },
@@ -103,6 +105,7 @@ const DrawerComponent = (props) => {
             alignContent: "space-evenly",
             margin: "10px 0",
             flexFlow: "column wrap",
+           
         },
         placeholderDivShadowed: {
             display: "flex",
@@ -110,6 +113,7 @@ const DrawerComponent = (props) => {
             alignContent: "space-evenly",
             margin: "20px 0",
             flexFlow: "column wrap",
+           
         },
         placeHolder: {
             backgroundColor: "gray",
@@ -117,6 +121,7 @@ const DrawerComponent = (props) => {
             height: "80px",
             borderRadius: 15,
             margin: "0 0 10px 0",
+            // position: 'fixed'
         }, 
         placeHolder2: {
             backgroundColor: "#ebe8e1",
@@ -124,6 +129,7 @@ const DrawerComponent = (props) => {
             height: "80px",
             borderRadius: 15,
             margin: "0 0 0 0",
+            // position: 'fixed'
         },
         placeHolderClosed: {
             backgroundColor: "gray",
@@ -131,6 +137,7 @@ const DrawerComponent = (props) => {
             height: "80px",
             borderRadius: 15,
             marginTop: "0",
+            // position: 'fixed'
           },
           placeHolder2Closed: {
             backgroundColor: "#ebe8e1",
@@ -138,6 +145,7 @@ const DrawerComponent = (props) => {
             height: "80px",
             borderRadius: 15,
             margin: "10px 0 0 0",
+            // position: 'fixed'
           },
     
         toolbar: {
