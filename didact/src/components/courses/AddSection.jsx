@@ -212,7 +212,7 @@ const AddSection = (props) => {
                             placeholder="Course Url"
                             InputProps={{ classes: { input: classes.input } }}
                         />
-                        <Button type='submit' size="small" variant="contained" className={classes.button} >Add Course</Button>
+                        <Button type='submit' size="small" variant="contained" className={classes.button} >Add Section</Button>
                     </form>
                 </CardContent>
             </Card>

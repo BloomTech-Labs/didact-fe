@@ -1,4 +1,5 @@
 import axiosWithAuth from '../../utils/axiosWithAuth'
+import { red } from '@material-ui/core/colors'
 
 export const ADD_SECTION_START = "ADD_SECTION_START"
 export const ADD_SECTION_SUCCESS = "ADD_SECTION_SUCCESS"
@@ -38,6 +39,7 @@ export const addSectionToCourse = (id, section) => dispatch =>
     .then(res => 
         {
             console.log('res from add section to course', res)
+            section.id = res.data.id
             dispatch({ type: ADD_SECTION_SUCCESS, payload: section  })
         })
     .catch(err => {
