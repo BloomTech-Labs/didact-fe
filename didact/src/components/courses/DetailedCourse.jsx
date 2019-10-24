@@ -41,7 +41,7 @@ const DetailedCourse = props => {
     if (course && sections) {
         return (
             <DetailedCourseWrapper>
-                <div>
+                <div className="courseWrapper">
                     <h1>{course.name}</h1>
                     <p>{course.description}</p>
                     {course.tags && course.tags.map((tag, index) => {

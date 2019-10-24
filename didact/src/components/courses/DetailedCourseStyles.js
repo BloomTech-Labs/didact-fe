@@ -1,14 +1,17 @@
 import styled from 'styled-components'
 
 export const DetailedCourseWrapper = styled.div`
-    width: 40%;
+    width: 60%;
+
+    .courseWrapper {
+        height: 40%;
+    }
 
     .expansionPanel {
 
         background: white;
         margin: 20px 0px;
         padding: 15px 30px;
-        height: 40%;
 
         .expansionPanelSummary {
         background: white;
@@ -53,8 +56,6 @@ export const DetailedCourseWrapper = styled.div`
         .lessonTitle {
             display: flex;
             flex-direction: column;
-            /* align-items: flex-start; */
-            /* justify-content: flex-start; */
 
             .lessonTitleName {
                 font-weight: bold;
@@ -62,6 +63,10 @@ export const DetailedCourseWrapper = styled.div`
                 margin-top: 8px;
                 text-decoration: none;
                 color: black;
+
+                &:hover {
+                    text-decoration: underline;
+                }
             }
 
             .lessonTitleType {
