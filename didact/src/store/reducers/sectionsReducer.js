@@ -8,6 +8,9 @@ import {
     UPDATE_SECTION_START,
     UPDATE_SECTION_SUCCESS,
     UPDATE_SECTION_FAIL,
+    GET_LESSONS_START,
+    GET_LESSONS_SUCCESS,
+    GET_LESSONS_FAIL,
 } from '../actions'
 
 const initialState = 

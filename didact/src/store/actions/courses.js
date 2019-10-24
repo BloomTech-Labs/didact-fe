@@ -19,15 +19,6 @@ export const DELETE_COURSE_DATA_FAIL = 'DELETE_COURSE_DATA_FAIL';
 export const ADD_TAG_TO_COURSE_START = "ADD_TAG_TO_COURSE_START"
 export const ADD_TAG_TO_COURSE_SUCCESS = "ADD_TAG_TO_COURSE_SUCCESS"
 export const ADD_TAG_TO_COURSE_FAIL = "ADD_TAG_TO_COURSE_FAIL"
-// export const ADD_SECTION_START = "ADD_SECTION_START"
-// export const ADD_SECTION_SUCCESS = "ADD_SECTION_SUCCESS"
-// export const ADD_SECTION_FAIL = "ADD_SECTION_FAIL"
-// export const UPDATE_SECTION_START = "UPDATE_SECTION_START"
-// export const UPDATE_SECTION_SUCCESS = "UPDATE_SECTION_SUCCESS"
-// export const UPDATE_SECTION_FAIL = "UPDATE_SECTION_FAIL"
-// export const GET_SECTIONS_START = "GET_SECTIONS_START"
-// export const GET_SECTIONS_SUCCESS = "GET_SECTIONS_SUCCESS"
-// export const GET_SECTIONS_FAIL = "GET_SECTIONS_FAIL"
 export const GET_DETAILED_COURSE_START = "GET_DETAILED_COURSE_START"
 export const GET_DETAILED_COURSE_SUCCESS = "GET_DETAILED_COURSE_SUCCESS"
 export const GET_DETAILED_COURSE_FAIL = "GET_DETAILED_COURSE_FAIL"
@@ -119,52 +110,6 @@ export const addTagToCourse = (id, tag) => dispatch =>
         dispatch({ type: ADD_TAG_TO_COURSE_FAIL, payload: err })
     })
 }
-
-// export const getSectionsByCourseId = (id) => dispatch =>
-// {
-//     dispatch({ type: GET_SECTIONS_START })
-//     axiosWithAuth()
-//     .get(`${baseURL}${id}/sections`)
-//     .then(res =>
-//         {
-//             console.log(`res from getSectionsByCourseId`, res)
-//             dispatch({ type: GET_SECTIONS_SUCCESS, payload: res.data })
-//         })
-//     .catch(err =>
-//         {
-//             console.log(`err from getSectionsByCourseId`, err)
-//         })
-// }
-
-// export const addSectionToCourse = (id, sectionObj) => dispatch =>
-// {
-//     dispatch({ type: ADD_SECTION_START })
-//     axiosWithAuth()
-//     .post(`${baseURL}${id}/sections`, sectionObj)
-//     .then(res => 
-//         {
-//             console.log('res from add section to course', res)
-//             dispatch({ type: ADD_SECTION_SUCCESS })
-//         })
-//     .catch(err => {
-//         dispatch({ type: ADD_SECTION_FAIL, payload: err })
-//     })
-// }
-
-// export const updateSection = (courseId, sectionId, changes) => dispatch =>
-// {
-//     dispatch({ type: UPDATE_SECTION_START })
-//     axiosWithAuth()
-//     .put(`${baseURL}${courseId}/sections/${sectionId}`, changes)
-//     .then(res => 
-//         {
-//             console.log('res from updateSection', res)
-//             dispatch({ type: UPDATE_SECTION_SUCCESS })
-//         })
-//     .catch(err => {
-//         dispatch({ type: UPDATE_SECTION_FAIL, payload: err })
-//     })
-// }
 
 export const getDetailedCourse = (id) => async dispatch =>
 {
