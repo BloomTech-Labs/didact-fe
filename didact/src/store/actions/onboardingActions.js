@@ -18,7 +18,7 @@ export const loginAction = (history, form) => dispatch => {
         .post(`https://didactlms-staging.herokuapp.com/api/auth/login`, form)
         .then(res => {
             localStorage.setItem("token", res.data.token)
-            dispatch({ type: LOGIN_SUCCESS, payload: res })
+            dispatch({ type: LOGIN_SUCCESS, payload: res.data })
         })
         .then(res => history.push("/dashboard"))
         .catch(err => {

@@ -18,12 +18,6 @@ import {
     ADD_TAG_TO_COURSE_START,
     ADD_TAG_TO_COURSE_SUCCESS,
     ADD_TAG_TO_COURSE_FAIL,
-    ADD_SECTION_START,
-    ADD_SECTION_SUCCESS,
-    ADD_SECTION_FAIL,
-    UPDATE_SECTION_START,
-    UPDATE_SECTION_SUCCESS,
-    UPDATE_SECTION_FAIL,
     GET_SECTIONS_START,
     GET_SECTIONS_SUCCESS,
     GET_SECTIONS_FAIL,
@@ -159,7 +153,7 @@ export const coursesReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoading: false,
-                course: {
+                course: { ...state.course, 
                     tags: [...state.course.tags, action.payload.tag]
                 },
                 error: ""
@@ -198,45 +192,6 @@ export const coursesReducer = (state = initialState, action) => {
                 error: "",
             }
         case ADD_TAG_TO_COURSE_FAIL:
-            return {
-                ...state,
-                isLoading: false,
-                error: action.payload,
-            }
-        // ADD SECTION TO COURSE
-        case ADD_SECTION_START:
-            return {
-                ...state,
-                isLoading: true,
-                error: "",
-            }
-        case ADD_SECTION_SUCCESS:
-            return {
-                ...state,
-                isLoading: false,
-                error: "",
-            }
-        case ADD_SECTION_FAIL:
-            return {
-                ...state,
-                isLoading: false,
-                error: action.payload,
-            }
-        // UPDATE COURSE SECTION
-        case UPDATE_SECTION_START:
-            return {
-                ...state,
-                isLoading: true,
-                error: "",
-            }
-        case UPDATE_SECTION_SUCCESS:
-            return {
-                ...state,
-                isLoading: false,
-        
-                error: "",
-            }
-        case UPDATE_SECTION_FAIL:
             return {
                 ...state,
                 isLoading: false,

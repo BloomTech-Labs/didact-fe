@@ -24,6 +24,10 @@ const useStyles = makeStyles(theme => ({
     content: {
         flexGrow: 1,
         padding: theme.spacing(3),
+        // width: "1000px",
+        // display: 'flex',
+        // flexDirection: 'column',
+        // alignItems: 'flex-start'
     },
     contentMobile: {
         flexGrow: 1,
