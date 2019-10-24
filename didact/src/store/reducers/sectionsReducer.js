@@ -11,6 +11,12 @@ import {
     GET_LESSONS_START,
     GET_LESSONS_SUCCESS,
     GET_LESSONS_FAIL,
+    ADD_LESSON_START,
+    ADD_LESSON_SUCCESS,
+    ADD_LESSON_FAIL,
+    UPDATE_LESSON_START,
+    UPDATE_LESSON_SUCCESS,
+    UPDATE_LESSON_FAIL,
 } from '../actions'
 
 const initialState = 
@@ -107,6 +113,46 @@ export const sectionsReducer = (state = initialState, action) =>
                 error: "",
             }
         case GET_LESSONS_FAIL:
+            return {
+                ...state,
+                isLoading: false,
+                error: action.payload,
+            }
+        case ADD_LESSON_START:
+            return {
+                ...state,
+                isLoading: true,
+                error: "",
+            }
+        case ADD_LESSON_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                lessons: [...state.lessons, action.payload],
+                error: "",
+            }
+        case ADD_LESSON_FAIL:
+            return {
+                ...state,
+                isLoading: false,
+                error: action.payload,
+            }
+        case UPDATE_LESSON_START:
+            return {
+                ...state,
+                isLoading: true,
+                error: "",
+            }
+        case UPDATE_LESSON_SUCCESS:
+            let tempLessons = [...state.lessons, action.payload]
+            tempLessons.sort((a,b) => a.order - b.order)
+            return {
+                ...state,
+                isLoading: false,
+                lessons: tempLessons,
+                error: "",
+            }
+        case UPDATE_LESSON_FAIL:
             return {
                 ...state,
                 isLoading: false,
