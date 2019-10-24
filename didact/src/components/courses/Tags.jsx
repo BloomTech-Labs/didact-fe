@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { addTag, getTags } from '../../store/actions'
 import { useSelector, useDispatch } from 'react-redux';
 import { CoursesCard, CourseMenuDiv, CourseDiv } from '../dashboard/DashboardStyles';
-// import { TagDelete } from '../dashboard/ButtonStyles';
+import { TagDelete, P } from '../dashboard/ButtonStyles';
 
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -35,9 +35,6 @@ const useStyles = makeStyles(theme => ({
         display: 'flex',
         flexFlow: 'row wrap',
     },
-    title: {
-        fontSize: 14,
-    },
     pos: {
         marginBottom: 12,
     },
@@ -50,6 +47,7 @@ const useStyles = makeStyles(theme => ({
         fontSize: 14,
         fontWeight: 'bold',
         margin: '3px',
+        marginLeft: '10px',
         padding: '5px 10px',
         borderRadius: '10px',
         background: '#5B5B5B',
@@ -161,8 +159,8 @@ const Tags = (props) => {
                             <>
                             <div>
                                 
-                                <div key={i} className={classes.title} color="textSecondary" gutterBottom>
-                                {tag}
+                                <div style={{position: 'relative'}} key={i} className={classes.title} color="textSecondary" gutterBottom>
+                                <TagDelete><P>x</P></TagDelete><span style={{paddingRight: '5px'}}>{tag}</span>
                                 </div>
                                 
                             </div>
