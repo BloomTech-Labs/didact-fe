@@ -40,22 +40,29 @@ export const ButtonText = styled.p`
 // X Button for removing tag
 
 export const TagDelete = styled.div`
-    opacity: 1;
+    opacity: 0;
     position: absolute;
     top: 0px;
     right: 0px;
+    height: 30px;
     color: white;
+    width: 25px;
     overflow: hidden;
     cursor: pointer;
+    border-radius: 0 13px 13px 0;
     &:hover {
         opacity: .8;
+        background: maroon;
         
     }
 `
 export const P = styled.p`
     padding: 1px;
-    margin-top: -3px;
-    &:hover {
-        background: black;  
-    }
+    margin-top: -1px;
+    font-size: 1.3rem;
+    line-height: 28px;
+    
+    /* &:hover {
+        background: maroon;
+    } */
 `

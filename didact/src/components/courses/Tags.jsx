@@ -143,6 +143,9 @@ const Tags = (props) => {
         dispatch(addTag(props.props.props.match.params.id, tag))
         setTag({tag: ''})
     }
+    const handleTagDelete = () => {
+
+    }
     // const handleChangeSelect = event => {
     //     setValues(oldValues => ({
     //       ...oldValues,
@@ -160,7 +163,7 @@ const Tags = (props) => {
                             <div>
                                 
                                 <div style={{position: 'relative'}} key={i} className={classes.title} color="textSecondary" gutterBottom>
-                                <TagDelete><P>x</P></TagDelete><span style={{paddingRight: '5px'}}>{tag}</span>
+                                <TagDelete onClick={handleTagDelete}><P>x</P></TagDelete><span style={{paddingRight: '5px'}}>{tag}</span>
                                 </div>
                                 
                             </div>

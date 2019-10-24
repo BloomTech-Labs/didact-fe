@@ -17,11 +17,13 @@ const useStyles = makeStyles(theme => ({
     display: "flex",
     justifyContent: "space-between",
     marginBottom: "-10px",
+    backgroundColor: 'white'
   },
   buttonsDiv: {
     display: "flex",
     flexDirection: "column",
     width: "calc(100%)",
+    backgroundColor: 'white'
   },
   closeModel: {
     margin: "-40px 0 0 210px",

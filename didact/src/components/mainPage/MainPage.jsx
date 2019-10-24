@@ -33,6 +33,7 @@ const useStyles = makeStyles(theme => ({
         flexGrow: 1,
         padding: theme.spacing(3),
         paddingLeft: "80px",
+        
       },
     contentShadow: {
         background: "rgba(0, 0, 0, 0.8)",
@@ -47,7 +48,19 @@ const useStyles = makeStyles(theme => ({
         paddingLeft: "80px",
         padding: theme.spacing(3),
         overflow: "hidden",
+        // marginRight: '10px'
     },
+    // scrollBarMobileFix: {
+    //     position: "absolute",
+    //     right: 0,
+    //     height: "100vh",
+    //     // opacity: 0,
+    //     width: "10px",
+    //     backgroundColor: "black",
+    //     display: "block",
+    //     marginLeft: "10px",
+    //     zIndex: theme.root.zIndex + 1,
+    // },
     toolbar: {
         display: "flex",
         alignItems: "center",
@@ -74,6 +87,7 @@ function MainPage(props) {
     const handleDrawerOpen = () => {
         setOpen(!open);
     };
+
 
     const handleDrawerOpenMobile = () => event => {
         if (
@@ -116,6 +130,14 @@ function MainPage(props) {
                             </main>
                         </div>
                     </PageFlex>
+                    {openMobile ?
+                        (
+                        <div className = {classes.scrollBarMobileFix}>
+
+                        </div>
+                        ) : ( 
+                        null )
+                         }
                 </div>
             )
                 // END OF MOBILE CODE *******************************************************************
