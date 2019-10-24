@@ -1,5 +1,8 @@
 import styled from 'styled-components'
 
+
+// Button with Plus sign
+
 export const AddButton = styled.div`
     height: 75px;
     width: 175px;
@@ -32,4 +35,23 @@ export const ButtonText = styled.p`
     color: black;
     padding-right: 15px;
     font-weight: bold;
+`
+
+// X Button for removing tag
+
+export const TagDelete = styled.div`
+    opacity: 0;
+    /* display: none; */
+    background: black;
+    width: 10px;
+    height: 10px;
+    position: relative;
+    top: 5px;
+    right: 0px;
+    /* padding: -10px; */
+    color: white;
+    &:hover {
+        /* background: black; */
+        opacity: .8;
+    }
 `

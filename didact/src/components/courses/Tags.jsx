@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { addTag, getTags } from '../../store/actions'
 import { useSelector, useDispatch } from 'react-redux';
 import { CoursesCard, CourseMenuDiv, CourseDiv } from '../dashboard/DashboardStyles';
+// import { TagDelete } from '../dashboard/ButtonStyles';
 
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -157,9 +158,16 @@ const Tags = (props) => {
                 <CardContent className={classes.tagDisplay}>
                     {props.course.tags ? props.course.tags.map((tag, i) => {
                         return (
-                            <Typography key={i} className={classes.title} color="textSecondary" gutterBottom>
+                            <>
+                            <div>
+                                
+                                <div key={i} className={classes.title} color="textSecondary" gutterBottom>
                                 {tag}
-                            </Typography>
+                                </div>
+                                
+                            </div>
+                            
+                            </>
                         )
                     }) : null}
                 </CardContent>
