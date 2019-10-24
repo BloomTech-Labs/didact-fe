@@ -19,6 +19,9 @@ export const ADD_LESSON_FAIL = "ADD_LESSON_FAIL"
 export const UPDATE_LESSON_START = "UPDATE_LESSON_START"
 export const UPDATE_LESSON_SUCCESS = "UPDATE_LESSON_SUCCESS"
 export const UPDATE_LESSON_FAIL = "UPDATE_LESSON_FAIL"
+export const DELETE_SECTION_START = "DELETE_SECTION_START"
+export const DELETE_SECTION_SUCCESS = "DELETE_SECTION_SUCCESS"
+export const DELETE_SECTION_FAIL = "DELETE_SECTION_FAIL"
 
 const baseURL = "https://didactlms-staging.herokuapp.com/api/courses/"
 
@@ -121,4 +124,22 @@ export const updateLesson = (courseId, sectionId, lessonId, changes) => dispatch
     .catch(err => {
         dispatch({ type: UPDATE_LESSON_FAIL, payload: err })
     })
+}
+
+export const deleteSection = (courseId, sectionId) => dispatch =>
+{
+    dispatch({ type: DELETE_SECTION_START })
+
+    axiosWithAuth()
+    .delete(`${baseURL}${courseId}/sections/${sectionId}`)
+    .then(res =>
+        {
+            console.log('res from deleteSection', res)
+            dispatch({ type: DELETE_SECTION_SUCCESS, payload: sectionId })
+        })
+    .catch(err =>
+        {
+            console.log('err from deleteSection', err)
+            dispatch({ type: DELETE_SECTION_FAIL, payload: err })
+        })
 }
