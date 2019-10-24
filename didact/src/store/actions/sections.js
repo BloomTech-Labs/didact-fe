@@ -10,6 +10,9 @@ export const UPDATE_SECTION_FAIL = "UPDATE_SECTION_FAIL"
 export const GET_SECTIONS_START = "GET_SECTIONS_START"
 export const GET_SECTIONS_SUCCESS = "GET_SECTIONS_SUCCESS"
 export const GET_SECTIONS_FAIL = "GET_SECTIONS_FAIL"
+export const GET_LESSONS_START = "GET_LESSONS_START"
+export const GET_LESSONS_SUCCESS = "GET_LESSONS_SUCCESS"
+export const GET_LESSONS_FAIL = "GET_LESSONS_FAIL"
 
 const baseURL = "https://didactlms-staging.herokuapp.com/api/courses/"
 
@@ -26,6 +29,7 @@ export const getSectionsByCourseId = (id) => dispatch =>
     .catch(err =>
         {
             console.log(`err from getSectionsByCourseId`, err)
+            dispatch({ type: GET_SECTIONS_FAIL, payload: err })
         })
 }
 
@@ -62,6 +66,19 @@ export const updateSection = (courseId, sectionId, changes) => dispatch =>
     })
 }
 
-
-
-
+export const getLessonsBySectionId = (courseId, sectionId) => dispatch =>
+{
+    dispatch({ type: GET_LESSONS_START })
+    axiosWithAuth()
+    .get(`${baseURL}${courseId}/sections/${sectionId}`)
+    .then(res =>
+        {
+            console.log(`res from getLessonsBySectionId`, res)
+            dispatch({ type: GET_LESSONS_SUCCESS, payload: res.data })
+        })
+    .catch(err =>
+        {
+            console.log(`err from getLessonsBySectionId`, err)
+            dispatch({ type: GET_LESSONS_FAIL, payload: err })
+        })
+}
