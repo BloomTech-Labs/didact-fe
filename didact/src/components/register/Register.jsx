@@ -101,7 +101,7 @@ const RegisterForm = (props) => {
                                 <Field type="text" name="first_name" placeholder="First Name"></Field>
                                 {touched.first_name && errors.first_name && <p className="errorMessage">First Name Required</p>}
                             </div>
-                            <div className={"input  size-half" + ((touched.last_name && errors.last_name) ? ' error' : '')}>
+                            <div className={"input size-half" + ((touched.last_name && errors.last_name) ? ' error' : '')}>
                                 <p>Last Name</p>
                                 <Field type="text" name="last_name" placeholder="Last Name"></Field>
                                 {touched.last_name && errors.last_name && <p className="errorMessage">Last Name Required</p>}
@@ -155,7 +155,6 @@ const FormikRegisterForm = withFormik({
         last_name: Yup.string().required("Last Name is required"),
     }),
     handleSubmit(values, props) {
-        console.log('Submitted')
         props.props.dispatch(registerAction(props.props.history, values))
     }
 
