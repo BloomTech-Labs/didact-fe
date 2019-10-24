@@ -116,7 +116,7 @@ export const sectionsReducer = (state = initialState, action) =>
                 ...state,
                 isLoading: false,
                 sections: state.sections.filter(el => el.id !== action.payload),
-                section: section.id === action.payload ? {} : state.section,
+                section: (state.section.id & state.section.id === action.payload) ? {} : state.section,
                 error: "",
             }
         case DELETE_SECTION_FAIL:
@@ -195,7 +195,7 @@ export const sectionsReducer = (state = initialState, action) =>
                 ...state,
                 isLoading: false,
                 lessons: state.lessons.filter(el => el.id !== action.payload),
-                lesson: lesson.id === action.payload ? {} : state.lesson,
+                lesson: (state.lesson.id && state.lesson.id === action.payload) ? {} : state.lesson,
                 error: "",
             }
         case DELETE_LESSON_FAIL:
