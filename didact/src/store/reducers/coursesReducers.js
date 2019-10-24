@@ -18,9 +18,6 @@ import {
     ADD_TAG_TO_COURSE_START,
     ADD_TAG_TO_COURSE_SUCCESS,
     ADD_TAG_TO_COURSE_FAIL,
-    GET_SECTIONS_START,
-    GET_SECTIONS_SUCCESS,
-    GET_SECTIONS_FAIL,
     GET_DETAILED_COURSE_START,
     GET_DETAILED_COURSE_SUCCESS,
     GET_DETAILED_COURSE_FAIL,
@@ -137,7 +134,7 @@ export const coursesReducer = (state = initialState, action) => {
         case DELETE_COURSE_DATA_SUCCESS:
             return {
                 ...state,
-                courses: action.payload,
+                courses: state.courses.filter(el => el.id !== action.payload),
                 isLoading: false,
                 error: ""
         };
