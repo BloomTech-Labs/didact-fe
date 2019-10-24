@@ -18,7 +18,9 @@ const initialState =
     isLoading: false,
     error: '',
     sections: [],
-    section: {}
+    section: {},
+    lessons: [],
+    lesson: {}
 }
 
 export const sectionsReducer = (state = initialState, action) =>
@@ -86,6 +88,25 @@ export const sectionsReducer = (state = initialState, action) =>
                 error: "",
             }
         case UPDATE_SECTION_FAIL:
+            return {
+                ...state,
+                isLoading: false,
+                error: action.payload,
+            }
+        case GET_LESSONS_START:
+            return {
+                ...state,
+                isLoading: true,
+                error: "",
+            }
+        case GET_LESSONS_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                lessons: action.payload.lessons,
+                error: "",
+            }
+        case GET_LESSONS_FAIL:
             return {
                 ...state,
                 isLoading: false,
