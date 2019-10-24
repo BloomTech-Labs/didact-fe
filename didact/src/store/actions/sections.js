@@ -1,15 +1,18 @@
 import axiosWithAuth from '../../utils/axiosWithAuth'
 import { red } from '@material-ui/core/colors'
 
+export const GET_SECTIONS_START = "GET_SECTIONS_START"
+export const GET_SECTIONS_SUCCESS = "GET_SECTIONS_SUCCESS"
+export const GET_SECTIONS_FAIL = "GET_SECTIONS_FAIL"
 export const ADD_SECTION_START = "ADD_SECTION_START"
 export const ADD_SECTION_SUCCESS = "ADD_SECTION_SUCCESS"
 export const ADD_SECTION_FAIL = "ADD_SECTION_FAIL"
 export const UPDATE_SECTION_START = "UPDATE_SECTION_START"
 export const UPDATE_SECTION_SUCCESS = "UPDATE_SECTION_SUCCESS"
 export const UPDATE_SECTION_FAIL = "UPDATE_SECTION_FAIL"
-export const GET_SECTIONS_START = "GET_SECTIONS_START"
-export const GET_SECTIONS_SUCCESS = "GET_SECTIONS_SUCCESS"
-export const GET_SECTIONS_FAIL = "GET_SECTIONS_FAIL"
+export const DELETE_SECTION_START = "DELETE_SECTION_START"
+export const DELETE_SECTION_SUCCESS = "DELETE_SECTION_SUCCESS"
+export const DELETE_SECTION_FAIL = "DELETE_SECTION_FAIL"
 export const GET_LESSONS_START = "GET_LESSONS_START"
 export const GET_LESSONS_SUCCESS = "GET_LESSONS_SUCCESS"
 export const GET_LESSONS_FAIL = "GET_LESSONS_FAIL"
@@ -19,9 +22,9 @@ export const ADD_LESSON_FAIL = "ADD_LESSON_FAIL"
 export const UPDATE_LESSON_START = "UPDATE_LESSON_START"
 export const UPDATE_LESSON_SUCCESS = "UPDATE_LESSON_SUCCESS"
 export const UPDATE_LESSON_FAIL = "UPDATE_LESSON_FAIL"
-export const DELETE_SECTION_START = "DELETE_SECTION_START"
-export const DELETE_SECTION_SUCCESS = "DELETE_SECTION_SUCCESS"
-export const DELETE_SECTION_FAIL = "DELETE_SECTION_FAIL"
+export const DELETE_LESSON_START = "DELETE_LESSON_START"
+export const DELETE_LESSON_SUCCESS = "DELETE_LESSON_SUCCESS"
+export const DELETE_LESSON_FAIL = "DELETE_LESSON_FAIL"
 
 const baseURL = "https://didactlms-staging.herokuapp.com/api/courses/"
 
@@ -75,6 +78,24 @@ export const updateSection = (courseId, sectionId, changes) => dispatch =>
     })
 }
 
+export const deleteSection = (courseId, sectionId) => dispatch =>
+{
+    dispatch({ type: DELETE_SECTION_START })
+
+    axiosWithAuth()
+    .delete(`${baseURL}${courseId}/sections/${sectionId}`)
+    .then(res =>
+        {
+            console.log('res from deleteSection', res)
+            dispatch({ type: DELETE_SECTION_SUCCESS, payload: sectionId })
+        })
+    .catch(err =>
+        {
+            console.log('err from deleteSection', err)
+            dispatch({ type: DELETE_SECTION_FAIL, payload: err })
+        })
+}
+
 export const getLessonsBySectionId = (courseId, sectionId) => dispatch =>
 {
     dispatch({ type: GET_LESSONS_START })
@@ -126,20 +147,20 @@ export const updateLesson = (courseId, sectionId, lessonId, changes) => dispatch
     })
 }
 
-export const deleteSection = (courseId, sectionId) => dispatch =>
+export const deleteLesson = (courseId, sectionId, lessonId) => dispatch =>
 {
-    dispatch({ type: DELETE_SECTION_START })
+    dispatch({ type: DELETE_LESSON_START })
 
     axiosWithAuth()
-    .delete(`${baseURL}${courseId}/sections/${sectionId}`)
+    .delete(`${baseURL}${courseId}/sections/${sectionId}/details/${lessonId}`)
     .then(res =>
         {
-            console.log('res from deleteSection', res)
-            dispatch({ type: DELETE_SECTION_SUCCESS, payload: sectionId })
+            console.log('res from deleteLesson', res)
+            dispatch({ type: DELETE_LESSON_SUCCESS, payload: lessonId })
         })
     .catch(err =>
         {
-            console.log('err from deleteSection', err)
-            dispatch({ type: DELETE_SECTION_FAIL, payload: err })
+            console.log('err from deleteLesson', err)
+            dispatch({ type: DELETE_LESSON_FAIL, payload: err })
         })
 }

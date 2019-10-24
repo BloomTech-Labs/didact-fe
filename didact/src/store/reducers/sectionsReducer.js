@@ -8,6 +8,9 @@ import {
     UPDATE_SECTION_START,
     UPDATE_SECTION_SUCCESS,
     UPDATE_SECTION_FAIL,
+    DELETE_SECTION_START,
+    DELETE_SECTION_SUCCESS,
+    DELETE_SECTION_FAIL,
     GET_LESSONS_START,
     GET_LESSONS_SUCCESS,
     GET_LESSONS_FAIL,
@@ -17,6 +20,9 @@ import {
     UPDATE_LESSON_START,
     UPDATE_LESSON_SUCCESS,
     UPDATE_LESSON_FAIL,
+    DELETE_LESSON_START,
+    DELETE_LESSON_SUCCESS,
+    DELETE_LESSON_FAIL,
 } from '../actions'
 
 const initialState = 
@@ -94,6 +100,25 @@ export const sectionsReducer = (state = initialState, action) =>
                 error: "",
             }
         case UPDATE_SECTION_FAIL:
+            return {
+                ...state,
+                isLoading: false,
+                error: action.payload,
+            }
+        case DELETE_SECTION_START:
+            return {
+                ...state,
+                isLoading: true,
+                error: "",
+            }
+        case DELETE_SECTION_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                sections: state.sections.filter(el => el.id !== action.payload)
+                error: "",
+            }
+        case DELETE_SECTION_FAIL:
             return {
                 ...state,
                 isLoading: false,
