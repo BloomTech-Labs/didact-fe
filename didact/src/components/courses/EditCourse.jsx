@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getCourseById, getSectionsByCourseId, editCourse } from '../../store/actions'
-import { CoursesCard, CourseMenuDiv, CourseDiv } from '../dashboard/DashboardStyles';
+import { getCourseById, editCourse } from '../../store/actions'
+import { AddButton, PlusDiv, Plus, ButtonText } from '../dashboard/ButtonStyles';
 import Tags from './Tags'
+import AddSection from './AddSection'
+import Sections from './Sections'
 
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
@@ -19,6 +21,12 @@ import TextField from '@material-ui/core/TextField';
 
 const useStyles = makeStyles(theme => ({
 
+    root: {
+        width: '100%',
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-start"
+    },
     button: {
         boxShadow: 'none',
         borderRadius: '15px',
@@ -26,9 +34,11 @@ const useStyles = makeStyles(theme => ({
         marginLeft: '70%',
     },
     card: {
+        width: '50vw',
         maxWidth: 500,
+        minWidth: 375,
         borderRadius: 15,
-        margin: '10px auto'
+        margin: '10px 0'
     },
     title: {
         fontSize: 14,
@@ -41,12 +51,12 @@ const useStyles = makeStyles(theme => ({
         transform: 'rotate(0deg)',
         // marginLeft: 'auto',
         transition: theme.transitions.create('transform', {
-          duration: theme.transitions.duration.shortest,
+            duration: theme.transitions.duration.shortest,
         }),
-      },
-      expandOpen: {
+    },
+    expandOpen: {
         transform: 'rotate(180deg)',
-      },
+    },
     container: {
         display: 'flex',
         flexWrap: 'wrap',
@@ -102,7 +112,8 @@ const useStyles = makeStyles(theme => ({
     },
     descriptionTitle: {
         marginBottom: "0px"
-    }
+    },
+
 }));
 
 const CssTextField = withStyles({
@@ -130,8 +141,9 @@ const EditCourse = (props) => {
     const dispatch = useDispatch()
     const classes = useStyles();
     const [expanded, setExpanded] = React.useState(false);
-    const values = { ...course }
     const [courseEdit, setCourseEdit] = useState(true)
+    const [addSectionChange, setAddSectionChange] = useState(false);
+    const values = { ...course }
     const [changes, setChanges] = useState({
 
         name: "",
@@ -141,14 +153,8 @@ const EditCourse = (props) => {
         link: ""
     })
 
-    // console.log("course", state.coursesReducer.course)
-    // console.log('state', state)
-    // console.log('props in edit course', props)
-    // console.log("changes: ", changes)
-
     useEffect(() => {
         dispatch(getCourseById(props.id))
-        // dispatch(getSectionsByCourseId(props.id))
     }, [props.id, dispatch])
 
     useEffect(() => {
@@ -179,127 +185,150 @@ const EditCourse = (props) => {
 
     const handleExpandClick = () => {
         setExpanded(!expanded);
-      };
+    };
 
-    // console.log("sections", state.sectionsReducer.sections)
+    const handleSectionFormToggle = () => {
+        setAddSectionChange(true)
+    }
+
     return (
-        <div>
+        <div className={classes.root}>
             {courseEdit ?
                 (
                     <Card className={classes.card}>
-                    <CardContent>
-                    <Typography variant="h5" component="h2">
-                      {course.name}
-                      </Typography>
-                      {/* <Typography className={classes.title} color="textSecondary" gutterBottom>
-                      </Typography> */}
-                     <CardActions className = {classes.descriptionDiv} disableSpacing>
-                      <Typography className = {classes.descriptionTitle} >Description:</Typography>
-                      <IconButton
-                        className={clsx(classes.expand, {
-                            [classes.expandOpen]: expanded,
-                        })}
-                        onClick={handleExpandClick}
-                        aria-expanded={expanded}
-                        aria-label="show more"
-                        >
-                        <ExpandMoreIcon />
-                        </IconButton>
-                    </CardActions>
-                      <Collapse in={expanded} timeout="auto" unmountOnExit>
-                            <CardContent>
-                            <Typography paragraph>
-                            {course.description}
+                        <CardContent >
+                            <Typography variant="h5" component="h2">
+                                {course.name}
                             </Typography>
-                            </CardContent>
-                        </Collapse>
-                      <Typography color="textSecondary">
-                      {course.foreign_instructors}
-                      </Typography>
-                      <Typography color="textSecondary">
-                      {course.foreign_rating}
-                      </Typography>
-                      <Typography variant="body2" component="p">
-                      {course.link}
-                      </Typography>
-                    </CardContent>
-                    <CardActions>
-                      <Button onClick={toggleEdit} type='submit' size="small" variant="contained" className={classes.button} >Edit Course</Button>
-                    </CardActions>
-                  </Card>
+                            {/* <Typography className={classes.title} color="textSecondary" gutterBottom>
+                      </Typography> */}
+                            <CardActions className={classes.descriptionDiv} disableSpacing>
+                                <Typography className={classes.descriptionTitle} >Description:</Typography>
+                                <IconButton
+                                    className={clsx(classes.expand, {
+                                        [classes.expandOpen]: expanded,
+                                    })}
+                                    onClick={handleExpandClick}
+                                    aria-expanded={expanded}
+                                    aria-label="show more"
+                                >
+                                    <ExpandMoreIcon />
+                                </IconButton>
+                            </CardActions>
+                            <Collapse in={expanded} timeout="auto" unmountOnExit>
+                                <CardContent>
+                                    <Typography paragraph>
+                                        {course.description}
+                                    </Typography>
+                                </CardContent>
+                            </Collapse>
+                            <Typography color="textSecondary">
+                                {course.foreign_instructors}
+                            </Typography>
+                            <Typography color="textSecondary">
+                                {course.foreign_rating}
+                            </Typography>
+                            <Typography variant="body2" component="p">
+                                {course.link}
+                            </Typography>
+                        </CardContent>
+                        <CardActions>
+                            <Button onClick={toggleEdit} type='submit' size="small" variant="contained" className={classes.button} >Edit Course</Button>
+                        </CardActions>
+                    </Card>
                 ) : (
-                    
-                        <Card className={classes.card}>
-                            <CardContent>
-                                <Typography className={classes.title} gutterBottom>
-                                    Course Overview
+
+                    <Card className={classes.card}>
+                        <CardContent>
+                            <Typography className={classes.title} gutterBottom>
+                                Course Overview
                                 </Typography>
-                                <form onSubmit={handleCourseSubmit} className={classes.container} noValidate autoComplete="off">
-                                    <CssTextField
-                                        id="standard-name"
-                                        label='Name'
-                                        className={classes.titleOrInstructorFields}
-                                        value={changes.name}
-                                        onChange={handleChange('name')}
-                                        margin="normal"
-                                        variant="outlined"
-                                        placeholder="Name"
-                                        InputProps={{ classes: { underline: classes.blackUnderline, input: classes.input } }}
-                                    />
-                                    <CssTextField
-                                        id="standard-name"
-                                        label="Instructors"
-                                        className={classes.titleOrInstructorFields}
-                                        value={changes.foreign_instructors}
-                                        onChange={handleChange('foreign_instructors')}
-                                        margin="normal"
-                                        variant="outlined"
-                                        placeholder="Instructors"
-                                        InputProps={{ classes: { underline: classes.blackUnderline, input: classes.input } }}
-                                    />
-                                    <CssTextField
-                                        id="standard-name"
-                                        label="Description"
-                                        className={classes.descriptionField}
-                                        value={changes.description}
-                                        onChange={handleChange('description')}
-                                        margin="normal"
-                                        multiline={true}
-                                        rows='6'
-                                        variant="outlined"
-                                        placeholder="Description"
-                                        InputProps={{ classes: { input: classes.inputDescription } }}
-                                    />
-                                    <CssTextField
-                                        id="standard-name"
-                                        label="Rating"
-                                        className={classes.courseUrlField}
-                                        value={changes.foreign_rating}
-                                        onChange={handleChange('foreign_rating')}
-                                        margin="normal"
-                                        variant="outlined"
-                                        placeholder="Course Url"
-                                        InputProps={{ classes: { underline: classes.blackUnderline, input: classes.input } }}
-                                    />
-                                    <CssTextField
-                                        id="standard-name"
-                                        label="Course Url"
-                                        className={classes.courseUrlField}
-                                        value={changes.link}
-                                        onChange={handleChange('link')}
-                                        margin="normal"
-                                        variant="outlined"
-                                        placeholder="Course Url"
-                                        InputProps={{ classes: { underline: classes.blackUnderline, input: classes.input } }}
-                                    />
-                                    <Button type='submit' size="small" variant="contained" className={classes.button} >Edit Course</Button>
-                                </form>
-                            </CardContent>
-                        </Card>
-                
+                            <form onSubmit={handleCourseSubmit} className={classes.container} noValidate autoComplete="off">
+                                <CssTextField
+                                    id="standard-name"
+                                    label='Name'
+                                    className={classes.titleOrInstructorFields}
+                                    value={changes.name}
+                                    onChange={handleChange('name')}
+                                    margin="normal"
+                                    variant="outlined"
+                                    placeholder="Name"
+                                    InputProps={{ classes: { underline: classes.blackUnderline, input: classes.input } }}
+                                />
+                                <CssTextField
+                                    id="standard-name"
+                                    label="Instructors"
+                                    className={classes.titleOrInstructorFields}
+                                    value={changes.foreign_instructors}
+                                    onChange={handleChange('foreign_instructors')}
+                                    margin="normal"
+                                    variant="outlined"
+                                    placeholder="Instructors"
+                                    InputProps={{ classes: { underline: classes.blackUnderline, input: classes.input } }}
+                                />
+                                <CssTextField
+                                    id="standard-name"
+                                    label="Description"
+                                    className={classes.descriptionField}
+                                    value={changes.description}
+                                    onChange={handleChange('description')}
+                                    margin="normal"
+                                    multiline={true}
+                                    rows='6'
+                                    variant="outlined"
+                                    placeholder="Description"
+                                    InputProps={{ classes: { input: classes.inputDescription } }}
+                                />
+                                <CssTextField
+                                    id="standard-name"
+                                    label="Rating"
+                                    className={classes.courseUrlField}
+                                    value={changes.foreign_rating}
+                                    onChange={handleChange('foreign_rating')}
+                                    margin="normal"
+                                    variant="outlined"
+                                    placeholder="Course Url"
+                                    InputProps={{ classes: { underline: classes.blackUnderline, input: classes.input } }}
+                                />
+                                <CssTextField
+                                    id="standard-name"
+                                    label="Course Url"
+                                    className={classes.courseUrlField}
+                                    value={changes.link}
+                                    onChange={handleChange('link')}
+                                    margin="normal"
+                                    variant="outlined"
+                                    placeholder="Course Url"
+                                    InputProps={{ classes: { underline: classes.blackUnderline, input: classes.input } }}
+                                />
+                                <Button type='submit' size="small" variant="contained" className={classes.button} >Edit Course</Button>
+                            </form>
+                        </CardContent>
+                    </Card>
                 )
             }
-            <Tags course={course} props={props}/>
+            <Tags course={course} props={props} />
+            <Sections course={course} props = {props}/>
+            {addSectionChange ? (
+            <div>
+                    <AddSection course={course} props={props} setAddSectionChange = {setAddSectionChange}/>
+                    <AddButton onClick={handleSectionFormToggle} >
+                        <PlusDiv>
+                            <Plus>+</Plus>
+                        </PlusDiv>
+                        <ButtonText>Add Section</ButtonText>
+                    </AddButton>
+                </div>
+                ) : (
+                    <div style={{ display: 'flex', justifyContent: 'flex-end'}}>
+                        <AddButton onClick={handleSectionFormToggle} >
+                            <PlusDiv>
+                                <Plus>+</Plus>
+                            </PlusDiv>
+                            <ButtonText>Add Section</ButtonText>
+                        </AddButton>
+                    </div> 
+                    )}
         </div>
     )
 }
