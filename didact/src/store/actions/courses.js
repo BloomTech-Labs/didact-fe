@@ -11,22 +11,23 @@ export const ADD_COURSE_DATA_SUCCESS = 'ADD_COURSE_DATA_SUCCESS';
 export const ADD_COURSE_DATA_FAIL = 'ADD_COURSE_DATA_FAIL';
 export const EDIT_COURSE_DATA_START = 'EDIT_COURSE_DATA_START';
 export const EDIT_COURSE_DATA_SUCCESS = 'EDIT_COURSE_DATA_SUCCESS';
-export const EDIT_COURSE_DATA_FAIL = 'EDIT_COURSE_DATA_FAIL';
+export const EDIT_COURSE_DATA_FAIL = 'EDIT_COURSE_DATA_FAIL'; 
 export const DELETE_COURSE_DATA_START = 'DELETE_COURSE_DATA_START';
 export const DELETE_COURSE_DATA_SUCCESS = 'DELETE_COURSE_DATA_SUCCESS';
+export const UPDATE_TAGS = 'UPDATE_TAGS';
 export const DELETE_COURSE_DATA_FAIL = 'DELETE_COURSE_DATA_FAIL';
 export const ADD_TAG_TO_COURSE_START = "ADD_TAG_TO_COURSE_START"
 export const ADD_TAG_TO_COURSE_SUCCESS = "ADD_TAG_TO_COURSE_SUCCESS"
 export const ADD_TAG_TO_COURSE_FAIL = "ADD_TAG_TO_COURSE_FAIL"
-export const ADD_SECTION_START = "ADD_SECTION_START"
-export const ADD_SECTION_SUCCESS = "ADD_SECTION_SUCCESS"
-export const ADD_SECTION_FAIL = "ADD_SECTION_FAIL"
-export const UPDATE_SECTION_START = "UPDATE_SECTION_START"
-export const UPDATE_SECTION_SUCCESS = "UPDATE_SECTION_SUCCESS"
-export const UPDATE_SECTION_FAIL = "UPDATE_SECTION_FAIL"
-export const GET_SECTIONS_START = "GET_SECTIONS_START"
-export const GET_SECTIONS_SUCCESS = "GET_SECTIONS_SUCCESS"
-export const GET_SECTIONS_FAIL = "GET_SECTIONS_FAIL"
+// export const ADD_SECTION_START = "ADD_SECTION_START"
+// export const ADD_SECTION_SUCCESS = "ADD_SECTION_SUCCESS"
+// export const ADD_SECTION_FAIL = "ADD_SECTION_FAIL"
+// export const UPDATE_SECTION_START = "UPDATE_SECTION_START"
+// export const UPDATE_SECTION_SUCCESS = "UPDATE_SECTION_SUCCESS"
+// export const UPDATE_SECTION_FAIL = "UPDATE_SECTION_FAIL"
+// export const GET_SECTIONS_START = "GET_SECTIONS_START"
+// export const GET_SECTIONS_SUCCESS = "GET_SECTIONS_SUCCESS"
+// export const GET_SECTIONS_FAIL = "GET_SECTIONS_FAIL"
 export const GET_DETAILED_COURSE_START = "GET_DETAILED_COURSE_START"
 export const GET_DETAILED_COURSE_SUCCESS = "GET_DETAILED_COURSE_SUCCESS"
 export const GET_DETAILED_COURSE_FAIL = "GET_DETAILED_COURSE_FAIL"
@@ -48,10 +49,11 @@ export const courseEndPoint =() => dispatch => {
 
 export const getCourseById =(id) => dispatch => {
     dispatch({type: SINGLE_COURSE_DATA_START})
+    console.log(id)
     axiosWithAuth()
     .get(`${baseURL}${id}`)
     .then(res => {
-        // console.log('single course api response: ', res)
+        console.log('single course api response: ', res.data)
         dispatch({type: SINGLE_COURSE_DATA_SUCCESS, payload: res.data})
     })
     .catch(err => {
@@ -75,13 +77,14 @@ export const addCourse =(values, props) => dispatch => {
     })
 }
 
-export const editCourse =(id, values) => dispatch => {
+export const editCourse =(id, changes) => dispatch => {
     dispatch({type: EDIT_COURSE_DATA_START})
+    console.log("CHANGES!: ", changes)
     axiosWithAuth()
-    .put(`${baseURL}${id}`, values)
+    .put(`${baseURL}${id}`, {changes})
     .then(res => {
         // console.log('edit course api response: ', res)
-        dispatch({type: EDIT_COURSE_DATA_SUCCESS, payload: res.data})
+        dispatch({type: EDIT_COURSE_DATA_SUCCESS, payload: changes})
     })
     .catch(err => {
         dispatch({type: EDIT_COURSE_DATA_FAIL, payload: err})
@@ -116,51 +119,51 @@ export const addTagToCourse = (id, tag) => dispatch =>
     })
 }
 
-export const getSectionsByCourseId = (id) => dispatch =>
-{
-    dispatch({ type: GET_SECTIONS_START })
-    axiosWithAuth()
-    .get(`${baseURL}${id}/sections`)
-    .then(res =>
-        {
-            console.log(`res from getSectionsByCourseId`, res)
-            dispatch({ type: GET_SECTIONS_SUCCESS, payload: res.data })
-        })
-    .catch(err =>
-        {
-            console.log(`err from getSectionsByCourseId`, err)
-        })
-}
+// export const getSectionsByCourseId = (id) => dispatch =>
+// {
+//     dispatch({ type: GET_SECTIONS_START })
+//     axiosWithAuth()
+//     .get(`${baseURL}${id}/sections`)
+//     .then(res =>
+//         {
+//             console.log(`res from getSectionsByCourseId`, res)
+//             dispatch({ type: GET_SECTIONS_SUCCESS, payload: res.data })
+//         })
+//     .catch(err =>
+//         {
+//             console.log(`err from getSectionsByCourseId`, err)
+//         })
+// }
 
-export const addSectionToCourse = (id, sectionObj) => dispatch =>
-{
-    dispatch({ type: ADD_SECTION_START })
-    axiosWithAuth()
-    .post(`${baseURL}${id}/sections`, sectionObj)
-    .then(res => 
-        {
-            console.log('res from add section to course', res)
-            dispatch({ type: ADD_SECTION_SUCCESS })
-        })
-    .catch(err => {
-        dispatch({ type: ADD_SECTION_FAIL, payload: err })
-    })
-}
+// export const addSectionToCourse = (id, sectionObj) => dispatch =>
+// {
+//     dispatch({ type: ADD_SECTION_START })
+//     axiosWithAuth()
+//     .post(`${baseURL}${id}/sections`, sectionObj)
+//     .then(res => 
+//         {
+//             console.log('res from add section to course', res)
+//             dispatch({ type: ADD_SECTION_SUCCESS })
+//         })
+//     .catch(err => {
+//         dispatch({ type: ADD_SECTION_FAIL, payload: err })
+//     })
+// }
 
-export const updateSection = (courseId, sectionId, changes) => dispatch =>
-{
-    dispatch({ type: UPDATE_SECTION_START })
-    axiosWithAuth()
-    .put(`${baseURL}${courseId}/sections/${sectionId}`, changes)
-    .then(res => 
-        {
-            console.log('res from updateSection', res)
-            dispatch({ type: UPDATE_SECTION_SUCCESS })
-        })
-    .catch(err => {
-        dispatch({ type: UPDATE_SECTION_FAIL, payload: err })
-    })
-}
+// export const updateSection = (courseId, sectionId, changes) => dispatch =>
+// {
+//     dispatch({ type: UPDATE_SECTION_START })
+//     axiosWithAuth()
+//     .put(`${baseURL}${courseId}/sections/${sectionId}`, changes)
+//     .then(res => 
+//         {
+//             console.log('res from updateSection', res)
+//             dispatch({ type: UPDATE_SECTION_SUCCESS })
+//         })
+//     .catch(err => {
+//         dispatch({ type: UPDATE_SECTION_FAIL, payload: err })
+//     })
+// }
 
 export const getDetailedCourse = (id) => async dispatch =>
 {

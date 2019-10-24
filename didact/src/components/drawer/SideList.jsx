@@ -36,12 +36,12 @@ const SideList = () => {
             alignContent: 'center',
             color: "white", 
           },
-          hoverTab: {
-              "&:hover": {
-                  backgroundColor: "white",
-                  color: "black",
-              },
-          }
+        //   hoverTab: {
+        //       "&:hover": {
+        //           backgroundColor: "white",
+        //           color: "black",
+        //       },
+        //   }
           
     }));
 
@@ -54,7 +54,7 @@ const SideList = () => {
                 <ListItem className = {classes.hoverTab}
                     button
                     component={NavLink}
-                    to="/"
+                    exact to="/"
                     style={{ textDecoration: "none" }}
                     activeClassName={classes.activeTab}
                     key="Dashboard"

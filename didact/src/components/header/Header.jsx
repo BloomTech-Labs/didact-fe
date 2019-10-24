@@ -19,7 +19,8 @@ const HeaderComponent = (props) => {
         borderRadius: "10px 10px 10px 10px",
         backgroundColor: 'gray',
         color: 'lightgray',
-        position: 'fixed'
+        top: 0,
+        // position: 'relative'
     },
     // appBarDesktopProfile: {
     //     width: `calc(100vw - 100px)`,
