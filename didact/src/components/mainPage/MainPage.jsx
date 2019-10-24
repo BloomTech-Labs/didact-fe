@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
     },
     content: {
         flexGrow: 1,
-        padding: theme.spacing(3),
+        paddingTop: theme.spacing(3),
         // width: "1000px",
         // display: 'flex',
         // flexDirection: 'column',
@@ -125,10 +125,10 @@ function MainPage(props) {
                     <div className={classes.root}>
                         <CssBaseline />
                         <PageFlex>
-                            <div>
+                            <div className="drawer">
                                 <DrawerComponent handleDrawerOpen={handleDrawerOpen} open={open} />
                             </div>
-                            <div style={{width: "100%"}}>
+                            <div className="headerMain">
                                 <HeaderComponent open={open} />
                                 <main className={classes.content}>
                                     <div className={classes.toolbar} />
