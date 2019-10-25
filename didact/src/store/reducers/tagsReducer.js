@@ -63,13 +63,13 @@ export const tagsReducer = (state = initialState, action) =>
             return {
                 ...state,
                 isLoading: true,
-                error: "",
+                error: "", 
             }
         case DELETE_TAGS_SUCCESS:
             return {
                 ...state,
                 isLoading: false,
-                courseTags: action.payload,
+                courseTags: state.courseTags.filter(el => el !== action.payload),
                 error: "",
             }
         case DELETE_TAGS_FAILURE:

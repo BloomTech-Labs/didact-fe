@@ -135,7 +135,8 @@ export const sectionsReducer = (state = initialState, action) =>
             return {
                 ...state,
                 isLoading: false,
-                lessons: action.payload.lessons,
+                lessons: [...state.lessons,
+                ...action.payload.lessons.courseSection],
                 error: "",
             }
         case GET_LESSONS_FAIL:

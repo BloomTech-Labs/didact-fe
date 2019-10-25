@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from "react";
-import { Route, Redirect} from "react-router-dom";
+import React from "react";
+import { Route } from "react-router-dom";
 import FormikLoginForm from "./components/login/Login.jsx";
 import FormikRegisterForm from "./components/register/Register.jsx";
 import Auth from './auth/Auth';

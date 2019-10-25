@@ -14,7 +14,7 @@ const HeaderComponent = (props) => {
 
     const headerStyles = makeStyles(theme => ({
     appBarDesktop: {
-        width: `calc(100% - 100px)`,
+        width: `calc(100% - 115px)`,
         margin: "10px 10px 10px 10px",
         borderRadius: "10px 10px 10px 10px",
         backgroundColor: 'gray',
@@ -39,7 +39,7 @@ const HeaderComponent = (props) => {
     },
     appBarShift: {
         marginLeft: "240px",
-        width: `calc(100% - (240px + 30px))`,
+        width: `calc(100% - (260px + 30px))`,
         transition: theme.transitions.create(['width', 'margin'], {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.enteringScreen,
@@ -97,7 +97,7 @@ const HeaderComponent = (props) => {
                         third
                     </Button>
                     <Button color="inherit">User Name</Button>
-                    <Profile />
+                    <Profile props = {props}/>
                     {/* <button onClick={handleOpen} className = {classes.iconImage}>
                     </button> */}
                 </div>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Form, Field, withFormik } from "formik";
 import * as Yup from 'yup';
 import { registerAction } from '../../store/actions';
@@ -11,7 +11,7 @@ import HeaderNoIcons from '../header/HeaderNoIcons'
 import { makeStyles } from '@material-ui/core/styles';
 
 
-const useStyles = makeStyles(theme => ({
+ makeStyles(theme => ({
     header: {
         width: '50%',
         margin: '0 auto',
@@ -81,7 +81,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const RegisterForm = (props) => {
-    const classes = useStyles();
+
     const { errors, touched } = props;
     if (localStorage.getItem('token')) {
         props.history.push('/')
@@ -162,7 +162,7 @@ const FormikRegisterForm = withFormik({
 
 const FormikRegisterWrapper = props => {
     const dispatch = useDispatch();
-    const classes = useStyles();
+    
 
     console.log(dispatch)
     return (
