@@ -6,24 +6,20 @@ import Section from './Section'
 
 
 
-const Sections = ({ props }) => {
+const Sections = ({ course, props }) => {
 
     const dispatch = useDispatch()
     const sections = useSelector(state => state.sectionsReducer.sections)
+    console.log(sections)
     useEffect(() => {
-        dispatch(getSectionsByCourseId(props.props.match.params.id))
-    }, [])
+        dispatch(getSectionsByCourseId(props.match.params.id))
+    }, [dispatch, props.match.params.id])
 
-    // useEffect(() => {
-    //     dispatch(getLessonsBySectionId(props.props.match.params.id, section.id))
-    // }, [])
-
-    // const filterLesson = props.lesson.filter(l => props.section.id === l.course_sections_id)
     
     return (
         <>
             {sections ? sections.map(section =>  (
-                <Section key={section.id} section={section} props={props} />
+                <Section key={section.id} section={section} props={props}/>
             )) : null}
         </>
     )

@@ -1,19 +1,16 @@
 import React, {useState, useEffect} from 'react'
 import Lesson from './Lesson'
 
-const Lessons = ({...props}) => {
-    console.log("lesson Props:", props)
-
+const Lessons = ({section, props, lessons}) => {
     const [filterLesson, setFilterLesson] = useState([]);
 
     useEffect(() => {
-        if(props.lessons) setFilterLesson(props.lessons.filter(l => props.section.id === l.course_sections_id))
-    },[props.lessons])
+        if(lessons) setFilterLesson(lessons.filter(l => section.id === l.course_sections_id))
+    },[lessons, section.id])
 
     return(
         <>
-            {filterLesson ? filterLesson.map(lesson => <Lesson key={lesson.id} section = {props.section} lesson={lesson} />) : null}
-            {/* {props.lessons && props.lessons.filter(lesson => lesson.course_sections_id === props.section.id) ? (<Lesson key={lesson.id} section = {props.section} lesson={props.lesson} />) : null} */}
+            {filterLesson ? filterLesson.map(lesson => <Lesson key={lesson.id} section = {section} lesson={lesson} props={props} />) : null}
         </>
     )
 }

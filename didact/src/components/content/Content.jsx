@@ -26,14 +26,14 @@ const Content = (props) => {
         },
         placeHolder: {
             backgroundColor: "gray",
-            width: "200px",
+            width: "240px",
             height: "100px",
             borderRadius: 15,
             margin: "10px 0",
         },
         placeHolder2: {
             backgroundColor: "#ebe8e1",
-            width: "200px",
+            width: "240px",
             height: "120px",
             borderRadius: 15,
             margin: "10px 0",

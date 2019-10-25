@@ -62,22 +62,12 @@ const HeaderComponent = (props) => {
 }));
 
     const classes = headerStyles();
-    // const [openProfile, setOpenProfile] = React.useState(false);
+
     const open = props.open
 
-    // const handleOpen = () => {
-    //     setOpenProfile(true);
-    //   };
-
-    //   const handleClose = () => {
-    //     setOpenProfile(false);
-    //   };      
-
     return (
-        <>
-        {/* {openProfile ? 
-       (  */}
-            <AppBar
+     <>
+         <AppBar
             className={clsx(classes.appBarDesktop, {
                 [classes.appBarShift]: open,
             })}
@@ -91,7 +81,7 @@ const HeaderComponent = (props) => {
                         <DashboardIcon />
                     </Button>
                     <Button className={classes.iconToolBar} color="inherit">
-                        <MessageIcon />
+                                 <MessageIcon />
                     </Button>
                     <Button className={classes.iconToolBar} color="inherit">
                         third
@@ -102,8 +92,8 @@ const HeaderComponent = (props) => {
                     </button> */}
                 </div>
             </Toolbar>
-        </AppBar>
-        {/* ) :  <AppBar
+            </AppBar>
+         {/* ) :  <AppBar
             className={clsx(classes.appBarDesktop, {
                 [classes.appBarShift]: open,
             })}
@@ -126,11 +116,10 @@ const HeaderComponent = (props) => {
                     <Profile open = {openProfile} setOpen = {setOpenProfile} handleClose = {handleClose}/>
                     <button onClick={handleOpen} className = {classes.iconImage}>
                     </button>
+                    <Profile />
                 </div>
             </Toolbar>
-        </AppBar>
-            } */}
-
+        </AppBar> */}
         </>
     )
 }

@@ -10,7 +10,7 @@ import {Redirect} from "react-router-dom";
 const useStyles = makeStyles(theme => ({
   buttons: {
     border: "none",
-    backgroundColor: "none",
+    backgroundColor: "white",
     outline: 0,
     cursor: 'pointer'
   },
@@ -29,7 +29,8 @@ const useStyles = makeStyles(theme => ({
   closeModel: {
     margin: "-40px 0 0 210px",
     color: 'gray',
-    cursor: "pointer"
+    cursor: "pointer",
+    backgroundColor: 'white'
     
   },
   description: {
@@ -114,7 +115,7 @@ export default function Profile(props) {
 
   const handleLogOut = () => {
         localStorage.clear('token')
-        props.props.props.history.push('/login')
+        props.props.history.push('/login')
   }
 
   const content = () => {

@@ -1,6 +1,6 @@
 import React, { useState} from 'react';
 
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { addLessonToSection } from '../../store/actions'
 
 import { makeStyles, withStyles } from '@material-ui/core/styles';
@@ -128,10 +128,8 @@ const CssTextField = withStyles({
 })(TextField);
 
 const AddLesson = (props) => {
-    // console.log('ADD Lesson props', props)
     const classes = useStyles();
     const dispatch = useDispatch()
-    // const lessons = useSelector(state => state.sectionsReducer.lessons)
     const [values, setValues] = useState({
             name: "",
             description: "",
@@ -147,7 +145,7 @@ const AddLesson = (props) => {
 
     const handleSubmit = event => {
         event.preventDefault();
-        dispatch(addLessonToSection(props.props.props.match.params.id, props.section.id, values))
+        dispatch(addLessonToSection(props.props.match.params.id, props.section.id, values))
         props.setAddLessonChange(false)
     };
    
