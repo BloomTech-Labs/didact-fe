@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme => ({
     content: {
         flexGrow: 1,
         paddingTop: theme.spacing(3),
-        paddingLeft: "21px",
+        // paddingLeft: "21px",
         // width: "1000px",
         // display: 'flex',
         // flexDirection: 'column',
