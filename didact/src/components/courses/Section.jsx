@@ -142,8 +142,8 @@ const CssTextField = withStyles({
 const Section = ({section, props}) => {
     const classes = useStyles();
     const dispatch = useDispatch()
-    const lessons = useSelector(state => state.sectionsReducer.lessons)
-    const sectionsState = useSelector(state => state.sectionsReducer.sections)
+    const state = useSelector(state => state.sectionsReducer)
+    const lessons = state.lessons
     const [expanded, setExpanded] = React.useState(false);
     const [sectionEdit, setSectionEdit] = useState(true)
     const [addLessonChange, setAddLessonChange] = useState(false);

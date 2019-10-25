@@ -121,8 +121,8 @@ export const addLessonToSection = (courseId, sectionId, details) => dispatch =>
     .then(res => 
         {
             // console.log('res from add lesson to section', res)
-            details.id = res.data.id
-            dispatch({ type: ADD_LESSON_SUCCESS, payload: details  })
+            details.id = res.data.id[0]
+            dispatch({ type: ADD_LESSON_SUCCESS, payload: {...details, course_sections_id: sectionId }})
         })
     .catch(err => 
         {

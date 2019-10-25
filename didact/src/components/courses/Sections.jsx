@@ -12,7 +12,6 @@ const Sections = ({ course, props }) => {
     let state = useSelector(state => state.sectionsReducer)
     let sections = state.sections
     let displaySections = sections.sort((a,b) => a.order - b.order)
-    console.log(sections)
     useEffect(() => {
         dispatch(getSectionsByCourseId(props.match.params.id))
     }, [dispatch, props.match.params.id])

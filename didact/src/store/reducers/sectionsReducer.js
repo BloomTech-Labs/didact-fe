@@ -153,6 +153,7 @@ export const sectionsReducer = (state = initialState, action) => {
                 error: "",
             }
         case ADD_LESSON_SUCCESS:
+            console.log(action.payload)
             return {
                 ...state,
                 isLoading: false,
