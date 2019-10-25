@@ -73,7 +73,7 @@ const useStyles = makeStyles(theme => ({
 
 function MainPage(props) {
     const classes = useStyles();
-   
+    console.log(props)
   
     // const tabletSize = useMediaQuery("(max-width:770px");
     const phoneSize = useMediaQuery("(max-width:770px)");
@@ -123,7 +123,7 @@ function MainPage(props) {
                             <MobileDrawerComponent handleDrawerOpenMobile={handleDrawerOpenMobile()} openMobile={openMobile} />
                         </div>
                         <div>
-                            <MobileHeaderComponent />
+                            <MobileHeaderComponent props = {props}/>
                             <main className={openMobile ? classes.contentShadow : classes.contentMobile}>
                                 <div className={classes.toolbar} />
                                 <Content phoneSize={phoneSize} open={open} {...props}/>
@@ -152,7 +152,7 @@ function MainPage(props) {
                                 <DrawerComponent handleDrawerOpen={handleDrawerOpen} open={open} />
                             </div>
                             <div className="headerMain">
-                                <HeaderComponent open={open} />
+                                <HeaderComponent props = {props} open={open} />
                                 <main className={classes.content}>
                                     <div className={classes.toolbar} />
                                     <Content phoneSize={phoneSize} open={open} {...props}/>

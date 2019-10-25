@@ -97,7 +97,7 @@ const HeaderComponent = (props) => {
                         third
                     </Button>
                     <Button color="inherit">User Name</Button>
-                    <Profile />
+                    <Profile props = {props}/>
                     {/* <button onClick={handleOpen} className = {classes.iconImage}>
                     </button> */}
                 </div>
