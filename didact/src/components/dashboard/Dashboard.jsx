@@ -19,7 +19,7 @@ function Dashboard() {
 
   return (
     <>
-      <Link style={{ textDecoration: 'none' }} to='/addcourse'>
+      <Link style={{ textDecoration: 'none' }} to='/courses/add'>
         <AddButton>
           <PlusDiv>
             <Plus>+</Plus>

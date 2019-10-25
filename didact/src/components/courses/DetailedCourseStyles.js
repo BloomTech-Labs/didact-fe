@@ -5,6 +5,23 @@ export const DetailedCourseWrapper = styled.div`
 
     .courseWrapper {
         height: 40%;
+
+        .courseFooter {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: space-between;
+
+            .buttons {
+                margin: 0;
+                padding: 0;
+            }
+
+            .tags {
+                margin: 0;
+                padding: 0;
+            }
+        }
     }
 
     .expansionPanel {

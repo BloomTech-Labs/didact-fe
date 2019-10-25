@@ -81,7 +81,7 @@ const SideList = () => {
                     className = {classes.hoverTab}
                     button
                     component={NavLink}
-                    to="/addcourse"
+                    to="/courses"
                     style={{ textDecoration: "none" }}
                     activeClassName={classes.activeTab}
                     key="Add Course">
