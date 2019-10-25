@@ -92,7 +92,7 @@ const CssTextField = withStyles({
     },
 })(TextField);
 
-const Tags = (props) => {
+const Tags = ({props, course}) => {
 
     const classes = useStyles();
     const dispatch = useDispatch()
@@ -117,18 +117,18 @@ const Tags = (props) => {
 
     const handleSubmit = event => {
         event.preventDefault()
-        dispatch(addTag(props.props.props.match.params.id, tag))
+        dispatch(addTag(props.match.params.id, tag))
         setTag({tag: ''})
     }
 
     const handleSubmitSelect = event => {
         event.preventDefault()
-        dispatch(addTag(props.props.props.match.params.id, tag))
+        dispatch(addTag(props.match.params.id, tag))
         setTag({tag: ''})
     }
 
     const handleTagDelete = (tag) => {
-        dispatch(deleteTag(props.props.props.match.params.id, tag))
+        dispatch(deleteTag(props.match.params.id, tag))
     }
 
 
@@ -137,7 +137,7 @@ const Tags = (props) => {
         <>
             <Card className={classes.card}>
                 <CardContent className={classes.tagDisplay}>
-                    {props.course.tags ? props.course.tags.map((tag, i) => {
+                    {course.tags ? course.tags.map((tag, i) => {
                         return (
                             <div key={i + tag + 1}>
                                 <div style={{position: 'relative'}} key={i + tag + 2} className={classes.title}>

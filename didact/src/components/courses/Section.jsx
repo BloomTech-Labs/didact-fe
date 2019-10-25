@@ -139,10 +139,11 @@ const CssTextField = withStyles({
     },
 })(TextField);
 
-const Section = ({props, section}) => {
+const Section = ({section, props}) => {
     const classes = useStyles();
     const dispatch = useDispatch()
     const lessons = useSelector(state => state.sectionsReducer.lessons)
+    const sectionsState = useSelector(state => state.sectionsReducer.sections)
     const [expanded, setExpanded] = React.useState(false);
     const [sectionEdit, setSectionEdit] = useState(true)
     const [addLessonChange, setAddLessonChange] = useState(false);
@@ -155,17 +156,17 @@ const Section = ({props, section}) => {
 
     useEffect(() => {
         setChanges({
-            ...changes,
             name: section.name,
             order: section.order,
             link: section.link,
             description: section.description,
          })
     }, [section])
+   
 
     useEffect(() => {
-        dispatch(getLessonsBySectionId(props.props.match.params.id, section.id))
-    }, [])
+        dispatch(getLessonsBySectionId(props.match.params.id, section.id))
+    }, [dispatch, props.match.params.id, section.id])
 
     const toggleEdit = () => {
         setSectionEdit(!sectionEdit)
@@ -181,14 +182,19 @@ const Section = ({props, section}) => {
 
     const handleSubmit = event => {
         event.preventDefault();
-        dispatch(updateSection(props.props.match.params.id, section.id, changes))
+        dispatch(updateSection(props.match.params.id, section.id, changes))
         setSectionEdit(true)
     };
+    // console.log(props.match.params.id)
+    // console.log(section.id)
+    // console.log(changes)
+
 
     const handleLessonFormToggle = () => {
         setAddLessonChange(true)
     }
-    console.log('lessons in section: ', lessons)
+    // console.log('lessons in section: ', lessons)
+    // console.log(section)
     return (
         <>
             {sectionEdit ? (
@@ -197,8 +203,6 @@ const Section = ({props, section}) => {
                     <Typography variant="h5" component="h2">
                         {section.name}
                     </Typography>
-                    {/* <Typography className={classes.title} color="textSecondary" gutterBottom>
-                      </Typography> */}
                     <CardActions className={classes.descriptionDiv} disableSpacing>
                         <Typography className={classes.descriptionTitle} >Description:</Typography>
                         <IconButton
@@ -234,7 +238,7 @@ const Section = ({props, section}) => {
                         <AddCircleIcon className = {classes.iconCircle}/>
                          <ButtonTextInSection>Add Lesson</ButtonTextInSection>
                     </AddButtonInSection>
-                     {addLessonChange ? <AddLessons props = {props} section = {section} setAddLessonChange={setAddLessonChange} /> : null }
+                     {addLessonChange ? <AddLessons props={props} section ={section} setAddLessonChange={setAddLessonChange} /> : null }
                 
             </Card>
             ) : (

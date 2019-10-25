@@ -66,8 +66,8 @@ const HeaderComponent = (props) => {
     const open = props.open
 
     return (
-        <>
-            <AppBar
+     <>
+         <AppBar
             className={clsx(classes.appBarDesktop, {
                 [classes.appBarShift]: open,
             })}
@@ -81,16 +81,45 @@ const HeaderComponent = (props) => {
                         <DashboardIcon />
                     </Button>
                     <Button className={classes.iconToolBar} color="inherit">
-                        <MessageIcon />
+                                 <MessageIcon />
                     </Button>
                     <Button className={classes.iconToolBar} color="inherit">
                         third
                     </Button>
                     <Button color="inherit">User Name</Button>
+                    <Profile props = {props}/>
+                    {/* <button onClick={handleOpen} className = {classes.iconImage}>
+                    </button> */}
+                </div>
+            </Toolbar>
+            </AppBar>
+         {/* ) :  <AppBar
+            className={clsx(classes.appBarDesktop, {
+                [classes.appBarShift]: open,
+            })}
+        >
+            <Toolbar>
+                <Typography variant="h5">
+                    Didact
+                </Typography>
+                <div className={classes.toolbarIcons}>
+                    <Button className={classes.iconToolBar} color="inherit">
+                        first
+                    </Button>
+                    <Button className={classes.iconToolBar} color="inherit">
+                        second
+                    </Button>
+                    <Button className={classes.iconToolBar} color="inherit">
+                        third
+                    </Button>
+                    <Button color="inherit">User Name</Button>
+                    <Profile open = {openProfile} setOpen = {setOpenProfile} handleClose = {handleClose}/>
+                    <button onClick={handleOpen} className = {classes.iconImage}>
+                    </button>
                     <Profile />
                 </div>
             </Toolbar>
-        </AppBar>
+        </AppBar> */}
         </>
     )
 }
