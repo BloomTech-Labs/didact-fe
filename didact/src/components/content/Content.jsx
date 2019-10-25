@@ -64,6 +64,9 @@ const Content = (props) => {
             ) : null}
             {(() =>
             {
+                // case ('courses'):
+                    //     return <DetailedCourse id={props.match.params.id} />
+
                 switch(props.page)
                 {
                     case ('dashboard'):
@@ -71,6 +74,8 @@ const Content = (props) => {
                     case ('addcourse'):
                         return <AddCourse props = {props}/>
                     case ('courses'):
+                        return <Dashboard />
+                    case ('detailedcourse'):
                         return <DetailedCourse id={props.match.params.id} />
                     case ('editcourse'):
                         return <EditCourse id={props.match.params.id} props={props}/>
