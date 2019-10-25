@@ -13,6 +13,9 @@ const DetailedCourse = props => {
 
     const dispatch = useDispatch()
     const state = useSelector(state => state)
+    const id = state.onboardingReducer.user.id
+    console.log('id from state', id)
+    console.log('user from state', state.onboardingReducer.user)
     useEffect(_ => {
         dispatch(getDetailedCourse(props.id))
     }, [dispatch])
