@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const DetailedCourseWrapper = styled.div`
-    width: 60%;
+    width : 789px;
 
     .courseWrapper {
         height: 40%;

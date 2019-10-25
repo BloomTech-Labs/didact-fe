@@ -155,7 +155,8 @@ const FormikRegisterForm = withFormik({
         last_name: Yup.string().required("Last Name is required"),
     }),
     handleSubmit(values, props) {
-        props.props.dispatch(registerAction(props.props.history, values))
+        const registerValues = {email: values.email, password: values.password, first_name: values.first_name, last_name: values.last_name}
+        props.props.dispatch(registerAction(props.props.history, registerValues))
     }
 
 })(RegisterForm);
