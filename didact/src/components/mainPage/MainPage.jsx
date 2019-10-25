@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
-import { courseEndPoint, verifyToken } from "../../store/actions/index.js";
+import { verifyToken } from "../../store/actions/index.js";
 import { useDispatch, useSelector } from "react-redux";
 
 import { PageFlex } from './PageStyles'
 
 import { makeStyles, useTheme } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
+
 import CssBaseline from "@material-ui/core/CssBaseline";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import DrawerComponent from '../drawer/Drawer'
@@ -24,6 +24,7 @@ const useStyles = makeStyles(theme => ({
     content: {
         flexGrow: 1,
         paddingTop: theme.spacing(3),
+        paddingLeft: "21px",
         // width: "1000px",
         // display: 'flex',
         // flexDirection: 'column',
@@ -73,7 +74,7 @@ const useStyles = makeStyles(theme => ({
 function MainPage(props) {
     const classes = useStyles();
    
-    const theme = useTheme();
+  
     // const tabletSize = useMediaQuery("(max-width:770px");
     const phoneSize = useMediaQuery("(max-width:770px)");
     const [open, setOpen] = React.useState(true);
@@ -106,7 +107,7 @@ function MainPage(props) {
 
 
     const dispatch = useDispatch();
-    const state = useSelector(state => state);
+    
 
  
 

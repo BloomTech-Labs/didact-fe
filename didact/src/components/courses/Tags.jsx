@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { addTag, getTags } from '../../store/actions'
+import { addTag, getTags, deleteTag } from '../../store/actions'
 import { useSelector, useDispatch } from 'react-redux';
 import { CoursesCard, CourseMenuDiv, CourseDiv } from '../dashboard/DashboardStyles';
 import { TagDelete, P } from '../dashboard/ButtonStyles';
@@ -94,8 +94,6 @@ const CssTextField = withStyles({
 
 const Tags = (props) => {
 
-
-    console.log(props)
     const classes = useStyles();
     const dispatch = useDispatch()
     const allTags = useSelector(state => state.tagsReducer.tags)
@@ -103,20 +101,6 @@ const Tags = (props) => {
     const [tag, setTag] = useState({
         tag: ''
     });
-
-    // const inputLabel = React.useRef("100");
-    // const [labelWidth, setLabelWidth] = React.useState(0);
-    // React.useEffect(() => {
-    //     setLabelWidth(inputLabel.current.offsetWidth);
-    // }, []);
-
-
-    // const [values, setValues] = React.useState({
-    //     age: '',
-    //     name: 'hai',
-    //   });
-
-
 
     useEffect(() => {
         dispatch(getTags())
@@ -131,7 +115,6 @@ const Tags = (props) => {
         setOpenForm(!openForm)
     }
 
-    console.log("props", props.props)
     const handleSubmit = event => {
         event.preventDefault()
         dispatch(addTag(props.props.props.match.params.id, tag))
@@ -143,15 +126,12 @@ const Tags = (props) => {
         dispatch(addTag(props.props.props.match.params.id, tag))
         setTag({tag: ''})
     }
-    const handleTagDelete = () => {
 
+    const handleTagDelete = (tag) => {
+        dispatch(deleteTag(props.props.props.match.params.id, tag))
     }
-    // const handleChangeSelect = event => {
-    //     setValues(oldValues => ({
-    //       ...oldValues,
-    //       [event.target.name]: event.target.value,
-    //     }));
-    //   };
+
+
 
     return (
         <>
@@ -159,16 +139,13 @@ const Tags = (props) => {
                 <CardContent className={classes.tagDisplay}>
                     {props.course.tags ? props.course.tags.map((tag, i) => {
                         return (
-                            <>
-                            <div>
-                                
-                                <div style={{position: 'relative'}} key={i} className={classes.title} color="textSecondary" gutterBottom>
-                                <TagDelete onClick={handleTagDelete}><P>x</P></TagDelete><span style={{paddingRight: '5px'}}>{tag}</span>
+                            <div key={i + tag + 1}>
+                                <div style={{position: 'relative'}} key={i + tag + 2} className={classes.title}>
+                                <TagDelete key={i + tag + 3} onClick={() => handleTagDelete(tag)}><P key={i + tag + 4}>x</P></TagDelete><span key={i + tag + 5} style={{paddingRight: '5px'}}>{tag}</span>
                                 </div>
                                 
                             </div>
                             
-                            </>
                         )
                     }) : null}
                 </CardContent>

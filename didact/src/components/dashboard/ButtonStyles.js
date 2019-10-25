@@ -17,6 +17,7 @@ export const AddButton = styled.div`
         cursor: 'pointer';
     }
 `
+
 export const PlusDiv = styled.div`
     background: #575758;
     color: #EEEFF3;
@@ -34,6 +35,43 @@ export const Plus = styled.span`
 export const ButtonText = styled.p`
     color: black;
     padding-right: 15px;
+    font-weight: bold;
+`
+
+export const AddButtonInSection = styled.div`
+    height: 55px;
+    width: 155px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border: none;
+    background: #EEEFF3;
+    border-radius: 25px;
+    margin: -63px 10px 10px 10px;
+    padding: 0 10px;
+    &:hover {
+        cursor: 'pointer';
+    }
+`
+
+export const PlusDivInSection = styled.div`
+    background: #575758;
+    color: #EEEFF3;
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`
+export const PlusInSection = styled.span`
+    font-size: 2rem;
+    padding-top: 2.5px;
+`
+export const ButtonTextInSection = styled.p`
+    color: black;
+    padding-right: 15px;
+    font-size: 12px; 
     font-weight: bold;
 `
 

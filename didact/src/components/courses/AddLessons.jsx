@@ -1,10 +1,9 @@
 import React, { useState} from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { addSectionToCourse } from '../../store/actions'
+import { addLessonToSection } from '../../store/actions'
 
 import { makeStyles, withStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
@@ -128,16 +127,17 @@ const CssTextField = withStyles({
     },
 })(TextField);
 
-const AddSection = (props) => {
-    console.log("Add Section Props: ", props)
+const AddLesson = (props) => {
+    // console.log('ADD Lesson props', props)
     const classes = useStyles();
     const dispatch = useDispatch()
-    // const section = useSelector(state => state.sectionsReducer.section)
+    // const lessons = useSelector(state => state.sectionsReducer.lessons)
     const [values, setValues] = useState({
             name: "",
             description: "",
             order: "",
-            link: ""
+            link: "",
+            type: " "
     });
 
     
@@ -147,29 +147,38 @@ const AddSection = (props) => {
 
     const handleSubmit = event => {
         event.preventDefault();
-        dispatch(addSectionToCourse(props.props.props.match.params.id, values))
-        props.setAddSectionChange(false)
+        dispatch(addLessonToSection(props.props.props.match.params.id, props.section.id, values))
+        props.setAddLessonChange(false)
     };
    
-
-    // console.log(section) 
     return (
         <>
-            <Card className={classes.card}>
+            <div>
                 <CardContent>
                     <Typography className={classes.title} gutterBottom>
-                        Add Section
+                        Add Lesson
                      </Typography>
                     <form onSubmit={handleSubmit} className={classes.container} noValidate autoComplete="off">
                         <CssTextField
                             id="standard-name"
                             label='Name'
-                            className={classes.titleOrInstructorFields}
+                            className={classes.courseUrlField}
                             value={values.name}
                             onChange={handleChange('name')}
                             margin="normal"
                             variant="outlined"
                             placeholder="Name"
+                            InputProps={{ classes: { input: classes.input } }}
+                        />
+                        <CssTextField
+                            id="standard-name"
+                            label="Section Url"
+                            className={classes.courseUrlField}
+                            value={values.link}
+                            onChange={handleChange('link')}
+                            margin="normal"
+                            variant="outlined"
+                            placeholder="Course Url"
                             InputProps={{ classes: { input: classes.input } }}
                         />
                         <CssTextField
@@ -183,37 +192,24 @@ const AddSection = (props) => {
                             placeholder="Order"
                             InputProps={{ classes: { input: classes.input } }}
                         />
-                        <CssTextField
+                         <CssTextField
                             id="standard-name"
-                            label="Description"
-                            className={classes.descriptionField}
-                            value={values.description}
-                            onChange={handleChange('description')}
-                            margin="normal"
-                            multiline={true}
-                            rows='6'
-                            variant="outlined"
-                            placeholder="Description"
-                            InputProps={{ classes: { input: classes.inputDescription } }}
-                        />
-                        <CssTextField
-                            id="standard-name"
-                            label="Section Url"
-                            className={classes.courseUrlField}
-                            value={values.link}
-                            onChange={handleChange('link')}
+                            label="Type"
+                            className={classes.titleOrInstructorFields}
+                            value={values.type}
+                            onChange={handleChange('type')}
                             margin="normal"
                             variant="outlined"
-                            placeholder="Course Url"
+                            placeholder="Type"
                             InputProps={{ classes: { input: classes.input } }}
                         />
-                        <Button type='submit' size="small" variant="contained" className={classes.button} >Add Section</Button>
+                        <Button type='submit' size="small" variant="contained" className={classes.button} >Add Lesson</Button>
                     </form>
                 </CardContent>
-            </Card>
+            </div>
        
         </>
     )
 }
 
-export default AddSection;
+export default AddLesson;

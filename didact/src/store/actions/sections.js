@@ -1,5 +1,4 @@
 import axiosWithAuth from '../../utils/axiosWithAuth'
-import { red } from '@material-ui/core/colors'
 
 export const GET_SECTIONS_START = "GET_SECTIONS_START"
 export const GET_SECTIONS_SUCCESS = "GET_SECTIONS_SUCCESS"
@@ -103,8 +102,8 @@ export const getLessonsBySectionId = (courseId, sectionId) => dispatch =>
     .get(`${baseURL}${courseId}/sections/${sectionId}`)
     .then(res =>
         {
-            console.log(`res from getLessonsBySectionId`, res)
-            dispatch({ type: GET_LESSONS_SUCCESS, payload: res.data })
+            // console.log(`res from getLessonsBySectionId`, res)
+            dispatch({ type: GET_LESSONS_SUCCESS, payload: {lessons: res.data} })
         })
     .catch(err =>
         {
@@ -113,21 +112,21 @@ export const getLessonsBySectionId = (courseId, sectionId) => dispatch =>
         })
 }
 
-export const addLessonToSection = (courseId, sectionId, lesson) => dispatch =>
+export const addLessonToSection = (courseId, sectionId, details) => dispatch =>
 {
     dispatch({ type: ADD_LESSON_START })
-
+    
     axiosWithAuth()
-    .post(`${baseURL}${courseId}/sections/${sectionId}`, {lesson})
+    .post(`${baseURL}${courseId}/sections/${sectionId}`, {details})
     .then(res => 
         {
-            console.log('res from add lesson to section', res)
-            lesson.id = res.data.id
-            dispatch({ type: ADD_LESSON_SUCCESS, payload: lesson  })
+            // console.log('res from add lesson to section', res)
+            details.id = res.data.id
+            dispatch({ type: ADD_LESSON_SUCCESS, payload: details  })
         })
     .catch(err => 
         {
-        console.log('err from add lesson to section', err)
+        // console.log('err from add lesson to section', err)
         dispatch({ type: ADD_LESSON_FAIL, payload: err })
         })
 }
