@@ -143,7 +143,7 @@ const FormikLoginWrapper = props =>
     const dispatch = useDispatch();
     return (
         <Wrapper>
-            <HeaderNoIcons/>
+            <HeaderNoIcons history={props.history}/>
             <LoginWrapper>
                 <FormikLoginForm dispatch={dispatch} history={props.history}/>
             </LoginWrapper>

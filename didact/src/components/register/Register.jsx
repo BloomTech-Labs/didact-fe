@@ -167,7 +167,7 @@ const FormikRegisterWrapper = props => {
     console.log(dispatch)
     return (
         <Wrapper>
-            <HeaderNoIcons/>
+            <HeaderNoIcons history={props.history}/>
             <RegisterWrapper>
                 <FormikRegisterForm dispatch={dispatch} history={props.history}/>
             </RegisterWrapper>
