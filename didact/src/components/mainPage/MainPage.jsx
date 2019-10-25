@@ -8,23 +8,25 @@ import { makeStyles, useTheme } from "@material-ui/core/styles";
 
 import CssBaseline from "@material-ui/core/CssBaseline";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
+import DashboardIcon from '@material-ui/icons/Dashboard';
+import MessageIcon from '@material-ui/icons/Message';
+
 import DrawerComponent from '../drawer/Drawer'
 import MobileDrawerComponent from '../drawer/MobileDrawer'
 import HeaderComponent from '../header/Header'
 import MobileHeaderComponent from '../header/MobileHeader'
 import Content from '../content/Content'
 
+import Profile from '../profile/Profile'
 
 const useStyles = makeStyles(theme => ({
     root: {
-        display: "flex",
         backgroundColor: "lightgray",
-       
     },
     content: {
         flexGrow: 1,
         paddingTop: theme.spacing(3),
-        paddingLeft: "21px",
+        // paddingLeft: "21px",
         // width: "1000px",
         // display: 'flex',
         // flexDirection: 'column',
@@ -34,8 +36,7 @@ const useStyles = makeStyles(theme => ({
         flexGrow: 1,
         padding: theme.spacing(3),
         paddingLeft: "80px",
-        
-      },
+    },
     contentShadow: {
         background: "rgba(0, 0, 0, 0.8)",
         filter: "brightness(50%)",
@@ -152,9 +153,19 @@ function MainPage(props) {
                                 <DrawerComponent handleDrawerOpen={handleDrawerOpen} open={open} />
                             </div>
                             <div className="headerMain">
-                                <HeaderComponent props = {props} open={open} />
+                                {/* <HeaderComponent props = {props} open={open} /> */}
+                                {/* <HeaderComponent open={open} /> */}
+                                <div className="header">
+                                    <h2>Didact</h2>
+                                    <div className="navSection">
+                                        <DashboardIcon/>
+                                        <MessageIcon />
+                                        <p>User Name</p>
+                                        <Profile props = {props}/>
+                                    </div>
+                                </div>
                                 <main className={classes.content}>
-                                    <div className={classes.toolbar} />
+                                    {/* <div className={classes.toolbar} /> */}
                                     <Content phoneSize={phoneSize} open={open} {...props}/>
                                     {/*************************ADD COMPONENTS HERE *********************** */}
                                 </main>

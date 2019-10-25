@@ -41,7 +41,7 @@ function Dashboard() {
               </div>
               <div className="info">
                 <Link to={`/courses/${course.id}`} className="title" data-tip data-for={`courseName-${index}`}>{course.name}</Link>
-                <ReactTooltip id={`courseName-${index}`} place="top" type="dark" effect="solid">
+                <ReactTooltip id={`courseName-${index}`} place="right" type="dark" effect="solid">
                   <span>{course.name}</span>
                 </ReactTooltip>
                 <span className="source">Udemy</span>
