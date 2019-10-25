@@ -139,7 +139,7 @@ export const updateLesson = (courseId, sectionId, lessonId, changes) => dispatch
     .then(res => 
         {
             console.log('res from updateLesson', res)
-            dispatch({ type: UPDATE_LESSON_SUCCESS, payload: {changes:changes, id: lessonId}})
+            dispatch({ type: UPDATE_LESSON_SUCCESS, payload: {...changes, id: lessonId, course_sections_id: sectionId}})
         })
     .catch(err => {
         dispatch({ type: UPDATE_LESSON_FAIL, payload: err })

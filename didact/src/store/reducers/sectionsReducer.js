@@ -175,6 +175,7 @@ export const sectionsReducer = (state = initialState, action) => {
             let tempLessons = [...state.lessons]
             tempLessons = tempLessons.map(el => el.id === action.payload.id ? action.payload : el)
             tempLessons.sort((a, b) => a.order - b.order)
+            console.log('tempLessons', tempLessons)
             return {
                 ...state,
                 isLoading: false,

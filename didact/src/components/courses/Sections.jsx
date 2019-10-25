@@ -9,13 +9,15 @@ import Section from './Section'
 const Sections = ({ course, props }) => {
 
     const dispatch = useDispatch()
-    const sections = useSelector(state => state.sectionsReducer.sections)
+    let state = useSelector(state => state.sectionsReducer)
+    let sections = state.sections
     let displaySections = sections.sort((a,b) => a.order - b.order)
     console.log(sections)
     useEffect(() => {
         dispatch(getSectionsByCourseId(props.match.params.id))
     }, [dispatch, props.match.params.id])
 
+    
     
     return (
         <>

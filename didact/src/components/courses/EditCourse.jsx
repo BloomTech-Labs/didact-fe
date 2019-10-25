@@ -138,7 +138,6 @@ const CssTextField = withStyles({
 
 const EditCourse = ({props, id}) => {
     const course = useSelector(state => state.coursesReducer.course)
-    const sections = useSelector(state => state.sectionsReducer.sections)
     const dispatch = useDispatch()
     const classes = useStyles();
     const [expanded, setExpanded] = React.useState(false);
