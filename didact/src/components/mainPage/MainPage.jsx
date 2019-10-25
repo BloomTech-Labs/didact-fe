@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
-import { courseEndPoint, verifyToken } from "../../store/actions/index.js";
+import { verifyToken } from "../../store/actions/index.js";
 import { useDispatch, useSelector } from "react-redux";
 
 import { PageFlex } from './PageStyles'
 
 import { makeStyles, useTheme } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
+
 import CssBaseline from "@material-ui/core/CssBaseline";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import DashboardIcon from '@material-ui/icons/Dashboard';
@@ -26,6 +26,7 @@ const useStyles = makeStyles(theme => ({
     content: {
         flexGrow: 1,
         paddingTop: theme.spacing(3),
+        paddingLeft: "21px",
         // width: "1000px",
         // display: 'flex',
         // flexDirection: 'column',
@@ -49,7 +50,19 @@ const useStyles = makeStyles(theme => ({
         paddingLeft: "80px",
         padding: theme.spacing(3),
         overflow: "hidden",
+        // marginRight: '10px'
     },
+    // scrollBarMobileFix: {
+    //     position: "absolute",
+    //     right: 0,
+    //     height: "100vh",
+    //     // opacity: 0,
+    //     width: "10px",
+    //     backgroundColor: "black",
+    //     display: "block",
+    //     marginLeft: "10px",
+    //     zIndex: theme.root.zIndex + 1,
+    // },
     toolbar: {
         display: "flex",
         alignItems: "center",
@@ -62,7 +75,7 @@ const useStyles = makeStyles(theme => ({
 function MainPage(props) {
     const classes = useStyles();
    
-    const theme = useTheme();
+  
     // const tabletSize = useMediaQuery("(max-width:770px");
     const phoneSize = useMediaQuery("(max-width:770px)");
     const [open, setOpen] = React.useState(true);
@@ -76,6 +89,7 @@ function MainPage(props) {
     const handleDrawerOpen = () => {
         setOpen(!open);
     };
+
 
     const handleDrawerOpenMobile = () => event => {
         if (
@@ -94,7 +108,7 @@ function MainPage(props) {
 
 
     const dispatch = useDispatch();
-    const state = useSelector(state => state);
+    
 
  
 
@@ -118,6 +132,14 @@ function MainPage(props) {
                             </main>
                         </div>
                     </PageFlex>
+                    {openMobile ?
+                        (
+                        <div className = {classes.scrollBarMobileFix}>
+
+                        </div>
+                        ) : ( 
+                        null )
+                         }
                 </div>
             )
                 // END OF MOBILE CODE *******************************************************************

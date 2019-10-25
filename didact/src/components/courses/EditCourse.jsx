@@ -143,7 +143,6 @@ const EditCourse = (props) => {
     const [expanded, setExpanded] = React.useState(false);
     const [courseEdit, setCourseEdit] = useState(true)
     const [addSectionChange, setAddSectionChange] = useState(false);
-    const values = { ...course }
     const [changes, setChanges] = useState({
 
         name: "",
@@ -159,7 +158,6 @@ const EditCourse = (props) => {
 
     useEffect(() => {
         setChanges({
-            ...changes,
             name: course.name,
             description: course.description,
             foreign_instructors: course.foreign_instructors,
@@ -200,8 +198,6 @@ const EditCourse = (props) => {
                             <Typography variant="h5" component="h2">
                                 {course.name}
                             </Typography>
-                            {/* <Typography className={classes.title} color="textSecondary" gutterBottom>
-                      </Typography> */}
                             <CardActions className={classes.descriptionDiv} disableSpacing>
                                 <Typography className={classes.descriptionTitle} >Description:</Typography>
                                 <IconButton

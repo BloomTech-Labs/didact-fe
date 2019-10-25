@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
@@ -11,7 +11,12 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
-import { updateSection } from '../../store/actions';
+import { updateSection, getLessonsBySectionId } from '../../store/actions';
+import Lessons from './Lessons'
+import AddLessons from './AddLessons'
+
+import AddCircleIcon from '@material-ui/icons/AddCircle';
+import { AddButtonInSection, ButtonTextInSection } from '../dashboard/ButtonStyles';
 
 const useStyles = makeStyles(theme => ({
 
@@ -107,6 +112,10 @@ const useStyles = makeStyles(theme => ({
     descriptionTitle: {
         marginBottom: "0px"
     },
+    iconCircle: {
+        color: "#575758", 
+        fontSize: "2rem",
+    },
 
 }));
 
@@ -133,10 +142,10 @@ const CssTextField = withStyles({
 const Section = ({props, section}) => {
     const classes = useStyles();
     const dispatch = useDispatch()
+    const lessons = useSelector(state => state.sectionsReducer.lessons)
     const [expanded, setExpanded] = React.useState(false);
     const [sectionEdit, setSectionEdit] = useState(true)
-    const [addSectionChange, setAddSectionChange] = useState(false);
-    // const values = { ...course }
+    const [addLessonChange, setAddLessonChange] = useState(false);
     const [changes, setChanges] = useState({
         name: "",
         description: "",
@@ -154,6 +163,10 @@ const Section = ({props, section}) => {
          })
     }, [section])
 
+    useEffect(() => {
+        dispatch(getLessonsBySectionId(props.props.match.params.id, section.id))
+    }, [])
+
     const toggleEdit = () => {
         setSectionEdit(!sectionEdit)
     }
@@ -168,17 +181,19 @@ const Section = ({props, section}) => {
 
     const handleSubmit = event => {
         event.preventDefault();
-        console.log('handle submit')
         dispatch(updateSection(props.props.match.params.id, section.id, changes))
         setSectionEdit(true)
     };
-   
 
-
+    const handleLessonFormToggle = () => {
+        setAddLessonChange(true)
+    }
+    console.log('lessons in section: ', lessons)
     return (
         <>
-            {sectionEdit ? (<Card className={classes.card}>
-                <CardContent >
+            {sectionEdit ? (
+            <Card className={classes.card}>
+                <CardContent style={{marginBottom: "20px"}}>
                     <Typography variant="h5" component="h2">
                         {section.name}
                     </Typography>
@@ -211,10 +226,18 @@ const Section = ({props, section}) => {
                         {section.link}
                     </Typography>
                 </CardContent>
+                {lessons ? <Lessons section = {section} props={props} lessons={lessons} /> : null}
                 <CardActions>
                     <Button onClick={toggleEdit} type='submit' size="small" variant="contained" className={classes.button} >Edit Section</Button>
                 </CardActions>
-            </Card>) : (
+                    <AddButtonInSection onClick = {handleLessonFormToggle}>
+                        <AddCircleIcon className = {classes.iconCircle}/>
+                         <ButtonTextInSection>Add Lesson</ButtonTextInSection>
+                    </AddButtonInSection>
+                     {addLessonChange ? <AddLessons props = {props} section = {section} setAddLessonChange={setAddLessonChange} /> : null }
+                
+            </Card>
+            ) : (
                     <Card className={classes.card}>
                     <CardContent>
                         <Typography className={classes.title} gutterBottom>
