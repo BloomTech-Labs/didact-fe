@@ -3,9 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { getSectionsByCourseId } from '../../store/actions';
 import Section from './Section'
 
-
-
-
 const Sections = ({ course, props }) => {
 
     const dispatch = useDispatch()
@@ -17,8 +14,6 @@ const Sections = ({ course, props }) => {
         dispatch(getSectionsByCourseId(props.match.params.id))
     }, [dispatch, props.match.params.id])
 
-    
-    
     return (
         <>
             {sections ? displaySections.map(section =>  (
