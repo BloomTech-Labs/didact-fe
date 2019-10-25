@@ -41,7 +41,9 @@ const DrawerComponent = (props) => {
             width: "240px",
             height: "600px",
             margin: "10px",
-            marginTop: "210px",
+            marginLeft: 0,
+            marginRight: 0,
+            marginTop: "195px",
             borderRadius: "15px",
             overflowY:"hidden",
             transition: theme.transitions.create("width", {
@@ -61,7 +63,7 @@ const DrawerComponent = (props) => {
             [theme.breakpoints.up("sm")]: {
               width: theme.spacing(8) + 1, 
               margin: "10px",
-              marginTop: "210px",
+              marginTop: "195px",
               height: "600px",
               borderRadius: "15px",
             },
@@ -103,9 +105,9 @@ const DrawerComponent = (props) => {
             display: "flex",
             justifyContent: "center",
             alignContent: "space-evenly",
-            margin: "10px 0",
+            margin: "10px 0 0 0",
             flexFlow: "column wrap",
-           
+            position: 'fixed',
         },
         placeholderDivShadowed: {
             display: "flex",
@@ -117,7 +119,7 @@ const DrawerComponent = (props) => {
         },
         placeHolder: {
             backgroundColor: "gray",
-            width: "200px",
+            width: "240px",
             height: "80px",
             borderRadius: 15,
             margin: "0 0 10px 0",
@@ -125,7 +127,7 @@ const DrawerComponent = (props) => {
         }, 
         placeHolder2: {
             backgroundColor: "#ebe8e1",
-            width: "200px",
+            width: "240px",
             height: "80px",
             borderRadius: 15,
             margin: "0 0 0 0",
@@ -133,17 +135,19 @@ const DrawerComponent = (props) => {
         },
         placeHolderClosed: {
             backgroundColor: "gray",
-            width: "50px",
+            width: "65px",
             height: "80px",
             borderRadius: 15,
+            marginLeft: "20px",
             marginTop: "0",
             // position: 'fixed'
           },
           placeHolder2Closed: {
             backgroundColor: "#ebe8e1",
-            width: "50px",
+            width: "65px",
             height: "80px",
             borderRadius: 15,
+            marginLeft: "20px",
             margin: "10px 0 0 0",
             // position: 'fixed'
           },
@@ -175,6 +179,7 @@ const DrawerComponent = (props) => {
                     </div>
                 )}
         <Drawer
+            anchor={"none"}
             variant="permanent"
             className={clsx(classes.drawer, {
                 [classes.drawerOpen]: open,

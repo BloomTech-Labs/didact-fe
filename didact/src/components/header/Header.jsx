@@ -62,21 +62,11 @@ const HeaderComponent = (props) => {
 }));
 
     const classes = headerStyles();
-    // const [openProfile, setOpenProfile] = React.useState(false);
+
     const open = props.open
-
-    // const handleOpen = () => {
-    //     setOpenProfile(true);
-    //   };
-
-    //   const handleClose = () => {
-    //     setOpenProfile(false);
-    //   };      
 
     return (
         <>
-        {/* {openProfile ? 
-       (  */}
             <AppBar
             className={clsx(classes.appBarDesktop, {
                 [classes.appBarShift]: open,
@@ -98,39 +88,9 @@ const HeaderComponent = (props) => {
                     </Button>
                     <Button color="inherit">User Name</Button>
                     <Profile />
-                    {/* <button onClick={handleOpen} className = {classes.iconImage}>
-                    </button> */}
                 </div>
             </Toolbar>
         </AppBar>
-        {/* ) :  <AppBar
-            className={clsx(classes.appBarDesktop, {
-                [classes.appBarShift]: open,
-            })}
-        >
-            <Toolbar>
-                <Typography variant="h5">
-                    Didact
-                </Typography>
-                <div className={classes.toolbarIcons}>
-                    <Button className={classes.iconToolBar} color="inherit">
-                        first
-                    </Button>
-                    <Button className={classes.iconToolBar} color="inherit">
-                        second
-                    </Button>
-                    <Button className={classes.iconToolBar} color="inherit">
-                        third
-                    </Button>
-                    <Button color="inherit">User Name</Button>
-                    <Profile open = {openProfile} setOpen = {setOpenProfile} handleClose = {handleClose}/>
-                    <button onClick={handleOpen} className = {classes.iconImage}>
-                    </button>
-                </div>
-            </Toolbar>
-        </AppBar>
-            } */}
-
         </>
     )
 }
