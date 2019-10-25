@@ -10,6 +10,7 @@ const Sections = ({ course, props }) => {
 
     const dispatch = useDispatch()
     const sections = useSelector(state => state.sectionsReducer.sections)
+    let displaySections = sections.sort((a,b) => a.order - b.order)
     console.log(sections)
     useEffect(() => {
         dispatch(getSectionsByCourseId(props.match.params.id))
@@ -18,7 +19,7 @@ const Sections = ({ course, props }) => {
     
     return (
         <>
-            {sections ? sections.map(section =>  (
+            {sections ? displaySections.map(section =>  (
                 <Section key={section.id} section={section} props={props}/>
             )) : null}
         </>

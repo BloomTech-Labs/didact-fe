@@ -167,6 +167,10 @@ const EditCourse = ({props, id}) => {
         })
     }, [course])
 
+    useEffect(_ =>
+        {
+
+        }, [course])
 
     const toggleEdit = () => {
         setCourseEdit(!courseEdit)
