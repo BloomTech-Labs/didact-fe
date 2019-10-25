@@ -62,7 +62,7 @@ export const addCourse =(values, props) => dispatch => {
         dispatch({type: ADD_COURSE_DATA_SUCCESS, payload: res.data})
         return res.data
     })
-    .then(response => props.history.push(`/editcourse/${response.id}`))
+    .then(response => props.history.push(`/courses/${response.id}/edit`))
     .catch(err => {
         dispatch({type: ADD_COURSE_DATA_FAIL, payload: err})
     })
