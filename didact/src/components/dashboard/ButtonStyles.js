@@ -104,3 +104,12 @@ export const P = styled.p`
         background: maroon;
     } */
 `
+
+export const EditLessonButton = styled.button`
+       box-shadow: none;
+        border-radius: 15px;
+        background: #EBE8E1;
+        height: 30px;
+        width: 82px;
+        border: none;
+`

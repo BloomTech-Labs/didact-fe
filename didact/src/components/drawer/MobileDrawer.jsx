@@ -179,7 +179,7 @@ const MobileDrawerComponent = (props) => {
                     <MenuIcon />
                 </IconButton>
             </div>
-            {<SideList />}
+            {<SideList props = {props}/>}
         </Drawer>
     );
 };

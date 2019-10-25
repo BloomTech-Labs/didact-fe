@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import {useDispatch} from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { updateLesson } from '../../store/actions'
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 // import { updateSection, getLessonsBySectionId } from '../../store/actions';
+import {EditLessonButton} from '../dashboard/ButtonStyles'
 
 
 const useStyles = makeStyles(theme => ({
@@ -19,7 +20,7 @@ const useStyles = makeStyles(theme => ({
         boxShadow: 'none',
         borderRadius: '15px',
         background: '#EBE8E1',
-        marginLeft: '70%',
+        height: '30px',
     },
     card: {
         width: '50vw',
@@ -102,7 +103,7 @@ const useStyles = makeStyles(theme => ({
         marginBottom: "0px"
     },
     iconCircle: {
-        color: "#575758", 
+        color: "#575758",
         fontSize: "2rem",
     },
 
@@ -128,7 +129,7 @@ const CssTextField = withStyles({
     },
 })(TextField);
 
-const Lesson = ({section, lesson, props}) => {
+const Lesson = ({ section, lesson, props }) => {
     const [toggleLessonEdit, setToggleLessonEdit] = useState(false)
     const classes = useStyles();
     const dispatch = useDispatch()
@@ -149,7 +150,7 @@ const Lesson = ({section, lesson, props}) => {
             order: lesson.order,
             link: lesson.link,
             type: lesson.type
-         })
+        })
     }, [lesson])
 
     const handleChange = name => event => {
@@ -161,13 +162,15 @@ const Lesson = ({section, lesson, props}) => {
         dispatch(updateLesson(props.match.params.id, section.id, lesson.id, changes))
         handleToggleLessonEdit()
     };
-    
+
 
     return (
-        <div style={{ display: 'flex' }}>
-            {/* <button onClick={handleToggleLessonEdit}>Edit Lesson</button> */}
-            <Button onClick={handleToggleLessonEdit} type='submit' size="small" variant="contained"  >Edit Lesson</Button>
-            {!toggleLessonEdit ? <p><a style={{ textDecoration: 'none', color: 'black' }} href={lesson.link}>{lesson.name}</a> {lesson.type}</p>
+        <div>
+            {/* <Button onClick={handleToggleLessonEdit} className={classes.button} type='submit' size="small" variant="contained"  >Edit Lesson</Button> */}
+            {!toggleLessonEdit ?
+                <div style={{ display: 'flex', alignItems: 'center', margin: '0 0 15px 0', borderBottom: 'grey solid 1px'}}><EditLessonButton onClick={handleToggleLessonEdit}>Edit Lesson</EditLessonButton>
+                    <p style={{paddingLeft: '20px', width: '70%'}}><a style={{ textDecoration: 'none', color: 'black' }} href={lesson.link}>{lesson.name}</a> {lesson.type}</p>
+                </div>
                 : <form onSubmit={handleSubmit} className={classes.container} noValidate autoComplete="off">
                     <CssTextField
                         id="standard-name"
