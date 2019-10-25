@@ -25,7 +25,7 @@ import {
     DELETE_LESSON_FAIL,
 } from '../actions'
 
-const initialState = 
+const initialState =
 {
     isLoading: false,
     error: '',
@@ -35,10 +35,8 @@ const initialState =
     lesson: {}
 }
 
-export const sectionsReducer = (state = initialState, action) =>
-{
-    switch(action.type)
-    {
+export const sectionsReducer = (state = initialState, action) => {
+    switch (action.type) {
         case GET_SECTIONS_START:
             return {
                 ...state,
@@ -58,7 +56,7 @@ export const sectionsReducer = (state = initialState, action) =>
                 isLoading: false,
                 error: action.payload,
             }
-            // ADD SECTION TO COURSE
+        // ADD SECTION TO COURSE
         case ADD_SECTION_START:
             return {
                 ...state,
@@ -86,16 +84,19 @@ export const sectionsReducer = (state = initialState, action) =>
                 error: "",
             }
         case UPDATE_SECTION_SUCCESS:
-            let temp = {...state}
-            temp.sections.map((el, i) =>  {
-                if(action.payload.id === el.id){
+            let temp = { ...state }
+            console.log('reducer payload', action.payload.changes)
+            temp.sections.map((el, i) => {
+                if (action.payload.id === el.id) {
                     temp.sections[i] = action.payload.changes
                     temp.sections[i].id = action.payload.id
                 }
             })
             temp.sections.sort((a, b) => a.order - b.order)
+            console.log('reducer log:', temp.sections)
             return {
-                ...temp,
+                ...state,
+                sections: temp.sections,
                 isLoading: false,
                 error: "",
             }
@@ -171,8 +172,10 @@ export const sectionsReducer = (state = initialState, action) =>
                 error: "",
             }
         case UPDATE_LESSON_SUCCESS:
-            let tempLessons = [...state.lessons, action.payload]
-            tempLessons.sort((a,b) => a.order - b.order)
+            let tempLessons = [...state.lessons]
+            tempLessons = tempLessons.map(el => el.id === action.payload.id ? action.payload : el)
+            tempLessons.sort((a, b) => a.order - b.order)
+            console.log('tempLessons', tempLessons)
             return {
                 ...state,
                 isLoading: false,

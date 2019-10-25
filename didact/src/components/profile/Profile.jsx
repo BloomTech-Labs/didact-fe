@@ -5,11 +5,12 @@ import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
 import Button from "@material-ui/core/Button";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
+import {Redirect} from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
   buttons: {
     border: "none",
-    backgroundColor: "none",
+    backgroundColor: "white",
     outline: 0,
     cursor: 'pointer'
   },
@@ -28,7 +29,8 @@ const useStyles = makeStyles(theme => ({
   closeModel: {
     margin: "-40px 0 0 210px",
     color: 'gray',
-    cursor: "pointer"
+    cursor: "pointer",
+    backgroundColor: 'white'
     
   },
   description: {
@@ -98,11 +100,11 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function Profile() {
+export default function Profile(props) {
   const classes = useStyles();
   const phoneSize = useMediaQuery("(max-width:770px)");
   const [open, setOpen] = React.useState(false);
-
+  console.log(props)
   const handleOpen = () => {
     setOpen(true);
   };
@@ -110,6 +112,11 @@ export default function Profile() {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const handleLogOut = () => {
+        localStorage.clear('token')
+        props.props.history.push('/login')
+  }
 
   const content = () => {
     return (
@@ -134,6 +141,12 @@ export default function Profile() {
             <button className={classes.buttons}>
               <div className={classes.buttonDiv}>
                 <p>Contact Us</p>
+                <p className = {classes.paragraph} >></p>
+              </div>
+            </button>
+            <button className={classes.buttons} onClick = {handleLogOut}>
+              <div className={classes.buttonDiv}>
+                <p>Log Out</p>
                 <p className = {classes.paragraph} >></p>
               </div>
             </button>

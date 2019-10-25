@@ -77,7 +77,7 @@ const MobileHeaderComponent = (props) => {
                     <Button className={classes.iconToolBar} color="inherit">
                         third
                     </Button>
-                   <Profile />
+                   <Profile props = {props}/>
                 </div>
             </Toolbar>
         </AppBar>

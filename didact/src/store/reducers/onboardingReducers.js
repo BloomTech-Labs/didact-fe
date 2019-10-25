@@ -65,20 +65,21 @@ export const onboardingReducer = (state = initialState, action) => {
                 ...state,
                 isLoading: true,
                 error: ""
-                };
+            };
         case VERIFY_SUCCESS: 
             return {
                 ...state,
                 isLoading: false,
                 error: "",
                 tokenVerified: true,
-                };
+                user: action.payload
+            };
         case VERIFY_FAILURE:
             return {
                 ...state,
                 error: action.payload,
                 tokenVerified: false
-                };
+            };
 
         default:
             return state;

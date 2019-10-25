@@ -128,28 +128,29 @@ const CssTextField = withStyles({
     },
 })(TextField);
 
-const Lesson = ({ ...props }) => {
-    // console.log("props.lesson:", props.lesson)
-    // console.log("lessonprops.lessonprops:", props.section)
+const Lesson = ({section, lesson, props}) => {
     const [toggleLessonEdit, setToggleLessonEdit] = useState(false)
     const classes = useStyles();
     const dispatch = useDispatch()
     const [changes, setChanges] = useState({
         name: "",
-        description: "",
         order: "",
-        link: ""
+        link: "",
+        type: ""
     })
-    const [filterLesson, setFilterLesson] = useState([])
-    
-
-    // useEffect(() => {
-    //     if(props.lesson) setFilterLesson(props.lesson.filter(l => props.section.id === l.course_sections_id))
-    // },[props.lesson])
 
     const handleToggleLessonEdit = () => {
         setToggleLessonEdit(!toggleLessonEdit)
     }
+
+    useEffect(() => {
+        setChanges({
+            name: lesson.name,
+            order: lesson.order,
+            link: lesson.link,
+            type: lesson.type
+         })
+    }, [lesson])
 
     const handleChange = name => event => {
         setChanges({ ...changes, [name]: event.target.value });
@@ -157,15 +158,16 @@ const Lesson = ({ ...props }) => {
 
     const handleSubmit = event => {
         event.preventDefault();
-        // dispatch(updateLesson(props.props.match.params.id, section.id, changes))
-        // setSectionEdit(true)
-
-        
+        dispatch(updateLesson(props.match.params.id, section.id, lesson.id, changes))
+        handleToggleLessonEdit()
     };
+    
+
     return (
         <div style={{ display: 'flex' }}>
-            <button onClick={handleToggleLessonEdit}>Edit Lesson</button>
-            {!toggleLessonEdit ? <p><a style={{ textDecoration: 'none', color: 'black' }} href={props.lesson.link}>{props.lesson.name}</a> {props.lesson.type}</p>
+            {/* <button onClick={handleToggleLessonEdit}>Edit Lesson</button> */}
+            <Button onClick={handleToggleLessonEdit} type='submit' size="small" variant="contained"  >Edit Lesson</Button>
+            {!toggleLessonEdit ? <p><a style={{ textDecoration: 'none', color: 'black' }} href={lesson.link}>{lesson.name}</a> {lesson.type}</p>
                 : <form onSubmit={handleSubmit} className={classes.container} noValidate autoComplete="off">
                     <CssTextField
                         id="standard-name"

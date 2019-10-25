@@ -136,7 +136,7 @@ const CssTextField = withStyles({
     },
 })(TextField);
 
-const EditCourse = (props) => {
+const EditCourse = ({props, id}) => {
     const course = useSelector(state => state.coursesReducer.course)
     const dispatch = useDispatch()
     const classes = useStyles();
@@ -153,8 +153,8 @@ const EditCourse = (props) => {
     })
 
     useEffect(() => {
-        dispatch(getCourseById(props.id))
-    }, [props.id, dispatch])
+        dispatch(getCourseById(id))
+    }, [id, dispatch])
 
     useEffect(() => {
         setChanges({
@@ -166,6 +166,10 @@ const EditCourse = (props) => {
         })
     }, [course])
 
+    useEffect(_ =>
+        {
+
+        }, [course])
 
     const toggleEdit = () => {
         setCourseEdit(!courseEdit)
@@ -304,7 +308,7 @@ const EditCourse = (props) => {
                 )
             }
             <Tags course={course} props={props} />
-            <Sections course={course} props = {props}/>
+            <Sections course={course} props={props}/>
             {addSectionChange ? (
             <div>
                     <AddSection course={course} props={props} setAddSectionChange = {setAddSectionChange}/>
