@@ -26,7 +26,7 @@ export const PlusDiv = styled.div`
 `
 export const Plus = styled.span`
     font-size: 3rem;
-    padding-top: 3px;
+    /* padding-top: 3px; */
 `
 export const ButtonText = styled.p`
     color: black;
