@@ -204,7 +204,7 @@ const DrawerComponent = (props) => {
                     <MenuIcon />
                 </IconButton>
             </div>
-            {<SideList open = {open}/>}
+            {<SideList open = {open} props = {props}/>}
         </Drawer>
         </>
     );

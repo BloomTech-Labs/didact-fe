@@ -11,10 +11,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
-// import MenuItem from '@material-ui/core/MenuItem';
-// import FormControl from '@material-ui/core/FormControl';
-// import Select from '@material-ui/core/Select';
-// import InputLabel from '@material-ui/core/InputLabel';
+import { ButtonDiv } from '../dashboard/ButtonStyles';
 
 const useStyles = makeStyles(theme => ({
     card: {
@@ -28,8 +25,8 @@ const useStyles = makeStyles(theme => ({
         boxShadow: 'none',
         borderRadius: '15px',
         background: '#EBE8E1',
-        marginLeft: '76.5%',
-       
+        // marginLeft: '76.5%',
+
     },
     tagDisplay: {
         display: 'flex',
@@ -92,7 +89,7 @@ const CssTextField = withStyles({
     },
 })(TextField);
 
-const Tags = ({props, course}) => {
+const Tags = ({ props, course }) => {
 
     const classes = useStyles();
     const dispatch = useDispatch()
@@ -105,10 +102,10 @@ const Tags = ({props, course}) => {
     useEffect(() => {
         dispatch(getTags())
     }, [])
- 
+
     const handleChange = name => event => {
         setTag({ ...tag, [name]: event.target.value });
-       
+
     };
 
     const handleClick = () => {
@@ -118,20 +115,23 @@ const Tags = ({props, course}) => {
     const handleSubmit = event => {
         event.preventDefault()
         dispatch(addTag(props.match.params.id, tag))
-        setTag({tag: ''})
+        setTag({ tag: '' })
     }
 
     const handleSubmitSelect = event => {
         event.preventDefault()
         dispatch(addTag(props.match.params.id, tag))
-        setTag({tag: ''})
+        setTag({ tag: '' })
     }
 
     const handleTagDelete = (tag) => {
         dispatch(deleteTag(props.match.params.id, tag))
     }
 
-
+    const handleCancel = event => {
+        event.preventDefault()
+        setOpenForm(false)
+    }
 
     return (
         <>
@@ -140,18 +140,17 @@ const Tags = ({props, course}) => {
                     {course.tags ? course.tags.map((tag, i) => {
                         return (
                             <div key={i + tag + 1}>
-                                <div style={{position: 'relative'}} key={i + tag + 2} className={classes.title}>
-                                <TagDelete key={i + tag + 3} onClick={() => handleTagDelete(tag)}><P key={i + tag + 4}>x</P></TagDelete><span key={i + tag + 5} style={{paddingRight: '5px'}}>{tag}</span>
+                                <div style={{ position: 'relative' }} key={i + tag + 2} className={classes.title}>
+                                    <TagDelete key={i + tag + 3} onClick={() => handleTagDelete(tag)}><P key={i + tag + 4}>x</P></TagDelete><span key={i + tag + 5} style={{ paddingRight: '5px' }}>{tag}</span>
                                 </div>
-                                
+
                             </div>
-                            
+
                         )
                     }) : null}
+                   {!openForm ? <Button style={{ marginLeft: '76.5%' }} onClick={handleClick} type='submit' size="small" variant="contained" className={classes.button}>NEW TAG</Button> : null }
                 </CardContent>
-                <CardActions>
-                    <Button onClick={handleClick} type='submit' size="small" variant="contained" className={classes.button} >New Tag</Button>
-                </CardActions>
+
                 {openForm ? (
                     <>
                         <form onSubmit={handleSubmit} className={classes.container} noValidate autoComplete="off">
@@ -170,15 +169,19 @@ const Tags = ({props, course}) => {
                         <form>
                             <select
                                 onChange={handleChange('tag')}
-                             >
+                            >
                                 <option>Pick a Tag:</option>
                                 {allTags.map(el => {
-                                            return (<option key={el.id} value={el.name} >{el.name}</option>)
-                                        })}
-                             </select>
-                            <CardActions>
-                                     <Button onClick={handleSubmitSelect} type='submit' size="small" variant="contained" className={classes.button} >Add Tag</Button>
-                            </CardActions>
+                                    return (<option key={el.id} value={el.name} >{el.name}</option>)
+                                })}
+                            </select>
+                            {/* <CardActions>
+                                <Button onClick={handleSubmitSelect} type='submit' size="small" variant="contained" className={classes.button} >Add Tag</Button>
+                            </CardActions> */}
+                            <ButtonDiv>
+                                <Button style={{ marginLeft: '10px' }} onClick={handleCancel} size="small" variant="contained" className={classes.button} >CANCEL</Button>
+                                <Button type='submit' onClick={handleSubmitSelect} style={{ marginRight: '4%' }} size="small" variant="contained" className={classes.button} >Add Tag</Button>
+                            </ButtonDiv>
                         </form>
 
                     </>

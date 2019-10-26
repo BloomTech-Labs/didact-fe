@@ -81,6 +81,8 @@ function MainPage(props) {
     const [open, setOpen] = React.useState(true);
     const [openMobile, setOpenMobile] = React.useState(false);
 
+    const userName = useSelector(state => state.onboardingReducer.user);
+
     useEffect(_ =>
         {
            dispatch(verifyToken(props.history))
@@ -121,7 +123,7 @@ function MainPage(props) {
                     <CssBaseline />
                     <PageFlex>
                         <div>
-                            <MobileDrawerComponent handleDrawerOpenMobile={handleDrawerOpenMobile()} openMobile={openMobile} />
+                            <MobileDrawerComponent handleDrawerOpenMobile={handleDrawerOpenMobile()} openMobile={openMobile} props = {props}/>
                         </div>
                         <div>
                             <MobileHeaderComponent props = {props}/>
@@ -150,7 +152,7 @@ function MainPage(props) {
                         <CssBaseline />
                         <PageFlex>
                             <div className="drawer">
-                                <DrawerComponent handleDrawerOpen={handleDrawerOpen} open={open} />
+                                <DrawerComponent handleDrawerOpen={handleDrawerOpen} open={open} props = {props}/>
                             </div>
                             <div className="headerMain">
                                 {/* <HeaderComponent props = {props} open={open} /> */}
@@ -160,7 +162,7 @@ function MainPage(props) {
                                     <div className="navSection">
                                         <DashboardIcon/>
                                         <MessageIcon />
-                                        <p>User Name</p>
+                                        <p>{userName.email}</p>
                                         <Profile props = {props}/>
                                     </div>
                                 </div>
