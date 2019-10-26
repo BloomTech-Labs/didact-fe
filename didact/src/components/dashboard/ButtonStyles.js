@@ -47,7 +47,7 @@ export const AddButtonInSection = styled.div`
     border: none;
     background: #EEEFF3;
     border-radius: 25px;
-    margin: -63px 10px 10px 10px;
+    margin: -53px 10px 10px 10px;
     padding: 0 10px;
     &:hover {
         cursor: 'pointer';
@@ -99,10 +99,6 @@ export const P = styled.p`
     margin-top: -1px;
     font-size: 1.3rem;
     line-height: 28px;
-    
-    /* &:hover {
-        background: maroon;
-    } */
 `
 
 export const EditLessonButton = styled.button`
@@ -110,6 +106,20 @@ export const EditLessonButton = styled.button`
         border-radius: 15px;
         background: #EBE8E1;
         height: 30px;
-        width: 82px;
+        width: 112px;
         border: none;
+        margin-left: 10px;
+        cursor: pointer;
+        &:hover {
+        color: rgba(0, 0, 0, 0.87);
+        box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 3px 1px -2px rgba(0,0,0,0.12);
+        background-color: #e0e0e0;
+        
+    }
+`
+export const ButtonDiv = styled.div`
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 10px;
 `

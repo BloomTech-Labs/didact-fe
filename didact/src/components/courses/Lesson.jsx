@@ -5,7 +5,7 @@ import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 // import { updateSection, getLessonsBySectionId } from '../../store/actions';
-import {EditLessonButton} from '../dashboard/ButtonStyles'
+import {EditLessonButton, ButtonDiv} from '../dashboard/ButtonStyles'
 
 
 const useStyles = makeStyles(theme => ({
@@ -163,12 +163,16 @@ const Lesson = ({ section, lesson, props }) => {
         handleToggleLessonEdit()
     };
 
+    const handleCancel = event => {
+        event.preventDefault()
+        setToggleLessonEdit(false)
+    }
+
 
     return (
-        <div>
-            {/* <Button onClick={handleToggleLessonEdit} className={classes.button} type='submit' size="small" variant="contained"  >Edit Lesson</Button> */}
+        <div style={{marginBottom: '15px'}}>
             {!toggleLessonEdit ?
-                <div style={{ display: 'flex', alignItems: 'center', margin: '0 0 15px 0', borderBottom: 'grey solid 1px'}}><EditLessonButton onClick={handleToggleLessonEdit}>Edit Lesson</EditLessonButton>
+                <div style={{ display: 'flex', alignItems: 'center', margin: '0 0 15px 0', borderBottom: 'grey solid 1px'}}><EditLessonButton onClick={handleToggleLessonEdit}>EDIT LESSON</EditLessonButton>
                     <p style={{paddingLeft: '20px', width: '70%'}}><a style={{ textDecoration: 'none', color: 'black' }} href={lesson.link}>{lesson.name}</a> {lesson.type}</p>
                 </div>
                 : <form onSubmit={handleSubmit} className={classes.container} noValidate autoComplete="off">
@@ -205,7 +209,10 @@ const Lesson = ({ section, lesson, props }) => {
                         placeholder="Course Url"
                         InputProps={{ classes: { input: classes.input } }}
                     />
-                    <Button type='submit' size="small" variant="contained" className={classes.button} >Submit Edit</Button>
+                    <ButtonDiv>
+                        <Button style={{marginLeft: '10px'}} onClick={handleCancel} size="small" variant="contained" className={classes.button} >CANCEL</Button>
+                        <Button type='submit' style={{marginRight: '4%'}} size="small" variant="contained" className={classes.button} >SUBMIT EDIT</Button>
+                    </ButtonDiv>
                 </form>}
         </div>
     )

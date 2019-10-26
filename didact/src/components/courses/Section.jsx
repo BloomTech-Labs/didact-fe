@@ -16,7 +16,7 @@ import Lessons from './Lessons'
 import AddLessons from './AddLessons'
 
 import AddCircleIcon from '@material-ui/icons/AddCircle';
-import { AddButtonInSection, ButtonTextInSection } from '../dashboard/ButtonStyles';
+import { AddButtonInSection, ButtonTextInSection, ButtonDiv } from '../dashboard/ButtonStyles';
 
 const useStyles = makeStyles(theme => ({
 
@@ -30,7 +30,7 @@ const useStyles = makeStyles(theme => ({
         boxShadow: 'none',
         borderRadius: '15px',
         background: '#EBE8E1',
-        marginLeft: '70%',
+        // marginLeft: '70%',
     },
     card: {
         width: '50vw',
@@ -142,9 +142,8 @@ const CssTextField = withStyles({
 const Section = ({ section, props }) => {
     const classes = useStyles();
     const dispatch = useDispatch()
-    const state = useSelector(state => state.sectionsReducer)
-    const lessons = state.lessons
-    const [expanded, setExpanded] = React.useState(false);
+    const lessons = useSelector(state => state.sectionsReducer.lessons)
+    const [expanded, setExpanded] = useState(false);
     const [sectionEdit, setSectionEdit] = useState(true)
     const [addLessonChange, setAddLessonChange] = useState(false);
     const [changes, setChanges] = useState({
@@ -189,6 +188,12 @@ const Section = ({ section, props }) => {
     const handleLessonFormToggle = () => {
         setAddLessonChange(true)
     }
+
+    const handleCancel = event => {
+        event.preventDefault()
+        setSectionEdit(true)
+    }
+
     return (
         <>
             {sectionEdit ? (
@@ -224,15 +229,16 @@ const Section = ({ section, props }) => {
                             {section.link}
                         </Typography>
                     </CardContent>
-                    <CardActions>
-                        <Button style={{ marginTop: '1px' }} onClick={toggleEdit} type='submit' size="small" variant="contained" className={classes.button} >Edit Section</Button>
-                    </CardActions>
-                    {addLessonChange ? <AddLessons props={props} section={section} setAddLessonChange={setAddLessonChange} /> : null}
                     {lessons ? <Lessons section={section} props={props} lessons={lessons} /> : null}
-                    <AddButtonInSection style={{ marginTop: '1px' }} onClick={handleLessonFormToggle}>
+                    <CardActions>
+                        <Button style={{marginLeft: '70%'}} onClick={toggleEdit} type='submit' size="small" variant="contained" className={classes.button} >Edit Section</Button>
+                    </CardActions>
+                    <AddButtonInSection onClick={handleLessonFormToggle}>
                         <AddCircleIcon className={classes.iconCircle} />
                         <ButtonTextInSection>Add Lesson</ButtonTextInSection>
                     </AddButtonInSection>
+                    {addLessonChange ? <AddLessons props={props} section={section} setAddLessonChange={setAddLessonChange} /> : null}
+
                 </Card>
             ) : (
                     <Card className={classes.card}>
@@ -287,7 +293,10 @@ const Section = ({ section, props }) => {
                                     placeholder="Course Url"
                                     InputProps={{ classes: { input: classes.input } }}
                                 />
-                                <Button type='submit' size="small" variant="contained" className={classes.button} >Submit Edit</Button>
+                                <ButtonDiv>
+                                    <Button style={{ marginLeft: '10px' }} onClick={handleCancel} size="small" variant="contained" className={classes.button} >Cancel</Button>
+                                    <Button type='submit' style={{ marginRight: '4%' }} size="small" variant="contained" className={classes.button} >Submit Edit</Button>
+                                </ButtonDiv>
                             </form>
                         </CardContent>
                     </Card>
