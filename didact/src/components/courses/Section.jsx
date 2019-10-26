@@ -142,8 +142,8 @@ const CssTextField = withStyles({
 const Section = ({section, props}) => {
     const classes = useStyles();
     const dispatch = useDispatch()
-    const lessons = useSelector(state => state.sectionsReducer.lessons)
-    const sectionsState = useSelector(state => state.sectionsReducer.sections)
+    const state = useSelector(state => state.sectionsReducer)
+    const lessons = state.lessons
     const [expanded, setExpanded] = React.useState(false);
     const [sectionEdit, setSectionEdit] = useState(true)
     const [addLessonChange, setAddLessonChange] = useState(false);
@@ -160,9 +160,9 @@ const Section = ({section, props}) => {
             order: section.order,
             link: section.link,
             description: section.description,
-         })
+        })
     }, [section])
-   
+
 
     useEffect(() => {
         dispatch(getLessonsBySectionId(props.match.params.id, section.id))
@@ -236,9 +236,9 @@ const Section = ({section, props}) => {
                 </CardActions>
                     <AddButtonInSection onClick = {handleLessonFormToggle}>
                         <AddCircleIcon className = {classes.iconCircle}/>
-                         <ButtonTextInSection>Add Lesson</ButtonTextInSection>
+                        <ButtonTextInSection>Add Lesson</ButtonTextInSection>
                     </AddButtonInSection>
-                     {addLessonChange ? <AddLessons props={props} section ={section} setAddLessonChange={setAddLessonChange} /> : null }
+                    {addLessonChange ? <AddLessons props={props} section ={section} setAddLessonChange={setAddLessonChange} /> : null }
                 
             </Card>
             ) : (
@@ -246,7 +246,7 @@ const Section = ({section, props}) => {
                     <CardContent>
                         <Typography className={classes.title} gutterBottom>
                             Add Section
-                         </Typography>
+                        </Typography>
                         <form onSubmit={handleSubmit} className={classes.container} noValidate autoComplete="off">
                             <CssTextField
                                 id="standard-name"

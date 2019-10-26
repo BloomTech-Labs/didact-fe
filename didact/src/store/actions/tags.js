@@ -8,11 +8,9 @@ export const TAGS_DATA_FAILURE = "TAGS_DATA_FAILURE"
 export const ADD_TAGS_START = "ADD_TAGS_START"
 export const ADD_TAGS_SUCCESS = "ADD_TAGS_SUCCESS"
 export const ADD_TAGS_FAILURE = "ADD_TAGS_FAILURE"
-export const DELETE_TAGS_START = "ADD_TAGS_START"
+export const DELETE_TAGS_START = "DELETE_TAGS_START"
 // export const DELETE_TAGS_SUCCESS = "ADD_TAGS_SUCCESS"
-export const DELETE_TAGS_FAILURE = "ADD_TAGS_FAILURE"
-
-
+export const DELETE_TAGS_FAILURE = "DELETE_TAGS_FAILURE"
 
 export const getTags = () => dispatch => {
     dispatch({type: TAGS_DATA_START})

@@ -133,11 +133,23 @@ export const sectionsReducer = (state = initialState, action) => {
                 error: "",
             }
         case GET_LESSONS_SUCCESS:
+            let tempLessonsA = [...state.lessons, ...action.payload.lessons.courseSection]
+            let nonDuplicateLessons = []
+
+            tempLessonsA.forEach(el =>
+                {
+                    if(!(nonDuplicateLessons.map(el => el.id)).includes(el.id))
+                    {
+                        nonDuplicateLessons.push(el)
+                    }
+                })
+            
             return {
                 ...state,
                 isLoading: false,
-                lessons: [...state.lessons,
-                ...action.payload.lessons.courseSection],
+                lessons: nonDuplicateLessons,
+                // lessons: [...state.lessons,
+                // ...action.payload.lessons.courseSection],
                 error: "",
             }
         case GET_LESSONS_FAIL:
@@ -153,6 +165,7 @@ export const sectionsReducer = (state = initialState, action) => {
                 error: "",
             }
         case ADD_LESSON_SUCCESS:
+            console.log(action.payload)
             return {
                 ...state,
                 isLoading: false,
@@ -175,7 +188,6 @@ export const sectionsReducer = (state = initialState, action) => {
             let tempLessons = [...state.lessons]
             tempLessons = tempLessons.map(el => el.id === action.payload.id ? action.payload : el)
             tempLessons.sort((a, b) => a.order - b.order)
-            console.log('tempLessons', tempLessons)
             return {
                 ...state,
                 isLoading: false,
