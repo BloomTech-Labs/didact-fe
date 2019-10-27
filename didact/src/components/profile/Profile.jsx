@@ -112,6 +112,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function Profile(props) {
+  console.log(props)
   const classes = useStyles();
   const phoneSize = useMediaQuery("(max-width:770px)");
   const [open, setOpen] = React.useState(false);
@@ -127,12 +128,12 @@ export default function Profile(props) {
 
   const handleLogOut = () => {
         localStorage.clear('token')
-        props.history.push('/login')
+        props.props.props.history.push('/login')
   }
 
   const content = () => {
     return (
-      <div className = {classes.root} in={open}>
+      <div className = {classes.root} >
         <div className={classes.paper}>
           <div className = {classes.closeModel} onClick = {handleClose}>X</div>
           <img src = {profileImage} alt = "Profile" className={classes.iconImageProfile} />
@@ -169,7 +170,7 @@ export default function Profile(props) {
   };
 
   return (
-    <div className = {classes.root} in={false}>
+    <div className = {classes.root} >
       <img src={profileImage} alt ="Profile" onClick={handleOpen} className={classes.iconImage} />
       {!phoneSize ? (
         <Modal

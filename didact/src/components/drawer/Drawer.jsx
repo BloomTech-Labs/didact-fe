@@ -184,7 +184,7 @@ const DrawerComponent = (props) => {
                     </div>
                 )} */}
         <Drawer
-            anchor={"none"}
+            
             variant="permanent"
             className={clsx(classes.drawer, {
                 [classes.drawerOpen]: open,

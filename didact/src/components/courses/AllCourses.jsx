@@ -145,7 +145,7 @@ function AllCourses(props) {
                                 <Typography variant="h5" component="h2">
                                     {course.name}
                                 </Typography>
-                                <CardActions className={classes.descriptionDiv} color="textSecondary" gutterBottom disableSpacing>
+                                <CardActions className={classes.descriptionDiv} color="textSecondary"  disableSpacing>
                                     <Typography >{course.description.substring(0, 100)} ...</Typography>
                                     <IconButton
                                         className={clsx(classes.expand, {
@@ -160,7 +160,7 @@ function AllCourses(props) {
                                 </CardActions>
                                 <Collapse in={expanded} timeout="auto" unmountOnExit>
                                     <CardContent>
-                                        <Typography className={classes.title} color="textSecondary" gutterBottom paragraph>
+                                        <Typography className={classes.title} color="textSecondary"  paragraph>
                                             {course.description.substring(100)}
                                         </Typography>
                                     </CardContent>
