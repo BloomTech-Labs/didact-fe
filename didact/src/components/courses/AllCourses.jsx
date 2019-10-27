@@ -103,7 +103,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function AllCourses(props) {
-    const tabletSize = useMediaQuery("(max-width:1100px");
+    const tabletSize = useMediaQuery("(max-width:1150px");
     const classes = useStyles();
     const dispatch = useDispatch();
     const [expanded, setExpanded] = useState(false);
