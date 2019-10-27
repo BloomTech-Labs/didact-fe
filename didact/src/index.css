@@ -4,6 +4,7 @@ html {
   margin-right: -17px;
   /* margin-left: 20px; */
   overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 
