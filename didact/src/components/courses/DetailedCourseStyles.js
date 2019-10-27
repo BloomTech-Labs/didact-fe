@@ -1,9 +1,10 @@
 import styled from 'styled-components'
 
 export const DetailedCourseWrapper = styled.div`
+    width: 100%;
     max-width: 600px;
     min-width: 375px;
-    width: 100%;
+    
 
     .courseWrapper {
         height: 40%;

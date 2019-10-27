@@ -48,7 +48,7 @@ const DetailedCourse = props => {
 
     if (course && sections) {
         return (
-            <div>
+            <>
             <DetailedCourseWrapper>
                 <div className="courseWrapper">
                     <h1>{course.name}</h1>
@@ -120,7 +120,7 @@ const DetailedCourse = props => {
                     )
                 })}
             </DetailedCourseWrapper>
-            </div>
+            </>
         )
     } else {
         return <h1>Loading...</h1>
