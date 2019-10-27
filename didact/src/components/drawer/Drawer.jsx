@@ -38,12 +38,13 @@ const DrawerComponent = (props) => {
           },
           
           drawerOpen: {
+            // backgroundColor: '#eeeff3',
             width: "240px",
             height: "600px",
             margin: "10px",
             marginLeft: 0,
             marginRight: 0,
-            marginTop: "195px",
+            // marginTop: "195px",
             borderRadius: "15px",
             overflowY:"hidden",
             transition: theme.transitions.create("width", {
@@ -56,45 +57,48 @@ const DrawerComponent = (props) => {
               easing: theme.transitions.easing.sharp,
               duration: theme.transitions.duration.leavingScreen,
             }),
-    
+            // backgroundColor: '#eeeff3',
             overflowX: "hidden",
             overflowY:"hidden",
             width: theme.spacing(7) + 1,
             [theme.breakpoints.up("sm")]: {
               width: theme.spacing(8) + 1, 
-              margin: "10px",
-              marginTop: "195px",
+              padding: 0,
+              marginTop: '10px',
+              // marginTop: "195px",
               height: "600px",
               borderRadius: "15px",
             },
           },
-          drawerOpenMobile: {
-            position: 'fixed',
-            width: "240px",
-            height: "500px",
-            margin: "37px 0 10px 5px",
-            borderRadius: "15px",
-            transition: theme.transitions.create("width", {
-              easing: theme.transitions.easing.sharp,
-              duration: theme.transitions.duration.enteringScreen,
-            }),
-          },
-          drawerCloseMobile: {
-            transition: theme.transitions.create("width", {
-              easing: theme.transitions.easing.sharp,
-              duration: theme.transitions.duration.leavingScreen,
-            }),
-            overflow: "hidden",
-            height: "500px",
-            margin: "73px 10px 10px 10px",
-            borderRadius: "15px",
-            position: 'fixed',
-            zIndex: 1,
-            width: theme.spacing(7) + 1,
-            [theme.breakpoints.up("sm")]: {
-              width: theme.spacing(7) + 1,
-            },
-          },
+          // drawerOpenMobile: {
+          //   backgroundColor: '#eeeff3',
+          //   position: 'fixed',
+          //   width: "240px",
+          //   height: "500px",
+          //   margin: "37px 0 10px 5px",
+          //   borderRadius: "15px",
+          //   transition: theme.transitions.create("width", {
+          //     easing: theme.transitions.easing.sharp,
+          //     duration: theme.transitions.duration.enteringScreen,
+          //   }),
+          // },
+          // drawerCloseMobile: {
+          //   transition: theme.transitions.create("width", {
+          //     easing: theme.transitions.easing.sharp,
+          //     duration: theme.transitions.duration.leavingScreen,
+          //   }),
+          //   backgroundColor: '#eeeff3',
+          //   overflow: "hidden",
+          //   height: "500px",
+          //   margin: "73px 10px 10px 10px",
+          //   borderRadius: "15px",
+          //   position: 'fixed',
+          //   zIndex: 1,
+          //   width: theme.spacing(7) + 1,
+          //   [theme.breakpoints.up("sm")]: {
+          //     width: theme.spacing(7) + 1,
+          //   },
+          // },
         menuButtonMobile: {
             marginRight: '-4px'
         },
@@ -167,7 +171,7 @@ const DrawerComponent = (props) => {
 
     return (
         <>
-         {open ? (
+         {/* {open ? (
                 <div className={classes.placeholderDiv}>
                     <div className={classes.placeHolder} />
                     <div className={classes.placeHolder2} />
@@ -177,7 +181,7 @@ const DrawerComponent = (props) => {
                         <div className={classes.placeHolderClosed} />
                         <div className={classes.placeHolder2Closed} />
                     </div>
-                )}
+                )} */}
         <Drawer
             anchor={"none"}
             variant="permanent"

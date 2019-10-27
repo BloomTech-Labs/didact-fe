@@ -38,12 +38,6 @@ const SideList = ({props}) => {
             alignContent: 'center',
             color: "white", 
           },
-        //   hoverTab: {
-        //       "&:hover": {
-        //           backgroundColor: "white",
-        //           color: "black",
-        //       },
-        //   }
           
     }));
 
@@ -56,13 +50,13 @@ const SideList = ({props}) => {
                 <ListItem className = {classes.hoverTab}
                     button
                     component={NavLink}
-                    exact to="/"
+                    exact to={"/" && "/dashboard"}
                     style={{ textDecoration: "none" }}
                     activeClassName={classes.activeTab}
                     key="Dashboard"
                 >
                     <ListItemIcon>
-                       {dashboardTab ? (<DashboardIcon style = {{color: "#5b5b5b"}}/>) : (<DashboardIcon style = {{color: "white"}}/>)} 
+                       <DashboardIcon/> 
                     </ListItemIcon>
                     <ListItemText primary="Dashboard" />
                     <ListItemText className={classes.arrow} primary=">" />
@@ -88,7 +82,7 @@ const SideList = ({props}) => {
                     activeClassName={classes.activeTab}
                     key="Add Course">
                     <ListItemIcon>
-                    ( <FolderOpenIcon style = {{color: "white"}}/>) : ( <FolderOpenIcon style = {{color: "#5b5b5b"}}/>)} 
+                        <FolderOpenIcon/>
                     </ListItemIcon>
                     <ListItemText primary="Courses" />
                     <ListItemText className={classes.arrow} primary=">" />

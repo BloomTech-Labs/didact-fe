@@ -1,23 +1,22 @@
 import React, { useEffect } from "react";
-import { verifyToken } from "../../store/actions/index.js";
-import { useDispatch, useSelector } from "react-redux";
-
+import { verifyToken } from "../../store/actions/index.js"
+import { useDispatch, useSelector } from "react-redux"
 import { PageFlex } from './PageStyles'
+import { makeStyles, useTheme } from "@material-ui/core/styles"
+import {Link} from "react-router-dom"
 
-import { makeStyles, useTheme } from "@material-ui/core/styles";
-
-import CssBaseline from "@material-ui/core/CssBaseline";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
-import DashboardIcon from '@material-ui/icons/Dashboard';
-import MessageIcon from '@material-ui/icons/Message';
+import CssBaseline from "@material-ui/core/CssBaseline"
+import useMediaQuery from "@material-ui/core/useMediaQuery"
+import DashboardIcon from '@material-ui/icons/Dashboard'
+import MessageIcon from '@material-ui/icons/Message'
 
 import DrawerComponent from '../drawer/Drawer'
 import MobileDrawerComponent from '../drawer/MobileDrawer'
-import HeaderComponent from '../header/Header'
 import MobileHeaderComponent from '../header/MobileHeader'
 import Content from '../content/Content'
 
 import Profile from '../profile/Profile'
+
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -26,16 +25,12 @@ const useStyles = makeStyles(theme => ({
     content: {
         flexGrow: 1,
         paddingTop: theme.spacing(3),
-        // paddingLeft: "21px",
-        // width: "1000px",
-        // display: 'flex',
-        // flexDirection: 'column',
-        // alignItems: 'flex-start'
+        marginLeft: "10px",
     },
     contentMobile: {
         flexGrow: 1,
         padding: theme.spacing(3),
-        paddingLeft: "80px",
+        paddingLeft: "65px",
     },
     contentShadow: {
         background: "rgba(0, 0, 0, 0.8)",
@@ -76,7 +71,7 @@ function MainPage(props) {
     const classes = useStyles();
     console.log(props)
   
-    // const tabletSize = useMediaQuery("(max-width:770px");
+    const profileLockSize = useMediaQuery("(min-width:1440px");
     const phoneSize = useMediaQuery("(max-width:770px)");
     const [open, setOpen] = React.useState(true);
     const [openMobile, setOpenMobile] = React.useState(false);
@@ -160,10 +155,10 @@ function MainPage(props) {
                                 <div className="header">
                                     <h2>Didact</h2>
                                     <div className="navSection">
-                                        <DashboardIcon/>
+                                        <Link style = {{color: 'white'}} to = "/" ><DashboardIcon/></Link>
                                         <MessageIcon />
                                         <p>{userName.email}</p>
-                                        <Profile props = {props}/>
+                                        {!profileLockSize ? <Profile props = {props}/> : null }
                                     </div>
                                 </div>
                                 <main className={classes.content}>

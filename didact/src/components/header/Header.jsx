@@ -8,6 +8,7 @@ import Button from "@material-ui/core/Button";
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import MessageIcon from '@material-ui/icons/Message';
 
+
 import Profile from '../profile/Profile'
 
 const HeaderComponent = (props) => {
