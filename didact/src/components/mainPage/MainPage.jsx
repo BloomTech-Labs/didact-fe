@@ -130,14 +130,14 @@ function MainPage(props) {
                             </main>
                         </div>
                     </PageFlex>
-                    {openMobile ?
+                    {/* {openMobile ?
                         (
                         <div className = {classes.scrollBarMobileFix}>
 
                         </div>
                         ) : ( 
                         null )
-                         }
+                         } */}
                 </div>
             )
                 // END OF MOBILE CODE *******************************************************************
