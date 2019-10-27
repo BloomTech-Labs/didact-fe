@@ -42,7 +42,7 @@ const DrawerComponent = (props) => {
             width: "240px",
             height: "600px",
             margin: "10px",
-            marginLeft: 0,
+            marginLeft: "10px",
             marginRight: 0,
             // marginTop: "195px",
             borderRadius: "15px",
@@ -60,6 +60,7 @@ const DrawerComponent = (props) => {
             // backgroundColor: '#eeeff3',
             overflowX: "hidden",
             overflowY:"hidden",
+            marginLeft: "10px",
             width: theme.spacing(7) + 1,
             [theme.breakpoints.up("sm")]: {
               width: theme.spacing(8) + 1, 

@@ -30,7 +30,7 @@ const useStyles = makeStyles(theme => ({
     contentMobile: {
         flexGrow: 1,
         padding: theme.spacing(3),
-        paddingLeft: "65px",
+        paddingLeft: "80px",
     },
     contentShadow: {
         background: "rgba(0, 0, 0, 0.8)",
