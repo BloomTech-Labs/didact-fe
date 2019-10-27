@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 
 export const DetailedCourseWrapper = styled.div`
-    width: 100%;
     max-width: 600px;
     min-width: 375px;
     margin: 10px;
@@ -120,4 +119,8 @@ export const DetailedCourseWrapper = styled.div`
         text-transform: uppercase;
         margin: 5px 10px 5px 0px;
     }
+`
+
+export const Root = styled.div `
+    width: 100%;
 `

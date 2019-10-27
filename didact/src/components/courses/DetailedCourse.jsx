@@ -2,13 +2,17 @@ import React, { useEffect, useState } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { Link } from "react-router-dom";
 
-import { DetailedCourseWrapper } from './DetailedCourseStyles'
+import { DetailedCourseWrapper, Root } from './DetailedCourseStyles'
 import { getDetailedCourse } from '../../store/actions/index.js'
 
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import styled from 'styled-components'
+
+
+
 
 const DetailedCourse = props => {
 
@@ -44,6 +48,7 @@ const DetailedCourse = props => {
 
     if (course && sections) {
         return (
+            <Root>
             <DetailedCourseWrapper>
                 <div className="courseWrapper">
                     <h1>{course.name}</h1>
@@ -115,6 +120,7 @@ const DetailedCourse = props => {
                     )
                 })}
             </DetailedCourseWrapper>
+            </Root>
         )
     } else {
         return <h1>Loading...</h1>
