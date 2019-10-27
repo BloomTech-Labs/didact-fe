@@ -123,7 +123,7 @@ function AllCourses(props) {
         <div className = {tabletSize ? classes.rootMobile : classes.root}>
             {tabletSize ? (<div className = {classes.addButtonDivTablet}>
                 <Link style={{ textDecoration: 'none' }} to='/courses/add'>
-                    <AddButton>
+                    <AddButton style = {{marginRight: '10px'}}>
                         <AddCircleRoundedIcon className = {classes.circleIcon}/>
                         <ButtonText>Add Course</ButtonText>
                     </AddButton>
