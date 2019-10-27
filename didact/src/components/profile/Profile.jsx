@@ -63,7 +63,7 @@ const useStyles = makeStyles(theme => ({
     marginRight: "35px",
     marginTop: "23px",
     outline: "none",
-    
+
     
   },
   modalMobile: {
@@ -127,7 +127,7 @@ export default function Profile(props) {
 
   const handleLogOut = () => {
         localStorage.clear('token')
-        props.props.history.push('/login')
+        props.history.push('/login')
   }
 
   const content = () => {
