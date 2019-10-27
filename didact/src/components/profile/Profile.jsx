@@ -131,6 +131,11 @@ export default function Profile(props) {
         props.props.history.push('/login')
   }
 
+  const handleMobileLogOut = () => {
+    localStorage.clear('token')
+    props.props.props.history.push('/login')
+}
+
   const content = () => {
     return (
       <div className = {classes.root} >
@@ -157,7 +162,7 @@ export default function Profile(props) {
                 <p className = {classes.paragraph} >></p>
               </div>
             </button>
-            <button className={classes.buttons} onClick = {handleLogOut}>
+            <button className={classes.buttons} onClick = {!phoneSize ? (handleLogOut) : (handleMobileLogOut)}>
               <div className={classes.buttonDiv}>
                 <p>Log Out</p>
                 <p className = {classes.paragraph} >></p>
