@@ -23,8 +23,7 @@ const MobileHeaderComponent = (props) => {
            
         },
         appBarMobile: {
-            width: `calc(100%)`,
-            borderRadius: "10px 10px 10px 10px",
+            width: `100%`,
             backgroundColor: '#5b5b5b',
             color: 'white',
             position: 'fixed',

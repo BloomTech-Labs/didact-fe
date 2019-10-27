@@ -45,7 +45,7 @@ const useStyles = makeStyles(theme => ({
         paddingLeft: "80px",
         padding: theme.spacing(3),
         overflow: "hidden",
-        marginRight: "-20px"
+        // marginRight: "-20px"
         // marginRight: '10px'
     },
     // scrollBarMobileFix: {
