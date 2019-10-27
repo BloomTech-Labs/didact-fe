@@ -106,5 +106,5 @@ export const RegisterWrapper = styled.div`
 
 export const Wrapper = styled.div`
     width: calc(100% - 20px);
-    margin: 0 auto 0 calc(auto + 17px);
+    margin: 0 auto 0 calc(auto + 7px);
 `

@@ -1,13 +1,13 @@
 import styled from 'styled-components'
 
 export const DetailedCourseWrapper = styled.div`
-    width: 100%;
+    width: calc(100% - 20px);
     max-width: 600px;
     min-width: 375px;
 
     .courseWrapper {
         height: 40%;
-        width: 100%;
+        width: calc(100% - 40px);
 
         .courseFooter {
             margin: 0;
