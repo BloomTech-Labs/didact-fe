@@ -6,6 +6,7 @@ html {
   overflow-x: hidden;
 }
 
+
 #root {
   background-color: #D3D3D3;
 }
@@ -19,6 +20,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   padding-right: -47px;
   background-color: red;
+  overflow-x: hidden;
   
 }
 
