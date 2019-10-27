@@ -31,7 +31,7 @@ const useStyles = makeStyles(theme => ({
         flexGrow: 1,
         padding: theme.spacing(3),
         paddingLeft: "80px",
-        marginRight: "17px"
+        margin: 'auto'
     },
     contentShadow: {
         background: "rgba(0, 0, 0, 0.8)",
