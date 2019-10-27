@@ -11,6 +11,7 @@ export const LoginFormWrapper = styled.div`
         text-align: left;
     }
 
+
     form {
         margin-bottom: 30px;
         box-shadow: 0px 0px 5px 0px rgba(237,237,237,1);
@@ -85,7 +86,9 @@ export const LoginFormWrapper = styled.div`
 `
 
 export const LoginWrapper = styled.div`
-    width: 45%;
+    width: calc(100% - 20px);
+    max-width: 600px;
+    min-width: 375px;
     background: white;
     border-radius: 4px;
     margin: 0 auto;
@@ -93,6 +96,6 @@ export const LoginWrapper = styled.div`
 `
 
 export const Wrapper = styled.div`
-    width: 70%;
-    margin: 0 auto;
+    width: calc(100% - 20px);
+    margin: 0 auto 0 calc(auto + 17px);
 `

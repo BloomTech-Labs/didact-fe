@@ -5,7 +5,7 @@ import { loginAction } from '../../store/actions';
 import {useDispatch} from 'react-redux';
 
 import { Wrapper, LoginWrapper, LoginFormWrapper } from './LoginStyles'
-
+import useMediaQuery from "@material-ui/core/useMediaQuery"
 import HeaderNoIcons from '../header/HeaderNoIcons'
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -81,6 +81,7 @@ const useStyles = makeStyles(theme => ({
 
 
 const LoginForm = (props) => {
+    const phoneSize = useMediaQuery("(max-width:770px)");
     const classes = useStyles();
     if(localStorage.getItem('token'))
     {
