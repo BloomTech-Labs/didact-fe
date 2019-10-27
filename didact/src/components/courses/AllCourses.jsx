@@ -48,7 +48,7 @@ const useStyles = makeStyles(theme => ({
         marginBottom: "-20px"
     },
     card: {
-        minWidth: 375,
+        // minWidth: 375,
         maxWidth: 550,
         margin: '40px 10px 40px 0',
         padding: '10px',

@@ -73,9 +73,9 @@ const MobileHeaderComponent = (props) => {
                     <Button className={classes.iconToolBar} color="inherit">
                         <MessageIcon />
                     </Button>
-                    <Button className={classes.iconToolBar} color="inherit">
+                    {/* <Button className={classes.iconToolBar} color="inherit">
                         third
-                    </Button>
+                    </Button> */}
                    <Profile props = {props}/>
                 </div>
             </Toolbar>
