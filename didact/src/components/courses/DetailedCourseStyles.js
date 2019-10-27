@@ -4,6 +4,7 @@ export const DetailedCourseWrapper = styled.div`
     width: 100%;
     max-width: 600px;
     min-width: 375px;
+    margin: "10px auto";
     
 
     .courseWrapper {

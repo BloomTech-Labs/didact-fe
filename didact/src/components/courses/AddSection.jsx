@@ -31,7 +31,7 @@ const useStyles = makeStyles(theme => ({
         maxWidth: 500,
         minWidth: 375,
         borderRadius: 15,
-        margin: '10px 0'
+        margin: '10px auto'
     },
     title: {
         fontSize: 14,
