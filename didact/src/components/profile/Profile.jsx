@@ -128,7 +128,7 @@ export default function Profile(props) {
 
   const handleLogOut = () => {
         localStorage.clear('token')
-        props.props.props.history.push('/login')
+        props.props.history.push('/login')
   }
 
   const content = () => {
