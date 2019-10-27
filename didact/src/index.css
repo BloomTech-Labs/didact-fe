@@ -4,7 +4,7 @@ html {
   margin-right: -17px;
   /* margin-left: 20px; */
   overflow-x: hidden;
-  overflow-y: hidden;
+  /* overflow-y: hidden; */
 }
 
 
@@ -21,6 +21,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   padding-right: -47px;
   background-color: #D3D3D3;
+  overflow-x: hidden;
   
   
 }
