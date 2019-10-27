@@ -120,7 +120,7 @@ function AllCourses(props) {
     };
 
     return (
-        <div className = {tabletSize ? classes.rootMobile : classes.root}>
+        <div className = {tabletSize ? classes.rootTablet : classes.root}>
             {tabletSize ? (<div className = {classes.addButtonDivTablet}>
                 <Link style={{ textDecoration: 'none' }} to='/courses/add'>
                     <AddButton style = {{marginRight: '10px'}}>
