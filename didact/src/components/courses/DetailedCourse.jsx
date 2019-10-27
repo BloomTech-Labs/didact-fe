@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { Link } from "react-router-dom";
 
-import { DetailedCourseWrapper, Root } from './DetailedCourseStyles'
+import { DetailedCourseWrapper} from './DetailedCourseStyles'
 import { getDetailedCourse } from '../../store/actions/index.js'
 
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
@@ -48,7 +48,7 @@ const DetailedCourse = props => {
 
     if (course && sections) {
         return (
-            <Root>
+            <div>
             <DetailedCourseWrapper>
                 <div className="courseWrapper">
                     <h1>{course.name}</h1>
@@ -120,7 +120,7 @@ const DetailedCourse = props => {
                     )
                 })}
             </DetailedCourseWrapper>
-            </Root>
+            </div>
         )
     } else {
         return <h1>Loading...</h1>

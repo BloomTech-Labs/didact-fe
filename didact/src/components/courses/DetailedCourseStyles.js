@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const DetailedCourseWrapper = styled.div`
     max-width: 600px;
     min-width: 375px;
-    margin: 10px;
+    width: 100%;
 
     .courseWrapper {
         height: 40%;
@@ -121,6 +121,3 @@ export const DetailedCourseWrapper = styled.div`
     }
 `
 
-export const Root = styled.div `
-    width: 100%;
-`
