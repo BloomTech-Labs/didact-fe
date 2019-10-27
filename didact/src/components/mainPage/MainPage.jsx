@@ -25,7 +25,7 @@ const useStyles = makeStyles(theme => ({
     content: {
         flexGrow: 1,
         paddingTop: theme.spacing(3),
-        marginLeft: "10px",
+        paddingLeft: "10px",
     },
     contentMobile: {
         flexGrow: 1,
