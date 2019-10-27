@@ -22,7 +22,7 @@ const useStyles = makeStyles(theme => ({
       margin: "10px auto",
       borderRadius: "15px",
       width: `calc(100% - 20px)`,
-      backgroundColor: 'gray',
+      backgroundColor: '#5b5b5b',
       color: 'lightgray',
 
   },
