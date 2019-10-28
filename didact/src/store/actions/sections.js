@@ -25,7 +25,7 @@ export const DELETE_LESSON_START = "DELETE_LESSON_START"
 export const DELETE_LESSON_SUCCESS = "DELETE_LESSON_SUCCESS"
 export const DELETE_LESSON_FAIL = "DELETE_LESSON_FAIL"
 
-const baseURL = "https://didactlms-staging.herokuapp.com/api/courses/"
+const baseURL = `${process.env.BASEURL}courses/`
 
 export const getSectionsByCourseId = (id) => dispatch =>
 {

@@ -87,6 +87,8 @@ const RegisterForm = (props) => {
         props.history.push('/')
     }
 
+    const baseURL = process.env.BASEURL
+
     return (
         <RegisterFormWrapper>
             <div className="header">
@@ -129,8 +131,8 @@ const RegisterForm = (props) => {
                 </div>
             </Form>
             <div className="socialButtons">
-                <a href="http://didactlms-staging.herokuapp.com/api/auth/facebook">Sign In With Facebook</a>
-                <a href="http://didactlms-staging.herokuapp.com/api/auth/google">Sign In With Google</a>
+                <a href={`${baseURL}auth/facebook`}>Sign In With Facebook</a>
+                <a href={`${baseURL}auth/google`}>Sign In With Google</a>
             </div>
         </RegisterFormWrapper>
     )

@@ -12,10 +12,12 @@ export const DELETE_TAGS_START = "DELETE_TAGS_START"
 // export const DELETE_TAGS_SUCCESS = "ADD_TAGS_SUCCESS"
 export const DELETE_TAGS_FAILURE = "DELETE_TAGS_FAILURE"
 
+const baseURL = `${process.env.BASEURL}`
+
 export const getTags = () => dispatch => {
     dispatch({type: TAGS_DATA_START})
     axiosWithAuth()
-        .get(`https://didactlms-staging.herokuapp.com/api/tags`)
+        .get(`${baseURL}tags`)
         .then(res =>  dispatch({type: TAGS_DATA_SUCCESS, payload: res.data}))
         .catch(err => dispatch({type: TAGS_DATA_FAILURE, payload: err}))
 } 
@@ -25,7 +27,7 @@ export const addTag = (id, tag) => dispatch => {
     dispatch({type: ADD_TAGS_START})
     console.log('form shape: ', tag)
     axiosWithAuth()
-        .post(`https://didactlms-staging.herokuapp.com/api/courses/${id}/tags`,tag)
+        .post(`${baseURL}courses/${id}/tags`,tag)
         .then(res => dispatch({type: ADD_TAG_TO_COURSE_SUCCESS, payload: tag}))
         .catch(err => {
             console.log('error: ', err.message)
@@ -38,7 +40,7 @@ export const deleteTag =(courseId, tag) => dispatch => {
     
     dispatch({type: DELETE_TAGS_START})
     axiosWithAuth()
-    .delete(`https://didactlms-staging.herokuapp.com/api/courses/${courseId}/tags`, { data: {tag: tag} })
+    .delete(`${baseURL}courses/${courseId}/tags`, { data: {tag: tag} })
     .then(res => {
         // console.log('edit course api response: ', res)
         dispatch({type: DELETE_TAGS_SUCCESS, payload: tag})

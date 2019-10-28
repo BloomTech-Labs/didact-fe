@@ -23,7 +23,7 @@ export const GET_DETAILED_COURSE_START = "GET_DETAILED_COURSE_START"
 export const GET_DETAILED_COURSE_SUCCESS = "GET_DETAILED_COURSE_SUCCESS"
 export const GET_DETAILED_COURSE_FAIL = "GET_DETAILED_COURSE_FAIL"
 
-const baseURL = 'https://didactlms-staging.herokuapp.com/api/courses/'
+const baseURL = `${process.env.BASEURL}courses/`
 
 export const courseEndPoint =() => dispatch => {
     dispatch({type: COURSE_DATA_START})

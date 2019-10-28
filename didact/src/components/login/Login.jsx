@@ -88,6 +88,9 @@ const LoginForm = (props) => {
         props.history.push('/')
     }
     const {errors, touched} = props
+
+    const baseURL = process.env.BASEURL
+
     return (
         <LoginFormWrapper>
             <div className="header">
@@ -113,8 +116,8 @@ const LoginForm = (props) => {
                 </div>
             </Form>
             <div className="socialButtons">
-                <a href="http://didactlms-staging.herokuapp.com/api/auth/facebook">Sign In With Facebook</a>
-                <a href="http://didactlms-staging.herokuapp.com/api/auth/google">Sign In With Google</a>
+                <a href={`${baseURL}auth/facebook`}>Sign In With Facebook</a>
+                <a href={`${baseURL}auth/google`}>Sign In With Google</a>
             </div>
         </LoginFormWrapper>
     )
