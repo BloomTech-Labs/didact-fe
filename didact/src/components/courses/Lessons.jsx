@@ -1,9 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import Lesson from './Lesson'
 
-const Lessons = ({section, props, lessons}) => {
-    console.log('props in lesson array: ', props)
-
+const Lessons = ({course, section, props, lessons}) => {
     const [filterLesson, setFilterLesson] = useState([]);
 
     useEffect(() => {
@@ -12,7 +10,7 @@ const Lessons = ({section, props, lessons}) => {
 
     return(
         <>
-            {filterLesson ? filterLesson.map(lesson => <Lesson key={lesson.id} section={section} lesson={lesson} props={props} />) : null}
+            {filterLesson ? filterLesson.map(lesson => <Lesson key={lesson.id} course={course} section={section} lesson={lesson} props={props} />) : null}
         </>
     )
 }

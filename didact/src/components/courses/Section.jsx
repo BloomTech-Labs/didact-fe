@@ -202,7 +202,6 @@ const Section = ({ course, section, props }) => {
         <>
             {sectionEdit ? (
                 <Card className={classes.card}>
-                    <DeleteForm onClick={handleDelete}>X</DeleteForm>
                     <CardContent style={{ marginBottom: "20px" }}>
                         <Typography variant="h5" component="h2">
                             {section.name}
@@ -234,7 +233,7 @@ const Section = ({ course, section, props }) => {
                             {section.link}
                         </Typography>
                     </CardContent>
-                    {lessons ? <Lessons section={section} props={props} lessons={lessons} /> : null}
+                    {lessons ? <Lessons course={course} section={section} props={props} lessons={lessons} /> : null}
                     <CardActions>
                         <Button style={{marginLeft: '70%'}} onClick={toggleEdit} type='submit' size="small" variant="contained" className={classes.button} >Edit Section</Button>
                     </CardActions>
@@ -247,6 +246,7 @@ const Section = ({ course, section, props }) => {
             ) : (
                     <Card className={classes.card}>
                         <CardContent>
+                        <DeleteForm onClick={handleDelete}>X</DeleteForm>
                             <Typography className={classes.title} gutterBottom>
                                 Add Section
                          </Typography>

@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { updateLesson } from '../../store/actions'
+import { updateLesson, deleteLesson } from '../../store/actions'
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-// import { updateSection, getLessonsBySectionId } from '../../store/actions';
-import {EditLessonButton, ButtonDiv} from '../dashboard/ButtonStyles'
+import {EditLessonButton, ButtonDiv, DeleteForm} from '../dashboard/ButtonStyles'
 
 
 const useStyles = makeStyles(theme => ({
@@ -129,7 +128,7 @@ const CssTextField = withStyles({
     },
 })(TextField);
 
-const Lesson = ({ section, lesson, props }) => {
+const Lesson = ({ course, section, lesson, props }) => {
     const [toggleLessonEdit, setToggleLessonEdit] = useState(false)
     const classes = useStyles();
     const dispatch = useDispatch()
@@ -168,6 +167,10 @@ const Lesson = ({ section, lesson, props }) => {
         setToggleLessonEdit(false)
     }
 
+    const handleDelete = () => {
+        dispatch(deleteLesson(course.id, section.id, lesson.id))
+    }
+
 
     return (
         <div style={{marginBottom: '15px'}}>
@@ -175,7 +178,9 @@ const Lesson = ({ section, lesson, props }) => {
                 <div style={{ display: 'flex', alignItems: 'center', margin: '0 0 15px 0', borderBottom: 'grey solid 1px'}}><EditLessonButton onClick={handleToggleLessonEdit}>EDIT LESSON</EditLessonButton>
                     <p style={{paddingLeft: '20px', width: '70%'}}><a style={{ textDecoration: 'none', color: 'black' }} href={lesson.link}>{lesson.name}</a> {lesson.type}</p>
                 </div>
-                : <form onSubmit={handleSubmit} className={classes.container} noValidate autoComplete="off">
+                : <>
+                <DeleteForm onClick={handleDelete}>X</DeleteForm>
+                 <form onSubmit={handleSubmit} className={classes.container} noValidate autoComplete="off">
                     <CssTextField
                         id="standard-name"
                         label='Name'
@@ -213,7 +218,7 @@ const Lesson = ({ section, lesson, props }) => {
                         <Button style={{marginLeft: '10px'}} onClick={handleCancel} size="small" variant="contained" className={classes.button} >CANCEL</Button>
                         <Button type='submit' style={{marginRight: '4%'}} size="small" variant="contained" className={classes.button} >SUBMIT EDIT</Button>
                     </ButtonDiv>
-                </form>}
+                </form> </>}
         </div>
     )
 }
