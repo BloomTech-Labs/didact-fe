@@ -1,4 +1,6 @@
 import React from 'react';
+// require('dotenv').config()
+import dotenv from 'dotenv'
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
@@ -10,6 +12,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import reducer from "./store/reducers";
 
 const store = createStore(reducer, applyMiddleware(thunk));
+dotenv.config()
 
 ReactDOM.render(
   <Router>

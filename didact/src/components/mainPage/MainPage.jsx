@@ -1,35 +1,38 @@
 import React, { useEffect } from "react";
-import { courseEndPoint, verifyToken } from "../../store/actions/index.js";
-import { useDispatch, useSelector } from "react-redux";
-
+import { verifyToken } from "../../store/actions/index.js"
+import { useDispatch, useSelector } from "react-redux"
 import { PageFlex } from './PageStyles'
+import { makeStyles, useTheme } from "@material-ui/core/styles"
+import {Link} from "react-router-dom"
 
-import { makeStyles, useTheme } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
+import CssBaseline from "@material-ui/core/CssBaseline"
+import useMediaQuery from "@material-ui/core/useMediaQuery"
+import DashboardIcon from '@material-ui/icons/Dashboard'
+import MessageIcon from '@material-ui/icons/Message'
+
 import DrawerComponent from '../drawer/Drawer'
 import MobileDrawerComponent from '../drawer/MobileDrawer'
-import HeaderComponent from '../header/Header'
 import MobileHeaderComponent from '../header/MobileHeader'
 import Content from '../content/Content'
+
+import Profile from '../profile/Profile'
 
 
 const useStyles = makeStyles(theme => ({
     root: {
-        display: "flex",
         backgroundColor: "lightgray",
-       
     },
     content: {
         flexGrow: 1,
-        padding: theme.spacing(3),
+        paddingTop: theme.spacing(3),
+        paddingLeft: "10px",
     },
     contentMobile: {
         flexGrow: 1,
         padding: theme.spacing(3),
         paddingLeft: "80px",
-      },
+        margin: 'auto'
+    },
     contentShadow: {
         background: "rgba(0, 0, 0, 0.8)",
         filter: "brightness(50%)",
@@ -43,7 +46,20 @@ const useStyles = makeStyles(theme => ({
         paddingLeft: "80px",
         padding: theme.spacing(3),
         overflow: "hidden",
+        // marginRight: "-20px"
+        // marginRight: '10px'
     },
+    // scrollBarMobileFix: {
+    //     position: "absolute",
+    //     right: 0,
+    //     height: "100vh",
+    //     // opacity: 0,
+    //     width: "10px",
+    //     backgroundColor: "black",
+    //     display: "block",
+    //     marginLeft: "10px",
+    //     zIndex: theme.root.zIndex + 1,
+    // },
     toolbar: {
         display: "flex",
         alignItems: "center",
@@ -55,12 +71,14 @@ const useStyles = makeStyles(theme => ({
 
 function MainPage(props) {
     const classes = useStyles();
-   
-    const theme = useTheme();
-    // const tabletSize = useMediaQuery("(max-width:770px");
+    console.log(props)
+  
+    const profileLockSize = useMediaQuery("(min-width:1440px");
     const phoneSize = useMediaQuery("(max-width:770px)");
     const [open, setOpen] = React.useState(true);
     const [openMobile, setOpenMobile] = React.useState(false);
+
+    const userName = useSelector(state => state.onboardingReducer.user);
 
     useEffect(_ =>
         {
@@ -70,6 +88,7 @@ function MainPage(props) {
     const handleDrawerOpen = () => {
         setOpen(!open);
     };
+
 
     const handleDrawerOpenMobile = () => event => {
         if (
@@ -88,7 +107,7 @@ function MainPage(props) {
 
 
     const dispatch = useDispatch();
-    const state = useSelector(state => state);
+    
 
  
 
@@ -101,10 +120,10 @@ function MainPage(props) {
                     <CssBaseline />
                     <PageFlex>
                         <div>
-                            <MobileDrawerComponent handleDrawerOpenMobile={handleDrawerOpenMobile()} openMobile={openMobile} />
+                            <MobileDrawerComponent handleDrawerOpenMobile={handleDrawerOpenMobile()} openMobile={openMobile} props = {props}/>
                         </div>
                         <div>
-                            <MobileHeaderComponent />
+                            <MobileHeaderComponent props = {props}/>
                             <main className={openMobile ? classes.contentShadow : classes.contentMobile}>
                                 <div className={classes.toolbar} />
                                 <Content phoneSize={phoneSize} open={open} {...props}/>
@@ -112,6 +131,14 @@ function MainPage(props) {
                             </main>
                         </div>
                     </PageFlex>
+                    {/* {openMobile ?
+                        (
+                        <div className = {classes.scrollBarMobileFix}>
+
+                        </div>
+                        ) : ( 
+                        null )
+                         } */}
                 </div>
             )
                 // END OF MOBILE CODE *******************************************************************
@@ -121,13 +148,23 @@ function MainPage(props) {
                     <div className={classes.root}>
                         <CssBaseline />
                         <PageFlex>
-                            <div>
-                                <DrawerComponent handleDrawerOpen={handleDrawerOpen} open={open} />
+                            <div className="drawer">
+                                <DrawerComponent handleDrawerOpen={handleDrawerOpen} open={open} props = {props}/>
                             </div>
-                            <div style={{width: "100%"}}>
-                                <HeaderComponent open={open} />
+                            <div className="headerMain">
+                                {/* <HeaderComponent props = {props} open={open} /> */}
+                                {/* <HeaderComponent open={open} /> */}
+                                <div className="header">
+                                    <h2>Didact</h2>
+                                    <div className="navSection">
+                                        <Link style = {{color: 'white'}} to = "/" ><DashboardIcon/></Link>
+                                        <MessageIcon />
+                                        <p>{userName.email}</p>
+                                        {!profileLockSize ? <Profile props = {props}/> : null }
+                                    </div>
+                                </div>
                                 <main className={classes.content}>
-                                    <div className={classes.toolbar} />
+                                    {/* <div className={classes.toolbar} /> */}
                                     <Content phoneSize={phoneSize} open={open} {...props}/>
                                     {/*************************ADD COMPONENTS HERE *********************** */}
                                 </main>

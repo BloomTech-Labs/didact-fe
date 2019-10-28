@@ -1,11 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { getCourseById, editCourse } from '../../store/actions'
-import { AddButton, PlusDiv, Plus, ButtonText, ButtonDiv } from '../dashboard/ButtonStyles';
-import Tags from './Tags'
-import AddSection from './AddSection'
-import Sections from './Sections'
-
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
@@ -17,6 +11,12 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
+import { updateSection, getLessonsBySectionId } from '../../store/actions';
+import Lessons from './Lessons'
+import AddLessons from './AddLessons'
+
+import AddCircleIcon from '@material-ui/icons/AddCircle';
+import { AddButtonInSection, ButtonTextInSection, ButtonDiv } from '../dashboard/ButtonStyles';
 
 const useStyles = makeStyles(theme => ({
 
@@ -112,6 +112,10 @@ const useStyles = makeStyles(theme => ({
     descriptionTitle: {
         marginBottom: "0px"
     },
+    iconCircle: {
+        color: "#575758",
+        fontSize: "2rem",
+    },
 
 }));
 
@@ -135,119 +139,114 @@ const CssTextField = withStyles({
     },
 })(TextField);
 
-const EditCourse = ({props, id}) => {
-    const course = useSelector(state => state.coursesReducer.course)
-    const dispatch = useDispatch()
+const Section = ({ section, props }) => {
     const classes = useStyles();
-    const [expanded, setExpanded] = React.useState(false);
-    const [courseEdit, setCourseEdit] = useState(true)
-    const [addSectionChange, setAddSectionChange] = useState(false);
+    const dispatch = useDispatch()
+    const lessons = useSelector(state => state.sectionsReducer.lessons)
+    const [expanded, setExpanded] = useState(false);
+    const [sectionEdit, setSectionEdit] = useState(true)
+    const [addLessonChange, setAddLessonChange] = useState(false);
     const [changes, setChanges] = useState({
-
         name: "",
         description: "",
-        foreign_instructors: "",
-        foreign_rating: "",
+        order: "",
         link: ""
     })
 
     useEffect(() => {
-        dispatch(getCourseById(id))
-    }, [id, dispatch])
+        setChanges({
+            name: section.name,
+            order: section.order,
+            link: section.link,
+            description: section.description,
+        })
+    }, [section])
+
 
     useEffect(() => {
-        setChanges({
-            name: course.name,
-            description: course.description,
-            foreign_instructors: course.foreign_instructors,
-            foreign_rating: course.foreign_rating,
-            link: course.link
-        })
-    }, [course])
-
-    useEffect(_ =>
-        {
-
-        }, [course])
+        dispatch(getLessonsBySectionId(props.match.params.id, section.id))
+    }, [dispatch, props.match.params.id, section.id])
 
     const toggleEdit = () => {
-        setCourseEdit(!courseEdit)
+        setSectionEdit(!sectionEdit)
     }
-
-    const handleCourseSubmit = event => {
-        event.preventDefault()
-        dispatch(editCourse(course.id, changes))
-        toggleEdit()
-    }
-
-    const handleChange = name => event => {
-        setChanges({ ...changes, [name]: event.target.value });
-    };
 
     const handleExpandClick = () => {
         setExpanded(!expanded);
     };
 
-    const handleSectionFormToggle = () => {
-        setAddSectionChange(true)
+    const handleChange = name => event => {
+        setChanges({ ...changes, [name]: event.target.value });
+    };
+
+    const handleSubmit = event => {
+        event.preventDefault();
+        dispatch(updateSection(props.match.params.id, section.id, changes))
+        setSectionEdit(true)
+    };
+
+    const handleLessonFormToggle = () => {
+        setAddLessonChange(true)
     }
 
     const handleCancel = event => {
         event.preventDefault()
-        toggleEdit()
+        setSectionEdit(true)
     }
 
     return (
-        <div className={classes.root}>
-            {courseEdit ?
-                (
-                    <Card className={classes.card}>
-                        <CardContent >
-                            <Typography variant="h5" component="h2">
-                                {course.name}
-                            </Typography>
-                            <CardActions className={classes.descriptionDiv} disableSpacing>
-                                <Typography className={classes.descriptionTitle} >Description:</Typography>
-                                <IconButton
-                                    className={clsx(classes.expand, {
-                                        [classes.expandOpen]: expanded,
-                                    })}
-                                    onClick={handleExpandClick}
-                                    aria-expanded={expanded}
-                                    aria-label="show more"
-                                >
-                                    <ExpandMoreIcon />
-                                </IconButton>
-                            </CardActions>
-                            <Collapse in={expanded} timeout="auto" unmountOnExit>
-                                <CardContent>
-                                    <Typography paragraph>
-                                        {course.description}
-                                    </Typography>
-                                </CardContent>
-                            </Collapse>
-                            <Typography color="textSecondary">
-                                {course.foreign_instructors}
-                            </Typography>
-                            <Typography color="textSecondary">
-                                {course.foreign_rating}
-                            </Typography>
-                            <Typography variant="body2" component="p">
-                                {course.link}
-                            </Typography>
-                        </CardContent>
-                        <CardActions>
-                            <Button onClick={toggleEdit} style={{marginLeft: '70.5%'}} type='submit' size="small" variant="contained" className={classes.button} >Edit Course</Button>
+        <>
+            {sectionEdit ? (
+                <Card className={classes.card}>
+                    <CardContent style={{ marginBottom: "20px" }}>
+                        <Typography variant="h5" component="h2">
+                            {section.name}
+                        </Typography>
+                        <CardActions className={classes.descriptionDiv} disableSpacing>
+                            <Typography className={classes.descriptionTitle} >Description:</Typography>
+                            <IconButton
+                                className={clsx(classes.expand, {
+                                    [classes.expandOpen]: expanded,
+                                })}
+                                onClick={handleExpandClick}
+                                aria-expanded={expanded}
+                                aria-label="show more"
+                            >
+                                <ExpandMoreIcon />
+                            </IconButton>
                         </CardActions>
-                    </Card>
-                ) : (
+                        <Collapse in={expanded} timeout="auto" unmountOnExit>
+                            <CardContent>
+                                <Typography paragraph>
+                                    {section.description}
+                                </Typography>
+                            </CardContent>
+                        </Collapse>
+                        <Typography color="textSecondary">
+                            Order: {section.order}
+                        </Typography>
+                        <Typography variant="body2" component="p">
+                            {section.link}
+                        </Typography>
+                    </CardContent>
+                    {lessons ? <Lessons section={section} props={props} lessons={lessons} /> : null}
+                    <CardActions>
+                        <Button style={{marginLeft: '70%'}} onClick={toggleEdit} type='submit' size="small" variant="contained" className={classes.button} >Edit Section</Button>
+                    </CardActions>
+                    <AddButtonInSection onClick={handleLessonFormToggle}>
+                        <AddCircleIcon className={classes.iconCircle} />
+                        <ButtonTextInSection>Add Lesson</ButtonTextInSection>
+                    </AddButtonInSection>
+                    {addLessonChange ? <AddLessons props={props} section={section} setAddLessonChange={setAddLessonChange} /> : null}
 
+                </Card>
+            ) : (
                     <Card className={classes.card}>
                         <CardContent>
                             <Typography className={classes.title} gutterBottom>
-                                Course Overview
-                                </Typography>
-                            <form onSubmit={handleCourseSubmit} className={classes.container} noValidate autoComplete="off">
+                                Add Section
+                         </Typography>
+                            <form onSubmit={handleSubmit} className={classes.container} noValidate autoComplete="off">
                                 <CssTextField
                                     id="standard-name"
                                     label='Name'
@@ -257,18 +256,18 @@ const EditCourse = ({props, id}) => {
                                     margin="normal"
                                     variant="outlined"
                                     placeholder="Name"
-                                    InputProps={{ classes: { underline: classes.blackUnderline, input: classes.input } }}
+                                    InputProps={{ classes: { input: classes.input } }}
                                 />
                                 <CssTextField
                                     id="standard-name"
-                                    label="Instructors"
+                                    label="Order"
                                     className={classes.titleOrInstructorFields}
-                                    value={changes.foreign_instructors}
-                                    onChange={handleChange('foreign_instructors')}
+                                    value={changes.order}
+                                    onChange={handleChange('order')}
                                     margin="normal"
                                     variant="outlined"
                                     placeholder="Instructors"
-                                    InputProps={{ classes: { underline: classes.blackUnderline, input: classes.input } }}
+                                    InputProps={{ classes: { input: classes.input } }}
                                 />
                                 <CssTextField
                                     id="standard-name"
@@ -285,25 +284,14 @@ const EditCourse = ({props, id}) => {
                                 />
                                 <CssTextField
                                     id="standard-name"
-                                    label="Rating"
-                                    className={classes.courseUrlField}
-                                    value={changes.foreign_rating}
-                                    onChange={handleChange('foreign_rating')}
-                                    margin="normal"
-                                    variant="outlined"
-                                    placeholder="Course Url"
-                                    InputProps={{ classes: { underline: classes.blackUnderline, input: classes.input } }}
-                                />
-                                <CssTextField
-                                    id="standard-name"
-                                    label="Course Url"
+                                    label="Section Url"
                                     className={classes.courseUrlField}
                                     value={changes.link}
                                     onChange={handleChange('link')}
                                     margin="normal"
                                     variant="outlined"
                                     placeholder="Course Url"
-                                    InputProps={{ classes: { underline: classes.blackUnderline, input: classes.input } }}
+                                    InputProps={{ classes: { input: classes.input } }}
                                 />
                                 <ButtonDiv>
                                     <Button style={{ marginLeft: '10px' }} onClick={handleCancel} size="small" variant="contained" className={classes.button} >Cancel</Button>
@@ -314,30 +302,8 @@ const EditCourse = ({props, id}) => {
                     </Card>
                 )
             }
-            <Tags course={course} props={props} />
-            <Sections course={course} props={props}/>
-            {addSectionChange ? (
-            <div>
-                    <AddSection course={course} props={props} setAddSectionChange = {setAddSectionChange}/>
-                    <AddButton onClick={handleSectionFormToggle} >
-                        <PlusDiv>
-                            <Plus>+</Plus>
-                        </PlusDiv>
-                        <ButtonText>Add Section</ButtonText>
-                    </AddButton>
-                </div>
-                ) : (
-                    <div style={{ display: 'flex', justifyContent: 'flex-end'}}>
-                        <AddButton onClick={handleSectionFormToggle} >
-                            <PlusDiv>
-                                <Plus>+</Plus>
-                            </PlusDiv>
-                            <ButtonText>Add Section</ButtonText>
-                        </AddButton>
-                    </div> 
-                    )}
-        </div>
+        </>
     )
 }
 
-export default EditCourse;
+export default Section

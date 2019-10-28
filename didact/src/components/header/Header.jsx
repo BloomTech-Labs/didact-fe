@@ -8,18 +8,20 @@ import Button from "@material-ui/core/Button";
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import MessageIcon from '@material-ui/icons/Message';
 
+
 import Profile from '../profile/Profile'
 
 const HeaderComponent = (props) => {
 
     const headerStyles = makeStyles(theme => ({
     appBarDesktop: {
-        width: `calc(100% - 100px)`,
+        width: `calc(100% - 115px)`,
         margin: "10px 10px 10px 10px",
         borderRadius: "10px 10px 10px 10px",
         backgroundColor: 'gray',
         color: 'lightgray',
-        position: 'fixed'
+        top: 0,
+        // position: 'relative'
     },
     // appBarDesktopProfile: {
     //     width: `calc(100vw - 100px)`,
@@ -38,7 +40,7 @@ const HeaderComponent = (props) => {
     },
     appBarShift: {
         marginLeft: "240px",
-        width: `calc(100% - (240px + 30px))`,
+        width: `calc(100% - (260px + 30px))`,
         transition: theme.transitions.create(['width', 'margin'], {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.enteringScreen,
@@ -61,22 +63,12 @@ const HeaderComponent = (props) => {
 }));
 
     const classes = headerStyles();
-    // const [openProfile, setOpenProfile] = React.useState(false);
+
     const open = props.open
 
-    // const handleOpen = () => {
-    //     setOpenProfile(true);
-    //   };
-
-    //   const handleClose = () => {
-    //     setOpenProfile(false);
-    //   };      
-
     return (
-        <>
-        {/* {openProfile ? 
-       (  */}
-            <AppBar
+     <>
+         <AppBar
             className={clsx(classes.appBarDesktop, {
                 [classes.appBarShift]: open,
             })}
@@ -90,19 +82,19 @@ const HeaderComponent = (props) => {
                         <DashboardIcon />
                     </Button>
                     <Button className={classes.iconToolBar} color="inherit">
-                        <MessageIcon />
+                                 <MessageIcon />
                     </Button>
                     <Button className={classes.iconToolBar} color="inherit">
                         third
                     </Button>
                     <Button color="inherit">User Name</Button>
-                    <Profile />
+                    <Profile props = {props}/>
                     {/* <button onClick={handleOpen} className = {classes.iconImage}>
                     </button> */}
                 </div>
             </Toolbar>
-        </AppBar>
-        {/* ) :  <AppBar
+            </AppBar>
+         {/* ) :  <AppBar
             className={clsx(classes.appBarDesktop, {
                 [classes.appBarShift]: open,
             })}
@@ -125,11 +117,10 @@ const HeaderComponent = (props) => {
                     <Profile open = {openProfile} setOpen = {setOpenProfile} handleClose = {handleClose}/>
                     <button onClick={handleOpen} className = {classes.iconImage}>
                     </button>
+                    <Profile />
                 </div>
             </Toolbar>
-        </AppBar>
-            } */}
-
+        </AppBar> */}
         </>
     )
 }

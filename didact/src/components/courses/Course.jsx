@@ -10,6 +10,8 @@ const Course = ({course}) => {
             <p>{course.foreign_rating}</p>
             {course.category ? <p>{course.category}</p> : <p>No Category Listed</p>}
         </div>
+        
+        
     )
 }
 

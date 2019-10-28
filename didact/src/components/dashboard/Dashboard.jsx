@@ -6,48 +6,51 @@ import Course from "../courses/Course";
 
 import ReactTooltip from 'react-tooltip'
 
-import {CoursesCard, CourseMenuDiv, CourseDiv } from './DashboardStyles'
-
+import { CoursesCard, CourseMenuDiv, CourseDiv } from './DashboardStyles'
+import { AddButton, PlusDiv, Plus, ButtonText } from './ButtonStyles';
 function Dashboard() {
   const dispatch = useDispatch();
   const state = useSelector(state => state);
+  console.log('user', state.onboardingReducer.user)
 
-  // useEffect(() => {
-  //   dispatch(courseEndPoint());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(courseEndPoint());
+  }, [dispatch]);
 
   return (
-    // <div></div>
-    //   {state.coursesReducer.courses
-    //     ? state.coursesReducer.courses.map(course => (
-    //         <Course key={course.id} course={course} />
-    //       ))
-    //     : null} 
-    // </div>
-
-    <CoursesCard>
-      <CourseMenuDiv>
-        <span className="title">Courses</span>
-        <span className="options">•••</span>
-      </CourseMenuDiv>
-      {state.coursesReducer.courses
-        ? state.coursesReducer.courses.map((course,index) => (
+    <>
+      <Link style={{ textDecoration: 'none' }} to='/courses/add'>
+        <AddButton>
+          <PlusDiv>
+            <Plus>+</Plus>
+          </PlusDiv>
+          <ButtonText>Add Course</ButtonText>
+        </AddButton>
+      </Link>
+      {/* <Link to='/addcourse'><button>Add Course</button></Link> */}
+      <CoursesCard>
+        <CourseMenuDiv>
+          <span className="title">Courses</span>
+          <span className="options">•••</span>
+        </CourseMenuDiv>
+        {state.coursesReducer.courses
+          ? state.coursesReducer.courses.map((course, index) => (
             <CourseDiv className="course" key={index}>
               <div className="picture">
                 {/* Picture */}
               </div>
               <div className="info">
                 <Link to={`/courses/${course.id}`} className="title" data-tip data-for={`courseName-${index}`}>{course.name}</Link>
-                <ReactTooltip id={`courseName-${index}`} place="top" type="dark" effect="solid">
+                <ReactTooltip id={`courseName-${index}`} place="right" type="dark" effect="solid">
                   <span>{course.name}</span>
                 </ReactTooltip>
                 <span className="source">Udemy</span>
               </div>
             </CourseDiv>
           ))
-        : null} 
-    </CoursesCard>
-
+          : null}
+      </CoursesCard>
+    </>
   );
 }
 

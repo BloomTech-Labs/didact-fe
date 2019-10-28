@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { makeStyles } from '@material-ui/core/styles'
 
 import clsx from "clsx";
@@ -37,38 +37,39 @@ const MobileDrawerComponent = (props) => {
             whiteSpace: "nowrap",
           },
           
-          drawerOpen: {
-            width: "240px",
-            height: "calc(100% - 270px)",
-            margin: "10px",
-            marginTop: "270px",
-            borderRadius: "15px",
-            transition: theme.transitions.create("width", {
-              easing: theme.transitions.easing.sharp,
-              duration: theme.transitions.duration.enteringScreen,
-            }),
-          },
-          drawerClose: {
-            transition: theme.transitions.create("width", {
-              easing: theme.transitions.easing.sharp,
-              duration: theme.transitions.duration.leavingScreen,
-            }),
+          // drawerOpen: {
+          //   width: "240px",
+          //   height: "calc(100% - 270px)",
+          //   margin: "10px",
+          //   marginTop: "270px",
+          //   borderRadius: "15px",
+          //   transition: theme.transitions.create("width", {
+          //     easing: theme.transitions.easing.sharp,
+          //     duration: theme.transitions.duration.enteringScreen,
+          //   }),
+          // },
+          // drawerClose: {
+          //   transition: theme.transitions.create("width", {
+          //     easing: theme.transitions.easing.sharp,
+          //     duration: theme.transitions.duration.leavingScreen,
+          //   }),
     
-            overflowX: "hidden",
-            width: theme.spacing(7) + 1,
-            [theme.breakpoints.up("sm")]: {
-              width: theme.spacing(8) + 1, 
-              margin: "10px",
-              marginTop: "270px",
-              height: "calc(100% - 270px)",
-              borderRadius: "15px",
-            },
-          },
+          //   overflowX: "hidden",
+          //   width: theme.spacing(7) + 1,
+          //   [theme.breakpoints.up("sm")]: {
+          //     width: theme.spacing(8) + 1, 
+          //     margin: "10px 10px 10px 10px",
+          //     marginTop: "270px",
+          //     height: "calc(100% - 270px)",
+          //     borderRadius: "15px",
+          //   },
+          // },
           drawerOpenMobile: {
             position: 'absolute',
             width: "240px",
+            // backgroundColor: '#eeeff3',
             height: '580px',
-            margin: "37px 10px 10px 5px",
+            margin: "37px 10px 10px 10px",
             borderRadius: "15px",
             transition: theme.transitions.create("width", {
               easing: theme.transitions.easing.sharp,
@@ -81,6 +82,7 @@ const MobileDrawerComponent = (props) => {
               duration: theme.transitions.duration.leavingScreen,
             }),
             overflow: "hidden",
+            // backgroundColor: '#eeeff3',
             height: '580px',
             margin: "73px 10px 0px 10px",
             borderRadius: "15px",
@@ -179,7 +181,7 @@ const MobileDrawerComponent = (props) => {
                     <MenuIcon />
                 </IconButton>
             </div>
-            {<SideList />}
+            {<SideList props = {props}/>}
         </Drawer>
     );
 };

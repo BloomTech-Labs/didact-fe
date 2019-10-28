@@ -1,13 +1,14 @@
 import React from "react";
-import {Form, Field, withFormik} from "formik";
+import { Form, Field, withFormik } from "formik";
 import * as Yup from 'yup';
 import { registerAction } from '../../store/actions';
 import { useDispatch } from 'react-redux';
-
+import { Wrapper, RegisterWrapper, RegisterFormWrapper } from './RegisterStyles'
+import HeaderNoIcons from '../header/HeaderNoIcons'
 import { makeStyles } from '@material-ui/core/styles';
+import beURL from "../../utils/beURL";
 
-
-const useStyles = makeStyles(theme => ({
+ makeStyles(theme => ({
     header: {
         width: '50%',
         margin: '0 auto',
@@ -30,7 +31,7 @@ const useStyles = makeStyles(theme => ({
         display: 'flex',
         justifyContent: 'space-between',
         width: "70%",
-        height:'2.7em',
+        height: '2.7em',
         "& *": {
             border: 'solid #9B9B9B 1.2px',
             backgroundColor: '#F7F7F7'
@@ -45,12 +46,12 @@ const useStyles = makeStyles(theme => ({
         "& *": {
             border: 'solid #9B9B9B 1.2px',
             backgroundColor: '#F7F7F7',
-            height:'18%'
+            height: '18%'
         }
     },
     signUpButton: {
         width: '70%',
-        height:'2.7em',
+        height: '2.7em',
         textAlign: 'center',
         backgroundColor: '#5A5A5A',
         color: 'white',
@@ -64,8 +65,8 @@ const useStyles = makeStyles(theme => ({
         height: '2.7em',
         margin: '0 auto',
         paddingTop: '2%',
-        "& *":{
-            height:'100%',
+        "& *": {
+            height: '100%',
             backgroundColor: '#5A5A5A',
             color: 'white',
             border: 'transparent',
@@ -74,51 +75,70 @@ const useStyles = makeStyles(theme => ({
             textDecoration: 'none'
         }
     }
-  }));
-  
+}));
+
 const RegisterForm = (props) => {
-    const classes = useStyles();
-    const {errors, touched} = props;
-    if(localStorage.getItem('token'))
-    {
+
+    const { errors, touched } = props;
+    if (localStorage.getItem('token')) {
         props.history.push('/')
     }
-    return (  
-        <>
-            <div className={classes.header}>
+
+    return (
+        <RegisterFormWrapper>
+            <div className="header">
                 <h1>Signup</h1>
-                <h5>This might a good place for a subtitle</h5>
             </div>
-            <div className={classes.formWrapper}>
-                <Form>
-                    <div className={classes.container}>
-                        <div className={classes.namePlate}>
-                            <Field label="test" type= "text" name = "first_name" placeholder = "First Name"></Field>
-                            {/* {touched.first_name && errors.first_name && <p>{errors.first_name}</p>} */}
-                            <Field type= "text" name = "last_name" placeholder = "Last Name"></Field>
-                            {/* {touched.last_name && errors.last_name && <p>{errors.last_name}</p>} */}
+            <Form>
+                <div className="inputWrapper">
+                    <div>
+                        <div className="nameInputs">
+                            <div className={"input size-half" + ((touched.first_name && errors.first_name) ? ' error' : '')}>
+                                <p>First Name</p>
+                                <Field type="text" name="first_name" placeholder="First Name"></Field>
+                                {touched.first_name && errors.first_name && <p className="errorMessage">First Name Required</p>}
+                            </div>
+                            <div className={"input size-half" + ((touched.last_name && errors.last_name) ? ' error' : '')}>
+                                <p>Last Name</p>
+                                <Field type="text" name="last_name" placeholder="Last Name"></Field>
+                                {touched.last_name && errors.last_name && <p className="errorMessage">Last Name Required</p>}
+                            </div>
                         </div>
-                        <div className={classes.passPlate}>
-                            <Field type= "email" name = "email" placeholder = "Email"></Field>
-                            {/* {touched.email && errors.email && <p>{errors.email}</p>} */}
-                            <Field type= "password" name = "password" placeholder = "Password"></Field>
-                            {/* {touched.password && errors.password && <p>{errors.password}</p>} */}
-                            <Field type= "password" name = "confirm-password" placeholder = "Confirm Password"></Field>
-                            {/* {touched.password && errors.password && <p>{errors.password}</p>} */}
+                        <div className={"input" + ((touched.email && errors.email) ? ' error' : '')}>
+                            <p>Email</p>
+                            <Field type="email" name="email" placeholder="Email"></Field>
+                            {touched.email && errors.email && <p className="errorMessage">Invalid Email Address</p>}
                         </div>
-                        <button className={classes.signUpButton} type="submit">Signup Now</button>
+                        <div className={"input" + ((touched.password && errors.password) ? ' error' : '')}>
+                            <p>Password</p>
+                            <Field type="password" name="password" placeholder="Password"></Field>
+                            {touched.password && errors.password && <p className="errorMessage">Invalid Password</p>}
+                        </div>
+                        <div className={"input" + ((touched.confirmPassword && errors.confirmPassword) ? ' error' : '')}>
+                            <p>Confirm Password</p>
+                            <Field type="password" name="confirmPassword" placeholder="Confirm Password"></Field>
+                            {touched.confirmPassword && errors.confirmPassword && <p className="errorMessage">Passwords do not match</p>}
+                        </div>
                     </div>
-                </Form>
+                    <div>
+                        <button type="submit">Signup Now</button>
+                    </div>
+                </div>
+            </Form>
+            <div className="socialButtons">
+                <a href={`${beURL}auth/facebook`}>Sign In With Facebook</a>
+                <a href={`${beURL}auth/google`}>Sign In With Google</a>
             </div>
-        </>
+        </RegisterFormWrapper>
     )
 }
 
 const FormikRegisterForm = withFormik({
-    mapPropsToValues({email, password, first_name, last_name}){
+    mapPropsToValues({ email, password, confirmPassword, first_name, last_name }) {
         return {
             email: email || "",
             password: password || "",
+            confirmPassword: confirmPassword || "",
             first_name: first_name || "",
             last_name: last_name || ""
         }
@@ -126,30 +146,30 @@ const FormikRegisterForm = withFormik({
 
     validationSchema: Yup.object().shape({
         email: Yup.string().required("Email is required").email("Must be an Email"),
-        password: Yup.string().required("Password is required" ),
-        first_name: Yup.string().required("First Name is required" ),
-        last_name: Yup.string().required("Last Name is required" ),
+        password: Yup.string().required("Password is required"),
+        confirmPassword: Yup.string().required().oneOf([Yup.ref('password'), null], 'Passwords must match'),
+        first_name: Yup.string().required("First Name is required"),
+        last_name: Yup.string().required("Last Name is required"),
     }),
-    handleSubmit(values, props){
-        props.props.dispatch(registerAction(props.props.history, values))
+    handleSubmit(values, props) {
+        const registerValues = {email: values.email, password: values.password, first_name: values.first_name, last_name: values.last_name}
+        props.props.dispatch(registerAction(props.props.history, registerValues))
     }
 
 })(RegisterForm);
 
-const FormikRegisterWrapper = ({history}) =>
-{
+const FormikRegisterWrapper = props => {
     const dispatch = useDispatch();
-    const classes = useStyles();
-   
+    
+
     console.log(dispatch)
     return (
-        <>
-            <FormikRegisterForm dispatch={dispatch} history={history}/>
-            <div className={classes.footer}>
-            <a href="http://didactlms-staging.herokuapp.com/api/auth/facebook">Sign Up With Facebook</a>
-            <a href="http://didactlms-staging.herokuapp.com/api/auth/google">Sign Up With Google</a>
-            </div>
-        </>
+        <Wrapper>
+            <HeaderNoIcons history={props.history}/>
+            <RegisterWrapper>
+                <FormikRegisterForm dispatch={dispatch} history={props.history}/>
+            </RegisterWrapper>
+        </Wrapper>
     )
 }
 

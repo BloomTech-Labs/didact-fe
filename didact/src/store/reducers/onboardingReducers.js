@@ -12,7 +12,8 @@ import {
 const initialState = {
     isLoading: false,
     error: '',
-    tokenVerified: false
+    tokenVerified: false,
+    user: {}
 }
 
 export const onboardingReducer = (state = initialState, action) => {
@@ -28,13 +29,14 @@ export const onboardingReducer = (state = initialState, action) => {
         case LOGIN_SUCCESS: 
             return {
                 ...state,
+                user: action.payload,
                 isLoading: false,
                 error: ""
                 };
         case LOGIN_FAILURE:
             return {
                 ...state,
-                error: action.payload
+                error: action.payload,
                 };
     
     //  Register Reducers
@@ -48,6 +50,7 @@ export const onboardingReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoading: false,
+                user: action.payload,
                 error: ""
                 };
         case REGISTER_FAILURE:
@@ -62,20 +65,21 @@ export const onboardingReducer = (state = initialState, action) => {
                 ...state,
                 isLoading: true,
                 error: ""
-                };
+            };
         case VERIFY_SUCCESS: 
             return {
                 ...state,
                 isLoading: false,
                 error: "",
-                tokenVerified: true
-                };
+                tokenVerified: true,
+                user: action.payload
+            };
         case VERIFY_FAILURE:
             return {
                 ...state,
                 error: action.payload,
                 tokenVerified: false
-                };
+            };
 
         default:
             return state;

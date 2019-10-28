@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { makeStyles } from '@material-ui/core/styles'
 
 import clsx from "clsx";
@@ -38,11 +38,15 @@ const DrawerComponent = (props) => {
           },
           
           drawerOpen: {
+            // backgroundColor: '#eeeff3',
             width: "240px",
-            height: "calc(100% - 270px)",
+            height: "600px",
             margin: "10px",
-            marginTop: "210px",
+            marginLeft: "10px",
+            marginRight: 0,
+            // marginTop: "195px",
             borderRadius: "15px",
+            overflowY:"hidden",
             transition: theme.transitions.create("width", {
               easing: theme.transitions.easing.sharp,
               duration: theme.transitions.duration.enteringScreen,
@@ -53,44 +57,49 @@ const DrawerComponent = (props) => {
               easing: theme.transitions.easing.sharp,
               duration: theme.transitions.duration.leavingScreen,
             }),
-    
+            // backgroundColor: '#eeeff3',
             overflowX: "hidden",
+            overflowY:"hidden",
+            marginLeft: "10px",
             width: theme.spacing(7) + 1,
             [theme.breakpoints.up("sm")]: {
               width: theme.spacing(8) + 1, 
-              margin: "10px",
-              marginTop: "210px",
-              height: "calc(100% - 270px)",
+              padding: 0,
+              marginTop: '10px',
+              // marginTop: "195px",
+              height: "600px",
               borderRadius: "15px",
             },
           },
-          drawerOpenMobile: {
-            position: 'fixed',
-            width: "240px",
-            height: "500px",
-            margin: "37px 0 10px 5px",
-            borderRadius: "15px",
-            transition: theme.transitions.create("width", {
-              easing: theme.transitions.easing.sharp,
-              duration: theme.transitions.duration.enteringScreen,
-            }),
-          },
-          drawerCloseMobile: {
-            transition: theme.transitions.create("width", {
-              easing: theme.transitions.easing.sharp,
-              duration: theme.transitions.duration.leavingScreen,
-            }),
-            overflow: "hidden",
-            height: "500px",
-            margin: "73px 10px 10px 10px",
-            borderRadius: "15px",
-            position: 'fixed',
-            zIndex: 1,
-            width: theme.spacing(7) + 1,
-            [theme.breakpoints.up("sm")]: {
-              width: theme.spacing(7) + 1,
-            },
-          },
+          // drawerOpenMobile: {
+          //   backgroundColor: '#eeeff3',
+          //   position: 'fixed',
+          //   width: "240px",
+          //   height: "500px",
+          //   margin: "37px 0 10px 5px",
+          //   borderRadius: "15px",
+          //   transition: theme.transitions.create("width", {
+          //     easing: theme.transitions.easing.sharp,
+          //     duration: theme.transitions.duration.enteringScreen,
+          //   }),
+          // },
+          // drawerCloseMobile: {
+          //   transition: theme.transitions.create("width", {
+          //     easing: theme.transitions.easing.sharp,
+          //     duration: theme.transitions.duration.leavingScreen,
+          //   }),
+          //   backgroundColor: '#eeeff3',
+          //   overflow: "hidden",
+          //   height: "500px",
+          //   margin: "73px 10px 10px 10px",
+          //   borderRadius: "15px",
+          //   position: 'fixed',
+          //   zIndex: 1,
+          //   width: theme.spacing(7) + 1,
+          //   [theme.breakpoints.up("sm")]: {
+          //     width: theme.spacing(7) + 1,
+          //   },
+          // },
         menuButtonMobile: {
             marginRight: '-4px'
         },
@@ -101,8 +110,9 @@ const DrawerComponent = (props) => {
             display: "flex",
             justifyContent: "center",
             alignContent: "space-evenly",
-            margin: "10px 0",
+            margin: "10px 0 0 0",
             flexFlow: "column wrap",
+            position: 'fixed',
         },
         placeholderDivShadowed: {
             display: "flex",
@@ -110,34 +120,41 @@ const DrawerComponent = (props) => {
             alignContent: "space-evenly",
             margin: "20px 0",
             flexFlow: "column wrap",
+           
         },
         placeHolder: {
             backgroundColor: "gray",
-            width: "200px",
+            width: "240px",
             height: "80px",
             borderRadius: 15,
             margin: "0 0 10px 0",
+            // position: 'fixed'
         }, 
         placeHolder2: {
             backgroundColor: "#ebe8e1",
-            width: "200px",
+            width: "240px",
             height: "80px",
             borderRadius: 15,
             margin: "0 0 0 0",
+            // position: 'fixed'
         },
         placeHolderClosed: {
             backgroundColor: "gray",
-            width: "50px",
+            width: "65px",
             height: "80px",
             borderRadius: 15,
+            marginLeft: "20px",
             marginTop: "0",
+            // position: 'fixed'
           },
           placeHolder2Closed: {
             backgroundColor: "#ebe8e1",
-            width: "50px",
+            width: "65px",
             height: "80px",
             borderRadius: 15,
+            marginLeft: "20px",
             margin: "10px 0 0 0",
+            // position: 'fixed'
           },
     
         toolbar: {
@@ -155,7 +172,7 @@ const DrawerComponent = (props) => {
 
     return (
         <>
-         {open ? (
+         {/* {open ? (
                 <div className={classes.placeholderDiv}>
                     <div className={classes.placeHolder} />
                     <div className={classes.placeHolder2} />
@@ -165,8 +182,9 @@ const DrawerComponent = (props) => {
                         <div className={classes.placeHolderClosed} />
                         <div className={classes.placeHolder2Closed} />
                     </div>
-                )}
+                )} */}
         <Drawer
+            
             variant="permanent"
             className={clsx(classes.drawer, {
                 [classes.drawerOpen]: open,
@@ -191,7 +209,7 @@ const DrawerComponent = (props) => {
                     <MenuIcon />
                 </IconButton>
             </div>
-            {<SideList open = {open}/>}
+            {<SideList open = {open} props = {props}/>}
         </Drawer>
         </>
     );

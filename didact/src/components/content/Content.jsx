@@ -1,13 +1,16 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 
+
 import Dashboard from '../dashboard/Dashboard'
 import AddCourse from '../courses/AddCourse'
 import DetailedCourse from '../courses/DetailedCourse'
 import EditCourse from '../courses/EditCourse'
+import AllCourses from "../courses/AllCourses.jsx"
+
 
 const Content = (props) => {
-
+    
     const contentStyles = makeStyles(theme => ({
 
         placeholderDiv: {
@@ -26,14 +29,14 @@ const Content = (props) => {
         },
         placeHolder: {
             backgroundColor: "gray",
-            width: "200px",
+            width: "240px",
             height: "100px",
             borderRadius: 15,
             margin: "10px 0",
         },
         placeHolder2: {
             backgroundColor: "#ebe8e1",
-            width: "200px",
+            width: "240px",
             height: "120px",
             borderRadius: 15,
             margin: "10px 0",
@@ -49,7 +52,7 @@ const Content = (props) => {
     return (
 
         <div>
-            {phoneSize ? (
+            {/* {phoneSize ? (
                 open ? (
                     <div className={classes.placeholderDiv}>
                         <div className={classes.placeHolder} />
@@ -61,9 +64,12 @@ const Content = (props) => {
                     <div className={classes.placeHolder2} />
                 </div>
                     )
-            ) : null}
+            ) : null} */}
             {(() =>
             {
+                // case ('courses'):
+                    //     return <DetailedCourse id={props.match.params.id} />
+
                 switch(props.page)
                 {
                     case ('dashboard'):
@@ -71,6 +77,8 @@ const Content = (props) => {
                     case ('addcourse'):
                         return <AddCourse props = {props}/>
                     case ('courses'):
+                        return <AllCourses props = {props}/>
+                    case ('detailedcourse'):
                         return <DetailedCourse id={props.match.params.id} />
                     case ('editcourse'):
                         return <EditCourse id={props.match.params.id} props={props}/>

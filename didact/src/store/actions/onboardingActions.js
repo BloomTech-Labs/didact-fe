@@ -1,6 +1,5 @@
-
 import axios from "axios";
-
+import beURL from '../../utils/beURL'
 export const LOGIN_START = 'LOGIN_START';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
@@ -11,14 +10,15 @@ export const VERIFY_START = 'VERIFY_START';
 export const VERIFY_SUCCESS = 'VERIFY_SUCCESS';
 export const VERIFY_FAILURE = 'VERIFY_FAILURE';
 
+const baseURL = `${beURL}auth/`
 
 export const loginAction = (history, form) => dispatch => {
     dispatch({ type: LOGIN_START })
     axios
-        .post(`https://didactlms-staging.herokuapp.com/api/auth/login`, form)
+        .post(`${baseURL}login`, form)
         .then(res => {
             localStorage.setItem("token", res.data.token)
-            dispatch({ type: LOGIN_SUCCESS, payload: res })
+            dispatch({ type: LOGIN_SUCCESS, payload: res.data })
         })
         .then(res => history.push("/dashboard"))
         .catch(err => {
@@ -29,7 +29,7 @@ export const loginAction = (history, form) => dispatch => {
 export const registerAction = (history, form) => dispatch => {
     dispatch({ type: REGISTER_START });
     axios
-        .post("https://didactlms-staging.herokuapp.com/api/auth/register", form)
+        .post(`${baseURL}register`, form)
         .then(res => {
             dispatch({ type: REGISTER_SUCCESS, payload: res.data });
             localStorage.setItem("token", res.data.token)
@@ -43,7 +43,7 @@ export const verifyToken = (history) => dispatch => {
     // console.log(localStorage.getItem('token'))
     const token = localStorage.getItem('token')
     dispatch({ type: VERIFY_START })
-    axios.post(`https://didactlms-staging.herokuapp.com/api/auth`, { 'token': token })
+    axios.post(`${baseURL}`, { 'token': token })
         .then(res => {
             console.log('res from verify token', res)
             dispatch({ type: VERIFY_SUCCESS, payload: res.data })
@@ -63,7 +63,7 @@ export const verifySocial = (props) => dispatch => {
     // console.log(localStorage.getItem('token'))
     const token = localStorage.getItem('token')
     dispatch({ type: VERIFY_START })
-    axios.post(`https://didactlms-staging.herokuapp.com/api/auth`, { 'token': token })
+    axios.post(`${baseURL}`, { 'token': token })
         .then(res => {
             console.log(res)
             dispatch({ type: VERIFY_SUCCESS, payload: res.data })
