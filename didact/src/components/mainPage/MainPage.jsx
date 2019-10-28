@@ -160,7 +160,8 @@ function MainPage(props) {
                                         <Link style = {{color: 'white'}} to = "/" ><DashboardIcon/></Link>
                                         <MessageIcon />
                                         <p>{userName.email}</p>
-                                        {!profileLockSize ? <Profile props = {props}/> : null }
+                                        {/* {!profileLockSize ? <Profile props = {props}/> : null } */}
+                                        <Profile props = {props}/>
                                     </div>
                                 </div>
                                 <main className={classes.content}>
