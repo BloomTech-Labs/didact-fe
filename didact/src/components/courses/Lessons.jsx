@@ -12,8 +12,7 @@ const Lessons = ({section, props, lessons}) => {
 
     return(
         <>
-            {filterLesson ? filterLesson.map(lesson => <Lesson key={lesson.id} section = {props.section} lesson={lesson} props={props} />) : null}
-            {/* {props.lessons && props.lessons.filter(lesson => lesson.course_sections_id === props.section.id) ? (<Lesson key={lesson.id} section = {props.section} lesson={props.lesson} />) : null} */}
+            {filterLesson ? filterLesson.map(lesson => <Lesson key={lesson.id} section={section} lesson={lesson} props={props} />) : null}
         </>
     )
 }

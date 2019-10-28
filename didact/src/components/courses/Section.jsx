@@ -11,12 +11,12 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
-import { updateSection, getLessonsBySectionId } from '../../store/actions';
+import { updateSection, getLessonsBySectionId, deleteSection } from '../../store/actions';
 import Lessons from './Lessons'
 import AddLessons from './AddLessons'
 
 import AddCircleIcon from '@material-ui/icons/AddCircle';
-import { AddButtonInSection, ButtonTextInSection, ButtonDiv } from '../dashboard/ButtonStyles';
+import { AddButtonInSection, ButtonTextInSection, ButtonDiv, DeleteForm } from '../dashboard/ButtonStyles';
 
 const useStyles = makeStyles(theme => ({
 
@@ -139,7 +139,7 @@ const CssTextField = withStyles({
     },
 })(TextField);
 
-const Section = ({ section, props }) => {
+const Section = ({ course, section, props }) => {
     const classes = useStyles();
     const dispatch = useDispatch()
     const lessons = useSelector(state => state.sectionsReducer.lessons)
@@ -194,10 +194,15 @@ const Section = ({ section, props }) => {
         setSectionEdit(true)
     }
 
+    const handleDelete = () => {
+        dispatch(deleteSection(course.id, section.id))
+    }
+
     return (
         <>
             {sectionEdit ? (
                 <Card className={classes.card}>
+                    <DeleteForm onClick={handleDelete}>X</DeleteForm>
                     <CardContent style={{ marginBottom: "20px" }}>
                         <Typography variant="h5" component="h2">
                             {section.name}
@@ -238,7 +243,6 @@ const Section = ({ section, props }) => {
                         <ButtonTextInSection>Add Lesson</ButtonTextInSection>
                     </AddButtonInSection>
                     {addLessonChange ? <AddLessons props={props} section={section} setAddLessonChange={setAddLessonChange} /> : null}
-
                 </Card>
             ) : (
                     <Card className={classes.card}>

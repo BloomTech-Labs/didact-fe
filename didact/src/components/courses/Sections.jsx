@@ -16,7 +16,7 @@ const Sections = ({ course, props }) => {
     return (
         <>
             {sections ? displaySections.map(section =>  (
-                <Section key={section.id} section={section} props={props}/>
+                <Section key={section.id} course={course} section={section} props={props}/>
             )) : null}
         </>
     )
