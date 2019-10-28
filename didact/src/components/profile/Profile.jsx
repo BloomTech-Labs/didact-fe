@@ -7,12 +7,12 @@ import Button from "@material-ui/core/Button";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import {Redirect} from "react-router-dom";
 import {useSelector } from "react-redux";
-
+import profileImage from '../../images/profileExample.jpg'
 const useStyles = makeStyles(theme => ({
   buttons: {
     border: "none",
     backgroundColor: "white",
-    outline: 0,
+    outline: "none",
     cursor: 'pointer'
   },
   buttonDiv: {
@@ -31,7 +31,8 @@ const useStyles = makeStyles(theme => ({
     margin: "-40px 0 0 210px",
     color: 'gray',
     cursor: "pointer",
-    backgroundColor: 'white'
+    backgroundColor: 'white',
+    outline: "none",
     
   },
   description: {
@@ -42,18 +43,18 @@ const useStyles = makeStyles(theme => ({
   iconImage: {
     width: "35px",
     height: "35px",
-    backgroundColor: "#ebe8e1",
     borderRadius: "50%",
-    outline: 0,
+    outline: "none",
     cursor: 'pointer',
-    border: 'none'
+    border: 'none',
+    objectFit: 'cover'
   },
   iconImageProfile: {
     width: "75px",
     height: "75px",
-    backgroundColor: "#ebe8e1",
     borderRadius: "50%",
     marginTop: '-20px',
+    objectFit: 'cover'
   },
   modal: {
     display: "flex",
@@ -61,6 +62,9 @@ const useStyles = makeStyles(theme => ({
     justifyContent: "flex-end",
     marginRight: "35px",
     marginTop: "23px",
+    outline: "none",
+
+    
   },
   modalMobile: {
     display: "flex",
@@ -68,6 +72,7 @@ const useStyles = makeStyles(theme => ({
     justifyContent: "flex-end",
     marginRight: "30px",
     marginTop: "10px",
+    outline: "none",
   },
   paper: {
     display: "flex",
@@ -80,7 +85,7 @@ const useStyles = makeStyles(theme => ({
     padding: "30px",
     height: "400px",
     width: "250px",
-    outline: 0,
+    outline: "none",
   },
   paragraph: {
     color: "gray",
@@ -96,12 +101,18 @@ const useStyles = makeStyles(theme => ({
     borderRadius: "50%",
     margin: "0 10px",
   },
+  root: {
+    outline: "none",
+    border: 'none',
+    
+  },
   title: {
     marginTop: '0',
   },
 }));
 
 export default function Profile(props) {
+  console.log(props)
   const classes = useStyles();
   const phoneSize = useMediaQuery("(max-width:770px)");
   const [open, setOpen] = React.useState(false);
@@ -120,14 +131,19 @@ export default function Profile(props) {
         props.props.history.push('/login')
   }
 
+  const handleMobileLogOut = () => {
+    localStorage.clear('token')
+    props.props.props.history.push('/login')
+}
+
   const content = () => {
     return (
-      <Fade in={open}>
+      <div className = {classes.root} >
         <div className={classes.paper}>
           <div className = {classes.closeModel} onClick = {handleClose}>X</div>
-          <div className={classes.iconImageProfile}></div>
+          <img src = {profileImage} alt = "Profile" className={classes.iconImageProfile} />
           <h2 className={classes.title} id="transition-modal-title">{userName.email}</h2>
-          <p className={classes.description} id="transition-modal-description">Something Else?</p>
+          <p className={classes.description} id="transition-modal-description">Welcome</p>
           <div className={classes.smallImageDivs} >
             <div className={classes.smallImage} ></div>
             <div className={classes.smallImage} ></div>
@@ -146,7 +162,7 @@ export default function Profile(props) {
                 <p className = {classes.paragraph} >></p>
               </div>
             </button>
-            <button className={classes.buttons} onClick = {handleLogOut}>
+            <button className={classes.buttons} onClick = {!phoneSize ? (handleLogOut) : (handleMobileLogOut)}>
               <div className={classes.buttonDiv}>
                 <p>Log Out</p>
                 <p className = {classes.paragraph} >></p>
@@ -154,18 +170,19 @@ export default function Profile(props) {
             </button>
           </div>
         </div>
-      </Fade>
+      </div>
     );
   };
 
   return (
-    <div>
-      <button onClick={handleOpen} className={classes.iconImage}></button>
+    <div className = {classes.root} >
+      <img src={profileImage} alt ="Profile" onClick={handleOpen} className={classes.iconImage} />
       {!phoneSize ? (
         <Modal
           aria-labelledby="transition-modal-title"
           aria-describedby="transition-modal-description"
           className={classes.modal}
+          disableAutoFocus={true}
           open={open}
           onClose={handleClose}
           closeAfterTransition
@@ -181,6 +198,7 @@ export default function Profile(props) {
           aria-labelledby="transition-modal-title"
           aria-describedby="transition-modal-description"
           className={classes.modalMobile}
+          disableAutoFocus={true}
           open={open}
           onClose={handleClose}
           closeAfterTransition

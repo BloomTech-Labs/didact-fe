@@ -12,7 +12,7 @@ export const PageFlex = styled.div`
     .headerMain {
         /* padding-left: 50px; */
         width : 100%;
-        margin: 0 15px ;
+        margin: 0 0 0 15px;
 
         .header {
             width: calc(100% - 30px);

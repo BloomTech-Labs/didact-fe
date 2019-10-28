@@ -23,10 +23,9 @@ const MobileHeaderComponent = (props) => {
            
         },
         appBarMobile: {
-            width: `calc(100%)`,
-            borderRadius: "10px 10px 10px 10px",
-            backgroundColor: 'gray',
-            color: '#5b5b5b',
+            width: `100%`,
+            backgroundColor: '#5b5b5b',
+            color: 'white',
             position: 'fixed',
         },
         appBarShift: {
@@ -74,9 +73,9 @@ const MobileHeaderComponent = (props) => {
                     <Button className={classes.iconToolBar} color="inherit">
                         <MessageIcon />
                     </Button>
-                    <Button className={classes.iconToolBar} color="inherit">
+                    {/* <Button className={classes.iconToolBar} color="inherit">
                         third
-                    </Button>
+                    </Button> */}
                    <Profile props = {props}/>
                 </div>
             </Toolbar>

@@ -1,13 +1,16 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 
+
 import Dashboard from '../dashboard/Dashboard'
 import AddCourse from '../courses/AddCourse'
 import DetailedCourse from '../courses/DetailedCourse'
 import EditCourse from '../courses/EditCourse'
+import AllCourses from "../courses/AllCourses.jsx"
+
 
 const Content = (props) => {
-
+    
     const contentStyles = makeStyles(theme => ({
 
         placeholderDiv: {
@@ -49,7 +52,7 @@ const Content = (props) => {
     return (
 
         <div>
-            {phoneSize ? (
+            {/* {phoneSize ? (
                 open ? (
                     <div className={classes.placeholderDiv}>
                         <div className={classes.placeHolder} />
@@ -61,7 +64,7 @@ const Content = (props) => {
                     <div className={classes.placeHolder2} />
                 </div>
                     )
-            ) : null}
+            ) : null} */}
             {(() =>
             {
                 // case ('courses'):
@@ -74,7 +77,7 @@ const Content = (props) => {
                     case ('addcourse'):
                         return <AddCourse props = {props}/>
                     case ('courses'):
-                        return <Dashboard />
+                        return <AllCourses props = {props}/>
                     case ('detailedcourse'):
                         return <DetailedCourse id={props.match.params.id} />
                     case ('editcourse'):

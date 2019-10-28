@@ -137,7 +137,7 @@ export default function AddCourse(props) {
             <CssTextField
                 id="standard-name"
                 label='Name'
-                className={classes.titleOrInstructorFields}
+                className={classes.courseUrlField}
                 value={values.name}
                 onChange={handleChange('name')}
                 margin="normal"
@@ -148,7 +148,7 @@ export default function AddCourse(props) {
             <CssTextField
                 id="standard-name"
                 label="Instructors"
-                className={classes.titleOrInstructorFields}
+                className={classes.courseUrlField}
                 value={values.foreign_instructors}
                 onChange={handleChange('foreign_instructors')}
                 margin="normal"

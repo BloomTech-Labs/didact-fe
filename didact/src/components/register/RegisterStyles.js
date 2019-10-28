@@ -95,7 +95,9 @@ export const RegisterFormWrapper = styled.div`
 `
 
 export const RegisterWrapper = styled.div`
-    width: 45%;
+    width: calc(100% - 20px);
+    max-width: 600px;
+    min-width: 375px;
     background: white;
     border-radius: 4px;
     margin: 0 auto;
@@ -103,6 +105,6 @@ export const RegisterWrapper = styled.div`
 `
 
 export const Wrapper = styled.div`
-    width: 70%;
-    margin: 0 auto;
+    width: calc(100% - 20px);
+    margin: 0 auto 0 calc(auto + 7px);
 `
