@@ -6,6 +6,7 @@ import Fade from "@material-ui/core/Fade";
 import Button from "@material-ui/core/Button";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import {Redirect} from "react-router-dom";
+import {useSelector } from "react-redux";
 
 const useStyles = makeStyles(theme => ({
   buttons: {
@@ -104,7 +105,8 @@ export default function Profile(props) {
   const classes = useStyles();
   const phoneSize = useMediaQuery("(max-width:770px)");
   const [open, setOpen] = React.useState(false);
-  console.log(props)
+  const userName = useSelector(state => state.onboardingReducer.user);
+
   const handleOpen = () => {
     setOpen(true);
   };
@@ -124,7 +126,7 @@ export default function Profile(props) {
         <div className={classes.paper}>
           <div className = {classes.closeModel} onClick = {handleClose}>X</div>
           <div className={classes.iconImageProfile}></div>
-          <h2 className={classes.title} id="transition-modal-title">User Name</h2>
+          <h2 className={classes.title} id="transition-modal-title">{userName.email}</h2>
           <p className={classes.description} id="transition-modal-description">Something Else?</p>
           <div className={classes.smallImageDivs} >
             <div className={classes.smallImage} ></div>

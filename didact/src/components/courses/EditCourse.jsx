@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getCourseById, editCourse } from '../../store/actions'
-import { AddButton, PlusDiv, Plus, ButtonText } from '../dashboard/ButtonStyles';
+import { AddButton, PlusDiv, Plus, ButtonText, ButtonDiv } from '../dashboard/ButtonStyles';
 import Tags from './Tags'
 import AddSection from './AddSection'
 import Sections from './Sections'
@@ -30,7 +30,7 @@ const useStyles = makeStyles(theme => ({
         boxShadow: 'none',
         borderRadius: '15px',
         background: '#EBE8E1',
-        marginLeft: '70%',
+        // marginLeft: '70%',
     },
     card: {
         width: '50vw',
@@ -192,6 +192,11 @@ const EditCourse = ({props, id}) => {
         setAddSectionChange(true)
     }
 
+    const handleCancel = event => {
+        event.preventDefault()
+        toggleEdit()
+    }
+
     return (
         <div className={classes.root}>
             {courseEdit ?
@@ -232,7 +237,7 @@ const EditCourse = ({props, id}) => {
                             </Typography>
                         </CardContent>
                         <CardActions>
-                            <Button onClick={toggleEdit} type='submit' size="small" variant="contained" className={classes.button} >Edit Course</Button>
+                            <Button onClick={toggleEdit} style={{marginLeft: '70.5%'}} type='submit' size="small" variant="contained" className={classes.button} >Edit Course</Button>
                         </CardActions>
                     </Card>
                 ) : (
@@ -300,7 +305,10 @@ const EditCourse = ({props, id}) => {
                                     placeholder="Course Url"
                                     InputProps={{ classes: { underline: classes.blackUnderline, input: classes.input } }}
                                 />
-                                <Button type='submit' size="small" variant="contained" className={classes.button} >Edit Course</Button>
+                                <ButtonDiv>
+                                    <Button style={{ marginLeft: '10px' }} onClick={handleCancel} size="small" variant="contained" className={classes.button} >Cancel</Button>
+                                    <Button type='submit' style={{ marginRight: '4%' }} size="small" variant="contained" className={classes.button} >Submit Edit</Button>
+                                </ButtonDiv>
                             </form>
                         </CardContent>
                     </Card>
