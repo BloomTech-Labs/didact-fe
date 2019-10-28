@@ -17,6 +17,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
+import {FinishEdit} from '../dashboard/ButtonStyles';
 
 const useStyles = makeStyles(theme => ({
 
@@ -197,7 +198,13 @@ const EditCourse = ({props, id}) => {
         toggleEdit()
     }
 
+    const backToCourse = () => {
+        props.history.push(`/courses/${props.match.params.id}`)
+    }
+
     return (
+        <>
+        <FinishEdit onClick={backToCourse}>{`<- BACK TO COURSE`}</FinishEdit>
         <div className={classes.root}>
             {courseEdit ?
                 (
@@ -337,6 +344,7 @@ const EditCourse = ({props, id}) => {
                     </div> 
                     )}
         </div>
+        </>
     )
 }
 
