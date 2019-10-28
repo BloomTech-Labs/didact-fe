@@ -14,6 +14,7 @@ import TextField from '@material-ui/core/TextField';
 import { updateSection, getLessonsBySectionId, deleteSection } from '../../store/actions';
 import Lessons from './Lessons'
 import AddLessons from './AddLessons'
+import DeleteModal from './DeleteModal'
 
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import { AddButtonInSection, ButtonTextInSection, ButtonDiv, DeleteForm } from '../dashboard/ButtonStyles';
@@ -146,6 +147,7 @@ const Section = ({ course, section, props }) => {
     const [expanded, setExpanded] = useState(false);
     const [sectionEdit, setSectionEdit] = useState(true)
     const [addLessonChange, setAddLessonChange] = useState(false);
+    const [openModal, setOpenModal] = useState(false);
     const [changes, setChanges] = useState({
         name: "",
         description: "",
@@ -198,6 +200,14 @@ const Section = ({ course, section, props }) => {
         dispatch(deleteSection(course.id, section.id))
     }
 
+    const handleModalOpen = () => {
+        setOpenModal(true);
+    };
+
+    const handleModalClose = () => {
+        setOpenModal(false);
+    };
+
     return (
         <>
             {sectionEdit ? (
@@ -246,7 +256,8 @@ const Section = ({ course, section, props }) => {
             ) : (
                     <Card className={classes.card}>
                         <CardContent>
-                        <DeleteForm onClick={handleDelete}>X</DeleteForm>
+                        <DeleteForm onClick={handleModalOpen}>X</DeleteForm>
+                        {openModal ? <DeleteModal handleDelete={handleDelete} text={"section"} open={openModal} handleModalClose={handleModalClose} /> : null}
                             <Typography className={classes.title} gutterBottom>
                                 Add Section
                          </Typography>

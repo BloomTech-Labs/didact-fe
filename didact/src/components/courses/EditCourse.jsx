@@ -17,6 +17,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
+import DeleteModal from './DeleteModal'
 import {FinishEdit, DeleteForm} from '../dashboard/ButtonStyles';
 
 const useStyles = makeStyles(theme => ({
@@ -143,6 +144,7 @@ const EditCourse = ({props, id}) => {
     const [expanded, setExpanded] = React.useState(false);
     const [courseEdit, setCourseEdit] = useState(true)
     const [addSectionChange, setAddSectionChange] = useState(false);
+    const [openModal, setOpenModal] = useState(false);
     const [changes, setChanges] = useState({
 
         name: "",
@@ -206,16 +208,15 @@ const EditCourse = ({props, id}) => {
 
     const handleDelete = () => {
         dispatch(deleteCourse(props.match.params.id, props.history))
-        setChanges({
-            ...changes,
-            name: "",
-            category: "",
-            description: "",
-            foreign_instructors: "",
-            foreign_rating: "",
-            link: ""
-    })
     }
+
+    const handleModalOpen = () => {
+        setOpenModal(true);
+    };
+
+    const handleModalClose = () => {
+        setOpenModal(false);
+    };
 
     return (
         <>
@@ -269,7 +270,8 @@ const EditCourse = ({props, id}) => {
                             <Typography className={classes.title} gutterBottom>
                                 Course Overview
                             </Typography>
-                            <DeleteForm onClick={handleDelete}>X</DeleteForm>
+                            <DeleteForm onClick={handleModalOpen}>X</DeleteForm>
+                            {openModal ? <DeleteModal handleDelete={handleDelete} text={"course"} open={openModal} handleModalClose={handleModalClose} /> : null}
                             <form onSubmit={handleCourseSubmit} className={classes.container} noValidate autoComplete="off">
                                 <CssTextField
                                     id="standard-name"
@@ -331,7 +333,7 @@ const EditCourse = ({props, id}) => {
                                 <ButtonDiv>
                                     <Button style={{ marginLeft: '10px' }} onClick={handleCancel} size="small" variant="contained" className={classes.button} >Cancel</Button>
                                     <Button type='submit' style={{ marginRight: '4%' }} size="small" variant="contained" className={classes.button} >Submit Edit</Button>
-                                </ButtonDiv>
+                                </ButtonDiv>    
                             </form>
                         </CardContent>
                     </Card>

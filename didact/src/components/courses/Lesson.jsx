@@ -5,6 +5,7 @@ import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import {EditLessonButton, ButtonDiv, DeleteForm} from '../dashboard/ButtonStyles'
+import DeleteModal from './DeleteModal';
 
 
 const useStyles = makeStyles(theme => ({
@@ -132,6 +133,7 @@ const Lesson = ({ course, section, lesson, props }) => {
     const [toggleLessonEdit, setToggleLessonEdit] = useState(false)
     const classes = useStyles();
     const dispatch = useDispatch()
+    const [openModal, setOpenModal] = useState(false);
     const [changes, setChanges] = useState({
         name: "",
         order: "",
@@ -171,6 +173,13 @@ const Lesson = ({ course, section, lesson, props }) => {
         dispatch(deleteLesson(course.id, section.id, lesson.id))
     }
 
+    const handleModalOpen = () => {
+        setOpenModal(true);
+    };
+
+    const handleModalClose = () => {
+        setOpenModal(false);
+    };
 
     return (
         <div style={{marginBottom: '15px'}}>
@@ -179,7 +188,8 @@ const Lesson = ({ course, section, lesson, props }) => {
                     <p style={{paddingLeft: '20px', width: '70%'}}><a style={{ textDecoration: 'none', color: 'black' }} href={lesson.link}>{lesson.name}</a> {lesson.type}</p>
                 </div>
                 : <>
-                <DeleteForm onClick={handleDelete}>X</DeleteForm>
+                <DeleteForm onClick={handleModalOpen}>X</DeleteForm>
+                {openModal ? <DeleteModal handleDelete={handleDelete} text={"lesson"} open={openModal} handleModalClose={handleModalClose} /> : null}
                  <form onSubmit={handleSubmit} className={classes.container} noValidate autoComplete="off">
                     <CssTextField
                         id="standard-name"
@@ -216,8 +226,9 @@ const Lesson = ({ course, section, lesson, props }) => {
                     />
                     <ButtonDiv>
                         <Button style={{marginLeft: '10px'}} onClick={handleCancel} size="small" variant="contained" className={classes.button} >CANCEL</Button>
-                        <Button type='submit' style={{marginRight: '4%'}} size="small" variant="contained" className={classes.button} >SUBMIT EDIT</Button>
+                        <Button type="submit" style={{marginRight: '4%'}} size="small" variant="contained" className={classes.button} >SUBMIT EDIT</Button>
                     </ButtonDiv>
+                    
                 </form> </>}
         </div>
     )
