@@ -1,6 +1,5 @@
-
 import axios from "axios";
-
+import beURL from '../../utils/beURL'
 export const LOGIN_START = 'LOGIN_START';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
@@ -11,7 +10,7 @@ export const VERIFY_START = 'VERIFY_START';
 export const VERIFY_SUCCESS = 'VERIFY_SUCCESS';
 export const VERIFY_FAILURE = 'VERIFY_FAILURE';
 
-const baseURL = `${process.env.BASEURL}auth/`
+const baseURL = `${beURL}auth/`
 
 export const loginAction = (history, form) => dispatch => {
     dispatch({ type: LOGIN_START })

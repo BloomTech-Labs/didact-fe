@@ -1,5 +1,5 @@
 import axiosWithAuth from '../../utils/axiosWithAuth';
-
+import beURL from '../../utils/beURL'
 export const COURSE_DATA_START = 'COURSE_DATA_START';
 export const COURSE_DATA_SUCCESS = 'COURSE_DATA_SUCCESS';
 export const COURSE_DATA_FAIL = 'COURSE_DATA_FAIL';
@@ -23,7 +23,7 @@ export const GET_DETAILED_COURSE_START = "GET_DETAILED_COURSE_START"
 export const GET_DETAILED_COURSE_SUCCESS = "GET_DETAILED_COURSE_SUCCESS"
 export const GET_DETAILED_COURSE_FAIL = "GET_DETAILED_COURSE_FAIL"
 
-const baseURL = `${process.env.BASEURL}courses/`
+const baseURL = `${beURL}courses/`
 
 export const courseEndPoint =() => dispatch => {
     dispatch({type: COURSE_DATA_START})

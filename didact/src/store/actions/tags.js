@@ -1,5 +1,5 @@
 import axiosWithAuth from '../../utils/axiosWithAuth'
-
+import beURL from '../../utils/beURL'
 import {ADD_TAG_TO_COURSE_SUCCESS, DELETE_TAGS_SUCCESS} from './index'
 
 export const TAGS_DATA_START = "TAGS_DATA_START"
@@ -12,7 +12,7 @@ export const DELETE_TAGS_START = "DELETE_TAGS_START"
 // export const DELETE_TAGS_SUCCESS = "ADD_TAGS_SUCCESS"
 export const DELETE_TAGS_FAILURE = "DELETE_TAGS_FAILURE"
 
-const baseURL = `${process.env.BASEURL}`
+const baseURL = `${beURL}`
 
 export const getTags = () => dispatch => {
     dispatch({type: TAGS_DATA_START})

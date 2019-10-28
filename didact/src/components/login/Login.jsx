@@ -9,6 +9,7 @@ import useMediaQuery from "@material-ui/core/useMediaQuery"
 import HeaderNoIcons from '../header/HeaderNoIcons'
 
 import { makeStyles } from '@material-ui/core/styles';
+import beURL from '../../utils/beURL'
 
 const useStyles = makeStyles(theme => ({
     // header: {
@@ -89,8 +90,6 @@ const LoginForm = (props) => {
     }
     const {errors, touched} = props
 
-    const baseURL = process.env.BASEURL
-
     return (
         <LoginFormWrapper>
             <div className="header">
@@ -116,8 +115,8 @@ const LoginForm = (props) => {
                 </div>
             </Form>
             <div className="socialButtons">
-                <a href={`${baseURL}auth/facebook`}>Sign In With Facebook</a>
-                <a href={`${baseURL}auth/google`}>Sign In With Google</a>
+                <a href={`${beURL}auth/facebook`}>Sign In With Facebook</a>
+                <a href={`${beURL}auth/google`}>Sign In With Google</a>
             </div>
         </LoginFormWrapper>
     )
