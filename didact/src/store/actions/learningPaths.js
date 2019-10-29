@@ -82,3 +82,20 @@ export const postLearningPath = (pathObj) => dispatch
         dispatch({ type: POST_LEARNING_PATH_FAIL, payload: err })
     })
 }
+
+export const updateLearningPath = (changes, id) => dispatch
+{
+    dispatch({ type: UPDATE_LEARNING_PATH_START })
+    //changes should be an object like { changes: {name: 'blah'} } as an example. See api docs
+    axiosWithAuth().put(`${baseURL}learning-paths/${id}`, changes)
+    .then(res =>
+    {
+        console.log('res from update learning path', res)
+        dispatch({ type: UPDATE_LEARNING_PATH_SUCCESS, payload: {changes, id} })
+    })
+    .catch(err =>
+    {
+        console.log('err from update learning path', err)
+        dispatch({ type: UPDATE_LEARNING_PATH_FAIL, payload: err })
+    })
+}
