@@ -13,6 +13,9 @@ export const GET_LEARNING_PATH_FAIL = "GET_LEARNING_PATH_FAIL"
 export const POST_LEARNING_PATH_START = "POST_LEARNING_PATH_START"
 export const POST_LEARNING_PATH_SUCCESS = "POST_LEARNING_PATH_SUCCESS"
 export const POST_LEARNING_PATH_FAIL = "POST_LEARNING_PATH_FAIL"
+export const UPDATE_LEARNING_PATH_START = "UPDATE_LEARNING_PATH_START"
+export const UPDATE_LEARNING_PATH_SUCCESS = "UPDATE_LEARNING_PATH_SUCCESS"
+export const UPDATE_LEARNING_PATH_FAIL = "UPDATE_LEARNING_PATH_FAIL"
 
 export const getLearningPaths = () => dispatch =>
 {
@@ -97,5 +100,22 @@ export const updateLearningPath = (changes, id) => dispatch
     {
         console.log('err from update learning path', err)
         dispatch({ type: UPDATE_LEARNING_PATH_FAIL, payload: err })
+    })
+}
+
+export const deleteLearningPath = (id) => dispatch =>
+{
+    dispatch({ type: DELETE_LEARNING_PATH_START })
+
+    axiosWithAuth().delete(`${baseURL}learning-paths/${id}`)
+    .then(res =>
+    {
+        console.log('res from delete learning path', res)
+        dispatch({ type: DELETE_LEARNING_PATH_SUCCESS, payload: id })
+    })
+    .catch(err =>
+    {
+        console.log('err from delete learning path', err)
+        dispatch({ type: DELETE_LEARNING_PATH_FAIL, payload: err })
     })
 }
