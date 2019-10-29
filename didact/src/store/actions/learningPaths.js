@@ -245,3 +245,20 @@ export const removeCourseFromPath = (pathId, courseId) => dispatch =>
         dispatch({ type: REMOVE_COURSE_FROM_PATH_FAIL, payload: err })
     })
 }
+
+export const updateCourseOrder = (pathId, courseId, order) => dispatch =>
+{
+    dispatch({ type: UPDATE_COURSE_ORDER_START })
+
+    axiosWithAuth().post(`${baseURL}${pathId}/course/${courseId}`, {order})
+    .then(res =>
+    {
+        console.log("res from updateCourseOrder:", res)
+        dispatch({ type: UPDATE_COURSE_ORDER_SUCCESS, payload: {pathId, courseId, order} })
+    })
+    .catch(err =>
+    {
+        console.log("err from updateCourseOrder:", err)
+        dispatch({ type: UPDATE_COURSE_ORDER_FAIL, payload: err })
+    })
+}
