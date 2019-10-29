@@ -25,6 +25,13 @@ export const JOIN_LEARNING_PATH_FAIL = "JOIN_LEARNING_PATH_FAIL"
 export const QUIT_LEARNING_PATH_START = "QUIT_LEARNING_PATH_START"
 export const QUIT_LEARNING_PATH_SUCCESS = "QUIT_LEARNING_PATH_SUCCESS"
 export const QUIT_LEARNING_PATH_FAIL = "QUIT_LEARNING_PATH_FAIL"
+export const POST_TAG_TO_PATH_START = "POST_TAG_TO_PATH_START"
+export const POST_TAG_TO_PATH_SUCCESS = "POST_TAG_TO_PATH_SUCCESS"
+export const POST_TAG_TO_PATH_FAIL = "POST_TAG_TO_PATH_FAIL"
+export const DELETE_TAG_FROM_PATH_START = "DELETE_TAG_FROM_PATH_START"
+export const DELETE_TAG_FROM_PATH_SUCCESS = "DELETE_TAG_FROM_PATH_SUCCESS"
+export const DELETE_TAG_FROM_PATH_FAIL = "DELETE_TAG_FROM_PATH_FAIL"
+
 
 const baseURL = `${beURL}learning-paths/`
 
@@ -169,7 +176,7 @@ export const postTagToPath = (tag, id) => dispatch =>
 {
     dispatch({ type: POST_TAG_TO_PATH_START })
 
-    axiosWithAuth().post(`${baseURL}${id}/tags`, ({tag})
+    axiosWithAuth().post(`${baseURL}${id}/tags`, {tag})
     .then(res =>
     {
         console.log("res from postTagToPath:", res)
@@ -181,3 +188,21 @@ export const postTagToPath = (tag, id) => dispatch =>
         dispatch({ type: POST_TAG_TO_PATH_FAIL, payload: err })
     })
 }
+
+export const deleteTagFromPath = (tag, id) => dispatch =>
+{
+    dispatch({ type: DELETE_TAG_FROM_PATH_START })
+
+    axiosWithAuth().delete(`${baseURL}${id}/tags`, {tag})
+    .then(res =>
+    {
+        console.log("res from deleteTagFromPath:", res)
+        dispatch({ type: DELETE_TAG_FROM_PATH_SUCCESS, payload: tag })
+    })
+    .catch(err =>
+    {
+        console.log("err from deleteTagFromPath:", err)
+        dispatch({ type: DELETE_TAG_FROM_PATH_FAIL, payload: err })
+    })
+}
+
