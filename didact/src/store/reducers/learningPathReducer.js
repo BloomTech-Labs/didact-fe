@@ -39,6 +39,9 @@ import
     UPDATE_COURSE_ORDER_START,
     UPDATE_COURSE_ORDER_SUCCESS,
     UPDATE_COURSE_ORDER_FAIL,
+    GET_YOUR_LEARNING_PATHS_START,
+    GET_YOUR_LEARNING_PATHS_SUCCESS,
+    GET_YOUR_LEARNING_PATHS_FAIL,
 } from '../actions'
 
 const initialState =
@@ -315,6 +318,25 @@ export const learningPathReducer = (state = initialState, action) =>
                 error: "",
             }
         case UPDATE_COURSE_ORDER_FAIL:
+            return {
+                ...state,
+                isLoading: false,
+                error: action.payload,
+            }
+        case GET_YOUR_LEARNING_PATHS_START:
+                return {
+                    ...state,
+                    isLoading: true,
+                    error: "",
+                }
+        case GET_YOUR_LEARNING_PATHS_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                learningPaths: action.payload,
+                error: "",
+            }
+        case GET_YOUR_LEARNING_PATHS_FAIL:
             return {
                 ...state,
                 isLoading: false,

@@ -40,6 +40,9 @@ export const REMOVE_COURSE_FROM_PATH_FAIL = "REMOVE_COURSE_FROM_PATH_FAIL"
 export const UPDATE_COURSE_ORDER_START = "UPDATE_COURSE_ORDER_START"
 export const UPDATE_COURSE_ORDER_SUCCESS = "UPDATE_COURSE_ORDER_SUCCESS"
 export const UPDATE_COURSE_ORDER_FAIL = "UPDATE_COURSE_ORDER_FAIL"
+export const GET_YOUR_LEARNING_PATHS_START = "GET_YOUR_LEARNING_PATHS_START"
+export const GET_YOUR_LEARNING_PATHS_SUCCESS = "GET_YOUR_LEARNING_PATHS_SUCCESS"
+export const GET_YOUR_LEARNING_PATHS_FAIL = "GET_YOUR_LEARNING_PATHS_FAIL"
 
 const baseURL = `${beURL}learning-paths/`
 
@@ -262,5 +265,22 @@ export const updateCourseOrder = (pathId, courseId, order) => dispatch =>
     {
         console.log("err from updateCourseOrder:", err)
         dispatch({ type: UPDATE_COURSE_ORDER_FAIL, payload: err })
+    })
+}
+
+export const getYourLearningPaths = (userId) => dispatch =>
+{
+    dispatch({ type: GET_YOUR_LEARNING_PATHS_START })
+
+    axiosWithAuth().get(`${baseURL}`, {userId})
+    .then(res =>
+    {
+        console.log('res from get your learning paths', res)
+        dispatch({ type: GET_YOUR_LEARNING_PATHS_SUCCESS, payload: res.data })
+    })
+    .catch(err =>
+    {
+        console.log('err from get your learning paths', err)
+        dispatch({ type: GET_YOUR_LEARNING_PATHS_FAIL, payload: err })
     })
 }

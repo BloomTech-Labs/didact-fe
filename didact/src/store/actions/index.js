@@ -138,6 +138,9 @@ export
     UPDATE_COURSE_ORDER_START,
     UPDATE_COURSE_ORDER_SUCCESS,
     UPDATE_COURSE_ORDER_FAIL,
+    GET_YOUR_LEARNING_PATHS_START,
+    GET_YOUR_LEARNING_PATHS_SUCCESS,
+    GET_YOUR_LEARNING_PATHS_FAIL,
     getLearningPaths,
     searchLearningPathsByTag,
     getLearningPath,
@@ -150,5 +153,6 @@ export
     deleteTagFromPath,
     postCourseToPath,
     removeCourseFromPath,
-    updateCourseOrder
+    updateCourseOrder,
+    getYourLearningPaths,
 } from './learningPaths'
