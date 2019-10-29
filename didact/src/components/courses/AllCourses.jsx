@@ -87,11 +87,11 @@ const useStyles = makeStyles(theme => ({
     },
     root: {
         display: 'flex',
-        flexDirection: 'row'
+        flexDirection: 'row',
     },
     rootTablet: {
         display: 'flex',
-        flexDirection: 'column'
+        flexDirection: 'column',
     },
     title: {
         fontSize: 14,
@@ -104,7 +104,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function AllCourses(props) {
-    const tabletSize = useMediaQuery("(max-width:1150px");
+    const tabletSize = useMediaQuery("(max-width:1150px)");
     const classes = useStyles();
     const dispatch = useDispatch();
     const [expanded, setExpanded] = useState(false);
