@@ -31,7 +31,7 @@ const useStyles = makeStyles(theme => ({
         flexGrow: 1,
         padding: theme.spacing(3),
         paddingLeft: "80px",
-        margin: 'auto'
+      
     },
     contentShadow: {
         background: "rgba(0, 0, 0, 0.8)",
@@ -40,14 +40,12 @@ const useStyles = makeStyles(theme => ({
         position: "absolute",
         top: 0,
         left: 0,
-        width: "100%",
-        height: "100%",
         flexGrow: 1,
         paddingLeft: "80px",
         padding: theme.spacing(3),
         overflow: "hidden",
-        // marginRight: "-20px"
-        // marginRight: '10px'
+      
+        
     },
     // scrollBarMobileFix: {
     //     position: "absolute",
