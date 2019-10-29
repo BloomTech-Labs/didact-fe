@@ -189,7 +189,14 @@ const Lesson = ({ course, section, lesson, props }) => {
         <div style={{marginBottom: '15px'}}>
             {!toggleLessonEdit ?
                 <div style={{ display: 'flex', alignItems: 'center', margin: '0 0 15px 0', borderBottom: 'grey solid 1px'}}><EditLessonButton onClick={handleToggleLessonEdit}>EDIT LESSON</EditLessonButton>
-                    <span style={{paddingLeft: '20px', width: '70%', display: "flex", flexDirection: 'row wrap', justifyContent: 'space-between'}}><a style={{ textDecoration: 'none', color: 'black', textAlign: "left"}} href={lesson.link}>{lesson.name}</a><span>{lesson.type === "video" ? (<PlayCircleFilledIcon />) : lesson.type === "reading" ? (<BookIcon />) : lesson.type === "quiz" ? (<img src="https://img.icons8.com/ios-filled/24/000000/quiz.png"></img>) : lesson.type === 'assignment' ? (<AssignmentIcon />) : (null)}</span></span>
+                    <span style={{paddingLeft: '20px', width: '70%', display: "flex", flexDirection: 'row wrap', justifyContent: 'space-between'}}>
+                        <a style={{ textDecoration: 'none', color: 'black', textAlign: "left", paddingRight: '5px'}} href={lesson.link}>{lesson.name}</a>
+                        <span>{lesson.type === "video" 
+                        ? (<PlayCircleFilledIcon />) : lesson.type === "reading" 
+                        ? (<BookIcon />) : lesson.type === "quiz" 
+                        ? (<img src="https://img.icons8.com/ios-filled/24/000000/quiz.png"></img>) : lesson.type === 'assignment' 
+                        ? (<AssignmentIcon />) : (null)}</span>
+                    </span>
                 </div>
                 : <>
                 <DeleteForm onClick={handleModalOpen}>X</DeleteForm>

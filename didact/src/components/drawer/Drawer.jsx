@@ -44,9 +44,9 @@ const DrawerComponent = (props) => {
             margin: "10px",
             marginLeft: "10px",
             marginRight: 0,
-            // marginTop: "195px",
             borderRadius: "15px",
-            overflowY:"hidden",
+            // position: 'fixed',
+            // overflowY:"hidden",
             transition: theme.transitions.create("width", {
               easing: theme.transitions.easing.sharp,
               duration: theme.transitions.duration.enteringScreen,

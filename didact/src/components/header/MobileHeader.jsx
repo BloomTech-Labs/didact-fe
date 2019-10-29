@@ -27,11 +27,12 @@ const MobileHeaderComponent = (props) => {
             backgroundColor: '#5b5b5b',
             color: 'white',
             position: 'fixed',
+            // margin: '0'
 
         },
         appBarShift: {
             marginLeft: "240px",
-            width: `calc(100% - (240px + 30px))`,
+            width: `calc(100vw - (240px + 30px))`,
             transition: theme.transitions.create(['width', 'margin'], {
                 easing: theme.transitions.easing.sharp,
                 duration: theme.transitions.duration.enteringScreen,

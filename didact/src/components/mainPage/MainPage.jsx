@@ -21,6 +21,7 @@ import Profile from '../profile/Profile'
 const useStyles = makeStyles(theme => ({
     root: {
         backgroundColor: "lightgray",
+        width: "100%"
     },
     content: {
         flexGrow: 1,
@@ -72,7 +73,7 @@ function MainPage(props) {
     console.log(props)
   
     const profileLockSize = useMediaQuery("(min-width:1440px");
-    const phoneSize = useMediaQuery("(max-width:770px)");
+    const phoneSize = useMediaQuery("(max-width:600px)");
     const [open, setOpen] = React.useState(true);
     const [openMobile, setOpenMobile] = React.useState(false);
 
