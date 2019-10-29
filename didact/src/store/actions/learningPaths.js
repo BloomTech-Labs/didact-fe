@@ -164,3 +164,20 @@ export const quitLearningPath = id => dispatch =>
         dispatch({ type: QUIT_LEARNING_PATH_FAIL, payload: err })
     })
 }
+
+export const postTagToPath = (tag, id) => dispatch =>
+{
+    dispatch({ type: POST_TAG_TO_PATH_START })
+
+    axiosWithAuth().post(`${baseURL}${id}/tags`, ({tag})
+    .then(res =>
+    {
+        console.log("res from postTagToPath:", res)
+        dispatch({ type: POST_TAG_TO_PATH_SUCCESS, payload: tag })
+    })
+    .catch(err =>
+    {
+        console.log("err from postTagToPath:", err)
+        dispatch({ type: POST_TAG_TO_PATH_FAIL, payload: err })
+    })
+}
