@@ -31,6 +31,12 @@ export const POST_TAG_TO_PATH_FAIL = "POST_TAG_TO_PATH_FAIL"
 export const DELETE_TAG_FROM_PATH_START = "DELETE_TAG_FROM_PATH_START"
 export const DELETE_TAG_FROM_PATH_SUCCESS = "DELETE_TAG_FROM_PATH_SUCCESS"
 export const DELETE_TAG_FROM_PATH_FAIL = "DELETE_TAG_FROM_PATH_FAIL"
+export const POST_COURSE_TO_PATH_START = "POST_COURSE_TO_PATH_START"
+export const POST_COURSE_TO_PATH_SUCCESS = "POST_COURSE_TO_PATH_SUCCESS"
+export const POST_COURSE_TO_PATH_FAIL = "POST_COURSE_TO_PATH_FAIL"
+export const REMOVE_COURSE_FROM_PATH_START = "REMOVE_COURSE_FROM_PATH_START"
+export const REMOVE_COURSE_FROM_PATH_SUCCESS = "REMOVE_COURSE_FROM_PATH_SUCCESS"
+export const REMOVE_COURSE_FROM_PATH_FAIL = "REMOVE_COURSE_FROM_PATH_FAIL"
 
 
 const baseURL = `${beURL}learning-paths/`
@@ -206,3 +212,19 @@ export const deleteTagFromPath = (tag, id) => dispatch =>
     })
 }
 
+export const postCourseToPath = (pathId, courseId, order) => dispatch =>
+{
+    dispatch({ type: POST_COURSE_TO_PATH_START })
+
+    axiosWithAuth().post(`${baseURL}${pathId}/course/${courseId}`, {order})
+    .then(res =>
+    {
+        console.log("res from postCourseToPath:", res)
+        dispatch({ type: POST_COURSE_TO_PATH_SUCCESS, payload: {pathId, courseId, order} })
+    })
+    .catch(err =>
+    {
+        console.log("err from postCourseToPath:", err)
+        dispatch({ type: POST_COURSE_TO_PATH_FAIL, payload: err })
+    })
+}
