@@ -1,5 +1,5 @@
 import axiosWithAuth from '../../utils/axiosWithAuth'
-import baseURL from '../../utils/beURL'
+import beURL from '../../utils/beURL'
 
 export const GET_LEARNING_PATHS_START = "GET_LEARNING_PATHS_START"
 export const GET_LEARNING_PATHS_SUCCESS = "GET_LEARNING_PATHS_SUCCESS"
@@ -16,12 +16,23 @@ export const POST_LEARNING_PATH_FAIL = "POST_LEARNING_PATH_FAIL"
 export const UPDATE_LEARNING_PATH_START = "UPDATE_LEARNING_PATH_START"
 export const UPDATE_LEARNING_PATH_SUCCESS = "UPDATE_LEARNING_PATH_SUCCESS"
 export const UPDATE_LEARNING_PATH_FAIL = "UPDATE_LEARNING_PATH_FAIL"
+export const DELETE_LEARNING_PATH_START = "DELETE_LEARNING_PATH_START"
+export const DELETE_LEARNING_PATH_SUCCESS = "DELETE_LEARNING_PATH_SUCCESS"
+export const DELETE_LEARNING_PATH_FAIL = "DELETE_LEARNING_PATH_FAIL"
+export const JOIN_LEARNING_PATH_START = "JOIN_LEARNING_PATH_START"
+export const JOIN_LEARNING_PATH_SUCCESS = "JOIN_LEARNING_PATH_SUCCESS"
+export const JOIN_LEARNING_PATH_FAIL = "JOIN_LEARNING_PATH_FAIL"
+export const QUIT_LEARNING_PATH_START = "QUIT_LEARNING_PATH_START"
+export const QUIT_LEARNING_PATH_SUCCESS = "QUIT_LEARNING_PATH_SUCCESS"
+export const QUIT_LEARNING_PATH_FAIL = "QUIT_LEARNING_PATH_FAIL"
+
+const baseURL = `${beURL}learning-paths/`
 
 export const getLearningPaths = () => dispatch =>
 {
     dispatch({ type: GET_LEARNING_PATHS_START })
 
-    axiosWithAuth().get(`${baseURL}learning-paths`)
+    axiosWithAuth().get(`${baseURL}`)
     .then(res =>
     {
         console.log('res from get learning paths', res)
@@ -38,7 +49,7 @@ export const searchLearningPathsByTag = (tag="") => dispatch =>
 {
     dispatch({ type: SEARCH_BY_TAG_PATHS_START })
 
-    axiosWithAuth().get(`${baseURL}learning-paths`)
+    axiosWithAuth().get(`${baseURL}`)
     .then(res =>
     {
         console.log('res from search learning paths by tag', res)
@@ -55,7 +66,7 @@ export const getLearningPath = (id) => dispatch
 {
     dispatch({ type: GET_LEARNING_PATH_START })
 
-    axiosWithAuth().get(`${baseURL}learning-paths/${id}`)
+    axiosWithAuth().get(`${baseURL}${id}`)
     .then(res =>
     {
         console.log('res from get learning path (singular)', res)
@@ -72,7 +83,7 @@ export const postLearningPath = (pathObj) => dispatch
 {
     dispatch({ type: POST_LEARNING_PATH_START })
 
-    axiosWithAuth().post(`${baseURL}learning-paths/`, pathObj)
+    axiosWithAuth().post(`${baseURL}`, pathObj)
     .then(res =>
     {
         console.log('res from post learning path', res)
@@ -90,7 +101,7 @@ export const updateLearningPath = (changes, id) => dispatch
 {
     dispatch({ type: UPDATE_LEARNING_PATH_START })
     //changes should be an object like { changes: {name: 'blah'} } as an example. See api docs
-    axiosWithAuth().put(`${baseURL}learning-paths/${id}`, changes)
+    axiosWithAuth().put(`${baseURL}${id}`, changes)
     .then(res =>
     {
         console.log('res from update learning path', res)
@@ -107,7 +118,7 @@ export const deleteLearningPath = (id) => dispatch =>
 {
     dispatch({ type: DELETE_LEARNING_PATH_START })
 
-    axiosWithAuth().delete(`${baseURL}learning-paths/${id}`)
+    axiosWithAuth().delete(`${baseURL}${id}`)
     .then(res =>
     {
         console.log('res from delete learning path', res)
@@ -117,5 +128,39 @@ export const deleteLearningPath = (id) => dispatch =>
     {
         console.log('err from delete learning path', err)
         dispatch({ type: DELETE_LEARNING_PATH_FAIL, payload: err })
+    })
+}
+
+export const joinLearningPath = id => dispatch =>
+{
+    dispatch({ type: JOIN_LEARNING_PATH_START })
+
+    axiosWithAuth().post(`${baseURL}${id}/user`)
+    .then(res =>
+    {
+        console.log("res from joinLearningPath:", res)
+        dispatch({ type: JOIN_LEARNING_PATH_SUCCESS, payload: id })
+    })
+    .catch(err =>
+    {
+        console.log("err from joinLearningPath:", err)
+        dispatch({ type: JOIN_LEARNING_PATH_FAIL, payload: err })
+    })
+}
+
+export const quitLearningPath = id => dispatch =>
+{
+    dispatch({ type: QUIT_LEARNING_PATH_START })
+
+    axiosWithAuth().delete(`${baseURL}${id}/user`)
+    .then(res =>
+    {
+        console.log("res from quitLearningPath:", res)
+        dispatch({ type: QUIT_LEARNING_PATH_SUCCESS, payload: id })
+    })
+    .catch(err =>
+    {
+        console.log("err from quitLearningPath:", err)
+        dispatch({ type: QUIT_LEARNING_PATH_FAIL, payload: err })
     })
 }
