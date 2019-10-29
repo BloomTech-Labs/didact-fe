@@ -62,18 +62,18 @@ export const getLearningPaths = () => dispatch =>
 
 export const searchLearningPathsByTag = (tag="") => dispatch =>
 {
-    dispatch({ type: SEARCH_BY_TAG_PATHS_START })
+    dispatch({ type: SEARCH_PATHS_BY_TAG_START })
 
     axiosWithAuth().get(`${baseURL}`)
     .then(res =>
     {
         console.log('res from search learning paths by tag', res)
-        dispatch({ type: SEARCH_BY_TAG_PATHS_SUCCESS, payload: res.data })
+        dispatch({ type: SEARCH_PATHS_BY_TAG_SUCCESS, payload: res.data })
     })
     .catch(err =>
     {
         console.log('err from search learning paths by tag', err)
-        dispatch({ type: SEARCH_BY_TAG_PATHS_FAIL, payload: err })
+        dispatch({ type: SEARCH_PATHS_BY_TAG_FAIL, payload: err })
     })
 }
 
@@ -222,7 +222,7 @@ export const postCourseToPath = (pathId, courseId, order) => dispatch =>
     .then(res =>
     {
         console.log("res from postCourseToPath:", res)
-        dispatch({ type: POST_COURSE_TO_PATH_SUCCESS, payload: {pathId, courseId, order} })
+        dispatch({ type: POST_COURSE_TO_PATH_SUCCESS, payload: res.data.pathCourses })
     })
     .catch(err =>
     {
@@ -239,7 +239,7 @@ export const removeCourseFromPath = (pathId, courseId) => dispatch =>
     .then(res =>
     {
         console.log("res from removeCourseFromPath:", res)
-        dispatch({ type: REMOVE_COURSE_FROM_PATH_SUCCESS, payload: {pathId, courseId} })
+        dispatch({ type: REMOVE_COURSE_FROM_PATH_SUCCESS, payload: res.data.pathCourses })
     })
     .catch(err =>
     {
