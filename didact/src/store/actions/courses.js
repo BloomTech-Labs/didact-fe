@@ -83,7 +83,7 @@ export const editCourse =(id, changes) => dispatch => {
 }
 
 //TODO: test this
-export const deleteCourse =(id) => dispatch => {
+export const deleteCourse =(id, history) => dispatch => {
     dispatch({type: DELETE_COURSE_DATA_START})
     axiosWithAuth()
     .delete(`${baseURL}${id}`)
@@ -91,6 +91,7 @@ export const deleteCourse =(id) => dispatch => {
         // console.log('edit course api response: ', res)
         dispatch({type: DELETE_COURSE_DATA_SUCCESS, payload: id})
     })
+    .then(() => history.push('/'))
     .catch(err => {
         dispatch({type: DELETE_COURSE_DATA_FAIL, payload: err})
     })
