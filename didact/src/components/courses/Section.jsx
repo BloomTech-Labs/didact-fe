@@ -217,7 +217,7 @@ const Section = ({ course, section, props }) => {
                             {section.name}
                         </Typography>
                         <CardActions className={classes.descriptionDiv} disableSpacing>
-                            <Typography className={classes.descriptionTitle} >Description:</Typography>
+                            <Typography color="textSecondary" className={classes.descriptionTitle} >{section.description && !expanded ? (`${section.description.substring(0, 100)} ...`) : null}</Typography>
                             <IconButton
                                 className={clsx(classes.expand, {
                                     [classes.expandOpen]: expanded,
@@ -231,16 +231,16 @@ const Section = ({ course, section, props }) => {
                         </CardActions>
                         <Collapse in={expanded} timeout="auto" unmountOnExit>
                             <CardContent>
-                                <Typography paragraph>
+                                <Typography color="textSecondary" paragraph>
                                     {section.description}
                                 </Typography>
                             </CardContent>
                         </Collapse>
-                        <Typography color="textSecondary">
-                            Order: {section.order}
-                        </Typography>
-                        <Typography variant="body2" component="p">
+                        <a href={section.link} variant="body2" component="p" alt = "section link" style = {{color: 'black', cursor: 'pointer'}}>
                             {section.link}
+                        </a>
+                        <Typography color="textSecondary" style = {{textAlign: "left", marginLeft: "22px"}}>
+                            Order: {section.order}
                         </Typography>
                     </CardContent>
                     {lessons ? <Lessons course={course} section={section} props={props} lessons={lessons} /> : null}

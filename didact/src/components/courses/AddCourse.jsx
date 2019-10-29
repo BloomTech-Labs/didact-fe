@@ -158,6 +158,17 @@ export default function AddCourse(props) {
                 placeholder="Instructors"
                 InputProps={{ classes: { underline: classes.blackUnderline, input: classes.input}}}
             />
+             <CssTextField
+                id="standard-name"
+                label="Rating"
+                className={classes.courseUrlField}
+                value={values.foreign_rating || ""}
+                onChange={handleChange('foreign_rating')}
+                margin="normal"
+                variant="outlined"
+                placeholder="Rating"
+                InputProps={{ classes: { underline: classes.blackUnderline, input: classes.input } }}
+            />
             <CssTextField
                 id="standard-name"
                 label="Description"
@@ -181,6 +192,17 @@ export default function AddCourse(props) {
                 variant="outlined"
                 placeholder="Course Url"
                 InputProps={{ classes: { underline: classes.blackUnderline, input: classes.input}}}
+            />
+            <CssTextField
+                id="standard-name"
+                label="Category"
+                className={classes.courseUrlField}
+                value={values.category || ""}
+                onChange={handleChange('category')}
+                margin="normal"
+                variant="outlined"
+                placeholder="Category"
+                InputProps={{ classes: { underline: classes.blackUnderline, input: classes.input } }}
             />
             <Button type='submit' size="small" variant="contained" className={classes.button} >Add Course</Button>
         </form>

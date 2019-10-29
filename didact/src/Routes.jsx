@@ -10,16 +10,14 @@ const Routes = () => {
     return (
         <Switch>
             <Route path="/login" component={FormikLoginForm} >
-                {/* {!token ? null : <Redirect to='/dashboard' />} */}
             </Route>
             <Route path="/register" component={FormikRegisterForm} >
-                {/* {!token ? <Redirect to='/dashboard' /> : null} */}
             </Route>
             <Route path='/auth' component={Auth} />
-            <Route path='/dashboard' render={routeProps =>
+            {/* <Route path='/dashboard' render={routeProps =>
             (
                 <MainPage {...routeProps} page={'dashboard'} />
-            )} />
+            )} /> */}
             <Route exact path='/' render={routeProps =>
             (
                 <MainPage {...routeProps} page={'dashboard'} />

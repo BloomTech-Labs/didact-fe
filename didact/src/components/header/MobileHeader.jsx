@@ -27,6 +27,7 @@ const MobileHeaderComponent = (props) => {
             backgroundColor: '#5b5b5b',
             color: 'white',
             position: 'fixed',
+
         },
         appBarShift: {
             marginLeft: "240px",
@@ -58,7 +59,8 @@ const MobileHeaderComponent = (props) => {
 
     return (
         <AppBar
-            className={clsx(classes.appBarMobile, {
+            
+            className={clsx(classes.appBarMobile,  {
                 // [classes.appBarShift]: open,
             })}
         >

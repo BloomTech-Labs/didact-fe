@@ -3,6 +3,7 @@ import { courseEndPoint } from "../../store/actions/index.js";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { AddButton, PlusDiv, Plus, ButtonText } from '../dashboard/ButtonStyles';
+import Course from './Course'
 
 import ReactTooltip from 'react-tooltip'
 
@@ -140,42 +141,7 @@ function AllCourses(props) {
             <div>
                 {state.coursesReducer.courses
                     ? state.coursesReducer.courses.map((course, i) => (
-                        <Card key={i} className={classes.card}>
-                            <CardContent>
-                                <Typography variant="h5" component="h2">
-                                    {course.name}
-                                </Typography>
-                                <CardActions className={classes.descriptionDiv} color="textSecondary"  disableSpacing>
-                                    <Typography >{course.description.substring(0, 100)} ...</Typography>
-                                    <IconButton
-                                        className={clsx(classes.expand, {
-                                            [classes.expandOpen]: expanded,
-                                        })}
-                                        onClick={handleExpandClick}
-                                        aria-expanded={expanded}
-                                        aria-label="show more"
-                                    >
-                                        <ExpandMoreIcon />
-                                    </IconButton>
-                                </CardActions>
-                                <Collapse in={expanded} timeout="auto" unmountOnExit>
-                                    <CardContent>
-                                        <Typography className={classes.title} color="textSecondary"  paragraph>
-                                            {course.description.substring(100)}
-                                        </Typography>
-                                    </CardContent>
-                                </Collapse>
-                                <Typography className={classes.pos} color="textSecondary">
-                                    {course.foreign_rating}
-                                </Typography>
-                                <Typography variant="body2" component="p">
-                                    {course.foreign_instructors}
-                                </Typography>
-                            </CardContent>
-                            <CardActions className={classes.buttonDiv}>
-                                <Link to={`/courses/${course.id}`} ><button className={classes.buttonCourse} size="small">Go To Course</button></Link>
-                            </CardActions>
-                        </Card>
+                        <Course key = {i} course = {course} />
                     ))
                     : null}
 

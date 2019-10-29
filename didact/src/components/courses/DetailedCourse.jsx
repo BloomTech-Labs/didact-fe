@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from "react-redux"
 import { Link } from "react-router-dom";
 
 import { DetailedCourseWrapper} from './DetailedCourseStyles'
+import { EditLessonButton, TagStyles } from '../dashboard/ButtonStyles'
+
 import { getDetailedCourse } from '../../store/actions/index.js'
 
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
@@ -53,17 +55,18 @@ const DetailedCourse = props => {
                 <div className="courseWrapper">
                     <h1>{course.name}</h1>
                     <p>{course.description}</p>
+                    <p>{course.category ? (`Category: ${course.category}`) : (null)}</p>
                     <div className="courseFooter">
                         <div className="tags">
                             {course.tags && course.tags.map((tag, index) => {
                                 return (
-                                    <span key={index} className="tag">{tag}</span>
+                                    <TagStyles key={index} className="tag">{tag}</TagStyles>
                                 )
                             })}
                         </div>
-                        <div className="buttons">
-                            {id === course.creator_id && <Link to={`/courses/${course.id}/edit`}>Edit Course</Link>}
-                        </div>
+                        <EditLessonButton className="buttons" >
+                            {id === course.creator_id && <Link style = {{textDecoration: 'none', color: "black"}} to={`/courses/${course.id}/edit`}>Edit Course</Link>}
+                        </EditLessonButton>
                     </div>
                 </div>
                 {sections.map((el, index) => {

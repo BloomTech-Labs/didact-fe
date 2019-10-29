@@ -7,6 +7,10 @@ import TextField from '@material-ui/core/TextField';
 import {EditLessonButton, ButtonDiv, DeleteForm} from '../dashboard/ButtonStyles'
 import DeleteModal from './DeleteModal';
 
+import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
+import BookIcon from '@material-ui/icons/Book';
+import AssignmentIcon from '@material-ui/icons/Assignment';
+
 
 const useStyles = makeStyles(theme => ({
 
@@ -185,7 +189,7 @@ const Lesson = ({ course, section, lesson, props }) => {
         <div style={{marginBottom: '15px'}}>
             {!toggleLessonEdit ?
                 <div style={{ display: 'flex', alignItems: 'center', margin: '0 0 15px 0', borderBottom: 'grey solid 1px'}}><EditLessonButton onClick={handleToggleLessonEdit}>EDIT LESSON</EditLessonButton>
-                    <p style={{paddingLeft: '20px', width: '70%'}}><a style={{ textDecoration: 'none', color: 'black' }} href={lesson.link}>{lesson.name}</a> {lesson.type}</p>
+                    <span style={{paddingLeft: '20px', width: '70%', display: "flex", flexDirection: 'row wrap', justifyContent: 'space-between'}}><a style={{ textDecoration: 'none', color: 'black', textAlign: "left"}} href={lesson.link}>{lesson.name}</a><span>{lesson.type === "video" ? (<PlayCircleFilledIcon />) : lesson.type === "reading" ? (<BookIcon />) : lesson.type === "quiz" ? (<img src="https://img.icons8.com/ios-filled/24/000000/quiz.png"></img>) : lesson.type === 'assignment' ? (<AssignmentIcon />) : (null)}</span></span>
                 </div>
                 : <>
                 <DeleteForm onClick={handleModalOpen}>X</DeleteForm>
@@ -194,7 +198,7 @@ const Lesson = ({ course, section, lesson, props }) => {
                     <CssTextField
                         id="standard-name"
                         label='Name'
-                        className={classes.titleOrInstructorFields}
+                        className={classes.courseUrlField}
                         value={changes.name}
                         onChange={handleChange('name')}
                         margin="normal"
@@ -211,6 +215,17 @@ const Lesson = ({ course, section, lesson, props }) => {
                         margin="normal"
                         variant="outlined"
                         placeholder="Instructors"
+                        InputProps={{ classes: { input: classes.input } }}
+                    />
+                    <CssTextField
+                        id="standard-name"
+                        label="Type"
+                        className={classes.titleOrInstructorFields}
+                        value={changes.type}
+                        onChange={handleChange('type')}
+                        margin="normal"
+                        variant="outlined"
+                        placeholder="Type"
                         InputProps={{ classes: { input: classes.input } }}
                     />
                     <CssTextField

@@ -133,7 +133,8 @@ export const ButtonDiv = styled.div`
 
 export const FinishEdit = styled.div`
     background:  #EBE8E1;
-    width: 500px;
+    max-width: 500px;
+    width: 100%;
     border-radius: 15px;
     height: 30px;
     display:flex;
@@ -163,4 +164,17 @@ export const DeleteForm = styled.button`
         opacity: 1;
         color: black;
     }
+`
+
+// Tag Styling
+
+export const TagStyles = styled.span `
+        font-size: 14;
+        font-weight: bold;
+        margin: 3px;
+        margin-left: 10px;
+        padding: 5px 10px;
+        border-radius: 10px;
+        background: #5B5B5B;
+        color: white;
 `

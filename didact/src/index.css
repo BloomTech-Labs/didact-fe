@@ -2,9 +2,7 @@ html {
   background-color: #D3D3D3;
   overflow-y: visible !important;
   margin-right: -17px;
-  /* margin-left: 20px; */
-  overflow-x: hidden;
-  /* overflow-y: hidden; */
+  
 }
 
 
@@ -22,8 +20,7 @@ body {
   /* padding-right: -47px; */
   background-color: #D3D3D3;
   overflow-x: hidden;
-  
-  
+  overflow-anchor:  none;
 }
 
 

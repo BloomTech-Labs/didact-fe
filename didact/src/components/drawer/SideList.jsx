@@ -50,7 +50,7 @@ const SideList = ({props}) => {
                 <ListItem className = {classes.hoverTab}
                     button
                     component={NavLink}
-                    exact to={"/" && "/dashboard"}
+                    exact to="/" 
                     style={{ textDecoration: "none" }}
                     activeClassName={classes.activeTab}
                     key="Dashboard"
@@ -88,7 +88,7 @@ const SideList = ({props}) => {
                     <ListItemText className={classes.arrow} primary=">" />
                 </ListItem>
             </List>
-            {/* <List >
+           <List >
                 <ListItem className = {classes.hoverTab} button key="Learning Paths">
                     <ListItemIcon>
                         <InboxIcon />
@@ -97,7 +97,7 @@ const SideList = ({props}) => {
                     <ListItemText className={classes.arrow} primary=">" />
                 </ListItem>
             </List>
-            <List >
+            {/* <List >
                 <ListItem className = {classes.hoverTab} button key="Tasks">
                     <ListItemIcon>
                         <DoneAllIcon />

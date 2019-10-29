@@ -230,7 +230,7 @@ const EditCourse = ({props, id}) => {
                                 {course.name}
                             </Typography>
                             <CardActions className={classes.descriptionDiv} disableSpacing>
-                                <Typography className={classes.descriptionTitle} >Description:</Typography>
+                                <Typography color="textSecondary" className={classes.descriptionTitle} > {course.description && !expanded ? (`${course.description.substring(0, 100)} ...`) : null}</Typography>
                                 <IconButton
                                     className={clsx(classes.expand, {
                                         [classes.expandOpen]: expanded,
@@ -244,19 +244,22 @@ const EditCourse = ({props, id}) => {
                             </CardActions>
                             <Collapse in={expanded} timeout="auto" unmountOnExit>
                                 <CardContent>
-                                    <Typography paragraph>
+                                    <Typography color="textSecondary" paragraph>
                                         {course.description}
                                     </Typography>
                                 </CardContent>
                             </Collapse>
-                            <Typography color="textSecondary">
+                            <Typography >
                                 {course.foreign_instructors}
                             </Typography>
-                            <Typography color="textSecondary">
+                            <Typography >
                                 {course.foreign_rating}
                             </Typography>
-                            <Typography variant="body2" component="p">
-                                {course.link}
+                            <a href={course.link} variant="body2" component="p" alt = "course link" style = {{color: 'black', cursor: 'pointer'}}>
+                            {course.link}
+                             </a>
+                            <Typography color="textSecondary">
+                                {course.category ? (`Category: ${course.category}`) : (null)}
                             </Typography>
                         </CardContent>
                         <CardActions>
@@ -328,6 +331,17 @@ const EditCourse = ({props, id}) => {
                                     margin="normal"
                                     variant="outlined"
                                     placeholder="Course Url"
+                                    InputProps={{ classes: { underline: classes.blackUnderline, input: classes.input } }}
+                                />
+                                  <CssTextField
+                                    id="standard-name"
+                                    label="Category"
+                                    className={classes.courseUrlField}
+                                    value={changes.category || ""}
+                                    onChange={handleChange('category')}
+                                    margin="normal"
+                                    variant="outlined"
+                                    placeholder="Category"
                                     InputProps={{ classes: { underline: classes.blackUnderline, input: classes.input } }}
                                 />
                                 <ButtonDiv>
