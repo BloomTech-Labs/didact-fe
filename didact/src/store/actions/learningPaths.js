@@ -80,7 +80,7 @@ export const searchLearningPathsByTag = (tag="") => dispatch =>
     })
 }
 
-export const getLearningPath = (id) => dispatch
+export const getLearningPath = (id) => dispatch =>
 {
     dispatch({ type: GET_LEARNING_PATH_START })
 
@@ -97,7 +97,7 @@ export const getLearningPath = (id) => dispatch
     })
 }
 
-export const postLearningPath = (pathObj) => dispatch
+export const postLearningPath = (pathObj) => dispatch =>
 {
     dispatch({ type: POST_LEARNING_PATH_START })
 
@@ -115,7 +115,7 @@ export const postLearningPath = (pathObj) => dispatch
     })
 }
 
-export const updateLearningPath = (changes, id) => dispatch
+export const updateLearningPath = (changes, id) => dispatch =>
 {
     dispatch({ type: UPDATE_LEARNING_PATH_START })
     //changes should be an object like { changes: {name: 'blah'} } as an example. See api docs
