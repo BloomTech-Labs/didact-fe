@@ -112,7 +112,9 @@ export default function AddCourse(props) {
   const dispatch = useDispatch();
   const [values, setValues] = useState({
     name: "",
+    category: "",
     foreign_instructors: "",
+    foreign_rating: "",
     link: "",
     description: "",
   });

@@ -11,12 +11,13 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
-import { updateSection, getLessonsBySectionId } from '../../store/actions';
+import { updateSection, getLessonsBySectionId, deleteSection } from '../../store/actions';
 import Lessons from './Lessons'
 import AddLessons from './AddLessons'
+import DeleteModal from './DeleteModal'
 
 import AddCircleIcon from '@material-ui/icons/AddCircle';
-import { AddButtonInSection, ButtonTextInSection, ButtonDiv } from '../dashboard/ButtonStyles';
+import { AddButtonInSection, ButtonTextInSection, ButtonDiv, DeleteForm } from '../dashboard/ButtonStyles';
 
 const useStyles = makeStyles(theme => ({
 
@@ -139,13 +140,14 @@ const CssTextField = withStyles({
     },
 })(TextField);
 
-const Section = ({ section, props }) => {
+const Section = ({ course, section, props }) => {
     const classes = useStyles();
     const dispatch = useDispatch()
     const lessons = useSelector(state => state.sectionsReducer.lessons)
     const [expanded, setExpanded] = useState(false);
     const [sectionEdit, setSectionEdit] = useState(true)
     const [addLessonChange, setAddLessonChange] = useState(false);
+    const [openModal, setOpenModal] = useState(false);
     const [changes, setChanges] = useState({
         name: "",
         description: "",
@@ -194,6 +196,18 @@ const Section = ({ section, props }) => {
         setSectionEdit(true)
     }
 
+    const handleDelete = () => {
+        dispatch(deleteSection(course.id, section.id))
+    }
+
+    const handleModalOpen = () => {
+        setOpenModal(true);
+    };
+
+    const handleModalClose = () => {
+        setOpenModal(false);
+    };
+
     return (
         <>
             {sectionEdit ? (
@@ -229,7 +243,7 @@ const Section = ({ section, props }) => {
                             {section.link}
                         </Typography>
                     </CardContent>
-                    {lessons ? <Lessons section={section} props={props} lessons={lessons} /> : null}
+                    {lessons ? <Lessons course={course} section={section} props={props} lessons={lessons} /> : null}
                     <CardActions>
                         <Button style={{marginLeft: '70%'}} onClick={toggleEdit} type='submit' size="small" variant="contained" className={classes.button} >Edit Section</Button>
                     </CardActions>
@@ -238,11 +252,12 @@ const Section = ({ section, props }) => {
                         <ButtonTextInSection>Add Lesson</ButtonTextInSection>
                     </AddButtonInSection>
                     {addLessonChange ? <AddLessons props={props} section={section} setAddLessonChange={setAddLessonChange} /> : null}
-
                 </Card>
             ) : (
                     <Card className={classes.card}>
                         <CardContent>
+                        <DeleteForm onClick={handleModalOpen}>X</DeleteForm>
+                        {openModal ? <DeleteModal handleDelete={handleDelete} text={"section"} open={openModal} handleModalClose={handleModalClose} /> : null}
                             <Typography className={classes.title} gutterBottom>
                                 Add Section
                          </Typography>

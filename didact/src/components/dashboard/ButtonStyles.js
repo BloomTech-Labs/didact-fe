@@ -101,6 +101,8 @@ export const P = styled.p`
     line-height: 28px;
 `
 
+// Edit lesson button
+
 export const EditLessonButton = styled.button`
        box-shadow: none;
         border-radius: 15px;
@@ -117,12 +119,17 @@ export const EditLessonButton = styled.button`
         
     }
 `
+
+// Div for aligning cancel and add/edit buttons
+
 export const ButtonDiv = styled.div`
     display: flex;
     justify-content: space-between;
     width: 100%;
     margin-bottom: 10px;
 `
+
+// finish edit and return to course button
 
 export const FinishEdit = styled.div`
     background:  #EBE8E1;
@@ -138,5 +145,22 @@ export const FinishEdit = styled.div`
         box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 3px 1px -2px rgba(0,0,0,0.12);
         background-color: #e0e0e0;
         
+    }
+`
+
+// button for deleting a form piece from the db
+
+export const DeleteForm = styled.button`
+    opacity: 0.8;
+    background: white;
+    border: none;
+    cursor: pointer;
+    margin-left: 92%;
+    height: 40px;
+    width: 40px;
+    color: grey;
+    &:hover {
+        opacity: 1;
+        color: black;
     }
 `
