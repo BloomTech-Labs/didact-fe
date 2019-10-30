@@ -378,7 +378,7 @@ const EditCourse = ({props, id}) => {
                         </AddButton>
                     </div>
                     ) 
-                    )}
+                    }
                 </div>
                 </>
             )
