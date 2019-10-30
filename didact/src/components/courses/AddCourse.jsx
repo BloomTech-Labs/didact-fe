@@ -32,7 +32,6 @@ const useStyles = makeStyles(theme => ({
   container: {
     display: 'flex',
     flexWrap: 'wrap',
-    // margin: '10px',
   },
   input: {
     backgroundColor: '#F4F8FA',
@@ -66,12 +65,7 @@ const useStyles = makeStyles(theme => ({
       
     },
   },
-  // blackUnderline: {
-  //   '&:after': {
-  //     borderBottom: 'black solid 2px',
-  //     color: 'black',
-  //   },
-  // },
+
   courseUrlField: {
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
@@ -81,10 +75,6 @@ const useStyles = makeStyles(theme => ({
     },
   }
 }));
-
-// const labelStyle = {
-//     color: 'black'
-// }
 
 const CssTextField = withStyles({
   root: {
@@ -108,7 +98,6 @@ const CssTextField = withStyles({
 
 export default function AddCourse(props) {
   const classes = useStyles();
-  console.log('props in componet', props)
   const dispatch = useDispatch();
   const [values, setValues] = useState({
     name: "",
@@ -207,9 +196,6 @@ export default function AddCourse(props) {
             <Button type='submit' size="small" variant="contained" className={classes.button} >Add Course</Button>
         </form>
       </CardContent>
-      {/* <CardActions>
-        <Button type='submit' size="small" variant="contained" className={classes.button} >Add Course</Button>
-      </CardActions> */}
     </Card>
   );
 }

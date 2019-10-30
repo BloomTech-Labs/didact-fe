@@ -97,7 +97,7 @@ export const getLearningPath = (id) => dispatch =>
     })
 }
 
-export const postLearningPath = (pathObj) => dispatch =>
+export const postLearningPath = (pathObj, history) => dispatch =>
 {
     dispatch({ type: POST_LEARNING_PATH_START })
 
@@ -107,7 +107,9 @@ export const postLearningPath = (pathObj) => dispatch =>
         console.log('res from post learning path', res)
         pathObj.id = res.data.id
         dispatch({ type: POST_LEARNING_PATH_SUCCESS, payload: pathObj })
+        return res.data
     })
+    .then(response => history.push(`/learning-paths/${response.id}/edit`))
     .catch(err =>
     {
         console.log('err from post learning path', err)
@@ -115,15 +117,16 @@ export const postLearningPath = (pathObj) => dispatch =>
     })
 }
 
-export const updateLearningPath = (changes, id) => dispatch =>
+export const updateLearningPath = (id, changes) => dispatch =>
 {
     dispatch({ type: UPDATE_LEARNING_PATH_START })
+    // console.log(changes)
     //changes should be an object like { changes: {name: 'blah'} } as an example. See api docs
-    axiosWithAuth().put(`${baseURL}${id}`, changes)
+    axiosWithAuth().put(`${baseURL}${id}`, {changes})
     .then(res =>
     {
         console.log('res from update learning path', res)
-        dispatch({ type: UPDATE_LEARNING_PATH_SUCCESS, payload: {changes, id} })
+        dispatch({ type: UPDATE_LEARNING_PATH_SUCCESS, payload: {...changes, id: id} })
     })
     .catch(err =>
     {
@@ -132,7 +135,7 @@ export const updateLearningPath = (changes, id) => dispatch =>
     })
 }
 
-export const deleteLearningPath = (id) => dispatch =>
+export const deleteLearningPath = (id, history) => dispatch =>
 {
     dispatch({ type: DELETE_LEARNING_PATH_START })
 
@@ -142,6 +145,7 @@ export const deleteLearningPath = (id) => dispatch =>
         console.log('res from delete learning path', res)
         dispatch({ type: DELETE_LEARNING_PATH_SUCCESS, payload: id })
     })
+    .then(() => history.push(`/`))
     .catch(err =>
     {
         console.log('err from delete learning path', err)

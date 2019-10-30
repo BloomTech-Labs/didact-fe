@@ -14,10 +14,6 @@ const Routes = () => {
             <Route path="/register" component={FormikRegisterForm} >
             </Route>
             <Route path='/auth' component={Auth} />
-            {/* <Route path='/dashboard' render={routeProps =>
-            (
-                <MainPage {...routeProps} page={'dashboard'} />
-            )} /> */}
             <Route exact path='/' render={routeProps =>
             (
                 <MainPage {...routeProps} page={'dashboard'} />
@@ -37,6 +33,14 @@ const Routes = () => {
             <Route exact path='/courses/:id' render={routeProps =>
             (
                 <MainPage {...routeProps} page={'detailedcourse'} />
+            )} />
+             <Route exact path='/learning-paths/add' render={routeProps =>
+            (
+                <MainPage {...routeProps} page={'addlearningpath'} />
+            )} />
+             <Route exact path='/learning-paths/:id/edit' render={routeProps =>
+            (
+                <MainPage {...routeProps} page={'editlearningpath'} />
             )} />
             <Route exact path='/learning-paths' render={routeProps =>
             (
