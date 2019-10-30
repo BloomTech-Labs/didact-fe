@@ -88,8 +88,15 @@ const SideList = ({props}) => {
                     <ListItemText className={classes.arrow} primary=">" />
                 </ListItem>
             </List>
-            {/* <List >
-                <ListItem className = {classes.hoverTab} button key="Learning Paths">
+            <List >
+                <ListItem
+                    className = {classes.hoverTab}
+                    button
+                    component={NavLink}
+                    to="/learning-paths"
+                    style={{ textDecoration: "none" }}
+                    activeClassName={classes.activeTab}
+                    key="Learning Paths">
                     <ListItemIcon>
                         <InboxIcon />
                     </ListItemIcon>
@@ -97,7 +104,7 @@ const SideList = ({props}) => {
                     <ListItemText className={classes.arrow} primary=">" />
                 </ListItem>
             </List>
-            <List >
+            {/*<List >
                 <ListItem className = {classes.hoverTab} button key="Tasks">
                     <ListItemIcon>
                         <DoneAllIcon />
