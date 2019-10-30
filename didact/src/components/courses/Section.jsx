@@ -34,9 +34,9 @@ const useStyles = makeStyles(theme => ({
         // marginLeft: '70%',
     },
     card: {
-        width: '50vw',
+        width: '100%',
         maxWidth: 500,
-        minWidth: 375,
+        minWidth: 220,
         borderRadius: 15,
         margin: '10px 0'
     },

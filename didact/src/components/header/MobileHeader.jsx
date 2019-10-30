@@ -13,15 +13,15 @@ import Profile from '../profile/Profile'
 const MobileHeaderComponent = (props) => {
 
         const headerStyles = makeStyles(theme => ({
-        appBarDesktop: {
-            width: `calc(100% - 100px)`,
-            margin: "10px",
-            borderRadius: "10px 10px 10px 10px",
-            backgroundColor: 'gray',
-            color: 'lightgray',
-            top: 0,
+        // appBarDesktop: {
+        //     width: `calc(100% - 100px)`,
+        //     margin: "10px",
+        //     borderRadius: "10px 10px 10px 10px",
+        //     backgroundColor: 'gray',
+        //     color: 'lightgray',
+        //     top: 0,
            
-        },
+        // },
         appBarMobile: {
             width: `100%`,
             backgroundColor: '#5b5b5b',
@@ -30,14 +30,14 @@ const MobileHeaderComponent = (props) => {
             // margin: '0'
 
         },
-        appBarShift: {
-            marginLeft: "240px",
-            width: `calc(100vw - (240px + 30px))`,
-            transition: theme.transitions.create(['width', 'margin'], {
-                easing: theme.transitions.easing.sharp,
-                duration: theme.transitions.duration.enteringScreen,
-            }),
-        },
+        // appBarShift: {
+        //     marginLeft: "240px",
+        //     width: `calc(100vw - (240px + 30px))`,
+        //     transition: theme.transitions.create(['width', 'margin'], {
+        //         easing: theme.transitions.easing.sharp,
+        //         duration: theme.transitions.duration.enteringScreen,
+        //     }),
+        // },
         iconImage: {
             width: "40px",
             height: "40px",
@@ -60,10 +60,7 @@ const MobileHeaderComponent = (props) => {
 
     return (
         <AppBar
-            
-            className={clsx(classes.appBarMobile,  {
-                // [classes.appBarShift]: open,
-            })}
+            className={classes.appBarMobile}
         >
             <Toolbar>
                 <Typography variant="h5">

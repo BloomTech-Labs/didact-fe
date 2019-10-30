@@ -7,7 +7,7 @@ export const CoursesCard = styled.div`
     background-color: white;
     width: 100%;
     max-width: 500px;
-    min-width: 375px;
+  
     
     div {
         border-top: 1px solid #EEEFF3

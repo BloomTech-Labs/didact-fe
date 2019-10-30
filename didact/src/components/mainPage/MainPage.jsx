@@ -21,7 +21,7 @@ import Profile from '../profile/Profile'
 const useStyles = makeStyles(theme => ({
     root: {
         backgroundColor: "lightgray",
-        width: "100%"
+        // width: "100%"
     },
     content: {
         flexGrow: 1,
@@ -31,17 +31,17 @@ const useStyles = makeStyles(theme => ({
     contentMobile: {
         flexGrow: 1,
         padding: theme.spacing(3),
-        paddingLeft: "80px",
+        marginLeft: "80px",
       
     },
     contentShadow: {
         background: "rgba(0, 0, 0, 0.8)",
         filter: "brightness(50%)",
         zIndex: 100,
-        position: "absolute",
+        // position: "absolute",
         top: 0,
         left: 0,
-        flexGrow: 1,
+        // flexGrow: 1,
         paddingLeft: "80px",
         padding: theme.spacing(3),
         overflow: "hidden",
@@ -117,8 +117,8 @@ function MainPage(props) {
             {phoneSize ? (
                 <div className={classes.root} onClick={() => closeHandleClick()}>
                     <CssBaseline />
-                    <PageFlex>
-                        <div>
+                    <>
+                       <div>
                             <MobileDrawerComponent handleDrawerOpenMobile={handleDrawerOpenMobile()} openMobile={openMobile} props = {props}/>
                         </div>
                         <div>
@@ -129,7 +129,7 @@ function MainPage(props) {
                                 {/*************************ADD COMPONENTS HERE *********************** */}
                             </main>
                         </div>
-                    </PageFlex>
+                    </>
                     {/* {openMobile ?
                         (
                         <div className = {classes.scrollBarMobileFix}>

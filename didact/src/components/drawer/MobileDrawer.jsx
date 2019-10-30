@@ -78,10 +78,6 @@ const MobileDrawerComponent = (props) => {
             }),
           },
           drawerCloseMobile: {
-            transition: theme.transitions.create("width", {
-              easing: theme.transitions.easing.sharp,
-              duration: theme.transitions.duration.leavingScreen,
-            }),
             overflow: "hidden",
             // backgroundColor: '#eeeff3',
             height: '580px',
@@ -93,6 +89,10 @@ const MobileDrawerComponent = (props) => {
             [theme.breakpoints.up("sm")]: {
               width: theme.spacing(7) + 1,
             },
+            transition: theme.transitions.create("width", {
+              easing: theme.transitions.easing.sharp,
+              duration: theme.transitions.duration.leavingScreen,
+            }),
           },
         menuButtonMobile: {
             marginRight: '-4px'
