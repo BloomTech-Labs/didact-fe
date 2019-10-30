@@ -97,7 +97,7 @@ export const getLearningPath = (id) => dispatch =>
     })
 }
 
-export const postLearningPath = (pathObj) => dispatch =>
+export const postLearningPath = (pathObj, history) => dispatch =>
 {
     dispatch({ type: POST_LEARNING_PATH_START })
 
@@ -107,7 +107,9 @@ export const postLearningPath = (pathObj) => dispatch =>
         console.log('res from post learning path', res)
         pathObj.id = res.data.id
         dispatch({ type: POST_LEARNING_PATH_SUCCESS, payload: pathObj })
+        return res.data
     })
+    .then(response => history.push(`/learningpaths/${response.id}/edit`))
     .catch(err =>
     {
         console.log('err from post learning path', err)

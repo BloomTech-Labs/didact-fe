@@ -7,6 +7,8 @@ import AddCourse from '../courses/AddCourse'
 import DetailedCourse from '../courses/DetailedCourse'
 import EditCourse from '../courses/EditCourse'
 import AllCourses from "../courses/AllCourses.jsx"
+import AddLearningPaths from '../learningPaths/AddLearningPaths'
+import EditLearningPaths from '../learningPaths/EditLearningPaths'
 
 
 const Content = (props) => {
@@ -82,6 +84,10 @@ const Content = (props) => {
                         return <DetailedCourse id={props.match.params.id} />
                     case ('editcourse'):
                         return <EditCourse id={props.match.params.id} props={props}/>
+                    case ('addlearningpath'):
+                        return <AddLearningPaths props={props}/>
+                    case ('editlearningpath'):
+                        return <EditLearningPaths id={props.match.params.id} props={props}/>
                     default:
                         break;
                 }
