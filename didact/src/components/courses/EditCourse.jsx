@@ -138,7 +138,8 @@ const CssTextField = withStyles({
 })(TextField);
 
 const EditCourse = ({props, id}) => {
-    const course = useSelector(state => state.coursesReducer.course)
+    const state = useSelector(state => state)
+    const course =  state.coursesReducer.course
     const dispatch = useDispatch()
     const classes = useStyles();
     const [expanded, setExpanded] = React.useState(false);
@@ -218,8 +219,10 @@ const EditCourse = ({props, id}) => {
         setOpenModal(false);
     };
 
+    if(!state.coursesReducer.isLoading) {
     return (
         <>
+        
         <FinishEdit onClick={backToCourse}>{`<- BACK TO COURSE`}</FinishEdit>
         <div className={classes.root}>
             {courseEdit ?
@@ -373,11 +376,15 @@ const EditCourse = ({props, id}) => {
                             </PlusDiv>
                             <ButtonText>Add Section</ButtonText>
                         </AddButton>
-                    </div> 
+                    </div>
+                    ) 
                     )}
-        </div>
-        </>
-    )
+                </div>
+                </>
+            )
+    } else {
+        return <h1>Loading...</h1>
+    }
 }
 
 export default EditCourse;

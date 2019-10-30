@@ -48,7 +48,7 @@ const DetailedCourse = props => {
         setLessonExpanded(isExpanded ? panel : false)
     }
 
-    if (course && sections) {
+    if (!state.coursesReducer.isLoading && (course && sections)) {
         return (
                 <DetailedCourseWrapper>
                     <div className="courseWrapper">
