@@ -109,7 +109,7 @@ export const postLearningPath = (pathObj, history) => dispatch =>
         dispatch({ type: POST_LEARNING_PATH_SUCCESS, payload: pathObj })
         return res.data
     })
-    .then(response => history.push(`/learningpaths/${response.id}/edit`))
+    .then(response => history.push(`/learning-paths/${response.id}/edit`))
     .catch(err =>
     {
         console.log('err from post learning path', err)

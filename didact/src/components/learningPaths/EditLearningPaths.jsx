@@ -28,6 +28,7 @@ const useStyles = makeStyles(theme => ({
     card: {
       maxWidth: 500,
       borderRadius: 15,
+      marginTop: '10px'
     },
     title: {
       fontSize: 14,
@@ -71,6 +72,11 @@ const useStyles = makeStyles(theme => ({
         margin: "3px"
         
       },
+    },
+
+    descriptionDiv: {
+        display: "flex",
+        justifyContent: 'center'
     },
 
     pathUrlField: {
@@ -161,7 +167,7 @@ const EditLearningPaths = ({id, props}) => {
     }
 
     const backToLearningPath = () => {
-        props.history.push(`/learningpaths/${id}`)
+        props.history.push(`/learning-paths/${id}`)
     }
 
     const handleDelete = () => {
@@ -189,7 +195,7 @@ const EditLearningPaths = ({id, props}) => {
                             <Typography variant="h5" component="h2">
                                 {learningPath.name}
                             </Typography>
-                            <CardActions style = {{textAlign: 'center'}} className={classes.descriptionDiv} disableSpacing>
+                            <CardActions  className={classes.descriptionDiv} disableSpacing>
                                 <Typography color="textSecondary" className={classes.descriptionTitle} > {learningPath.description && !expanded ? (`${learningPath.description.substring(0, 100)} ...`) : null}</Typography>
                                 <IconButton
                                     className={clsx(classes.expand, {
