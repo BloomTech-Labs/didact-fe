@@ -34,11 +34,11 @@ const Routes = () => {
             (
                 <MainPage {...routeProps} page={'detailedcourse'} />
             )} />
-             <Route exact path='/learningpath/add' render={routeProps =>
+             <Route exact path='/learningpaths/add' render={routeProps =>
             (
                 <MainPage {...routeProps} page={'addlearningpath'} />
             )} />
-             <Route exact path='/learningpath/:id/edit' render={routeProps =>
+             <Route exact path='/learningpaths/:id/edit' render={routeProps =>
             (
                 <MainPage {...routeProps} page={'editlearningpath'} />
             )} />

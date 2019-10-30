@@ -244,17 +244,17 @@ export const learningPathReducer = (state = initialState, action) =>
                 error: "",
             }
         case DELETE_TAG_FROM_PATH_SUCCESS:
-            let tempTags
+            let returnTags
             if(state.learningPath.tags)
             {
-                tempTags = state.learningPath.tags
-                tempTags = tempTags.filter(el => el !== action.payload)
+                returnTags = state.learningPath.tags
+                returnTags = returnTags.filter(el => el !== action.payload)
             }
-            else tempTags = []
+            else returnTags = []
             return {
                 ...state,
                 isLoading: false,
-                learningPath: {...state.learningPath, tags: tempTags },
+                learningPath: {...state.learningPath, tags: returnTags },
                 error: "",
             }
         case DELETE_TAG_FROM_PATH_FAIL:
