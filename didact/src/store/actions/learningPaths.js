@@ -157,7 +157,7 @@ export const joinLearningPath = id => dispatch =>
 {
     dispatch({ type: JOIN_LEARNING_PATH_START })
 
-    axiosWithAuth().post(`${baseURL}${id}/user`)
+    axiosWithAuth().post(`${baseURL}${id}/users`)
     .then(res =>
     {
         console.log("res from joinLearningPath:", res)
@@ -174,7 +174,7 @@ export const quitLearningPath = id => dispatch =>
 {
     dispatch({ type: QUIT_LEARNING_PATH_START })
 
-    axiosWithAuth().delete(`${baseURL}${id}/user`)
+    axiosWithAuth().delete(`${baseURL}${id}/users`)
     .then(res =>
     {
         console.log("res from quitLearningPath:", res)
@@ -225,7 +225,7 @@ export const postCourseToPath = (pathId, courseId, order) => dispatch =>
 {
     dispatch({ type: POST_COURSE_TO_PATH_START })
 
-    axiosWithAuth().post(`${baseURL}${pathId}/course/${courseId}`, {order})
+    axiosWithAuth().post(`${baseURL}${pathId}/courses/${courseId}`, {order})
     .then(res =>
     {
         console.log("res from postCourseToPath:", res)
@@ -242,7 +242,7 @@ export const removeCourseFromPath = (pathId, courseId) => dispatch =>
 {
     dispatch({ type: REMOVE_COURSE_FROM_PATH_START })
 
-    axiosWithAuth().delete(`${baseURL}${pathId}/course/${courseId}`)
+    axiosWithAuth().delete(`${baseURL}${pathId}/courses/${courseId}`)
     .then(res =>
     {
         console.log("res from removeCourseFromPath:", res)
@@ -259,7 +259,7 @@ export const updateCourseOrder = (pathId, courseId, order) => dispatch =>
 {
     dispatch({ type: UPDATE_COURSE_ORDER_START })
 
-    axiosWithAuth().post(`${baseURL}${pathId}/course/${courseId}`, {order})
+    axiosWithAuth().post(`${baseURL}${pathId}/courses/${courseId}`, {order})
     .then(res =>
     {
         console.log("res from updateCourseOrder:", res)
