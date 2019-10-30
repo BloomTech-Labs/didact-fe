@@ -130,7 +130,7 @@ export default function Profile(props) {
     localStorage.clear('token')
     props.props.props.history.push('/login')
 }
-
+ 
   const content = () => {
     return (
       <div className = {classes.root} >
@@ -168,11 +168,10 @@ export default function Profile(props) {
         </div>
       </div>
     );
-  };
-
-  return (
+  }
+  return ( 
     <div className = {classes.root} >
-      {userName.photo ? <img src={userName.photo} alt = "Profile" className={classes.iconImageProfile} /> : <PermIdentityIcon  className={classes.iconImageProfile} />}
+      {userName.photo ? <img src={userName.photo} alt = "Profile" onClick={handleClick} className={classes.iconImageProfile} /> : <PermIdentityIcon onClick={handleClick} className={classes.iconImage} />}
        <Popover
         id={id}
         open={open}
