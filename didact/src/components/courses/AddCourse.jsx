@@ -112,7 +112,9 @@ export default function AddCourse(props) {
   const dispatch = useDispatch();
   const [values, setValues] = useState({
     name: "",
+    category: "",
     foreign_instructors: "",
+    foreign_rating: "",
     link: "",
     description: "",
   });
@@ -137,7 +139,7 @@ export default function AddCourse(props) {
             <CssTextField
                 id="standard-name"
                 label='Name'
-                className={classes.titleOrInstructorFields}
+                className={classes.courseUrlField}
                 value={values.name}
                 onChange={handleChange('name')}
                 margin="normal"
@@ -148,13 +150,24 @@ export default function AddCourse(props) {
             <CssTextField
                 id="standard-name"
                 label="Instructors"
-                className={classes.titleOrInstructorFields}
+                className={classes.courseUrlField}
                 value={values.foreign_instructors}
                 onChange={handleChange('foreign_instructors')}
                 margin="normal"
                 variant="outlined"
                 placeholder="Instructors"
                 InputProps={{ classes: { underline: classes.blackUnderline, input: classes.input}}}
+            />
+             <CssTextField
+                id="standard-name"
+                label="Rating"
+                className={classes.courseUrlField}
+                value={values.foreign_rating || ""}
+                onChange={handleChange('foreign_rating')}
+                margin="normal"
+                variant="outlined"
+                placeholder="Rating"
+                InputProps={{ classes: { underline: classes.blackUnderline, input: classes.input } }}
             />
             <CssTextField
                 id="standard-name"
@@ -179,6 +192,17 @@ export default function AddCourse(props) {
                 variant="outlined"
                 placeholder="Course Url"
                 InputProps={{ classes: { underline: classes.blackUnderline, input: classes.input}}}
+            />
+            <CssTextField
+                id="standard-name"
+                label="Category"
+                className={classes.courseUrlField}
+                value={values.category || ""}
+                onChange={handleChange('category')}
+                margin="normal"
+                variant="outlined"
+                placeholder="Category"
+                InputProps={{ classes: { underline: classes.blackUnderline, input: classes.input } }}
             />
             <Button type='submit' size="small" variant="contained" className={classes.button} >Add Course</Button>
         </form>

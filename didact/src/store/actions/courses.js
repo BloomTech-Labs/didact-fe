@@ -1,5 +1,5 @@
 import axiosWithAuth from '../../utils/axiosWithAuth';
-
+import beURL from '../../utils/beURL'
 export const COURSE_DATA_START = 'COURSE_DATA_START';
 export const COURSE_DATA_SUCCESS = 'COURSE_DATA_SUCCESS';
 export const COURSE_DATA_FAIL = 'COURSE_DATA_FAIL';
@@ -23,7 +23,7 @@ export const GET_DETAILED_COURSE_START = "GET_DETAILED_COURSE_START"
 export const GET_DETAILED_COURSE_SUCCESS = "GET_DETAILED_COURSE_SUCCESS"
 export const GET_DETAILED_COURSE_FAIL = "GET_DETAILED_COURSE_FAIL"
 
-const baseURL = 'https://didactlms-staging.herokuapp.com/api/courses/'
+const baseURL = `${beURL}courses/`
 
 export const courseEndPoint =() => dispatch => {
     dispatch({type: COURSE_DATA_START})
@@ -83,7 +83,7 @@ export const editCourse =(id, changes) => dispatch => {
 }
 
 //TODO: test this
-export const deleteCourse =(id) => dispatch => {
+export const deleteCourse =(id, history) => dispatch => {
     dispatch({type: DELETE_COURSE_DATA_START})
     axiosWithAuth()
     .delete(`${baseURL}${id}`)
@@ -91,6 +91,7 @@ export const deleteCourse =(id) => dispatch => {
         // console.log('edit course api response: ', res)
         dispatch({type: DELETE_COURSE_DATA_SUCCESS, payload: id})
     })
+    .then(() => history.push('/'))
     .catch(err => {
         dispatch({type: DELETE_COURSE_DATA_FAIL, payload: err})
     })

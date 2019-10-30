@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom'
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
+    width: `calc(100%)`,
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -18,10 +19,10 @@ const useStyles = makeStyles(theme => ({
     justifyContent: "flex-start"
   },
   appBar: {
-      margin: "10px",
+      margin: "10px auto",
       borderRadius: "15px",
       width: `calc(100% - 20px)`,
-      backgroundColor: 'gray',
+      backgroundColor: '#5b5b5b',
       color: 'lightgray',
 
   },

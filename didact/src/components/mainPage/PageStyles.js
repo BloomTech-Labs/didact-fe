@@ -3,18 +3,19 @@ import styled from 'styled-components'
 export const PageFlex = styled.div`
     width: 100%;
     display: flex;
-    width: auto;
+    /* width: auto; */
 
     .drawer {
-        padding-right: 40px;
+        padding-right: 30px;
     }
 
     .headerMain {
         /* padding-left: 50px; */
         width : 100%;
+        margin: 0 0 0 15px;
 
         .header {
-            width: 100%;
+            width: calc(100% - 30px);
             display: flex;
             background: #5b5b5b;
             border-radius: 19px;

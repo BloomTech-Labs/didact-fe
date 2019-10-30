@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getCourseById, editCourse } from '../../store/actions'
-import { AddButton, PlusDiv, Plus, ButtonText } from '../dashboard/ButtonStyles';
+import { getCourseById, editCourse, deleteCourse } from '../../store/actions'
+import { AddButton, PlusDiv, Plus, ButtonText, ButtonDiv } from '../dashboard/ButtonStyles';
 import Tags from './Tags'
 import AddSection from './AddSection'
 import Sections from './Sections'
@@ -17,6 +17,8 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
+import DeleteModal from './DeleteModal'
+import {FinishEdit, DeleteForm} from '../dashboard/ButtonStyles';
 
 const useStyles = makeStyles(theme => ({
 
@@ -30,12 +32,12 @@ const useStyles = makeStyles(theme => ({
         boxShadow: 'none',
         borderRadius: '15px',
         background: '#EBE8E1',
-        marginLeft: '70%',
+        // marginLeft: '70%',
     },
     card: {
-        width: '50vw',
+        width: '100%',
         maxWidth: 500,
-        minWidth: 375,
+        // minWidth: 220,
         borderRadius: 15,
         margin: '10px 0'
     },
@@ -136,15 +138,18 @@ const CssTextField = withStyles({
 })(TextField);
 
 const EditCourse = ({props, id}) => {
-    const course = useSelector(state => state.coursesReducer.course)
+    const state = useSelector(state => state)
+    const course =  state.coursesReducer.course
     const dispatch = useDispatch()
     const classes = useStyles();
     const [expanded, setExpanded] = React.useState(false);
     const [courseEdit, setCourseEdit] = useState(true)
     const [addSectionChange, setAddSectionChange] = useState(false);
+    const [openModal, setOpenModal] = useState(false);
     const [changes, setChanges] = useState({
 
         name: "",
+        category: "",
         description: "",
         foreign_instructors: "",
         foreign_rating: "",
@@ -158,6 +163,7 @@ const EditCourse = ({props, id}) => {
     useEffect(() => {
         setChanges({
             name: course.name,
+            category: course.category,
             description: course.description,
             foreign_instructors: course.foreign_instructors,
             foreign_rating: course.foreign_rating,
@@ -192,7 +198,32 @@ const EditCourse = ({props, id}) => {
         setAddSectionChange(true)
     }
 
+    const handleCancel = event => {
+        event.preventDefault()
+        toggleEdit()
+    }
+
+    const backToCourse = () => {
+        props.history.push(`/courses/${props.match.params.id}`)
+    }
+
+    const handleDelete = () => {
+        dispatch(deleteCourse(props.match.params.id, props.history))
+    }
+
+    const handleModalOpen = () => {
+        setOpenModal(true);
+    };
+
+    const handleModalClose = () => {
+        setOpenModal(false);
+    };
+
+    if(!state.coursesReducer.isLoading) {
     return (
+        <>
+        
+        <FinishEdit onClick={backToCourse}>{`<- BACK TO COURSE`}</FinishEdit>
         <div className={classes.root}>
             {courseEdit ?
                 (
@@ -202,7 +233,7 @@ const EditCourse = ({props, id}) => {
                                 {course.name}
                             </Typography>
                             <CardActions className={classes.descriptionDiv} disableSpacing>
-                                <Typography className={classes.descriptionTitle} >Description:</Typography>
+                                <Typography color="textSecondary" className={classes.descriptionTitle} > {course.description && !expanded ? (`${course.description.substring(0, 100)} ...`) : null}</Typography>
                                 <IconButton
                                     className={clsx(classes.expand, {
                                         [classes.expandOpen]: expanded,
@@ -216,23 +247,26 @@ const EditCourse = ({props, id}) => {
                             </CardActions>
                             <Collapse in={expanded} timeout="auto" unmountOnExit>
                                 <CardContent>
-                                    <Typography paragraph>
+                                    <Typography color="textSecondary" paragraph>
                                         {course.description}
                                     </Typography>
                                 </CardContent>
                             </Collapse>
-                            <Typography color="textSecondary">
+                            <Typography >
                                 {course.foreign_instructors}
                             </Typography>
-                            <Typography color="textSecondary">
+                            <Typography >
                                 {course.foreign_rating}
                             </Typography>
-                            <Typography variant="body2" component="p">
-                                {course.link}
+                            <a href={course.link} variant="body2" component="p" alt = "course link" style = {{color: 'black', cursor: 'pointer'}}>
+                            {course.link}
+                             </a>
+                            <Typography color="textSecondary">
+                                {course.category ? (`Category: ${course.category}`) : (null)}
                             </Typography>
                         </CardContent>
                         <CardActions>
-                            <Button onClick={toggleEdit} type='submit' size="small" variant="contained" className={classes.button} >Edit Course</Button>
+                            <Button onClick={toggleEdit} style={{marginLeft: '70.5%'}} type='submit' size="small" variant="contained" className={classes.button} >Edit Course</Button>
                         </CardActions>
                     </Card>
                 ) : (
@@ -241,13 +275,15 @@ const EditCourse = ({props, id}) => {
                         <CardContent>
                             <Typography className={classes.title} gutterBottom>
                                 Course Overview
-                                </Typography>
+                            </Typography>
+                            <DeleteForm onClick={handleModalOpen}>X</DeleteForm>
+                            {openModal ? <DeleteModal handleDelete={handleDelete} text={"course"} open={openModal} handleModalClose={handleModalClose} /> : null}
                             <form onSubmit={handleCourseSubmit} className={classes.container} noValidate autoComplete="off">
                                 <CssTextField
                                     id="standard-name"
                                     label='Name'
                                     className={classes.titleOrInstructorFields}
-                                    value={changes.name}
+                                    value={changes.name || ""}
                                     onChange={handleChange('name')}
                                     margin="normal"
                                     variant="outlined"
@@ -269,7 +305,7 @@ const EditCourse = ({props, id}) => {
                                     id="standard-name"
                                     label="Description"
                                     className={classes.descriptionField}
-                                    value={changes.description}
+                                    value={changes.description || ""}
                                     onChange={handleChange('description')}
                                     margin="normal"
                                     multiline={true}
@@ -282,7 +318,7 @@ const EditCourse = ({props, id}) => {
                                     id="standard-name"
                                     label="Rating"
                                     className={classes.courseUrlField}
-                                    value={changes.foreign_rating}
+                                    value={changes.foreign_rating || ""}
                                     onChange={handleChange('foreign_rating')}
                                     margin="normal"
                                     variant="outlined"
@@ -293,14 +329,28 @@ const EditCourse = ({props, id}) => {
                                     id="standard-name"
                                     label="Course Url"
                                     className={classes.courseUrlField}
-                                    value={changes.link}
+                                    value={changes.link || ""}
                                     onChange={handleChange('link')}
                                     margin="normal"
                                     variant="outlined"
                                     placeholder="Course Url"
                                     InputProps={{ classes: { underline: classes.blackUnderline, input: classes.input } }}
                                 />
-                                <Button type='submit' size="small" variant="contained" className={classes.button} >Edit Course</Button>
+                                  <CssTextField
+                                    id="standard-name"
+                                    label="Category"
+                                    className={classes.courseUrlField}
+                                    value={changes.category || ""}
+                                    onChange={handleChange('category')}
+                                    margin="normal"
+                                    variant="outlined"
+                                    placeholder="Category"
+                                    InputProps={{ classes: { underline: classes.blackUnderline, input: classes.input } }}
+                                />
+                                <ButtonDiv>
+                                    <Button style={{ marginLeft: '10px' }} onClick={handleCancel} size="small" variant="contained" className={classes.button} >Cancel</Button>
+                                    <Button type='submit' style={{ marginRight: '4%' }} size="small" variant="contained" className={classes.button} >Submit Edit</Button>
+                                </ButtonDiv>    
                             </form>
                         </CardContent>
                     </Card>
@@ -326,10 +376,15 @@ const EditCourse = ({props, id}) => {
                             </PlusDiv>
                             <ButtonText>Add Section</ButtonText>
                         </AddButton>
-                    </div> 
+                    </div>
+                    ) 
                     )}
-        </div>
-    )
+                </div>
+                </>
+            )
+    } else {
+        return <h1>Loading...</h1>
+    }
 }
 
 export default EditCourse;

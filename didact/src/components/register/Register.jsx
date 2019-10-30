@@ -3,13 +3,10 @@ import { Form, Field, withFormik } from "formik";
 import * as Yup from 'yup';
 import { registerAction } from '../../store/actions';
 import { useDispatch } from 'react-redux';
-
 import { Wrapper, RegisterWrapper, RegisterFormWrapper } from './RegisterStyles'
-
 import HeaderNoIcons from '../header/HeaderNoIcons'
-
 import { makeStyles } from '@material-ui/core/styles';
-
+import beURL from "../../utils/beURL";
 
  makeStyles(theme => ({
     header: {
@@ -129,8 +126,8 @@ const RegisterForm = (props) => {
                 </div>
             </Form>
             <div className="socialButtons">
-                <a href="http://didactlms-staging.herokuapp.com/api/auth/facebook">Sign In With Facebook</a>
-                <a href="http://didactlms-staging.herokuapp.com/api/auth/google">Sign In With Google</a>
+                <a href={`${beURL}auth/facebook`}>Sign In With Facebook</a>
+                <a href={`${beURL}auth/google`}>Sign In With Google</a>
             </div>
         </RegisterFormWrapper>
     )

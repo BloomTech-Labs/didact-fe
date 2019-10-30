@@ -1,9 +1,9 @@
 html {
   background-color: #D3D3D3;
   overflow-y: visible !important;
-  margin-right: -17px;
-  overflow-x: hidden;
+
 }
+
 
 #root {
   background-color: #D3D3D3;
@@ -16,9 +16,10 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  padding-right: -47px;
-  background-color: red;
-  
+  /* padding-right: -47px; */
+  background-color: #D3D3D3;
+  overflow-x: hidden;
+  overflow-anchor:  none;
 }
 
 

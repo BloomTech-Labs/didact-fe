@@ -5,10 +5,11 @@ import { loginAction } from '../../store/actions';
 import {useDispatch} from 'react-redux';
 
 import { Wrapper, LoginWrapper, LoginFormWrapper } from './LoginStyles'
-
+import useMediaQuery from "@material-ui/core/useMediaQuery"
 import HeaderNoIcons from '../header/HeaderNoIcons'
 
 import { makeStyles } from '@material-ui/core/styles';
+import beURL from '../../utils/beURL'
 
 const useStyles = makeStyles(theme => ({
     // header: {
@@ -81,12 +82,14 @@ const useStyles = makeStyles(theme => ({
 
 
 const LoginForm = (props) => {
+    const phoneSize = useMediaQuery("(max-width:770px)");
     const classes = useStyles();
     if(localStorage.getItem('token'))
     {
         props.history.push('/')
     }
     const {errors, touched} = props
+
     return (
         <LoginFormWrapper>
             <div className="header">
@@ -112,8 +115,8 @@ const LoginForm = (props) => {
                 </div>
             </Form>
             <div className="socialButtons">
-                <a href="http://didactlms-staging.herokuapp.com/api/auth/facebook">Sign In With Facebook</a>
-                <a href="http://didactlms-staging.herokuapp.com/api/auth/google">Sign In With Google</a>
+                <a href={`${beURL}auth/facebook`}>Sign In With Facebook</a>
+                <a href={`${beURL}auth/google`}>Sign In With Google</a>
             </div>
         </LoginFormWrapper>
     )

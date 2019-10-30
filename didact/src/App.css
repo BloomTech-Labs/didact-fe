@@ -2,7 +2,8 @@
   text-align: center;
   background-color: #D3D3D3;
   margin: 0 auto;
-  width: 1440px;
+  max-width: 1440px;
+  width: 100%;
 }
 
 .App-logo {

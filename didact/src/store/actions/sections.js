@@ -1,5 +1,5 @@
 import axiosWithAuth from '../../utils/axiosWithAuth'
-
+import beURL from '../../utils/beURL'
 export const GET_SECTIONS_START = "GET_SECTIONS_START"
 export const GET_SECTIONS_SUCCESS = "GET_SECTIONS_SUCCESS"
 export const GET_SECTIONS_FAIL = "GET_SECTIONS_FAIL"
@@ -25,7 +25,7 @@ export const DELETE_LESSON_START = "DELETE_LESSON_START"
 export const DELETE_LESSON_SUCCESS = "DELETE_LESSON_SUCCESS"
 export const DELETE_LESSON_FAIL = "DELETE_LESSON_FAIL"
 
-const baseURL = "https://didactlms-staging.herokuapp.com/api/courses/"
+const baseURL = `${beURL}courses/`
 
 export const getSectionsByCourseId = (id) => dispatch =>
 {
@@ -54,7 +54,7 @@ export const addSectionToCourse = (id, section) => dispatch =>
     .then(res => 
         {
             console.log('res from add section to course', res)
-            section.id = res.data.id
+            section.id = res.data.id[0]
             dispatch({ type: ADD_SECTION_SUCCESS, payload: section  })
         })
     .catch(err => {

@@ -3,12 +3,18 @@ import { useSelector, useDispatch } from "react-redux"
 import { Link } from "react-router-dom";
 
 import { DetailedCourseWrapper } from './DetailedCourseStyles'
+import { EditLessonButton, TagStyles } from '../dashboard/ButtonStyles'
+
 import { getDetailedCourse } from '../../store/actions/index.js'
 
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import styled from 'styled-components'
+
+
+
 
 const DetailedCourse = props => {
 
@@ -42,31 +48,32 @@ const DetailedCourse = props => {
         setLessonExpanded(isExpanded ? panel : false)
     }
 
-    if (course && sections) {
+    if (!state.coursesReducer.isLoading && (course && sections)) {
         return (
-            <DetailedCourseWrapper>
-                <div className="courseWrapper">
-                    <h1>{course.name}</h1>
-                    <p>{course.description}</p>
-                    <div className="courseFooter">
-                        <div className="tags">
-                            {course.tags && course.tags.map((tag, index) => {
-                                return (
-                                    <span key={index} className="tag">{tag}</span>
-                                )
-                            })}
-                        </div>
-                        <div className="buttons">
-                            {id === course.creator_id && <Link to={`/courses/${course.id}/edit`}>Edit Course</Link>}
+                <DetailedCourseWrapper>
+                    <div className="courseWrapper">
+                        <h1>{course.name}</h1>
+                        <p>{course.description}</p>
+                        <p>{course.category ? (`Category: ${course.category}`) : (null)}</p>
+                        <div className="courseFooter">
+                            <div className="tags">
+                                {course.tags && course.tags.map((tag, index) => {
+                                    return (
+                                        <TagStyles key={index} className="tag">{tag}</TagStyles>
+                                    )
+                                })}
+                            </div>
+                            <EditLessonButton className="buttons" >
+                                {id === course.creator_id && <Link style={{ textDecoration: 'none', color: "black" }} to={`/courses/${course.id}/edit`}>Edit Course</Link>}
+                            </EditLessonButton>
                         </div>
                     </div>
-                </div>
-                {sections.map((el, index) => {
-                    const videoLength = el.details.filter(detail => detail.type === 'video').length
-                    const readingLength = el.details.filter(detail => detail.type === 'reading').length
-                    const quizLength = el.details.filter(detail => detail.type === 'quiz').length
-                    const assignmentLength = el.details.filter(detail => detail.type === 'assignment').length
-                    return (
+                    {sections.map((el, index) => {
+                        const videoLength = el.details.filter(detail => detail.type === 'video').length
+                        const readingLength = el.details.filter(detail => detail.type === 'reading').length
+                        const quizLength = el.details.filter(detail => detail.type === 'quiz').length
+                        const assignmentLength = el.details.filter(detail => detail.type === 'assignment').length
+                        return (
                             <ExpansionPanel key={index} className="expansionPanel" expanded={expanded === `panel${index}`} onChange={handleChange(`panel${index}`)}>
                                 <ExpansionPanelSummary
                                     expandIcon={<ExpandMoreIcon className="expandIcon" />}
@@ -112,9 +119,9 @@ const DetailedCourse = props => {
                                     </div>
                                 </ExpansionPanelDetails>
                             </ExpansionPanel>
-                    )
-                })}
-            </DetailedCourseWrapper>
+                        )
+                    })}
+                </DetailedCourseWrapper>
         )
     } else {
         return <h1>Loading...</h1>

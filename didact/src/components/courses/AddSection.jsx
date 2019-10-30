@@ -9,6 +9,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
+import { ButtonDiv } from '../dashboard/ButtonStyles'
 
 
 const useStyles = makeStyles(theme => ({
@@ -23,14 +24,14 @@ const useStyles = makeStyles(theme => ({
         boxShadow: 'none',
         borderRadius: '15px',
         background: '#EBE8E1',
-        marginLeft: '70%',
+        // marginLeft: '70%',
     },
     card: {
-        width: '50vw',
+        // width: '50vw',
         maxWidth: 500,
         minWidth: 375,
         borderRadius: 15,
-        margin: '10px 0'
+        margin: '10px auto'
     },
     title: {
         fontSize: 14,
@@ -127,17 +128,18 @@ const CssTextField = withStyles({
         },
     },
 })(TextField);
+const initalValues = {
+    name: "",
+    description: "",
+    order: "",
+    link: ""
+}
 
 const AddSection = ({course, props, setAddSectionChange}) => {
     console.log("Add Section Props: ", props)
     const classes = useStyles();
     const dispatch = useDispatch()
-    const [values, setValues] = useState({
-            name: "",
-            description: "",
-            order: "",
-            link: ""
-    });
+    const [values, setValues] = useState(initalValues);
 
     
     const handleChange = name => event => {
@@ -149,9 +151,13 @@ const AddSection = ({course, props, setAddSectionChange}) => {
         dispatch(addSectionToCourse(props.match.params.id, values))
         setAddSectionChange(false)
     };
-   
 
-    // console.log(section) 
+    const handleCancel = event => {
+        event.preventDefault()
+        setAddSectionChange(false)
+        setValues(initalValues)
+    }
+
     return (
         <>
             <Card className={classes.card}>
@@ -206,7 +212,10 @@ const AddSection = ({course, props, setAddSectionChange}) => {
                             placeholder="Course Url"
                             InputProps={{ classes: { input: classes.input } }}
                         />
-                        <Button type='submit' size="small" variant="contained" className={classes.button} >Add Section</Button>
+                        <ButtonDiv>
+                            <Button style={{marginLeft: '10px'}} onClick={handleCancel} size="small" variant="contained" className={classes.button} >CANCEL</Button>
+                            <Button type='submit' style={{marginRight: '4%'}} size="small" variant="contained" className={classes.button} >SUBMIT SECTION</Button>
+                        </ButtonDiv>
                     </form>
                 </CardContent>
             </Card>

@@ -1,15 +1,21 @@
 import styled from 'styled-components'
 
 export const DetailedCourseWrapper = styled.div`
-    width : 789px;
+    width:100%;
+    max-width: 600px;
+    /* min-width: 375px; */
+
 
     .courseWrapper {
-        height: 40%;
+        /* height: 40%; */
+        width: 100%; 
 
         .courseFooter {
             margin: 0;
             padding: 0;
             display: flex;
+            flex-flow:row wrap;
+            /* width: 50%; */
             justify-content: space-between;
 
             .buttons {
@@ -18,8 +24,10 @@ export const DetailedCourseWrapper = styled.div`
             }
 
             .tags {
-                margin: 0;
-                padding: 0;
+                display: flex;
+                flex-flow:row wrap;
+                width: 100%;
+             
             }
         }
     }
@@ -117,3 +125,4 @@ export const DetailedCourseWrapper = styled.div`
         margin: 5px 10px 5px 0px;
     }
 `
+

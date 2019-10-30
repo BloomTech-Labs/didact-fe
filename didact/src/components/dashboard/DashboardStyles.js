@@ -5,7 +5,9 @@ export const CoursesCard = styled.div`
     flex-flow: column nowrap;
     border-radius: 15px;
     background-color: white;
-    width: 30%;
+    width: 100%;
+    max-width: 500px;
+  
     
     div {
         border-top: 1px solid #EEEFF3

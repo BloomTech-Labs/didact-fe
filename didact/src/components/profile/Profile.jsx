@@ -1,17 +1,17 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Modal from "@material-ui/core/Modal";
-import Backdrop from "@material-ui/core/Backdrop";
-import Fade from "@material-ui/core/Fade";
-import Button from "@material-ui/core/Button";
+import { makeStyles, withStyles } from "@material-ui/core/styles";
+
+import Popover from '@material-ui/core/Popover';
+
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import {Redirect} from "react-router-dom";
-
+import {useSelector } from "react-redux";
+import profileImage from '../../images/profileExample.jpg'
 const useStyles = makeStyles(theme => ({
   buttons: {
     border: "none",
     backgroundColor: "white",
-    outline: 0,
+    outline: "none",
     cursor: 'pointer'
   },
   buttonDiv: {
@@ -30,7 +30,8 @@ const useStyles = makeStyles(theme => ({
     margin: "-40px 0 0 210px",
     color: 'gray',
     cursor: "pointer",
-    backgroundColor: 'white'
+    backgroundColor: 'white',
+    outline: "none",
     
   },
   description: {
@@ -41,45 +42,32 @@ const useStyles = makeStyles(theme => ({
   iconImage: {
     width: "35px",
     height: "35px",
-    backgroundColor: "#ebe8e1",
     borderRadius: "50%",
-    outline: 0,
+    outline: "none",
     cursor: 'pointer',
-    border: 'none'
+    border: 'none',
+    objectFit: 'cover'
   },
   iconImageProfile: {
     width: "75px",
     height: "75px",
-    backgroundColor: "#ebe8e1",
     borderRadius: "50%",
     marginTop: '-20px',
+    objectFit: 'cover'
   },
-  modal: {
-    display: "flex",
-    alignItems: "flex-start",
-    justifyContent: "flex-end",
-    marginRight: "35px",
-    marginTop: "23px",
-  },
-  modalMobile: {
-    display: "flex",
-    alignItems: "flex-start",
-    justifyContent: "flex-end",
-    marginRight: "30px",
-    marginTop: "10px",
-  },
+  
   paper: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "space-evenly",
     backgroundColor: theme.palette.background.paper,
-    borderRadius: 15,
+    // borderRadius: 15,
     boxShadow: theme.shadows[5],
     padding: "30px",
     height: "400px",
     width: "250px",
-    outline: 0,
+    outline: "none",
   },
   paragraph: {
     color: "gray",
@@ -95,22 +83,42 @@ const useStyles = makeStyles(theme => ({
     borderRadius: "50%",
     margin: "0 10px",
   },
+  root: {
+    outline: "none",
+    border: 'none',
+    
+  },
   title: {
     marginTop: '0',
+    fontSize: "14px"
   },
 }));
 
+// const CssPopover = withStyles({
+//   root: {
+//     '& .MuiPopover-root': {
+//       borderRadius: 15,
+//   },
+//   },
+// })(Popover);
+
 export default function Profile(props) {
+  console.log(props)
   const classes = useStyles();
   const phoneSize = useMediaQuery("(max-width:770px)");
-  const [open, setOpen] = React.useState(false);
-  console.log(props)
-  const handleOpen = () => {
-    setOpen(true);
+  const userName = useSelector(state => state.onboardingReducer.user);
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const id = open ? 'simple-popover' : undefined;
+
+
+  const handleClick = event => {
+    setAnchorEl(event.currentTarget);
   };
 
   const handleClose = () => {
-    setOpen(false);
+    setAnchorEl(null);
   };
 
   const handleLogOut = () => {
@@ -118,14 +126,19 @@ export default function Profile(props) {
         props.props.history.push('/login')
   }
 
+  const handleMobileLogOut = () => {
+    localStorage.clear('token')
+    props.props.props.history.push('/login')
+}
+
   const content = () => {
     return (
-      <Fade in={open}>
+      <div className = {classes.root} >
         <div className={classes.paper}>
           <div className = {classes.closeModel} onClick = {handleClose}>X</div>
-          <div className={classes.iconImageProfile}></div>
-          <h2 className={classes.title} id="transition-modal-title">User Name</h2>
-          <p className={classes.description} id="transition-modal-description">Something Else?</p>
+          <img src = {profileImage} alt = "Profile" className={classes.iconImageProfile} />
+          <h2 className={classes.title} id="transition-modal-title">{userName.email}</h2>
+          <p className={classes.description} id="transition-modal-description">Welcome</p>
           <div className={classes.smallImageDivs} >
             <div className={classes.smallImage} ></div>
             <div className={classes.smallImage} ></div>
@@ -144,7 +157,7 @@ export default function Profile(props) {
                 <p className = {classes.paragraph} >></p>
               </div>
             </button>
-            <button className={classes.buttons} onClick = {handleLogOut}>
+            <button className={classes.buttons} onClick = {!phoneSize ? (handleLogOut) : (handleMobileLogOut)}>
               <div className={classes.buttonDiv}>
                 <p>Log Out</p>
                 <p className = {classes.paragraph} >></p>
@@ -152,44 +165,29 @@ export default function Profile(props) {
             </button>
           </div>
         </div>
-      </Fade>
+      </div>
     );
   };
 
   return (
-    <div>
-      <button onClick={handleOpen} className={classes.iconImage}></button>
-      {!phoneSize ? (
-        <Modal
-          aria-labelledby="transition-modal-title"
-          aria-describedby="transition-modal-description"
-          className={classes.modal}
-          open={open}
-          onClose={handleClose}
-          closeAfterTransition
-          BackdropComponent={Backdrop}
-          BackdropProps={{
-            timeout: 500,
-          }}
-        >
-          {content()}
-        </Modal>
-      ) : (
-        <Modal
-          aria-labelledby="transition-modal-title"
-          aria-describedby="transition-modal-description"
-          className={classes.modalMobile}
-          open={open}
-          onClose={handleClose}
-          closeAfterTransition
-          BackdropComponent={Backdrop}
-          BackdropProps={{
-            timeout: 500,
-          }}
-        >
-          {content()}
-        </Modal>
-      )}
+    <div className = {classes.root} >
+      <img src={profileImage} alt ="Profile" onClick={handleClick} className={classes.iconImage} />
+       <Popover
+        id={id}
+        open={open}
+        anchorEl={anchorEl}
+        onClose={handleClose}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'right',
+        }}
+        transformOrigin={{
+          vertical: 'center',
+          horizontal: 'right',
+        }}
+      >
+        {content()}
+      </Popover>
     </div>
   );
 }

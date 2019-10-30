@@ -1,56 +1,52 @@
 import React, { useEffect } from "react";
-import { verifyToken } from "../../store/actions/index.js";
-import { useDispatch, useSelector } from "react-redux";
-
+import { verifyToken } from "../../store/actions/index.js"
+import { useDispatch, useSelector } from "react-redux"
 import { PageFlex } from './PageStyles'
+import { makeStyles, useTheme } from "@material-ui/core/styles"
+import {Link} from "react-router-dom"
 
-import { makeStyles, useTheme } from "@material-ui/core/styles";
-
-import CssBaseline from "@material-ui/core/CssBaseline";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
-import DashboardIcon from '@material-ui/icons/Dashboard';
-import MessageIcon from '@material-ui/icons/Message';
+import CssBaseline from "@material-ui/core/CssBaseline"
+import useMediaQuery from "@material-ui/core/useMediaQuery"
+import DashboardIcon from '@material-ui/icons/Dashboard'
+import MessageIcon from '@material-ui/icons/Message'
 
 import DrawerComponent from '../drawer/Drawer'
 import MobileDrawerComponent from '../drawer/MobileDrawer'
-import HeaderComponent from '../header/Header'
 import MobileHeaderComponent from '../header/MobileHeader'
 import Content from '../content/Content'
 
 import Profile from '../profile/Profile'
 
+
 const useStyles = makeStyles(theme => ({
     root: {
         backgroundColor: "lightgray",
+        // width: "100%"
     },
     content: {
         flexGrow: 1,
         paddingTop: theme.spacing(3),
-        // paddingLeft: "21px",
-        // width: "1000px",
-        // display: 'flex',
-        // flexDirection: 'column',
-        // alignItems: 'flex-start'
+        paddingLeft: "10px",
     },
     contentMobile: {
         flexGrow: 1,
         padding: theme.spacing(3),
-        paddingLeft: "80px",
+        marginLeft: "80px",
+      
     },
     contentShadow: {
         background: "rgba(0, 0, 0, 0.8)",
         filter: "brightness(50%)",
         zIndex: 100,
-        position: "absolute",
+        // position: "absolute",
         top: 0,
         left: 0,
-        width: "100%",
-        height: "100%",
-        flexGrow: 1,
+        // flexGrow: 1,
         paddingLeft: "80px",
         padding: theme.spacing(3),
         overflow: "hidden",
-        // marginRight: '10px'
+      
+        
     },
     // scrollBarMobileFix: {
     //     position: "absolute",
@@ -76,10 +72,12 @@ function MainPage(props) {
     const classes = useStyles();
     console.log(props)
   
-    // const tabletSize = useMediaQuery("(max-width:770px");
-    const phoneSize = useMediaQuery("(max-width:770px)");
+    const profileLockSize = useMediaQuery("(min-width:1440px");
+    const phoneSize = useMediaQuery("(max-width:600px)");
     const [open, setOpen] = React.useState(true);
     const [openMobile, setOpenMobile] = React.useState(false);
+
+    const userName = useSelector(state => state.onboardingReducer.user);
 
     useEffect(_ =>
         {
@@ -119,9 +117,9 @@ function MainPage(props) {
             {phoneSize ? (
                 <div className={classes.root} onClick={() => closeHandleClick()}>
                     <CssBaseline />
-                    <PageFlex>
-                        <div>
-                            <MobileDrawerComponent handleDrawerOpenMobile={handleDrawerOpenMobile()} openMobile={openMobile} />
+                    <>
+                       <div>
+                            <MobileDrawerComponent handleDrawerOpenMobile={handleDrawerOpenMobile()} openMobile={openMobile} props = {props}/>
                         </div>
                         <div>
                             <MobileHeaderComponent props = {props}/>
@@ -131,15 +129,15 @@ function MainPage(props) {
                                 {/*************************ADD COMPONENTS HERE *********************** */}
                             </main>
                         </div>
-                    </PageFlex>
-                    {openMobile ?
+                    </>
+                    {/* {openMobile ?
                         (
                         <div className = {classes.scrollBarMobileFix}>
 
                         </div>
                         ) : ( 
                         null )
-                         }
+                         } */}
                 </div>
             )
                 // END OF MOBILE CODE *******************************************************************
@@ -150,7 +148,7 @@ function MainPage(props) {
                         <CssBaseline />
                         <PageFlex>
                             <div className="drawer">
-                                <DrawerComponent handleDrawerOpen={handleDrawerOpen} open={open} />
+                                <DrawerComponent handleDrawerOpen={handleDrawerOpen} open={open} props = {props}/>
                             </div>
                             <div className="headerMain">
                                 {/* <HeaderComponent props = {props} open={open} /> */}
@@ -158,9 +156,10 @@ function MainPage(props) {
                                 <div className="header">
                                     <h2>Didact</h2>
                                     <div className="navSection">
-                                        <DashboardIcon/>
+                                        <Link style = {{color: 'white'}} to = "/" ><DashboardIcon/></Link>
                                         <MessageIcon />
-                                        <p>User Name</p>
+                                        <p>{userName.email}</p>
+                                        {/* {!profileLockSize ? <Profile props = {props}/> : null } */}
                                         <Profile props = {props}/>
                                     </div>
                                 </div>

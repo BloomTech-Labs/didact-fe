@@ -1,8 +1,14 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from "react";
 import { courseEndPoint } from "../../store/actions/index.js";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { AddButton, PlusDiv, Plus, ButtonText } from '../dashboard/ButtonStyles';
+import Course from './Course'
+
+import ReactTooltip from 'react-tooltip'
+
+// import { CoursesCard, CourseMenuDiv, CourseDiv } from '../dashboard/DashboardStyles'
+// import { AddButton, PlusDiv, Plus, ButtonText } from '../dashboard//ButtonStyles';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -81,11 +87,11 @@ const useStyles = makeStyles(theme => ({
     },
     root: {
         display: 'flex',
-        flexDirection: 'row'
+        flexDirection: 'row',
     },
     rootTablet: {
         display: 'flex',
-        flexDirection: 'column'
+        flexDirection: 'column',
     },
     title: {
         fontSize: 14,
@@ -97,9 +103,8 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-
-const Course = ({course}) => {
-    const tabletSize = useMediaQuery("(max-width:1150px");
+function AllCourses(props) {
+    const tabletSize = useMediaQuery("(max-width:1150px)");
     const classes = useStyles();
     const dispatch = useDispatch();
     const [expanded, setExpanded] = useState(false);
@@ -114,51 +119,51 @@ const Course = ({course}) => {
     const handleExpandClick = () => {
         setExpanded(!expanded);
     };
+
     return (
-        <>
-             <Card className={classes.card}>
-                            <CardContent>
-                                <Typography variant="h5" component="h2">
-                                    {course.name}
-                                </Typography>
-                                <CardActions className={classes.descriptionDiv} color="textSecondary"  disableSpacing>
-                                    <Typography >{course.description && !expanded ? (`${course.description.substring(0, 100)} ...`) : null}</Typography>
-                                    <IconButton
-                                        className={clsx(classes.expand, {
-                                            [classes.expandOpen]: expanded,
-                                        })}
-                                        onClick={handleExpandClick}
-                                        aria-expanded={expanded}
-                                        aria-label="show more"
-                                    >
-                                        <ExpandMoreIcon />
-                                    </IconButton>
-                                </CardActions>
-                                <Collapse in={expanded} timeout="auto" unmountOnExit>
-                                    <CardContent>
-                                        <Typography className={classes.title} color="textSecondary"  paragraph>
-                                            {course.description}
-                                        </Typography>
-                                    </CardContent>
-                                </Collapse>
-                                <Typography className={classes.pos} color="textSecondary">
-                                    {course.foreign_rating}
-                                </Typography>
-                                <Typography variant="body2" component="p">
-                                    {course.foreign_instructors}
-                                </Typography>
-                                <Typography color="textSecondary">
-                                {course.category ? (`Category: ${course.category}`) : (null)}
-                                </Typography>
-                            </CardContent>
-                            <CardActions className={classes.buttonDiv}>
-                                <Link to={`/courses/${course.id}`} ><button className={classes.buttonCourse} size="small">Go To Course</button></Link>
-                            </CardActions>
-                        </Card>
-        </>
-        
-        
-    )
+        <div className = {tabletSize ? classes.rootTablet : classes.root}>
+            {tabletSize ? (<div className = {classes.addButtonDivTablet}>
+                <Link style={{ textDecoration: 'none' }} to='/courses/add'>
+                    <AddButton style = {{marginRight: '10px'}}>
+                        <AddCircleRoundedIcon className = {classes.circleIcon}/>
+                        <ButtonText>Add Course</ButtonText>
+                    </AddButton>
+                </Link>
+                {/* <Link style={{ textDecoration: 'none' }} to='/courses/add'>
+                    <AddButton>
+                        <PlusDiv>
+                            <Plus>+</Plus>
+                        </PlusDiv>
+                        <ButtonText>Add Course</ButtonText>
+                    </AddButton>
+                </Link> */}
+            </div>) : (null) }
+            <div>
+                {state.coursesReducer.courses
+                    ? state.coursesReducer.courses.map((course, i) => (
+                        <Course key = {i} course = {course} />
+                    ))
+                    : null}
+
+            </div>
+            {!tabletSize ? (<div className = {classes.addButtonDiv}>
+                <Link style={{ textDecoration: 'none' }} to='/courses/add'>
+                    <AddButton>
+                        <AddCircleRoundedIcon className = {classes.circleIcon}/>
+                        <ButtonText>Add Course</ButtonText>
+                    </AddButton>
+                </Link>
+                {/* <Link style={{ textDecoration: 'none' }} to='/courses/add'>
+                    <AddButton>
+                        <PlusDiv>
+                            <Plus>+</Plus>
+                        </PlusDiv>
+                        <ButtonText>Add Course</ButtonText>
+                    </AddButton>
+                </Link> */}
+            </div>) : (null) }
+        </div>
+    );
 }
 
-export default Course;
+export default AllCourses;
