@@ -1,0 +1,56 @@
+import styled from 'styled-components'
+
+export const LearningPathWrapper = styled.div`
+    /* border: 1px solid black; */
+    margin-right: 30px;
+
+    .editLearning {
+        width: 100%;
+        border-radius: 19px;
+        background-color: white;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 30px;
+        font-weight: bold;
+        color: #141821;
+
+
+        .editLearningButton {
+            font-size: .8rem;
+        }
+    }
+
+    .learningPathCourseWrappers {
+        text-align: left;
+        
+        h3 {
+            padding: 5px 15px;
+        }
+
+        .completed {
+            background: white;
+            opacity: 0.5;
+        }
+    }
+
+    .learningPathCard {
+            background: white;
+            padding: 10px 30px;
+            border-radius: 19px;
+
+            .goToCourse {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                
+                a {
+                    background-color: #242424;
+                    color: white;
+                    padding: 10px 15px;
+                    border-radius: 16px;
+                    font-weight: bolder;
+                }
+            }
+        }
+`
