@@ -1,9 +1,8 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Modal from "@material-ui/core/Modal";
-import Backdrop from "@material-ui/core/Backdrop";
-import Fade from "@material-ui/core/Fade";
-import Button from "@material-ui/core/Button";
+import { makeStyles, withStyles } from "@material-ui/core/styles";
+
+import Popover from '@material-ui/core/Popover';
+
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import {Redirect} from "react-router-dom";
 import {useSelector } from "react-redux";
@@ -56,31 +55,14 @@ const useStyles = makeStyles(theme => ({
     marginTop: '-20px',
     objectFit: 'cover'
   },
-  modal: {
-    display: "flex",
-    alignItems: "flex-start",
-    justifyContent: "flex-end",
-    marginRight: "35px",
-    marginTop: "23px",
-    outline: "none",
-
-    
-  },
-  modalMobile: {
-    display: "flex",
-    alignItems: "flex-start",
-    justifyContent: "flex-end",
-    marginRight: "30px",
-    marginTop: "10px",
-    outline: "none",
-  },
+  
   paper: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "space-evenly",
     backgroundColor: theme.palette.background.paper,
-    borderRadius: 15,
+    // borderRadius: 15,
     boxShadow: theme.shadows[5],
     padding: "30px",
     height: "400px",
@@ -108,22 +90,35 @@ const useStyles = makeStyles(theme => ({
   },
   title: {
     marginTop: '0',
+    fontSize: "14px"
   },
 }));
+
+// const CssPopover = withStyles({
+//   root: {
+//     '& .MuiPopover-root': {
+//       borderRadius: 15,
+//   },
+//   },
+// })(Popover);
 
 export default function Profile(props) {
   console.log(props)
   const classes = useStyles();
   const phoneSize = useMediaQuery("(max-width:770px)");
-  const [open, setOpen] = React.useState(false);
   const userName = useSelector(state => state.onboardingReducer.user);
 
-  const handleOpen = () => {
-    setOpen(true);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const id = open ? 'simple-popover' : undefined;
+
+
+  const handleClick = event => {
+    setAnchorEl(event.currentTarget);
   };
 
   const handleClose = () => {
-    setOpen(false);
+    setAnchorEl(null);
   };
 
   const handleLogOut = () => {
@@ -176,40 +171,23 @@ export default function Profile(props) {
 
   return (
     <div className = {classes.root} >
-      <img src={profileImage} alt ="Profile" onClick={handleOpen} className={classes.iconImage} />
-      {!phoneSize ? (
-        <Modal
-          aria-labelledby="transition-modal-title"
-          aria-describedby="transition-modal-description"
-          className={classes.modal}
-          disableAutoFocus={true}
-          open={open}
-          onClose={handleClose}
-          closeAfterTransition
-          BackdropComponent={Backdrop}
-          BackdropProps={{
-            timeout: 500,
-          }}
-        >
-          {content()}
-        </Modal>
-      ) : (
-        <Modal
-          aria-labelledby="transition-modal-title"
-          aria-describedby="transition-modal-description"
-          className={classes.modalMobile}
-          disableAutoFocus={true}
-          open={open}
-          onClose={handleClose}
-          closeAfterTransition
-          BackdropComponent={Backdrop}
-          BackdropProps={{
-            timeout: 500,
-          }}
-        >
-          {content()}
-        </Modal>
-      )}
+      <img src={profileImage} alt ="Profile" onClick={handleClick} className={classes.iconImage} />
+       <Popover
+        id={id}
+        open={open}
+        anchorEl={anchorEl}
+        onClose={handleClose}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'right',
+        }}
+        transformOrigin={{
+          vertical: 'center',
+          horizontal: 'right',
+        }}
+      >
+        {content()}
+      </Popover>
     </div>
   );
 }

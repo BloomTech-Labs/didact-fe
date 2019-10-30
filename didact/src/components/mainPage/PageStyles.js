@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const PageFlex = styled.div`
     width: 100%;
     display: flex;
-    width: auto;
+    /* width: auto; */
 
     .drawer {
         padding-right: 30px;
