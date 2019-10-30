@@ -68,7 +68,10 @@ const MobileHeaderComponent = (props) => {
                     Didact
                 </Typography>
                 <div className={classes.toolbarIcons}>
-                    <Link style = {{color: 'white'}} to = "/" ><DashboardIcon/></Link>
+                    <Button onClick={() => props.props.history.push('/')} className={classes.iconToolBar} color="inherit">
+                        <DashboardIcon />
+                    </Button>
+                   
                     {/* <Button className={classes.iconToolBar} color="inherit">
                         <MessageIcon />
                     </Button> */}

@@ -194,8 +194,9 @@ const Lesson = ({ course, section, lesson, props }) => {
                         <span>{lesson.type === "video" 
                         ? (<PlayCircleFilledIcon />) : lesson.type === "reading" 
                         ? (<BookIcon />) : lesson.type === "quiz" 
-                        ? (<img src="https://img.icons8.com/ios-filled/24/000000/quiz.png"></img>) : lesson.type === 'assignment' 
-                        ? (<AssignmentIcon />) : (null)}</span>
+                        ? (<img alt = "quiz icon" src="https://img.icons8.com/ios-filled/24/000000/quiz.png"></img>) : lesson.type === 'assignment' 
+                        ? (<AssignmentIcon />) : (null)}
+                        </span>
                     </span>
                 </div>
                 : <>
