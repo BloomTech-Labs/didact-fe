@@ -157,7 +157,7 @@ function MainPage(props) {
                                     <h2>Didact</h2>
                                     <div className="navSection">
                                         <Link style = {{color: 'white'}} to = "/" ><DashboardIcon/></Link>
-                                        <MessageIcon />
+                                        {/* <MessageIcon /> */}
                                         <p>{userName.email}</p>
                                         {/* {!profileLockSize ? <Profile props = {props}/> : null } */}
                                         <Profile props = {props}/>

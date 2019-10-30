@@ -1,5 +1,6 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
+import { Link } from 'react-router-dom';
 import clsx from 'clsx'
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -67,12 +68,13 @@ const MobileHeaderComponent = (props) => {
                     Didact
                 </Typography>
                 <div className={classes.toolbarIcons}>
-                    <Button className={classes.iconToolBar} color="inherit">
+                    <Link to = "/" ><Button className={classes.iconToolBar} color="inherit">
                         <DashboardIcon />
                     </Button>
-                    <Button className={classes.iconToolBar} color="inherit">
+                    </Link>
+                    {/* <Button className={classes.iconToolBar} color="inherit">
                         <MessageIcon />
-                    </Button>
+                    </Button> */}
                     {/* <Button className={classes.iconToolBar} color="inherit">
                         third
                     </Button> */}
