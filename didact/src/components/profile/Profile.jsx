@@ -6,7 +6,7 @@ import Popover from '@material-ui/core/Popover';
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import {Redirect} from "react-router-dom";
 import {useSelector } from "react-redux";
-// import profileImage from '../../images/profileExample.jpg'
+import profileImage from '../../images/profileExample.jpg'
 const useStyles = makeStyles(theme => ({
   buttons: {
     border: "none",
@@ -136,7 +136,7 @@ export default function Profile(props) {
       <div className = {classes.root} >
         <div className={classes.paper}>
           <div className = {classes.closeModel} onClick = {handleClose}>X</div>
-          <img src = {userName.photo} alt = "Profile" className={classes.iconImageProfile} />
+          <img src = {userName.photo ? userName.photo: profileImage} alt = "Profile" className={classes.iconImageProfile} />
           <h2 className={classes.title} id="transition-modal-title">{userName.email}</h2>
           <p className={classes.description} id="transition-modal-description">Welcome</p>
           <div className={classes.smallImageDivs} >
@@ -171,7 +171,7 @@ export default function Profile(props) {
 
   return (
     <div className = {classes.root} >
-      <img src={userName.photo} alt ="Profile" onClick={handleClick} className={classes.iconImage} />
+      <img src={userName.photo ? userName.photo: profileImage} alt ="Profile" onClick={handleClick} className={classes.iconImage} />
        <Popover
         id={id}
         open={open}
