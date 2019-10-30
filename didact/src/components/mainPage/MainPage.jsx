@@ -21,6 +21,7 @@ import Profile from '../profile/Profile'
 const useStyles = makeStyles(theme => ({
     root: {
         backgroundColor: "lightgray",
+        // width: "100%"
     },
     content: {
         flexGrow: 1,
@@ -30,24 +31,22 @@ const useStyles = makeStyles(theme => ({
     contentMobile: {
         flexGrow: 1,
         padding: theme.spacing(3),
-        paddingLeft: "80px",
-        margin: 'auto'
+        marginLeft: "80px",
+      
     },
     contentShadow: {
         background: "rgba(0, 0, 0, 0.8)",
         filter: "brightness(50%)",
         zIndex: 100,
-        position: "absolute",
+        // position: "absolute",
         top: 0,
         left: 0,
-        width: "100%",
-        height: "100%",
-        flexGrow: 1,
+        // flexGrow: 1,
         paddingLeft: "80px",
         padding: theme.spacing(3),
         overflow: "hidden",
-        // marginRight: "-20px"
-        // marginRight: '10px'
+      
+        
     },
     // scrollBarMobileFix: {
     //     position: "absolute",
@@ -74,7 +73,7 @@ function MainPage(props) {
     console.log(props)
   
     const profileLockSize = useMediaQuery("(min-width:1440px");
-    const phoneSize = useMediaQuery("(max-width:770px)");
+    const phoneSize = useMediaQuery("(max-width:600px)");
     const [open, setOpen] = React.useState(true);
     const [openMobile, setOpenMobile] = React.useState(false);
 
@@ -118,8 +117,8 @@ function MainPage(props) {
             {phoneSize ? (
                 <div className={classes.root} onClick={() => closeHandleClick()}>
                     <CssBaseline />
-                    <PageFlex>
-                        <div>
+                    <>
+                       <div>
                             <MobileDrawerComponent handleDrawerOpenMobile={handleDrawerOpenMobile()} openMobile={openMobile} props = {props}/>
                         </div>
                         <div>
@@ -130,7 +129,7 @@ function MainPage(props) {
                                 {/*************************ADD COMPONENTS HERE *********************** */}
                             </main>
                         </div>
-                    </PageFlex>
+                    </>
                     {/* {openMobile ?
                         (
                         <div className = {classes.scrollBarMobileFix}>
@@ -158,7 +157,7 @@ function MainPage(props) {
                                     <h2>Didact</h2>
                                     <div className="navSection">
                                         <Link style = {{color: 'white'}} to = "/" ><DashboardIcon/></Link>
-                                        <MessageIcon />
+                                        {/* <MessageIcon /> */}
                                         <p>{userName.email}</p>
                                         {/* {!profileLockSize ? <Profile props = {props}/> : null } */}
                                         <Profile props = {props}/>

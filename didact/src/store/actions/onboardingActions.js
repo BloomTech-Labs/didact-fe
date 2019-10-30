@@ -20,7 +20,7 @@ export const loginAction = (history, form) => dispatch => {
             localStorage.setItem("token", res.data.token)
             dispatch({ type: LOGIN_SUCCESS, payload: res.data })
         })
-        .then(res => history.push("/dashboard"))
+        .then(res => history.push("/"))
         .catch(err => {
             dispatch({ type: LOGIN_FAILURE, payload: err })
         })
@@ -34,7 +34,7 @@ export const registerAction = (history, form) => dispatch => {
             dispatch({ type: REGISTER_SUCCESS, payload: res.data });
             localStorage.setItem("token", res.data.token)
         })
-        .then(res => history.push("/dashboard"))
+        .then(res => history.push("/"))
         .catch(err => dispatch({ type: REGISTER_FAILURE, payload: err }));
 };
 
