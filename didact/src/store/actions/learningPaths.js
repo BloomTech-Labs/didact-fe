@@ -49,6 +49,9 @@ export const POST_PATH_ITEM_FAIL = "POST_PATH_ITEM_FAIL"
 export const UPDATE_PATH_ITEM_START = "UPDATE_PATH_ITEM_START"
 export const UPDATE_PATH_ITEM_SUCCESS = "UPDATE_PATH_ITEM_SUCCESS"
 export const UPDATE_PATH_ITEM_FAIL = "UPDATE_PATH_ITEM_FAIL"
+export const DELETE_PATH_ITEM_START = "DELETE_PATH_ITEM_START"
+export const DELETE_PATH_ITEM_SUCCESS = "DELETE_PATH_ITEM_SUCCESS"
+export const DELETE_PATH_ITEM_FAIL = "DELETE_PATH_ITEM_FAIL"
 
 const baseURL = `${beURL}learning-paths/`
 
@@ -328,3 +331,4 @@ export const updatePathItem = (pathId, itemId, changes) => dispatch =>
         dispatch({ type: UPDATE_PATH_ITEM_FAIL, payload: err })
     })
 }
+
