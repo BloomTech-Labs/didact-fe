@@ -133,7 +133,7 @@ export const ButtonDiv = styled.div`
 
 export const FinishEdit = styled.div`
     background:  #EBE8E1;
-    max-width: 500px;
+    max-width: 600px;
     width: 100%;
     border-radius: 15px;
     height: 30px;

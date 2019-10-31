@@ -5,9 +5,12 @@ import { NavLink, Route, Link } from "react-router-dom";
 import Course from "../courses/Course";
 
 import ReactTooltip from 'react-tooltip'
+import AddCircleRoundedIcon from '@material-ui/icons/AddCircleRounded';
 
 import { CoursesCard, CourseMenuDiv, CourseDiv } from './DashboardStyles'
 import { AddButton, PlusDiv, Plus, ButtonText } from './ButtonStyles';
+
+
 function Dashboard() {
   const dispatch = useDispatch();
   const state = useSelector(state => state);
@@ -21,9 +24,7 @@ function Dashboard() {
     <>
       <Link style={{ textDecoration: 'none' }} to='/courses/add'>
         <AddButton>
-          <PlusDiv>
-            <Plus>+</Plus>
-          </PlusDiv>
+          <AddCircleRoundedIcon style={{ fontSize: '3.5rem', marginRight: '5px', marginLeft: '5px', color: "#5b5b5b" }}/>
           <ButtonText>Add Course</ButtonText>
         </AddButton>
       </Link>
