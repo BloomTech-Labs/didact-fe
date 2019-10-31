@@ -30,20 +30,20 @@ const useStyles = makeStyles(theme => ({
     },
     contentMobile: {
         flexGrow: 1,
-        padding: theme.spacing(3),
-        marginLeft: "80px",
+        padding: theme.spacing(2),
+        marginLeft: "63px",
       
     },
     contentShadow: {
         background: "rgba(0, 0, 0, 0.8)",
         filter: "brightness(50%)",
         zIndex: 100,
-        // position: "absolute",
+        height: "100vh",
         top: 0,
         left: 0,
         // flexGrow: 1,
         paddingLeft: "80px",
-        padding: theme.spacing(3),
+        padding: theme.spacing(2),
         overflow: "hidden",
       
         
