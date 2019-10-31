@@ -22,7 +22,6 @@ export const loginAction = (history, form) => dispatch => {
         })
         .then(() => history.push("/"))
         .catch(err => {
-            console.log(err)
             dispatch({type: LOGIN_FAILURE, payload: err })
         })
 }
@@ -36,7 +35,10 @@ export const registerAction = (history, form) => dispatch => {
             localStorage.setItem("token", res.data.token)
         })
         .then(res => history.push("/"))
-        .catch(err => dispatch({ type: REGISTER_FAILURE, payload: err }));
+        .catch(err => {
+            console.log(err)
+            dispatch({ type: REGISTER_FAILURE, payload: err })
+        });
 };
 
 export const verifyToken = (history) => dispatch => {

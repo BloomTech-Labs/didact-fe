@@ -115,7 +115,7 @@ const LoginForm = (props) => {
                             <Field type= "password" name = "password" placeholder = "Password"></Field>
                             {touched.password && errors.password && <p className="errorMessage">Invalid Password</p>}
                         </div>
-                    {loginError ? <p style = {{color: "red"}}>You have entered an invalid username or password</p> : null}
+                    {loginError ? <p style = {{color: "red"}}>You have entered an invalid email or password</p> : null}
                     </div>
                     <div>
                         <button type="submit">Login</button>
