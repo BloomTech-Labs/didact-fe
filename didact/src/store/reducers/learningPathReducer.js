@@ -393,6 +393,26 @@ export const learningPathReducer = (state = initialState, action) =>
                 isLoading: false,
                 error: action.payload,
             }
+        case DELETE_PATH_ITEM_START:
+            return {
+                ...state,
+                isLoading: true,
+                error: "",
+            }
+        case DELETE_PATH_ITEM_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                learningPath: 
+                {...state.learningPath, pathItems: state.learningPath.pathItems.filter(el => el.id !== action.payload)},
+                error: "",
+            }
+        case DELETE_PATH_ITEM_FAIL:
+            return {
+                ...state,
+                isLoading: false,
+                error: action.payload,
+            }
         default:
             return state
     }
