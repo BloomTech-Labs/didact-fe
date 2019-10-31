@@ -27,7 +27,7 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: 'white'
   },
   closeModel: {
-    margin: "-40px 0 0 210px",
+    margin: "-25px 0 0 210px",
     color: 'gray',
     cursor: "pointer",
     backgroundColor: 'white',
@@ -35,7 +35,7 @@ const useStyles = makeStyles(theme => ({
     
   },
   description: {
-    marginTop: '-30px',
+    marginTop: '-20px',
     marginBottom: '40px',
     color: "gray"
   },
@@ -49,8 +49,8 @@ const useStyles = makeStyles(theme => ({
     objectFit: 'cover'
   },
   iconImageProfile: {
-    width: "75px",
-    height: "75px",
+    width: "100px",
+    height: "100px",
     borderRadius: "50%",
     marginTop: '-20px',
     objectFit: 'cover'
@@ -112,6 +112,7 @@ export default function Profile(props) {
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;
 
+  const firstName = userName.first_name ? userName.first_name.substring(0, 1).toUpperCase() + userName.first_name.substring(1) : null;
 
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
@@ -139,7 +140,7 @@ export default function Profile(props) {
           
           {userName.photo ? <img src={userName.photo} alt = "Profile" className={classes.iconImageProfile} /> : <PermIdentityIcon  className={classes.iconImageProfile} />}
           <h2 className={classes.title} id="transition-modal-title">{userName.email}</h2>
-          <p className={classes.description} id="transition-modal-description">Welcome</p>
+          <p className={classes.description} id="transition-modal-description">Welcome {firstName}!</p>
           <div className={classes.smallImageDivs} >
             <div className={classes.smallImage} ></div>
             <div className={classes.smallImage} ></div>

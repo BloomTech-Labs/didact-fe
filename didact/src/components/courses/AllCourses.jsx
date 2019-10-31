@@ -11,14 +11,6 @@ import ReactTooltip from 'react-tooltip'
 // import { AddButton, PlusDiv, Plus, ButtonText } from '../dashboard//ButtonStyles';
 
 import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
-import clsx from 'clsx';
-import IconButton from '@material-ui/core/IconButton';
-import Collapse from '@material-ui/core/Collapse';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import AddCircleRoundedIcon from '@material-ui/icons/AddCircleRounded';
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 
@@ -50,8 +42,8 @@ const useStyles = makeStyles(theme => ({
     },
     card: {
         // minWidth: 375,
-        maxWidth: 550,
-        margin: '40px 10px 40px 0',
+        maxWidth: 600,
+        margin: '40px 0 40px 0', 
         padding: '10px',
         borderRadius: '15px',
         // backgroundColor: '#eeeff3'
@@ -59,8 +51,9 @@ const useStyles = makeStyles(theme => ({
     circleIcon: {
         fontSize: '3.5rem',
         marginRight: '5px',
+        marginLeft: '10px',
         color: "#5b5b5b"
-    },
+    }, 
     descriptionDiv: {
         width: "100%",
         display: 'flex',
@@ -122,21 +115,20 @@ function AllCourses(props) {
 
     return (
         <div className = {tabletSize ? classes.rootTablet : classes.root}>
-            {tabletSize ? (<div className = {classes.addButtonDivTablet}>
+            {tabletSize ? (
+            <div className = {classes.addButtonDivTablet} style = {{display: 'flex', flexDirection: 'row wrap'}}>
                 <Link style={{ textDecoration: 'none' }} to='/courses/add'>
                     <AddButton style = {{marginRight: '10px'}}>
-                        <AddCircleRoundedIcon className = {classes.circleIcon}/>
+                        <AddCircleRoundedIcon  className = {classes.circleIcon}/>
                         <ButtonText>Add Course</ButtonText>
                     </AddButton>
                 </Link>
-                {/* <Link style={{ textDecoration: 'none' }} to='/courses/add'>
-                    <AddButton>
-                        <PlusDiv>
-                            <Plus>+</Plus>
-                        </PlusDiv>
-                        <ButtonText>Add Course</ButtonText>
+                <Link style={{ textDecoration: 'none' }} >
+                    <AddButton >
+                       <AddCircleRoundedIcon className = {classes.circleIcon}/>
+                        <ButtonText>Search Courses</ButtonText>
                     </AddButton>
-                </Link> */}
+                </Link>
             </div>) : (null) }
             <div>
                 {state.coursesReducer.courses
@@ -148,19 +140,17 @@ function AllCourses(props) {
             </div>
             {!tabletSize ? (<div className = {classes.addButtonDiv}>
                 <Link style={{ textDecoration: 'none' }} to='/courses/add'>
-                    <AddButton>
+                    <AddButton >
                         <AddCircleRoundedIcon className = {classes.circleIcon}/>
                         <ButtonText>Add Course</ButtonText>
                     </AddButton>
                 </Link>
-                {/* <Link style={{ textDecoration: 'none' }} to='/courses/add'>
-                    <AddButton>
-                        <PlusDiv>
-                            <Plus>+</Plus>
-                        </PlusDiv>
-                        <ButtonText>Add Course</ButtonText>
+                <Link style={{ textDecoration: 'none' }} >
+                    <AddButton >
+                       <AddCircleRoundedIcon className = {classes.circleIcon}/>
+                        <ButtonText>Search Courses</ButtonText>
                     </AddButton>
-                </Link> */}
+                </Link>
             </div>) : (null) }
         </div>
     );

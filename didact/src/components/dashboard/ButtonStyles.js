@@ -5,7 +5,7 @@ import styled from 'styled-components'
 
 export const AddButton = styled.div`
     height: 75px;
-    width: 175px;
+    width: 160px;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -133,7 +133,7 @@ export const ButtonDiv = styled.div`
 
 export const FinishEdit = styled.div`
     background:  #EBE8E1;
-    max-width: 500px;
+    max-width: 600px;
     width: 100%;
     border-radius: 15px;
     height: 30px;

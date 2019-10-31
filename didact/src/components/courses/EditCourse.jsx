@@ -36,7 +36,7 @@ const useStyles = makeStyles(theme => ({
     },
     card: {
         width: '100%',
-        maxWidth: 500,
+        maxWidth: 600,
         // minWidth: 220,
         borderRadius: 15,
         margin: '10px 0'
@@ -107,12 +107,15 @@ const useStyles = makeStyles(theme => ({
 
     descriptionDiv: {
         display: "flex",
-        flexDirection: "row",
-        justifyContent: 'center',
+        width: "100%",
+        flexDirection: 'column',
+        justifyContent: "space-between",
+        fontSize: 12,
+        color: "#757575"
         // padding: '0'
     },
     descriptionTitle: {
-        marginBottom: "0px"
+        marginBottom: "0px",
     },
 
 }));
@@ -282,7 +285,7 @@ const EditCourse = ({props, id}) => {
                                 <CssTextField
                                     id="standard-name"
                                     label='Name'
-                                    className={classes.titleOrInstructorFields}
+                                    className={classes.courseUrlField}
                                     value={changes.name || ""}
                                     onChange={handleChange('name')}
                                     margin="normal"
@@ -293,7 +296,7 @@ const EditCourse = ({props, id}) => {
                                 <CssTextField
                                     id="standard-name"
                                     label="Instructors"
-                                    className={classes.titleOrInstructorFields}
+                                    className={classes.courseUrlField}
                                     value={changes.foreign_instructors}
                                     onChange={handleChange('foreign_instructors')}
                                     margin="normal"

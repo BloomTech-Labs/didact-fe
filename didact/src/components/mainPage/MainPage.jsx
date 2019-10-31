@@ -30,20 +30,20 @@ const useStyles = makeStyles(theme => ({
     },
     contentMobile: {
         flexGrow: 1,
-        padding: theme.spacing(3),
-        marginLeft: "80px",
+        padding: theme.spacing(2),
+        marginLeft: "63px",
       
     },
     contentShadow: {
         background: "rgba(0, 0, 0, 0.8)",
         filter: "brightness(50%)",
         zIndex: 100,
-        // position: "absolute",
+        height: "100vh",
         top: 0,
         left: 0,
         // flexGrow: 1,
         paddingLeft: "80px",
-        padding: theme.spacing(3),
+        padding: theme.spacing(2),
         overflow: "hidden",
       
         
@@ -72,8 +72,8 @@ function MainPage(props) {
     const classes = useStyles();
     console.log(props)
   
-    const profileLockSize = useMediaQuery("(min-width:1440px");
     const phoneSize = useMediaQuery("(max-width:600px)");
+    const tabletSize = useMediaQuery('(max-width:770px, min-width: 601px');
     const [open, setOpen] = React.useState(true);
     const [openMobile, setOpenMobile] = React.useState(false);
 
@@ -114,7 +114,7 @@ function MainPage(props) {
     return (
         // MOBILE CODE ****************************************************************************
         <>
-            {phoneSize ? (
+            {phoneSize || tabletSize ? (
                 <div className={classes.root} onClick={() => closeHandleClick()}>
                     <CssBaseline />
                     <>
@@ -122,7 +122,7 @@ function MainPage(props) {
                             <MobileDrawerComponent handleDrawerOpenMobile={handleDrawerOpenMobile()} openMobile={openMobile} props = {props}/>
                         </div>
                         <div>
-                            <MobileHeaderComponent props = {props}/>
+                            <MobileHeaderComponent props = {props} tabletSize ={tabletSize} userName = {userName}/>
                             <main className={openMobile ? classes.contentShadow : classes.contentMobile}>
                                 <div className={classes.toolbar} />
                                 <Content phoneSize={phoneSize} open={open} {...props}/>

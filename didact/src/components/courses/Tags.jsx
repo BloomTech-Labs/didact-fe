@@ -17,7 +17,7 @@ import { ButtonDiv } from '../dashboard/ButtonStyles';
 const useStyles = makeStyles(theme => ({
     card: {
         width: '100%',
-        maxWidth: 500,
+        maxWidth: 600,
         minWidth: 220,
         borderRadius: 15,
         margin: '10px 0'

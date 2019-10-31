@@ -35,10 +35,11 @@ const useStyles = makeStyles(theme => ({
     },
     card: {
         width: '100%',
-        maxWidth: 500,
+        maxWidth: 600,
         minWidth: 220,
         borderRadius: 15,
-        margin: '10px 0'
+        margin: '10px 0',
+        padding: '5px'
     },
     title: {
         fontSize: 14,
@@ -106,9 +107,11 @@ const useStyles = makeStyles(theme => ({
 
     descriptionDiv: {
         display: "flex",
-        flexDirection: "row",
-        justifyContent: 'center',
-        // padding: '0'
+        width: "100%",
+        flexDirection: 'column',
+        justifyContent: "space-between",
+        fontSize: 12,
+        color: "#757575"
     },
     descriptionTitle: {
         marginBottom: "0px"
@@ -265,7 +268,7 @@ const Section = ({ course, section, props }) => {
                                 <CssTextField
                                     id="standard-name"
                                     label='Name'
-                                    className={classes.titleOrInstructorFields}
+                                    className={classes.courseUrlField}
                                     value={changes.name}
                                     onChange={handleChange('name')}
                                     margin="normal"
@@ -276,7 +279,7 @@ const Section = ({ course, section, props }) => {
                                 <CssTextField
                                     id="standard-name"
                                     label="Order"
-                                    className={classes.titleOrInstructorFields}
+                                    className={classes.courseUrlField}
                                     value={changes.order}
                                     onChange={handleChange('order')}
                                     margin="normal"

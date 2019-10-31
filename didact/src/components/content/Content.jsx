@@ -82,7 +82,7 @@ const Content = (props) => {
                     case ('courses'):
                         return <AllCourses props = {props}/>
                     case ('detailedcourse'):
-                        return <DetailedCourse id={props.match.params.id} />
+                        return <DetailedCourse id={props.match.params.id} props = {props}/>
                     case ('editcourse'):
                         return <EditCourse id={props.match.params.id} props={props}/>
                     case ('addlearningpath'):

@@ -51,6 +51,7 @@ const MobileHeaderComponent = (props) => {
         toolbarIcons: {
             display: "flex",
             justifyContent: "flex-end",
+            alignItems: 'center',
             width: "100%",
         },
     }));
@@ -78,6 +79,7 @@ const MobileHeaderComponent = (props) => {
                     {/* <Button className={classes.iconToolBar} color="inherit">
                         third
                     </Button> */}
+                    {props.tabletSize ? (<p style = {{paddingRight: '15px'}}>{props.userName.email}</p>) : null}
                    <Profile props = {props}/>
                 </div>
             </Toolbar>
