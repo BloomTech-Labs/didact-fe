@@ -43,6 +43,9 @@ export const UPDATE_COURSE_ORDER_FAIL = "UPDATE_COURSE_ORDER_FAIL"
 export const GET_YOUR_LEARNING_PATHS_START = "GET_YOUR_LEARNING_PATHS_START"
 export const GET_YOUR_LEARNING_PATHS_SUCCESS = "GET_YOUR_LEARNING_PATHS_SUCCESS"
 export const GET_YOUR_LEARNING_PATHS_FAIL = "GET_YOUR_LEARNING_PATHS_FAIL"
+export const POST_PATH_ITEM_START = "POST_PATH_ITEM_START"
+export const POST_PATH_ITEM_SUCCESS = "POST_PATH_ITEM_SUCCESS"
+export const POST_PATH_ITEM_FAIL = "POST_PATH_ITEM_FAIL"
 
 const baseURL = `${beURL}learning-paths/`
 
@@ -286,5 +289,22 @@ export const getYourLearningPaths = (userId) => dispatch =>
     {
         console.log('err from get your learning paths', err)
         dispatch({ type: GET_YOUR_LEARNING_PATHS_FAIL, payload: err })
+    })
+}
+
+export const postPathItem = (pathId, item) => dispatch =>
+{
+    dispatch({ type: POST_PATH_ITEM_START })
+
+    axiosWithAuth().post(`${baseURL}${pathId}/path-items`, item)
+    .then(res =>
+    {
+        console.log("res from postPathItem:", res)
+        dispatch({ type: POST_PATH_ITEM_SUCCESS, payload: {...item, id: res.data.id} })
+    })
+    .catch(err =>
+    {
+        console.log("err from postPathItem:", err)
+        dispatch({ type: POST_PATH_ITEM_FAIL, payload: err })
     })
 }
