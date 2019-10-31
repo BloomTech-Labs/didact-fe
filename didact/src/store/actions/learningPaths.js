@@ -312,3 +312,19 @@ export const postPathItem = (pathId, item) => dispatch =>
     })
 }
 
+export const updatePathItem = (pathId, itemId, changes) => dispatch =>
+{
+    dispatch({ type: UPDATE_PATH_ITEM_START })
+    //changes should be an object of form: {name: "blah", order: 7}
+    axiosWithAuth().post(`${baseURL}${pathId}/path-items/${itemId}`, changes)
+    .then(res =>
+    {
+        console.log("res from updatePathItem:", res)
+        dispatch({ type: UPDATE_PATH_ITEM_SUCCESS, payload: changes })
+    })
+    .catch(err =>
+    {
+        console.log("err from updatePathItem:", err)
+        dispatch({ type: UPDATE_PATH_ITEM_FAIL, payload: err })
+    })
+}
