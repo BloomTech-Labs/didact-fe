@@ -45,7 +45,7 @@ const useStyles = makeStyles(theme => ({
     card: {
         // minWidth: 375,
         maxWidth: 550,
-        margin: '40px 10px 40px 0',
+        margin: '40px 0 40px 0',
         padding: '10px',
         borderRadius: '15px',
         // backgroundColor: '#eeeff3'

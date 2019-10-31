@@ -51,7 +51,7 @@ const useStyles = makeStyles(theme => ({
     card: {
         // minWidth: 375,
         maxWidth: 550,
-        margin: '40px 10px 40px 0',
+        margin: '40px 0 40px 0', 
         padding: '10px',
         borderRadius: '15px',
         // backgroundColor: '#eeeff3'
@@ -60,7 +60,7 @@ const useStyles = makeStyles(theme => ({
         fontSize: '3.5rem',
         marginRight: '5px',
         color: "#5b5b5b"
-    },
+    }, 
     descriptionDiv: {
         width: "100%",
         display: 'flex',
