@@ -323,7 +323,7 @@ export const updatePathItem = (pathId, itemId, changes) => dispatch =>
     .then(res =>
     {
         console.log("res from updatePathItem:", res)
-        dispatch({ type: UPDATE_PATH_ITEM_SUCCESS, payload: {...changes, id: itemId })
+        dispatch({ type: UPDATE_PATH_ITEM_SUCCESS, payload: {...changes, id: itemId }})
     })
     .catch(err =>
     {
