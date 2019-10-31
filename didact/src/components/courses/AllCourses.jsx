@@ -59,6 +59,7 @@ const useStyles = makeStyles(theme => ({
     circleIcon: {
         fontSize: '3.5rem',
         marginRight: '5px',
+        marginLeft: '10px',
         color: "#5b5b5b"
     }, 
     descriptionDiv: {
@@ -122,21 +123,20 @@ function AllCourses(props) {
 
     return (
         <div className = {tabletSize ? classes.rootTablet : classes.root}>
-            {tabletSize ? (<div className = {classes.addButtonDivTablet}>
+            {tabletSize ? (
+            <div className = {classes.addButtonDivTablet} style = {{display: 'flex', flexDirection: 'row wrap'}}>
                 <Link style={{ textDecoration: 'none' }} to='/courses/add'>
                     <AddButton style = {{marginRight: '10px'}}>
-                        <AddCircleRoundedIcon className = {classes.circleIcon}/>
+                        <AddCircleRoundedIcon  className = {classes.circleIcon}/>
                         <ButtonText>Add Course</ButtonText>
                     </AddButton>
                 </Link>
-                {/* <Link style={{ textDecoration: 'none' }} to='/courses/add'>
-                    <AddButton>
-                        <PlusDiv>
-                            <Plus>+</Plus>
-                        </PlusDiv>
-                        <ButtonText>Add Course</ButtonText>
+                <Link style={{ textDecoration: 'none' }} >
+                    <AddButton >
+                       <AddCircleRoundedIcon className = {classes.circleIcon}/>
+                        <ButtonText>Search Courses</ButtonText>
                     </AddButton>
-                </Link> */}
+                </Link>
             </div>) : (null) }
             <div>
                 {state.coursesReducer.courses
@@ -148,19 +148,17 @@ function AllCourses(props) {
             </div>
             {!tabletSize ? (<div className = {classes.addButtonDiv}>
                 <Link style={{ textDecoration: 'none' }} to='/courses/add'>
-                    <AddButton>
+                    <AddButton >
                         <AddCircleRoundedIcon className = {classes.circleIcon}/>
                         <ButtonText>Add Course</ButtonText>
                     </AddButton>
                 </Link>
-                {/* <Link style={{ textDecoration: 'none' }} to='/courses/add'>
-                    <AddButton>
-                        <PlusDiv>
-                            <Plus>+</Plus>
-                        </PlusDiv>
-                        <ButtonText>Add Course</ButtonText>
+                <Link style={{ textDecoration: 'none' }} >
+                    <AddButton >
+                       <AddCircleRoundedIcon className = {classes.circleIcon}/>
+                        <ButtonText>Search Courses</ButtonText>
                     </AddButton>
-                </Link> */}
+                </Link>
             </div>) : (null) }
         </div>
     );

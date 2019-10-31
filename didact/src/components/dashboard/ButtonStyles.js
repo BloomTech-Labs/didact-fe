@@ -5,7 +5,7 @@ import styled from 'styled-components'
 
 export const AddButton = styled.div`
     height: 75px;
-    width: 175px;
+    width: 160px;
     display: flex;
     justify-content: space-around;
     align-items: center;
