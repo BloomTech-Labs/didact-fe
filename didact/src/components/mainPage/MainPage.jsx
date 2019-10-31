@@ -72,8 +72,7 @@ function MainPage(props) {
     const classes = useStyles();
     console.log(props)
   
-    const profileLockSize = useMediaQuery("(min-width:1440px");
-    const phoneSize = useMediaQuery("(max-width:600px)");
+    const phoneSize = useMediaQuery("(max-width:770px)");
     const [open, setOpen] = React.useState(true);
     const [openMobile, setOpenMobile] = React.useState(false);
 
