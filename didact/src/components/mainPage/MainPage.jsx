@@ -72,7 +72,8 @@ function MainPage(props) {
     const classes = useStyles();
     console.log(props)
   
-    const phoneSize = useMediaQuery("(max-width:770px)");
+    const phoneSize = useMediaQuery("(max-width:600px)");
+    const tabletSize = useMediaQuery('(max-width:770px');
     const [open, setOpen] = React.useState(true);
     const [openMobile, setOpenMobile] = React.useState(false);
 
@@ -113,7 +114,7 @@ function MainPage(props) {
     return (
         // MOBILE CODE ****************************************************************************
         <>
-            {phoneSize ? (
+            {phoneSize || tabletSize ? (
                 <div className={classes.root} onClick={() => closeHandleClick()}>
                     <CssBaseline />
                     <>
@@ -121,7 +122,7 @@ function MainPage(props) {
                             <MobileDrawerComponent handleDrawerOpenMobile={handleDrawerOpenMobile()} openMobile={openMobile} props = {props}/>
                         </div>
                         <div>
-                            <MobileHeaderComponent props = {props}/>
+                            <MobileHeaderComponent props = {props} tabletSize ={tabletSize} userName = {userName}/>
                             <main className={openMobile ? classes.contentShadow : classes.contentMobile}>
                                 <div className={classes.toolbar} />
                                 <Content phoneSize={phoneSize} open={open} {...props}/>
