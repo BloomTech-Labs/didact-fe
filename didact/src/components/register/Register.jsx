@@ -166,7 +166,7 @@ const FormikRegisterForm = withFormik({
 const FormikRegisterWrapper = props => {
     const dispatch = useDispatch();
     
-
+ 
     console.log(dispatch)
     return (
         <Wrapper>
