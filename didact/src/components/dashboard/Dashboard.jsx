@@ -24,7 +24,7 @@ function Dashboard() {
     <>
       <Link style={{ textDecoration: 'none' }} to='/courses/add'>
         <AddButton>
-          <AddCircleRoundedIcon style={{ fontSize: '3.5rem', marginRight: '5px', marginLeft: '5px', color: "#5b5b5b" }}/>
+          <AddCircleRoundedIcon style={{ fontSize: '3.5rem', marginRight: '5px', marginLeft: '10px', color: "#5b5b5b" }}/>
           <ButtonText>Add Course</ButtonText>
         </AddButton>
       </Link>

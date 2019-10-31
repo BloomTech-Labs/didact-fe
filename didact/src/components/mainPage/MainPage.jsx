@@ -73,7 +73,7 @@ function MainPage(props) {
     console.log(props)
   
     const phoneSize = useMediaQuery("(max-width:600px)");
-    const tabletSize = useMediaQuery('(max-width:770px');
+    const tabletSize = useMediaQuery('(max-width:770px, min-width: 601px');
     const [open, setOpen] = React.useState(true);
     const [openMobile, setOpenMobile] = React.useState(false);
 
