@@ -332,3 +332,19 @@ export const updatePathItem = (pathId, itemId, changes) => dispatch =>
     })
 }
 
+export const deletePathItem = (pathId, itemId) => dispatch =>
+{
+    dispatch({ type: DELETE_PATH_ITEM_START })
+
+    axiosWithAuth().delete(`${baseURL}${pathId}/path-items/${itemId}`)
+    .then(res =>
+    {
+        console.log("res from deletePathItem:", res)
+        dispatch({ type: DELETE_PATH_ITEM_SUCCESS, payload: itemId })
+    })
+    .catch(err =>
+    {
+        console.log("err from deletePathItem:", err)
+        dispatch({ type: DELETE_PATH_ITEM_FAIL, payload: err })
+    })
+}
