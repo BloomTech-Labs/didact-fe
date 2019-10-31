@@ -107,11 +107,11 @@ const DetailedCourse = (props) => {
                                                     <div>
                                                         <h3 style = {{textAlign: 'center'}}>Lessons</h3>
                                                     </div>
-                                                    <div style = {{display:'flex', flexDirection: 'row', justifyContent: 'space-evenly'}}>
-                                                        {(videoLength > 0) && <h3>{`${videoLength} Videos`}</h3>}
-                                                        {(readingLength > 0) && <h3>{`${readingLength} Readings`}</h3>}
-                                                        {(quizLength > 0) && <h3>{`${quizLength} Quizzes`}</h3>}
-                                                        {(assignmentLength > 0) && <h3>{`${assignmentLength} Assignments`}</h3>}
+                                                    <div style = {{display:'flex', flexFlow: 'row wrap', justifyContent: 'space-evenly'}}>
+                                                        {(videoLength > 0) && <h3 style = {{padding: '0 5px'}}>{`${videoLength} Videos`}</h3>}
+                                                        {(readingLength > 0) && <h3 style = {{padding: '0 5px'}}>{`${readingLength} Readings`}</h3>}
+                                                        {(quizLength > 0) && <h3 style = {{padding: '0 5px'}}>{`${quizLength} Quizzes`}</h3>}
+                                                        {(assignmentLength > 0) && <h3 style = {{padding: '0 5px'}}>{`${assignmentLength} Assignments`}</h3>}
                                                     </div>
                                                 </div>
                                                 )}
