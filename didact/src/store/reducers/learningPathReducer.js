@@ -45,6 +45,12 @@ import
     POST_PATH_ITEM_START,
     POST_PATH_ITEM_SUCCESS,
     POST_PATH_ITEM_FAIL,
+    UPDATE_PATH_ITEM_START,
+    UPDATE_PATH_ITEM_SUCCESS,
+    UPDATE_PATH_ITEM_FAIL,
+    DELETE_PATH_ITEM_START,
+    DELETE_PATH_ITEM_SUCCESS,
+    DELETE_PATH_ITEM_FAIL,
 } from '../actions'
 
 const initialState =
@@ -359,6 +365,29 @@ export const learningPathReducer = (state = initialState, action) =>
                 error: "",
             }
         case POST_PATH_ITEM_FAIL:
+            return {
+                ...state,
+                isLoading: false,
+                error: action.payload,
+            }
+        case UPDATE_PATH_ITEM_START:
+            return {
+                ...state,
+                isLoading: true,
+                error: "",
+            }
+        case UPDATE_PATH_ITEM_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                learningPath: 
+                {
+                    ...state.learningPath, 
+                    pathItems: state.learningPath.pathItems.map(el => el.id === action.payload.id ? action.payload : el)
+                },
+                error: "",
+            }
+        case UPDATE_PATH_ITEM_FAIL:
             return {
                 ...state,
                 isLoading: false,
