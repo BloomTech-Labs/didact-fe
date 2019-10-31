@@ -285,7 +285,7 @@ const EditCourse = ({props, id}) => {
                                 <CssTextField
                                     id="standard-name"
                                     label='Name'
-                                    className={classes.titleOrInstructorFields}
+                                    className={classes.courseUrlField}
                                     value={changes.name || ""}
                                     onChange={handleChange('name')}
                                     margin="normal"
@@ -296,7 +296,7 @@ const EditCourse = ({props, id}) => {
                                 <CssTextField
                                     id="standard-name"
                                     label="Instructors"
-                                    className={classes.titleOrInstructorFields}
+                                    className={classes.courseUrlField}
                                     value={changes.foreign_instructors}
                                     onChange={handleChange('foreign_instructors')}
                                     margin="normal"

@@ -268,7 +268,7 @@ const Section = ({ course, section, props }) => {
                                 <CssTextField
                                     id="standard-name"
                                     label='Name'
-                                    className={classes.titleOrInstructorFields}
+                                    className={classes.courseUrlField}
                                     value={changes.name}
                                     onChange={handleChange('name')}
                                     margin="normal"
@@ -279,7 +279,7 @@ const Section = ({ course, section, props }) => {
                                 <CssTextField
                                     id="standard-name"
                                     label="Order"
-                                    className={classes.titleOrInstructorFields}
+                                    className={classes.courseUrlField}
                                     value={changes.order}
                                     onChange={handleChange('order')}
                                     margin="normal"
