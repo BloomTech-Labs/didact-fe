@@ -100,12 +100,12 @@ const LoginForm = (props) => {
                     <div>
                         <div className={"input" + ((touched.email && errors.email) ? ' error' : '')}>
                             <p>Email</p>
-                            <Field type= "email" name="email" placeholder = "Email"></Field>
+                            <Field type="email" name="email" placeholder = "Email"></Field>
                             {touched.email && errors.email && <p className="errorMessage">Invalid Email Address</p>}
                         </div>
                         <div className={"input" + ((touched.password && errors.password) ? ' error' : '')}>
                             <p>Password</p>
-                            <Field type= "password" name = "password" placeholder = "Password"></Field>
+                            <Field type="password" name = "password" placeholder = "Password"></Field>
                             {touched.password && errors.password && <p className="errorMessage">Invalid Password</p>}
                         </div>
                     </div>
