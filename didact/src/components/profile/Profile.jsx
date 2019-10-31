@@ -49,8 +49,8 @@ const useStyles = makeStyles(theme => ({
     objectFit: 'cover'
   },
   iconImageProfile: {
-    width: "75px",
-    height: "75px",
+    width: "100px",
+    height: "100px",
     borderRadius: "50%",
     marginTop: '-20px',
     objectFit: 'cover'
