@@ -141,6 +141,9 @@ export
     GET_YOUR_LEARNING_PATHS_START,
     GET_YOUR_LEARNING_PATHS_SUCCESS,
     GET_YOUR_LEARNING_PATHS_FAIL,
+    POST_PATH_ITEM_START,
+    POST_PATH_ITEM_SUCCESS,
+    POST_PATH_ITEM_FAIL,
     getLearningPaths,
     searchLearningPathsByTag,
     getLearningPath,
@@ -155,4 +158,5 @@ export
     removeCourseFromPath,
     updateCourseOrder,
     getYourLearningPaths,
+    postPathItem,
 } from './learningPaths'

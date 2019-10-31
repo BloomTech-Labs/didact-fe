@@ -42,6 +42,9 @@ import
     GET_YOUR_LEARNING_PATHS_START,
     GET_YOUR_LEARNING_PATHS_SUCCESS,
     GET_YOUR_LEARNING_PATHS_FAIL,
+    POST_PATH_ITEM_START,
+    POST_PATH_ITEM_SUCCESS,
+    POST_PATH_ITEM_FAIL,
 } from '../actions'
 
 const initialState =
@@ -337,6 +340,25 @@ export const learningPathReducer = (state = initialState, action) =>
                 error: "",
             }
         case GET_YOUR_LEARNING_PATHS_FAIL:
+            return {
+                ...state,
+                isLoading: false,
+                error: action.payload,
+            }
+        case POST_PATH_ITEM_START:
+            return {
+                ...state,
+                isLoading: true,
+                error: "",
+            }
+        case POST_PATH_ITEM_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                learningPath: {...state.learningPath, pathItems: [...state.learningPath.pathItems, action.payload]},
+                error: "",
+            }
+        case POST_PATH_ITEM_FAIL:
             return {
                 ...state,
                 isLoading: false,
