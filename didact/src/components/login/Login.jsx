@@ -2,7 +2,7 @@ import React from "react";
 import {Form, Field, withFormik} from "formik";
 import * as Yup from 'yup';
 import { loginAction } from '../../store/actions';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 
 import { Wrapper, LoginWrapper, LoginFormWrapper } from './LoginStyles'
 import useMediaQuery from "@material-ui/core/useMediaQuery"
@@ -84,6 +84,13 @@ const useStyles = makeStyles(theme => ({
 const LoginForm = (props) => {
     const phoneSize = useMediaQuery("(max-width:770px)");
     const classes = useStyles();
+
+    const state = useSelector(state => state.onboardingReducer)
+    const loginError = state.error;
+
+    console.log(loginError)
+
+
     if(localStorage.getItem('token'))
     {
         props.history.push('/')
@@ -108,6 +115,7 @@ const LoginForm = (props) => {
                             <Field type= "password" name = "password" placeholder = "Password"></Field>
                             {touched.password && errors.password && <p className="errorMessage">Invalid Password</p>}
                         </div>
+                    {loginError ? <p style = {{color: "red"}}>You have entered an invalid username or password</p> : null}
                     </div>
                     <div>
                         <button type="submit">Login</button>

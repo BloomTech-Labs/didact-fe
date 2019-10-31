@@ -22,7 +22,8 @@ export const loginAction = (history, form) => dispatch => {
         })
         .then(() => history.push("/"))
         .catch(err => {
-            dispatch({ type: LOGIN_FAILURE, payload: err })
+            console.log(err)
+            dispatch({type: LOGIN_FAILURE, payload: err })
         })
 }
 
