@@ -58,6 +58,7 @@ const useStyles = makeStyles(theme => ({
     descriptionDiv: {
         width: "100%",
         display: 'flex',
+        flexDirection: 'column',
         justifyContent: "space-between",
         fontSize: 14,
         color: "#757575"

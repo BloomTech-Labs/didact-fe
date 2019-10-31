@@ -107,9 +107,11 @@ const useStyles = makeStyles(theme => ({
 
     descriptionDiv: {
         display: "flex",
-        flexDirection: "row",
-        justifyContent: 'center',
-        // padding: '0'
+        width: "100%",
+        flexDirection: 'column',
+        justifyContent: "space-between",
+        fontSize: 12,
+        color: "#757575"
     },
     descriptionTitle: {
         marginBottom: "0px"

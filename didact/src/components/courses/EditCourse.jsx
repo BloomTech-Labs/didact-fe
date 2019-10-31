@@ -107,12 +107,15 @@ const useStyles = makeStyles(theme => ({
 
     descriptionDiv: {
         display: "flex",
-        flexDirection: "row",
-        justifyContent: 'center',
+        width: "100%",
+        flexDirection: 'column',
+        justifyContent: "space-between",
+        fontSize: 12,
+        color: "#757575"
         // padding: '0'
     },
     descriptionTitle: {
-        marginBottom: "0px"
+        marginBottom: "0px",
     },
 
 }));
