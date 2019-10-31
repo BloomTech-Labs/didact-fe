@@ -27,7 +27,7 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: 'white'
   },
   closeModel: {
-    margin: "-40px 0 0 210px",
+    margin: "-25px 0 0 210px",
     color: 'gray',
     cursor: "pointer",
     backgroundColor: 'white',
