@@ -42,9 +42,13 @@ const Routes = () => {
             (
                 <MainPage {...routeProps} page={'editlearningpath'} />
             )} />
-            <Route exact path='/learning-paths' render={routeProps =>
+            <Route exact path='/learning-paths/:id' render={routeProps =>
             (
                 <MainPage {...routeProps} page={'learningpath'} />
+            )} />
+            <Route exact path='/learning-paths' render={routeProps =>
+            (
+                <MainPage {...routeProps} page={'learningpaths'} />
             )} />
         </Switch>
     )
