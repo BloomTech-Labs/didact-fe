@@ -43,6 +43,15 @@ export const UPDATE_COURSE_ORDER_FAIL = "UPDATE_COURSE_ORDER_FAIL"
 export const GET_YOUR_LEARNING_PATHS_START = "GET_YOUR_LEARNING_PATHS_START"
 export const GET_YOUR_LEARNING_PATHS_SUCCESS = "GET_YOUR_LEARNING_PATHS_SUCCESS"
 export const GET_YOUR_LEARNING_PATHS_FAIL = "GET_YOUR_LEARNING_PATHS_FAIL"
+export const POST_PATH_ITEM_START = "POST_PATH_ITEM_START"
+export const POST_PATH_ITEM_SUCCESS = "POST_PATH_ITEM_SUCCESS"
+export const POST_PATH_ITEM_FAIL = "POST_PATH_ITEM_FAIL"
+export const UPDATE_PATH_ITEM_START = "UPDATE_PATH_ITEM_START"
+export const UPDATE_PATH_ITEM_SUCCESS = "UPDATE_PATH_ITEM_SUCCESS"
+export const UPDATE_PATH_ITEM_FAIL = "UPDATE_PATH_ITEM_FAIL"
+export const DELETE_PATH_ITEM_START = "DELETE_PATH_ITEM_START"
+export const DELETE_PATH_ITEM_SUCCESS = "DELETE_PATH_ITEM_SUCCESS"
+export const DELETE_PATH_ITEM_FAIL = "DELETE_PATH_ITEM_FAIL"
 
 const baseURL = `${beURL}learning-paths/`
 
@@ -286,5 +295,56 @@ export const getYourLearningPaths = (getYours) => dispatch =>
     {
         console.log('err from get your learning paths', err)
         dispatch({ type: GET_YOUR_LEARNING_PATHS_FAIL, payload: err })
+    })
+}
+
+export const postPathItem = (pathId, item) => dispatch =>
+{
+    dispatch({ type: POST_PATH_ITEM_START })
+
+    axiosWithAuth().post(`${baseURL}${pathId}/path-items`, item)
+    .then(res =>
+    {
+        console.log("res from postPathItem:", res)
+        dispatch({ type: POST_PATH_ITEM_SUCCESS, payload: {...item, id: res.data.id} })
+    })
+    .catch(err =>
+    {
+        console.log("err from postPathItem:", err)
+        dispatch({ type: POST_PATH_ITEM_FAIL, payload: err })
+    })
+}
+
+export const updatePathItem = (pathId, itemId, changes) => dispatch =>
+{
+    dispatch({ type: UPDATE_PATH_ITEM_START })
+    //changes should be an object of form: {name: "blah", order: 7}
+    axiosWithAuth().post(`${baseURL}${pathId}/path-items/${itemId}`, changes)
+    .then(res =>
+    {
+        console.log("res from updatePathItem:", res)
+        dispatch({ type: UPDATE_PATH_ITEM_SUCCESS, payload: {...changes, id: itemId }})
+    })
+    .catch(err =>
+    {
+        console.log("err from updatePathItem:", err)
+        dispatch({ type: UPDATE_PATH_ITEM_FAIL, payload: err })
+    })
+}
+
+export const deletePathItem = (pathId, itemId) => dispatch =>
+{
+    dispatch({ type: DELETE_PATH_ITEM_START })
+
+    axiosWithAuth().delete(`${baseURL}${pathId}/path-items/${itemId}`)
+    .then(res =>
+    {
+        console.log("res from deletePathItem:", res)
+        dispatch({ type: DELETE_PATH_ITEM_SUCCESS, payload: itemId })
+    })
+    .catch(err =>
+    {
+        console.log("err from deletePathItem:", err)
+        dispatch({ type: DELETE_PATH_ITEM_FAIL, payload: err })
     })
 }
