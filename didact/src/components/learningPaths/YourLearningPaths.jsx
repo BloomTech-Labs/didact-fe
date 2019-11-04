@@ -26,11 +26,11 @@ const YourLearningPaths = (props) => {
         dispatch(quitLearningPath(e.target.id))
     }
 
-    if(!state.learningPathReducer.isLoading && (learningPaths.length > 0)) {
+    // if(!state.learningPathReducer.isLoading && (learningPaths.length > 0)) {
         return (
             <LearningPathsWrapper>
                 {
-                    learningPaths.map((learningPath, index) => {
+                    learningPaths.length > 0 && (learningPaths.map((learningPath, index) => {
                         return (
                             <div key={index} className='learningPathCard'>
                                 <div className='title'> 
@@ -45,7 +45,10 @@ const YourLearningPaths = (props) => {
                                 </div>
                             </div>
                         )
-                    })
+                    }))
+                }
+                {
+                    learningPaths.length === 0 && <h1>You are not apart of any paths</h1>
                 }
                 <div className='buttons'>
                     <Link to={'/learning-paths/join'}>Join a Learning Path</Link>
@@ -53,21 +56,22 @@ const YourLearningPaths = (props) => {
                 </div>
             </LearningPathsWrapper>
         )
-    } else if(!state.learningPathReducer.isLoading) {
-        return (
-            <LearningPathsWrapper>
-                <h1>You are not apart of any paths</h1>
-                <div className='buttons'>
-                    <Link to={'/learning-paths/join'}>Join a Learning Path</Link>
-                    <Link to={'/learning-paths/add'}>Create a New Learning Path</Link>
-                </div>
-            </LearningPathsWrapper>
-        )
-    } else {
-        return (
-            <h1>Loading...</h1>
-        )
-    }
+    // } else {
+    //     return (
+    //         <LearningPathsWrapper>
+    //             <h1>You are not apart of any paths</h1>
+    //             <div className='buttons'>
+    //                 <Link to={'/learning-paths/join'}>Join a Learning Path</Link>
+    //                 <Link to={'/learning-paths/add'}>Create a New Learning Path</Link>
+    //             </div>
+    //         </LearningPathsWrapper>
+    //     )
+    // }
+    //  else {
+    //     return (
+    //         <h1>Loading...</h1>
+    //     )
+    // }
 }
 
 export default YourLearningPaths;
