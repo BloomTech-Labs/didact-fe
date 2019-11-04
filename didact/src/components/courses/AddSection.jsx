@@ -10,7 +10,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import { ButtonDiv } from '../dashboard/ButtonStyles'
-
+import { Mixpanel } from '../../utils/mixpanel';
 
 const useStyles = makeStyles(theme => ({
 
@@ -148,6 +148,7 @@ const AddSection = ({course, props, setAddSectionChange}) => {
 
     const handleSubmit = event => {
         event.preventDefault();
+        Mixpanel.track("Section Added.")
         dispatch(addSectionToCourse(props.match.params.id, values))
         setAddSectionChange(false)
     };
