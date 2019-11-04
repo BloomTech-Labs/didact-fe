@@ -11,6 +11,7 @@ import AddLearningPaths from '../learningPaths/AddLearningPaths'
 import EditLearningPaths from '../learningPaths/EditLearningPaths'
 import LearningPath from '../learningPaths/LearningPath'
 import YourLearningPaths from '../learningPaths/YourLearningPaths'
+import AllLearningPaths from '../learningPaths/AllLearningPaths'
 
 
 const Content = (props) => {
@@ -93,6 +94,8 @@ const Content = (props) => {
                     case ('learningpath'):
                         return <LearningPath props={props}/>
                     case ('learningpaths'):
+                        return <AllLearningPaths props={props}/>
+                    case ('yourlearningpaths'):
                         return <YourLearningPaths props={props}/>
                     default:
                         break;

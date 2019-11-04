@@ -193,7 +193,7 @@ export const learningPathReducer = (state = initialState, action) =>
             return {
                 ...state,
                 isLoading: false,
-                yourLearningPaths: state.yourLearningPaths.filter(el => el.id !== action.payload),
+                yourLearningPaths: state.yourLearningPaths.filter(el => el.id !== Number(action.payload)),
                 error: "",
             }
         case QUIT_LEARNING_PATH_FAIL:

@@ -37,10 +37,11 @@ export const LearningPathsWrapper = styled.div`
                 font-weight: bolder;
                 text-decoration: none;
                 border: none;
+                margin-right: 10px;
 
                 a {
                     color: white;
-                    font-weight: bolder;
+                    /* font-weight: bolder; */
                     text-decoration: none;
                 }
 
@@ -76,5 +77,9 @@ export const LearningPathsWrapper = styled.div`
                 margin-right: 20px;
             }
         }
+    }
+
+    h1 {
+        text-align: left;
     }
 `
