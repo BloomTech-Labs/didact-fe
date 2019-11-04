@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from "react-redux"
 import { Link } from "react-router-dom";
 
-import { getLearningPaths } from '../../store/actions/index'
+import { getYourLearningPaths, quitLearningPath } from '../../store/actions/index'
 
 import { LearningPathsWrapper } from './YourLearningPathsStyles'
 
@@ -13,12 +13,20 @@ const YourLearningPaths = (props) => {
     const state = useSelector(state => state)
 
     useEffect(_ => {
-        dispatch(getLearningPaths())
+        dispatch(getYourLearningPaths())
     }, [dispatch])
 
-    const learningPaths = state.learningPathReducer.learningPaths
+    const learningPaths = state.learningPathReducer.yourLearningPaths
 
-    console.log(state.learningPathReducer.learningPaths)
+    console.log(state.learningPathReducer.yourLearningPaths)
+
+    console.log('Your Learning Paths', learningPaths)
+
+    const leavePath = e => {
+        console.log('clicked!')
+        console.log(e.target.id)
+        dispatch(quitLearningPath(e.target.id))
+    }
 
     if(!state.learningPathReducer.isLoading && learningPaths) {
         return (
@@ -29,7 +37,10 @@ const YourLearningPaths = (props) => {
                             <div key={index} className='learningPathCard'>
                                 <div className='title'> 
                                     <h1>{learningPath.name}</h1>
-                                    <Link to={`/learning-paths/${learningPath.id}`}>Go To Path</Link>
+                                    <div>
+                                        <button><Link to={`/learning-paths/${learningPath.id}`}>Go To Path</Link></button>
+                                        <button onClick={leavePath} id={learningPath.id}>Leave Path</button>
+                                    </div>
                                 </div>
                                 <div className='icon'>
                                     Icon

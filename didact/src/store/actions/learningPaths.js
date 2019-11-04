@@ -272,11 +272,11 @@ export const updateCourseOrder = (pathId, courseId, order) => dispatch =>
     })
 }
 
-export const getYourLearningPaths = (userId) => dispatch =>
+export const getYourLearningPaths = (getYours) => dispatch =>
 {
     dispatch({ type: GET_YOUR_LEARNING_PATHS_START })
-
-    axiosWithAuth().get(`${baseURL}`, {userId})
+    console.log('User Object', {getYours})
+    axiosWithAuth().get(`${baseURL}yours`)
     .then(res =>
     {
         console.log('res from get your learning paths', res)

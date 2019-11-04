@@ -333,7 +333,7 @@ export const learningPathReducer = (state = initialState, action) =>
             return {
                 ...state,
                 isLoading: false,
-                learningPaths: action.payload,
+                yourLearningPaths: action.payload,
                 error: "",
             }
         case GET_YOUR_LEARNING_PATHS_FAIL:

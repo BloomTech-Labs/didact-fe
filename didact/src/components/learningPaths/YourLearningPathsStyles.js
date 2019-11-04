@@ -20,13 +20,33 @@ export const LearningPathsWrapper = styled.div`
                 padding-bottom: 20px;
             }
 
-            a {
+            /* a {
                 background-color: #242424;
                 color: white;
                 padding: 10px 15px;
                 border-radius: 16px;
                 font-weight: bolder;
                 text-decoration: none;
+            } */
+
+            button {
+                background-color: #242424;
+                color: white;
+                padding: 10px 15px;
+                border-radius: 16px;
+                font-weight: bolder;
+                text-decoration: none;
+                border: none;
+
+                a {
+                    color: white;
+                    font-weight: bolder;
+                    text-decoration: none;
+                }
+
+                &:focus {
+                    outline: none;
+                }
             }
         }
 
