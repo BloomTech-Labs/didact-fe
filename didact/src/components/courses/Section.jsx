@@ -18,7 +18,6 @@ import DeleteModal from './DeleteModal'
 
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import { AddButtonInSection, ButtonTextInSection, ButtonDiv, DeleteForm } from '../dashboard/ButtonStyles';
-import { Mixpanel } from '../../utils/mixpanel';
 
 
 const useStyles = makeStyles(theme => ({
