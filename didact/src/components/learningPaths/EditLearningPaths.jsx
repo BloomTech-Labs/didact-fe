@@ -4,6 +4,8 @@ import {
   getLearningPath,
   updateLearningPath,
   deleteLearningPath,
+  updateCourseOrder,
+  updatePathItem
 } from "../../store/actions";
 
 import DeleteModal from "../courses/DeleteModal";
@@ -143,11 +145,6 @@ const EditLearningPaths = ({ id, props }) => {
     });
   }, [learningPath]);
 
-  // useEffect(_ =>
-  //     {
-
-  //     }, [learningPath])
-
   const toggleEdit = () => {
     setLearningPathEdit(!learningPathEdit);
   };
@@ -199,23 +196,23 @@ const EditLearningPaths = ({ id, props }) => {
         ))
       );
     }
-  }, [learningPath.pathItems, learningPath.courses]);
+  }, [learningPath.pathItems, learningPath.courses])
 
+  // changes learning path array order on drag end
   const changeArr = (starting, ending, arr) => {
-    console.log(arr)
-    let temp = arr[starting];
     let returned = arr.map((el, i) => {
       if (`${i}` === starting) {
         let spliced = arr.splice(starting, 1)[0];
-        arr.splice(ending, 0, spliced);
-        console.log(arr)
-        return arr;
+        arr.splice(ending, 0, spliced)
+        return arr
       }
+      return arr
     });
     returned[starting].map((el, i) => el.path_order = i)
-    return returned[starting];
+    return returned[starting]
   };
 
+  // function for Drag and Drop calling changeArr above
   const onDragEnd = result => {
     const { destination, source, draggableId } = result;
     console.log(result)
@@ -229,29 +226,31 @@ const EditLearningPaths = ({ id, props }) => {
     ) {
         return
     }
+    // see instantiation of function
     setItemsCourses(changeArr(draggableId, destination.index, [...itemsCourses]))
 
     const coursePath = [];
     const itemPath = [];
 
+    //splitting items and courses so actions can update the DB
     itemsCourses.map(el => {
         if(el.path_id){
             itemPath.push(el)
         } 
-        else if(!el.type){
+        else if(!el.path_id){
             coursePath.push(el)
         }
+        return itemsCourses
     })
 
     console.log(coursePath)
     console.log(itemPath)
-
+    dispatch(updateCourseOrder())
+    dispatch(updatePathItem())
+ 
   };
-    // Finish combine with state path_order changed
-   
-   
-   
-
+  
+  
   if (!state.isLoading) {
     return (
       <>
