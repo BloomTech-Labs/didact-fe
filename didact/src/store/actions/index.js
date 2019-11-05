@@ -166,7 +166,7 @@ export
     quitLearningPath,
     postTagToPath,
     deleteTagFromPath,
-
+    postCourseToPath,
     removeCourseFromPath,
     updateCourseOrder,
     getYourLearningPaths,
