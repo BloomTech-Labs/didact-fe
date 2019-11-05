@@ -105,6 +105,7 @@ export const getLearningPath = (id) => dispatch =>
     .catch(err =>
     {
         console.log('err from get learning path (singular)', err)
+        console.log('response', err.response)
         dispatch({ type: GET_LEARNING_PATH_FAIL, payload: err })
     })
 }
@@ -165,7 +166,7 @@ export const deleteLearningPath = (id, history) => dispatch =>
     })
 }
 
-export const joinLearningPath = id => dispatch =>
+export const joinLearningPath = (id, history) => dispatch =>
 {
     dispatch({ type: JOIN_LEARNING_PATH_START })
 
@@ -175,8 +176,10 @@ export const joinLearningPath = id => dispatch =>
         console.log("res from joinLearningPath:", res)
         dispatch({ type: JOIN_LEARNING_PATH_SUCCESS, payload: id })
     })
+    .then(() => history.push(`/learning-paths/`))
     .catch(err =>
     {
+        console.log('err from joinLearningPath response:', err.response)
         console.log("err from joinLearningPath:", err)
         dispatch({ type: JOIN_LEARNING_PATH_FAIL, payload: err })
     })
