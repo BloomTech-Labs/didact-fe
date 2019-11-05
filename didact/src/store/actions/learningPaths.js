@@ -262,6 +262,23 @@ export const addNewCourseToLearningPath = (props, courseId) => dispatch =>
     })
 }
 
+export const postCourseToPath = (pathId, courseId, order) => dispatch =>
+{
+    dispatch({ type: POST_COURSE_TO_PATH_START })
+
+    axiosWithAuth().post(`${baseURL}${pathId}/courses/${courseId}`, {order})
+    .then(res =>
+    {
+        console.log("res from postCourseToPath:", res)
+        dispatch({ type: POST_COURSE_TO_PATH_SUCCESS, payload: res.data.pathCourses })
+    })
+    .catch(err =>
+    {
+        console.log("err from postCourseToPath:", err)
+        dispatch({ type: POST_COURSE_TO_PATH_FAIL, payload: err })
+    })
+}
+
 export const removeCourseFromPath = (pathId, courseId) => dispatch =>
 {
     dispatch({ type: REMOVE_COURSE_FROM_PATH_START })
