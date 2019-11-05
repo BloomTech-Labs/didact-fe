@@ -96,7 +96,7 @@ const Tags = ({ props, course }) => {
     const dispatch = useDispatch()
     const state = useSelector(state => state.tagsReducer)
     const allTags = state.tags
-    const [openForm, setOpenForm] = useState(true)
+    const [openForm, setOpenForm] = useState(false)
     const [tag, setTag] = useState({
         tag: ''
     });
@@ -144,7 +144,7 @@ const Tags = ({ props, course }) => {
 
                         )
                     }) : null}
-                   {!openForm ? <Button style={{ marginLeft: '76.5%' }} onClick={handleClick} type='submit' size="small" variant="contained" className={classes.button}>NEW TAG</Button> : null }
+                   {!openForm ? <Button style={{ marginLeft: '81%' }} onClick={handleClick} type='submit' size="small" variant="contained" className={classes.button}>NEW TAG</Button> : null }
                 </CardContent>
 
                 {openForm ? (

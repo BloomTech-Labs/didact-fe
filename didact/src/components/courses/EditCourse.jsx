@@ -269,7 +269,7 @@ const EditCourse = ({props, id}) => {
                             </Typography>
                         </CardContent>
                         <CardActions>
-                            <Button onClick={toggleEdit} style={{marginLeft: '70.5%'}} type='submit' size="small" variant="contained" className={classes.button} >Edit Course</Button>
+                            <Button onClick={toggleEdit} style={{marginLeft: '75.5%'}} type='submit' size="small" variant="contained" className={classes.button} >Edit Course</Button>
                         </CardActions>
                     </Card>
                 ) : (

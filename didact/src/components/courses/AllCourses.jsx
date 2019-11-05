@@ -103,7 +103,7 @@ function AllCourses(props) {
     const [expanded, setExpanded] = useState(false);
     const state = useSelector(state => state);
     console.log('user', state.onboardingReducer.user)
-    console.log(state.coursesReducer.courses)
+    // console.log(state.coursesReducer.courses)
 
     useEffect(() => {
         dispatch(courseEndPoint());
