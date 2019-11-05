@@ -8,7 +8,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
-
+import { Mixpanel } from '../../utils/mixpanel';
 
 const useStyles = makeStyles(theme => ({
   
@@ -115,6 +115,7 @@ export default function AddCourse(props) {
   const handleSubmit = event => {
     event.preventDefault();
     console.log(values)
+    Mixpanel.track("Course Added.")
     dispatch(addCourse(values, props.props));
   }
 
