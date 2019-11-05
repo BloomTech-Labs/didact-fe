@@ -386,6 +386,8 @@ const EditLearningPaths = ({ id, props }) => {
               </CardContent>
             </Card>
           )}
+          
+
           <PathInstructions>Drag to Change Learning Path Order</PathInstructions>
           <DragDropContext onDragEnd={onDragEnd}
           >
