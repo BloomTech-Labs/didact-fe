@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
+import { removeCourseFromPath} from '../../store/actions/index'
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
-import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Collapse from '@material-ui/core/Collapse';
@@ -15,7 +15,8 @@ import TextField from '@material-ui/core/TextField';
 import DeleteModal from '../courses/DeleteModal'
 import {FinishEdit, DeleteForm} from '../dashboard/ButtonStyles';
 import {DraggableDiv} from "./DraggableStyles.js";
-import EditPathItems from './pathItems/EditPathItems'
+import EditPathItems from './pathItems/EditPathItems';
+
 
 import { Draggable } from "react-beautiful-dnd";
 
@@ -139,13 +140,15 @@ const CssTextField = withStyles({
     },
 })(TextField);
 
-const CourseLearningPath = ({course, index, props}) => {
+const CourseLearningPath = ({ course, index, props}) => {
     const state = useSelector(state => state)
     const dispatch = useDispatch()
     const classes = useStyles();
     const [expanded, setExpanded] = useState(false);
     const [toggleEdit, setToggleEdit] = useState(false);
-    console.log(props)
+    const [openModal, setOpenModal] = useState(false);
+
+    console.log(course)
     const handleExpandClick = () => {
         setExpanded(!expanded);
     };
@@ -153,6 +156,19 @@ const CourseLearningPath = ({course, index, props}) => {
     const handleToggleEdit = () => {
         setToggleEdit(!toggleEdit)
     }
+    
+    const handleDelete = () => {
+        dispatch(removeCourseFromPath(props.match.params.id, course.id))
+    }
+
+    const handleModalOpen = () => {
+        setOpenModal(true);
+    };
+
+    const handleModalClose = () => {
+        setOpenModal(false);
+    };
+
 
     return (
         <Draggable draggableId={`${index}`} index={index} className={classes.root}>
@@ -164,6 +180,8 @@ const CourseLearningPath = ({course, index, props}) => {
                     ref={provided.innerRef}
                     isDragging={snapshot.isDragging}>
                     <CardContent >
+                        <DeleteForm onClick={handleModalOpen}>X</DeleteForm>
+                        {openModal ? <DeleteModal handleDelete={handleDelete} text={"course"} open={openModal} handleModalClose={handleModalClose} /> : null}
                         <Typography variant="h5" component="h2">
                             {course.name}
                         </Typography>

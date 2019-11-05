@@ -1,5 +1,7 @@
 import axiosWithAuth from '../../utils/axiosWithAuth';
 import beURL from '../../utils/beURL'
+import {postCourseToPath} from '../actions/index.js'
+
 export const COURSE_DATA_START = 'COURSE_DATA_START';
 export const COURSE_DATA_SUCCESS = 'COURSE_DATA_SUCCESS';
 export const COURSE_DATA_FAIL = 'COURSE_DATA_FAIL';
@@ -43,7 +45,7 @@ export const getCourseById =(id) => dispatch => {
     console.log(id)
     axiosWithAuth()
     .get(`${baseURL}${id}`)
-    .then(res => {
+    .then(res => { 
         console.log('single course api response: ', res.data)
         dispatch({type: SINGLE_COURSE_DATA_SUCCESS, payload: res.data})
     })
@@ -53,17 +55,19 @@ export const getCourseById =(id) => dispatch => {
 }
 
 export const addCourse =(values, props) => dispatch => {
+    console.log(values)
     dispatch({type: ADD_COURSE_DATA_START})
     axiosWithAuth()
     .post(`${baseURL}`, values)
     .then(res => {
         console.log('add course api response: ', res)
         console.log('props ', props)
-        dispatch({type: ADD_COURSE_DATA_SUCCESS, payload: res.data})
+        dispatch({type: ADD_COURSE_DATA_SUCCESS, payload: {...values, id: res.data} })
         return res.data
     })
-    .then(response => props.history.push(`/courses/${response.id}/edit`))
+    .then(response => props.match.params.id ? (dispatch(postCourseToPath(props, response.id))) : props.history.push(`/courses/${response.id}/edit`))
     .catch(err => {
+        console.log(err.response)
         dispatch({type: ADD_COURSE_DATA_FAIL, payload: err})
     })
 }
@@ -82,7 +86,7 @@ export const editCourse =(id, changes) => dispatch => {
     })
 }
 
-//TODO: test this
+
 export const deleteCourse =(id, history) => dispatch => {
     dispatch({type: DELETE_COURSE_DATA_START})
     axiosWithAuth()

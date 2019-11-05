@@ -11,6 +11,7 @@ import DeleteModal from "../courses/DeleteModal";
 import {ButtonDiv, FinishEdit, DeleteForm } from "../dashboard/ButtonStyles";
 import {DroppableDiv, PathInstructions} from "./DraggableStyles.js";
 import CourseLearningPath from "./CourseLearningPath";
+import AddToLearningPath from './addToLearningPath/AddToLearningPath'
 
 //imports from material-ui
 import { makeStyles, withStyles } from "@material-ui/core/styles";
@@ -386,7 +387,7 @@ const EditLearningPaths = ({ id, props }) => {
               </CardContent>
             </Card>
           )}
-          
+          <AddToLearningPath props = {props} itemsCourses = {itemsCourses}/>
 
           <PathInstructions>Drag to Change Learning Path Order</PathInstructions>
           <DragDropContext onDragEnd={onDragEnd}

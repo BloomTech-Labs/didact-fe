@@ -295,7 +295,7 @@ export const learningPathReducer = (state = initialState, action) =>
         case REMOVE_COURSE_FROM_PATH_START:
             return {
                 ...state,
-                isLoading: true,
+                // isLoading: true,
                 error: "",
             }
         case REMOVE_COURSE_FROM_PATH_SUCCESS:

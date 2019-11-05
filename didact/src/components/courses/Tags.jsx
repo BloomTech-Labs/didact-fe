@@ -96,7 +96,7 @@ const Tags = ({ props, course }) => {
     const dispatch = useDispatch()
     const state = useSelector(state => state.tagsReducer)
     const allTags = state.tags
-    const [openForm, setOpenForm] = useState(true)
+    const [openForm, setOpenForm] = useState(false)
     const [tag, setTag] = useState({
         tag: ''
     });

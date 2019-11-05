@@ -236,16 +236,22 @@ export const deleteTagFromPath = (tag, id) => dispatch =>
     })
 }
 
-export const postCourseToPath = (pathId, courseId, order) => dispatch =>
+export const postCourseToPath = (props, courseId) => dispatch =>
 {
-    dispatch({ type: POST_COURSE_TO_PATH_START })
+   const order = Number(props.match.params.order);
 
-    axiosWithAuth().post(`${baseURL}${pathId}/courses/${courseId}`, {order})
+    console.log("ORDER", {order})
+    console.log("courseId", courseId)
+    console.log("props", props)
+    dispatch({ type: POST_COURSE_TO_PATH_START })
+    const pathId = props.match.params.id;
+    axiosWithAuth().post(`${baseURL}${pathId}/courses/${courseId}`, {order: order})
     .then(res =>
     {
         console.log("res from postCourseToPath:", res)
         dispatch({ type: POST_COURSE_TO_PATH_SUCCESS, payload: res.data.pathCourses })
     })
+    .then(() => props.history.push(`/courses/${courseId}/edit`))
     .catch(err =>
     {
         console.log("err from postCourseToPath:", err)
