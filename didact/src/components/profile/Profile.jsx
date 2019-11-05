@@ -138,7 +138,7 @@ export default function Profile(props) {
         <div className={classes.paper}>
           <div className = {classes.closeModel} onClick = {handleClose}>X</div>
           
-          {userName.photo ? <img src={userName.photo} alt = "Profile" className={classes.iconImage} /> : <PermIdentityIcon  className={classes.iconImageProfile} />}
+          {userName.photo ? <img src={userName.photo} alt = "Profile" className={classes.iconImage} /> : <PermIdentityIcon  className={classes.iconImage} />}
           <h2 className={classes.title} id="transition-modal-title">{userName.email}</h2>
           <p className={classes.description} id="transition-modal-description">Welcome {firstName}!</p>
           <div className={classes.smallImageDivs} >
