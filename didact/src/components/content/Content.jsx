@@ -94,7 +94,7 @@ const Content = (props) => {
                     case ('editlearningpath'):
                         return <EditLearningPaths id={props.match.params.id} props={props}/>
                     case ('learningpath'):
-                        return <LearningPath props={props}/>
+                        return <LearningPath props={props} id={props.match.params.id}/>
                     case ('addpathitem'):
                         return <AddPathItems props={props}/>
                     case ('editpathitem'):
