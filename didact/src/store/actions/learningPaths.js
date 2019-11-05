@@ -236,13 +236,13 @@ export const deleteTagFromPath = (tag, id) => dispatch =>
     })
 }
 
-export const postCourseToPath = (props, courseId) => dispatch =>
+export const addNewCourseToLearningPath = (props, courseId) => dispatch =>
 {
-   const order = Number(props.match.params.order);
+   const order = Number(props.match.params.order + 1);
 
-    console.log("ORDER", {order})
-    console.log("courseId", courseId)
-    console.log("props", props)
+    // console.log("ORDER", {order})
+    // console.log("courseId", courseId)
+    // console.log("props", props)
     dispatch({ type: POST_COURSE_TO_PATH_START })
     const pathId = props.match.params.id;
     axiosWithAuth().post(`${baseURL}${pathId}/courses/${courseId}`, {order: order})

@@ -163,12 +163,13 @@ export
     quitLearningPath,
     postTagToPath,
     deleteTagFromPath,
-    postCourseToPath,
+
     removeCourseFromPath,
     updateCourseOrder,
     getYourLearningPaths,
     postPathItem,
     updatePathItem,
     deletePathItem,
-    updateLearningPathContentOrder
+    updateLearningPathContentOrder,
+    addNewCourseToLearningPath
 } from './learningPaths'
