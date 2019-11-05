@@ -60,6 +60,7 @@ const initialState =
     learningPaths: [],
     learningPath: {},
     yourLearningPaths: []
+
 }
 
 export const learningPathReducer = (state = initialState, action) =>
@@ -361,7 +362,7 @@ export const learningPathReducer = (state = initialState, action) =>
             return {
                 ...state,
                 isLoading: false,
-                learningPath: {...state.learningPath, pathItems: [...state.learningPath.pathItems, action.payload]},
+                // learningPath: {...state.learningPath, pathItems: [...state.learningPath.pathItems, action.payload]},
                 error: "",
             }
         case POST_PATH_ITEM_FAIL:
@@ -373,7 +374,7 @@ export const learningPathReducer = (state = initialState, action) =>
         case UPDATE_PATH_ITEM_START:
             return {
                 ...state,
-                isLoading: true,
+                // isLoading: true,
                 error: "",
             }
         case UPDATE_PATH_ITEM_SUCCESS:

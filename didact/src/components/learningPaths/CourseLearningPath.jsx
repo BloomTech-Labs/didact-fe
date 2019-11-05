@@ -15,6 +15,7 @@ import TextField from '@material-ui/core/TextField';
 import DeleteModal from '../courses/DeleteModal'
 import {FinishEdit, DeleteForm} from '../dashboard/ButtonStyles';
 import {DraggableDiv} from "./DraggableStyles.js";
+import EditPathItems from './pathItems/EditPathItems'
 
 import { Draggable } from "react-beautiful-dnd";
 
@@ -138,15 +139,20 @@ const CssTextField = withStyles({
     },
 })(TextField);
 
-const CourseLearningPath = ({course, index}) => {
+const CourseLearningPath = ({course, index, props}) => {
     const state = useSelector(state => state)
     const dispatch = useDispatch()
     const classes = useStyles();
-    const [expanded, setExpanded] = React.useState(false);
-    console.log(course)
+    const [expanded, setExpanded] = useState(false);
+    const [toggleEdit, setToggleEdit] = useState(false);
+    console.log(props)
     const handleExpandClick = () => {
         setExpanded(!expanded);
     };
+
+    const handleToggleEdit = () => {
+        setToggleEdit(!toggleEdit)
+    }
 
     return (
         <Draggable draggableId={`${index}`} index={index}>
@@ -158,7 +164,8 @@ const CourseLearningPath = ({course, index}) => {
                 ref={provided.innerRef}
                 // innerRef={provided.innerRef}
                 >
-                <Card className={classes.card}>
+                {!toggleEdit ? (
+                    <Card className={classes.card}>
                     <CardContent >
                         <Typography variant="h5" component="h2">
                             {course.name}
@@ -201,8 +208,10 @@ const CourseLearningPath = ({course, index}) => {
                     </CardContent>
                     <CardActions>
                         {/* <Button style={{marginLeft: '70.5%'}} type='submit' size="small" variant="contained" className={classes.button} >Edit Course</Button> */}
+                        {course.path_id ? <Button onClick = {handleToggleEdit} style={{marginLeft: '70.5%'}} type='submit' size="small" variant="contained" className={classes.button} >Edit Item</Button> : null}
                     </CardActions>
                 </Card>
+                ) : (course.path_id ? (<EditPathItems course = {course} props = {props} handleToggleEdit = {handleToggleEdit}/>) : null)}
             </DraggableDiv>
             // </div>
             )}

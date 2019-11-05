@@ -10,6 +10,8 @@ import AllCourses from "../courses/AllCourses.jsx"
 import AddLearningPaths from '../learningPaths/AddLearningPaths'
 import EditLearningPaths from '../learningPaths/EditLearningPaths'
 import LearningPath from '../learningPaths/LearningPath'
+import AddPathItems from '../learningPaths/pathItems/AddPathItems'
+import EditPathItems from '../learningPaths/pathItems/EditPathItems'
 
 
 const Content = (props) => {
@@ -91,6 +93,10 @@ const Content = (props) => {
                         return <EditLearningPaths id={props.match.params.id} props={props}/>
                     case ('learningpath'):
                         return <LearningPath props={props}/>
+                    case ('addpathitem'):
+                        return <AddPathItems props={props}/>
+                    case ('editpathitem'):
+                        return <EditPathItems props={props}/>
                     default:
                         break;
                 }

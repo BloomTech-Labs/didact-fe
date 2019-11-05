@@ -150,6 +150,9 @@ export
     DELETE_PATH_ITEM_START,
     DELETE_PATH_ITEM_SUCCESS,
     DELETE_PATH_ITEM_FAIL,
+    UPDATE_PATH_CONTENT_START,
+    UPDATE_PATH_CONTENT_SUCCESS,
+    UPDATE_PATH_CONTENT_FAIL,
     getLearningPaths,
     searchLearningPathsByTag,
     getLearningPath,
@@ -167,4 +170,5 @@ export
     postPathItem,
     updatePathItem,
     deletePathItem,
+    updateLearningPathContentOrder
 } from './learningPaths'
