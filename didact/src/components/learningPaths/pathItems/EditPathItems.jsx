@@ -1,16 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
-  getLearningPath,
-  updateLearningPath,
-  deleteLearningPath,
-  updateLearningPathContentOrder
-} from "../../store/actions";
+  updatePathItem,
+  deletePathItem
+} from "../../../store/actions";
 
-import DeleteModal from "../courses/DeleteModal";
-import {ButtonDiv, FinishEdit, DeleteForm } from "../dashboard/ButtonStyles";
-import {DroppableDiv, PathInstructions} from "./DraggableStyles.js";
-import CourseLearningPath from "./CourseLearningPath";
+import DeleteModal from "../../courses/DeleteModal";
+import {ButtonDiv, FinishEdit, DeleteForm } from "../../dashboard/ButtonStyles";
 
 //imports from material-ui
 import { makeStyles, withStyles } from "@material-ui/core/styles";
@@ -115,66 +111,55 @@ const CssTextField = withStyles({
   },
 })(TextField);
 
-const EditLearningPaths = ({ id, props }) => {
-  // console.log(id);
-  // console.log(props);
+const EditPathItems = ({ course, props, handleToggleEdit }) => {
+  console.log(props);
+  console.log(course)
   const state = useSelector(state => state.learningPathReducer);
   const learningPath = state.learningPath;
   const dispatch = useDispatch();
   const classes = useStyles();
-  const [expanded, setExpanded] = React.useState(false);
   const [learningPathEdit, setLearningPathEdit] = useState(true);
   const [openModal, setOpenModal] = useState(false);
-  const [itemsCourses, setItemsCourses] = useState([]);
   const [changes, setChanges] = useState({
     name: "",
-    category: "",
+    link: "",
     description: "",
+    type: ""
   });
 
-
-  useEffect(() => {
-    dispatch(getLearningPath(id));
-  }, [id, dispatch]);
-
-  console.log(learningPath);
   useEffect(() => {
     setChanges({
-      name: learningPath.name,
-      category: learningPath.category,
-      description: learningPath.description,
+      ...course,
+      name: course.name,
+      type: course.type,
+      link: course.link,
+      description: course.description,
     });
-  }, [learningPath]);
+  }, [course]);
 
-  const toggleEdit = () => {
-    setLearningPathEdit(!learningPathEdit);
-  };
+  // const toggleEdit = () => {
+  //   setLearningPathEdit(!learningPathEdit);
+  // };
 
   const handlePathSubmit = event => {
     event.preventDefault();
-    dispatch(updateLearningPath(learningPath.id, changes));
-    toggleEdit();
+    dispatch(updatePathItem(learningPath.id, course.id, changes));
+    handleToggleEdit();
   };
 
   const handleChange = name => event => {
     setChanges({ ...changes, [name]: event.target.value });
   };
 
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
 
   const handleCancel = event => {
     event.preventDefault();
-    toggleEdit();
+    handleToggleEdit();
   };
 
-  const backToLearningPath = () => {
-    props.history.push(`/learning-paths/${id}`);
-  };
 
   const handleDelete = () => {
-    dispatch(deleteLearningPath(id, props.history));
+    dispatch(deletePathItem(props.match.params.id, course.id));
   };
 
   const handleModalOpen = () => {
@@ -185,116 +170,9 @@ const EditLearningPaths = ({ id, props }) => {
     setOpenModal(false);
   };
   
-  // Combines items and courses into a single array
-  useEffect(() => {
-    if (learningPath.pathItems) {
-      setItemsCourses(
-        ([...learningPath.pathItems, ...learningPath.courses].sort(
-          (a, b) => a.path_order - b.path_order
-        ))
-      );
-    }
-  }, [learningPath.pathItems, learningPath.courses])
-
-  // changes learning path array order on drag end
-  const changePathOrder = (starting, ending, arr) => {
-    let returned = arr.map((el, i) => {
-      if (`${i}` === starting) {
-        let spliced = arr.splice(starting, 1)[0];
-        arr.splice(ending, 0, spliced)
-        return arr
-      }
-      return arr
-    });
-    returned[starting].forEach((el, i) => el.path_order = i)
-    return returned[starting]
-  };
-
-  // function for Drag and Drop calling changeArr above
-  const onDragEnd = result => {
-    const { destination, source, draggableId } = result;
-    console.log(result)
-    if(!destination) {
-        return
-    }
-
-    if(
-        destination.droppableId === source.droppableId &&
-        destination.index === source.index
-    ) {
-        return
-    }
-    // see instantiation of function on line 198
-    setItemsCourses(changePathOrder(draggableId, destination.index, [...itemsCourses]))
-
-    console.log(itemsCourses)
   
-    dispatch(updateLearningPathContentOrder(itemsCourses, props.match.params.id))
-
-  };
-  
-  
-  if (!state.isLoading) {
     return (
       <>
-        <FinishEdit
-          onClick={backToLearningPath}
-        >{`<- BACK TO PATH`}</FinishEdit>
-        <div className={classes.root}>
-          {learningPathEdit ? (
-            <Card className={classes.card}>
-              <CardContent>
-                <Typography variant="h5" component="h2">
-                  {learningPath.name}
-                </Typography>
-                <CardActions className={classes.descriptionDiv} disableSpacing>
-                  <Typography
-                    color="textSecondary"
-                    className={classes.descriptionTitle}
-                  >
-                    {" "}
-                    {learningPath.description && !expanded
-                      ? `${learningPath.description.substring(0, 100)} ...`
-                      : null}
-                  </Typography>
-                  <IconButton
-                    className={clsx(classes.expand, {
-                      [classes.expandOpen]: expanded,
-                    })}
-                    onClick={handleExpandClick}
-                    aria-expanded={expanded}
-                    aria-label="show more"
-                  >
-                    <ExpandMoreIcon />
-                  </IconButton>
-                </CardActions>
-                <Collapse in={expanded} timeout="auto" unmountOnExit>
-                  <CardContent>
-                    <Typography color="textSecondary" paragraph>
-                      {learningPath.description}
-                    </Typography>
-                  </CardContent>
-                </Collapse>
-                <Typography color="textSecondary">
-                  {learningPath.category
-                    ? `Category: ${learningPath.category}`
-                    : null}
-                </Typography>
-              </CardContent>
-              <CardActions>
-                <Button
-                  onClick={toggleEdit}
-                  style={{ marginLeft: "80%" }}
-                  type="submit"
-                  size="small"
-                  variant="contained"
-                  className={classes.button}
-                >
-                  Edit Path
-                </Button>
-              </CardActions>
-            </Card>
-          ) : (
             <Card className={classes.card}>
               <CardContent>
                 <Typography className={classes.title} gutterBottom>
@@ -304,7 +182,7 @@ const EditLearningPaths = ({ id, props }) => {
                 {openModal ? (
                   <DeleteModal
                     handleDelete={handleDelete}
-                    text={"Learning Path"}
+                    text={"Path Item"}
                     open={openModal}
                     handleModalClose={handleModalClose}
                   />
@@ -317,13 +195,13 @@ const EditLearningPaths = ({ id, props }) => {
                 >
                   <CssTextField
                     id="standard-name"
-                    label="Learning Path Title"
+                    label="Item Name"
                     className={classes.pathUrlField}
                     value={changes.name || ""}
                     onChange={handleChange("name")}
                     margin="normal"
                     variant="outlined"
-                    placeholder="Learning Path Title"
+                    placeholder="Item Name"
                     InputProps={{
                       classes: {
                         underline: classes.blackUnderline,
@@ -348,13 +226,29 @@ const EditLearningPaths = ({ id, props }) => {
                   />
                   <CssTextField
                     id="standard-name"
-                    label="Category"
+                    label="Link"
                     className={classes.pathUrlField}
-                    value={changes.category || ""}
-                    onChange={handleChange("category")}
+                    value={changes.link || ""}
+                    onChange={handleChange("link")}
                     margin="normal"
                     variant="outlined"
-                    placeholder="Category"
+                    placeholder="Link"
+                    InputProps={{
+                      classes: {
+                        underline: classes.blackUnderline,
+                        input: classes.input,
+                      },
+                    }}
+                  />
+                  <CssTextField
+                    id="standard-name"
+                    label="Type"
+                    className={classes.pathUrlField}
+                    value={changes.type || ""}
+                    onChange={handleChange("type")}
+                    margin="normal"
+                    variant="outlined"
+                    placeholder="Type"
                     InputProps={{
                       classes: {
                         underline: classes.blackUnderline,
@@ -385,35 +279,8 @@ const EditLearningPaths = ({ id, props }) => {
                 </form>
               </CardContent>
             </Card>
-          )}
-          <PathInstructions>Drag to Change Learning Path Order</PathInstructions>
-          <DragDropContext onDragEnd={onDragEnd}
-          >
-            {<div>
-              <Droppable droppableId="column-1">
-                {provided => (
-                 <DroppableDiv
-                    ref={provided.innerRef}
-                    // innerRef={provided.innerRef}
-                    {...provided.droppableProps}
-                 >
-                    {itemsCourses &&  
-                    itemsCourses.map((order, index) => <CourseLearningPath props = {props} key={index} course={order} index = {index}/>)}
-                    {provided.placeholder}
-                  </DroppableDiv>  
-                  )
-                  
-                }
-              </Droppable>
-            </div>}
-          </DragDropContext>
-
-        </div>
       </>
     );
-  } else {
-    return <h1>Loading...</h1>;
-  }
 };
 
-export default EditLearningPaths;
+export default EditPathItems;

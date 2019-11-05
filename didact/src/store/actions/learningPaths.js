@@ -52,6 +52,9 @@ export const UPDATE_PATH_ITEM_FAIL = "UPDATE_PATH_ITEM_FAIL"
 export const DELETE_PATH_ITEM_START = "DELETE_PATH_ITEM_START"
 export const DELETE_PATH_ITEM_SUCCESS = "DELETE_PATH_ITEM_SUCCESS"
 export const DELETE_PATH_ITEM_FAIL = "DELETE_PATH_ITEM_FAIL"
+export const UPDATE_PATH_CONTENT_START = "UPDATE_PATH_CONTENT_START"
+export const UPDATE_PATH_CONTENT_SUCCESS = "UPDATE_PATH_CONTENT_SUCCESS"
+export const UPDATE_PATH_CONTENT_FAIL = "UPDATE_PATH_CONTENT_FAIL"
 
 const baseURL = `${beURL}learning-paths/`
 
@@ -298,7 +301,7 @@ export const getYourLearningPaths = (getYours) => dispatch =>
     })
 }
 
-export const postPathItem = (pathId, item) => dispatch =>
+export const postPathItem = (pathId, item, history) => dispatch =>
 {
     dispatch({ type: POST_PATH_ITEM_START })
 
@@ -308,6 +311,10 @@ export const postPathItem = (pathId, item) => dispatch =>
         console.log("res from postPathItem:", res)
         dispatch({ type: POST_PATH_ITEM_SUCCESS, payload: {...item, id: res.data.id} })
     })
+    .then(response => { 
+        console.log(response);
+        console.log(pathId); 
+        history.push(`/learning-paths/${pathId}/edit`)})
     .catch(err =>
     {
         console.log("err from postPathItem:", err)
@@ -318,8 +325,9 @@ export const postPathItem = (pathId, item) => dispatch =>
 export const updatePathItem = (pathId, itemId, changes) => dispatch =>
 {
     dispatch({ type: UPDATE_PATH_ITEM_START })
+    // console.log("updatePath", changes)
     //changes should be an object of form: {name: "blah", order: 7}
-    axiosWithAuth().post(`${baseURL}${pathId}/path-items/${itemId}`, changes)
+    axiosWithAuth().put(`${baseURL}${pathId}/path-items/${itemId}`, changes)
     .then(res =>
     {
         console.log("res from updatePathItem:", res)
@@ -346,5 +354,19 @@ export const deletePathItem = (pathId, itemId) => dispatch =>
     {
         console.log("err from deletePathItem:", err)
         dispatch({ type: DELETE_PATH_ITEM_FAIL, payload: err })
+    })
+}
+
+export const updateLearningPathContentOrder = (learningPathContent, path_id) => dispatch => {
+    dispatch({ type: UPDATE_PATH_CONTENT_START })
+    console.log('in action', learningPathContent)
+    axiosWithAuth().put(`${baseURL}${path_id}/order`, {learningPathContent: learningPathContent})
+    .then(res => {
+        console.log(res.data)
+        dispatch({type: UPDATE_PATH_CONTENT_SUCCESS, payload: {learningPathContent}})
+    })
+    .catch(err => {
+        console.log(err.message)
+        dispatch({type: UPDATE_PATH_CONTENT_FAIL, payload: err.message})
     })
 }
