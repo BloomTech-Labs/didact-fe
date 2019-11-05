@@ -32,6 +32,6 @@ export default function AddToLearningPath({props, itemsCourses}) {
                 <p style = {{fontSize: "12px"}}>Add New Item</p>
             </IconDiv>
             </Link>
-        </Container>
+        </Container> 
     )
 } 
