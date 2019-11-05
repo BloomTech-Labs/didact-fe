@@ -1,6 +1,6 @@
 import axiosWithAuth from '../../utils/axiosWithAuth';
 import beURL from '../../utils/beURL'
-import {postCourseToPath} from '../actions/index.js'
+import {addNewCourseToLearningPath} from '../actions/index.js'
 
 export const COURSE_DATA_START = 'COURSE_DATA_START';
 export const COURSE_DATA_SUCCESS = 'COURSE_DATA_SUCCESS';
@@ -55,7 +55,6 @@ export const getCourseById =(id) => dispatch => {
 }
 
 export const addCourse =(values, props) => dispatch => {
-    console.log(values)
     dispatch({type: ADD_COURSE_DATA_START})
     axiosWithAuth()
     .post(`${baseURL}`, values)
@@ -65,7 +64,7 @@ export const addCourse =(values, props) => dispatch => {
         dispatch({type: ADD_COURSE_DATA_SUCCESS, payload: {...values, id: res.data} })
         return res.data
     })
-    .then(response => props.match.params.id ? (dispatch(postCourseToPath(props, response.id))) : props.history.push(`/courses/${response.id}/edit`))
+    .then(response => props.match.params.id ? (dispatch(addNewCourseToLearningPath(props, response.id))) : props.history.push(`/courses/${response.id}/edit`))
     .catch(err => {
         console.log(err.response)
         dispatch({type: ADD_COURSE_DATA_FAIL, payload: err})
