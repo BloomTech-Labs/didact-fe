@@ -18,6 +18,11 @@ export const LearningPathWrapper = styled.div`
 
         .editLearningButton {
             font-size: .8rem;
+            
+            a {
+                color: black;
+                text-decoration: none;
+            }
         }
     }
 
@@ -31,6 +36,12 @@ export const LearningPathWrapper = styled.div`
         .completed {
             background: white;
             opacity: 0.5;
+        }
+        
+        a {
+            text-decoration: none;
+            min-width: 130px;
+            text-align: center;
         }
     }
 
