@@ -43,6 +43,9 @@ export const UPDATE_COURSE_ORDER_FAIL = "UPDATE_COURSE_ORDER_FAIL"
 export const GET_YOUR_LEARNING_PATHS_START = "GET_YOUR_LEARNING_PATHS_START"
 export const GET_YOUR_LEARNING_PATHS_SUCCESS = "GET_YOUR_LEARNING_PATHS_SUCCESS"
 export const GET_YOUR_LEARNING_PATHS_FAIL = "GET_YOUR_LEARNING_PATHS_FAIL"
+export const GET_YOUR_LEARNING_PATHS_OWNED_START = "GET_YOUR_LEARNING_PATHS_OWNED_START"
+export const GET_YOUR_LEARNING_PATHS_OWNED_SUCCESS = "GET_YOUR_LEARNING_PATHS_OWNED_SUCCESS"
+export const GET_YOUR_LEARNING_PATHS_OWNED_FAIL = "GET_YOUR_LEARNING_PATHS_OWNED_FAIL"
 export const POST_PATH_ITEM_START = "POST_PATH_ITEM_START"
 export const POST_PATH_ITEM_SUCCESS = "POST_PATH_ITEM_SUCCESS"
 export const POST_PATH_ITEM_FAIL = "POST_PATH_ITEM_FAIL"
@@ -307,6 +310,23 @@ export const getYourLearningPaths = (getYours) => dispatch =>
     {
         console.log('err from get your learning paths', err)
         dispatch({ type: GET_YOUR_LEARNING_PATHS_FAIL, payload: err })
+    })
+}
+
+export const getYourLearningPathsOwned = (getYours) => dispatch =>
+{
+    dispatch({ type: GET_YOUR_LEARNING_PATHS_OWNED_START })
+    console.log('User Object', {getYours})
+    axiosWithAuth().get(`${baseURL}yours-owned`)
+    .then(res =>
+    {
+        console.log('res from get your learning paths', res)
+        dispatch({ type: GET_YOUR_LEARNING_PATHS_OWNED_SUCCESS, payload: res.data })
+    })
+    .catch(err =>
+    {
+        console.log('err from get your learning paths', err)
+        dispatch({ type: GET_YOUR_LEARNING_PATHS_OWNED_FAIL, payload: err })
     })
 }
 

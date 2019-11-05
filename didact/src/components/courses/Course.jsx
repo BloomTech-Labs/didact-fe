@@ -1,8 +1,12 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { courseEndPoint } from "../../store/actions/index.js";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { AddButton, PlusDiv, Plus, ButtonText } from '../dashboard/ButtonStyles';
+
+import { getYourLearningPathsOwned, postCourseToPath } from '../../store/actions/index'
+
+import { AddCourseToPath } from './CourseStyles'
 
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -15,6 +19,7 @@ import Collapse from '@material-ui/core/Collapse';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import AddCircleRoundedIcon from '@material-ui/icons/AddCircleRounded';
 import useMediaQuery from "@material-ui/core/useMediaQuery";
+import Popover from '@material-ui/core/Popover'
 
 
 const useStyles = makeStyles(theme => ({
@@ -82,7 +87,8 @@ const useStyles = makeStyles(theme => ({
     },
     root: {
         display: 'flex',
-        flexDirection: 'row'
+        flexDirection: 'row',
+        opacity: '0'
     },
     rootTablet: {
         display: 'flex',
@@ -95,15 +101,29 @@ const useStyles = makeStyles(theme => ({
     tooltip: {
         width: "400px"
     },
+    title: {
+        display: 'flex',
+    },
+    addCourse: {
+        background: 'none',
+        border: 'black',
+        height: '100%',
+    },
+    popoverRoot: {
+        // backgroundColor: 'rgba(0, 0, 0, 0.5)'
+    }
 
 }));
 
 
-const Course = ({course}) => {
+const Course = ({ course, addingCourses }) => {
     const tabletSize = useMediaQuery("(max-width:1150px");
     const classes = useStyles();
     const dispatch = useDispatch();
     const [expanded, setExpanded] = useState(false);
+    const [anchorEl, setAnchorEl] = useState(null);
+    const open = Boolean(anchorEl);
+    const id = open ? 'simple-popover' : undefined;
     const state = useSelector(state => state);
     // console.log('user', state.onboardingReducer.user)
     // console.log(state.coursesReducer.courses)
@@ -112,53 +132,118 @@ const Course = ({course}) => {
         dispatch(courseEndPoint());
     }, [dispatch]);
 
+    useEffect(() => {
+        dispatch(getYourLearningPathsOwned())
+    }, [dispatch]);
+
     const handleExpandClick = () => {
         setExpanded(!expanded);
     };
+
+    const handleClick = event => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
+    const handleAddCourse = (path_id, course_id, order) => {
+        console.log(path_id, course_id, order)
+        dispatch(postCourseToPath(path_id, course_id, Number(order)))
+        setAnchorEl(null);
+    }
+
+    console.log(state.learningPathReducer.yourLearningPathsOwned)
+
+    // const filteredPaths = state.learningPathReducer.yourLearningPaths.filter(path => path)
+
+
+    const learningPaths = state.learningPathReducer.yourLearningPathsOwned
+
+    const filteredPaths = []
+
+    learningPaths.forEach(path => {
+        if(!path.courseIds.includes(course.id)) filteredPaths.push(path)
+    })
+
     return (
         <>
-             <Card className={classes.card}>
-                            <CardContent>
-                                <Typography variant="h5" component="h2">
-                                    {course.name}
-                                </Typography>
-                                <CardActions className={classes.descriptionDiv} color="textSecondary"  disableSpacing>
-                                    <Typography >{course.description && !expanded ? (`${course.description.substring(0, 100)} ...`) : null}</Typography>
-                                    <IconButton
-                                        className={clsx(classes.expand, {
-                                            [classes.expandOpen]: expanded,
-                                        })}
-                                        onClick={handleExpandClick}
-                                        aria-expanded={expanded}
-                                        aria-label="show more"
-                                    >
-                                        <ExpandMoreIcon />
-                                    </IconButton>
-                                </CardActions>
-                                <Collapse in={expanded} timeout="auto" unmountOnExit>
-                                    <CardContent>
-                                        <Typography className={classes.title} color="textSecondary"  paragraph>
-                                            {course.description}
-                                        </Typography>
-                                    </CardContent>
-                                </Collapse>
-                                <Typography className={classes.pos} color="textSecondary">
-                                    {course.foreign_rating}
-                                </Typography>
-                                <Typography variant="body2" component="p">
-                                    {course.foreign_instructors}
-                                </Typography>
-                                <Typography color="textSecondary">
-                                {course.category ? (`Category: ${course.category}`) : (null)}
-                                </Typography>
-                            </CardContent>
-                            <CardActions className={classes.buttonDiv}>
-                                <Link to={`/courses/${course.id}`} ><button className={classes.buttonCourse} size="small">Go To Course</button></Link>
-                            </CardActions>
-                        </Card>
-        </>
-        
-        
+            <Card className={classes.card}>
+                <CardContent>
+                    <Typography className={classes.title} variant="h5" component="h2">
+                        <>{course.name}</>
+                        {addingCourses && <button className={classes.addCourse} onClick={handleClick}>+</button>}
+                        <div className={classes.popoverRoot}>
+                        <Popover
+                            id={id}
+                            open={open}
+                            anchorEl={anchorEl}
+                            onClose={handleClose}
+                            anchorOrigin={{
+                                vertical: 'bottom',
+                                horizontal: 'right',
+                            }}
+                            transformOrigin={{
+                                vertical: 'center',
+                                horizontal: 'right',
+                            }}
+                        >
+                            {
+                                <AddCourseToPath className={classes.popoverRoot}>
+                                    {
+                                        filteredPaths.length > 0 && (filteredPaths.map((learningPath, index) => {
+                                        return (
+                                            <div className='learningPathTitle'>
+                                                <h3>{learningPath.name}</h3>
+                                                <button onClick={() => handleAddCourse(learningPath.id, course.id, learningPath.contentLength+1)}>+</button>
+                                            </div>
+
+                                        )
+                                        }))
+                                    }
+                                </AddCourseToPath>
+                            }
+                        </Popover>
+                        </div>
+                    </Typography>
+                    <CardActions className={classes.descriptionDiv} color="textSecondary" disableSpacing>
+                        <Typography >{course.description && !expanded ? (`${course.description.substring(0, 100)} ...`) : null}</Typography>
+                        <IconButton
+                            className={clsx(classes.expand, {
+                                [classes.expandOpen]: expanded,
+                            })}
+                            onClick={handleExpandClick}
+                            aria-expanded={expanded}
+                            aria-label="show more"
+                        >
+                            <ExpandMoreIcon />
+                        </IconButton>
+                    </CardActions>
+                    <Collapse in={expanded} timeout="auto" unmountOnExit>
+                        <CardContent>
+                            <Typography className={classes.title} color="textSecondary" paragraph>
+                                {course.description}
+                            </Typography>
+                        </CardContent>
+                    </Collapse>
+                    <Typography className={classes.pos} color="textSecondary">
+                        {course.foreign_rating}
+                    </Typography>
+                    <Typography variant="body2" component="p">
+                        {course.foreign_instructors}
+                    </Typography>
+                    <Typography color="textSecondary">
+                        {course.category ? (`Category: ${course.category}`) : (null)}
+                    </Typography>
+                </CardContent>
+                <CardActions className={classes.buttonDiv}>
+                    <Link to={`/courses/${course.id}`} ><button className={classes.buttonCourse} size="small">Go To Course</button></Link>
+                </CardActions>
+            </Card>
+            </>
+
+
     )
 }
 
