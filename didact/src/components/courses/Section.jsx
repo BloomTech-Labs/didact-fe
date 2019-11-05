@@ -19,6 +19,7 @@ import DeleteModal from './DeleteModal'
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import { AddButtonInSection, ButtonTextInSection, ButtonDiv, DeleteForm } from '../dashboard/ButtonStyles';
 
+
 const useStyles = makeStyles(theme => ({
 
     root: {

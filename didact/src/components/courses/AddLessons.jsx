@@ -9,7 +9,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import { ButtonDiv } from '../dashboard/ButtonStyles'
-
+import { Mixpanel } from '../../utils/mixpanel';
 
 const useStyles = makeStyles(theme => ({
 
@@ -148,6 +148,7 @@ const AddLesson = (props) => {
 
     const handleSubmit = event => {
         event.preventDefault();
+        Mixpanel.track('Lesson Added.')
         dispatch(addLessonToSection(props.props.match.params.id, props.section.id, values))
         props.setAddLessonChange(false)
     };

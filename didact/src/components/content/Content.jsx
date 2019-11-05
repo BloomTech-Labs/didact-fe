@@ -10,6 +10,8 @@ import AllCourses from "../courses/AllCourses.jsx"
 import AddLearningPaths from '../learningPaths/AddLearningPaths'
 import EditLearningPaths from '../learningPaths/EditLearningPaths'
 import LearningPath from '../learningPaths/LearningPath'
+import YourLearningPaths from '../learningPaths/YourLearningPaths'
+import AllLearningPaths from '../learningPaths/AllLearningPaths'
 import AddPathItems from '../learningPaths/pathItems/AddPathItems'
 import EditPathItems from '../learningPaths/pathItems/EditPathItems'
 
@@ -97,6 +99,10 @@ const Content = (props) => {
                         return <AddPathItems props={props}/>
                     case ('editpathitem'):
                         return <EditPathItems props={props}/>
+                    case ('learningpaths'):
+                        return <AllLearningPaths props={props}/>
+                    case ('yourlearningpaths'):
+                        return <YourLearningPaths props={props}/>
                     default:
                         break;
                 }

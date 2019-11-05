@@ -42,7 +42,11 @@ const Routes = () => {
             (
                 <MainPage {...routeProps} page={'editlearningpath'} />
             )} />
-            <Route exact path='/learning-paths' render={routeProps =>
+            <Route exact path='/learning-paths/join' render={routeProps =>
+            (
+                <MainPage {...routeProps} page={'learningpaths'} />
+            )} />
+            <Route exact path='/learning-paths/:id' render={routeProps =>
             (
                 <MainPage {...routeProps} page={'learningpath'} />
             )} />
@@ -53,6 +57,10 @@ const Routes = () => {
              <Route exact path='/learning-paths/:id/items/:item_id/edit' render={routeProps =>
             (
                 <MainPage {...routeProps} page={'editpathitem'} />
+            )} />
+            <Route exact path='/learning-paths' render={routeProps =>
+            (
+                <MainPage {...routeProps} page={'yourlearningpaths'} />
             )} />
         </Switch>
     )
