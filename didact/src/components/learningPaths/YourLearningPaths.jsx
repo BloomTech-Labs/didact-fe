@@ -111,7 +111,7 @@ const YourLearningPaths = (props) => {
                 }))
             }
             {
-                learningPaths.length === 0 && <h1>You are not apart of any paths</h1>
+                learningPaths.length === 0 && <h1>You have not joined any learning paths</h1>
             }
             <div className='buttons'>
                 <Link to={'/learning-paths/join'}>Join a Learning Path</Link>

@@ -156,10 +156,10 @@ function AllCourses(props) {
                         <ButtonText>New Course</ButtonText>
                     </AddButton>
                 </Link>
-                <AddButton onClick={handleAddingCourses}>
+                {/* <AddButton onClick={handleAddingCourses}>
                     <AddCircleRoundedIcon className = {classes.circleIcon}/>
                     <ButtonText>{addingCourses ? "Done Adding" : "Add Courses"}</ButtonText>
-                </AddButton>
+                </AddButton> */}
                 {/* <Link style={{ textDecoration: 'none' }} >
                     <AddButton >
                        <AddCircleRoundedIcon className = {classes.circleIcon}/>
