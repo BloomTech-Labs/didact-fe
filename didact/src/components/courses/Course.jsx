@@ -6,7 +6,7 @@ import { AddButton, PlusDiv, Plus, ButtonText } from '../dashboard/ButtonStyles'
 
 import { getYourLearningPathsOwned, postCourseToPath } from '../../store/actions/index'
 
-import { AddCourseToPath } from './CourseStyles'
+import { AddCourseToPath, PopoverWrapper } from './CourseStyles'
 
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -20,6 +20,9 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import AddCircleRoundedIcon from '@material-ui/icons/AddCircleRounded';
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import Popover from '@material-ui/core/Popover'
+
+import playlistAdd from '../../images/playlist_add_black_24x24.png'
+import closeIcon from '../../images/close_black_24x24.png'
 
 
 const useStyles = makeStyles(theme => ({
@@ -111,6 +114,10 @@ const useStyles = makeStyles(theme => ({
     },
     popoverRoot: {
         // backgroundColor: 'rgba(0, 0, 0, 0.5)'
+        // backgroundColor: 'red',
+    },
+    courseTitle: {
+        maxWidth: '512px'
     }
 
 }));
@@ -134,7 +141,7 @@ const Course = ({ course, addingCourses }) => {
 
     useEffect(() => {
         dispatch(getYourLearningPathsOwned())
-    }, [dispatch]);
+    }, [dispatch, state.learningPathReducer.learningPath]);
 
     const handleExpandClick = () => {
         setExpanded(!expanded);
@@ -149,7 +156,6 @@ const Course = ({ course, addingCourses }) => {
     };
 
     const handleAddCourse = (path_id, course_id, order) => {
-        console.log(path_id, course_id, order)
         dispatch(postCourseToPath(path_id, course_id, Number(order)))
         setAnchorEl(null);
     }
@@ -164,47 +170,67 @@ const Course = ({ course, addingCourses }) => {
     const filteredPaths = []
 
     learningPaths.forEach(path => {
-        if(!path.courseIds.includes(course.id)) filteredPaths.push(path)
+        if (!path.courseIds.includes(course.id)) filteredPaths.push(path)
     })
 
     return (
-        <>
+        <PopoverWrapper>
             <Card className={classes.card}>
                 <CardContent>
                     <Typography className={classes.title} variant="h5" component="h2">
-                        <>{course.name}</>
-                        {addingCourses && <button className={classes.addCourse} onClick={handleClick}>+</button>}
+                        <span className={classes.courseTitle}>{course.name}</span>
+                        {addingCourses && <button className={classes.addCourse} onClick={handleClick}><img src={playlistAdd} /></button>}
                         <div className={classes.popoverRoot}>
-                        <Popover
-                            id={id}
-                            open={open}
-                            anchorEl={anchorEl}
-                            onClose={handleClose}
-                            anchorOrigin={{
-                                vertical: 'bottom',
-                                horizontal: 'right',
-                            }}
-                            transformOrigin={{
-                                vertical: 'center',
-                                horizontal: 'right',
-                            }}
-                        >
-                            {
-                                <AddCourseToPath className={classes.popoverRoot}>
-                                    {
-                                        filteredPaths.length > 0 && (filteredPaths.map((learningPath, index) => {
-                                        return (
-                                            <div className='learningPathTitle'>
-                                                <h3>{learningPath.name}</h3>
-                                                <button onClick={() => handleAddCourse(learningPath.id, course.id, learningPath.contentLength+1)}>+</button>
-                                            </div>
+                            <Popover
+                                id={id}
+                                open={open}
+                                anchorEl={anchorEl}
+                                onClose={handleClose}
+                                anchorOrigin={{
+                                    vertical: 'bottom',
+                                    horizontal: 'right',
+                                }}
+                                transformOrigin={{
+                                    vertical: 'center',
+                                    horizontal: 'right',
+                                }}
+                            >
+                                {
+                                    <AddCourseToPath className={classes.popoverRoot}>
+                                        {
+                                            <div>
+                                                <div className='closePopover'>
+                                                    <img src={closeIcon} onClick={handleClose}/>
+                                                </div>
+                                                <div className='learningPaths'>
+                                                    <h4>Add to Learning Path</h4>
+                                                    {
+                                                        (filteredPaths.length > 0 ?
+                                                            (
+                                                                
+                                                                filteredPaths.length > 0 && (filteredPaths.map((learningPath, index) => {
+                                                                    return (
+                                                                        <div className='learningPathTitle'>
+                                                                            <h3>{learningPath.name}</h3>
+                                                                            <button onClick={() => handleAddCourse(learningPath.id, course.id, learningPath.contentLength + 1)}><img src={playlistAdd}/></button>
+                                                                        </div>
 
-                                        )
-                                        }))
-                                    }
-                                </AddCourseToPath>
-                            }
-                        </Popover>
+                                                                    )
+                                                                }))
+
+                                                            ) :
+                                                            <p>Can't Add Course To Any Learning Paths</p>)
+                                                    }
+                                                </div>
+                                                <div className='buttons'>
+                                                    <button onClick={handleClose}>Done</button>
+                                                    <a href='/learning-paths/add'>Create Learning Path</a>
+                                                </div>
+                                            </div>
+                                        }
+                                    </AddCourseToPath>
+                                }
+                            </Popover>
                         </div>
                     </Typography>
                     <CardActions className={classes.descriptionDiv} color="textSecondary" disableSpacing>
@@ -241,7 +267,7 @@ const Course = ({ course, addingCourses }) => {
                     <Link to={`/courses/${course.id}`} ><button className={classes.buttonCourse} size="small">Go To Course</button></Link>
                 </CardActions>
             </Card>
-            </>
+        </PopoverWrapper>
 
 
     )

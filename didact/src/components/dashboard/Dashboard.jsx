@@ -54,16 +54,19 @@ const useStyles = makeStyles({
 function Dashboard({props}) {
   const dispatch = useDispatch();
   const state = useSelector(state => state);
+
   const userName = state.onboardingReducer.user;
   const firstName = userName.first_name ? userName.first_name.substring(0, 1).toUpperCase() + userName.first_name.substring(1) : null;
   const classes = useStyles(props);
   console.log(props)
+
 
   useEffect(() => {
     dispatch(courseEndPoint());
   }, [dispatch]);
 
   return (
+
     <div className={classes.container}>
       <Card className={classes.welcome}>
         <h1>Welcome Back, {firstName}!</h1>
@@ -79,6 +82,7 @@ function Dashboard({props}) {
         </div>
       </div>
     </div>
+
   );
 }
 
