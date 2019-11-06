@@ -150,7 +150,6 @@ const EditCourse = ({props, id}) => {
     const [addSectionChange, setAddSectionChange] = useState(false);
     const [openModal, setOpenModal] = useState(false);
     const [changes, setChanges] = useState({
-
         name: "",
         category: "",
         description: "",
@@ -158,6 +157,7 @@ const EditCourse = ({props, id}) => {
         foreign_rating: "",
         link: ""
     })
+    console.log(props)
 
     useEffect(() => {
         dispatch(getCourseById(id))
@@ -207,7 +207,12 @@ const EditCourse = ({props, id}) => {
     }
 
     const backToCourse = () => {
-        props.history.push(`/courses/${props.match.params.id}`)
+        if(props.match.params.pathId){
+            props.history.push(`/learning-paths/${props.match.params.pathId}`)
+        } else {
+            props.history.push(`/courses/${props.match.params.id}`)   
+        }
+        
     }
 
     const handleDelete = () => {
@@ -226,7 +231,7 @@ const EditCourse = ({props, id}) => {
     return (
         <>
         
-        <FinishEdit onClick={backToCourse}>{`<- BACK TO COURSE`}</FinishEdit>
+        <FinishEdit onClick={backToCourse}>{(props.match.params.pathId ? `<- BACK TO PATH` : `<- BACK TO COURSE`)}</FinishEdit>
         <div className={classes.root}>
             {courseEdit ?
                 (

@@ -74,6 +74,7 @@ function MainPage(props) {
   
     const phoneSize = useMediaQuery("(max-width:600px)");
     const tabletSize = useMediaQuery('(max-width:770px, min-width: 601px');
+    const mediumScreenSize = useMediaQuery("(max-width:920px)");
     const [open, setOpen] = React.useState(true);
     const [openMobile, setOpenMobile] = React.useState(false);
 
@@ -165,7 +166,7 @@ function MainPage(props) {
                                 </div>
                                 <main className={classes.content}>
                                     {/* <div className={classes.toolbar} /> */}
-                                    <Content phoneSize={phoneSize} open={open} {...props}/>
+                                    <Content mediumScreenSize = {mediumScreenSize} phoneSize={phoneSize} open={open} tabletSize = {tabletSize} {...props}/>
                                     {/*************************ADD COMPONENTS HERE *********************** */}
                                 </main>
                             </div>

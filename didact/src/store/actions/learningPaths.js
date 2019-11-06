@@ -254,7 +254,7 @@ export const addNewCourseToLearningPath = (props, courseId) => dispatch =>
         console.log("res from postCourseToPath:", res)
         dispatch({ type: POST_COURSE_TO_PATH_SUCCESS, payload: res.data.pathCourses })
     })
-    .then(() => props.history.push(`/courses/${courseId}/edit`))
+    .then(() => props.history.push(`/learning-paths/${props.match.params.id}/courses/${courseId}/edit`))
     .catch(err =>
     {
         console.log("err from postCourseToPath:", err)
