@@ -280,7 +280,7 @@ const EditCourse = ({props, id}) => {
                                 Course Overview
                             </Typography>
                             <DeleteForm onClick={handleModalOpen}>X</DeleteForm>
-                            {openModal ? <DeleteModal handleDelete={handleDelete} text={"course"} open={openModal} handleModalClose={handleModalClose} /> : null}
+                            {openModal ? <DeleteModal handleDelete={handleDelete} text={"this course"} open={openModal} handleModalClose={handleModalClose} /> : null}
                             <form onSubmit={handleCourseSubmit} className={classes.container} noValidate autoComplete="off">
                                 <CssTextField
                                     id="standard-name"

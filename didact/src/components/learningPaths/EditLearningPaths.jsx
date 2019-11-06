@@ -285,13 +285,13 @@ const EditLearningPaths = ({ id, props }) => {
               <CardActions>
                 <Button
                   onClick={toggleEdit}
-                  style={{ marginLeft: "80%" }}
+                  style={{ marginLeft: "70%" }}
                   type="submit"
                   size="small"
                   variant="contained"
                   className={classes.button}
                 >
-                  Edit Path
+                  Edit Description
                 </Button>
               </CardActions>
             </Card>

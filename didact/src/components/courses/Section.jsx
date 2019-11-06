@@ -261,7 +261,7 @@ const Section = ({ course, section, props }) => {
                     <Card className={classes.card}>
                         <CardContent>
                         <DeleteForm onClick={handleModalOpen}>X</DeleteForm>
-                        {openModal ? <DeleteModal handleDelete={handleDelete} text={"section"} open={openModal} handleModalClose={handleModalClose} /> : null}
+                        {openModal ? <DeleteModal handleDelete={handleDelete} text={"this section"} open={openModal} handleModalClose={handleModalClose} /> : null}
                             <Typography className={classes.title} gutterBottom>
                                 Add Section
                          </Typography>
