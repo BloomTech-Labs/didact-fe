@@ -10,16 +10,10 @@ const Routes = () => {
     return (
         <Switch>
             <Route path="/login" component={FormikLoginForm} >
-                {/* {!token ? null : <Redirect to='/dashboard' />} */}
             </Route>
             <Route path="/register" component={FormikRegisterForm} >
-                {/* {!token ? <Redirect to='/dashboard' /> : null} */}
             </Route>
             <Route path='/auth' component={Auth} />
-            <Route path='/dashboard' render={routeProps =>
-            (
-                <MainPage {...routeProps} page={'dashboard'} />
-            )} />
             <Route exact path='/' render={routeProps =>
             (
                 <MainPage {...routeProps} page={'dashboard'} />
@@ -39,6 +33,42 @@ const Routes = () => {
             <Route exact path='/courses/:id' render={routeProps =>
             (
                 <MainPage {...routeProps} page={'detailedcourse'} />
+            )} />
+             <Route exact path='/learning-paths/add' render={routeProps =>
+            (
+                <MainPage {...routeProps} page={'addlearningpath'} />
+            )} />
+             <Route exact path='/learning-paths/:id/edit' render={routeProps =>
+            (
+                <MainPage {...routeProps} page={'editlearningpath'} />
+            )} />
+            <Route exact path='/learning-paths/join' render={routeProps =>
+            (
+                <MainPage {...routeProps} page={'learningpaths'} />
+            )} />
+            <Route exact path='/learning-paths/:id' render={routeProps =>
+            (
+                <MainPage {...routeProps} page={'learningpath'} />
+            )} />
+            <Route exact path='/learning-paths/:id/items/add' render={routeProps =>
+            (
+                <MainPage {...routeProps} page={'addpathitem'} />
+            )} />
+             <Route exact path='/learning-paths/:id/items/:item_id/edit' render={routeProps =>
+            (
+                <MainPage {...routeProps} page={'editpathitem'} />
+            )} />
+            <Route exact path='/learning-paths' render={routeProps =>
+            (
+                <MainPage {...routeProps} page={'yourlearningpaths'} />
+            )} />
+             <Route exact path='/learning-paths/:id/courses/add/:order' render={routeProps =>
+            (
+                <MainPage {...routeProps} page={'addcourse'} />
+            )} />
+            <Route exact path='/learning-paths/:pathId/courses/:id/edit' render={routeProps =>
+            (
+                <MainPage {...routeProps} page={'editcourse'} />
             )} />
         </Switch>
     )

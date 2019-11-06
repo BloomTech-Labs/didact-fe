@@ -8,7 +8,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
-
+import { Mixpanel } from '../../utils/mixpanel';
 
 const useStyles = makeStyles(theme => ({
   
@@ -32,7 +32,6 @@ const useStyles = makeStyles(theme => ({
   container: {
     display: 'flex',
     flexWrap: 'wrap',
-    // margin: '10px',
   },
   input: {
     backgroundColor: '#F4F8FA',
@@ -66,12 +65,7 @@ const useStyles = makeStyles(theme => ({
       
     },
   },
-  // blackUnderline: {
-  //   '&:after': {
-  //     borderBottom: 'black solid 2px',
-  //     color: 'black',
-  //   },
-  // },
+
   courseUrlField: {
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
@@ -81,10 +75,6 @@ const useStyles = makeStyles(theme => ({
     },
   }
 }));
-
-// const labelStyle = {
-//     color: 'black'
-// }
 
 const CssTextField = withStyles({
   root: {
@@ -107,12 +97,14 @@ const CssTextField = withStyles({
 })(TextField);
 
 export default function AddCourse(props) {
+  console.log(props)
   const classes = useStyles();
-  console.log('props in componet', props)
   const dispatch = useDispatch();
   const [values, setValues] = useState({
     name: "",
+    category: "",
     foreign_instructors: "",
+    foreign_rating: "",
     link: "",
     description: "",
   });
@@ -122,9 +114,9 @@ export default function AddCourse(props) {
   };
 
   const handleSubmit = event => {
-    event.preventDefault();
-    console.log(values)
-    dispatch(addCourse(values, props.props));
+      event.preventDefault();
+      Mixpanel.track("Course Added.")
+      dispatch(addCourse(values, props.props));
   }
 
   return (
@@ -156,6 +148,17 @@ export default function AddCourse(props) {
                 placeholder="Instructors"
                 InputProps={{ classes: { underline: classes.blackUnderline, input: classes.input}}}
             />
+             <CssTextField
+                id="standard-name"
+                label="Rating"
+                className={classes.courseUrlField}
+                value={values.foreign_rating || ""}
+                onChange={handleChange('foreign_rating')}
+                margin="normal"
+                variant="outlined"
+                placeholder="Rating"
+                InputProps={{ classes: { underline: classes.blackUnderline, input: classes.input } }}
+            />
             <CssTextField
                 id="standard-name"
                 label="Description"
@@ -180,12 +183,20 @@ export default function AddCourse(props) {
                 placeholder="Course Url"
                 InputProps={{ classes: { underline: classes.blackUnderline, input: classes.input}}}
             />
+            <CssTextField
+                id="standard-name"
+                label="Category"
+                className={classes.courseUrlField}
+                value={values.category || ""}
+                onChange={handleChange('category')}
+                margin="normal"
+                variant="outlined"
+                placeholder="Category"
+                InputProps={{ classes: { underline: classes.blackUnderline, input: classes.input } }}
+            />
             <Button type='submit' size="small" variant="contained" className={classes.button} >Add Course</Button>
         </form>
       </CardContent>
-      {/* <CardActions>
-        <Button type='submit' size="small" variant="contained" className={classes.button} >Add Course</Button>
-      </CardActions> */}
     </Card>
   );
 }

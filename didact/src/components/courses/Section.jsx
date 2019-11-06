@@ -11,12 +11,14 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
-import { updateSection, getLessonsBySectionId } from '../../store/actions';
+import { updateSection, getLessonsBySectionId, deleteSection } from '../../store/actions';
 import Lessons from './Lessons'
 import AddLessons from './AddLessons'
+import DeleteModal from './DeleteModal'
 
 import AddCircleIcon from '@material-ui/icons/AddCircle';
-import { AddButtonInSection, ButtonTextInSection, ButtonDiv } from '../dashboard/ButtonStyles';
+import { AddButtonInSection, ButtonTextInSection, ButtonDiv, DeleteForm } from '../dashboard/ButtonStyles';
+
 
 const useStyles = makeStyles(theme => ({
 
@@ -33,11 +35,12 @@ const useStyles = makeStyles(theme => ({
         // marginLeft: '70%',
     },
     card: {
-        width: '50vw',
-        maxWidth: 500,
-        minWidth: 375,
+        width: '100%',
+        maxWidth: 600,
+        minWidth: 220,
         borderRadius: 15,
-        margin: '10px 0'
+        margin: '10px 0',
+        padding: '5px'
     },
     title: {
         fontSize: 14,
@@ -105,9 +108,11 @@ const useStyles = makeStyles(theme => ({
 
     descriptionDiv: {
         display: "flex",
-        flexDirection: "row",
-        justifyContent: 'center',
-        // padding: '0'
+        width: "100%",
+        flexDirection: 'column',
+        justifyContent: "space-between",
+        fontSize: 12,
+        color: "#757575"
     },
     descriptionTitle: {
         marginBottom: "0px"
@@ -139,13 +144,14 @@ const CssTextField = withStyles({
     },
 })(TextField);
 
-const Section = ({ section, props }) => {
+const Section = ({ course, section, props }) => {
     const classes = useStyles();
     const dispatch = useDispatch()
     const lessons = useSelector(state => state.sectionsReducer.lessons)
     const [expanded, setExpanded] = useState(false);
     const [sectionEdit, setSectionEdit] = useState(true)
     const [addLessonChange, setAddLessonChange] = useState(false);
+    const [openModal, setOpenModal] = useState(false);
     const [changes, setChanges] = useState({
         name: "",
         description: "",
@@ -194,6 +200,18 @@ const Section = ({ section, props }) => {
         setSectionEdit(true)
     }
 
+    const handleDelete = () => {
+        dispatch(deleteSection(course.id, section.id))
+    }
+
+    const handleModalOpen = () => {
+        setOpenModal(true);
+    };
+
+    const handleModalClose = () => {
+        setOpenModal(false);
+    };
+
     return (
         <>
             {sectionEdit ? (
@@ -203,7 +221,7 @@ const Section = ({ section, props }) => {
                             {section.name}
                         </Typography>
                         <CardActions className={classes.descriptionDiv} disableSpacing>
-                            <Typography className={classes.descriptionTitle} >Description:</Typography>
+                            <Typography color="textSecondary" className={classes.descriptionTitle} >{section.description && !expanded ? (`${section.description.substring(0, 100)} ...`) : null}</Typography>
                             <IconButton
                                 className={clsx(classes.expand, {
                                     [classes.expandOpen]: expanded,
@@ -217,19 +235,19 @@ const Section = ({ section, props }) => {
                         </CardActions>
                         <Collapse in={expanded} timeout="auto" unmountOnExit>
                             <CardContent>
-                                <Typography paragraph>
+                                <Typography color="textSecondary" paragraph>
                                     {section.description}
                                 </Typography>
                             </CardContent>
                         </Collapse>
-                        <Typography color="textSecondary">
+                        <a href={section.link} variant="body2" component="p" alt = "section link" style = {{color: 'black', cursor: 'pointer'}}>
+                            {section.link}
+                        </a>
+                        <Typography color="textSecondary" style = {{textAlign: "left", marginLeft: "22px"}}>
                             Order: {section.order}
                         </Typography>
-                        <Typography variant="body2" component="p">
-                            {section.link}
-                        </Typography>
                     </CardContent>
-                    {lessons ? <Lessons section={section} props={props} lessons={lessons} /> : null}
+                    {lessons ? <Lessons course={course} section={section} props={props} lessons={lessons} /> : null}
                     <CardActions>
                         <Button style={{marginLeft: '70%'}} onClick={toggleEdit} type='submit' size="small" variant="contained" className={classes.button} >Edit Section</Button>
                     </CardActions>
@@ -238,11 +256,12 @@ const Section = ({ section, props }) => {
                         <ButtonTextInSection>Add Lesson</ButtonTextInSection>
                     </AddButtonInSection>
                     {addLessonChange ? <AddLessons props={props} section={section} setAddLessonChange={setAddLessonChange} /> : null}
-
                 </Card>
             ) : (
                     <Card className={classes.card}>
                         <CardContent>
+                        <DeleteForm onClick={handleModalOpen}>X</DeleteForm>
+                        {openModal ? <DeleteModal handleDelete={handleDelete} text={"this section"} open={openModal} handleModalClose={handleModalClose} /> : null}
                             <Typography className={classes.title} gutterBottom>
                                 Add Section
                          </Typography>
@@ -250,7 +269,7 @@ const Section = ({ section, props }) => {
                                 <CssTextField
                                     id="standard-name"
                                     label='Name'
-                                    className={classes.titleOrInstructorFields}
+                                    className={classes.courseUrlField}
                                     value={changes.name}
                                     onChange={handleChange('name')}
                                     margin="normal"
@@ -261,7 +280,7 @@ const Section = ({ section, props }) => {
                                 <CssTextField
                                     id="standard-name"
                                     label="Order"
-                                    className={classes.titleOrInstructorFields}
+                                    className={classes.courseUrlField}
                                     value={changes.order}
                                     onChange={handleChange('order')}
                                     margin="normal"

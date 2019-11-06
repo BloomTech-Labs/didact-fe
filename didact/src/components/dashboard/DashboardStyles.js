@@ -6,8 +6,8 @@ export const CoursesCard = styled.div`
     border-radius: 15px;
     background-color: white;
     width: 100%;
-    max-width: 500px;
-    min-width: 375px;
+    max-width: 600px;
+  
     
     div {
         border-top: 1px solid #EEEFF3

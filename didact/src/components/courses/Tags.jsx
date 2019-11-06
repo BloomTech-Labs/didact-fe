@@ -3,6 +3,7 @@ import { addTag, getTags, deleteTag } from '../../store/actions'
 import { useSelector, useDispatch } from 'react-redux';
 import { CoursesCard, CourseMenuDiv, CourseDiv } from '../dashboard/DashboardStyles';
 import { TagDelete, P } from '../dashboard/ButtonStyles';
+import { TagInput, TagSelect } from './SelectStyles'
 
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -15,9 +16,9 @@ import { ButtonDiv } from '../dashboard/ButtonStyles';
 
 const useStyles = makeStyles(theme => ({
     card: {
-        width: '50vw',
-        maxWidth: 500,
-        minWidth: 375,
+        width: '100%',
+        maxWidth: 600,
+        minWidth: 220,
         borderRadius: 15,
         margin: '10px 0'
     },
@@ -93,7 +94,8 @@ const Tags = ({ props, course }) => {
 
     const classes = useStyles();
     const dispatch = useDispatch()
-    const allTags = useSelector(state => state.tagsReducer.tags)
+    const state = useSelector(state => state.tagsReducer)
+    const allTags = state.tags
     const [openForm, setOpenForm] = useState(false)
     const [tag, setTag] = useState({
         tag: ''
@@ -113,12 +115,6 @@ const Tags = ({ props, course }) => {
     }
 
     const handleSubmit = event => {
-        event.preventDefault()
-        dispatch(addTag(props.match.params.id, tag))
-        setTag({ tag: '' })
-    }
-
-    const handleSubmitSelect = event => {
         event.preventDefault()
         dispatch(addTag(props.match.params.id, tag))
         setTag({ tag: '' })
@@ -148,14 +144,15 @@ const Tags = ({ props, course }) => {
 
                         )
                     }) : null}
-                   {!openForm ? <Button style={{ marginLeft: '76.5%' }} onClick={handleClick} type='submit' size="small" variant="contained" className={classes.button}>NEW TAG</Button> : null }
+                   {!openForm ? <Button style={{ marginLeft: '81%' }} onClick={handleClick} type='submit' size="small" variant="contained" className={classes.button}>NEW TAG</Button> : null }
                 </CardContent>
 
                 {openForm ? (
                     <>
                         <form onSubmit={handleSubmit} className={classes.container} noValidate autoComplete="off">
-                            <CssTextField
+                            {/* <CssTextField
                                 id="standard-name"
+                                list='tags'
                                 label='Add Tag'
                                 className={classes.titleOrInstructorFields}
                                 value={tag.name}
@@ -164,23 +161,18 @@ const Tags = ({ props, course }) => {
                                 variant="outlined"
                                 placeholder="Name"
                                 InputProps={{ classes: { input: classes.input } }}
-                            />
-                        </form>
-                        <form>
-                            <select
-                                onChange={handleChange('tag')}
-                            >
-                                <option>Pick a Tag:</option>
+                            /> */}
+                            <label for='tag-input' >Select an Existing Tag, or Create a New Tag
+                            <TagInput id='tag-input' placeholder="Tag" value={tag.tag} onChange={handleChange('tag')} name="tag" list='tags' />
+                            <TagSelect id='tags' style={{overflowY: "auto !important"}} onChange={handleChange('tag')}>
                                 {allTags.map(el => {
                                     return (<option key={el.id} value={el.name} >{el.name}</option>)
                                 })}
-                            </select>
-                            {/* <CardActions>
-                                <Button onClick={handleSubmitSelect} type='submit' size="small" variant="contained" className={classes.button} >Add Tag</Button>
-                            </CardActions> */}
+                            </TagSelect>
+                            </label>
                             <ButtonDiv>
                                 <Button style={{ marginLeft: '10px' }} onClick={handleCancel} size="small" variant="contained" className={classes.button} >CANCEL</Button>
-                                <Button type='submit' onClick={handleSubmitSelect} style={{ marginRight: '4%' }} size="small" variant="contained" className={classes.button} >Add Tag</Button>
+                                <Button type='submit'  style={{ marginRight: '4%' }} size="small" variant="contained" className={classes.button} >Add Tag</Button>
                             </ButtonDiv>
                         </form>
 

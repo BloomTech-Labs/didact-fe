@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const PageFlex = styled.div`
     width: 100%;
     display: flex;
-    width: auto;
+    /* width: auto; */
 
     .drawer {
         padding-right: 30px;
@@ -30,9 +30,11 @@ export const PageFlex = styled.div`
             }
 
             .navSection {
-                width: 339px;
+                width: 100%;
+                max-width: 250px;
                 display: flex;
                 align-items: center;
+                justify-self: "flex-end";
                 justify-content: space-between;
             }
         }

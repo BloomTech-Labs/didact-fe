@@ -21,6 +21,7 @@ import Profile from '../profile/Profile'
 const useStyles = makeStyles(theme => ({
     root: {
         backgroundColor: "lightgray",
+        // width: "100%"
     },
     content: {
         flexGrow: 1,
@@ -29,25 +30,23 @@ const useStyles = makeStyles(theme => ({
     },
     contentMobile: {
         flexGrow: 1,
-        padding: theme.spacing(3),
-        paddingLeft: "80px",
-        margin: 'auto'
+        padding: theme.spacing(2),
+        marginLeft: "63px",
+      
     },
     contentShadow: {
         background: "rgba(0, 0, 0, 0.8)",
         filter: "brightness(50%)",
         zIndex: 100,
-        position: "absolute",
+        height: "100vh",
         top: 0,
         left: 0,
-        width: "100%",
-        height: "100%",
-        flexGrow: 1,
+        // flexGrow: 1,
         paddingLeft: "80px",
-        padding: theme.spacing(3),
+        padding: theme.spacing(2),
         overflow: "hidden",
-        // marginRight: "-20px"
-        // marginRight: '10px'
+      
+        
     },
     // scrollBarMobileFix: {
     //     position: "absolute",
@@ -73,8 +72,9 @@ function MainPage(props) {
     const classes = useStyles();
     console.log(props)
   
-    const profileLockSize = useMediaQuery("(min-width:1440px");
-    const phoneSize = useMediaQuery("(max-width:770px)");
+    const phoneSize = useMediaQuery("(max-width:600px)");
+    const tabletSize = useMediaQuery('(max-width:770px, min-width: 601px');
+    const mediumScreenSize = useMediaQuery("(max-width:920px)");
     const [open, setOpen] = React.useState(true);
     const [openMobile, setOpenMobile] = React.useState(false);
 
@@ -115,22 +115,22 @@ function MainPage(props) {
     return (
         // MOBILE CODE ****************************************************************************
         <>
-            {phoneSize ? (
+            {phoneSize || tabletSize ? (
                 <div className={classes.root} onClick={() => closeHandleClick()}>
                     <CssBaseline />
-                    <PageFlex>
-                        <div>
+                    <>
+                       <div>
                             <MobileDrawerComponent handleDrawerOpenMobile={handleDrawerOpenMobile()} openMobile={openMobile} props = {props}/>
                         </div>
                         <div>
-                            <MobileHeaderComponent props = {props}/>
+                            <MobileHeaderComponent props = {props} tabletSize ={tabletSize} userName = {userName}/>
                             <main className={openMobile ? classes.contentShadow : classes.contentMobile}>
                                 <div className={classes.toolbar} />
                                 <Content phoneSize={phoneSize} open={open} {...props}/>
                                 {/*************************ADD COMPONENTS HERE *********************** */}
                             </main>
                         </div>
-                    </PageFlex>
+                    </>
                     {/* {openMobile ?
                         (
                         <div className = {classes.scrollBarMobileFix}>
@@ -158,7 +158,7 @@ function MainPage(props) {
                                     <h2>Didact</h2>
                                     <div className="navSection">
                                         <Link style = {{color: 'white'}} to = "/" ><DashboardIcon/></Link>
-                                        <MessageIcon />
+                                        {/* <MessageIcon /> */}
                                         <p>{userName.email}</p>
                                         {/* {!profileLockSize ? <Profile props = {props}/> : null } */}
                                         <Profile props = {props}/>
@@ -166,7 +166,7 @@ function MainPage(props) {
                                 </div>
                                 <main className={classes.content}>
                                     {/* <div className={classes.toolbar} /> */}
-                                    <Content phoneSize={phoneSize} open={open} {...props}/>
+                                    <Content mediumScreenSize = {mediumScreenSize} phoneSize={phoneSize} open={open} tabletSize = {tabletSize} {...props}/>
                                     {/*************************ADD COMPONENTS HERE *********************** */}
                                 </main>
                             </div>

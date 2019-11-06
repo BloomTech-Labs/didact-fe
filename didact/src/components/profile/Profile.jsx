@@ -1,13 +1,12 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Modal from "@material-ui/core/Modal";
-import Backdrop from "@material-ui/core/Backdrop";
-import Fade from "@material-ui/core/Fade";
-import Button from "@material-ui/core/Button";
+import { makeStyles, withStyles } from "@material-ui/core/styles";
+
+import Popover from '@material-ui/core/Popover';
+
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import {Redirect} from "react-router-dom";
 import {useSelector } from "react-redux";
-import profileImage from '../../images/profileExample.jpg'
+import PermIdentityIcon from '@material-ui/icons/PermIdentity';
 const useStyles = makeStyles(theme => ({
   buttons: {
     border: "none",
@@ -28,7 +27,7 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: 'white'
   },
   closeModel: {
-    margin: "-40px 0 0 210px",
+    margin: "-25px 0 0 210px",
     color: 'gray',
     cursor: "pointer",
     backgroundColor: 'white',
@@ -36,7 +35,7 @@ const useStyles = makeStyles(theme => ({
     
   },
   description: {
-    marginTop: '-30px',
+    marginTop: '-20px',
     marginBottom: '40px',
     color: "gray"
   },
@@ -50,37 +49,20 @@ const useStyles = makeStyles(theme => ({
     objectFit: 'cover'
   },
   iconImageProfile: {
-    width: "75px",
-    height: "75px",
+    width: "100px",
+    height: "100px",
     borderRadius: "50%",
     marginTop: '-20px',
     objectFit: 'cover'
   },
-  modal: {
-    display: "flex",
-    alignItems: "flex-start",
-    justifyContent: "flex-end",
-    marginRight: "35px",
-    marginTop: "23px",
-    outline: "none",
-
-    
-  },
-  modalMobile: {
-    display: "flex",
-    alignItems: "flex-start",
-    justifyContent: "flex-end",
-    marginRight: "30px",
-    marginTop: "10px",
-    outline: "none",
-  },
+  
   paper: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "space-evenly",
     backgroundColor: theme.palette.background.paper,
-    borderRadius: 15,
+    // borderRadius: 15,
     boxShadow: theme.shadows[5],
     padding: "30px",
     height: "400px",
@@ -108,22 +90,36 @@ const useStyles = makeStyles(theme => ({
   },
   title: {
     marginTop: '0',
+    fontSize: "14px"
   },
 }));
+
+// const CssPopover = withStyles({
+//   root: {
+//     '& .MuiPopover-root': {
+//       borderRadius: 15,
+//   },
+//   },
+// })(Popover);
 
 export default function Profile(props) {
   console.log(props)
   const classes = useStyles();
   const phoneSize = useMediaQuery("(max-width:770px)");
-  const [open, setOpen] = React.useState(false);
   const userName = useSelector(state => state.onboardingReducer.user);
 
-  const handleOpen = () => {
-    setOpen(true);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const id = open ? 'simple-popover' : undefined;
+
+  const firstName = userName.first_name ? userName.first_name.substring(0, 1).toUpperCase() + userName.first_name.substring(1) : null;
+
+  const handleClick = event => {
+    setAnchorEl(event.currentTarget);
   };
 
   const handleClose = () => {
-    setOpen(false);
+    setAnchorEl(null);
   };
 
   const handleLogOut = () => {
@@ -135,15 +131,16 @@ export default function Profile(props) {
     localStorage.clear('token')
     props.props.props.history.push('/login')
 }
-
+ 
   const content = () => {
     return (
       <div className = {classes.root} >
         <div className={classes.paper}>
           <div className = {classes.closeModel} onClick = {handleClose}>X</div>
-          <img src = {profileImage} alt = "Profile" className={classes.iconImageProfile} />
+          
+          {userName.photo ? <img src={userName.photo} alt = "Profile" className={classes.iconImageProfile} /> : <PermIdentityIcon  className={classes.iconImageProfile} />}
           <h2 className={classes.title} id="transition-modal-title">{userName.email}</h2>
-          <p className={classes.description} id="transition-modal-description">Welcome</p>
+          <p className={classes.description} id="transition-modal-description">Welcome {firstName}!</p>
           <div className={classes.smallImageDivs} >
             <div className={classes.smallImage} ></div>
             <div className={classes.smallImage} ></div>
@@ -172,44 +169,26 @@ export default function Profile(props) {
         </div>
       </div>
     );
-  };
-
-  return (
+  }
+  return ( 
     <div className = {classes.root} >
-      <img src={profileImage} alt ="Profile" onClick={handleOpen} className={classes.iconImage} />
-      {!phoneSize ? (
-        <Modal
-          aria-labelledby="transition-modal-title"
-          aria-describedby="transition-modal-description"
-          className={classes.modal}
-          disableAutoFocus={true}
-          open={open}
-          onClose={handleClose}
-          closeAfterTransition
-          BackdropComponent={Backdrop}
-          BackdropProps={{
-            timeout: 500,
-          }}
-        >
-          {content()}
-        </Modal>
-      ) : (
-        <Modal
-          aria-labelledby="transition-modal-title"
-          aria-describedby="transition-modal-description"
-          className={classes.modalMobile}
-          disableAutoFocus={true}
-          open={open}
-          onClose={handleClose}
-          closeAfterTransition
-          BackdropComponent={Backdrop}
-          BackdropProps={{
-            timeout: 500,
-          }}
-        >
-          {content()}
-        </Modal>
-      )}
+      {userName.photo ? <img src={userName.photo} alt = "Profile" onClick={handleClick} className={classes.iconImage} /> : <PermIdentityIcon onClick={handleClick} className={classes.iconImage} />}
+       <Popover
+        id={id}
+        open={open}
+        anchorEl={anchorEl}
+        onClose={handleClose}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'right',
+        }}
+        transformOrigin={{
+          vertical: 'center',
+          horizontal: 'right',
+        }}
+      >
+        {content()}
+      </Popover>
     </div>
   );
 }

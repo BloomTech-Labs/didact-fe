@@ -2,7 +2,7 @@ import React from "react";
 import { Form, Field, withFormik } from "formik";
 import * as Yup from 'yup';
 import { registerAction } from '../../store/actions';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Wrapper, RegisterWrapper, RegisterFormWrapper } from './RegisterStyles'
 import HeaderNoIcons from '../header/HeaderNoIcons'
 import { makeStyles } from '@material-ui/core/styles';
@@ -79,6 +79,9 @@ import beURL from "../../utils/beURL";
 
 const RegisterForm = (props) => {
 
+    const state = useSelector(state => state.onboardingReducer)
+    const registerError = state.error;
+
     const { errors, touched } = props;
     if (localStorage.getItem('token')) {
         props.history.push('/')
@@ -119,7 +122,9 @@ const RegisterForm = (props) => {
                             <Field type="password" name="confirmPassword" placeholder="Confirm Password"></Field>
                             {touched.confirmPassword && errors.confirmPassword && <p className="errorMessage">Passwords do not match</p>}
                         </div>
+                        {registerError ? <p style = {{color: "red"}}>This email address is already being used</p> : null}
                     </div>
+                    
                     <div>
                         <button type="submit">Signup Now</button>
                     </div>
@@ -161,7 +166,7 @@ const FormikRegisterForm = withFormik({
 const FormikRegisterWrapper = props => {
     const dispatch = useDispatch();
     
-
+ 
     console.log(dispatch)
     return (
         <Wrapper>

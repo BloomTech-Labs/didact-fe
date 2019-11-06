@@ -5,7 +5,7 @@ import styled from 'styled-components'
 
 export const AddButton = styled.div`
     height: 75px;
-    width: 175px;
+    width: 160px;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -101,6 +101,8 @@ export const P = styled.p`
     line-height: 28px;
 `
 
+// Edit lesson button
+
 export const EditLessonButton = styled.button`
        box-shadow: none;
         border-radius: 15px;
@@ -117,6 +119,9 @@ export const EditLessonButton = styled.button`
         
     }
 `
+
+// Div for aligning cancel and add/edit buttons
+
 export const ButtonDiv = styled.div`
     display: flex;
     justify-content: space-between;
@@ -124,9 +129,12 @@ export const ButtonDiv = styled.div`
     margin-bottom: 10px;
 `
 
+// finish edit and return to course button
+
 export const FinishEdit = styled.div`
     background:  #EBE8E1;
-    width: 500px;
+    max-width: 600px;
+    width: 100%;
     border-radius: 15px;
     height: 30px;
     display:flex;
@@ -139,4 +147,34 @@ export const FinishEdit = styled.div`
         background-color: #e0e0e0;
         
     }
+`
+
+// button for deleting a form piece from the db
+
+export const DeleteForm = styled.button`
+    opacity: 0.8;
+    background: white;
+    border: none;
+    cursor: pointer;
+    margin-left: 92%;
+    height: 40px;
+    width: 40px;
+    color: grey;
+    &:hover {
+        opacity: 1;
+        color: black;
+    }
+`
+
+// Tag Styling
+
+export const TagStyles = styled.span `
+        font-size: 14;
+        font-weight: bold;
+        margin: 3px;
+        margin-left: 10px;
+        padding: 5px 10px;
+        border-radius: 10px;
+        background: #5B5B5B;
+        color: white;
 `
