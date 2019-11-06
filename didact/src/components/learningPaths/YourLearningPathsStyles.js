@@ -11,6 +11,7 @@ export const LearningPathsWrapper = styled.div`
         border-radius: 19px;
         padding: 35px 40px;
         margin-bottom: 50px;
+        max-width: 600px;
 
         .title {
             text-align: left;
@@ -50,13 +51,13 @@ export const LearningPathsWrapper = styled.div`
                 }
             }
         }
-
+/* 
         .icon {
             width: 75px;
             height: 75px;
             background: black;
             border-radius: 15px;
-        }
+        } */
     }
 
     .buttons {

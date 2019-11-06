@@ -43,6 +43,9 @@ export const UPDATE_COURSE_ORDER_FAIL = "UPDATE_COURSE_ORDER_FAIL"
 export const GET_YOUR_LEARNING_PATHS_START = "GET_YOUR_LEARNING_PATHS_START"
 export const GET_YOUR_LEARNING_PATHS_SUCCESS = "GET_YOUR_LEARNING_PATHS_SUCCESS"
 export const GET_YOUR_LEARNING_PATHS_FAIL = "GET_YOUR_LEARNING_PATHS_FAIL"
+export const GET_YOUR_LEARNING_PATHS_OWNED_START = "GET_YOUR_LEARNING_PATHS_OWNED_START"
+export const GET_YOUR_LEARNING_PATHS_OWNED_SUCCESS = "GET_YOUR_LEARNING_PATHS_OWNED_SUCCESS"
+export const GET_YOUR_LEARNING_PATHS_OWNED_FAIL = "GET_YOUR_LEARNING_PATHS_OWNED_FAIL"
 export const POST_PATH_ITEM_START = "POST_PATH_ITEM_START"
 export const POST_PATH_ITEM_SUCCESS = "POST_PATH_ITEM_SUCCESS"
 export const POST_PATH_ITEM_FAIL = "POST_PATH_ITEM_FAIL"
@@ -105,6 +108,7 @@ export const getLearningPath = (id) => dispatch =>
     .catch(err =>
     {
         console.log('err from get learning path (singular)', err)
+        console.log('response', err.response)
         dispatch({ type: GET_LEARNING_PATH_FAIL, payload: err })
     })
 }
@@ -165,7 +169,7 @@ export const deleteLearningPath = (id, history) => dispatch =>
     })
 }
 
-export const joinLearningPath = id => dispatch =>
+export const joinLearningPath = (id, history) => dispatch =>
 {
     dispatch({ type: JOIN_LEARNING_PATH_START })
 
@@ -175,8 +179,10 @@ export const joinLearningPath = id => dispatch =>
         console.log("res from joinLearningPath:", res)
         dispatch({ type: JOIN_LEARNING_PATH_SUCCESS, payload: id })
     })
+    .then(() => history.push(`/learning-paths/`))
     .catch(err =>
     {
+        console.log('err from joinLearningPath response:', err.response)
         console.log("err from joinLearningPath:", err)
         dispatch({ type: JOIN_LEARNING_PATH_FAIL, payload: err })
     })
@@ -230,6 +236,29 @@ export const deleteTagFromPath = (tag, id) => dispatch =>
     {
         console.log("err from deleteTagFromPath:", err)
         dispatch({ type: DELETE_TAG_FROM_PATH_FAIL, payload: err })
+    })
+}
+
+export const addNewCourseToLearningPath = (props, courseId) => dispatch =>
+{
+   const order = Number(props.match.params.order + 1);
+
+    // console.log("ORDER", {order})
+    // console.log("courseId", courseId)
+    // console.log("props", props)
+    dispatch({ type: POST_COURSE_TO_PATH_START })
+    const pathId = props.match.params.id;
+    axiosWithAuth().post(`${baseURL}${pathId}/courses/${courseId}`, {order: order})
+    .then(res =>
+    {
+        console.log("res from postCourseToPath:", res)
+        dispatch({ type: POST_COURSE_TO_PATH_SUCCESS, payload: res.data.pathCourses })
+    })
+    .then(() => props.history.push(`/learning-paths/${props.match.params.id}/courses/${courseId}/edit`))
+    .catch(err =>
+    {
+        console.log("err from postCourseToPath:", err)
+        dispatch({ type: POST_COURSE_TO_PATH_FAIL, payload: err })
     })
 }
 
@@ -298,6 +327,23 @@ export const getYourLearningPaths = (getYours) => dispatch =>
     {
         console.log('err from get your learning paths', err)
         dispatch({ type: GET_YOUR_LEARNING_PATHS_FAIL, payload: err })
+    })
+}
+
+export const getYourLearningPathsOwned = (getYours) => dispatch =>
+{
+    dispatch({ type: GET_YOUR_LEARNING_PATHS_OWNED_START })
+    console.log('User Object', {getYours})
+    axiosWithAuth().get(`${baseURL}yours-owned`)
+    .then(res =>
+    {
+        console.log('res from get your learning paths', res)
+        dispatch({ type: GET_YOUR_LEARNING_PATHS_OWNED_SUCCESS, payload: res.data })
+    })
+    .catch(err =>
+    {
+        console.log('err from get your learning paths', err)
+        dispatch({ type: GET_YOUR_LEARNING_PATHS_OWNED_FAIL, payload: err })
     })
 }
 

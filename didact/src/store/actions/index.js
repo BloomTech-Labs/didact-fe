@@ -141,6 +141,9 @@ export
     GET_YOUR_LEARNING_PATHS_START,
     GET_YOUR_LEARNING_PATHS_SUCCESS,
     GET_YOUR_LEARNING_PATHS_FAIL,
+    GET_YOUR_LEARNING_PATHS_OWNED_START,
+    GET_YOUR_LEARNING_PATHS_OWNED_SUCCESS,
+    GET_YOUR_LEARNING_PATHS_OWNED_FAIL,
     POST_PATH_ITEM_START,
     POST_PATH_ITEM_SUCCESS,
     POST_PATH_ITEM_FAIL,
@@ -167,8 +170,10 @@ export
     removeCourseFromPath,
     updateCourseOrder,
     getYourLearningPaths,
+    getYourLearningPathsOwned,
     postPathItem,
     updatePathItem,
     deletePathItem,
-    updateLearningPathContentOrder
+    updateLearningPathContentOrder,
+    addNewCourseToLearningPath
 } from './learningPaths'

@@ -37,8 +37,9 @@ const useStyles = makeStyles(theme => ({
     },
     addButtonDivTablet: {
         display: 'flex',
-        flexDirection: 'row',
-        marginBottom: "-20px"
+        flexFlow: 'row wrap',
+        marginBottom: "-20px",
+        maxWidth: '500px'
     },
     card: {
         // minWidth: 375,
@@ -101,9 +102,10 @@ function AllCourses(props) {
     const classes = useStyles();
     const dispatch = useDispatch();
     const [expanded, setExpanded] = useState(false);
+    const [addingCourses, setAddingCourses] = useState(true)
     const state = useSelector(state => state);
     console.log('user', state.onboardingReducer.user)
-    console.log(state.coursesReducer.courses)
+    // console.log(state.coursesReducer.courses)
 
     useEffect(() => {
         dispatch(courseEndPoint());
@@ -113,16 +115,25 @@ function AllCourses(props) {
         setExpanded(!expanded);
     };
 
+    const handleAddingCourses = () => {
+        setAddingCourses(!addingCourses)
+        console.log(addingCourses)
+    }
+
     return (
         <div className = {tabletSize ? classes.rootTablet : classes.root}>
             {tabletSize ? (
-            <div className = {classes.addButtonDivTablet} style = {{display: 'flex', flexDirection: 'row wrap'}}>
+            <div className = {classes.addButtonDivTablet}>
                 <Link style={{ textDecoration: 'none' }} to='/courses/add'>
                     <AddButton style = {{marginRight: '10px'}}>
                         <AddCircleRoundedIcon  className = {classes.circleIcon}/>
-                        <ButtonText>Add Course</ButtonText>
+                        <ButtonText>New Course</ButtonText>
                     </AddButton>
                 </Link>
+                <AddButton style = {{marginRight: '10px'}}>
+                    <AddCircleRoundedIcon className = {classes.circleIcon}/>
+                    <ButtonText>Add Courses To Learning Path</ButtonText>
+                </AddButton>
                 <Link style={{ textDecoration: 'none' }} >
                     <AddButton >
                        <AddCircleRoundedIcon className = {classes.circleIcon}/>
@@ -133,7 +144,7 @@ function AllCourses(props) {
             <div>
                 {state.coursesReducer.courses
                     ? state.coursesReducer.courses.map((course, i) => (
-                        <Course key = {i} course = {course} />
+                        <Course key = {i} course = {course} addingCourses={addingCourses}/>
                     ))
                     : null}
 
@@ -142,9 +153,13 @@ function AllCourses(props) {
                 <Link style={{ textDecoration: 'none' }} to='/courses/add'>
                     <AddButton >
                         <AddCircleRoundedIcon className = {classes.circleIcon}/>
-                        <ButtonText>Add Course</ButtonText>
+                        <ButtonText>New Course</ButtonText>
                     </AddButton>
                 </Link>
+                <AddButton onClick={handleAddingCourses}>
+                    <AddCircleRoundedIcon className = {classes.circleIcon}/>
+                    <ButtonText>{addingCourses ? "Done Adding" : "Add Courses"}</ButtonText>
+                </AddButton>
                 <Link style={{ textDecoration: 'none' }} >
                     <AddButton >
                        <AddCircleRoundedIcon className = {classes.circleIcon}/>

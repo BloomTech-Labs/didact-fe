@@ -97,6 +97,7 @@ const CssTextField = withStyles({
 })(TextField);
 
 export default function AddCourse(props) {
+  console.log(props)
   const classes = useStyles();
   const dispatch = useDispatch();
   const [values, setValues] = useState({
@@ -113,10 +114,9 @@ export default function AddCourse(props) {
   };
 
   const handleSubmit = event => {
-    event.preventDefault();
-    console.log(values)
-    Mixpanel.track("Course Added.")
-    dispatch(addCourse(values, props.props));
+      event.preventDefault();
+      Mixpanel.track("Course Added.")
+      dispatch(addCourse(values, props.props));
   }
 
   return (

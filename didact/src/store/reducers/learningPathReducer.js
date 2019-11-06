@@ -42,6 +42,9 @@ import
     GET_YOUR_LEARNING_PATHS_START,
     GET_YOUR_LEARNING_PATHS_SUCCESS,
     GET_YOUR_LEARNING_PATHS_FAIL,
+    GET_YOUR_LEARNING_PATHS_OWNED_START,
+    GET_YOUR_LEARNING_PATHS_OWNED_SUCCESS,
+    GET_YOUR_LEARNING_PATHS_OWNED_FAIL,
     POST_PATH_ITEM_START,
     POST_PATH_ITEM_SUCCESS,
     POST_PATH_ITEM_FAIL,
@@ -59,7 +62,8 @@ const initialState =
     error: '',
     learningPaths: [],
     learningPath: {},
-    yourLearningPaths: []
+    yourLearningPaths: [],
+    yourLearningPathsOwned: [],
 
 }
 
@@ -295,7 +299,7 @@ export const learningPathReducer = (state = initialState, action) =>
         case REMOVE_COURSE_FROM_PATH_START:
             return {
                 ...state,
-                isLoading: true,
+                // isLoading: true,
                 error: "",
             }
         case REMOVE_COURSE_FROM_PATH_SUCCESS:
@@ -352,6 +356,25 @@ export const learningPathReducer = (state = initialState, action) =>
                 isLoading: false,
                 error: action.payload,
             }
+        case GET_YOUR_LEARNING_PATHS_OWNED_START:
+                return {
+                    ...state,
+                    isLoading: true,
+                    error: "",
+                }
+        case GET_YOUR_LEARNING_PATHS_OWNED_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                yourLearningPathsOwned: action.payload,
+                error: "",
+            }
+        case GET_YOUR_LEARNING_PATHS_OWNED_FAIL:
+            return {
+                ...state,
+                isLoading: false,
+                error: action.payload,
+            }
         case POST_PATH_ITEM_START:
             return {
                 ...state,
@@ -397,7 +420,7 @@ export const learningPathReducer = (state = initialState, action) =>
         case DELETE_PATH_ITEM_START:
             return {
                 ...state,
-                isLoading: true,
+                // isLoading: true,
                 error: "",
             }
         case DELETE_PATH_ITEM_SUCCESS:

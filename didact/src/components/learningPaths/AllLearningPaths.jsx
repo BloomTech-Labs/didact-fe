@@ -15,12 +15,8 @@ const AllLearningPaths = (props) => {
 
     const learningPaths = state.learningPathReducer.learningPaths
 
-    console.log(learningPaths)
-
     const joinPath = e => {
-        console.log('clicked!')
-        console.log(e.target.id)
-        dispatch(joinLearningPath(e.target.id))
+        dispatch(joinLearningPath(e.target.id, props.props.history))
     }
 
     return (
@@ -34,9 +30,6 @@ const AllLearningPaths = (props) => {
                                     <div>
                                         <button onClick={joinPath} id={learningPath.id}>Join Path</button>
                                     </div>
-                                </div>
-                                <div className='icon'>
-                                    Icon
                                 </div>
                             </div>
                         )

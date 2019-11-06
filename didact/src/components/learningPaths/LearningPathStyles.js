@@ -14,15 +14,22 @@ export const LearningPathWrapper = styled.div`
         padding: 15px 30px;
         font-weight: bold;
         color: #141821;
+        max-width: 600px;
 
 
         .editLearningButton {
             font-size: .8rem;
+            
+            a {
+                color: black;
+                text-decoration: none;
+            }
         }
     }
 
     .learningPathCourseWrappers {
         text-align: left;
+        max-width: 600px;
         
         h3 {
             padding: 5px 15px;
@@ -31,6 +38,12 @@ export const LearningPathWrapper = styled.div`
         .completed {
             background: white;
             opacity: 0.5;
+        }
+        
+        a {
+            text-decoration: none;
+            min-width: 130px;
+            text-align: center;
         }
     }
 
