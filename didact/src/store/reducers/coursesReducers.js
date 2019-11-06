@@ -87,7 +87,7 @@ export const coursesReducer = (state = initialState, action) => {
         case ADD_COURSE_DATA_SUCCESS:
             return {
                 ...state,
-                courses: action.payload,
+                courses: [...state.courses, action.payload],
                 isLoading: false,
                 error: ""
         };

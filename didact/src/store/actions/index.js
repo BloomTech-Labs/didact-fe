@@ -174,5 +174,6 @@ export
     postPathItem,
     updatePathItem,
     deletePathItem,
-    updateLearningPathContentOrder
+    updateLearningPathContentOrder,
+    addNewCourseToLearningPath
 } from './learningPaths'
