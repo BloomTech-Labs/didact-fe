@@ -179,7 +179,7 @@ export const joinLearningPath = (id, history) => dispatch =>
         console.log("res from joinLearningPath:", res)
         dispatch({ type: JOIN_LEARNING_PATH_SUCCESS, payload: id })
     })
-    .then(() => history.push(`/learning-paths/`))
+    .then(() => history.push(`/learning-paths/${id}`))
     .catch(err =>
     {
         console.log('err from joinLearningPath response:', err.response)

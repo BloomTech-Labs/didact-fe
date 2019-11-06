@@ -322,7 +322,7 @@ const EditCourse = ({props, id}) => {
                                     placeholder="Description"
                                     InputProps={{ classes: { input: classes.inputDescription } }}
                                 />
-                                <CssTextField
+                                {/* <CssTextField
                                     id="standard-name"
                                     label="Rating"
                                     className={classes.courseUrlField}
@@ -332,7 +332,7 @@ const EditCourse = ({props, id}) => {
                                     variant="outlined"
                                     placeholder="Course Url"
                                     InputProps={{ classes: { underline: classes.blackUnderline, input: classes.input } }}
-                                />
+                                /> */}
                                 <CssTextField
                                     id="standard-name"
                                     label="Course Url"

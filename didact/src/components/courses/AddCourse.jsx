@@ -148,7 +148,7 @@ export default function AddCourse(props) {
                 placeholder="Instructors"
                 InputProps={{ classes: { underline: classes.blackUnderline, input: classes.input}}}
             />
-             <CssTextField
+             {/* <CssTextField
                 id="standard-name"
                 label="Rating"
                 className={classes.courseUrlField}
@@ -158,7 +158,7 @@ export default function AddCourse(props) {
                 variant="outlined"
                 placeholder="Rating"
                 InputProps={{ classes: { underline: classes.blackUnderline, input: classes.input } }}
-            />
+            /> */}
             <CssTextField
                 id="standard-name"
                 label="Description"
