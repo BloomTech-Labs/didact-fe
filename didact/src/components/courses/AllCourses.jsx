@@ -126,7 +126,7 @@ function AllCourses(props) {
                 <Link style={{ textDecoration: 'none' }} to='/courses/add'>
                     <AddButton style = {{marginRight: '10px'}}>
                         <AddCircleRoundedIcon  className = {classes.circleIcon}/>
-                        <ButtonText>Add Course</ButtonText>
+                        <ButtonText>New Course</ButtonText>
                     </AddButton>
                 </Link>
                 <AddButton>
@@ -152,7 +152,7 @@ function AllCourses(props) {
                 <Link style={{ textDecoration: 'none' }} to='/courses/add'>
                     <AddButton >
                         <AddCircleRoundedIcon className = {classes.circleIcon}/>
-                        <ButtonText>Add Course</ButtonText>
+                        <ButtonText>New Course</ButtonText>
                     </AddButton>
                 </Link>
                 <AddButton onClick={handleAddingCourses}>
