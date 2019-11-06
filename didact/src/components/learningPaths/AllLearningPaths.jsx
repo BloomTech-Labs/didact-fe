@@ -31,9 +31,6 @@ const AllLearningPaths = (props) => {
                                         <button onClick={joinPath} id={learningPath.id}>Join Path</button>
                                     </div>
                                 </div>
-                                <div className='icon'>
-                                    Icon
-                                </div>
                             </div>
                         )
                     })
