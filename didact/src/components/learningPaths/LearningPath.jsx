@@ -73,7 +73,7 @@ const LearningPath = ({ id }) => {
                         } else {
                             return (
                                 <div className='learningPathCourseWrappers' key={index}>
-                                    <h3>Upcoming</h3>
+                                    {itemCourse.path_order === 2 && <h3>Upcoming</h3>}
                                     <div className='learningPathCard'>
                                         <h2>{itemCourse.name}</h2>
                                         <p>{itemCourse.description}</p>

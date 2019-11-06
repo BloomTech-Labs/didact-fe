@@ -51,6 +51,7 @@ export const LearningPathWrapper = styled.div`
             background: white;
             padding: 10px 30px;
             border-radius: 19px;
+            margin: 25px 0px;
 
             .goToCourse {
                 display: flex;
