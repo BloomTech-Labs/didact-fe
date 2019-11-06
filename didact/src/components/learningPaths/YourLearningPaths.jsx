@@ -35,9 +35,9 @@ const YourLearningPaths = (props) => {
                                     <button onClick={leavePath} id={learningPath.id}>Leave Path</button>
                                 </div>
                             </div>
-                            <div className='icon'>
+                            {/* <div className='icon'>
                                 Icon
-                            </div>
+                            </div> */}
                         </div>
                     )
                 }))

@@ -15,6 +15,7 @@ function Dashboard() {
   const dispatch = useDispatch();
   const state = useSelector(state => state);
   console.log('user', state.onboardingReducer.user)
+  const user = state.onboardingReducer.user
 
   useEffect(() => {
     dispatch(courseEndPoint());
@@ -22,35 +23,11 @@ function Dashboard() {
 
   return (
     <>
-      <Link style={{ textDecoration: 'none' }} to='/courses/add'>
-        <AddButton>
-          <AddCircleRoundedIcon style={{ fontSize: '3.5rem', marginRight: '5px', marginLeft: '10px', color: "#5b5b5b" }}/>
-          <ButtonText>Add Course</ButtonText>
-        </AddButton>
-      </Link>
-      {/* <Link to='/addcourse'><button>Add Course</button></Link> */}
-      <CoursesCard>
-        <CourseMenuDiv>
-          <span className="title">Courses</span>
-          <span className="options">•••</span>
-        </CourseMenuDiv>
-        {state.coursesReducer.courses
-          ? state.coursesReducer.courses.map((course, index) => (
-            <CourseDiv className="course" key={index}>
-              <div className="picture">
-                {/* Picture */}
-              </div>
-              <div className="info">
-                <Link to={`/courses/${course.id}`} className="title" data-tip data-for={`courseName-${index}`}>{course.name}</Link>
-                <ReactTooltip id={`courseName-${index}`} place="right" type="dark" effect="solid">
-                  <span>{course.name}</span>
-                </ReactTooltip>
-                <span className="source">Udemy</span>
-              </div>
-            </CourseDiv>
-          ))
-          : null}
-      </CoursesCard>
+      {
+        (!state.onboardingReducer.isLoading && user.first_name && user.last_name) ? <h1>Welcome to Didact, {user.first_name.charAt(0).toUpperCase() + user.first_name.slice(1) + ' ' + user.last_name.charAt(0).toUpperCase() + user.last_name.slice(1)}</h1>
+
+        : 'Loading...'
+      }
     </>
   );
 }
