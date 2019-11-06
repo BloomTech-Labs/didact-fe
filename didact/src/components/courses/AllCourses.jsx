@@ -160,12 +160,12 @@ function AllCourses(props) {
                     <AddCircleRoundedIcon className = {classes.circleIcon}/>
                     <ButtonText>{addingCourses ? "Done Adding" : "Add Courses"}</ButtonText>
                 </AddButton>
-                <Link style={{ textDecoration: 'none' }} >
+                {/* <Link style={{ textDecoration: 'none' }} >
                     <AddButton >
                        <AddCircleRoundedIcon className = {classes.circleIcon}/>
                         <ButtonText>Search Courses</ButtonText>
                     </AddButton>
-                </Link>
+                </Link> */}
             </div>) : (null) }
         </div>
     );

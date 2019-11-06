@@ -11,7 +11,7 @@ import DeleteModal from "../courses/DeleteModal";
 import {ButtonDiv, FinishEdit, DeleteForm } from "../dashboard/ButtonStyles";
 import {DroppableDiv, PathInstructions} from "./DraggableStyles.js";
 import CourseLearningPath from "./CourseLearningPath";
-import AddToLearningPath from './addToLearningPath/AddToLearningPath'
+import AddToLearningPath from './addToLearningPath/addToLearningPath'
 
 //imports from material-ui
 import { makeStyles, withStyles } from "@material-ui/core/styles";
