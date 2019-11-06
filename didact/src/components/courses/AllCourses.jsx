@@ -37,8 +37,9 @@ const useStyles = makeStyles(theme => ({
     },
     addButtonDivTablet: {
         display: 'flex',
-        flexDirection: 'row',
-        marginBottom: "-20px"
+        flexFlow: 'row wrap',
+        marginBottom: "-20px",
+        maxWidth: '500px'
     },
     card: {
         // minWidth: 375,
@@ -122,14 +123,14 @@ function AllCourses(props) {
     return (
         <div className = {tabletSize ? classes.rootTablet : classes.root}>
             {tabletSize ? (
-            <div className = {classes.addButtonDivTablet} style = {{display: 'flex', flexDirection: 'row wrap'}}>
+            <div className = {classes.addButtonDivTablet}>
                 <Link style={{ textDecoration: 'none' }} to='/courses/add'>
                     <AddButton style = {{marginRight: '10px'}}>
                         <AddCircleRoundedIcon  className = {classes.circleIcon}/>
-                        <ButtonText>Add Course</ButtonText>
+                        <ButtonText>New Course</ButtonText>
                     </AddButton>
                 </Link>
-                <AddButton>
+                <AddButton style = {{marginRight: '10px'}}>
                     <AddCircleRoundedIcon className = {classes.circleIcon}/>
                     <ButtonText>Add Courses To Learning Path</ButtonText>
                 </AddButton>
@@ -152,7 +153,7 @@ function AllCourses(props) {
                 <Link style={{ textDecoration: 'none' }} to='/courses/add'>
                     <AddButton >
                         <AddCircleRoundedIcon className = {classes.circleIcon}/>
-                        <ButtonText>Add Course</ButtonText>
+                        <ButtonText>New Course</ButtonText>
                     </AddButton>
                 </Link>
                 <AddButton onClick={handleAddingCourses}>

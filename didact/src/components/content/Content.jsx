@@ -80,7 +80,7 @@ const Content = (props) => {
                 switch(props.page)
                 {
                     case ('dashboard'):
-                        return <Dashboard />
+                        return <Dashboard props = {props}/>
                     case ('addcourse'):
                         return <AddCourse props = {props}/>
                     case ('courses'):

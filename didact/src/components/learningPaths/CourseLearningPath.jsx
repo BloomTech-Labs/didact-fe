@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { removeCourseFromPath} from '../../store/actions/index'
+import { removeCourseFromPath, deletePathItem } from '../../store/actions/index'
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import CardContent from '@material-ui/core/CardContent';
@@ -157,8 +157,14 @@ const CourseLearningPath = ({ course, index, props}) => {
         setToggleEdit(!toggleEdit)
     }
     
-    const handleDelete = () => {
-        dispatch(removeCourseFromPath(props.match.params.id, course.id))
+    const handleDelete = (course) => {
+        if(!course.type){
+            dispatch(removeCourseFromPath(props.match.params.id, course.id))
+            setOpenModal(false) 
+        } else {
+            dispatch(deletePathItem(props.match.params.id, course.id))
+            setOpenModal(false)
+        }
     }
 
     const handleModalOpen = () => {
@@ -181,7 +187,7 @@ const CourseLearningPath = ({ course, index, props}) => {
                     isDragging={snapshot.isDragging}>
                     <CardContent >
                         <DeleteForm onClick={handleModalOpen}>X</DeleteForm>
-                        {openModal ? <DeleteModal handleDelete={handleDelete} text={"course"} open={openModal} handleModalClose={handleModalClose} /> : null}
+                        {openModal ? <DeleteModal handleDelete ={() => handleDelete(course)} text={" course from this learning path"} open={openModal} handleModalClose={handleModalClose} /> : null}
                         <Typography variant="h5" component="h2">
                             {course.name}
                         </Typography>

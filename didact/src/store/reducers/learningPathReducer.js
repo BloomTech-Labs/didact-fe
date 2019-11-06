@@ -420,7 +420,7 @@ export const learningPathReducer = (state = initialState, action) =>
         case DELETE_PATH_ITEM_START:
             return {
                 ...state,
-                isLoading: true,
+                // isLoading: true,
                 error: "",
             }
         case DELETE_PATH_ITEM_SUCCESS:
