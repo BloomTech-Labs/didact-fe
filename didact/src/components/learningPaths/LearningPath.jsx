@@ -64,8 +64,8 @@ const LearningPath = props => {
                         </div>
                     </div>
                 </div>
+                <h3>Upcoming</h3>
                 <div className='learningPathCourseWrappers'>
-                    <h3>Upcoming</h3>
                     <div className='learningPathCard'>
                         <h2>
                             {course.name}
