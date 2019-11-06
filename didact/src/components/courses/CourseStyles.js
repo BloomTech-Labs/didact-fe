@@ -71,4 +71,10 @@ export const PopoverWrapper = styled.div`
             outline: none;
         }
     }
+
+    .courseTitle {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
 `
