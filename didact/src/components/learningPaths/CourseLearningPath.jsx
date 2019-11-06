@@ -147,8 +147,17 @@ const CourseLearningPath = ({ course, index, props}) => {
     const [expanded, setExpanded] = useState(false);
     const [toggleEdit, setToggleEdit] = useState(false);
     const [openModal, setOpenModal] = useState(false);
+    const [modalText, setModalText] = useState("");
 
-    console.log(course)
+    useEffect(() => {
+        if(course.type){
+            setModalText(" item from this learning path")
+        } else {
+            setModalText(" course from this learning path")
+        }
+    }, [course.type])
+
+    // console.log(course)
     const handleExpandClick = () => {
         setExpanded(!expanded);
     };
@@ -179,7 +188,7 @@ const CourseLearningPath = ({ course, index, props}) => {
     return (
         <Draggable draggableId={`${index}`} index={index} className={classes.root}>
             {(provided, snapshot) => (
-                !toggleEdit ? (
+                !toggleEdit ? ( 
                     <DraggableDiv className={classes.card}  
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
@@ -187,7 +196,7 @@ const CourseLearningPath = ({ course, index, props}) => {
                     isDragging={snapshot.isDragging}>
                     <CardContent >
                         <DeleteForm onClick={handleModalOpen}>X</DeleteForm>
-                        {openModal ? <DeleteModal handleDelete ={() => handleDelete(course)} text={" course from this learning path"} open={openModal} handleModalClose={handleModalClose} /> : null}
+                        {openModal ? <DeleteModal handleDelete ={() => handleDelete(course)} text={modalText} open={openModal} handleModalClose={handleModalClose} /> : null}
                         <Typography variant="h5" component="h2">
                             {course.name}
                         </Typography>
