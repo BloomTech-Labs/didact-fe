@@ -178,8 +178,10 @@ const Course = ({ course, addingCourses }) => {
             <Card className={classes.card}>
                 <CardContent>
                     <Typography className={classes.title} variant="h5" component="h2">
-                        <span className={classes.courseTitle}>{course.name}</span>
-                        {addingCourses && <button className={classes.addCourse} onClick={handleClick}><img src={playlistAdd} /></button>}
+                        <div className='courseTitle'>
+                            <span className={classes.courseTitle}>{course.name}</span>
+                            {addingCourses && <button className={classes.addCourse} onClick={handleClick}><img src={playlistAdd} /></button>}
+                        </div>
                         <div className={classes.popoverRoot}>
                             <Popover
                                 id={id}
