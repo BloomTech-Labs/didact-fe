@@ -1,0 +1,8 @@
+# Specific branch context:
+# Deploys from this branch will take these settings
+# and override their current ones.
+[context.staging]
+    BE_URL = "https://didactlms-staging.herokuapp.com/api/"
+
+[context.master]
+    BE_URL = "https://didactlms.herokuapp.com/api/"
