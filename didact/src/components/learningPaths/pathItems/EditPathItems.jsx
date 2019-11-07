@@ -6,23 +6,16 @@ import {
 } from "../../../store/actions";
 
 import DeleteModal from "../../courses/DeleteModal";
-import {ButtonDiv, FinishEdit, DeleteForm } from "../../dashboard/ButtonStyles";
+import {ButtonDiv, DeleteForm } from "../../dashboard/ButtonStyles";
 
 //imports from material-ui
 import { makeStyles, withStyles } from "@material-ui/core/styles";
-import clsx from "clsx";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
-import CardActions from "@material-ui/core/CardActions";
-import Collapse from "@material-ui/core/Collapse";
 import Button from "@material-ui/core/Button";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 
-//imports for react-beautiful-dnd
-import { DragDropContext, Droppable } from "react-beautiful-dnd";
 
 const useStyles = makeStyles(theme => ({
   button: {
@@ -112,13 +105,10 @@ const CssTextField = withStyles({
 })(TextField);
 
 const EditPathItems = ({ course, props, handleToggleEdit }) => {
-  console.log(props);
-  console.log(course)
   const state = useSelector(state => state.learningPathReducer);
   const learningPath = state.learningPath;
   const dispatch = useDispatch();
   const classes = useStyles();
-  const [learningPathEdit, setLearningPathEdit] = useState(true);
   const [openModal, setOpenModal] = useState(false);
   const [changes, setChanges] = useState({
     name: "",

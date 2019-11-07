@@ -1,22 +1,10 @@
 import React, { useEffect } from "react";
 import { courseEndPoint } from "../../store/actions/index.js";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, Route, Link } from "react-router-dom";
 import Course from "../courses/Course";
-import useMediaQuery from "@material-ui/core/useMediaQuery"
 
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-
-import ReactTooltip from 'react-tooltip'
-import AddCircleRoundedIcon from '@material-ui/icons/AddCircleRounded';
-
-import { CoursesCard, CourseMenuDiv, CourseDiv } from './DashboardStyles'
-import { AddButton, PlusDiv, Plus, ButtonText } from './ButtonStyles';
 
 const useStyles = makeStyles({
   welcome: {
@@ -58,8 +46,6 @@ function Dashboard({props}) {
   const userName = state.onboardingReducer.user;
   const firstName = userName.first_name ? userName.first_name.substring(0, 1).toUpperCase() + userName.first_name.substring(1) : null;
   const classes = useStyles(props);
-  console.log(props)
-
 
   useEffect(() => {
     dispatch(courseEndPoint());

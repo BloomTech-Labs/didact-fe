@@ -5,77 +5,7 @@ import { registerAction } from '../../store/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { Wrapper, RegisterWrapper, RegisterFormWrapper } from './RegisterStyles'
 import HeaderNoIcons from '../header/HeaderNoIcons'
-import { makeStyles } from '@material-ui/core/styles';
 import beURL from "../../utils/beURL";
-
- makeStyles(theme => ({
-    header: {
-        width: '50%',
-        margin: '0 auto',
-        '& *': {
-            textAlign: 'left'
-        } //testtest
-    },
-    container: {
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        width: '45%',
-        border: 'solid #9B9B9B 1.2px',
-        borderRadius: '1%',
-        margin: '0 auto',
-        padding: '2%'
-    },
-    namePlate: {
-        display: 'flex',
-        justifyContent: 'space-between',
-        width: "70%",
-        height: '2.7em',
-        "& *": {
-            border: 'solid #9B9B9B 1.2px',
-            backgroundColor: '#F7F7F7'
-        }
-    },
-    passPlate: {
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-evenly',
-        width: "70%",
-        height: '15em',
-        "& *": {
-            border: 'solid #9B9B9B 1.2px',
-            backgroundColor: '#F7F7F7',
-            height: '18%'
-        }
-    },
-    signUpButton: {
-        width: '70%',
-        height: '2.7em',
-        textAlign: 'center',
-        backgroundColor: '#5A5A5A',
-        color: 'white',
-        border: 'transparent',
-        borderRadius: '5%'
-    },
-    footer: {
-        display: 'flex',
-        justifyContent: 'space-between',
-        width: '50%',
-        height: '2.7em',
-        margin: '0 auto',
-        paddingTop: '2%',
-        "& *": {
-            height: '100%',
-            backgroundColor: '#5A5A5A',
-            color: 'white',
-            border: 'transparent',
-            borderRadius: '5%',
-            width: '33%',
-            textDecoration: 'none'
-        }
-    }
-}));
 
 const RegisterForm = (props) => {
 
@@ -166,8 +96,6 @@ const FormikRegisterForm = withFormik({
 const FormikRegisterWrapper = props => {
     const dispatch = useDispatch();
     
- 
-    console.log(dispatch)
     return (
         <Wrapper>
             <HeaderNoIcons history={props.history}/>

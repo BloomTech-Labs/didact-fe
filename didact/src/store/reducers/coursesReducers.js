@@ -106,7 +106,6 @@ export const coursesReducer = (state = initialState, action) => {
                 error: ''
             };
         case EDIT_COURSE_DATA_SUCCESS:
-            console.log("EDIT_COURSE: ", action.payload)
             return {
                 ...state,
                 course: {

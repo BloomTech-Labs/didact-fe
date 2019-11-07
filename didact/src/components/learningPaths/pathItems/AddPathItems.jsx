@@ -96,7 +96,6 @@ const useStyles = makeStyles(theme => ({
   })(TextField);
 
 const AddPathItems = ({props}) => {
-    console.log('props in add LP: ', props)
     const classes = useStyles();
     const dispatch = useDispatch();
     const [values, setValues] = useState({
@@ -112,7 +111,6 @@ const AddPathItems = ({props}) => {
   
     const handleSubmit = event => {
       event.preventDefault();
-      console.log(values)
       dispatch(postPathItem(props.match.params.id, values, props.history));
     }
   

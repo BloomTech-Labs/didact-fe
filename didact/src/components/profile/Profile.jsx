@@ -1,10 +1,9 @@
 import React from "react";
-import { makeStyles, withStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 
 import Popover from '@material-ui/core/Popover';
 
 import useMediaQuery from "@material-ui/core/useMediaQuery";
-import {Redirect} from "react-router-dom";
 import {useSelector } from "react-redux";
 import PermIdentityIcon from '@material-ui/icons/PermIdentity';
 const useStyles = makeStyles(theme => ({
@@ -103,7 +102,6 @@ const useStyles = makeStyles(theme => ({
 // })(Popover);
 
 export default function Profile(props) {
-  console.log(props)
   const classes = useStyles();
   const phoneSize = useMediaQuery("(max-width:770px)");
   const userName = useSelector(state => state.onboardingReducer.user);

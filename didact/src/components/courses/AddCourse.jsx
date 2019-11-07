@@ -97,7 +97,6 @@ const CssTextField = withStyles({
 })(TextField);
 
 export default function AddCourse(props) {
-  console.log(props)
   const classes = useStyles();
   const dispatch = useDispatch();
   const [values, setValues] = useState({
