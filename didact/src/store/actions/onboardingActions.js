@@ -16,6 +16,7 @@ const baseURL = `${beURL}auth/`
 
 export const loginAction = (history, form) => dispatch => {
     dispatch({ type: LOGIN_START })
+    console.log('baseURL', baseURL)
     axios
         .post(`${baseURL}login`, form)
         .then(res => {
