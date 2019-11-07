@@ -36,7 +36,6 @@ export const registerAction = (history, form) => dispatch => {
         })
         .then(res => history.push("/"))
         .catch(err => {
-            console.log(err)
             dispatch({ type: REGISTER_FAILURE, payload: err })
         });
 };

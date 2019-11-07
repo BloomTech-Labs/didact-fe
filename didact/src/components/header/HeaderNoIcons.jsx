@@ -38,7 +38,6 @@ const useStyles = makeStyles(theme => ({
 const HeaderSecondary = (props) => {
     const classes = useStyles();
     const {history} = props
-    console.log('history', history.location.pathname)
     let linkTo = history.location.pathname.toLowerCase() === "/login" ? 'Register' : 'Login'
 
     return (

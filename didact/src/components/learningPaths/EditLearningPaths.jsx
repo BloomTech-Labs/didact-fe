@@ -117,8 +117,6 @@ const CssTextField = withStyles({
 })(TextField);
 
 const EditLearningPaths = ({ id, props }) => {
-  // console.log(id);
-  // console.log(props);
   const state = useSelector(state => state.learningPathReducer);
   const learningPath = state.learningPath;
   const dispatch = useDispatch();
@@ -138,7 +136,6 @@ const EditLearningPaths = ({ id, props }) => {
     dispatch(getLearningPath(id));
   }, [id, dispatch]);
 
-  console.log(learningPath);
   useEffect(() => {
     setChanges({
       name: learningPath.name,
@@ -214,7 +211,6 @@ const EditLearningPaths = ({ id, props }) => {
   // function for Drag and Drop calling changeArr above
   const onDragEnd = result => {
     const { destination, source, draggableId } = result;
-    console.log(result)
     if(!destination) {
         return
     }
@@ -227,8 +223,6 @@ const EditLearningPaths = ({ id, props }) => {
     }
     // see instantiation of function on line 198
     setItemsCourses(changePathOrder(draggableId, destination.index, [...itemsCourses]))
-
-    console.log(itemsCourses)
   
     dispatch(updateLearningPathContentOrder(itemsCourses, props.match.params.id))
 

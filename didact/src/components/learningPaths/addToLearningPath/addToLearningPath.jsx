@@ -8,7 +8,6 @@ import { Container, IconDiv } from './AddStyles.js';
 
 
 export default function AddToLearningPath({props, itemsCourses}) {
-    console.log(props)
 
     return (
         <Container>

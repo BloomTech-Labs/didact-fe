@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import { removeCourseFromPath, deletePathItem } from '../../store/actions/index'
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
@@ -11,9 +11,8 @@ import Button from '@material-ui/core/Button';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
 import DeleteModal from '../courses/DeleteModal'
-import {FinishEdit, DeleteForm} from '../dashboard/ButtonStyles';
+import { DeleteForm } from '../dashboard/ButtonStyles';
 import {DraggableDiv} from "./DraggableStyles.js";
 import EditPathItems from './pathItems/EditPathItems';
 
@@ -120,28 +119,27 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-const CssTextField = withStyles({
-    root: {
-        '& label.Mui-focused': {
-            color: 'gray',
-        },
-        '& .MuiOutlinedInput-root': {
-            '& fieldset': {
-                borderColor: 'gray',
-            },
-            '&:hover fieldset': {
-                borderColor: 'gray',
-            },
-            '&.Mui-focused fieldset': {
-                border: '1px solid gray',
-            },
+// const CssTextField = withStyles({
+//     root: {
+//         '& label.Mui-focused': {
+//             color: 'gray',
+//         },
+//         '& .MuiOutlinedInput-root': {
+//             '& fieldset': {
+//                 borderColor: 'gray',
+//             },
+//             '&:hover fieldset': {
+//                 borderColor: 'gray',
+//             },
+//             '&.Mui-focused fieldset': {
+//                 border: '1px solid gray',
+//             },
 
-        },
-    },
-})(TextField);
+//         },
+//     },
+// })(TextField);
 
 const CourseLearningPath = ({ course, index, props}) => {
-    const state = useSelector(state => state)
     const dispatch = useDispatch()
     const classes = useStyles();
     const [expanded, setExpanded] = useState(false);
@@ -157,7 +155,6 @@ const CourseLearningPath = ({ course, index, props}) => {
         }
     }, [course.type])
 
-    // console.log(course)
     const handleExpandClick = () => {
         setExpanded(!expanded);
     };

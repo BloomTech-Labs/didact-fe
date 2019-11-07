@@ -96,7 +96,6 @@ const useStyles = makeStyles(theme => ({
   })(TextField);
 
 const AddLearningPaths = ({props}) => {
-    console.log('props in add LP: ', props)
     const classes = useStyles();
     const dispatch = useDispatch();
     const [values, setValues] = useState({
@@ -111,7 +110,6 @@ const AddLearningPaths = ({props}) => {
   
     const handleSubmit = event => {
       event.preventDefault();
-      console.log(values)
       dispatch(postLearningPath(values, props.history));
     }
   

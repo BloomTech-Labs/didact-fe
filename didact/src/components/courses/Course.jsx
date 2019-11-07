@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { courseEndPoint } from "../../store/actions/index.js";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { AddButton, PlusDiv, Plus, ButtonText } from '../dashboard/ButtonStyles';
 
 import { getYourLearningPathsOwned, postCourseToPath } from '../../store/actions/index'
 
@@ -17,8 +16,6 @@ import clsx from 'clsx';
 import IconButton from '@material-ui/core/IconButton';
 import Collapse from '@material-ui/core/Collapse';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import AddCircleRoundedIcon from '@material-ui/icons/AddCircleRounded';
-import useMediaQuery from "@material-ui/core/useMediaQuery";
 import Popover from '@material-ui/core/Popover'
 
 import playlistAdd from '../../images/playlist_add_black_24x24.png'
@@ -97,10 +94,6 @@ const useStyles = makeStyles(theme => ({
         display: 'flex',
         flexDirection: 'column'
     },
-    title: {
-        fontSize: 14,
-    },
-
     tooltip: {
         width: "400px"
     },
@@ -112,10 +105,6 @@ const useStyles = makeStyles(theme => ({
         border: 'black',
         height: '100%',
     },
-    popoverRoot: {
-        // backgroundColor: 'rgba(0, 0, 0, 0.5)'
-        // backgroundColor: 'red',
-    },
     courseTitle: {
         maxWidth: '512px'
     }
@@ -124,7 +113,6 @@ const useStyles = makeStyles(theme => ({
 
 
 const Course = ({ course, addingCourses }) => {
-    const tabletSize = useMediaQuery("(max-width:1150px");
     const classes = useStyles();
     const dispatch = useDispatch();
     const [expanded, setExpanded] = useState(false);
@@ -132,8 +120,6 @@ const Course = ({ course, addingCourses }) => {
     const open = Boolean(anchorEl);
     const id = open ? 'simple-popover' : undefined;
     const state = useSelector(state => state);
-    // console.log('user', state.onboardingReducer.user)
-    // console.log(state.coursesReducer.courses)
 
     useEffect(() => {
         dispatch(courseEndPoint());
@@ -160,11 +146,6 @@ const Course = ({ course, addingCourses }) => {
         setAnchorEl(null);
     }
 
-    console.log(state.learningPathReducer.yourLearningPathsOwned)
-
-    // const filteredPaths = state.learningPathReducer.yourLearningPaths.filter(path => path)
-
-
     const learningPaths = state.learningPathReducer.yourLearningPathsOwned
 
     const filteredPaths = []
@@ -180,9 +161,9 @@ const Course = ({ course, addingCourses }) => {
                     <Typography className={classes.title} variant="h5" component="h2">
                         <div className='courseTitle'>
                             <span className={classes.courseTitle}>{course.name}</span>
-                            {addingCourses && <button className={classes.addCourse} onClick={handleClick}><img src={playlistAdd} /></button>}
+                            {addingCourses && <button className={classes.addCourse} onClick={handleClick}><img src={playlistAdd} alt='Add Course' /></button>}
                         </div>
-                        <div className={classes.popoverRoot}>
+                        <div>
                             <Popover
                                 id={id}
                                 open={open}
@@ -202,7 +183,7 @@ const Course = ({ course, addingCourses }) => {
                                         {
                                             <div>
                                                 <div className='closePopover'>
-                                                    <img src={closeIcon} onClick={handleClose}/>
+                                                    <img src={closeIcon} onClick={handleClose} alt='Close'/>
                                                 </div>
                                                 <div className='learningPaths'>
                                                     <h4>Add to Learning Path</h4>
@@ -212,9 +193,9 @@ const Course = ({ course, addingCourses }) => {
                                                                 
                                                                 filteredPaths.length > 0 && (filteredPaths.map((learningPath, index) => {
                                                                     return (
-                                                                        <div className='learningPathTitle'>
+                                                                        <div className='learningPathTitle' key={index}>
                                                                             <h3>{learningPath.name}</h3>
-                                                                            <button onClick={() => handleAddCourse(learningPath.id, course.id, learningPath.contentLength + 1)}><img src={playlistAdd}/></button>
+                                                                            <button onClick={() => handleAddCourse(learningPath.id, course.id, learningPath.contentLength + 1)}><img src={playlistAdd} alt='Add Course'/></button>
                                                                         </div>
 
                                                                     )

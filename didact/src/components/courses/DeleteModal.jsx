@@ -1,16 +1,11 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import { ButtonDiv, EditLessonButton } from '../dashboard/ButtonStyles'
 
-function rand() {
-    return Math.round(Math.random() * 20) - 10;
-  }
-
 function getModalStyle() {
-    const top = 50 + rand();
-    const left = 50 + rand();
+    const top = 50;
+    const left = 50;
   
     return {
       top: `${top}%`,
@@ -46,8 +41,8 @@ const DeleteModal = ({handleDelete, text, open, handleModalClose}) => {
             <div style={modalStyle} className={classes.paper}>
                 <h2 style={{textAlign: 'center'}} id="simple-modal-title">Delete {text}?</h2>
                 <ButtonDiv>
-                <EditLessonButton onClick={handleModalClose}>no</EditLessonButton>
-                <EditLessonButton onClick={handleDelete}>yes</EditLessonButton>
+                <EditLessonButton onClick={handleModalClose}>No</EditLessonButton>
+                <EditLessonButton onClick={handleDelete}>Yes</EditLessonButton>
                 </ButtonDiv>
                 {/* <SimpleModal /> */}
             </div>

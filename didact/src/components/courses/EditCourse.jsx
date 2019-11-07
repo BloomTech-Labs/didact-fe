@@ -157,7 +157,6 @@ const EditCourse = ({props, id}) => {
         foreign_rating: "",
         link: ""
     })
-    console.log(props)
 
     useEffect(() => {
         dispatch(getCourseById(id))

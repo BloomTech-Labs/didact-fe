@@ -34,12 +34,10 @@ export const getSectionsByCourseId = (id) => dispatch =>
     .get(`${baseURL}${id}/sections`)
     .then(res =>
         {
-            console.log(`res from getSectionsByCourseId`, res)
             dispatch({ type: GET_SECTIONS_SUCCESS, payload: res.data })
         })
     .catch(err =>
         {
-            console.log(`err from getSectionsByCourseId`, err)
             dispatch({ type: GET_SECTIONS_FAIL, payload: err })
         })
 }
@@ -47,13 +45,11 @@ export const getSectionsByCourseId = (id) => dispatch =>
 export const addSectionToCourse = (id, section) => dispatch =>
 {
     dispatch({ type: ADD_SECTION_START })
-    console.log('Sections form shape ', section)
     axiosWithAuth()
     
     .post(`${baseURL}${id}/sections`, {section})
     .then(res => 
         {
-            console.log('res from add section to course', res)
             section.id = res.data.id[0]
             dispatch({ type: ADD_SECTION_SUCCESS, payload: section  })
         })
@@ -69,7 +65,6 @@ export const updateSection = (courseId, sectionId, changes) => dispatch =>
     .put(`${baseURL}${courseId}/sections/${sectionId}`, {changes})
     .then(res => 
         {
-            console.log('res from updateSection', res)
             dispatch({ type: UPDATE_SECTION_SUCCESS, payload: {changes:changes, id: sectionId}})
         })
     .catch(err => {
@@ -85,12 +80,10 @@ export const deleteSection = (courseId, sectionId) => dispatch =>
     .delete(`${baseURL}${courseId}/sections/${sectionId}`)
     .then(res =>
         {
-            console.log('res from deleteSection', res)
             dispatch({ type: DELETE_SECTION_SUCCESS, payload: sectionId })
         })
     .catch(err =>
         {
-            console.log('err from deleteSection', err)
             dispatch({ type: DELETE_SECTION_FAIL, payload: err })
         })
 }
@@ -102,12 +95,10 @@ export const getLessonsBySectionId = (courseId, sectionId) => dispatch =>
     .get(`${baseURL}${courseId}/sections/${sectionId}`)
     .then(res =>
         {
-            // console.log(`res from getLessonsBySectionId`, res)
             dispatch({ type: GET_LESSONS_SUCCESS, payload: {lessons: res.data} })
         })
     .catch(err =>
         {
-            console.log(`err from getLessonsBySectionId`, err)
             dispatch({ type: GET_LESSONS_FAIL, payload: err })
         })
 }
@@ -120,13 +111,11 @@ export const addLessonToSection = (courseId, sectionId, details) => dispatch =>
     .post(`${baseURL}${courseId}/sections/${sectionId}`, {details})
     .then(res => 
         {
-            // console.log('res from add lesson to section', res)
             details.id = res.data.id[0]
             dispatch({ type: ADD_LESSON_SUCCESS, payload: {...details, course_sections_id: sectionId }})
         })
     .catch(err => 
         {
-        // console.log('err from add lesson to section', err)
         dispatch({ type: ADD_LESSON_FAIL, payload: err })
         })
 }
@@ -138,7 +127,6 @@ export const updateLesson = (courseId, sectionId, lessonId, changes) => dispatch
     .put(`${baseURL}${courseId}/sections/${sectionId}/details/${lessonId}`, {changes})
     .then(res => 
         {
-            console.log('res from updateLesson', res)
             dispatch({ type: UPDATE_LESSON_SUCCESS, payload: {...changes, id: lessonId, course_sections_id: sectionId}})
         })
     .catch(err => {
@@ -154,12 +142,10 @@ export const deleteLesson = (courseId, sectionId, lessonId) => dispatch =>
     .delete(`${baseURL}${courseId}/sections/${sectionId}/details/${lessonId}`)
     .then(res =>
         {
-            console.log('res from deleteLesson', res)
             dispatch({ type: DELETE_LESSON_SUCCESS, payload: lessonId })
         })
     .catch(err =>
         {
-            console.log('err from deleteLesson', err)
             dispatch({ type: DELETE_LESSON_FAIL, payload: err })
         })
 }

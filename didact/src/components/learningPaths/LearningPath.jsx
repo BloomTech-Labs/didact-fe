@@ -14,7 +14,7 @@ const LearningPath = ({ id }) => {
 
     useEffect(_ => {
         dispatch(getLearningPath(id))
-    }, [dispatch])
+    }, [dispatch, id])
 
     useEffect(() => {
         if (learningPath.pathItems) {
