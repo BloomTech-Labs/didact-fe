@@ -164,7 +164,7 @@ export const joinLearningPath = (id, history) => dispatch =>
     {
         dispatch({ type: JOIN_LEARNING_PATH_SUCCESS, payload: id })
     })
-    .then(() => history.push(`/learning-paths/`))
+    .then(() => history.push(`/learning-paths/${id}`))
     .catch(err =>
     {
         dispatch({ type: JOIN_LEARNING_PATH_FAIL, payload: err })
