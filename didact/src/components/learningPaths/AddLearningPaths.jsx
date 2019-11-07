@@ -8,17 +8,20 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
+import { DidactField, DidactForm, DidactLabel, DidactTextArea } from '../dashboard/FormStyles'
 
 const useStyles = makeStyles(theme => ({
   
     button: {
       boxShadow: 'none',
-      borderRadius: '15px',
-      background: '#EBE8E1',
+      borderRadius: '12px',
+      background: '#242424',
+      color: 'white',
       marginLeft: '70%',
+      textTransform: 'none',
     },
     card: {
-      maxWidth: 500,
+      maxWidth: 540,
       borderRadius: 15,
     },
     title: {
@@ -157,6 +160,10 @@ const AddLearningPaths = ({props}) => {
                   placeholder="Category"
                   InputProps={{ classes: { underline: classes.blackUnderline, input: classes.input } }}
               />
+              <DidactField>
+                <DidactLabel for='title'>Title</DidactLabel>
+                <DidactForm id='title' type='text' placeholder='Learning Path Title' />  
+              </DidactField>
               <Button type='submit' size="small" variant="contained" className={classes.button} >Create Path</Button>
           </form>
         </CardContent>

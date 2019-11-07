@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
     marginLeft: '70%',
   },
   card: {
-    maxWidth: 500,
+    maxWidth: 540,
     borderRadius: 15,
   },
   title: {
@@ -96,8 +96,7 @@ const CssTextField = withStyles({
 },
 })(TextField);
 
-export default function AddCourse(props) {
-  console.log(props)
+export default function AddCourse({props}) {
   const classes = useStyles();
   const dispatch = useDispatch();
   const [values, setValues] = useState({
@@ -116,7 +115,7 @@ export default function AddCourse(props) {
   const handleSubmit = event => {
       event.preventDefault();
       Mixpanel.track("Course Added.")
-      dispatch(addCourse(values, props.props));
+      dispatch(addCourse(values, props));
   }
 
   return (

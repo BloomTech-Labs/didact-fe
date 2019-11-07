@@ -105,8 +105,8 @@ export const P = styled.p`
 
 export const EditLessonButton = styled.button`
        box-shadow: none;
-        border-radius: 15px;
-        background: #EBE8E1;
+        border-radius: 12px;
+        background: #242424;
         height: 30px;
         width: 112px;
         border: none;
