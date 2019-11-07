@@ -1,17 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { addTag, getTags, deleteTag } from '../../store/actions'
 import { useSelector, useDispatch } from 'react-redux';
-import { CoursesCard, CourseMenuDiv, CourseDiv } from '../dashboard/DashboardStyles';
 import { TagDelete, P } from '../dashboard/ButtonStyles';
 import { TagInput, TagSelect } from './SelectStyles'
 
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
 import { ButtonDiv } from '../dashboard/ButtonStyles';
 
 const useStyles = makeStyles(theme => ({
@@ -70,25 +66,25 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const CssTextField = withStyles({
-    root: {
-        '& label.Mui-focused': {
-            color: 'gray',
-        },
-        '& .MuiOutlinedInput-root': {
-            '& fieldset': {
-                borderColor: 'gray',
-            },
-            '&:hover fieldset': {
-                borderColor: 'gray',
-            },
-            '&.Mui-focused fieldset': {
-                border: '1px solid gray',
-            },
+// const CssTextField = withStyles({
+//     root: {
+//         '& label.Mui-focused': {
+//             color: 'gray',
+//         },
+//         '& .MuiOutlinedInput-root': {
+//             '& fieldset': {
+//                 borderColor: 'gray',
+//             },
+//             '&:hover fieldset': {
+//                 borderColor: 'gray',
+//             },
+//             '&.Mui-focused fieldset': {
+//                 border: '1px solid gray',
+//             },
 
-        },
-    },
-})(TextField);
+//         },
+//     },
+// })(TextField);
 
 const Tags = ({ props, course }) => {
 
@@ -103,7 +99,7 @@ const Tags = ({ props, course }) => {
 
     useEffect(() => {
         dispatch(getTags())
-    }, [])
+    }, [dispatch])
 
     const handleChange = name => event => {
         setTag({ ...tag, [name]: event.target.value });

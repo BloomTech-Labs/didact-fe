@@ -85,15 +85,13 @@ export const sectionsReducer = (state = initialState, action) => {
             }
         case UPDATE_SECTION_SUCCESS:
             let temp = { ...state }
-            console.log('reducer payload', action.payload.changes)
-            temp.sections.map((el, i) => {
+            temp.sections.forEach((el, i) => {
                 if (action.payload.id === el.id) {
                     temp.sections[i] = action.payload.changes
                     temp.sections[i].id = action.payload.id
                 }
             })
             temp.sections.sort((a, b) => a.order - b.order)
-            console.log('reducer log:', temp.sections)
             return {
                 ...state,
                 sections: temp.sections,
@@ -165,7 +163,6 @@ export const sectionsReducer = (state = initialState, action) => {
                 error: "",
             }
         case ADD_LESSON_SUCCESS:
-            console.log(action.payload)
             return {
                 ...state,
                 isLoading: false,

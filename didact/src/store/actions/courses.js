@@ -32,7 +32,6 @@ export const courseEndPoint =() => dispatch => {
     axiosWithAuth()
     .get(`${baseURL}`)
     .then(res => {
-        // console.log('all courses api response: ', res)
         dispatch({type: COURSE_DATA_SUCCESS, payload: res.data})
     })
     .catch(err => {
@@ -42,11 +41,9 @@ export const courseEndPoint =() => dispatch => {
 
 export const getCourseById =(id) => dispatch => {
     dispatch({type: SINGLE_COURSE_DATA_START})
-    console.log(id)
     axiosWithAuth()
     .get(`${baseURL}${id}`)
     .then(res => { 
-        console.log('single course api response: ', res.data)
         dispatch({type: SINGLE_COURSE_DATA_SUCCESS, payload: res.data})
     })
     .catch(err => {
@@ -59,25 +56,20 @@ export const addCourse =(values, props) => dispatch => {
     axiosWithAuth()
     .post(`${baseURL}`, values)
     .then(res => {
-        console.log('add course api response: ', res)
-        console.log('props ', props)
         dispatch({type: ADD_COURSE_DATA_SUCCESS, payload: {...values, id: res.data} })
         return res.data
     })
     .then(response => props.match.params.id ? (dispatch(addNewCourseToLearningPath(props, response.id))) : props.history.push(`/courses/${response.id}/edit`))
     .catch(err => {
-        console.log(err.response)
         dispatch({type: ADD_COURSE_DATA_FAIL, payload: err})
     })
 }
 
 export const editCourse =(id, changes) => dispatch => {
     dispatch({type: EDIT_COURSE_DATA_START})
-    console.log("CHANGES!: ", changes)
     axiosWithAuth()
     .put(`${baseURL}${id}`, {changes})
     .then(res => {
-        // console.log('edit course api response: ', res)
         dispatch({type: EDIT_COURSE_DATA_SUCCESS, payload: changes})
     })
     .catch(err => {
@@ -91,7 +83,6 @@ export const deleteCourse =(id, history) => dispatch => {
     axiosWithAuth()
     .delete(`${baseURL}${id}`)
     .then(res => {
-        // console.log('edit course api response: ', res)
         dispatch({type: DELETE_COURSE_DATA_SUCCESS, payload: id})
     })
     .then(() => history.push('/'))
@@ -107,7 +98,6 @@ export const addTagToCourse = (id, tag) => dispatch =>
     .post(`${baseURL}${id}/tags`, tag)
     .then(res => 
         {
-            console.log('res from add tag to course', res)
             dispatch({ type: ADD_TAG_TO_COURSE_SUCCESS })
         })
     .catch(err => {
@@ -142,12 +132,10 @@ export const getDetailedCourse = (id) => async dispatch =>
             sections
         }
     
-        console.log('detailedCourse', detailedCourse)
         await dispatch({ type: GET_DETAILED_COURSE_SUCCESS, payload: detailedCourse })
     }
     catch(err)
     {
-        console.log(`err from get detailed course`, err)
         dispatch({ type: GET_DETAILED_COURSE_FAIL, payload: err })
     }
 }

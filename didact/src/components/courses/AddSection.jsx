@@ -136,7 +136,6 @@ const initalValues = {
 }
 
 const AddSection = ({course, props, setAddSectionChange}) => {
-    console.log("Add Section Props: ", props)
     const classes = useStyles();
     const dispatch = useDispatch()
     const [values, setValues] = useState(initalValues);

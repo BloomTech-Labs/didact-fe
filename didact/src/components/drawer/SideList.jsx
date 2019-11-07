@@ -9,17 +9,10 @@ import ListItemText from "@material-ui/core/ListItemText";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import FolderOpenIcon from '@material-ui/icons/FolderOpen';
-import EventIcon from '@material-ui/icons/Event';
-import SettingsIcon from '@material-ui/icons/Settings';
-import PersonIcon from '@material-ui/icons/Person';
-import DoneAllIcon from '@material-ui/icons/DoneAll';
 
-const SideList = ({props}) => {
-    console.log(props.props.match.url)
-    const coursesTab = props.props.match.url = '/courses'
-    const dashboardTab = props.props.match.url = '/'
+const SideList = ({ props }) => {
     const drawerStyles = makeStyles(theme => ({
-    
+
         activeTab: {
             backgroundColor: "#5b5b5b",
             borderRadius: "0 20px 20px 0",
@@ -31,32 +24,32 @@ const SideList = ({props}) => {
                 width: "215px",
                 color: "white",
             },
-          },
-          arrow: {
+        },
+        arrow: {
             display: 'flex',
             justifyContent: 'flex-end',
             alignContent: 'center',
-            color: "white", 
-          },
-          
+            color: "white",
+        },
+
     }));
 
     const classes = drawerStyles();
 
     return (
         <>
-            
+
             <List>
-                <ListItem className = {classes.hoverTab}
+                <ListItem className={classes.hoverTab}
                     button
                     component={NavLink}
-                    exact to="/" 
+                    exact to="/"
                     style={{ textDecoration: "none" }}
                     activeClassName={classes.activeTab}
                     key="Dashboard"
                 >
                     <ListItemIcon>
-                       <DashboardIcon/> 
+                        <DashboardIcon />
                     </ListItemIcon>
                     <ListItemText primary="Dashboard" />
                     <ListItemText className={classes.arrow} primary=">" />
@@ -73,8 +66,8 @@ const SideList = ({props}) => {
                 </ListItem>
             </List> */}
             <List >
-                <ListItem 
-                    className = {classes.hoverTab}
+                <ListItem
+                    className={classes.hoverTab}
                     button
                     component={NavLink}
                     to="/courses"
@@ -82,7 +75,7 @@ const SideList = ({props}) => {
                     activeClassName={classes.activeTab}
                     key="Add Course">
                     <ListItemIcon>
-                        <FolderOpenIcon/>
+                        <FolderOpenIcon />
                     </ListItemIcon>
                     <ListItemText primary="Courses" />
                     <ListItemText className={classes.arrow} primary=">" />
@@ -91,7 +84,7 @@ const SideList = ({props}) => {
 
             <List >
                 <ListItem
-                    className = {classes.hoverTab}
+                    className={classes.hoverTab}
                     button
                     component={NavLink}
                     to="/learning-paths"
