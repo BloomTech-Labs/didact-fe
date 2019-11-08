@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 
 import { getLearningPaths, joinLearningPath } from '../../store/actions/index'
 
-import { LearningPathsWrapper } from './YourLearningPathsStyles'
+import { LearningPathsWrapper, LearningPathCard } from './YourLearningPathsStyles'
 
 const AllLearningPaths = (props) => {
     const dispatch = useDispatch()
@@ -24,14 +24,14 @@ const AllLearningPaths = (props) => {
             {
                     learningPaths.map((learningPath, index) => {
                         return (
-                            <div key={index} className='learningPathCard'>
+                            <LearningPathCard key={index}>
                                 <div className='title'> 
                                     <h1>{learningPath.name}</h1>
                                     <div>
                                         <button onClick={joinPath} id={learningPath.id}>Join Path</button>
                                     </div>
                                 </div>
-                            </div>
+                            </LearningPathCard>
                         )
                     })
                 }
