@@ -32,7 +32,7 @@ const useStyles = makeStyles(theme => ({
   {
     textDecoration: 'none',
     color: 'lightgray',
-    fontSize: '1.5rem'
+    fontSize: '2rem'
   }
 }));
 

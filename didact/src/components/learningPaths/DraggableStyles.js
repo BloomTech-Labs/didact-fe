@@ -17,6 +17,7 @@ export const PathInstructions = styled.div`
     font-weight: bold;
     font-size: 1.5rem;
     margin: 15px 0;
+    font-size: 2.0rem;
 `
 
 // .card-3 {
