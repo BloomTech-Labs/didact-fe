@@ -6,16 +6,15 @@ import {
 } from "../../../store/actions";
 
 import DeleteModal from "../../courses/DeleteModal";
-import { ButtonDiv, DeleteForm } from "../../dashboard/ButtonStyles";
+import { ButtonDiv, TrashCanEdit, DidactButton } from "../../dashboard/ButtonStyles";
 import { DidactField, DidactInput, DidactLabel, DidactTextArea } from '../../dashboard/FormStyles'
 
 //imports from material-ui
-import { makeStyles, withStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
-import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
-import TextField from "@material-ui/core/TextField";
+
+
 
 
 const useStyles = makeStyles(theme => ({
@@ -41,69 +40,14 @@ const useStyles = makeStyles(theme => ({
     display: "flex",
     flexWrap: "wrap",
   },
-  input: {
-    backgroundColor: "#F4F8FA",
-    filter: "brightness(95%)",
-    borderRadius: 15,
-  },
-  inputDescription: {
-    backgroundColor: "#F4F8FA",
-    filter: "brightness(95%)",
-    borderRadius: 15,
-    margin: "-16px -10px -16px -10px",
-    padding: "10px",
-  },
-  titleOrInstructorFields: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    width: "45%",
-    [`& fieldset`]: {
-      borderRadius: 15,
-    },
-  },
-  descriptionField: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    width: "93%",
-    [`& fieldset`]: {
-      borderRadius: 15,
-      margin: "3px",
-    },
-  },
 
   descriptionDiv: {
     display: "flex",
     justifyContent: "center",
   },
 
-  pathUrlField: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    width: "93%",
-    [`& fieldset`]: {
-      borderRadius: 15,
-    },
-  },
 }));
 
-const CssTextField = withStyles({
-  root: {
-    "& label.Mui-focused": {
-      color: "gray",
-    },
-    "& .MuiOutlinedInput-root": {
-      "& fieldset": {
-        borderColor: "gray",
-      },
-      "&:hover fieldset": {
-        borderColor: "gray",
-      },
-      "&.Mui-focused fieldset": {
-        border: "1px solid gray",
-      },
-    },
-  },
-})(TextField);
 
 const EditPathItems = ({ course, props, handleToggleEdit }) => {
   const state = useSelector(state => state.learningPathReducer);
@@ -166,10 +110,10 @@ const EditPathItems = ({ course, props, handleToggleEdit }) => {
     <>
       <Card className={classes.card}>
         <CardContent>
-          <Typography className={classes.title} gutterBottom>
+          <p className={classes.title} gutterBottom>
             Learning Path Overview
-                </Typography>
-          <DeleteForm onClick={handleModalOpen}>X</DeleteForm>
+           </p>
+           <TrashCanEdit style={{fontSize: '2.6rem'}} onClick={handleModalOpen}></TrashCanEdit>
           {openModal ? (
             <DeleteModal
               handleDelete={handleDelete}
@@ -201,24 +145,22 @@ const EditPathItems = ({ course, props, handleToggleEdit }) => {
               <DidactInput id='type' type='text' value={changes.type || ""} onChange={handleChange('type')} placeholder='Type' />
             </DidactField>
             <ButtonDiv>
-              <Button
+              <DidactButton
                 style={{ marginLeft: "10px" }}
                 onClick={handleCancel}
                 size="small"
                 variant="contained"
-                className={classes.button}
               >
                 Cancel
-                    </Button>
-              <Button
+              </DidactButton>
+              <DidactButton
                 type="submit"
                 style={{ marginRight: "4%" }}
                 size="small"
                 variant="contained"
-                className={classes.button}
               >
                 Submit Edit
-                    </Button>
+              </DidactButton>
             </ButtonDiv>
           </form>
         </CardContent>

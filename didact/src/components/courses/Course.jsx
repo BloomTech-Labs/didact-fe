@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { getYourLearningPathsOwned, postCourseToPath } from '../../store/actions/index'
 
 import { AddCourseToPath, PopoverWrapper } from './CourseStyles'
+import { DidactButton } from '../dashboard/ButtonStyles'
 
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -41,21 +42,12 @@ const useStyles = makeStyles(theme => ({
         marginTop: '40px',
         marginLeft: '20px'
     },
-    addButtonDivTablet: {
-        display: 'flex',
-        flexDirection: 'row',
-        marginBottom: "-20px"
-    },
+  
     card: {
         maxWidth: 540,
         margin: '40px 0 40px 0',
         borderRadius: '15px',
         boxShadow: 'none',
-    },
-    circleIcon: {
-        fontSize: '3.5rem',
-        marginRight: '5px',
-        
     },
     descriptionDiv: {
         width: "100%",
@@ -75,23 +67,13 @@ const useStyles = makeStyles(theme => ({
     expandOpen: {
         transform: 'rotate(180deg)',
     },
-    heading: {
-        fontSize: theme.typography.pxToRem(15),
-        fontWeight: theme.typography.fontWeightRegular,
-    },
     root: {
         display: 'flex',
         flexDirection: 'row',
         opacity: '0',
         padding: '0px'
     },
-    rootTablet: {
-        display: 'flex',
-        flexDirection: 'column'
-    },
-    tooltip: {
-        width: "400px"
-    },
+   
     title: {
         display: 'flex',
     },
@@ -175,14 +157,14 @@ const Course = ({ course, addingCourses }) => {
                                 }}
                             >
                                 {
-                                    <AddCourseToPath className={classes.popoverRoot}>
+                                    <AddCourseToPath >
                                         {
                                             <div>
-                                                <div className='closePopover'>
+                                                <div style ={{marginTop: '10px', paddingRight: '5px'}} className='closePopover'>
                                                     <img src={closeIcon} onClick={handleClose} alt='Close'/>
                                                 </div>
                                                 <div className='learningPaths'>
-                                                    <h4>Add to Learning Path</h4>
+                                                    <h4 style={{margin: " -5px auto"}}>Add to Learning Path</h4>
                                                     {
                                                         (filteredPaths.length > 0 ?
                                                             (
@@ -190,7 +172,7 @@ const Course = ({ course, addingCourses }) => {
                                                                 filteredPaths.length > 0 && (filteredPaths.map((learningPath, index) => {
                                                                     return (
                                                                         <div className='learningPathTitle' key={index}>
-                                                                            <h3>{learningPath.name}</h3>
+                                                                            <h5>{learningPath.name}</h5>
                                                                             <button onClick={() => handleAddCourse(learningPath.id, course.id, learningPath.contentLength + 1)}><img src={playlistAdd} alt='Add Course'/></button>
                                                                         </div>
 
@@ -202,7 +184,7 @@ const Course = ({ course, addingCourses }) => {
                                                     }
                                                 </div>
                                                 <div className='buttons'>
-                                                    <button onClick={handleClose}>Done</button>
+                                                    <DidactButton onClick={handleClose}>Done</DidactButton>
                                                     <a href='/learning-paths/add'>Create Learning Path</a>
                                                 </div>
                                             </div>

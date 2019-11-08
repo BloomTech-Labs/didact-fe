@@ -4,10 +4,15 @@ export const LearningPathsWrapper = styled.div`
     margin-right: 30px;
     display: flex;
     flex-direction: column;
+
+    @media (max-width: 600px){
+        margin: auto;
+    }
+
 `
 
 export const YourLearningPathsWrapper = styled.div`
-    margin-right: 30px;
+    /* margin-right: 30px; */
     display: flex;
 
     .yourLearningPaths {
@@ -52,9 +57,9 @@ export const YourLearningPathsWrapper = styled.div`
 
 export const LearningPathCard = styled.div`
 
-    @media (max-width: 600px) {
+    /* @media (max-width: 600px) {
         margin: auto;
-        }
+        } */
 
         display: flex;
         justify-content: space-between;
@@ -63,7 +68,8 @@ export const LearningPathCard = styled.div`
         border-radius: 19px;
         padding: 35px 43px;
         margin-bottom: 28px;
-        width: 540px;
+        max-width: 540px;
+        width: 100%;
         background-color: #386581;
 
 
@@ -150,4 +156,37 @@ export const LearningPathCard = styled.div`
     h1 {
         text-align: left;
     }
+`
+
+export const ButtonStyles = styled.div `
+    .buttons {
+        padding-left: 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+
+        a {
+            background-color: #242424;
+            color: #F4F8FA;
+            text-decoration: none;
+            padding: 20px 30px;
+            margin-bottom: 22px;
+            border-radius: 19px;
+            font-weight: bold;
+            width: 255px;
+            height: 61px;
+
+            &:first-child {
+                margin-right: 20px;
+            }
+
+            &:hover {
+                color: rgba(0, 0, 0, 1);
+                background-color: rgba(255, 255, 255, 1);
+                border: solid black 1px;
+                outline: none;
+            }   
+        }
+    }
+
 `

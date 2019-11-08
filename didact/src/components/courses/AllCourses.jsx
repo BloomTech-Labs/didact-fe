@@ -11,17 +11,6 @@ import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 
 const useStyles = makeStyles(theme => ({
-    buttonCourse: {
-        border: "none",
-        margin: "20px",
-        backgroundColor: '#f2e9d4',
-        outline: 'none',
-        padding: '10px',
-        borderRadius: 15,
-        width: '120px',
-        fontSize: "13px",
-        cursor: 'pointer'
-    },
     buttonDiv: {
         display: "flex",
         justifyContent: 'flex-end',
@@ -36,25 +25,14 @@ const useStyles = makeStyles(theme => ({
         marginBottom: "-20px",
         maxWidth: '500px'
     },
-    card: {
-        maxWidth: 540,
-        margin: '40px 0 40px 0', 
-        padding: '10px',
-        borderRadius: '15px',
-    },
+  
     circleIcon: {
         fontSize: '3.5rem',
         marginRight: '5px',
         marginLeft: '10px',
         color: "#5b5b5b"
     }, 
-    descriptionDiv: {
-        width: "100%",
-        display: 'flex',
-        justifyContent: "space-between",
-        fontSize: 14,
-        color: "#757575"
-    },
+  
     expand: {
         transform: 'rotate(0deg)',
         // marginLeft: 'auto',
@@ -65,13 +43,6 @@ const useStyles = makeStyles(theme => ({
     expandOpen: {
         transform: 'rotate(180deg)',
     },
-    heading: {
-        fontSize: theme.typography.pxToRem(15),
-        fontWeight: theme.typography.fontWeightRegular,
-    },
-    pos: {
-        marginBottom: 12,
-    },
     root: {
         display: 'flex',
         flexDirection: 'row',
@@ -81,14 +52,6 @@ const useStyles = makeStyles(theme => ({
         display: 'flex',
         flexDirection: 'column',
     },
-    title: {
-        fontSize: 14,
-    },
-
-    tooltip: {
-        width: "400px"
-    },
-
 }));
 
 function AllCourses(props) {

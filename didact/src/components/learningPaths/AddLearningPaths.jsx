@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { postLearningPath } from '../../store/actions';
-import { useDispatch } from "react-redux";
+import React, { useState, useEffect } from 'react';
+import { postLearningPath, getYourLearningPaths } from '../../store/actions';
+import { useDispatch, useSelector } from "react-redux";
 
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -21,13 +21,22 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const AddLearningPaths = ({ props }) => {
+  console.log(props)
   const classes = useStyles();
   const dispatch = useDispatch();
+  const state = useSelector(state => state)
+  const yourPaths = state.learningPathReducer.yourLearningPaths
+
   const [values, setValues] = useState({
     name: "",
     category: "",
     description: "",
+    userPathOrder: `${yourPaths.length+1}`
   });
+
+  useEffect(() => {
+    dispatch(getYourLearningPaths())
+  }, [dispatch])
 
   const handleChange = name => event => {
     setValues({ ...values, [name]: event.target.value });

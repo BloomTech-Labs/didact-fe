@@ -102,6 +102,8 @@ export const LearningPathWrapper = styled.div`
                 margin-top: 25px;
             }
 
+            
+
             .goToCourse {
                 display: flex;
                 justify-content: space-between;

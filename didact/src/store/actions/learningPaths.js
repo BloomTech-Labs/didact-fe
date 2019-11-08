@@ -58,6 +58,9 @@ export const DELETE_PATH_ITEM_FAIL = "DELETE_PATH_ITEM_FAIL"
 export const UPDATE_PATH_CONTENT_START = "UPDATE_PATH_CONTENT_START"
 export const UPDATE_PATH_CONTENT_SUCCESS = "UPDATE_PATH_CONTENT_SUCCESS"
 export const UPDATE_PATH_CONTENT_FAIL = "UPDATE_PATH_CONTENT_FAIL"
+export const UPDATE_YOUR_PATH_ORDER_START = "UPDATE_YOUR_PATH_ORDER_START"
+export const UPDATE_YOUR_PATH_ORDER_SUCCESS = "UPDATE_YOUR_PATH_ORDER_SUCCESS"
+export const UPDATE_YOUR_PATH_ORDER_FAIL = "UPDATE_YOUR_PATH_ORDER_FAIL"
 
 const baseURL = `${beURL}learning-paths/`
 
@@ -106,10 +109,11 @@ export const getLearningPath = (id) => dispatch =>
     })
 }
 
-export const postLearningPath = (pathObj, history) => dispatch =>
+export const postLearningPath = (values, history) => dispatch =>
 {
     dispatch({ type: POST_LEARNING_PATH_START })
-
+    let path = {name: values.name, description: values.description || "", category: values.category || ""}
+    let pathObj = {path, userPathOrder: values.userPathOrder}
     axiosWithAuth().post(`${baseURL}`, pathObj)
     .then(res =>
     {
@@ -155,11 +159,11 @@ export const deleteLearningPath = (id, history) => dispatch =>
     })
 }
 
-export const joinLearningPath = (id, history) => dispatch =>
+export const joinLearningPath = (id, history, order) => dispatch =>
 {
     dispatch({ type: JOIN_LEARNING_PATH_START })
 
-    axiosWithAuth().post(`${baseURL}${id}/users`)
+    axiosWithAuth().post(`${baseURL}${id}/users`, {order: order})
     .then(res =>
     {
         dispatch({ type: JOIN_LEARNING_PATH_SUCCESS, payload: id })
@@ -354,6 +358,7 @@ export const deletePathItem = (pathId, itemId) => dispatch =>
 }
 
 export const updateLearningPathContentOrder = (learningPathContent, path_id) => dispatch => {
+    console.log('in action', learningPathContent)
     dispatch({ type: UPDATE_PATH_CONTENT_START })
     axiosWithAuth().put(`${baseURL}${path_id}/order`, {learningPathContent: learningPathContent})
     .then(res => {
@@ -361,5 +366,21 @@ export const updateLearningPathContentOrder = (learningPathContent, path_id) => 
     })
     .catch(err => {
         dispatch({type: UPDATE_PATH_CONTENT_FAIL, payload: err.message})
+    })
+}
+
+export const updateYourPathOrder = (pathArray) => dispatch => {
+    console.log(pathArray)
+    let reqObj = []
+    reqObj = pathArray.map(el => {return {pathId: el.id, userPathOrder: el.user_path_order}})
+    console.log('in the action', reqObj)
+    dispatch({type: UPDATE_YOUR_PATH_ORDER_START})
+    axiosWithAuth().put(`${baseURL}`, {pathOrderArray: reqObj})
+    .then(res => {
+        console.log(res)
+        dispatch({type: UPDATE_YOUR_PATH_ORDER_SUCCESS, payload: pathArray})
+    })
+    .catch(err => {
+        dispatch({type: UPDATE_YOUR_PATH_ORDER_FAIL, payload: err})
     })
 }

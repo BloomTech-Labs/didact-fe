@@ -41,7 +41,7 @@ const useStyles = makeStyles(theme => ({
         // flexGrow: 1,
         paddingLeft: "80px",
         padding: theme.spacing(2),
-        overflow: "hidden",
+
 
 
     },
@@ -58,7 +58,7 @@ const useStyles = makeStyles(theme => ({
     // },
     toolbar: {
         display: "flex",
-        alignItems: "center",
+        alignItems: "center", 
         justifyContent: "flex-end",
         padding: theme.spacing(0, 1),
         ...theme.mixins.toolbar,

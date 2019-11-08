@@ -5,14 +5,13 @@ import { Mixpanel } from '../../utils/mixpanel';
 
 import { addSectionToCourse } from '../../store/actions'
 
-import { DidactField, DidactInput, DidactLabel, DidactTextArea } from '../dashboard/FormStyles'
-import { ButtonDiv } from '../dashboard/ButtonStyles'
+import { DidactField, DidactInput, DidactLabel, DidactTextArea, FormTitle } from '../dashboard/FormStyles'
+import { ButtonDiv, DidactButton } from '../dashboard/ButtonStyles'
 
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 
 
@@ -168,10 +167,8 @@ const AddSection = ({course, props, setAddSectionChange}) => {
         <>
             <Card className={classes.card}>
                 <CardContent>
-                    <Typography className={classes.title} gutterBottom>
-                        Add Section
-                     </Typography>
                     <form onSubmit={handleSubmit} className={classes.container} noValidate autoComplete="off">
+                        <FormTitle>Add Section </FormTitle>
                         <DidactField>
                             <DidactLabel for='title'>Lesson Name</DidactLabel>
                             <DidactInput id='title' type='text' value={values.name || ""} onChange={handleChange('name')} placeholder='Lesson Name' />  
@@ -189,8 +186,8 @@ const AddSection = ({course, props, setAddSectionChange}) => {
                             <DidactInput id='link' type='text' value={values.link || ""} onChange={handleChange('link')} placeholder='URL Link' />  
                         </DidactField>
                         <ButtonDiv>
-                            <Button style={{marginLeft: '10px'}} onClick={handleCancel} size="small" variant="contained" className={classes.button} >CANCEL</Button>
-                            <Button type='submit' style={{marginRight: '4%'}} size="small" variant="contained" className={classes.button} >SUBMIT SECTION</Button>
+                            <DidactButton style={{marginLeft: '10px'}} onClick={handleCancel}>Cancel</DidactButton>
+                            <DidactButton type='submit' style={{marginRight: '4%'}}>Submit Section</DidactButton>
                         </ButtonDiv>
                     </form>
                 </CardContent>
