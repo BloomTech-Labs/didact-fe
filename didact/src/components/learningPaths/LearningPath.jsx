@@ -25,8 +25,6 @@ const LearningPath = ({ id }) => {
             );
         }
     }, [learningPath.pathItems, learningPath.courses]) 
-    
-    console.log(itemsCourses)
 
     return ( 
         <LearningPathWrapper>
