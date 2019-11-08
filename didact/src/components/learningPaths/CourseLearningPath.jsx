@@ -35,10 +35,11 @@ const useStyles = makeStyles(theme => ({
     },
     card: {
         width: '100%',
-        maxWidth: 600,
+        maxWidth: 540,
         // minWidth: 220,
         borderRadius: 15,
-        margin: '10px 0'
+        margin: '10px 0',
+        boxShadow: 'none'
     },
     title: {
         fontSize: 14,

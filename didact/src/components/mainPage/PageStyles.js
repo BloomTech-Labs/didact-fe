@@ -27,6 +27,8 @@ export const PageFlex = styled.div`
 
             h2 {
                 margin: 0px 0px;
+                font-family: ITC Grouch;
+                font-size: 32px;
             }
 
             .navSection {

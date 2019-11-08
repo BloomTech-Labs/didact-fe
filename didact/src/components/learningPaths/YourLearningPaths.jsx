@@ -8,7 +8,7 @@ import { LearningPathsWrapper } from './YourLearningPathsStyles'
 
 import Modal from '@material-ui/core/Modal';
 import { makeStyles } from '@material-ui/core/styles';
-import { ButtonDiv, EditLessonButton } from '../dashboard/ButtonStyles'
+import { ButtonDiv, DidactButton } from '../dashboard/ButtonStyles'
 
 function getModalStyle() {
     const top = 50;
@@ -68,7 +68,7 @@ const YourLearningPaths = (props) => {
                     return (
                         <div key={index} className='learningPathCard'>
                             <div className='title'>
-                                <h1>{learningPath.name}</h1>
+                                <h1 style={{fontWeight: 'bold'}}>{learningPath.name}</h1>
                                 <div>
                                     <button><Link to={`/learning-paths/${learningPath.id}`}>Go To Path</Link></button>
                                     <button onClick={() => handleModalOpen(learningPath.id)} id={learningPath.id}>Leave Path</button>
@@ -82,8 +82,8 @@ const YourLearningPaths = (props) => {
                                             <div style={modalStyle} className={classes.paper}>
                                                 <h2 style={{ textAlign: 'center' }} id="simple-modal-title">Are you sure you want to leave this Learning Path?</h2>
                                                 <ButtonDiv>
-                                                    <EditLessonButton onClick={handleModalClose}>No</EditLessonButton>
-                                                    <EditLessonButton onClick={handleDelete}>Yes</EditLessonButton>
+                                                    <DidactButton onClick={handleModalClose}>No</DidactButton>
+                                                    <DidactButton onClick={handleDelete}>Yes</DidactButton>
                                                 </ButtonDiv>
                                             </div>
                                         </Modal>
@@ -98,8 +98,8 @@ const YourLearningPaths = (props) => {
                 learningPaths.length === 0 && <h1>You have not joined any learning paths</h1>
             }
             <div className='buttons'>
-                <Link to={'/learning-paths/join'}>Join a Learning Path</Link>
-                <Link to={'/learning-paths/add'}>Create a New Learning Path</Link>
+                <Link style ={{fontSize: '1.4rem'}} to={'/learning-paths/join'}>Join a Learning Path</Link>
+                <Link style ={{fontSize: '1.4rem'}} to={'/learning-paths/add'}>Create a New Learning Path</Link>
             </div>
         </LearningPathsWrapper>
     )

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
-import { ButtonDiv, EditLessonButton } from '../dashboard/ButtonStyles'
+import { ButtonDiv, DidactButton } from '../dashboard/ButtonStyles'
 
 function getModalStyle() {
     const top = 50;
@@ -41,10 +41,9 @@ const DeleteModal = ({handleDelete, text, open, handleModalClose}) => {
             <div style={modalStyle} className={classes.paper}>
                 <h2 style={{textAlign: 'center'}} id="simple-modal-title">Delete {text}?</h2>
                 <ButtonDiv>
-                <EditLessonButton onClick={handleModalClose}>No</EditLessonButton>
-                <EditLessonButton onClick={handleDelete}>Yes</EditLessonButton>
+                <DidactButton onClick={handleModalClose}>No</DidactButton>
+                <DidactButton onClick={handleDelete}>Yes</DidactButton>
                 </ButtonDiv>
-                {/* <SimpleModal /> */}
             </div>
       </Modal>)
 }

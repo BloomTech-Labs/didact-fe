@@ -11,11 +11,12 @@ const useStyles = makeStyles({
     marginRight: props => !props.phoneSize ? "30px" : '0',
     borderRadius: 15,
     marginLeft: props => !props.phoneSize ? "-8px" : '0',
-    fontSize: '1.1rem'
+    fontSize: '1.1rem',
+    boxShadow: 'none'
   },
   current: {
     width: props => (props.mediumScreenSize || props.phoneSize)  ? '100%' : '60%',
-    maxWidth: 600,
+    maxWidth: 540,
     marginTop: '40px',
     marginRight: props => (props.mediumScreenSize || props.phoneSize)  ? '0' :'15px',
     height: '150px',
@@ -23,7 +24,8 @@ const useStyles = makeStyles({
     display: 'flex',
     alignItems: "center",
     justifyContent: 'center',
-    fontSize: '1.1rem'
+    fontSize: '1.1rem',
+    boxShadow: 'none'
   },
   container: {
     display: 'flex',
@@ -33,8 +35,8 @@ const useStyles = makeStyles({
     display: 'flex',
     flexFlow: props => (props.mediumScreenSize || props.phoneSize) ? 'row wrap' : "row",
     justifyContent: props => (props.mediumScreenSize || props.phoneSize)  ? "center" : 'space-between',
-    maxWidth: 1115,
-    marginRight: props => !props.phoneSize ? "30px" : '0',
+    width: "100%",
+    paddingRight: props => !props.phoneSize ? "25px" : '0',
     marginLeft: props => !props.phoneSize ? "-8px" : '0'
   },
 });

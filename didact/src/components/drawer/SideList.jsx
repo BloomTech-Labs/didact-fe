@@ -16,20 +16,30 @@ const SideList = ({ props }) => {
         activeTab: {
             backgroundColor: "#5b5b5b",
             borderRadius: "0 20px 20px 0",
-            width: "215px",
+            width: "225px",
             color: "white",
-            "&:hover": {
-                backgroundColor: "#5b5b5b",
-                borderRadius: "0 20px 20px 0",
-                width: "215px",
-                color: "white",
-            },
+            height: "50px",
+            margin: "10px 0px",
+            
         },
         arrow: {
+            textAlign: 'right',
+            marginRight: '10px',
+            width: "100%",
+            fontSize: '2rem',
+            color: 'white' 
+        },
+        list: {
             display: 'flex',
-            justifyContent: 'flex-end',
-            alignContent: 'center',
-            color: "white",
+            flexDirection: 'column',
+            margin: "10px 0px",
+            padding: 0,
+        },
+        listItem: {
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+            width: "225px",
         },
 
     }));
@@ -38,23 +48,48 @@ const SideList = ({ props }) => {
 
     return (
         <>
-
-            <List>
-                <ListItem className={classes.hoverTab}
-                    button
-                    component={NavLink}
+            <ul className = {classes.list}>
+                <NavLink
                     exact to="/"
-                    style={{ textDecoration: "none" }}
+                    style={{textDecoration: "none", color: '#5b5b5b'}}
+                    activeStyle={{color: 'white'}}
                     activeClassName={classes.activeTab}
+                    className = {classes.listItem}
                     key="Dashboard"
                 >
-                    <ListItemIcon>
-                        <DashboardIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Dashboard" />
-                    <ListItemText className={classes.arrow} primary=">" />
-                </ListItem>
-            </List>
+                <div style={{display: 'flex', flexDirection: 'row', width: '100%', alignItems: 'center',}}>
+                    <DashboardIcon style={{marginLeft: "17px", fontSize: "28px"}}/>
+                    <p style={{marginLeft: "25px", fontWeight: 'bold'}}>Dashboard</p>
+                    <p className={classes.arrow}>></p>
+                </div>
+                </NavLink>
+                <NavLink
+                    to="/courses"
+                    style={{ textDecoration: "none", color: '#5b5b5b' }}
+                    activeStyle={{color: 'white'}}
+                    activeClassName={classes.activeTab}
+                    className = {classes.listItem}
+                    key="Add Course">
+                     <div style={{display: 'flex', flexDirection: 'row', width: '100%', alignItems: 'center',}}>
+                        <FolderOpenIcon style={{marginLeft: "17px", fontSize: "28px"}}/>
+                        <p style={{marginLeft: "25px", fontWeight: 'bold'}}>Courses</p>
+                        <p className={classes.arrow}>></p>
+                    </div>
+                </NavLink>
+                <NavLink
+                    to="/learning-paths"
+                    style={{ textDecoration: "none", color: '#5b5b5b' }}
+                    activeStyle={{color: 'white'}}
+                    activeClassName={classes.activeTab}
+                    className = {classes.listItem}
+                    key="Learning Paths">
+                     <div style={{display: 'flex', flexDirection: 'row', width: '100%', alignItems: 'center',}}>
+                        <InboxIcon style={{marginLeft: "17px", fontSize: "28px"}}/>
+                        <p style={{marginLeft: "25px", fontWeight: 'bold'}}>Learning Paths</p>
+                        <p className={classes.arrow}>></p>
+                    </div>
+                </NavLink>
+            </ul>
 
             {/* <List >
                 <ListItem button key="Activity" className = {classes.hoverTab}>
@@ -65,9 +100,8 @@ const SideList = ({ props }) => {
                     <ListItemText className={classes.arrow} primary=">" />
                 </ListItem>
             </List> */}
-            <List >
+            {/* <List >
                 <ListItem
-                    className={classes.hoverTab}
                     button
                     component={NavLink}
                     to="/courses"
@@ -75,16 +109,15 @@ const SideList = ({ props }) => {
                     activeClassName={classes.activeTab}
                     key="Add Course">
                     <ListItemIcon>
-                        <FolderOpenIcon />
+                        <FolderOpenIcon style={{paddingLeft: "4px", fontSize: "32px"}}/>
                     </ListItemIcon>
-                    <ListItemText primary="Courses" />
-                    <ListItemText className={classes.arrow} primary=">" />
+                    <p>Courses</p>
+                    <p className={classes.arrow}>></p>
                 </ListItem>
             </List>
 
             <List >
                 <ListItem
-                    className={classes.hoverTab}
                     button
                     component={NavLink}
                     to="/learning-paths"
@@ -92,12 +125,12 @@ const SideList = ({ props }) => {
                     activeClassName={classes.activeTab}
                     key="Learning Paths">
                     <ListItemIcon>
-                        <InboxIcon />
+                        <InboxIcon style={{paddingLeft: "4px", fontSize: "32px"}}/>
                     </ListItemIcon>
-                    <ListItemText primary="Learning Paths" />
-                    <ListItemText className={classes.arrow} primary=">" />
+                    <p>Learning Paths</p>
+                    <p className={classes.arrow}>></p>
                 </ListItem>
-            </List>
+            </List> */}
             {/*<List >
                 <ListItem className = {classes.hoverTab} button key="Tasks">
                     <ListItemIcon>

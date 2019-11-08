@@ -16,7 +16,9 @@ const useStyles = makeStyles(theme => ({
   title: {
     flexGrow: 1,
     display: "flex",
-    justifyContent: "flex-start"
+    justifyContent: "flex-start",
+    fontFamily: "ITC Grouch",
+     fontSize: "32px"
   },
   appBar: {
       margin: "10px auto",

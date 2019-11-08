@@ -2,14 +2,15 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { updateLesson, deleteLesson } from '../../store/actions'
 import { makeStyles, withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import {EditLessonButton, ButtonDiv, DeleteForm} from '../dashboard/ButtonStyles'
+import {EditLessonButton, EditIconButton, ButtonDiv, DeleteForm, TrashCan, DidactButton} from '../dashboard/ButtonStyles'
+import { DidactField, DidactInput, DidactLabel, DidactTextArea } from '../dashboard/FormStyles'
 import DeleteModal from './DeleteModal';
 
 import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
 import BookIcon from '@material-ui/icons/Book';
 import AssignmentIcon from '@material-ui/icons/Assignment';
+import DescriptionIcon from '@material-ui/icons/Description';
 
 const useStyles = makeStyles(theme => ({
 
@@ -30,7 +31,8 @@ const useStyles = makeStyles(theme => ({
         maxWidth: 500,
         minWidth: 220,
         borderRadius: 15,
-        margin: '10px 0'
+        margin: '10px 0',
+        boxShadow: 'none',
     },
     title: {
         fontSize: 14,
@@ -48,11 +50,12 @@ const useStyles = makeStyles(theme => ({
     },
     expandOpen: {
         transform: 'rotate(180deg)',
-    },
+    }, 
     container: {
         display: 'flex',
         flexWrap: 'wrap',
-        // margin: '10px',
+        backgroundColor: 'white',
+        margin: '0 -21px'
     },
     input: {
         backgroundColor: '#F4F8FA',
@@ -185,72 +188,47 @@ const Lesson = ({ course, section, lesson, props }) => {
     };
 
     return (
-        <div style={{marginBottom: '15px'}}>
+        <div style={{margin: '15px 0'}}>
             {!toggleLessonEdit ?
-                <div style={{ display: 'flex', alignItems: 'center', margin: '0 0 15px 0', borderBottom: 'grey solid 1px'}}><EditLessonButton onClick={handleToggleLessonEdit}>EDIT LESSON</EditLessonButton>
-                    <span style={{paddingLeft: '20px', width: '70%', display: "flex", flexDirection: 'row wrap', justifyContent: 'space-between'}}>
-                        <a style={{ textDecoration: 'none', color: 'black', textAlign: "left", paddingRight: '5px'}} href={lesson.link}>{lesson.name}</a>
-                        <span>{lesson.type === "video" 
-                        ? (<PlayCircleFilledIcon />) : lesson.type === "reading" 
-                        ? (<BookIcon />) : lesson.type === "quiz" 
-                        ? (<img alt = "quiz icon" src="https://img.icons8.com/ios-filled/24/000000/quiz.png"></img>) : lesson.type === 'assignment' 
-                        ? (<AssignmentIcon />) : (null)}
-                        </span>
+                 <>
+                 {openModal ? <DeleteModal handleDelete={handleDelete} text={"lesson"} open={openModal} handleModalClose={handleModalClose} /> : null}
+                <div style={{ display: 'flex', alignItems: 'center', margin: '0 0 15px 0', borderBottom: 'grey solid 1px'}}>
+                    <TrashCan style={{fontSize: "2.6rem"}} onClick={handleModalOpen} />
+                    <EditIconButton style={{fontSize: "2.6rem"}} onClick={handleToggleLessonEdit} />
+                    <span style={{paddingLeft: '20px', width: '80%', display: "flex", flexDirection: 'row wrap', justifyContent: 'space-between', marginRight: '10px'}}>
+                        <a style={{ textDecoration: 'none', color: 'white', textAlign: "left", paddingRight: '5px'}} href={lesson.link}>{lesson.name}</a>
                     </span>
+                    <span style={{marginRight: '10px'}} >{lesson.type === "video" 
+                        ? (<PlayCircleFilledIcon style={{fontSize: "2.6rem"}}/>) : lesson.type === "reading" 
+                        ? (<BookIcon style={{fontSize: "2.6rem"}}/>) : lesson.type === "quiz" 
+                        ? (<AssignmentIcon style={{fontSize: "2.6rem"}} />) : lesson.type === 'assignment' || 'discussion' 
+                        ? (<DescriptionIcon style={{fontSize: "2.6rem"}}/>) : (null)}
+                        </span>
                 </div>
+                 </>
                 : <>
-                <DeleteForm onClick={handleModalOpen}>X</DeleteForm>
-                {openModal ? <DeleteModal handleDelete={handleDelete} text={"lesson"} open={openModal} handleModalClose={handleModalClose} /> : null}
+                {/* <DeleteForm onClick={handleModalOpen}>X</DeleteForm> */}
                  <form onSubmit={handleSubmit} className={classes.container} noValidate autoComplete="off">
-                    <CssTextField
-                        id="standard-name"
-                        label='Name'
-                        className={classes.courseUrlField}
-                        value={changes.name}
-                        onChange={handleChange('name')}
-                        margin="normal"
-                        variant="outlined"
-                        placeholder="Name"
-                        InputProps={{ classes: { input: classes.input } }}
-                    />
-                    <CssTextField
-                        id="standard-name"
-                        label="Order"
-                        className={classes.titleOrInstructorFields}
-                        value={changes.order}
-                        onChange={handleChange('order')}
-                        margin="normal"
-                        variant="outlined"
-                        placeholder="Instructors"
-                        InputProps={{ classes: { input: classes.input } }}
-                    />
-                    <CssTextField
-                        id="standard-name"
-                        label="Type"
-                        className={classes.titleOrInstructorFields}
-                        value={changes.type}
-                        onChange={handleChange('type')}
-                        margin="normal"
-                        variant="outlined"
-                        placeholder="Type"
-                        InputProps={{ classes: { input: classes.input } }}
-                    />
-                    <CssTextField
-                        id="standard-name"
-                        label="Section Url"
-                        className={classes.courseUrlField}
-                        value={changes.link}
-                        onChange={handleChange('link')}
-                        margin="normal"
-                        variant="outlined"
-                        placeholder="Course Url"
-                        InputProps={{ classes: { input: classes.input } }}
-                    />
+                    <DidactField>
+                        <DidactLabel for='title'>Lesson Name</DidactLabel>
+                        <DidactInput id='title' type='text' value={changes.name || ""} onChange={handleChange('name')} placeholder='Lesson Name' />  
+                    </DidactField>
+                    <DidactField>
+                        <DidactLabel for='link'>URL Link</DidactLabel>
+                        <DidactInput id='link' type='text' value={changes.link || ""} onChange={handleChange('link')} placeholder='URL Link' />  
+                    </DidactField>
+                    <DidactField>
+                        <DidactLabel for='order'>Order</DidactLabel>
+                        <DidactInput id='order' type='text' value={changes.order || ""} onChange={handleChange('order')} placeholder='Order' />  
+                    </DidactField>
+                    <DidactField>
+                        <DidactLabel for='type'>Type</DidactLabel>
+                        <DidactInput id='type' type='text' value={changes.type || ""} onChange={handleChange('type')} placeholder='Type' />  
+                    </DidactField>
                     <ButtonDiv>
-                        <Button style={{marginLeft: '10px'}} onClick={handleCancel} size="small" variant="contained" className={classes.button} >CANCEL</Button>
-                        <Button type="submit" style={{marginRight: '4%'}} size="small" variant="contained" className={classes.button} >SUBMIT EDIT</Button>
-                    </ButtonDiv>
-                    
+                        <DidactButton style={{marginLeft: '10px'}} onClick={handleCancel} size="small" variant="contained" >Cancel</DidactButton>
+                        <DidactButton type="submit" style={{marginRight: '4%'}} size="small" variant="contained"  >Submit Edit</DidactButton>
+                    </ButtonDiv>                   
                 </form> </>}
         </div>
     )

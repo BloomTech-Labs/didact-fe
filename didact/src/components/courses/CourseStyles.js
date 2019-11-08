@@ -7,7 +7,7 @@ export const AddCourseToPath = styled.div`
     height: 334px;
     border-radius: 20px;
     opacity: 1;
-    padding: 20px;
+    /* padding: 20px; */
 
     .learningPaths {
         padding: 20px;

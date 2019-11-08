@@ -4,6 +4,10 @@ export const LearningPathWrapper = styled.div`
     /* border: 1px solid black; */
     margin-right: 30px;
 
+    @media (max-width: 600px) {
+        margin: auto;
+        }
+
     .editLearning {
         width: 100%;
         border-radius: 19px;

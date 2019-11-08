@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux"
 import { Link } from "react-router-dom";
 
 import { DetailedCourseWrapper } from './DetailedCourseStyles'
-import { EditLessonButton, TagStyles } from '../dashboard/ButtonStyles'
+import { DidactButton, TagStyles } from '../dashboard/ButtonStyles'
 
 import { getDetailedCourse } from '../../store/actions/index.js'
 
@@ -53,9 +53,9 @@ const DetailedCourse = (props) => {
                                     )
                                 })}
                             </div>
-                            <EditLessonButton className="buttons" >
+                            <DidactButton className="buttons" >
                                 {id === course.creator_id && <Link style={{ textDecoration: 'none', color: "black" }} to={`/courses/${course.id}/edit`}>Edit Course</Link>}
-                            </EditLessonButton>
+                            </DidactButton>
                         </div>
                     </div>
                     {sections.map((el, index) => {
