@@ -74,7 +74,7 @@ const HeaderComponent = (props) => {
             })}
         >
             <Toolbar>
-                <Typography variant="h5">
+                <Typography variant="h5" >
                     Didact
                 </Typography>
                 <div className={classes.toolbarIcons}>

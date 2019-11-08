@@ -8,7 +8,7 @@ import { YourLearningPathsWrapper, LearningPathCard } from './YourLearningPathsS
 
 import Modal from '@material-ui/core/Modal';
 import { makeStyles } from '@material-ui/core/styles';
-import { ButtonDiv, EditLessonButton } from '../dashboard/ButtonStyles'
+import { ButtonDiv, DidactButton } from '../dashboard/ButtonStyles'
 
 function getModalStyle() {
     const top = 50;
@@ -65,31 +65,31 @@ const YourLearningPaths = (props) => {
         <YourLearningPathsWrapper>
             <div className='yourLearningPaths'>
                 {
-                    learningPaths.length > 0 && (learningPaths.map((learningPath, index) => {
-                        return (
-                            <LearningPathCard key={index}>
-                                <div className='title'>
-                                    <h1>{learningPath.name}</h1>
-                                    <div>
-                                        <button><Link to={`/learning-paths/${learningPath.id}`}>Go To Path</Link></button>
-                                        <button onClick={() => handleModalOpen(learningPath.id)} id={learningPath.id}>Leave Path</button>
-                                        {openModal ? (
-                                            <Modal
-                                                aria-labelledby="simple-modal-title"
-                                                aria-describedby="simple-modal-description"
-                                                open={openModal}
-                                                onClose={handleModalClose}
-                                            >
-                                                <div style={modalStyle} className={classes.paper}>
-                                                    <h2 style={{ textAlign: 'center' }} id="simple-modal-title">Are you sure you want to leave this Learning Path?</h2>
-                                                    <ButtonDiv>
-                                                        <EditLessonButton onClick={handleModalClose}>No</EditLessonButton>
-                                                        <EditLessonButton onClick={handleDelete}>Yes</EditLessonButton>
-                                                    </ButtonDiv>
-                                                </div>
-                                            </Modal>
-                                        ) : null}
-                                    </div>
+                learningPaths.length > 0 && (learningPaths.map((learningPath, index) => {
+                    return (
+                        <LearningPathCard key={index}>
+                            <div className='title'>
+                                <h1 style={{fontWeight: 'bold'}}>{learningPath.name}</h1>
+                                <div>
+                                    <button><Link to={`/learning-paths/${learningPath.id}`}>Go To Path</Link></button>
+                                    <button onClick={() => handleModalOpen(learningPath.id)} id={learningPath.id}>Leave Path</button>
+                                    {openModal ? (
+                                        <Modal
+                                            aria-labelledby="simple-modal-title"
+                                            aria-describedby="simple-modal-description"
+                                            open={openModal}
+                                            onClose={handleModalClose}
+                                        >
+                                            <div style={modalStyle} className={classes.paper}>
+                                                <h2 style={{ textAlign: 'center' }} id="simple-modal-title">Are you sure you want to leave this Learning Path?</h2>
+                                                <ButtonDiv>
+                                                    <DidactButton onClick={handleModalClose}>No</DidactButton>
+                                                    <DidactButton onClick={handleDelete}>Yes</DidactButton>
+                                                </ButtonDiv>
+                                            </div>
+                                        </Modal>
+                                    ) : null}
+                                </div>
                                 </div>
                             </LearningPathCard>
                         )
@@ -100,8 +100,8 @@ const YourLearningPaths = (props) => {
                 }
             </div>
             <div className='buttons'>
-                <Link to={'/learning-paths/join'}>Join a Learning Path</Link>
-                <Link to={'/learning-paths/add'}>Create a New Learning Path</Link>
+                <Link style ={{fontSize: '1.4rem'}} to={'/learning-paths/join'}>Join a Learning Path</Link>
+                <Link style ={{fontSize: '1.4rem'}} to={'/learning-paths/add'}>Create a New Learning Path</Link>
             </div>
         </YourLearningPathsWrapper>
     )

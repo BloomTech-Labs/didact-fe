@@ -11,7 +11,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
 import clsx from 'clsx';
 import IconButton from '@material-ui/core/IconButton';
 import Collapse from '@material-ui/core/Collapse';
@@ -31,7 +30,7 @@ const useStyles = makeStyles(theme => ({
         padding: '10px',
         borderRadius: 15,
         width: '120px',
-        fontSize: "13px",
+        fontSize: "1.3rem",
         cursor: 'pointer'
     },
     buttonDiv: {
@@ -48,17 +47,15 @@ const useStyles = makeStyles(theme => ({
         marginBottom: "-20px"
     },
     card: {
-        // minWidth: 375,
-        maxWidth: 600,
+        maxWidth: 540,
         margin: '40px 0 40px 0',
-        padding: '10px',
         borderRadius: '15px',
-        // backgroundColor: '#eeeff3'
+        boxShadow: 'none',
     },
     circleIcon: {
         fontSize: '3.5rem',
         marginRight: '5px',
-        color: "#5b5b5b"
+        
     },
     descriptionDiv: {
         width: "100%",
@@ -66,11 +63,11 @@ const useStyles = makeStyles(theme => ({
         flexDirection: 'column',
         justifyContent: "space-between",
         fontSize: 14,
-        color: "#757575"
+        color: "#757575",
+        padding: '0px'
     },
     expand: {
         transform: 'rotate(0deg)',
-        // marginLeft: 'auto',
         transition: theme.transitions.create('transform', {
             duration: theme.transitions.duration.shortest,
         }),
@@ -82,13 +79,11 @@ const useStyles = makeStyles(theme => ({
         fontSize: theme.typography.pxToRem(15),
         fontWeight: theme.typography.fontWeightRegular,
     },
-    pos: {
-        marginBottom: 12,
-    },
     root: {
         display: 'flex',
         flexDirection: 'row',
-        opacity: '0'
+        opacity: '0',
+        padding: '0px'
     },
     rootTablet: {
         display: 'flex',
@@ -106,7 +101,8 @@ const useStyles = makeStyles(theme => ({
         height: '100%',
     },
     courseTitle: {
-        maxWidth: '512px'
+        maxWidth: '512px',
+        paddingLeft: '20px'
     }
 
 }));
@@ -158,11 +154,11 @@ const Course = ({ course, addingCourses }) => {
         <PopoverWrapper>
             <Card className={classes.card}>
                 <CardContent>
-                    <Typography className={classes.title} variant="h5" component="h2">
+                    <h3 className={classes.title}>
                         <div className='courseTitle'>
                             <span className={classes.courseTitle}>{course.name}</span>
-                            {addingCourses && <button className={classes.addCourse} onClick={handleClick}><img src={playlistAdd} alt='Add Course' /></button>}
                         </div>
+                        {addingCourses && <button className={classes.addCourse} onClick={handleClick}><img src={playlistAdd} alt='Add Course' /></button>}
                         <div>
                             <Popover
                                 id={id}
@@ -215,9 +211,9 @@ const Course = ({ course, addingCourses }) => {
                                 }
                             </Popover>
                         </div>
-                    </Typography>
-                    <CardActions className={classes.descriptionDiv} color="textSecondary" disableSpacing>
-                        <Typography >{course.description && !expanded ? (`${course.description.substring(0, 100)} ...`) : null}</Typography>
+                    </h3>
+                    <CardActions className={classes.descriptionDiv} style = {{color: "#757575"}} disableSpacing>
+                        <p >{course.description && !expanded ? (`${course.description.substring(0, 100)} ...`) : null}</p>
                         <IconButton
                             className={clsx(classes.expand, {
                                 [classes.expandOpen]: expanded,
@@ -226,25 +222,19 @@ const Course = ({ course, addingCourses }) => {
                             aria-expanded={expanded}
                             aria-label="show more"
                         >
-                            <ExpandMoreIcon />
+                            <ExpandMoreIcon style={{fontSize: '2.8rem'}}/>
                         </IconButton>
                     </CardActions>
                     <Collapse in={expanded} timeout="auto" unmountOnExit>
-                        <CardContent>
-                            <Typography className={classes.title} color="textSecondary" paragraph>
+                        <CardContent style = {{padding: 'none'}}>
+                            <p className={classes.title} style = {{color: "#757575"}}>
                                 {course.description}
-                            </Typography>
+                            </p>
                         </CardContent>
                     </Collapse>
-                    <Typography className={classes.pos} color="textSecondary">
-                        {course.foreign_rating}
-                    </Typography>
-                    <Typography variant="body2" component="p">
-                        {course.foreign_instructors}
-                    </Typography>
-                    <Typography color="textSecondary">
-                        {course.category ? (`Category: ${course.category}`) : (null)}
-                    </Typography>
+                    <p className={classes.pos}>{course.foreign_rating}</p>
+                    <p className={classes.pos}>{course.foreign_instructors}</p>
+                    <p className={classes.pos}>{course.category ? (`Category: ${course.category}`) : (null)}</p>
                 </CardContent>
                 <CardActions className={classes.buttonDiv}>
                     <Link to={`/courses/${course.id}`} ><button className={classes.buttonCourse} size="small">Go To Course</button></Link>

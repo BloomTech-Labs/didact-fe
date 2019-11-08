@@ -1,7 +1,12 @@
 import React, { useState} from 'react';
 
 import { useDispatch } from 'react-redux';
+import { Mixpanel } from '../../utils/mixpanel';
+
 import { addSectionToCourse } from '../../store/actions'
+
+import { DidactField, DidactInput, DidactLabel, DidactTextArea } from '../dashboard/FormStyles'
+import { ButtonDiv } from '../dashboard/ButtonStyles'
 
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -9,8 +14,8 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
-import { ButtonDiv } from '../dashboard/ButtonStyles'
-import { Mixpanel } from '../../utils/mixpanel';
+
+
 
 const useStyles = makeStyles(theme => ({
 
@@ -31,7 +36,8 @@ const useStyles = makeStyles(theme => ({
         maxWidth: 500,
         minWidth: 375,
         borderRadius: 15,
-        margin: '10px auto'
+        margin: '10px auto',
+        boxShadow: 'none'
     },
     title: {
         fontSize: 14,
@@ -166,52 +172,22 @@ const AddSection = ({course, props, setAddSectionChange}) => {
                         Add Section
                      </Typography>
                     <form onSubmit={handleSubmit} className={classes.container} noValidate autoComplete="off">
-                        <CssTextField
-                            id="standard-name"
-                            label='Name'
-                            className={classes.titleOrInstructorFields}
-                            value={values.name}
-                            onChange={handleChange('name')}
-                            margin="normal"
-                            variant="outlined"
-                            placeholder="Name"
-                            InputProps={{ classes: { input: classes.input } }}
-                        />
-                        <CssTextField
-                            id="standard-name"
-                            label="Order"
-                            className={classes.titleOrInstructorFields}
-                            value={values.order}
-                            onChange={handleChange('order')}
-                            margin="normal"
-                            variant="outlined"
-                            placeholder="Order"
-                            InputProps={{ classes: { input: classes.input } }}
-                        />
-                        <CssTextField
-                            id="standard-name"
-                            label="Description"
-                            className={classes.descriptionField}
-                            value={values.description}
-                            onChange={handleChange('description')}
-                            margin="normal"
-                            multiline={true}
-                            rows='6'
-                            variant="outlined"
-                            placeholder="Description"
-                            InputProps={{ classes: { input: classes.inputDescription } }}
-                        />
-                        <CssTextField
-                            id="standard-name"
-                            label="Section Url"
-                            className={classes.courseUrlField}
-                            value={values.link}
-                            onChange={handleChange('link')}
-                            margin="normal"
-                            variant="outlined"
-                            placeholder="Course Url"
-                            InputProps={{ classes: { input: classes.input } }}
-                        />
+                        <DidactField>
+                            <DidactLabel for='title'>Lesson Name</DidactLabel>
+                            <DidactInput id='title' type='text' value={values.name || ""} onChange={handleChange('name')} placeholder='Lesson Name' />  
+                        </DidactField>
+                        <DidactField>
+                            <DidactLabel for='order'>Order</DidactLabel>
+                            <DidactInput id='order' type='text' value={values.order || ""} onChange={handleChange('order')} placeholder='Order' />  
+                        </DidactField>
+                        <DidactField>
+                            <DidactLabel for='description'>Description</DidactLabel>
+                            <DidactTextArea rows="8" id='description' value={values.description || ""} onChange={handleChange('description')} placeholder='Description' />  
+                        </DidactField>
+                        <DidactField>
+                            <DidactLabel for='link'>URL Link</DidactLabel>
+                            <DidactInput id='link' type='text' value={values.link || ""} onChange={handleChange('link')} placeholder='URL Link' />  
+                        </DidactField>
                         <ButtonDiv>
                             <Button style={{marginLeft: '10px'}} onClick={handleCancel} size="small" variant="contained" className={classes.button} >CANCEL</Button>
                             <Button type='submit' style={{marginRight: '4%'}} size="small" variant="contained" className={classes.button} >SUBMIT SECTION</Button>

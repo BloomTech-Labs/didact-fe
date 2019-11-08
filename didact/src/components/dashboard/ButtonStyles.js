@@ -1,5 +1,6 @@
 import styled from 'styled-components'
-
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
 
 // Button with Plus sign
 
@@ -47,10 +48,10 @@ export const AddButtonInSection = styled.div`
     border: none;
     background: #EEEFF3;
     border-radius: 25px;
-    margin: -53px 10px 10px 10px;
+    cursor: pointer;
     padding: 0 10px;
     &:hover {
-        cursor: 'pointer';
+        border: black solid 1px;
     }
 `
 
@@ -103,20 +104,53 @@ export const P = styled.p`
 
 // Edit lesson button
 
-export const EditLessonButton = styled.button`
+export const DidactButton = styled.button`
        box-shadow: none;
-        border-radius: 15px;
-        background: #EBE8E1;
-        height: 30px;
-        width: 112px;
+        border-radius: 12px;
+        color: white;
+        background: rgba(36, 36, 36, 1);
+        height: 35px;
+        width: 123px;
         border: none;
         margin-left: 10px;
+        margin-top: 10px;
         cursor: pointer;
         &:hover {
-        color: rgba(0, 0, 0, 0.87);
-        box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 3px 1px -2px rgba(0,0,0,0.12);
-        background-color: #e0e0e0;
-        
+        color: rgba(0, 0, 0, 1);
+        background-color: rgba(255, 255, 255, 1);
+        border: solid black 1px;
+        outline: none;
+    }
+`
+
+export const EditIconButton = styled(EditIcon)`
+    box-shadow: none;
+    border-radius: 12px;
+    color: rgba(255, 255, 255, .25);
+    height: 30px;
+    width: 112px;
+    border: none;
+    margin-left: 10px;
+    cursor: pointer;
+        &:hover {
+            color: rgba(255, 255, 255, 1);
+    }
+`
+
+export const TrashCan = styled(DeleteIcon)`
+    color: rgba(255, 255, 255, .25);
+    cursor: pointer;
+    &:hover {
+        color: rgba(255, 255, 255, 1);    
+    }
+`
+
+export const TrashCanEdit = styled(DeleteIcon)`
+    color: rgba(36, 36, 36, .25);
+    margin-left: 90%;
+    &:hover {
+        cursor: pointer;
+        color: rgba(36, 36, 36, 1);    
     }
 `
 
@@ -133,7 +167,7 @@ export const ButtonDiv = styled.div`
 
 export const FinishEdit = styled.div`
     background:  #EBE8E1;
-    max-width: 600px;
+    max-width: 540px;
     width: 100%;
     border-radius: 15px;
     height: 30px;

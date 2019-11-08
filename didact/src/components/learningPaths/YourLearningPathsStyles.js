@@ -35,6 +35,13 @@ export const YourLearningPathsWrapper = styled.div`
             &:first-child {
                 margin-right: 20px;
             }
+
+            &:hover {
+                color: rgba(0, 0, 0, 1);
+                background-color: rgba(255, 255, 255, 1);
+                border: solid black 1px;
+                outline: none;
+            }   
         }
     }
 
@@ -46,6 +53,10 @@ export const YourLearningPathsWrapper = styled.div`
 
 export const LearningPathCard = styled.div`
 
+    @media (max-width: 600px) {
+        margin: auto;
+        }
+
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -55,6 +66,7 @@ export const LearningPathCard = styled.div`
         margin-bottom: 28px;
         width: 540px;
         background-color: #386581;
+
 
         .title {
             text-align: left;
@@ -74,19 +86,69 @@ export const LearningPathCard = styled.div`
                 text-decoration: none;
                 border: none;
                 margin-right: 10px;
-                width: 116px;
+                width: 125px;
                 height: 35px;
+                border: transparent solid 1px;
 
                 a {
                     color: white;
                     /* font-weight: bolder; */
                     text-decoration: none;
+
+                    
                 }
 
                 &:focus {
                     outline: none;
                 }
+
+                &:hover {
+                color: rgba(0, 0, 0, 1);
+                background-color: rgba(255, 255, 255, 1);
+                border: solid black 1px;
+                outline: none;
+                cursor: pointer;
+
+                a {
+                    color: black;
+                }
+                }   
             }
         }
 
+    .buttons {
+        padding: 15px 0px;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: flex-start;
+
+        @media (max-width: 880px) {
+            justify-content: center;
+            margin: auto;
+        }
+
+        a {
+            color: black;
+            background: white;
+            text-decoration: none;
+            padding: 20px 30px;
+            border-radius: 19px;
+            font-weight: bold;
+            width: 250px;
+            margin: 10px;
+
+
+            &:first-child {
+                margin-right: 20px;
+
+                @media (max-width: 880px) {
+                margin-right: 10px;
+                }
+            }
+        }
+    }
+
+    h1 {
+        text-align: left;
+    }
 `

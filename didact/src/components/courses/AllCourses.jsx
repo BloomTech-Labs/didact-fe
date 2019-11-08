@@ -37,12 +37,10 @@ const useStyles = makeStyles(theme => ({
         maxWidth: '500px'
     },
     card: {
-        // minWidth: 375,
-        maxWidth: 600,
+        maxWidth: 540,
         margin: '40px 0 40px 0', 
         padding: '10px',
         borderRadius: '15px',
-        // backgroundColor: '#eeeff3'
     },
     circleIcon: {
         fontSize: '3.5rem',
@@ -77,6 +75,7 @@ const useStyles = makeStyles(theme => ({
     root: {
         display: 'flex',
         flexDirection: 'row',
+        marginTop: '-40px'
     },
     rootTablet: {
         display: 'flex',
@@ -113,10 +112,10 @@ function AllCourses(props) {
                         <ButtonText>New Course</ButtonText>
                     </AddButton>
                 </Link>
-                <AddButton style = {{marginRight: '10px'}}>
+                {/* <AddButton style = {{marginRight: '10px'}}>
                     <AddCircleRoundedIcon className = {classes.circleIcon}/>
                     <ButtonText>Add Courses To Learning Path</ButtonText>
-                </AddButton>
+                </AddButton> */}
                 {/* <Link style={{ textDecoration: 'none' }} >
                     <AddButton >
                        <AddCircleRoundedIcon className = {classes.circleIcon}/>

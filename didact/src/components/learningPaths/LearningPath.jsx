@@ -24,14 +24,14 @@ const LearningPath = ({ id }) => {
                 ))
             );
         }
-    }, [learningPath.pathItems, learningPath.courses])
+    }, [learningPath.pathItems, learningPath.courses])  
 
-    return (
+    return ( 
         <LearningPathWrapper>
             <div className='editLearning'>
-                <div className='editLearningTitle'>
+                <p className='editLearningTitle'>
                     {`Learning Path: ${learningPath.name}`}
-                </div>
+                </p>
                 {
                     (learningPath.creatorId === state.onboardingReducer.user.id) &&
                     <div className='editLearningButton'>

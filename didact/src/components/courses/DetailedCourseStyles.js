@@ -2,12 +2,11 @@ import styled from 'styled-components'
 
 export const DetailedCourseWrapper = styled.div`
     width:100%;
-    max-width: 600px;
-    /* min-width: 375px; */
+    max-width: 540px;
+    box-shadow: 'none';
 
 
     .courseWrapper {
-        /* height: 40%; */
         width: 100%; 
 
         .courseFooter {
@@ -15,7 +14,6 @@ export const DetailedCourseWrapper = styled.div`
             padding: 0;
             display: flex;
             flex-flow:row wrap;
-            /* width: 50%; */
             justify-content: space-between;
 
             .buttons {
@@ -37,6 +35,7 @@ export const DetailedCourseWrapper = styled.div`
         background: white;
         margin: 20px 0px;
         padding: 15px 30px;
+        box-shadow: 'none';
 
         .expansionPanelSummary {
         background: white;

@@ -5,6 +5,10 @@ export const LearningPathWrapper = styled.div`
     display: flex;
     flex-direction: column;
 
+    @media (max-width: 600px) {
+        margin: auto;
+        }
+
     .editLearning {
         width: 100%;
         border-radius: 19px;

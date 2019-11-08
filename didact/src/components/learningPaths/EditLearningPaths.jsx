@@ -12,6 +12,7 @@ import {ButtonDiv, FinishEdit, DeleteForm } from "../dashboard/ButtonStyles";
 import {DroppableDiv, PathInstructions} from "./DraggableStyles.js";
 import CourseLearningPath from "./CourseLearningPath";
 import AddToLearningPath from './addToLearningPath/addToLearningPath'
+import { DidactField, DidactInput, DidactLabel, DidactTextArea } from '../dashboard/FormStyles'
 
 //imports from material-ui
 import { makeStyles, withStyles } from "@material-ui/core/styles";
@@ -37,9 +38,10 @@ const useStyles = makeStyles(theme => ({
     // marginLeft: "70%",
   },
   card: {
-    maxWidth: 600,
+    maxWidth: 540,
     borderRadius: 15,
     marginTop: "10px",
+    boxShadow: 'none'
   },
   title: {
     fontSize: 14,
@@ -310,53 +312,18 @@ const EditLearningPaths = ({ id, props }) => {
                   noValidate
                   autoComplete="off"
                 >
-                  <CssTextField
-                    id="standard-name"
-                    label="Learning Path Title"
-                    className={classes.pathUrlField}
-                    value={changes.name || ""}
-                    onChange={handleChange("name")}
-                    margin="normal"
-                    variant="outlined"
-                    placeholder="Learning Path Title"
-                    InputProps={{
-                      classes: {
-                        underline: classes.blackUnderline,
-                        input: classes.input,
-                      },
-                    }}
-                  />
-                  <CssTextField
-                    id="standard-name"
-                    label="Description"
-                    className={classes.descriptionField}
-                    value={changes.description || ""}
-                    onChange={handleChange("description")}
-                    margin="normal"
-                    multiline={true}
-                    rows="6"
-                    variant="outlined"
-                    placeholder="Description"
-                    InputProps={{
-                      classes: { input: classes.inputDescription },
-                    }}
-                  />
-                  <CssTextField
-                    id="standard-name"
-                    label="Category"
-                    className={classes.pathUrlField}
-                    value={changes.category || ""}
-                    onChange={handleChange("category")}
-                    margin="normal"
-                    variant="outlined"
-                    placeholder="Category"
-                    InputProps={{
-                      classes: {
-                        underline: classes.blackUnderline,
-                        input: classes.input,
-                      },
-                    }}
-                  />
+                <DidactField>
+                  <DidactLabel for='title'>Learning Path Title</DidactLabel>
+                  <DidactInput id='title' type='text' value={changes.name || ""} onChange={handleChange('name')} placeholder='Learning Path Title' />  
+                </DidactField>
+                <DidactField>
+                  <DidactLabel for='description'>Description</DidactLabel>
+                  <DidactTextArea rows="8" id='description' value={changes.description || ""} onChange={handleChange('description')} placeholder='Description' />  
+                </DidactField>
+                <DidactField>
+                  <DidactLabel for='category'>Category</DidactLabel>
+                  <DidactInput id='category' type='text' value={changes.category || ""} onChange={handleChange('category')} placeholder='Category' />  
+                </DidactField>
                   <ButtonDiv>
                     <Button
                       style={{ marginLeft: "10px" }}
