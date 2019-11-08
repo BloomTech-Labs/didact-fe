@@ -9,6 +9,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import { DidactField, DidactInput, DidactLabel, DidactTextArea } from '../../dashboard/FormStyles'
+import { DidactButton } from "../../dashboard/ButtonStyles";
 
 const useStyles = makeStyles(theme => ({
 
@@ -33,68 +34,10 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexWrap: 'wrap',
   },
-  input: {
-    backgroundColor: '#F4F8FA',
-    filter: "brightness(95%)",
-    borderRadius: 15,
-
-  },
-  inputDescription: {
-    backgroundColor: '#F4F8FA',
-    filter: "brightness(95%)",
-    borderRadius: 15,
-    margin: '-16px -10px -16px -10px',
-    padding: '10px',
-
-  },
-  titleOrInstructorFields: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    width: '45%',
-    [`& fieldset`]: {
-      borderRadius: 15,
-    },
-  },
-  descriptionField: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    width: '93%',
-    [`& fieldset`]: {
-      borderRadius: 15,
-      margin: "3px"
-
-    },
-  },
-
-  courseUrlField: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    width: '93%',
-    [`& fieldset`]: {
-      borderRadius: 15,
-    },
-  }
+  
 }));
 
-const CssTextField = withStyles({
-  root: {
-    '& label.Mui-focused': {
-      color: 'gray',
-    },
-    '& .MuiOutlinedInput-root': {
-      '& fieldset': {
-        borderColor: 'gray',
-      },
-      '&:hover fieldset': {
-        borderColor: 'gray',
-      },
-      '&.Mui-focused fieldset': {
-        border: '1px solid gray',
-      },
 
-    },
-  },
-})(TextField);
 
 const AddPathItems = ({ props }) => {
   const classes = useStyles();
@@ -118,9 +61,9 @@ const AddPathItems = ({ props }) => {
   return (
     <Card className={classes.card}>
       <CardContent>
-        <Typography className={classes.title} gutterBottom>
+        <p className={classes.title} gutterBottom>
           Learning Path Item Overview
-          </Typography>
+          </p>
         <form onSubmit={handleSubmit} className={classes.container} noValidate autoComplete="off">
           <DidactField>
             <DidactLabel for='title'>Item Name</DidactLabel>
@@ -138,7 +81,7 @@ const AddPathItems = ({ props }) => {
             <DidactLabel for='type'>Type</DidactLabel>
             <DidactInput id='type' type='text' value={values.type || ""} onChange={handleChange('type')} placeholder='Type' />
           </DidactField>
-          <Button type='submit' size="small" variant="contained" className={classes.button} >Create Item</Button>
+          <DidactButton type='submit' size="small" variant="contained">Create Item</DidactButton>
         </form>
       </CardContent>
     </Card>
