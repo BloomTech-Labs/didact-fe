@@ -28,7 +28,6 @@ export const YourLearningPathsWrapper = styled.div`
             padding: 20px 30px;
             margin-bottom: 22px;
             border-radius: 19px;
-            font-weight: bold;
             width: 255px;
             height: 61px;
 

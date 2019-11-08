@@ -100,8 +100,8 @@ const YourLearningPaths = (props) => {
                 }
             </div>
             <div className='buttons'>
-                <Link style ={{fontSize: '1.4rem'}} to={'/learning-paths/join'}>Join a Learning Path</Link>
-                <Link style ={{fontSize: '1.4rem'}} to={'/learning-paths/add'}>Create a New Learning Path</Link>
+                <Link to={'/learning-paths/join'}>Join a Learning Path</Link>
+                <Link to={'/learning-paths/add'}>Create a New Learning Path</Link>
             </div>
         </YourLearningPathsWrapper>
     )
