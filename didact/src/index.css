@@ -1,8 +1,15 @@
 html {
   background-color: #D3D3D3;
-  overflow-y: visible !important;
+  /* overflow-y: auto !important; */
   font-size: 62.5%;
   margin-left: calc(100vw - 100%);
+}
+
+@media (max-width: 600px){
+  html {
+    margin-left: 0;
+    width: 100vw;
+  }
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -114,11 +121,12 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* padding-right: -47px; */
+  padding-right: 0 !important;
   background-color: #D3D3D3;
   overflow-x: hidden;
   overflow-anchor:  none;
 }
+
 
 
 code {

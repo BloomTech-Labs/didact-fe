@@ -8,9 +8,9 @@ import Card from '@material-ui/core/Card';
 
 const useStyles = makeStyles({
   welcome: {
-    marginRight: props => !props.phoneSize ? "30px" : '0',
+    // marginRight: props => !props.phoneSize ? "30px" : '0',
     borderRadius: 15,
-    marginLeft: props => !props.phoneSize ? "-8px" : '0',
+    maxWidth: '825px',
     fontSize: '1.1rem',
     boxShadow: 'none'
   },
@@ -36,8 +36,8 @@ const useStyles = makeStyles({
     flexFlow: props => (props.mediumScreenSize || props.phoneSize) ? 'row wrap' : "row",
     justifyContent: props => (props.mediumScreenSize || props.phoneSize)  ? "center" : 'space-between',
     width: "100%",
-    paddingRight: props => !props.phoneSize ? "25px" : '0',
-    marginLeft: props => !props.phoneSize ? "-8px" : '0'
+    maxWidth: "825px",
+    // paddingRight: props => !props.phoneSize ? "25px" : '0',
   },
 });
 
@@ -65,7 +65,7 @@ function Dashboard({props}) {
         </Card>
         <div>
         {state.coursesReducer.courses[0]
-          ? (<Course style={{width: '1000px'}} course={state.coursesReducer.courses[0]} />)
+          ? (<Course style={{width: '825px'}} course={state.coursesReducer.courses[0]} />)
           : null } 
         </div>
       </div>
