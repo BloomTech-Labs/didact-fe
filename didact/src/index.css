@@ -8,7 +8,7 @@ html {
 @media (max-width: 600px){
   html {
     margin-left: 0;
-    overflow-y: hidden;
+    width: 100vw;
   }
 }
 
