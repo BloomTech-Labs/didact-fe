@@ -4,7 +4,8 @@ export const AddCourseToPath = styled.div`
     top: 153px;
     left: 694px;
     width: 296px;
-    height: 334px;
+    min-height: 332px;
+    height: 100%;
     border-radius: 20px;
     opacity: 1;
     /* padding: 20px; */
@@ -41,10 +42,10 @@ export const AddCourseToPath = styled.div`
         align-items: center;
 
         button {
-            top: 374px;
-            left: 767px;
+            /* top: 374px;
+            left: 767px; */
             width: 147px;
-            height: 49px;
+            /* height: 49px;
             background: #C8B198 0% 0% no-repeat padding-box;
             border-radius: 20px;
             opacity: 1;
@@ -52,7 +53,7 @@ export const AddCourseToPath = styled.div`
 
             &:focus {
                 outline: none;
-            }
+            } */
         }
 
         a {
@@ -65,6 +66,7 @@ export const AddCourseToPath = styled.div`
 `
 
 export const PopoverWrapper = styled.div`
+    margin: 'auto';
 
     button {
         &:focus {

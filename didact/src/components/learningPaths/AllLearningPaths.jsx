@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
-import { getLearningPaths, joinLearningPath } from '../../store/actions/index'
+import { getLearningPaths, joinLearningPath, getYourLearningPaths } from '../../store/actions/index'
 
 import { LearningPathsWrapper, LearningPathCard } from './YourLearningPathsStyles'
 
@@ -11,12 +11,14 @@ const AllLearningPaths = (props) => {
 
     useEffect(_ => {
         dispatch(getLearningPaths())
+        dispatch(getYourLearningPaths())
     }, [dispatch])
 
     const learningPaths = state.learningPathReducer.learningPaths
+    const yourLearningPaths = state.learningPathReducer.yourLearningPaths
 
-    const joinPath = e => {
-        dispatch(joinLearningPath(e.target.id, props.props.history))
+    const joinPath = (e, order) => {
+        dispatch(joinLearningPath(e.target.id, props.props.history, order))
     }
 
     return (
@@ -24,11 +26,11 @@ const AllLearningPaths = (props) => {
             {
                     learningPaths.map((learningPath, index) => {
                         return (
-                            <LearningPathCard key={index}>
+                            <LearningPathCard key={index} style={{marginBottom: "20px"}}>
                                 <div className='title'> 
                                     <h1>{learningPath.name}</h1>
                                     <div>
-                                        <button onClick={joinPath} id={learningPath.id}>Join Path</button>
+                                        <button onClick={() => joinPath(yourLearningPaths.length)} id={learningPath.id}>Join Path</button>
                                     </div>
                                 </div>
                             </LearningPathCard>

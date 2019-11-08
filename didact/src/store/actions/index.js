@@ -156,6 +156,9 @@ export
     UPDATE_PATH_CONTENT_START,
     UPDATE_PATH_CONTENT_SUCCESS,
     UPDATE_PATH_CONTENT_FAIL,
+    UPDATE_YOUR_PATH_ORDER_START,
+    UPDATE_YOUR_PATH_ORDER_SUCCESS,
+    UPDATE_YOUR_PATH_ORDER_FAIL,
     getLearningPaths,
     searchLearningPathsByTag,
     getLearningPath,
@@ -175,5 +178,6 @@ export
     updatePathItem,
     deletePathItem,
     updateLearningPathContentOrder,
-    addNewCourseToLearningPath
+    addNewCourseToLearningPath,
+    updateYourPathOrder
 } from './learningPaths'

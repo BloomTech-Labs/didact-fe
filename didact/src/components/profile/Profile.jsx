@@ -85,7 +85,7 @@ const useStyles = makeStyles(theme => ({
   root: {
     outline: "none",
     border: 'none',
-    
+    overflowY: "auto !important"
   },
   title: {
     marginTop: '0',

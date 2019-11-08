@@ -4,17 +4,19 @@ import {
   getLearningPath,
   updateLearningPath,
   deleteLearningPath,
-  updateLearningPathContentOrder
+  updateLearningPathContentOrder,
+  updateYourPathOrder
 } from "../../store/actions";
 
 // import components
 import DeleteModal from "../courses/DeleteModal";
 import CourseLearningPath from "./CourseLearningPath";
 import AddToLearningPath from './addToLearningPath/AddToLearningPath'
+import { changePathOrder } from '../../utils/changePathOrder'
 
 // imports for Styled Components
 import { DidactField, DidactInput, DidactLabel, DidactTextArea } from '../dashboard/FormStyles'
-import {ButtonDiv, FinishEdit, DeleteForm, DidactButton, TrashCanEdit } from "../dashboard/ButtonStyles";
+import {ButtonDiv, FinishEdit, DidactButton, TrashCanEdit } from "../dashboard/ButtonStyles";
 import {DroppableDiv, PathInstructions} from "./DraggableStyles.js";
 
 //imports from material-ui
@@ -73,8 +75,8 @@ const EditLearningPaths = ({ id, props }) => {
     category: "",
     description: "",
   });
-
-
+ 
+  // console.log(learningPath)
   useEffect(() => {
     dispatch(getLearningPath(id));
   }, [id, dispatch]);
@@ -137,34 +139,19 @@ const EditLearningPaths = ({ id, props }) => {
     }
   }, [learningPath.pathItems, learningPath.courses])
 
-  // changes learning path array order on drag end
-  const changePathOrder = (starting, ending, arr) => {
-    let returned = arr.map((el, i) => {
-      if (`${i}` === starting) {
-        let spliced = arr.splice(starting, 1)[0];
-        arr.splice(ending, 0, spliced)
-        return arr
-      }
-      return arr
-    });
-    returned[starting].forEach((el, i) => el.path_order = i)
-    return returned[starting]
-  };
-
   // function for Drag and Drop calling changeArr above
   const onDragEnd = result => {
     const { destination, source, draggableId } = result;
     if(!destination) {
         return
     }
-
     if(
         destination.droppableId === source.droppableId &&
         destination.index === source.index
     ) {
         return
     }
-    // see instantiation of function on line 198
+    // utils import function for updating array order and path order
     setItemsCourses(changePathOrder(draggableId, destination.index, [...itemsCourses]))
   
     dispatch(updateLearningPathContentOrder(itemsCourses, props.match.params.id))
@@ -279,8 +266,7 @@ const EditLearningPaths = ({ id, props }) => {
           <AddToLearningPath props = {props} itemsCourses = {itemsCourses}/>
 
           <PathInstructions>Drag to Change Learning Path Order</PathInstructions>
-          <DragDropContext onDragEnd={onDragEnd}
-          >
+          <DragDropContext onDragEnd={onDragEnd}>
             {<div>
               <Droppable droppableId="column-1">
                 {provided => (

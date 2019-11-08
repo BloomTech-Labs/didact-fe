@@ -54,6 +54,9 @@ import
     DELETE_PATH_ITEM_START,
     DELETE_PATH_ITEM_SUCCESS,
     DELETE_PATH_ITEM_FAIL,
+    UPDATE_YOUR_PATH_ORDER_START,
+    UPDATE_YOUR_PATH_ORDER_SUCCESS,
+    UPDATE_YOUR_PATH_ORDER_FAIL,
 } from '../actions'
 
 const initialState =
@@ -432,6 +435,26 @@ export const learningPathReducer = (state = initialState, action) =>
                 error: "",
             }
         case DELETE_PATH_ITEM_FAIL:
+            return {
+                ...state,
+                isLoading: false,
+                error: action.payload,
+            }
+        case UPDATE_YOUR_PATH_ORDER_START:
+            return {
+                ...state,
+                error: "",
+            }
+        case UPDATE_YOUR_PATH_ORDER_SUCCESS:
+            console.log('reducer', state.yourLearningPaths)
+            console.log('reducer incoming data', state.yourLearningPaths)
+            return {
+                ...state,
+                yourLearningPaths: action.payload,
+                isLoading: false,
+                error: "",
+            }
+        case UPDATE_YOUR_PATH_ORDER_FAIL:
             return {
                 ...state,
                 isLoading: false,

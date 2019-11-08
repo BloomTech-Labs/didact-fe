@@ -58,6 +58,8 @@ export const LearningPathWrapper = styled.div`
             border-radius: 19px;
             margin: 25px 0px;
 
+            
+
             .goToCourse {
                 display: flex;
                 justify-content: space-between;
