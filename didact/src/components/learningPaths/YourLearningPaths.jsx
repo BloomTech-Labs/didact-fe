@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 import { getYourLearningPaths, quitLearningPath } from '../../store/actions/index'
 
-import { LearningPathsWrapper } from './YourLearningPathsStyles'
+import { YourLearningPathsWrapper, LearningPathCard } from './YourLearningPathsStyles'
 
 import Modal from '@material-ui/core/Modal';
 import { makeStyles } from '@material-ui/core/styles';
@@ -62,11 +62,12 @@ const YourLearningPaths = (props) => {
     };
 
     return (
-        <LearningPathsWrapper>
-            {
+        <YourLearningPathsWrapper>
+            <div className='yourLearningPaths'>
+                {
                 learningPaths.length > 0 && (learningPaths.map((learningPath, index) => {
                     return (
-                        <div key={index} className='learningPathCard'>
+                        <LearningPathCard key={index}>
                             <div className='title'>
                                 <h1 style={{fontWeight: 'bold'}}>{learningPath.name}</h1>
                                 <div>
@@ -89,19 +90,20 @@ const YourLearningPaths = (props) => {
                                         </Modal>
                                     ) : null}
                                 </div>
-                            </div>
-                        </div>
-                    )
-                }))
-            }
-            {
-                learningPaths.length === 0 && <h1>You have not joined any learning paths</h1>
-            }
+                                </div>
+                            </LearningPathCard>
+                        )
+                    }))
+                }
+                {
+                    learningPaths.length === 0 && <h1>You have not joined any learning paths</h1>
+                }
+            </div>
             <div className='buttons'>
                 <Link style ={{fontSize: '1.4rem'}} to={'/learning-paths/join'}>Join a Learning Path</Link>
                 <Link style ={{fontSize: '1.4rem'}} to={'/learning-paths/add'}>Create a New Learning Path</Link>
             </div>
-        </LearningPathsWrapper>
+        </YourLearningPathsWrapper>
     )
 }
 

@@ -1,8 +1,9 @@
 import styled from 'styled-components'
 
 export const LearningPathWrapper = styled.div`
-    /* border: 1px solid black; */
     margin-right: 30px;
+    display: flex;
+    flex-direction: column;
 
     @media (max-width: 600px) {
         margin: auto;
