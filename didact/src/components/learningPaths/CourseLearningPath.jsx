@@ -10,9 +10,8 @@ import Collapse from '@material-ui/core/Collapse';
 import Button from '@material-ui/core/Button';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
 import DeleteModal from '../courses/DeleteModal'
-import { DeleteForm } from '../dashboard/ButtonStyles';
+import { TrashCanEdit, DidactButton } from '../dashboard/ButtonStyles';
 import {DraggableDiv} from "./DraggableStyles.js";
 import EditPathItems from './pathItems/EditPathItems';
 
@@ -27,19 +26,14 @@ const useStyles = makeStyles(theme => ({
         flexDirection: "column",
         alignItems: "flex-start"
     },
-    button: {
-        boxShadow: 'none',
-        borderRadius: '15px',
-        background: '#EBE8E1',
-        // marginLeft: '70%',
-    },
     card: {
         width: '100%',
         maxWidth: 540,
-        // minWidth: 220,
         borderRadius: 15,
         margin: '10px 0',
-        boxShadow: 'none'
+        boxShadow: 'none',
+        backgroundColor: '#386581',
+        color: 'white'
     },
     title: {
         fontSize: 14,
@@ -63,56 +57,14 @@ const useStyles = makeStyles(theme => ({
         flexWrap: 'wrap',
         // margin: '10px',
     },
-    input: {
-        backgroundColor: '#F4F8FA',
-        filter: "brightness(95%)",
-        borderRadius: 15,
-
-    },
-    inputDescription: {
-        backgroundColor: '#F4F8FA',
-        filter: "brightness(95%)",
-        borderRadius: 15,
-        margin: '-16px -10px -16px -10px',
-        padding: '10px',
-
-    },
-    titleOrInstructorFields: {
-        marginLeft: theme.spacing(1),
-        marginRight: theme.spacing(1),
-        width: '45%',
-        [`& fieldset`]: {
-            borderRadius: 15,
-        },
-    },
-    descriptionField: {
-        marginLeft: theme.spacing(1),
-        marginRight: theme.spacing(1),
-        width: '93%',
-        [`& fieldset`]: {
-            borderRadius: 15,
-            margin: "3px",
-
-        },
-    },
-
-    courseUrlField: {
-        marginLeft: theme.spacing(1),
-        marginRight: theme.spacing(1),
-        width: '93%',
-        [`& fieldset`]: {
-            borderRadius: 15,
-        },
-    },
-
+    
     descriptionDiv: {
         display: "flex",
         width: "100%",
         flexDirection: 'column',
         justifyContent: "space-between",
         fontSize: 12,
-        color: "#757575"
-        // padding: '0'
+        color: "white"
     },
     descriptionTitle: {
         marginBottom: "0px",
@@ -120,25 +72,6 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-// const CssTextField = withStyles({
-//     root: {
-//         '& label.Mui-focused': {
-//             color: 'gray',
-//         },
-//         '& .MuiOutlinedInput-root': {
-//             '& fieldset': {
-//                 borderColor: 'gray',
-//             },
-//             '&:hover fieldset': {
-//                 borderColor: 'gray',
-//             },
-//             '&.Mui-focused fieldset': {
-//                 border: '1px solid gray',
-//             },
-
-//         },
-//     },
-// })(TextField);
 
 const CourseLearningPath = ({ course, index, props}) => {
     const dispatch = useDispatch()
@@ -184,22 +117,20 @@ const CourseLearningPath = ({ course, index, props}) => {
 
 
     return (
-        <Draggable draggableId={`${index}`} index={index} className={classes.root}>
+        <Draggable draggableId={`${index}`} index={index} className={classes.root} >
             {(provided, snapshot) => (
                 !toggleEdit ? ( 
-                    <DraggableDiv className={classes.card}  
+                    <DraggableDiv className={classes.card} 
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
-                    ref={provided.innerRef}
+                    ref={provided.innerRef} 
                     isDragging={snapshot.isDragging}>
                     <CardContent >
-                        <DeleteForm onClick={handleModalOpen}>X</DeleteForm>
+                        <TrashCanEdit style={{fontSize: '2.6rem'}} onClick={handleModalOpen}></TrashCanEdit>
                         {openModal ? <DeleteModal handleDelete ={() => handleDelete(course)} text={modalText} open={openModal} handleModalClose={handleModalClose} /> : null}
-                        <Typography variant="h5" component="h2">
-                            {course.name}
-                        </Typography>
-                        <CardActions className={classes.descriptionDiv} disableSpacing>
-                            <Typography color="textSecondary" className={classes.descriptionTitle} > {course.description && !expanded ? (`${course.description.substring(0, 100)} ...`) : null}</Typography>
+                        <h3>{course.name}</h3>
+                        <CardActions className={classes.descriptionDiv} disableSpacing >
+                            <p className={classes.descriptionTitle} > {course.description && !expanded ? (`${course.description.substring(0, 100)} ...`) : null}</p>
                             <IconButton
                                 className={clsx(classes.expand, {
                                     [classes.expandOpen]: expanded,
@@ -207,36 +138,27 @@ const CourseLearningPath = ({ course, index, props}) => {
                                 onClick={handleExpandClick}
                                 aria-expanded={expanded}
                                 aria-label="show more"
+                                style={{ color: 'white'}}
                             >
                                 <ExpandMoreIcon />
                             </IconButton>
                         </CardActions>
                         <Collapse in={expanded} timeout="auto" unmountOnExit>
                             <CardContent>
-                                <Typography color="textSecondary" paragraph>
-                                    {course.description}
-                                </Typography>
+                                <p>{course.description}</p>
                             </CardContent>
                         </Collapse>
-                        <Typography >
-                            {course.foreign_instructors}
-                        </Typography>
-                        <Typography >
-                            {course.foreign_rating}
-                        </Typography>
-                        <a href={course.link} variant="body2" component="p" alt = "course link" style = {{color: 'black', cursor: 'pointer'}}>
+                        <p>{course.foreign_instructors}</p>
+                        <p>{course.foreign_rating}</p>
+                        <a href={course.link} alt = "course link" style = {{color: 'white', cursor: 'pointer'}}>
                         {course.link}
                          </a>
-                        <Typography color="textSecondary">
-                            {course.category ? (`Category: ${course.category}`) : (null)}
-                        </Typography>
-                        <Typography color="textSecondary">
-                            {course.type ? (course.type) : (null)}
-                        </Typography>
+                        <p>{course.category ? (`Category: ${course.category}`) : (null)}</p>
+                        <p>{course.type ? (course.type) : (null)}</p>
                     </CardContent>
                     <CardActions>
                         {/* <Button style={{marginLeft: '70.5%'}} type='submit' size="small" variant="contained" className={classes.button} >Edit Course</Button> */}
-                        {course.path_id ? <Button onClick = {handleToggleEdit} style={{marginLeft: '80%'}} type='submit' size="small" variant="contained" className={classes.button} >Edit Item</Button> : null}
+                        {course.path_id ? <DidactButton onClick = {handleToggleEdit} style={{marginLeft: '80%'}} type='submit' size="small" variant="contained">Edit Item</DidactButton> : null}
                     </CardActions>
                 </DraggableDiv>
                 ) : (course.path_id ? (<EditPathItems course = {course} props = {props} handleToggleEdit = {handleToggleEdit}/>) : null)

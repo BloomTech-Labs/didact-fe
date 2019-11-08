@@ -16,7 +16,9 @@ import IconButton from '@material-ui/core/IconButton';
 import DeleteModal from './DeleteModal'
 import AddCircleRoundedIcon from '@material-ui/icons/AddCircleRounded';
 import { AddButton, ButtonText, ButtonDiv, FinishEdit, TrashCanEdit, DidactButton } from '../dashboard/ButtonStyles';
-import { DidactField, DidactInput, DidactLabel, DidactTextArea, FormTitle } from '../dashboard/FormStyles'
+import { DidactField, DidactInput, DidactLabel, DidactTextArea, FormTitle } from '../dashboard/FormStyles';
+
+
 const useStyles = makeStyles(theme => ({
 
     root: {
