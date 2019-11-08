@@ -306,12 +306,7 @@ const EditLearningPaths = ({ id, props }) => {
                     handleModalClose={handleModalClose}
                   />
                 ) : null}
-                <form
-                  onSubmit={handlePathSubmit}
-                  className={classes.container}
-                  noValidate
-                  autoComplete="off"
-                >
+                <form onSubmit={handlePathSubmit} className={classes.container} noValidate autoComplete="off">
                 <DidactField>
                   <DidactLabel for='title'>Learning Path Title</DidactLabel>
                   <DidactInput id='title' type='text' value={changes.name || ""} onChange={handleChange('name')} placeholder='Learning Path Title' />  
