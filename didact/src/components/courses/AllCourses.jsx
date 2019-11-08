@@ -2,13 +2,8 @@ import React, { useEffect, useState } from "react";
 import { courseEndPoint } from "../../store/actions/index.js";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { AddButton, PlusDiv, Plus, ButtonText } from '../dashboard/ButtonStyles';
+import { AddButton, ButtonText } from '../dashboard/ButtonStyles';
 import Course from './Course'
-
-import ReactTooltip from 'react-tooltip'
-
-// import { CoursesCard, CourseMenuDiv, CourseDiv } from '../dashboard/DashboardStyles'
-// import { AddButton, PlusDiv, Plus, ButtonText } from '../dashboard//ButtonStyles';
 
 import { makeStyles } from '@material-ui/core/styles';
 import AddCircleRoundedIcon from '@material-ui/icons/AddCircleRounded';
@@ -42,12 +37,10 @@ const useStyles = makeStyles(theme => ({
         maxWidth: '500px'
     },
     card: {
-        // minWidth: 375,
-        maxWidth: 600,
+        maxWidth: 540,
         margin: '40px 0 40px 0', 
         padding: '10px',
         borderRadius: '15px',
-        // backgroundColor: '#eeeff3'
     },
     circleIcon: {
         fontSize: '3.5rem',
@@ -82,6 +75,7 @@ const useStyles = makeStyles(theme => ({
     root: {
         display: 'flex',
         flexDirection: 'row',
+        marginTop: '-40px'
     },
     rootTablet: {
         display: 'flex',
@@ -101,24 +95,12 @@ function AllCourses(props) {
     const tabletSize = useMediaQuery("(max-width:1150px)");
     const classes = useStyles();
     const dispatch = useDispatch();
-    const [expanded, setExpanded] = useState(false);
-    const [addingCourses, setAddingCourses] = useState(true)
+    const [addingCourses] = useState(true)
     const state = useSelector(state => state);
-    console.log('user', state.onboardingReducer.user)
-    // console.log(state.coursesReducer.courses)
 
     useEffect(() => {
         dispatch(courseEndPoint());
     }, [dispatch]);
-
-    const handleExpandClick = () => {
-        setExpanded(!expanded);
-    };
-
-    const handleAddingCourses = () => {
-        setAddingCourses(!addingCourses)
-        console.log(addingCourses)
-    }
 
     return (
         <div className = {tabletSize ? classes.rootTablet : classes.root}>
@@ -130,21 +112,21 @@ function AllCourses(props) {
                         <ButtonText>New Course</ButtonText>
                     </AddButton>
                 </Link>
-                <AddButton style = {{marginRight: '10px'}}>
+                {/* <AddButton style = {{marginRight: '10px'}}>
                     <AddCircleRoundedIcon className = {classes.circleIcon}/>
                     <ButtonText>Add Courses To Learning Path</ButtonText>
-                </AddButton>
-                <Link style={{ textDecoration: 'none' }} >
+                </AddButton> */}
+                {/* <Link style={{ textDecoration: 'none' }} >
                     <AddButton >
                        <AddCircleRoundedIcon className = {classes.circleIcon}/>
                         <ButtonText>Search Courses</ButtonText>
                     </AddButton>
-                </Link>
+                </Link> */}
             </div>) : (null) }
             <div>
                 {state.coursesReducer.courses
                     ? state.coursesReducer.courses.map((course, i) => (
-                        <Course key = {i} course = {course} addingCourses={addingCourses}/>
+                        <Course key={i} course={course} addingCourses={addingCourses}/>
                     ))
                     : null}
 
@@ -156,10 +138,10 @@ function AllCourses(props) {
                         <ButtonText>New Course</ButtonText>
                     </AddButton>
                 </Link>
-                <AddButton onClick={handleAddingCourses}>
+                {/* <AddButton onClick={handleAddingCourses}>
                     <AddCircleRoundedIcon className = {classes.circleIcon}/>
-                    <ButtonText>{addingCourses ? "Done Adding" : "Add Courses"}</ButtonText>
-                </AddButton>
+                    <ButtonText>{addingCourses ? "Done Adding" : "Add Courses"}</ButtonText
+                </AddButton> */}
                 {/* <Link style={{ textDecoration: 'none' }} >
                     <AddButton >
                        <AddCircleRoundedIcon className = {classes.circleIcon}/>

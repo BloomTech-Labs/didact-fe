@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux"
 import { Link } from "react-router-dom";
 
 import { DetailedCourseWrapper } from './DetailedCourseStyles'
-import { EditLessonButton, TagStyles } from '../dashboard/ButtonStyles'
+import { DidactButton, TagStyles } from '../dashboard/ButtonStyles'
 
 import { getDetailedCourse } from '../../store/actions/index.js'
 
@@ -11,10 +11,6 @@ import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import styled from 'styled-components'
-
-
-
 
 const DetailedCourse = (props) => {
 
@@ -22,30 +18,23 @@ const DetailedCourse = (props) => {
     const state = useSelector(state => state)
     const phoneSize = props.props.phoneSize;
     const id = state.onboardingReducer.user.id
-    console.log(props)
-    console.log('user from state', state.onboardingReducer.user)
+
     useEffect(_ => {
         dispatch(getDetailedCourse(props.id))
-    }, [dispatch])
+    }, [dispatch, props.id])
 
     const detailedCourse = state.coursesReducer.detailedCourse
     const course = detailedCourse.course
     const sections = detailedCourse.sections
-    // console.log('Detailed Course', detailedCourse)
-    // console.log('sections', sections)
-
-    // console.log('Render w/ props/state', props, state.coursesReducer.detailedCourse)
     const [expanded, setExpanded] = useState(false)
     const [lessonExpanded, setLessonExpanded] = useState(false)
 
     const handleChange = panel => (event, isExpanded) => {
-        console.log(panel, isExpanded)
         setExpanded(isExpanded ? panel : false);
         setLessonExpanded(isExpanded ? panel : false)
     };
 
     const handleLessonExpansion = panel => (event, isExpanded) => {
-        console.log(panel, isExpanded)
         setLessonExpanded(isExpanded ? panel : false)
     }
 
@@ -64,9 +53,9 @@ const DetailedCourse = (props) => {
                                     )
                                 })}
                             </div>
-                            <EditLessonButton className="buttons" >
+                            <DidactButton className="buttons" >
                                 {id === course.creator_id && <Link style={{ textDecoration: 'none', color: "black" }} to={`/courses/${course.id}/edit`}>Edit Course</Link>}
-                            </EditLessonButton>
+                            </DidactButton>
                         </div>
                     </div>
                     {sections.map((el, index) => {
@@ -122,7 +111,7 @@ const DetailedCourse = (props) => {
                                                         el.details.map((detail, i) => {
                                                             return (
                                                                 <div key={i} className="lessonTitle">
-                                                                    <a className="lessonTitleName" href={detail.link} target="_blank">{detail.name}</a>
+                                                                    <a className="lessonTitleName" href={detail.link} target="_blank" rel="noopener noreferrer">{detail.name}</a>
                                                                     <p className="lessonTitleType">{detail.type}</p>
                                                                 </div>
                                                             )

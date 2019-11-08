@@ -3,6 +3,10 @@ import styled from 'styled-components'
 export const LearningPathsWrapper = styled.div`
     margin-right: 30px;
 
+    @media (max-width: 600px) {
+        margin: auto;
+        }
+
     .learningPathCard {
         display: flex;
         justify-content: space-between;
@@ -12,6 +16,7 @@ export const LearningPathsWrapper = styled.div`
         padding: 35px 40px;
         margin-bottom: 50px;
         max-width: 600px;
+
 
         .title {
             text-align: left;
@@ -63,7 +68,13 @@ export const LearningPathsWrapper = styled.div`
     .buttons {
         padding: 15px 0px;
         display: flex;
+        flex-flow: row wrap;
         justify-content: flex-start;
+
+        @media (max-width: 880px) {
+            justify-content: center;
+            margin: auto;
+        }
 
         a {
             color: black;
@@ -72,10 +83,16 @@ export const LearningPathsWrapper = styled.div`
             padding: 20px 30px;
             border-radius: 19px;
             font-weight: bold;
-            min-width: 230px;
+            width: 250px;
+            margin: 10px;
+
 
             &:first-child {
                 margin-right: 20px;
+
+                @media (max-width: 880px) {
+                margin-right: 10px;
+                }
             }
         }
     }

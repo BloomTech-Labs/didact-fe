@@ -95,7 +95,7 @@ const MobileDrawerComponent = (props) => {
             }),
           },
         menuButtonMobile: {
-            marginRight: '-4px'
+            marginRight: '-8px'
         },
         menuButtonDesktop: {
             marginLeft: theme.spacing(1),
@@ -179,7 +179,7 @@ const MobileDrawerComponent = (props) => {
                     edge="start"
                     className={classes.menuButtonMobile}
                 >
-                    <MenuIcon />
+                    <MenuIcon style={{fontSize: '28px'}}/>
                 </IconButton>
             </div>
             {<SideList props = {props}/>}

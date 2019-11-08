@@ -1,28 +1,17 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import { Link } from 'react-router-dom';
-import clsx from 'clsx'
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import DashboardIcon from '@material-ui/icons/Dashboard';
-import MessageIcon from '@material-ui/icons/Message';
 
 import Profile from '../profile/Profile'
 
 const MobileHeaderComponent = (props) => {
 
         const headerStyles = makeStyles(theme => ({
-        // appBarDesktop: {
-        //     width: `calc(100% - 100px)`,
-        //     margin: "10px",
-        //     borderRadius: "10px 10px 10px 10px",
-        //     backgroundColor: 'gray',
-        //     color: 'lightgray',
-        //     top: 0,
-           
-        // },
+
         appBarMobile: {
             width: `100%`,
             backgroundColor: '#5b5b5b',
@@ -31,14 +20,7 @@ const MobileHeaderComponent = (props) => {
             // margin: '0'
 
         },
-        // appBarShift: {
-        //     marginLeft: "240px",
-        //     width: `calc(100vw - (240px + 30px))`,
-        //     transition: theme.transitions.create(['width', 'margin'], {
-        //         easing: theme.transitions.easing.sharp,
-        //         duration: theme.transitions.duration.enteringScreen,
-        //     }),
-        // },
+
         iconImage: {
             width: "40px",
             height: "40px",
@@ -57,20 +39,18 @@ const MobileHeaderComponent = (props) => {
     }));
 
     const classes = headerStyles();
-    console.log(classes)
-    const open = props.open
 
     return (
         <AppBar
             className={classes.appBarMobile}
         >
             <Toolbar>
-                <Typography variant="h5">
+                <Typography variant="h5"  style={{ fontFamily: "ITC Grouch", fontSize: "32px" }}>
                     Didact
                 </Typography>
                 <div className={classes.toolbarIcons}>
                     <Button onClick={() => props.props.history.push('/')} className={classes.iconToolBar} color="inherit">
-                        <DashboardIcon />
+                        <DashboardIcon style={{ fontSize: "28px" }}/>
                     </Button>
                    
                     {/* <Button className={classes.iconToolBar} color="inherit">

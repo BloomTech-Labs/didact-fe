@@ -39,7 +39,7 @@ const DrawerComponent = (props) => {
           
           drawerOpen: {
             // backgroundColor: '#eeeff3',
-            width: "240px",
+            width: "255px",
             height: "600px",
             margin: "10px",
             marginLeft: "10px",
@@ -206,7 +206,7 @@ const DrawerComponent = (props) => {
                     edge="start"
                     className={classes.menuButtonDesktop}
                 >
-                    <MenuIcon />
+                    <MenuIcon style={{fontSize: '28px'}}/>
                 </IconButton>
             </div>
             {<SideList open = {open} props = {props}/>}
