@@ -117,12 +117,12 @@ function AllCourses(props) {
                     <AddCircleRoundedIcon className = {classes.circleIcon}/>
                     <ButtonText>Add Courses To Learning Path</ButtonText>
                 </AddButton>
-                <Link style={{ textDecoration: 'none' }} >
+                {/* <Link style={{ textDecoration: 'none' }} >
                     <AddButton >
                        <AddCircleRoundedIcon className = {classes.circleIcon}/>
                         <ButtonText>Search Courses</ButtonText>
                     </AddButton>
-                </Link>
+                </Link> */}
             </div>) : (null) }
             <div>
                 {state.coursesReducer.courses
@@ -141,7 +141,7 @@ function AllCourses(props) {
                 </Link>
                 {/* <AddButton onClick={handleAddingCourses}>
                     <AddCircleRoundedIcon className = {classes.circleIcon}/>
-                    <ButtonText>{addingCourses ? "Done Adding" : "Add Courses"}</ButtonText>
+                    <ButtonText>{addingCourses ? "Done Adding" : "Add Courses"}</ButtonText
                 </AddButton> */}
                 {/* <Link style={{ textDecoration: 'none' }} >
                     <AddButton >

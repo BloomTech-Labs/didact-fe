@@ -140,21 +140,21 @@ export default function Profile(props) {
           <h2 className={classes.title} id="transition-modal-title">{userName.email}</h2>
           <p className={classes.description} id="transition-modal-description">Welcome {firstName}!</p>
           <div className={classes.smallImageDivs} >
+            {/* <div className={classes.smallImage} ></div>
             <div className={classes.smallImage} ></div>
-            <div className={classes.smallImage} ></div>
-            <div className={classes.smallImage} ></div>
+            <div className={classes.smallImage} ></div> */}
           </div>
           <div className={classes.buttonsDiv}>
             <button className={classes.buttons}>
               <div className={classes.buttonDiv}>
-                <p>Settings</p>
-                <p className = {classes.paragraph}>></p>
+                {/* <p>Settings</p>
+                <p className = {classes.paragraph}>></p> */}
               </div>
             </button>
             <button className={classes.buttons}>
               <div className={classes.buttonDiv}>
-                <p>Contact Us</p>
-                <p className = {classes.paragraph} >></p>
+                {/* <p>Contact Us</p>
+                <p className = {classes.paragraph} >></p> */}
               </div>
             </button>
             <button className={classes.buttons} onClick = {!phoneSize ? (handleLogOut) : (handleMobileLogOut)}>
