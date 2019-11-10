@@ -11,6 +11,7 @@ import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { white } from "ansi-colors";
 
 const DetailedCourse = (props) => {
 
@@ -18,16 +19,18 @@ const DetailedCourse = (props) => {
     const state = useSelector(state => state)
     const phoneSize = props.props.phoneSize;
     const id = state.onboardingReducer.user.id
-
-    useEffect(_ => {
-        dispatch(getDetailedCourse(props.id))
-    }, [dispatch, props.id])
-
     const detailedCourse = state.coursesReducer.detailedCourse
     const course = detailedCourse.course
     const sections = detailedCourse.sections
     const [expanded, setExpanded] = useState(false)
     const [lessonExpanded, setLessonExpanded] = useState(false)
+
+    useEffect(_ => {
+        dispatch(getDetailedCourse(props.id))
+    }, [dispatch, props.id])
+
+    
+    console.log(course)
 
     const handleChange = panel => (event, isExpanded) => {
         setExpanded(isExpanded ? panel : false);
@@ -53,9 +56,12 @@ const DetailedCourse = (props) => {
                                     )
                                 })}
                             </div>
-                            <DidactButton className="buttons" >
-                                {id === course.creator_id && <Link style={{ textDecoration: 'none', color: "black" }} to={`/courses/${course.id}/edit`}>Edit Course</Link>}
-                            </DidactButton>
+                            {course.id === id ? (
+                               <DidactButton >
+                                 <Link style={{ textDecoration: 'none', color: "inherit"}} to={`/courses/${course.id}/edit`}>Edit Course</Link>
+                                </DidactButton> 
+                            ) : (null)}
+                            
                         </div>
                     </div>
                     {sections.map((el, index) => {
@@ -85,22 +91,22 @@ const DetailedCourse = (props) => {
                                             >
                                                 {!phoneSize ? (
                                                 <div className="lessonExpansionSummary">
-                                                    <h3 style = {{textAlign: 'center'}}>Lessons</h3>
-                                                    {(videoLength > 0) && <h3>{`${videoLength} Videos`}</h3>}
-                                                    {(readingLength > 0) && <h3>{`${readingLength} Readings`}</h3>}
-                                                    {(quizLength > 0) && <h3>{`${quizLength} Quizzes`}</h3>}
-                                                    {(assignmentLength > 0) && <h3>{`${assignmentLength} Assignments`}</h3>}
+                                                    <h4 style = {{textAlign: 'center'}}>Lessons</h4>
+                                                    {(videoLength > 0) && <h4>{`${videoLength} Videos`}</h4>}
+                                                    {(readingLength > 0) && <h4>{`${readingLength} Readings`}</h4>}
+                                                    {(quizLength > 0) && <h4>{`${quizLength} Quizzes`}</h4>}
+                                                    {(assignmentLength > 0) && <h4>{`${assignmentLength} Assignments`}</h4>}
                                                 </div>
                                                 ) : (
                                                 <div className="lessonExpansionSummary" style = {{display:'flex', flexDirection: 'column'}}>
                                                     <div>
-                                                        <h3 style = {{textAlign: 'center'}}>Lessons</h3>
+                                                        <h4 style = {{textAlign: 'center'}}>Lessons</h4>
                                                     </div>
                                                     <div style = {{display:'flex', flexFlow: 'row wrap', justifyContent: 'space-evenly'}}>
-                                                        {(videoLength > 0) && <h3 style = {{padding: '0 5px'}}>{`${videoLength} Videos`}</h3>}
-                                                        {(readingLength > 0) && <h3 style = {{padding: '0 5px'}}>{`${readingLength} Readings`}</h3>}
-                                                        {(quizLength > 0) && <h3 style = {{padding: '0 5px'}}>{`${quizLength} Quizzes`}</h3>}
-                                                        {(assignmentLength > 0) && <h3 style = {{padding: '0 5px'}}>{`${assignmentLength} Assignments`}</h3>}
+                                                        {(videoLength > 0) && <h4 style = {{padding: '0 5px'}}>{`${videoLength} Videos`}</h4>}
+                                                        {(readingLength > 0) && <h4 style = {{padding: '0 5px'}}>{`${readingLength} Readings`}</h4>}
+                                                        {(quizLength > 0) && <h4 style = {{padding: '0 5px'}}>{`${quizLength} Quizzes`}</h4>}
+                                                        {(assignmentLength > 0) && <h4 style = {{padding: '0 5px'}}>{`${assignmentLength} Assignments`}</h4>}
                                                     </div>
                                                 </div>
                                                 )}

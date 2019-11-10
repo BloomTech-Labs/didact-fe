@@ -19,7 +19,7 @@ export const LearningPathWrapper = styled.div`
         padding: 20px 27px;
         font-weight: bold;
         color: #141821;
-        width: 540px;
+        max-width: 540px;
 
         p {
             margin: 0;
@@ -91,7 +91,8 @@ export const LearningPathWrapper = styled.div`
             padding: 35px 43px 30px 30px;
             border-radius: 19px;
             margin: 25px 0px;
-            width: 540px;
+            max-width: 540px;
+            width: 100%;
 
             h2 {
                 margin: 0;

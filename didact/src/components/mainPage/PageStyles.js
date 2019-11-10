@@ -15,8 +15,8 @@ export const PageFlex = styled.div`
         margin: 0 0 0 15px;
 
         .header {
-            max-width: 825px;
-            width: 100%;
+            max-width: 840px;
+            width: calc(100% - 15px);
             display: flex;
             background: #242424BF;
             border-radius: 19px;
