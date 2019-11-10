@@ -16,11 +16,14 @@ export const LearningPathWrapper = styled.div`
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 15px 30px;
+        padding: 20px 27px;
         font-weight: bold;
         color: #141821;
-        max-width: 600px;
+        width: 540px;
 
+        p {
+            margin: 0;
+        }
 
         .editLearningButton {
             font-size: .8rem;
@@ -52,11 +55,52 @@ export const LearningPathWrapper = styled.div`
         }
     }
 
+    .current {
+        
+        .learningPathCard {
+            background: #386581;
+        }
+    }
+
+    .next {
+
+        .learningPathCard {
+            background: #ADC8D9;
+            color: black;
+        }
+    }
+
+    .upcoming {
+
+        .learningPathCard {
+            background: #ADC8D9;
+            color: black;
+        }
+    }
+
+    .item {
+        .learningPathCard {
+            background: #D1E2EA;
+            color: black;
+        }
+    }
+
     .learningPathCard {
+            color: white;
             background: white;
-            padding: 10px 30px;
+            padding: 35px 43px 30px 30px;
             border-radius: 19px;
             margin: 25px 0px;
+            width: 540px;
+
+            h2 {
+                margin: 0;
+            }
+
+            p {
+                margin: 0;
+                margin-top: 25px;
+            }
 
             
 
@@ -64,6 +108,7 @@ export const LearningPathWrapper = styled.div`
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
+                margin-top: 25px;
                 
                 a {
                     background-color: #242424;
@@ -71,6 +116,10 @@ export const LearningPathWrapper = styled.div`
                     padding: 10px 15px;
                     border-radius: 16px;
                     font-weight: bolder;
+                }
+
+                h4 {
+                    margin: 0;
                 }
             }
         }

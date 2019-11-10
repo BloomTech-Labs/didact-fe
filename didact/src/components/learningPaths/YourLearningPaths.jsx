@@ -90,6 +90,7 @@ const YourLearningPaths = (props) => {
     };
 
     return (
+      
         <div>
         <PathInstructions>Drag to Change Learning Path Order</PathInstructions>
         <YourLearningPathsWrapper style ={{margin: 'auto'}}>
@@ -150,6 +151,7 @@ const YourLearningPaths = (props) => {
                 <Link style={{ fontSize: '1.4rem' }} to={'/learning-paths/join'}>Join a Learning Path</Link>
                 <Link style={{ fontSize: '1.4rem' }} to={'/learning-paths/add'}>Create a New Learning Path</Link>
             </div>) : null}
+
         </YourLearningPathsWrapper>
         {props.props.mediumScreenSize || props.props.phoneSize ? 
             (<ButtonStyles style={{display: "flex", justifyContent: 'center'}}>   
