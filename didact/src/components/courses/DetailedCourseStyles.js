@@ -83,7 +83,7 @@ export const DetailedCourseWrapper = styled.div`
         box-shadow: none;
         font-size: 1.2rem;
         max-width: 540px;
-        width: 100%;
+        width: 100%; 
 
         .lessonExpansionSummary {
             display: flex;
