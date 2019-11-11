@@ -61,6 +61,10 @@ export const UPDATE_PATH_CONTENT_FAIL = "UPDATE_PATH_CONTENT_FAIL"
 export const UPDATE_YOUR_PATH_ORDER_START = "UPDATE_YOUR_PATH_ORDER_START"
 export const UPDATE_YOUR_PATH_ORDER_SUCCESS = "UPDATE_YOUR_PATH_ORDER_SUCCESS"
 export const UPDATE_YOUR_PATH_ORDER_FAIL = "UPDATE_YOUR_PATH_ORDER_FAIL"
+export const GET_YOUR_LEARNING_PATH_COMPLETION_START = 'GET_YOUR_LEARNING_PATH_COMPLETION_START'
+export const GET_YOUR_LEARNING_PATH_COMPLETION_SUCCESS = 'GET_YOUR_LEARNING_PATH_COMPLETION_SUCCESS'
+export const GET_YOUR_LEARNING_PATH_COMPLETION_FAIL = 'GET_YOUR_LEARNING_PATH_COMPLETION_FAIL'
+
 
 const baseURL = `${beURL}learning-paths/`
 
@@ -382,5 +386,20 @@ export const updateYourPathOrder = (pathArray) => dispatch => {
     })
     .catch(err => {
         dispatch({type: UPDATE_YOUR_PATH_ORDER_FAIL, payload: err})
+    })
+}
+
+//Get Your Learning Path By Id With Completion
+export const findForUserId = (courseId) => dispatch =>
+{
+    dispatch({ type: GET_YOUR_LEARNING_PATH_COMPLETION_START })
+    axiosWithAuth().get(`${baseURL}${courseId}/yours`)
+    .then(res =>
+    {
+        dispatch({ type: GET_YOUR_LEARNING_PATH_COMPLETION_SUCCESS, payload: res.data })
+    })
+    .catch(err =>
+    {
+        dispatch({ type: GET_YOUR_LEARNING_PATH_COMPLETION_FAIL, payload: err })
     })
 }
