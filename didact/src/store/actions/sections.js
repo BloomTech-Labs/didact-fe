@@ -162,9 +162,11 @@ export const toggleCompleteSection =(courseId, sectionId) => dispatch => {
     axiosWithAuth()
     .put(`${baseURL}${courseId}/sections/${sectionId}/togglecomplete`)
     .then(res => {
+        console.log(res)
         dispatch({type: TOGGLE_COMPLETE_SECTION_SUCCESS, payload: res.data})
     })
     .catch(err => {
+        console.log(err)
         dispatch({type: TOGGLE_COMPLETE_SECTION_FAIL, payload: err})
     })
 }
@@ -175,9 +177,11 @@ export const toggleCompleteLesson =(courseId, sectionId, detailId) => dispatch =
     axiosWithAuth()
     .put(`${baseURL}${courseId}/sections/${sectionId}/details/${detailId}/togglecomplete`)
     .then(res => {
+        console.log(res)
         dispatch({type: TOGGLE_COMPLETE_LESSON_SUCCESS, payload: res.data})
     })
     .catch(err => {
+        console.log(err)
         dispatch({type: TOGGLE_COMPLETE_LESSON_FAIL, payload: err})
     })
 }

@@ -5,13 +5,13 @@ import { Link } from "react-router-dom";
 import { DetailedCourseWrapper } from './DetailedCourseStyles'
 import { DidactButton, TagStyles } from '../dashboard/ButtonStyles'
 
-import { getDetailedCourse } from '../../store/actions/index.js'
+import { getDetailedCourse, toggleCompleteCourse, toggleCompleteSection, toggleCompleteLesson } from '../../store/actions/index.js'
 
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import { white } from "ansi-colors";
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 
 const DetailedCourse = (props) => {
 
@@ -41,11 +41,26 @@ const DetailedCourse = (props) => {
         setLessonExpanded(isExpanded ? panel : false)
     }
 
+    const handleMarkCompleteCourse = () => {
+        dispatch(toggleCompleteCourse(course.id))
+    }
+
+    const handleMarkCompleteSection = (sectionId) => {
+        dispatch(toggleCompleteSection(course.id, sectionId))
+    }
+
+    const handleMarkCompleteLesson = (sectionId, detailId) => {
+        dispatch(toggleCompleteLesson(course.id, sectionId, detailId))
+    }
+
     if (!state.coursesReducer.isLoading && (course && sections)) {
         return (
                 <DetailedCourseWrapper>
                     <div className="courseWrapper">
-                        <h1>{course.name}</h1>
+                        <div style={{backgroundColor: '#386581', display: 'flex', alignItems: 'center', padding: '0px', margin: '0px', justifyContent: 'space-between'}}>
+                          <h1>{course.name}</h1>  
+                          <CheckCircleIcon onClick={handleMarkCompleteCourse} className='completeButton'/>
+                        </div>
                         <p>{course.description}</p>
                         <p>{course.category ? (`Category: ${course.category}`) : (null)}</p>
                         <div className="courseFooter">
@@ -77,7 +92,10 @@ const DetailedCourse = (props) => {
                                     id={`panel${index}bh-header`}
                                     className="expansionPanelSummary"
                                 >
+                                    <div>
                                     <h3>{`Section ${index + 1}: ${el.section.name}`}</h3>
+                                    <CheckCircleIcon onClick={() => handleMarkCompleteSection(el.section.id)} className='completeButton'/>
+                                    </div>
                                 </ExpansionPanelSummary>
                                 <ExpansionPanelDetails>
                                     <div style = {{width: '100%'}}>
@@ -109,6 +127,7 @@ const DetailedCourse = (props) => {
                                                         {(assignmentLength > 0) && <h4 style = {{padding: '0 5px'}}>{`${assignmentLength} Assignments`}</h4>}
                                                     </div>
                                                 </div>
+                                                
                                                 )}
                                             </ExpansionPanelSummary>
                                             <ExpansionPanelDetails>
@@ -116,10 +135,14 @@ const DetailedCourse = (props) => {
                                                     {
                                                         el.details.map((detail, i) => {
                                                             return (
+                                                                <div style={{display: 'flex', flexDirection: "row", alignItems: 'center', justifyContent: 'space-between'}}>
                                                                 <div key={i} className="lessonTitle">
                                                                     <a className="lessonTitleName" href={detail.link} target="_blank" rel="noopener noreferrer">{detail.name}</a>
                                                                     <p className="lessonTitleType">{detail.type}</p>
                                                                 </div>
+                                                                <CheckCircleIcon onClick={() => handleMarkCompleteLesson(el.section.id, detail.id)} className='completeButton'/>
+                                                                </div>
+
                                                             )
                                                         })
                                                     }

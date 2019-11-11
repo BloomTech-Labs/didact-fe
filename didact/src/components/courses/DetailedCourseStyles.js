@@ -35,6 +35,17 @@ export const DetailedCourseWrapper = styled.div`
         }
     }
 
+    .completeButton {
+        font-size: 2.2rem;
+        color: white;
+        opacity: .6;
+        cursor: pointer;
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+
     .expansionPanel {
 
         margin: 20px 0px;

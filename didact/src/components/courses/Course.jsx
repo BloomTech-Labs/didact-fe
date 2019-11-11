@@ -22,6 +22,7 @@ import playlistAdd from '../../images/playlist_add_black_24x24.png'
 import closeIcon from '../../images/close_black_24x24.png'
 
 
+
 const useStyles = makeStyles(theme => ({
     buttonCourse: {
         border: "none",
