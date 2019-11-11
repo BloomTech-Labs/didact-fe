@@ -12,8 +12,11 @@ export const VERIFY_FAILURE = 'VERIFY_FAILURE';
 
 const baseURL = `${beURL}auth/`
 
+
+
 export const loginAction = (history, form) => dispatch => {
     dispatch({ type: LOGIN_START })
+    console.log('baseURL', baseURL)
     axios
         .post(`${baseURL}login`, form)
         .then(res => {
@@ -36,7 +39,6 @@ export const registerAction = (history, form) => dispatch => {
         })
         .then(res => history.push("/"))
         .catch(err => {
-            console.log(err)
             dispatch({ type: REGISTER_FAILURE, payload: err })
         });
 };

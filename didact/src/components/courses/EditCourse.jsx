@@ -1,24 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getCourseById, editCourse, deleteCourse } from '../../store/actions'
-import { AddButton, PlusDiv, Plus, ButtonText, ButtonDiv } from '../dashboard/ButtonStyles';
 import Tags from './Tags'
 import AddSection from './AddSection'
 import Sections from './Sections'
 
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Collapse from '@material-ui/core/Collapse';
-import Button from '@material-ui/core/Button';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
 import DeleteModal from './DeleteModal'
-import {FinishEdit, DeleteForm} from '../dashboard/ButtonStyles';
+import AddCircleRoundedIcon from '@material-ui/icons/AddCircleRounded';
+import { AddButton, ButtonText, ButtonDiv, FinishEdit, TrashCanEdit, DidactButton } from '../dashboard/ButtonStyles';
+import { DidactField, DidactInput, DidactLabel, DidactTextArea, FormTitle } from '../dashboard/FormStyles';
+
 
 const useStyles = makeStyles(theme => ({
 
@@ -28,29 +27,15 @@ const useStyles = makeStyles(theme => ({
         flexDirection: "column",
         alignItems: "flex-start"
     },
-    button: {
-        boxShadow: 'none',
-        borderRadius: '15px',
-        background: '#EBE8E1',
-        // marginLeft: '70%',
-    },
     card: {
         width: '100%',
-        maxWidth: 600,
-        // minWidth: 220,
+        maxWidth: 540,
         borderRadius: 15,
-        margin: '10px 0'
-    },
-    title: {
-        fontSize: 14,
-        fontWeight: 'bold',
-    },
-    pos: {
-        marginBottom: 12,
+        margin: '10px 0',
+        boxShadow: 'none',
     },
     expand: {
         transform: 'rotate(0deg)',
-        // marginLeft: 'auto',
         transition: theme.transitions.create('transform', {
             duration: theme.transitions.duration.shortest,
         }),
@@ -61,94 +46,33 @@ const useStyles = makeStyles(theme => ({
     container: {
         display: 'flex',
         flexWrap: 'wrap',
-        // margin: '10px',
     },
-    input: {
-        backgroundColor: '#F4F8FA',
-        filter: "brightness(95%)",
-        borderRadius: 15,
-
+    circleIcon: {
+        fontSize: '3.5rem',
+        marginRight: '5px',
+        marginLeft: '10px',
+        color: "#5b5b5b"
     },
-    inputDescription: {
-        backgroundColor: '#F4F8FA',
-        filter: "brightness(95%)",
-        borderRadius: 15,
-        margin: '-16px -10px -16px -10px',
-        padding: '10px',
-
-    },
-    titleOrInstructorFields: {
-        marginLeft: theme.spacing(1),
-        marginRight: theme.spacing(1),
-        width: '45%',
-        [`& fieldset`]: {
-            borderRadius: 15,
-        },
-    },
-    descriptionField: {
-        marginLeft: theme.spacing(1),
-        marginRight: theme.spacing(1),
-        width: '93%',
-        [`& fieldset`]: {
-            borderRadius: 15,
-            margin: "3px",
-
-        },
-    },
-
-    courseUrlField: {
-        marginLeft: theme.spacing(1),
-        marginRight: theme.spacing(1),
-        width: '93%',
-        [`& fieldset`]: {
-            borderRadius: 15,
-        },
-    },
-
     descriptionDiv: {
-        display: "flex",
         width: "100%",
+        display: 'flex',
         flexDirection: 'column',
         justifyContent: "space-between",
-        fontSize: 12,
-        color: "#757575"
-        // padding: '0'
-    },
-    descriptionTitle: {
-        marginBottom: "0px",
+        fontSize: '1.4rem',
+        padding: '0px'
     },
 
 }));
 
-const CssTextField = withStyles({
-    root: {
-        '& label.Mui-focused': {
-            color: 'gray',
-        },
-        '& .MuiOutlinedInput-root': {
-            '& fieldset': {
-                borderColor: 'gray',
-            },
-            '&:hover fieldset': {
-                borderColor: 'gray',
-            },
-            '&.Mui-focused fieldset': {
-                border: '1px solid gray',
-            },
-
-        },
-    },
-})(TextField);
-
-const EditCourse = ({props, id}) => {
+const EditCourse = ({ props, id }) => {
     const state = useSelector(state => state)
-    const course =  state.coursesReducer.course
+    const course = state.coursesReducer.course
     const dispatch = useDispatch()
-    const classes = useStyles();
     const [expanded, setExpanded] = React.useState(false);
-    const [courseEdit, setCourseEdit] = useState(true)
+    const [courseEdit, setCourseEdit] = useState(false)
     const [addSectionChange, setAddSectionChange] = useState(false);
     const [openModal, setOpenModal] = useState(false);
+    const [editCourseText, setEditCourseText] = useState('')
     const [changes, setChanges] = useState({
         name: "",
         category: "",
@@ -157,11 +81,19 @@ const EditCourse = ({props, id}) => {
         foreign_rating: "",
         link: ""
     })
-    console.log(props)
+    const classes = useStyles(courseEdit);
 
     useEffect(() => {
         dispatch(getCourseById(id))
     }, [id, dispatch])
+
+    useEffect(() => {
+        if(!props.phoneSize){
+            setEditCourseText("Edit Course")
+        } else {
+            setEditCourseText("Edit")
+        }
+    })
 
     useEffect(() => {
         setChanges({
@@ -173,11 +105,6 @@ const EditCourse = ({props, id}) => {
             link: course.link
         })
     }, [course])
-
-    useEffect(_ =>
-        {
-
-        }, [course])
 
     const toggleEdit = () => {
         setCourseEdit(!courseEdit)
@@ -207,12 +134,12 @@ const EditCourse = ({props, id}) => {
     }
 
     const backToCourse = () => {
-        if(props.match.params.pathId){
+        if (props.match.params.pathId) {
             props.history.push(`/learning-paths/${props.match.params.pathId}`)
         } else {
-            props.history.push(`/courses/${props.match.params.id}`)   
+            props.history.push(`/courses/${props.match.params.id}`)
         }
-        
+
     }
 
     const handleDelete = () => {
@@ -227,169 +154,101 @@ const EditCourse = ({props, id}) => {
         setOpenModal(false);
     };
 
-    if(!state.coursesReducer.isLoading) {
-    return (
-        <>
-        
-        <FinishEdit onClick={backToCourse}>{(props.match.params.pathId ? `<- BACK TO PATH` : `<- BACK TO COURSE`)}</FinishEdit>
-        <div className={classes.root}>
-            {courseEdit ?
-                (
-                    <Card className={classes.card}>
-                        <CardContent >
-                            <Typography variant="h5" component="h2">
-                                {course.name}
-                            </Typography>
-                            <CardActions className={classes.descriptionDiv} disableSpacing>
-                                <Typography color="textSecondary" className={classes.descriptionTitle} > {course.description && !expanded ? (`${course.description.substring(0, 100)} ...`) : null}</Typography>
-                                <IconButton
-                                    className={clsx(classes.expand, {
-                                        [classes.expandOpen]: expanded,
-                                    })}
-                                    onClick={handleExpandClick}
-                                    aria-expanded={expanded}
-                                    aria-label="show more"
-                                >
-                                    <ExpandMoreIcon />
-                                </IconButton>
-                            </CardActions>
-                            <Collapse in={expanded} timeout="auto" unmountOnExit>
-                                <CardContent>
-                                    <Typography color="textSecondary" paragraph>
-                                        {course.description}
-                                    </Typography>
-                                </CardContent>
-                            </Collapse>
-                            <Typography >
-                                {course.foreign_instructors}
-                            </Typography>
-                            <Typography >
-                                {course.foreign_rating}
-                            </Typography>
-                            <a href={course.link} variant="body2" component="p" alt = "course link" style = {{color: 'black', cursor: 'pointer'}}>
-                            {course.link}
-                             </a>
-                            <Typography color="textSecondary">
-                                {course.category ? (`Category: ${course.category}`) : (null)}
-                            </Typography>
-                        </CardContent>
-                        <CardActions>
-                            <Button onClick={toggleEdit} style={{marginLeft: '75.5%'}} type='submit' size="small" variant="contained" className={classes.button} >Edit Course</Button>
-                        </CardActions>
-                    </Card>
-                ) : (
 
-                    <Card className={classes.card}>
-                        <CardContent>
-                            <Typography className={classes.title} gutterBottom>
-                                Course Overview
-                            </Typography>
-                            <DeleteForm onClick={handleModalOpen}>X</DeleteForm>
-                            {openModal ? <DeleteModal handleDelete={handleDelete} text={"this course"} open={openModal} handleModalClose={handleModalClose} /> : null}
-                            <form onSubmit={handleCourseSubmit} className={classes.container} noValidate autoComplete="off">
-                                <CssTextField
-                                    id="standard-name"
-                                    label='Name'
-                                    className={classes.courseUrlField}
-                                    value={changes.name || ""}
-                                    onChange={handleChange('name')}
-                                    margin="normal"
-                                    variant="outlined"
-                                    placeholder="Name"
-                                    InputProps={{ classes: { underline: classes.blackUnderline, input: classes.input } }}
-                                />
-                                <CssTextField
-                                    id="standard-name"
-                                    label="Instructors"
-                                    className={classes.courseUrlField}
-                                    value={changes.foreign_instructors}
-                                    onChange={handleChange('foreign_instructors')}
-                                    margin="normal"
-                                    variant="outlined"
-                                    placeholder="Instructors"
-                                    InputProps={{ classes: { underline: classes.blackUnderline, input: classes.input } }}
-                                />
-                                <CssTextField
-                                    id="standard-name"
-                                    label="Description"
-                                    className={classes.descriptionField}
-                                    value={changes.description || ""}
-                                    onChange={handleChange('description')}
-                                    margin="normal"
-                                    multiline={true}
-                                    rows='6'
-                                    variant="outlined"
-                                    placeholder="Description"
-                                    InputProps={{ classes: { input: classes.inputDescription } }}
-                                />
-                                <CssTextField
-                                    id="standard-name"
-                                    label="Rating"
-                                    className={classes.courseUrlField}
-                                    value={changes.foreign_rating || ""}
-                                    onChange={handleChange('foreign_rating')}
-                                    margin="normal"
-                                    variant="outlined"
-                                    placeholder="Course Url"
-                                    InputProps={{ classes: { underline: classes.blackUnderline, input: classes.input } }}
-                                />
-                                <CssTextField
-                                    id="standard-name"
-                                    label="Course Url"
-                                    className={classes.courseUrlField}
-                                    value={changes.link || ""}
-                                    onChange={handleChange('link')}
-                                    margin="normal"
-                                    variant="outlined"
-                                    placeholder="Course Url"
-                                    InputProps={{ classes: { underline: classes.blackUnderline, input: classes.input } }}
-                                />
-                                  <CssTextField
-                                    id="standard-name"
-                                    label="Category"
-                                    className={classes.courseUrlField}
-                                    value={changes.category || ""}
-                                    onChange={handleChange('category')}
-                                    margin="normal"
-                                    variant="outlined"
-                                    placeholder="Category"
-                                    InputProps={{ classes: { underline: classes.blackUnderline, input: classes.input } }}
-                                />
-                                <ButtonDiv>
-                                    <Button style={{ marginLeft: '10px' }} onClick={handleCancel} size="small" variant="contained" className={classes.button} >Cancel</Button>
-                                    <Button type='submit' style={{ marginRight: '4%' }} size="small" variant="contained" className={classes.button} >Submit Edit</Button>
-                                </ButtonDiv>    
-                            </form>
-                        </CardContent>
-                    </Card>
-                )
-            }
-            <Tags course={course} props={props} />
-            <Sections course={course} props={props}/>
-            {addSectionChange ? (
-            <div>
-                    <AddSection course={course} props={props} setAddSectionChange = {setAddSectionChange}/>
-                    <AddButton onClick={handleSectionFormToggle} >
-                        <PlusDiv>
-                            <Plus>+</Plus>
-                        </PlusDiv>
-                        <ButtonText>Add Section</ButtonText>
-                    </AddButton>
-                </div>
-                ) : (
-                    <div style={{ display: 'flex', justifyContent: 'flex-end'}}>
-                        <AddButton onClick={handleSectionFormToggle} >
-                            <PlusDiv>
-                                <Plus>+</Plus>
-                            </PlusDiv>
-                            <ButtonText>Add Section</ButtonText>
-                        </AddButton>
-                    </div>
-                    ) 
+
+    if (!state.coursesReducer.isLoading) {
+        return (
+            <>
+                <FinishEdit style={{ fontSize: '1.4rem' }} onClick={backToCourse}>{(props.match.params.pathId ? `<- BACK TO PATH` : `<- BACK TO COURSE`)}</FinishEdit>
+                <div className={classes.root}>
+                    {!courseEdit ?
+                        (<Card className={classes.card} style={{ background: '#386581', color: 'white' }}>
+                            <CardContent >
+                                <h3>{course.name}</h3>
+                                <CardActions className={classes.descriptionDiv} disableSpacing>
+                                    <p>{course.description && !expanded ? (`${course.description.substring(0, 100)} ...`) : null}</p>
+                                    <IconButton
+                                        className={clsx(classes.expand, {
+                                            [classes.expandOpen]: expanded,
+                                        })}
+                                        onClick={handleExpandClick}
+                                        aria-expanded={expanded}
+                                        aria-label="show more"
+                                        style={{ color: 'white', marginTop: '-15px' }}
+                                    >
+                                        <ExpandMoreIcon />
+                                    </IconButton>
+                                </CardActions>
+                                <Collapse in={expanded} timeout="auto" unmountOnExit>
+                                    <CardContent>
+                                        <p>{course.description}</p>
+                                    </CardContent>
+                                </Collapse>
+                                <p>{course.foreign_instructors}</p>
+                                <p>{course.foreign_rating}</p>
+                                <a style={{ color: 'white' }} href={course.link} alt="course link">{course.link}</a>
+                                <p>{course.category ? (`Category: ${course.category}`) : (null)}</p>
+                            </CardContent>
+                            <CardActions>
+                                <DidactButton onClick={toggleEdit} style={{ marginLeft: '75.5%' }} type='submit'>{editCourseText}</DidactButton>
+                            </CardActions>
+                        </Card>)
+                        :
+                        (<Card className={classes.card}>
+                            <CardContent>
+                                <TrashCanEdit style={{fontSize: '2.6rem'}} onClick={handleModalOpen}></TrashCanEdit>
+                                {openModal ? <DeleteModal handleDelete={handleDelete} text={"this course"} open={openModal} handleModalClose={handleModalClose} /> : null}
+                                <form onSubmit={handleCourseSubmit} className={classes.container} noValidate autoComplete="off">
+                                    <FormTitle>Course Overview</FormTitle>
+                                    <DidactField>
+                                        <DidactLabel for='title'>Course Name</DidactLabel>
+                                        <DidactInput id='title' type='text' value={changes.name || ""} onChange={handleChange('name')} placeholder='Course Name' />
+                                    </DidactField>
+                                    <DidactField>
+                                        <DidactLabel for='instructors'>Instructors</DidactLabel>
+                                        <DidactInput id='instructors' type='text' value={changes.foreign_instructors || ""} onChange={handleChange('foreign_instructors')} placeholder='Instructors' />
+                                    </DidactField>
+                                    <DidactField>
+                                        <DidactLabel for='description'>Description</DidactLabel>
+                                        <DidactTextArea rows="8" id='description' value={changes.description || ""} onChange={handleChange('description')} placeholder='Description' />
+                                    </DidactField>
+                                    <DidactField>
+                                        <DidactLabel for='url'>Course Url</DidactLabel>
+                                        <DidactInput id='url' type='text' value={changes.link || ""} onChange={handleChange('link')} placeholder='Course Url' />
+                                    </DidactField>
+                                    <DidactField>
+                                        <DidactLabel for='category'>Category</DidactLabel>
+                                        <DidactInput id='category' type='text' value={changes.category || ""} onChange={handleChange('category')} placeholder='Category' />
+                                    </DidactField>
+                                    <ButtonDiv>
+                                        <DidactButton style={{ marginLeft: '10px' }} onClick={handleCancel}>Cancel</DidactButton>
+                                        <DidactButton type='submit' style={{ marginRight: '4%' }}>Submit Edit</DidactButton>
+                                    </ButtonDiv>
+                                </form>
+                            </CardContent>
+                        </Card>)
+                    }
+                    <Tags course={course} props={props} />
+                    <Sections course={course} props={props} />
+                    {addSectionChange ?
+                        (<div>
+                            <AddSection course={course} props={props} setAddSectionChange={setAddSectionChange} />
+                            <AddButton onClick={handleSectionFormToggle} >
+                                <AddCircleRoundedIcon className={classes.circleIcon} />
+                                <ButtonText>Add Section</ButtonText>
+                            </AddButton>
+                        </div>)
+                        :
+                        (<div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '20px' }}>
+                            <AddButton onClick={handleSectionFormToggle} >
+                                <AddCircleRoundedIcon className={classes.circleIcon} />
+                                <ButtonText>Add Section</ButtonText>
+                            </AddButton>
+                        </div>)
                     }
                 </div>
-                </>
-            )
+            </>
+        )
     } else {
         return <h1>Loading...</h1>
     }

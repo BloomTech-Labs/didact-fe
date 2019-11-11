@@ -1,10 +1,9 @@
 import React from "react";
-import { makeStyles, withStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 
 import Popover from '@material-ui/core/Popover';
 
 import useMediaQuery from "@material-ui/core/useMediaQuery";
-import {Redirect} from "react-router-dom";
 import {useSelector } from "react-redux";
 import PermIdentityIcon from '@material-ui/icons/PermIdentity';
 const useStyles = makeStyles(theme => ({
@@ -86,7 +85,7 @@ const useStyles = makeStyles(theme => ({
   root: {
     outline: "none",
     border: 'none',
-    
+    overflowY: "auto !important"
   },
   title: {
     marginTop: '0',
@@ -103,7 +102,6 @@ const useStyles = makeStyles(theme => ({
 // })(Popover);
 
 export default function Profile(props) {
-  console.log(props)
   const classes = useStyles();
   const phoneSize = useMediaQuery("(max-width:770px)");
   const userName = useSelector(state => state.onboardingReducer.user);
@@ -142,21 +140,21 @@ export default function Profile(props) {
           <h2 className={classes.title} id="transition-modal-title">{userName.email}</h2>
           <p className={classes.description} id="transition-modal-description">Welcome {firstName}!</p>
           <div className={classes.smallImageDivs} >
+            {/* <div className={classes.smallImage} ></div>
             <div className={classes.smallImage} ></div>
-            <div className={classes.smallImage} ></div>
-            <div className={classes.smallImage} ></div>
+            <div className={classes.smallImage} ></div> */}
           </div>
           <div className={classes.buttonsDiv}>
             <button className={classes.buttons}>
               <div className={classes.buttonDiv}>
-                <p>Settings</p>
-                <p className = {classes.paragraph}>></p>
+                {/* <p>Settings</p>
+                <p className = {classes.paragraph}>></p> */}
               </div>
             </button>
             <button className={classes.buttons}>
               <div className={classes.buttonDiv}>
-                <p>Contact Us</p>
-                <p className = {classes.paragraph} >></p>
+                {/* <p>Contact Us</p>
+                <p className = {classes.paragraph} >></p> */}
               </div>
             </button>
             <button className={classes.buttons} onClick = {!phoneSize ? (handleLogOut) : (handleMobileLogOut)}>

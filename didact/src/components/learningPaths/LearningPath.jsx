@@ -14,7 +14,7 @@ const LearningPath = ({ id }) => {
 
     useEffect(_ => {
         dispatch(getLearningPath(id))
-    }, [dispatch])
+    }, [dispatch, id])
 
     useEffect(() => {
         if (learningPath.pathItems) {
@@ -24,14 +24,14 @@ const LearningPath = ({ id }) => {
                 ))
             );
         }
-    }, [learningPath.pathItems, learningPath.courses])
+    }, [learningPath.pathItems, learningPath.courses]) 
 
-    return (
+    return ( 
         <LearningPathWrapper>
             <div className='editLearning'>
-                <div className='editLearningTitle'>
+                <p className='editLearningTitle'>
                     {`Learning Path: ${learningPath.name}`}
-                </div>
+                </p>
                 {
                     (learningPath.creatorId === state.onboardingReducer.user.id) &&
                     <div className='editLearningButton'>
@@ -44,7 +44,7 @@ const LearningPath = ({ id }) => {
                     itemsCourses.map((itemCourse, index) => {
                         if (itemCourse.path_order === 0) {
                             return (
-                                <div className='learningPathCourseWrappers' key={index}>
+                                <div className={'learningPathCourseWrappers current' + (itemCourse.path_id ? ' item' : '')} key={index}>
                                     <h3>Current</h3>
                                     <div className='learningPathCard'>
                                         <h2>{itemCourse.name}</h2>
@@ -58,7 +58,7 @@ const LearningPath = ({ id }) => {
                             )
                         } else if (itemCourse.path_order === 1) {
                             return (
-                                <div className='learningPathCourseWrappers' key={index}>
+                                <div className={'learningPathCourseWrappers next' + (itemCourse.path_id ? ' item' : '')} key={index}>
                                     <h3>Next</h3>
                                     <div className='learningPathCard'>
                                         <h2>{itemCourse.name}</h2>
@@ -72,7 +72,7 @@ const LearningPath = ({ id }) => {
                             )
                         } else {
                             return (
-                                <div className='learningPathCourseWrappers' key={index}>
+                                <div className={'learningPathCourseWrappers upcoming' + (itemCourse.path_id ? ' item' : '')} key={index}>
                                     {itemCourse.path_order === 2 && <h3>Upcoming</h3>}
                                     <div className='learningPathCard'>
                                         <h2>{itemCourse.name}</h2>

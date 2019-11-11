@@ -15,18 +15,21 @@ export const PageFlex = styled.div`
         margin: 0 0 0 15px;
 
         .header {
-            width: calc(100% - 30px);
+            max-width: 840px;
+            width: calc(100% - 15px);
             display: flex;
-            background: #5b5b5b;
+            background: #242424BF;
             border-radius: 19px;
             margin-top: 10px;
             justify-content: space-between;
             align-items: center;
-            color: white;
-            padding: 5px 15px;
+            color: #EBE8E1;
+            padding: 10px 25px;
 
             h2 {
                 margin: 0px 0px;
+                font-family: ITC Grouch;
+                font-size: 32px;
             }
 
             .navSection {

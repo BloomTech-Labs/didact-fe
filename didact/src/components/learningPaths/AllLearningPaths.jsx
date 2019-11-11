@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
-import { getLearningPaths, joinLearningPath } from '../../store/actions/index'
+import { getLearningPaths, joinLearningPath, getYourLearningPaths } from '../../store/actions/index'
 
-import { LearningPathsWrapper } from './YourLearningPathsStyles'
+import { LearningPathsWrapper, LearningPathCard } from './YourLearningPathsStyles'
 
 const AllLearningPaths = (props) => {
     const dispatch = useDispatch()
@@ -11,12 +11,14 @@ const AllLearningPaths = (props) => {
 
     useEffect(_ => {
         dispatch(getLearningPaths())
+        dispatch(getYourLearningPaths())
     }, [dispatch])
 
     const learningPaths = state.learningPathReducer.learningPaths
+    const yourLearningPaths = state.learningPathReducer.yourLearningPaths
 
-    const joinPath = e => {
-        dispatch(joinLearningPath(e.target.id, props.props.history))
+    const joinPath = (id, order) => {
+        dispatch(joinLearningPath(id, props.props.history, order))
     }
 
     return (
@@ -24,14 +26,14 @@ const AllLearningPaths = (props) => {
             {
                     learningPaths.map((learningPath, index) => {
                         return (
-                            <div key={index} className='learningPathCard'>
+                            <LearningPathCard key={index} style={{marginBottom: "20px"}}>
                                 <div className='title'> 
                                     <h1>{learningPath.name}</h1>
                                     <div>
-                                        <button onClick={joinPath} id={learningPath.id}>Join Path</button>
+                                        <button onClick={() => joinPath(learningPath.id, yourLearningPaths.length)} id={learningPath.id}>Join Path</button>
                                     </div>
                                 </div>
-                            </div>
+                            </LearningPathCard>
                         )
                     })
                 }

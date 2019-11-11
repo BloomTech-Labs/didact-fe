@@ -2,13 +2,12 @@ import React, { useEffect } from "react";
 import { verifyToken } from "../../store/actions/index.js"
 import { useDispatch, useSelector } from "react-redux"
 import { PageFlex } from './PageStyles'
-import { makeStyles, useTheme } from "@material-ui/core/styles"
-import {Link} from "react-router-dom"
+import { makeStyles } from "@material-ui/core/styles"
+import { Link } from "react-router-dom"
 
 import CssBaseline from "@material-ui/core/CssBaseline"
 import useMediaQuery from "@material-ui/core/useMediaQuery"
 import DashboardIcon from '@material-ui/icons/Dashboard'
-import MessageIcon from '@material-ui/icons/Message'
 
 import DrawerComponent from '../drawer/Drawer'
 import MobileDrawerComponent from '../drawer/MobileDrawer'
@@ -21,18 +20,16 @@ import Profile from '../profile/Profile'
 const useStyles = makeStyles(theme => ({
     root: {
         backgroundColor: "lightgray",
-        // width: "100%"
     },
     content: {
         flexGrow: 1,
         paddingTop: theme.spacing(3),
-        paddingLeft: "10px",
     },
     contentMobile: {
         flexGrow: 1,
         padding: theme.spacing(2),
         marginLeft: "63px",
-      
+
     },
     contentShadow: {
         background: "rgba(0, 0, 0, 0.8)",
@@ -44,9 +41,9 @@ const useStyles = makeStyles(theme => ({
         // flexGrow: 1,
         paddingLeft: "80px",
         padding: theme.spacing(2),
-        overflow: "hidden",
-      
-        
+
+
+
     },
     // scrollBarMobileFix: {
     //     position: "absolute",
@@ -61,7 +58,7 @@ const useStyles = makeStyles(theme => ({
     // },
     toolbar: {
         display: "flex",
-        alignItems: "center",
+        alignItems: "center", 
         justifyContent: "flex-end",
         padding: theme.spacing(0, 1),
         ...theme.mixins.toolbar,
@@ -69,9 +66,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function MainPage(props) {
+    const dispatch = useDispatch();
     const classes = useStyles();
-    console.log(props)
-  
     const phoneSize = useMediaQuery("(max-width:600px)");
     const tabletSize = useMediaQuery('(max-width:770px, min-width: 601px');
     const mediumScreenSize = useMediaQuery("(max-width:920px)");
@@ -79,11 +75,11 @@ function MainPage(props) {
     const [openMobile, setOpenMobile] = React.useState(false);
 
     const userName = useSelector(state => state.onboardingReducer.user);
+    const token = localStorage.getItem("token")
 
-    useEffect(_ =>
-        {
-           dispatch(verifyToken(props.history))
-        }, [localStorage.getItem("token")])
+    useEffect(_ => {
+        dispatch(verifyToken(props.history))
+    }, [token, dispatch, props.history])
 
     const handleDrawerOpen = () => {
         setOpen(!open);
@@ -105,13 +101,6 @@ function MainPage(props) {
         if (openMobile) setOpenMobile(false)
     }
 
-
-    const dispatch = useDispatch();
-    
-
- 
-
-
     return (
         // MOBILE CODE ****************************************************************************
         <>
@@ -119,14 +108,14 @@ function MainPage(props) {
                 <div className={classes.root} onClick={() => closeHandleClick()}>
                     <CssBaseline />
                     <>
-                       <div>
-                            <MobileDrawerComponent handleDrawerOpenMobile={handleDrawerOpenMobile()} openMobile={openMobile} props = {props}/>
+                        <div>
+                            <MobileDrawerComponent handleDrawerOpenMobile={handleDrawerOpenMobile()} openMobile={openMobile} props={props} />
                         </div>
                         <div>
-                            <MobileHeaderComponent props = {props} tabletSize ={tabletSize} userName = {userName}/>
+                            <MobileHeaderComponent props={props} tabletSize={tabletSize} userName={userName} />
                             <main className={openMobile ? classes.contentShadow : classes.contentMobile}>
                                 <div className={classes.toolbar} />
-                                <Content phoneSize={phoneSize} open={open} {...props}/>
+                                <Content phoneSize={phoneSize} open={open} {...props} />
                                 {/*************************ADD COMPONENTS HERE *********************** */}
                             </main>
                         </div>
@@ -149,7 +138,7 @@ function MainPage(props) {
                         <CssBaseline />
                         <PageFlex>
                             <div className="drawer">
-                                <DrawerComponent handleDrawerOpen={handleDrawerOpen} open={open} props = {props}/>
+                                <DrawerComponent handleDrawerOpen={handleDrawerOpen} open={open} props={props} />
                             </div>
                             <div className="headerMain">
                                 {/* <HeaderComponent props = {props} open={open} /> */}
@@ -157,16 +146,16 @@ function MainPage(props) {
                                 <div className="header">
                                     <h2>Didact</h2>
                                     <div className="navSection">
-                                        <Link style = {{color: 'white'}} to = "/" ><DashboardIcon/></Link>
+                                        <Link style={{ color: 'white' }} to="/" ><DashboardIcon  style={{ fontSize: "28px" }}/></Link>
                                         {/* <MessageIcon /> */}
                                         <p>{userName.email}</p>
                                         {/* {!profileLockSize ? <Profile props = {props}/> : null } */}
-                                        <Profile props = {props}/>
+                                        <Profile props={props} />
                                     </div>
                                 </div>
                                 <main className={classes.content}>
                                     {/* <div className={classes.toolbar} /> */}
-                                    <Content mediumScreenSize = {mediumScreenSize} phoneSize={phoneSize} open={open} tabletSize = {tabletSize} {...props}/>
+                                    <Content mediumScreenSize={mediumScreenSize} phoneSize={phoneSize} open={open} tabletSize={tabletSize} {...props} />
                                     {/*************************ADD COMPONENTS HERE *********************** */}
                                 </main>
                             </div>
