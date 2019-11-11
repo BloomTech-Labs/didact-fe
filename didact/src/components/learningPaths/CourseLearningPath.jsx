@@ -32,8 +32,8 @@ const useStyles = makeStyles(theme => ({
         borderRadius: 15,
         margin: '10px 0',
         boxShadow: 'none',
-        backgroundColor: '#386581',
-        color: 'white'
+        color: course => course.type ? ('black') : ("white"),
+        backgroundColor: course => course.type ? ('#adc8d9') : ("#386581")
     },
     title: {
         fontSize: 14,
@@ -64,7 +64,7 @@ const useStyles = makeStyles(theme => ({
         flexDirection: 'column',
         justifyContent: "space-between",
         fontSize: 12,
-        color: "white"
+        
     },
     descriptionTitle: {
         marginBottom: "0px",
@@ -75,7 +75,7 @@ const useStyles = makeStyles(theme => ({
 
 const CourseLearningPath = ({ course, index, props}) => {
     const dispatch = useDispatch()
-    const classes = useStyles();
+    const classes = useStyles(course);
     const [expanded, setExpanded] = useState(false);
     const [toggleEdit, setToggleEdit] = useState(false);
     const [openModal, setOpenModal] = useState(false);
