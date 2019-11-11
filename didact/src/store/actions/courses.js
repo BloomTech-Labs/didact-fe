@@ -24,6 +24,9 @@ export const ADD_TAG_TO_COURSE_FAIL = "ADD_TAG_TO_COURSE_FAIL"
 export const GET_DETAILED_COURSE_START = "GET_DETAILED_COURSE_START"
 export const GET_DETAILED_COURSE_SUCCESS = "GET_DETAILED_COURSE_SUCCESS"
 export const GET_DETAILED_COURSE_FAIL = "GET_DETAILED_COURSE_FAIL"
+export const TOGGLE_COMPLETE_COURSE_START = "TOGGLE_COMPLETE_COURSE_START"
+export const TOGGLE_COMPLETE_COURSE_SUCCESS = "TOGGLE_COMPLETE_COURSE_SUCCESS"
+export const TOGGLE_COMPLETE_COURSE_FAIL = "TOGGLE_COMPLETE_COURSE_FAIL"
 
 const baseURL = `${beURL}courses/`
 
@@ -138,4 +141,17 @@ export const getDetailedCourse = (id) => async dispatch =>
     {
         dispatch({ type: GET_DETAILED_COURSE_FAIL, payload: err })
     }
+}
+
+// Mark Complete
+export const toggleCompleteCourse =(id) => dispatch => {
+    dispatch({type: TOGGLE_COMPLETE_COURSE_START})
+    axiosWithAuth()
+    .put(`${baseURL}${id}/togglecomplete`)
+    .then(res => {
+        dispatch({type: TOGGLE_COMPLETE_COURSE_SUCCESS, payload: res.data})
+    })
+    .catch(err => {
+        dispatch({type: TOGGLE_COMPLETE_COURSE_FAIL, payload: err})
+    })
 }

@@ -24,6 +24,12 @@ export const UPDATE_LESSON_FAIL = "UPDATE_LESSON_FAIL"
 export const DELETE_LESSON_START = "DELETE_LESSON_START"
 export const DELETE_LESSON_SUCCESS = "DELETE_LESSON_SUCCESS"
 export const DELETE_LESSON_FAIL = "DELETE_LESSON_FAIL"
+export const TOGGLE_COMPLETE_SECTION_START = "TOGGLE_COMPLETE_SECTION_START"
+export const TOGGLE_COMPLETE_SECTION_SUCCESS = "TOGGLE_COMPLETE_SECTION_SUCCESS"
+export const TOGGLE_COMPLETE_SECTION_FAIL = "TOGGLE_COMPLETE_SECTION_FAIL"
+export const TOGGLE_COMPLETE_LESSON_START = 'TOGGLE_COMPLETE_LESSON_START'
+export const TOGGLE_COMPLETE_LESSON_SUCCESS = 'TOGGLE_COMPLETE_LESSON_SUCCESS'
+export const TOGGLE_COMPLETE_LESSON_FAIL = 'TOGGLE_COMPLETE_LESSON_FAIL'
 
 const baseURL = `${beURL}courses/`
 
@@ -148,4 +154,30 @@ export const deleteLesson = (courseId, sectionId, lessonId) => dispatch =>
         {
             dispatch({ type: DELETE_LESSON_FAIL, payload: err })
         })
+}
+
+// Mark Complete Section
+export const toggleCompleteSection =(courseId, sectionId) => dispatch => {
+    dispatch({type: TOGGLE_COMPLETE_SECTION_START})
+    axiosWithAuth()
+    .put(`${baseURL}${courseId}/sections/${sectionId}/togglecomplete`)
+    .then(res => {
+        dispatch({type: TOGGLE_COMPLETE_SECTION_SUCCESS, payload: res.data})
+    })
+    .catch(err => {
+        dispatch({type: TOGGLE_COMPLETE_SECTION_FAIL, payload: err})
+    })
+}
+
+// Mark Complete Lesson
+export const toggleCompleteLesson =(courseId, sectionId, detailId) => dispatch => {
+    dispatch({type: TOGGLE_COMPLETE_LESSON_START})
+    axiosWithAuth()
+    .put(`${baseURL}${courseId}/sections/${sectionId}/details/${detailId}/togglecomplete`)
+    .then(res => {
+        dispatch({type: TOGGLE_COMPLETE_LESSON_SUCCESS, payload: res.data})
+    })
+    .catch(err => {
+        dispatch({type: TOGGLE_COMPLETE_LESSON_FAIL, payload: err})
+    })
 }
