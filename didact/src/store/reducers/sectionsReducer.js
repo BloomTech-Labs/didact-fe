@@ -29,6 +29,9 @@ import {
     TOGGLE_COMPLETE_LESSON_START,
     TOGGLE_COMPLETE_LESSON_SUCCESS,
     TOGGLE_COMPLETE_LESSON_FAIL,
+    GET_USER_LESSON_COMPLETION_START,
+    GET_USER_LESSON_COMPLETION_SUCCESS,
+    GET_USER_LESSON_COMPLETION_FAIL
 } from '../actions'
 
 const initialState =
@@ -258,6 +261,26 @@ export const sectionsReducer = (state = initialState, action) => {
                 error: ""
             };
         case TOGGLE_COMPLETE_LESSON_FAIL:
+            return {
+                ...state,
+                isLoading: false,
+                error: action.payload,
+            }
+        // User Lessons Marked Completed
+        case GET_USER_LESSON_COMPLETION_START:
+            return {
+                ...state,
+                isLoading: false,
+                error: ''
+            } 
+        case GET_USER_LESSON_COMPLETION_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                lessons: action.payload,
+                error: ""
+            };
+        case GET_USER_LESSON_COMPLETION_FAIL:
             return {
                 ...state,
                 isLoading: false,

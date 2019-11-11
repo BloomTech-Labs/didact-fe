@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { DetailedCourseWrapper } from './DetailedCourseStyles'
 import { DidactButton, TagStyles } from '../dashboard/ButtonStyles'
 
-import { getDetailedCourse, toggleCompleteCourse, toggleCompleteSection, toggleCompleteLesson } from '../../store/actions/index.js'
+import { getDetailedCourse, toggleCompleteCourse, toggleCompleteSection, toggleCompleteLesson, getLessonsWithUserCompletion } from '../../store/actions/index.js'
 
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
@@ -22,16 +22,16 @@ const DetailedCourse = (props) => {
     const detailedCourse = state.coursesReducer.detailedCourse
     const course = detailedCourse.course
     const sections = detailedCourse.sections
+    const lessons = state.sectionsReducer.lessons;
     const [expanded, setExpanded] = useState(false)
     const [lessonExpanded, setLessonExpanded] = useState(false)
-
+    console.log(lessons)
     useEffect(_ => {
         dispatch(getDetailedCourse(props.id))
     }, [dispatch, props.id])
 
-    
-    console.log(course)
-    console.log(course)
+
+
     const handleChange = panel => (event, isExpanded) => {
         setExpanded(isExpanded ? panel : false);
         setLessonExpanded(isExpanded ? panel : false)
@@ -53,13 +53,18 @@ const DetailedCourse = (props) => {
         dispatch(toggleCompleteLesson(course.id, sectionId, detailId))
     }
 
+    // const handleCheckComplete = (sectionid) => {
+    //     dispatch(getLessonsWithUserCompletion(course.id, sectionid))
+    // }
+
+
     if (!state.coursesReducer.isLoading && (course && sections)) {
         return (
                 <DetailedCourseWrapper>
                     <div className="courseWrapper">
                         <div style={{backgroundColor: '#386581', display: 'flex', alignItems: 'center', padding: '0px', margin: '0px', justifyContent: 'space-between'}}>
                           <h1>{course.name}</h1>  
-                          <CheckCircleIcon onClick={handleMarkCompleteCourse} className='completeButton'/>
+                          <CheckCircleIcon onClick={handleMarkCompleteCourse} className='notCompleteButton'/>
                         </div>
                         <p>{course.description}</p>
                         <p>{course.category ? (`Category: ${course.category}`) : (null)}</p>
@@ -94,7 +99,7 @@ const DetailedCourse = (props) => {
                                 >
                                     <div>
                                     <h3>{`Section ${index + 1}: ${el.section.name}`}</h3>
-                                    <CheckCircleIcon onClick={() => handleMarkCompleteSection(el.section.id)} className='completeButton'/>
+                                    <CheckCircleIcon onClick={() => handleMarkCompleteSection(el.section.id)} className='notCompleteButton'/>
                                     </div>
                                 </ExpansionPanelSummary>
                                 <ExpansionPanelDetails>
@@ -135,12 +140,12 @@ const DetailedCourse = (props) => {
                                                     {
                                                         el.details.map((detail, i) => {
                                                             return (
-                                                                <div style={{display: 'flex', flexDirection: "row", alignItems: 'center', justifyContent: 'space-between'}}>
-                                                                <div key={i} className="lessonTitle">
+                                                                <div key={i} style={{display: 'flex', flexDirection: "row", alignItems: 'center', justifyContent: 'space-between'}}>
+                                                                <div className="lessonTitle">
                                                                     <a className="lessonTitleName" href={detail.link} target="_blank" rel="noopener noreferrer">{detail.name}</a>
                                                                     <p className="lessonTitleType">{detail.type}</p>
                                                                 </div>
-                                                                <CheckCircleIcon onClick={() => handleMarkCompleteLesson(el.section.id, detail.id)} className='completeButton'/>
+                                                                <CheckCircleIcon onClick={() => handleMarkCompleteLesson(el.section.id, detail.id)} className='notCompleteButton'/>
                                                                 </div>
 
                                                             )
