@@ -51,7 +51,7 @@ const SideList = ({ props }) => {
             <ul className = {classes.list}>
                 <NavLink
                     exact to="/"
-                    style={{textDecoration: "none", color: '#5b5b5b', outline: '0'}}
+                    style={{textDecoration: "none", color: '#5b5b5b', border: "none"}}
                     activeStyle={{color: 'white'}}
                     activeClassName={classes.activeTab}
                     className = {classes.listItem}
