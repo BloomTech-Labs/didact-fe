@@ -27,6 +27,9 @@ export const GET_DETAILED_COURSE_FAIL = "GET_DETAILED_COURSE_FAIL"
 export const TOGGLE_COMPLETE_COURSE_START = "TOGGLE_COMPLETE_COURSE_START"
 export const TOGGLE_COMPLETE_COURSE_SUCCESS = "TOGGLE_COMPLETE_COURSE_SUCCESS"
 export const TOGGLE_COMPLETE_COURSE_FAIL = "TOGGLE_COMPLETE_COURSE_FAIL"
+export const USER_COMPLETION_COURSE_START = "USER_COMPLETION_COURSE_START"
+export const USER_COMPLETION_COURSE_SUCCESS = "USER_COMPLETION_COURSE_SUCCESS"
+export const USER_COMPLETION_COURSE_FAIL = "USER_COMPLETION_COURSE_FAIL"
 
 const baseURL = `${beURL}courses/`
 
@@ -155,5 +158,20 @@ export const toggleCompleteCourse =(id) => dispatch => {
     .catch(err => {
         console.log(err)
         dispatch({type: TOGGLE_COMPLETE_COURSE_FAIL, payload: err})
+    })
+}
+
+// User show Course completion
+export const findYoursById =(id) => dispatch => {
+    dispatch({type: USER_COMPLETION_COURSE_START})
+    axiosWithAuth()
+    .get(`${baseURL}${id}/yours`)
+    .then(res => {
+        console.log(res)
+        dispatch({type: USER_COMPLETION_COURSE_SUCCESS, payload: res.data})
+    })
+    .catch(err => {
+        console.log(err)
+        dispatch({type: USER_COMPLETION_COURSE_FAIL, payload: err})
     })
 }

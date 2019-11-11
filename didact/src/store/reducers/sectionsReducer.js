@@ -31,7 +31,10 @@ import {
     TOGGLE_COMPLETE_LESSON_FAIL,
     GET_USER_LESSON_COMPLETION_START,
     GET_USER_LESSON_COMPLETION_SUCCESS,
-    GET_USER_LESSON_COMPLETION_FAIL
+    GET_USER_LESSON_COMPLETION_FAIL,
+    GET_USER_SECTION_COMPLETION_START,
+    GET_USER_SECTION_COMPLETION_SUCCESS,
+    GET_USER_SECTION_COMPLETION_FAIL,
 } from '../actions'
 
 const initialState =
@@ -245,27 +248,49 @@ export const sectionsReducer = (state = initialState, action) => {
                 ...state,
                 isLoading: false,
                 error: action.payload,
-            } 
-            //Toggle Complete Section
-        case TOGGLE_COMPLETE_LESSON_START:
+            }
+            // User Lessons Marked Completed
+        case GET_USER_SECTION_COMPLETION_START:
             return {
                 ...state,
                 isLoading: false,
                 error: ''
             } 
-        case TOGGLE_COMPLETE_LESSON_SUCCESS:
+        case GET_USER_SECTION_COMPLETION_SUCCESS:
             return {
                 ...state,
                 isLoading: false,
-                lesson: action.payload,
+                section: action.payload,
                 error: ""
             };
-        case TOGGLE_COMPLETE_LESSON_FAIL:
+        case GET_USER_SECTION_COMPLETION_FAIL:
             return {
                 ...state,
                 isLoading: false,
                 error: action.payload,
-            }
+            } 
+
+            //Toggle Complete Lesson
+        case TOGGLE_COMPLETE_LESSON_START:
+                return {
+                    ...state,
+                    isLoading: false,
+                    error: ''
+                } 
+            case TOGGLE_COMPLETE_LESSON_SUCCESS:
+                return {
+                    ...state,
+                    isLoading: false,
+                    lesson: action.payload,
+                    error: ""
+                };
+            case TOGGLE_COMPLETE_LESSON_FAIL:
+                return {
+                    ...state,
+                    isLoading: false,
+                    error: action.payload,
+                }
+                
         // User Lessons Marked Completed
         case GET_USER_LESSON_COMPLETION_START:
             return {
@@ -277,7 +302,7 @@ export const sectionsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoading: false,
-                lessons: action.payload,
+                lesson: action.payload,
                 error: ""
             };
         case GET_USER_LESSON_COMPLETION_FAIL:

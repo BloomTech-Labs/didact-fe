@@ -5,7 +5,14 @@ import { Link } from "react-router-dom";
 import { DetailedCourseWrapper } from './DetailedCourseStyles'
 import { DidactButton, TagStyles } from '../dashboard/ButtonStyles'
 
-import { getDetailedCourse, toggleCompleteCourse, toggleCompleteSection, toggleCompleteLesson, getLessonsWithUserCompletion } from '../../store/actions/index.js'
+import {getDetailedCourse, 
+        toggleCompleteCourse, 
+        toggleCompleteSection, 
+        toggleCompleteLesson, 
+        getLessonsWithUserCompletion, 
+        findYoursById,
+        getSectionsWithUserCompletion
+      } from '../../store/actions/index.js'
 
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
@@ -22,12 +29,19 @@ const DetailedCourse = (props) => {
     const detailedCourse = state.coursesReducer.detailedCourse
     const course = detailedCourse.course
     const sections = detailedCourse.sections
-    const lessons = state.sectionsReducer.lessons;
     const [expanded, setExpanded] = useState(false)
     const [lessonExpanded, setLessonExpanded] = useState(false)
-    console.log(lessons)
+
+    // state for completion
+    const courseCompletion = state.coursesReducer.course;
+    const sectionCompletion = state.sectionsReducer.section;
+    const lessonCompletion = state.sectionsReducer.lesson;
+
+    console.log(courseCompletion)
+
     useEffect(_ => {
         dispatch(getDetailedCourse(props.id))
+        dispatch(findYoursById(props.id))
     }, [dispatch, props.id])
 
 
@@ -53,9 +67,6 @@ const DetailedCourse = (props) => {
         dispatch(toggleCompleteLesson(course.id, sectionId, detailId))
     }
 
-    // const handleCheckComplete = (sectionid) => {
-    //     dispatch(getLessonsWithUserCompletion(course.id, sectionid))
-    // }
 
 
     if (!state.coursesReducer.isLoading && (course && sections)) {
