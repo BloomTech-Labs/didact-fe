@@ -204,7 +204,7 @@ const EditLearningPaths = ({ id, props }) => {
               <CardActions>
                 <DidactButton
                   onClick={toggleEdit}
-                  style={{ marginLeft: "70%", width: "100%" }}
+                  style={{ marginLeft: "70%", width: "100%", height: '100%'}}
                   type="submit"
                   size="small"
                   variant="contained"
