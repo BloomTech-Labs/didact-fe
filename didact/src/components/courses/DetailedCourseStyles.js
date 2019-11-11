@@ -2,12 +2,13 @@ import styled from 'styled-components'
 
 export const DetailedCourseWrapper = styled.div`
     width:100%;
-    max-width: 540px;
     box-shadow: 'none';
-
 
     .courseWrapper {
         width: 100%; 
+        background-color: #386581;
+        color: white;
+        max-width: 540px;
 
         .courseFooter {
             margin: 0;
@@ -15,6 +16,8 @@ export const DetailedCourseWrapper = styled.div`
             display: flex;
             flex-flow:row wrap;
             justify-content: space-between;
+            color: white;
+            background-color: #386581;
 
             .buttons {
                 margin: 0;
@@ -25,28 +28,54 @@ export const DetailedCourseWrapper = styled.div`
                 display: flex;
                 flex-flow:row wrap;
                 width: 100%;
+                color: white;
+                background-color: #386581;
              
             }
         }
     }
 
+    .notCompleteButton {
+        font-size: 2.2rem;
+        color: white;
+        opacity: .6;
+        cursor: pointer;
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+
+    .completeButton {
+        font-size: 2.2rem;
+        color: black;
+        cursor: pointer;
+    }
+
     .expansionPanel {
 
-        background: white;
         margin: 20px 0px;
         padding: 15px 30px;
         box-shadow: 'none';
+        color: white;
+        background-color: #386581;
+        max-width: 540px;
+        width: 100%;
 
         .expansionPanelSummary {
-        background: white;
         margin: 0;
         padding: 0;
+        color: white;
+        background-color: #386581;
+        
         }
 
         div{
             padding: 0;
             margin: 0;
             border-radius: 19px;
+            color: white;
+            background-color: #386581;
         }
 
         &:before {
@@ -69,7 +98,9 @@ export const DetailedCourseWrapper = styled.div`
         margin: 20px 0px;
         padding: 15px 30px;
         box-shadow: none;
-        font-size: 14px;
+        font-size: 1.2rem;
+        max-width: 540px;
+        width: 100%; 
 
         .lessonExpansionSummary {
             display: flex;
@@ -86,7 +117,7 @@ export const DetailedCourseWrapper = styled.div`
                 margin-bottom: 0px;
                 margin-top: 8px;
                 text-decoration: none;
-                color: black;
+                color: white;
 
                 &:hover {
                     text-decoration: underline;

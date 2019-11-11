@@ -154,7 +154,7 @@ const YourLearningPaths = (props) => {
 
         </YourLearningPathsWrapper>
         {props.props.mediumScreenSize || props.props.phoneSize ? 
-            (<ButtonStyles style={{display: "flex", justifyContent: 'center'}}>   
+            (<ButtonStyles style={{display: "flex", justifyContent: 'flex-start'}}>   
                 <div className = "buttons">
                     <Link style={{ fontSize: '1.4rem' }} to={'/learning-paths/join'}>Join a Learning Path</Link>
                     <Link style={{ fontSize: '1.4rem' }} to={'/learning-paths/add'}>Create a New Learning Path</Link>

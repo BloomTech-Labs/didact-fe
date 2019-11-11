@@ -32,8 +32,8 @@ const useStyles = makeStyles(theme => ({
         borderRadius: 15,
         margin: '10px 0',
         boxShadow: 'none',
-        backgroundColor: '#386581',
-        color: 'white'
+        color: course => course.type ? ('black') : ("white"),
+        backgroundColor: course => course.type ? ('#adc8d9') : ("#386581")
     },
     title: {
         fontSize: 14,
@@ -64,7 +64,7 @@ const useStyles = makeStyles(theme => ({
         flexDirection: 'column',
         justifyContent: "space-between",
         fontSize: 12,
-        color: "white"
+        
     },
     descriptionTitle: {
         marginBottom: "0px",
@@ -75,7 +75,7 @@ const useStyles = makeStyles(theme => ({
 
 const CourseLearningPath = ({ course, index, props}) => {
     const dispatch = useDispatch()
-    const classes = useStyles();
+    const classes = useStyles(course);
     const [expanded, setExpanded] = useState(false);
     const [toggleEdit, setToggleEdit] = useState(false);
     const [openModal, setOpenModal] = useState(false);
@@ -158,7 +158,7 @@ const CourseLearningPath = ({ course, index, props}) => {
                     </CardContent>
                     <CardActions>
                         {/* <Button style={{marginLeft: '70.5%'}} type='submit' size="small" variant="contained" className={classes.button} >Edit Course</Button> */}
-                        {course.path_id ? <DidactButton onClick = {handleToggleEdit} style={{marginLeft: '80%'}} type='submit' size="small" variant="contained">Edit Item</DidactButton> : null}
+                        {course.path_id ? <DidactButton onClick = {handleToggleEdit} style={{marginLeft: '80%', width: "100%", height: '100%'}} type='submit' size="small" variant="contained">Edit Item</DidactButton> : null}
                     </CardActions>
                 </DraggableDiv>
                 ) : (course.path_id ? (<EditPathItems course = {course} props = {props} handleToggleEdit = {handleToggleEdit}/>) : null)

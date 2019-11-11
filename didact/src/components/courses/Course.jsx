@@ -22,6 +22,7 @@ import playlistAdd from '../../images/playlist_add_black_24x24.png'
 import closeIcon from '../../images/close_black_24x24.png'
 
 
+
 const useStyles = makeStyles(theme => ({
     buttonCourse: {
         border: "none",
@@ -48,6 +49,8 @@ const useStyles = makeStyles(theme => ({
         margin: '40px 0 40px 0',
         borderRadius: '15px',
         boxShadow: 'none',
+        backgroundColor: '#386581',
+        color: "white"
     },
     descriptionDiv: {
         width: "100%",
@@ -194,7 +197,7 @@ const Course = ({ course, addingCourses }) => {
                             </Popover>
                         </div>
                     </h3>
-                    <CardActions className={classes.descriptionDiv} style = {{color: "#757575"}} disableSpacing>
+                    <CardActions className={classes.descriptionDiv} style = {{color: "white"}} disableSpacing>
                         <p >{course.description && !expanded ? (`${course.description.substring(0, 100)} ...`) : null}</p>
                         <IconButton
                             className={clsx(classes.expand, {
@@ -209,7 +212,7 @@ const Course = ({ course, addingCourses }) => {
                     </CardActions>
                     <Collapse in={expanded} timeout="auto" unmountOnExit>
                         <CardContent style = {{padding: 'none'}}>
-                            <p className={classes.title} style = {{color: "#757575"}}>
+                            <p className={classes.title} style = {{color: "white"}}>
                                 {course.description}
                             </p>
                         </CardContent>
@@ -219,7 +222,7 @@ const Course = ({ course, addingCourses }) => {
                     <p className={classes.pos}>{course.category ? (`Category: ${course.category}`) : (null)}</p>
                 </CardContent>
                 <CardActions className={classes.buttonDiv}>
-                    <Link to={`/courses/${course.id}`} ><button className={classes.buttonCourse} size="small">Go To Course</button></Link>
+                    <Link to={`/courses/${course.id}`} ><DidactButton size="small">Go To Course</DidactButton></Link>
                 </CardActions>
             </Card>
         </PopoverWrapper>

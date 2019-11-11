@@ -1,5 +1,6 @@
 import axiosWithAuth from '../../utils/axiosWithAuth'
 import beURL from '../../utils/beURL'
+
 export const GET_SECTIONS_START = "GET_SECTIONS_START"
 export const GET_SECTIONS_SUCCESS = "GET_SECTIONS_SUCCESS"
 export const GET_SECTIONS_FAIL = "GET_SECTIONS_FAIL"
@@ -24,6 +25,18 @@ export const UPDATE_LESSON_FAIL = "UPDATE_LESSON_FAIL"
 export const DELETE_LESSON_START = "DELETE_LESSON_START"
 export const DELETE_LESSON_SUCCESS = "DELETE_LESSON_SUCCESS"
 export const DELETE_LESSON_FAIL = "DELETE_LESSON_FAIL"
+export const TOGGLE_COMPLETE_SECTION_START = "TOGGLE_COMPLETE_SECTION_START"
+export const TOGGLE_COMPLETE_SECTION_SUCCESS = "TOGGLE_COMPLETE_SECTION_SUCCESS"
+export const TOGGLE_COMPLETE_SECTION_FAIL = "TOGGLE_COMPLETE_SECTION_FAIL"
+export const TOGGLE_COMPLETE_LESSON_START = 'TOGGLE_COMPLETE_LESSON_START'
+export const TOGGLE_COMPLETE_LESSON_SUCCESS = 'TOGGLE_COMPLETE_LESSON_SUCCESS'
+export const TOGGLE_COMPLETE_LESSON_FAIL = 'TOGGLE_COMPLETE_LESSON_FAIL'
+export const GET_USER_LESSON_COMPLETION_START = "GET_USER_LESSON_COMPLETION_START"
+export const GET_USER_LESSON_COMPLETION_SUCCESS = "GET_USER_LESSON_COMPLETION_SUCCESS"
+export const GET_USER_LESSON_COMPLETION_FAIL = "GET_USER_LESSON_COMPLETION_FAIL"
+export const GET_USER_SECTION_COMPLETION_START = "GET_USER_SECTION_COMPLETION_START"
+export const GET_USER_SECTION_COMPLETION_SUCCESS = "GET_USER_SECTION_COMPLETION_SUCCESS"
+export const GET_USER_SECTION_COMPLETION_FAIL = "GET_USER_SECTION_COMPLETION_FAIL"
 
 const baseURL = `${beURL}courses/`
 
@@ -148,4 +161,64 @@ export const deleteLesson = (courseId, sectionId, lessonId) => dispatch =>
         {
             dispatch({ type: DELETE_LESSON_FAIL, payload: err })
         })
+}
+
+// Mark Complete Section
+export const toggleCompleteSection =(courseId, sectionId) => dispatch => {
+    dispatch({type: TOGGLE_COMPLETE_SECTION_START})
+    axiosWithAuth()
+    .put(`${baseURL}${courseId}/sections/${sectionId}/togglecomplete`)
+    .then(res => {
+        console.log(res)
+        dispatch({type: TOGGLE_COMPLETE_SECTION_SUCCESS, payload: res.data})
+    })
+    .catch(err => {
+        console.log(err)
+        dispatch({type: TOGGLE_COMPLETE_SECTION_FAIL, payload: err})
+    })
+}
+
+// User Sections Marked Completed
+export const getSectionsWithUserCompletion =(courseId) => dispatch => {
+    dispatch({type: GET_USER_SECTION_COMPLETION_START})
+    axiosWithAuth()
+    .get(`${baseURL}${courseId}/yoursections/`)
+    .then(res => {
+        console.log(res)
+        dispatch({type: GET_USER_SECTION_COMPLETION_SUCCESS, payload: res.data})
+    })
+    .catch(err => {
+        console.log(err)
+        dispatch({type: GET_USER_SECTION_COMPLETION_FAIL, payload: err})
+    })
+}
+
+// Mark Complete Lesson
+export const toggleCompleteLesson =(courseId, sectionId, detailId) => dispatch => {
+    dispatch({type: TOGGLE_COMPLETE_LESSON_START})
+    axiosWithAuth()
+    .put(`${baseURL}${courseId}/sections/${sectionId}/details/${detailId}/togglecomplete`)
+    .then(res => {
+        console.log(res)
+        dispatch({type: TOGGLE_COMPLETE_LESSON_SUCCESS, payload: res.data})
+    })
+    .catch(err => {
+        console.log(err)
+        dispatch({type: TOGGLE_COMPLETE_LESSON_FAIL, payload: err})
+    })
+}
+
+// User Lessons Marked Completed
+export const getLessonsWithUserCompletion =(courseId, sectionId) => dispatch => {
+    dispatch({type: GET_USER_LESSON_COMPLETION_START})
+    axiosWithAuth()
+    .get(`${baseURL}${courseId}/yoursections/${sectionId}`)
+    .then(res => {
+        console.log(res)
+        dispatch({type: GET_USER_LESSON_COMPLETION_SUCCESS, payload: res.data})
+    })
+    .catch(err => {
+        console.log(err)
+        dispatch({type: GET_USER_LESSON_COMPLETION_FAIL, payload: err})
+    })
 }

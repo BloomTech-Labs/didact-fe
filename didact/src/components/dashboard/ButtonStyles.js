@@ -161,6 +161,9 @@ export const ButtonDiv = styled.div`
     justify-content: space-between;
     width: 100%;
     margin-bottom: 10px;
+    flex-direction: row;
+
+
 `
 
 // finish edit and return to course button

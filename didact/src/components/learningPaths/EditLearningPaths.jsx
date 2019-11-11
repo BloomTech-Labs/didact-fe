@@ -14,7 +14,7 @@ import CourseLearningPath from "./CourseLearningPath";
 import AddToLearningPath from './addToLearningPath/AddToLearningPath'
 import { changePathOrder } from '../../utils/changePathOrder'
 
-// imports for Styled Components
+// imports for Styled Components 
 import { DidactField, DidactInput, DidactLabel, DidactTextArea } from '../dashboard/FormStyles'
 import {ButtonDiv, FinishEdit, DidactButton, TrashCanEdit } from "../dashboard/ButtonStyles";
 import {DroppableDiv, PathInstructions} from "./DraggableStyles.js";
@@ -204,7 +204,7 @@ const EditLearningPaths = ({ id, props }) => {
               <CardActions>
                 <DidactButton
                   onClick={toggleEdit}
-                  style={{ marginLeft: "70%", width: "100%" }}
+                  style={{ marginLeft: "70%", width: "100%", height: '100%'}}
                   type="submit"
                   size="small"
                   variant="contained"
