@@ -72,6 +72,11 @@ export const LearningPathCard = styled.div`
         width: 100%;
         background-color: #386581;
 
+        @media(max-width: 600px){
+        padding: 20px;
+        
+    }
+
 
         .title {
             text-align: left;
