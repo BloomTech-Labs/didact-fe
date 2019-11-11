@@ -149,9 +149,11 @@ export const toggleCompleteCourse =(id) => dispatch => {
     axiosWithAuth()
     .put(`${baseURL}${id}/togglecomplete`)
     .then(res => {
+        console.log(res)
         dispatch({type: TOGGLE_COMPLETE_COURSE_SUCCESS, payload: res.data})
     })
     .catch(err => {
+        console.log(err)
         dispatch({type: TOGGLE_COMPLETE_COURSE_FAIL, payload: err})
     })
 }

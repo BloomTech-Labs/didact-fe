@@ -31,7 +31,7 @@ const DetailedCourse = (props) => {
 
     
     console.log(course)
-
+    console.log(course)
     const handleChange = panel => (event, isExpanded) => {
         setExpanded(isExpanded ? panel : false);
         setLessonExpanded(isExpanded ? panel : false)
