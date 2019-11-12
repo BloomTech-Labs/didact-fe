@@ -72,6 +72,11 @@ export const LearningPathCard = styled.div`
         width: 100%;
         background-color: #386581;
 
+        @media(max-width: 600px){
+        padding: 20px;
+        
+    }
+
 
         .title {
             text-align: left;
@@ -125,7 +130,7 @@ export const LearningPathCard = styled.div`
         padding: 15px 0px;
         display: flex;
         flex-flow: row wrap;
-        justify-content: flex-start;
+        justify-items: flex-start;
 
         @media (max-width: 880px) {
             justify-content: center;
@@ -141,6 +146,11 @@ export const LearningPathCard = styled.div`
             font-weight: bold;
             width: 250px;
             margin: 10px;
+
+            /* @media (max-width: 880px) {
+            width: 100%;
+            padding-bottom: 10px;
+        } */
 
 
             &:first-child {
@@ -165,6 +175,10 @@ export const ButtonStyles = styled.div `
         flex-direction: column;
         justify-content: flex-start;
 
+        @media(max-width: 880px){
+            padding-left: 0px;
+        }
+
         a {
             background-color: #242424;
             color: #F4F8FA;
@@ -175,6 +189,10 @@ export const ButtonStyles = styled.div `
             font-weight: bold;
             width: 255px;
             height: 61px;
+
+            @media(max-width: 880px){
+            width: 100%;
+            }
 
             &:first-child {
                 margin-right: 20px;

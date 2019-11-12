@@ -44,6 +44,7 @@ const SideList = ({ props }) => {
             width: "225px",
         },
 
+
     }));
 
     const classes = drawerStyles();
@@ -53,13 +54,13 @@ const SideList = ({ props }) => {
             <ul className = {classes.list}>
                 <NavLink
                     exact to="/"
-                    style={{textDecoration: "none", color: '#5b5b5b'}}
+                    style={{textDecoration: "none", color: '#5b5b5b', outline: "none !important"}}
                     activeStyle={{color: 'white'}}
                     activeClassName={classes.activeTab}
                     className = {classes.listItem}
                     key="Dashboard"
                 >
-                <div style={{display: 'flex', flexDirection: 'row', width: '100%', alignItems: 'center',}}>
+                <div style={{display: 'flex', flexDirection: 'row', width: '100%', alignItems: 'center', outline: "none !important"}}>
                     <DashboardIcon style={{marginLeft: "17px", fontSize: "28px"}}/>
                     <p style={{marginLeft: "25px", fontWeight: 'bold'}}>Dashboard</p>
                     <p className={classes.arrow}>></p>
@@ -67,7 +68,7 @@ const SideList = ({ props }) => {
                 </NavLink>
                 <NavLink
                     to="/courses"
-                    style={{ textDecoration: "none", color: '#5b5b5b' }}
+                    style={{ textDecoration: "none", color: '#5b5b5b', outline: "none !important" }}
                     activeStyle={{color: 'white'}}
                     activeClassName={classes.activeTab}
                     className = {classes.listItem}
@@ -80,7 +81,7 @@ const SideList = ({ props }) => {
                 </NavLink>
                 <NavLink
                     to="/learning-paths"
-                    style={{ textDecoration: "none", color: '#5b5b5b' }}
+                    style={{ textDecoration: "none", color: '#5b5b5b', outline: "none !important" }}
                     activeStyle={{color: 'white'}}
                     activeClassName={classes.activeTab}
                     className = {classes.listItem}

@@ -8,7 +8,7 @@ import CardActions from '@material-ui/core/CardActions';
 import Collapse from '@material-ui/core/Collapse';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import IconButton from '@material-ui/core/IconButton';
-import { updateSection, getLessonsBySectionId, deleteSection } from '../../store/actions';
+import { updateSection, getLessonsBySectionId, deleteSection, getLessonsWithUserCompletion } from '../../store/actions';
 import Lessons from './Lessons'
 import AddLessons from './AddLessons'
 import DeleteModal from './DeleteModal'
@@ -73,6 +73,7 @@ const Section = ({ course, section, props }) => {
     const classes = useStyles();
     const dispatch = useDispatch()
     const lessons = useSelector(state => state.sectionsReducer.lessons)
+    const lesson = useSelector(state => state.sectionsReducer.lesson)
     const [expanded, setExpanded] = useState(false);
     const [sectionEdit, setSectionEdit] = useState(false)
     const [addLessonChange, setAddLessonChange] = useState(false);
@@ -83,7 +84,6 @@ const Section = ({ course, section, props }) => {
         order: "",
         link: ""
     })
-
     useEffect(() => {
         setChanges({
             name: section.name,

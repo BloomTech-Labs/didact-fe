@@ -57,6 +57,9 @@ import
     UPDATE_YOUR_PATH_ORDER_START,
     UPDATE_YOUR_PATH_ORDER_SUCCESS,
     UPDATE_YOUR_PATH_ORDER_FAIL,
+    GET_YOUR_LEARNING_PATH_COMPLETION_START,
+    GET_YOUR_LEARNING_PATH_COMPLETION_SUCCESS,
+    GET_YOUR_LEARNING_PATH_COMPLETION_FAIL,
 } from '../actions'
 
 const initialState =
@@ -67,6 +70,7 @@ const initialState =
     learningPath: {},
     yourLearningPaths: [],
     yourLearningPathsOwned: [],
+    learningPathCompletion: []
 
 }
 
@@ -455,6 +459,26 @@ export const learningPathReducer = (state = initialState, action) =>
                 error: "",
             }
         case UPDATE_YOUR_PATH_ORDER_FAIL:
+            return {
+                ...state,
+                isLoading: false,
+                error: action.payload,
+            }
+        // GET YOUR LEARNING PATH BY ID WITH COMPLETION 
+        case GET_YOUR_LEARNING_PATH_COMPLETION_START:
+                return {
+                    ...state,
+                    isLoading: true,
+                    error: "",
+                }
+        case GET_YOUR_LEARNING_PATH_COMPLETION_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                learningPathCompletion: action.payload,
+                error: "",
+            }
+        case GET_YOUR_LEARNING_PATH_COMPLETION_FAIL:
             return {
                 ...state,
                 isLoading: false,

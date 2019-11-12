@@ -21,6 +21,12 @@ import {
     GET_DETAILED_COURSE_SUCCESS,
     GET_DETAILED_COURSE_FAIL,
     DELETE_TAGS_SUCCESS,
+    TOGGLE_COMPLETE_COURSE_START,
+    TOGGLE_COMPLETE_COURSE_SUCCESS,
+    TOGGLE_COMPLETE_COURSE_FAIL,
+    GET_USER_LESSON_COMPLETION_START,
+    GET_USER_LESSON_COMPLETION_SUCCESS,
+    GET_USER_LESSON_COMPLETION_FAIL,
 } from '../actions'
 
 const initialState = {
@@ -205,6 +211,48 @@ export const coursesReducer = (state = initialState, action) => {
                     tags: state.course.tags.filter(el => el !== action.payload)
                 },
                 error: "",
+            }
+
+        //Toggle Complete 
+        case TOGGLE_COMPLETE_COURSE_START:
+            return {
+                ...state,
+                isLoading: false,
+                error: ''
+            } 
+        case TOGGLE_COMPLETE_COURSE_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                course: action.payload,
+                error: ""
+            };
+        case TOGGLE_COMPLETE_COURSE_FAIL:
+            return {
+                ...state,
+                isLoading: false,
+                error: action.payload,
+            }
+
+        //FIND COURSE COMPLETION BY ID
+        case GET_USER_LESSON_COMPLETION_START:
+            return {
+                ...state,
+                isLoading: false,
+                error: ''
+            } 
+        case GET_USER_LESSON_COMPLETION_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                course: action.payload,
+                error: ""
+            };
+        case GET_USER_LESSON_COMPLETION_FAIL:
+            return {
+                ...state,
+                isLoading: false,
+                error: action.payload,
             }
         default:
             return state;
