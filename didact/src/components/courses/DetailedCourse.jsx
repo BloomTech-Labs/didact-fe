@@ -38,6 +38,8 @@ const DetailedCourse = (props) => {
     const lessonCompletion = state.sectionsReducer.lesson;
 
     console.log(courseCompletion)
+    // console.log(courseCompletion)
+    // console.log(courseCompletion)
 
     useEffect(_ => {
         dispatch(getDetailedCourse(props.id))
