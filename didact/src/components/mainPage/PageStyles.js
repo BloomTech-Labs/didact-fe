@@ -11,11 +11,12 @@ export const PageFlex = styled.div`
 
     .headerMain {
         /* padding-left: 50px; */
-        width : 100%;
+        min-width: 826px;
+        /* width : 100%; */
         margin: 0 0 0 15px;
 
         .header {
-            max-width: 825px;
+            width: 825px;
             width: 100%;
             display: flex;
             background: #242424BF;
@@ -38,7 +39,11 @@ export const PageFlex = styled.div`
                 display: flex;
                 align-items: center;
                 justify-self: "flex-end";
-                justify-content: space-between;
+                justify-content: flex-end;
+
+                p:first-child {
+                    margin-right: 33px;
+                }
             }
         }
     }

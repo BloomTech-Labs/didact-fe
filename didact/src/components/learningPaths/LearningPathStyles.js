@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const LearningPathWrapper = styled.div`
-    margin-right: 30px;
+    /* margin-right: 30px; */
     display: flex;
     flex-direction: column;
 
@@ -9,39 +9,46 @@ export const LearningPathWrapper = styled.div`
         margin: auto;
         }
 
-    .editLearning {
-        width: 100%;
-        border-radius: 19px;
-        background-color: white;
+    .breadcrumb {
         display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 20px 27px;
-        font-weight: bold;
-        color: #141821;
-        width: 540px;
+        flex-direction: column;
 
-        p {
-            margin: 0;
+        .breadcrumbTitle {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            p {
+                font-weight: bold;
+            }
+
+            a {
+                text-decoration: none;
+                color: black;
+                font-weight: bold;
+            }
         }
 
-        .editLearningButton {
-            font-size: .8rem;
-            
-            a {
-                color: black;
-                text-decoration: none;
-            }
+        span {
+            border-top: black 1px solid;
+            width: 100%;
+        }
+    }
+
+    .learningPathCards{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        width: 100%;
+        text-align: left;
+
+        h3 {
+            width: 100%;
         }
     }
 
     .learningPathCourseWrappers {
         text-align: left;
-        max-width: 600px;
-        
-        h3 {
-            padding: 5px 15px;
-        }
 
         .completed {
             background: white;
@@ -56,9 +63,29 @@ export const LearningPathWrapper = styled.div`
     }
 
     .current {
-        
+        width: 100%;
+
+        .currentTitle {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
         .learningPathCard {
             background: #386581;
+            width: 100%;
+        }
+
+        .editLearningButton {
+            font-size: .8rem;
+            margin-right: 20px;
+            color: #2424247D;
+            font-weight: bold;
+            
+            a {
+                color: black;
+                text-decoration: none;
+            }
         }
     }
 
@@ -71,10 +98,14 @@ export const LearningPathWrapper = styled.div`
     }
 
     .upcoming {
+        width: 395px;
+        margin-bottom: 52px;
 
-        .learningPathCard {
+            .learningPathCard {
             background: #ADC8D9;
             color: black;
+            width: 395px;
+            margin: 0px;
         }
     }
 
@@ -90,16 +121,24 @@ export const LearningPathWrapper = styled.div`
             background: white;
             padding: 35px 43px 30px 30px;
             border-radius: 19px;
-            margin: 25px 0px;
             width: 540px;
+            height: 330px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
 
             h2 {
                 margin: 0;
+                font-size: 2.4rem;
+                max-height: 68px;
+                overflow: hidden;
             }
 
             p {
                 margin: 0;
                 margin-top: 25px;
+                max-height: 100px;
+                overflow: hidden;
             }
 
             
