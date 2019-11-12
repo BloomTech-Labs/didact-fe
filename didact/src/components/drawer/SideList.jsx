@@ -10,6 +10,8 @@ import InboxIcon from "@material-ui/icons/MoveToInbox";
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import FolderOpenIcon from '@material-ui/icons/FolderOpen';
 
+import { SideListWrapper } from './SideListStyles'
+
 const SideList = ({ props }) => {
     const drawerStyles = makeStyles(theme => ({
 
@@ -48,7 +50,7 @@ const SideList = ({ props }) => {
     const classes = drawerStyles();
 
     return (
-        <>
+        <SideListWrapper>
             <ul className = {classes.list}>
                 <NavLink
                     exact to="/"
@@ -91,6 +93,15 @@ const SideList = ({ props }) => {
                     </div>
                 </NavLink>
             </ul>
+
+            <div className='profileSection'>
+                <span className='line'></span>
+                <div>
+                    <span>Circle</span>
+                    <span>User Name</span>
+                    <span>LogOut</span>
+                </div>
+            </div>
 
             {/* <List >
                 <ListItem button key="Activity" className = {classes.hoverTab}>
@@ -168,7 +179,7 @@ const SideList = ({ props }) => {
                     <ListItemText className={classes.arrow} primary=">" />
                 </ListItem>
             </List> */}
-        </>
+        </SideListWrapper>
     );
 }
 

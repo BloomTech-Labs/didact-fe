@@ -146,11 +146,13 @@ function MainPage(props) {
                                 <div className="header">
                                     <h2>Didact</h2>
                                     <div className="navSection">
-                                        <Link style={{ color: 'white' }} to="/" ><DashboardIcon  style={{ fontSize: "28px" }}/></Link>
+                                        {/* <Link style={{ color: 'white' }} to="/" ><DashboardIcon  style={{ fontSize: "28px" }}/></Link> */}
                                         {/* <MessageIcon /> */}
-                                        <p>{userName.email}</p>
+                                        {/* <p>{userName.email}</p> */}
                                         {/* {!profileLockSize ? <Profile props = {props}/> : null } */}
-                                        <Profile props={props} />
+                                        {/* <Profile props={props} /> */}
+                                        <p>About</p>
+                                        <p>Contact</p>
                                     </div>
                                 </div>
                                 <main className={classes.content}>
