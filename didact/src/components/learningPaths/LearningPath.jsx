@@ -24,67 +24,60 @@ const LearningPath = ({ id }) => {
                 ))
             );
         }
-    }, [learningPath.pathItems, learningPath.courses]) 
+    }, [learningPath.pathItems, learningPath.courses])
 
-    return ( 
+    const firstItemCourse = itemsCourses[0]
+    itemsCourses.shift()
+    console.log(itemsCourses)
+
+    return (
         <LearningPathWrapper>
-            <div className='editLearning'>
-                <p className='editLearningTitle'>
-                    {`Learning Path: ${learningPath.name}`}
-                </p>
-                {
-                    (learningPath.creatorId === state.onboardingReducer.user.id) &&
-                    <div className='editLearningButton'>
-                        <Link to={`/learning-paths/${id}/edit`}>Edit Path</Link>
-                    </div>
-                }
+            <div className='breadcrumb'>
+                <div className='breadcrumbTitle'>
+                    <p>{`Learning Paths > ${learningPath.name}`}</p>
+                    <Link to='/learning-paths'>{`< Back to Paths`}</Link>
+                </div>
+                <span></span>
             </div>
-            <div>
+            {firstItemCourse && <div className={'learningPathCourseWrappers current' + (firstItemCourse.path_id ? ' item' : '')}>
+                <div className='currentTitle'>
+                    <h3>Current</h3>
+                    {
+                        (learningPath.creatorId === state.onboardingReducer.user.id) &&
+                        <div className='editLearningButton'>
+                            <Link to={`/learning-paths/${id}/edit`}>Edit</Link>
+                        </div>
+                    }
+                </div>
+                <div className='learningPathCard'>
+                    <h2>{firstItemCourse.name}</h2>
+                    <p>{firstItemCourse.description}</p>
+                    <div className='goToCourse'>
+                        <h4>Udemy</h4>
+                        {firstItemCourse.path_id ? <a href={firstItemCourse.link}>Go To {firstItemCourse.type.charAt(0).toUpperCase() + firstItemCourse.type.slice(1)}</a> : <a href={`/courses/${firstItemCourse.id}`}>Go To Course</a>}
+                    </div>
+                </div>
+            </div>}
+            <div className='learningPathCards'>
+                <h3>Upcoming</h3>
                 {
                     itemsCourses.map((itemCourse, index) => {
-                        if (itemCourse.path_order === 0) {
-                            return (
-                                <div className={'learningPathCourseWrappers current' + (itemCourse.path_id ? ' item' : '')} key={index}>
-                                    <h3>Current</h3>
-                                    <div className='learningPathCard'>
-                                        <h2>{itemCourse.name}</h2>
-                                        <p>{itemCourse.description}</p>
-                                        <div className='goToCourse'>
-                                            <h4>Udemy</h4>
-                                            {itemCourse.path_id ? <a href={itemCourse.link}>Go To {itemCourse.type.charAt(0).toUpperCase() + itemCourse.type.slice(1)}</a> : <a href={`/courses/${itemCourse.id}`}>Go To Course</a>}
-                                        </div>
-                                    </div>
-                                </div>
-                            )
-                        } else if (itemCourse.path_order === 1) {
-                            return (
-                                <div className={'learningPathCourseWrappers next' + (itemCourse.path_id ? ' item' : '')} key={index}>
-                                    <h3>Next</h3>
-                                    <div className='learningPathCard'>
-                                        <h2>{itemCourse.name}</h2>
-                                        <p>{itemCourse.description}</p>
-                                        <div className='goToCourse'>
-                                            <h4>Udemy</h4>
-                                            {itemCourse.path_id ? <a href={itemCourse.link}>Go To {itemCourse.type.charAt(0).toUpperCase() + itemCourse.type.slice(1)}</a> : <a href={`/courses/${itemCourse.id}`}>Go To Course</a>}
-                                        </div>
-                                    </div>
-                                </div>
-                            )
-                        } else {
-                            return (
+                        return (
+                            <div key={index}>
                                 <div className={'learningPathCourseWrappers upcoming' + (itemCourse.path_id ? ' item' : '')} key={index}>
-                                    {itemCourse.path_order === 2 && <h3>Upcoming</h3>}
                                     <div className='learningPathCard'>
-                                        <h2>{itemCourse.name}</h2>
-                                        <p>{itemCourse.description}</p>
+                                        <div>
+                                            <h2>{itemCourse.name}</h2>
+                                            <p>{itemCourse.description}</p>
+                                        </div>
                                         <div className='goToCourse'>
                                             <h4>Udemy</h4>
                                             {itemCourse.path_id ? <a href={itemCourse.link}>Go To {itemCourse.type.charAt(0).toUpperCase() + itemCourse.type.slice(1)}</a> : <a href={`/courses/${itemCourse.id}`}>Go To Course</a>}
                                         </div>
                                     </div>
                                 </div>
-                            )
-                        }
+                            </div>
+                        )
                     })
                 }
                 {/* <div className='learningPathCourseWrappers'>
