@@ -27,8 +27,14 @@ const LearningPath = ({ id }) => {
     }, [learningPath.pathItems, learningPath.courses])
 
     const firstItemCourse = itemsCourses[0]
-    itemsCourses.shift()
-    console.log(itemsCourses)
+    // itemsCourses.shift()
+    const upcomingItemsCourses = []
+    itemsCourses.forEach((el, index) => {
+        if(!(index === 0)) {
+            upcomingItemsCourses.push(el)
+        }
+    })
+    console.log(upcomingItemsCourses)
 
     return (
         <LearningPathWrapper>
@@ -61,7 +67,7 @@ const LearningPath = ({ id }) => {
             <div className='learningPathCards'>
                 <h3>Upcoming</h3>
                 {
-                    itemsCourses.map((itemCourse, index) => {
+                    upcomingItemsCourses.map((itemCourse, index) => {
                         return (
                             <div key={index}>
                                 <div className={'learningPathCourseWrappers upcoming' + (itemCourse.path_id ? ' item' : '')} key={index}>
