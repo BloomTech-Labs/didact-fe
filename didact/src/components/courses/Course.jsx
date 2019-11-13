@@ -93,6 +93,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
+
 const Course = ({ course, addingCourses }) => {
     const classes = useStyles();
     const dispatch = useDispatch();

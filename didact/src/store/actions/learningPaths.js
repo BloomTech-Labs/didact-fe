@@ -390,10 +390,10 @@ export const updateYourPathOrder = (pathArray) => dispatch => {
 }
 
 //Get Your Learning Path By Id With Completion
-export const findForUserId = (courseId) => dispatch =>
+export const findForUserId = (learningPathId) => dispatch =>
 {
     dispatch({ type: GET_YOUR_LEARNING_PATH_COMPLETION_START })
-    axiosWithAuth().get(`${baseURL}${courseId}/yours`)
+    axiosWithAuth().get(`${baseURL}${learningPathId}/yours`)
     .then(res =>
     {
         dispatch({ type: GET_YOUR_LEARNING_PATH_COMPLETION_SUCCESS, payload: res.data })

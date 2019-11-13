@@ -178,7 +178,7 @@ export const toggleCompleteSection =(courseId, sectionId) => dispatch => {
     })
 }
 
-// User Sections Marked Completed
+// User Sections With Marked Completed
 export const getSectionsWithUserCompletion =(courseId) => dispatch => {
     dispatch({type: GET_USER_SECTION_COMPLETION_START})
     axiosWithAuth()

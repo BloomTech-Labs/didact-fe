@@ -12,6 +12,7 @@ import YourLearningPaths from '../learningPaths/YourLearningPaths'
 import AllLearningPaths from '../learningPaths/AllLearningPaths'
 import AddPathItems from '../learningPaths/pathItems/AddPathItems'
 import EditPathItems from '../learningPaths/pathItems/EditPathItems'
+import SearchResults from '../searchResults/SearchResults';
 
 
 const Content = (props) => {
@@ -47,6 +48,9 @@ const Content = (props) => {
                         return <AllLearningPaths props={props}/>
                     case ('yourlearningpaths'):
                         return <YourLearningPaths props={props}/>
+                    case ('searchresults'):
+                        console.log(props.results)
+                        return <SearchResults props={props} setValues={props.setValues} results={props.results}/>
                     default:
                         break;
                 }

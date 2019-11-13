@@ -70,6 +70,10 @@ const Routes = () => {
             (
                 <MainPage {...routeProps} page={'editcourse'} />
             )} />
+            <Route exact path='/results' render={routeProps =>
+            (
+                <MainPage {...routeProps} page={'searchresults'} />
+            )} />
         </Switch>
     )
 };
