@@ -118,14 +118,17 @@ export const getDetailedCourse = (id) => async dispatch =>
     let course
     try
     {
-        let courseRes = await axiosWithAuth().get(`${baseURL}${id}`)
+        let courseRes = await axiosWithAuth().get(`${baseURL}${id}/yours`)
+        console.log("CourseRes", courseRes)
         course = courseRes.data
-        let sectionsRes = await axiosWithAuth().get(`${baseURL}${id}/sections`)
+        // let sectionsRes = await axiosWithAuth().get(`${baseURL}${id}/sections`)
+        let sectionsRes = await axiosWithAuth().get(`${baseURL}${id}/yoursections`)
         let sectionData = sectionsRes.data.sections
     
         for(let i=0; i<sectionData.length; i++)
         {
-            let detailsRes = await axiosWithAuth().get(`${baseURL}${id}/sections/${sectionData[i].id}`)
+            // let detailsRes = await axiosWithAuth().get(`${baseURL}${id}/sections/${sectionData[i].id}`)
+            let detailsRes = await axiosWithAuth().get(`${baseURL}${id}/yoursections/${sectionData[i].id}`)
             sections.push({
                 section: sectionData[i],
                 details: detailsRes.data.courseSection

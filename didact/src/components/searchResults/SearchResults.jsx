@@ -13,13 +13,13 @@ import styled from 'styled-components';
 const TitleH2 = styled.div `
     max-width: 540px;
     width: 100%;
-    text-align: center;
+    text-align: left;
     font-size: 2.6rem;
     font-weight: bold;
     padding: 10px;
 `
 
-const SearchResults = ({props, results}) => {
+const SearchResults = ({props, results, setValues, values}) => {
     const dispatch=useDispatch()
     const state=useSelector(state => state)
     const courses=state.coursesReducer.courses
@@ -34,14 +34,22 @@ const SearchResults = ({props, results}) => {
         dispatch(getYourLearningPaths())
     }, [dispatch])
 
-    
+    const handleBack = () => {
+        props.history.push('/')
+        setValues({ ...values, search: "" });
+        
+    }    
     return (
         <div>
-            {results === '' ? props.history.goBack() : (
+            <div style={{display: 'flex', justifyContent: 'space-between', margin: '-10px 10px 10px 10px', borderBottom: '1px solid black'}}>
+                <p style={{fontWeight: 'bold', marginLeft: '10px'}}>Search Results</p>
+                <p onClick = {handleBack} style={{marginRight: '10px', cursor: 'pointer'}}>{`<${" "} Back To Dashboard`}</p>
+            </div>
+            {results === '' ? null : (
             <>
             <div>
             {/* Your Learning Path Results */}
-            {results ? results.length > 1 ? (<TitleH2>Learning Paths</TitleH2>) : null : null}
+            {results ? (<TitleH2>Learning Paths</TitleH2>) : null}
             {results && yourLearningPaths ? yourLearningPaths.map(keyword => {
             return (
                 (keyword.name.toLowerCase().includes(`${results.toLowerCase()}`)) || 
@@ -63,7 +71,7 @@ const SearchResults = ({props, results}) => {
 
             {/* Courses Results */}
             <div>
-            {results ? results.length > 1 ? (<TitleH2 style={{marginBottom: "-20px"}}>Courses</TitleH2>) : null : null}
+            {results ? (<TitleH2 style={{marginBottom: "-20px"}}>Courses</TitleH2>) : null}
             {results && courses ? courses.map(keyword => {
             return (
                 (keyword.name.toLowerCase().includes(`${results.toLowerCase()}`)) || 

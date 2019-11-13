@@ -35,6 +35,7 @@ const useStyles = makeStyles(theme => ({
     contentShadow: {
         background: "rgba(0, 0, 0, 0.8)",
         filter: "brightness(50%)",
+        overflowX: 'hidden',
         zIndex: 100,
         height: "100vh",
         top: 0,
@@ -95,7 +96,7 @@ function MainPage(props) {
 
     //Needed for Header Search Function
     const handleChange = name => event => {
-        setValues({ ...values, [name]: event.target.value });
+        setValues({[name]: event.target.value });
     };
 
     const handleSubmit = (event) => {
@@ -133,10 +134,10 @@ function MainPage(props) {
                             <MobileDrawerComponent handleDrawerOpenMobile={handleDrawerOpenMobile()} openMobile={openMobile} props={props} />
                         </div>
                         <div>
-                            <MobileHeaderComponent props={props} tabletSize={tabletSize} userName={userName} />
+                            <MobileHeaderComponent handleSubmit = {handleSubmit} handleChange = {handleChange} values = {values} props={props} tabletSize={tabletSize} userName={userName} />
                             <main className={openMobile ? classes.contentShadow : classes.contentMobile}>
                                 <div className={classes.toolbar} />
-                                <Content phoneSize={phoneSize} open={open} {...props} results={results}/>
+                                <Content phoneSize={phoneSize} open={open} {...props} results={results} values={values} setValues={setValues}/>
                                 {/*************************ADD COMPONENTS HERE *********************** */}
                             </main>
                         </div>
@@ -174,18 +175,13 @@ function MainPage(props) {
                                     </div>
 
                                     <div className="navSection">
-                                        {/* <Link style={{ color: 'white' }} to="/" ><DashboardIcon  style={{ fontSize: "28px" }}/></Link> */}
-                                        {/* <MessageIcon /> */}
-                                        {/* <p>{userName.email}</p> */}
-                                        {/* {!profileLockSize ? <Profile props = {props}/> : null } */}
-                                        {/* <Profile props={props} /> */}
                                         <p>About</p>
                                         <p>Contact</p>
                                     </div>
                                 </div>
                                 <main className={classes.content}>
                                     {/* <div className={classes.toolbar} /> */}
-                                    <Content mediumScreenSize={mediumScreenSize} phoneSize={phoneSize} open={open} tabletSize={tabletSize} {...props} results={results}/>
+                                    <Content mediumScreenSize={mediumScreenSize} phoneSize={phoneSize} open={open} setValues={setValues} values={values} tabletSize={tabletSize} {...props} results={results}/>
                                     {/*************************ADD COMPONENTS HERE *********************** */}
                                 </main>
                             </div>

@@ -50,7 +50,7 @@ const Content = (props) => {
                         return <YourLearningPaths props={props}/>
                     case ('searchresults'):
                         console.log(props.results)
-                        return <SearchResults props={props} results={props.results}/>
+                        return <SearchResults props={props} setValues={props.setValues} results={props.results}/>
                     default:
                         break;
                 }
