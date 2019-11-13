@@ -42,6 +42,36 @@ export const LearningPathWrapper = styled.div`
         width: 100%;
         text-align: left;
 
+        .upcomingCards {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+
+            .long:last-child {
+                
+                .learningPathCard {
+                    width: 826px;
+                    height: 100%;
+                }
+            }
+        }
+
+        .completedCards {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+
+            .long:last-child {
+                
+                .learningPathCard {
+                    width: 826px;
+                    height: 100%;
+                }
+            }
+        }
+
         h3 {
             width: 100%;
         }
@@ -51,14 +81,20 @@ export const LearningPathWrapper = styled.div`
         text-align: left;
 
         .completed {
-            background: white;
+            background: #D1E2EA;
             opacity: 0.5;
+            width: 395px;
+            color: black;
         }
         
         a {
             text-decoration: none;
             min-width: 130px;
             text-align: center;
+        }
+
+        .long:last-child {
+            width: 826px
         }
     }
 
@@ -86,14 +122,6 @@ export const LearningPathWrapper = styled.div`
                 color: black;
                 text-decoration: none;
             }
-        }
-    }
-
-    .next {
-
-        .learningPathCard {
-            background: #ADC8D9;
-            color: black;
         }
     }
 
@@ -140,8 +168,6 @@ export const LearningPathWrapper = styled.div`
                 max-height: 100px;
                 overflow: hidden;
             }
-
-            
 
             .goToCourse {
                 display: flex;
