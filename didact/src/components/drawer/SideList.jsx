@@ -1,5 +1,6 @@
 import React from 'react'
 import { NavLink } from "react-router-dom";
+import { useSelector } from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles'
 
 import List from "@material-ui/core/List";
@@ -9,6 +10,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import FolderOpenIcon from '@material-ui/icons/FolderOpen';
+import PermIdentityIcon from '@material-ui/icons/PermIdentity';
 
 import { SideListWrapper } from './SideListStyles'
 
@@ -43,11 +45,25 @@ const SideList = ({ props }) => {
             alignItems: 'center',
             width: "225px",
         },
+        iconImageProfile: {
+            width: "30px",
+            height: "30px",
+            borderRadius: "50%",
+            // marginTop: '20px',
+            objectFit: 'cover'
+        },
 
 
     }));
 
     const classes = drawerStyles();
+
+    const userName = useSelector(state => state.onboardingReducer.user);
+
+    const handleLogOut = () => {
+        localStorage.clear('token')
+        props.props.history.push('/login')
+    }
 
     return (
         <SideListWrapper>
@@ -95,12 +111,9 @@ const SideList = ({ props }) => {
             </ul>
 
             <div className='profileSection'>
-                <span className='line'></span>
-                <div>
-                    <span>Circle</span>
-                    <span>User Name</span>
-                    <span>LogOut</span>
-                </div>
+                {userName.photo ? <img src={userName.photo} alt = "Profile" className={classes.iconImageProfile} /> : <PermIdentityIcon  className={classes.iconImageProfile} />}
+                <p>{userName.first_name + ' ' + userName.last_name}</p>
+                <p onClick={handleLogOut} className='logout'>Log Out</p>
             </div>
 
             {/* <List >
