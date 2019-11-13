@@ -64,7 +64,12 @@ export const UPDATE_YOUR_PATH_ORDER_FAIL = "UPDATE_YOUR_PATH_ORDER_FAIL"
 export const GET_YOUR_LEARNING_PATH_COMPLETION_START = 'GET_YOUR_LEARNING_PATH_COMPLETION_START'
 export const GET_YOUR_LEARNING_PATH_COMPLETION_SUCCESS = 'GET_YOUR_LEARNING_PATH_COMPLETION_SUCCESS'
 export const GET_YOUR_LEARNING_PATH_COMPLETION_FAIL = 'GET_YOUR_LEARNING_PATH_COMPLETION_FAIL'
-
+export const TOGGLE_LEARNING_PATH_START = "TOGGLE_LEARNING_PATH_START"
+export const TOGGLE_LEARNING_PATH_SUCCESS = "TOGGLE_LEARNING_PATH_SUCCESS"
+export const TOGGLE_LEARNING_PATH_FAIL = "TOGGLE_LEARNING_PATH_FAIL"
+export const TOGGLE_LEARNING_PATH_ITEM_START = "TOGGLE_LEARNING_PATH_ITEM_START"
+export const TOGGLE_LEARNING_PATH_ITEM_SUCCESS = "TOGGLE_LEARNING_PATH_ITEM_SUCCESS"
+export const TOGGLE_LEARNING_PATH_ITEM_FAIL = "TOGGLE_LEARNING_PATH_ITEM_FAIL"
 
 const baseURL = `${beURL}learning-paths/`
 
@@ -401,5 +406,35 @@ export const findForUserId = (learningPathId) => dispatch =>
     .catch(err =>
     {
         dispatch({ type: GET_YOUR_LEARNING_PATH_COMPLETION_FAIL, payload: err })
+    })
+}
+
+//Toggle Learning Path Complete
+export const toggleLearningPath = (learningPathId) => dispatch =>
+{
+    dispatch({ type: TOGGLE_LEARNING_PATH_START })
+    axiosWithAuth().get(`${baseURL}${learningPathId}/yours`)
+    .then(res =>
+    {
+        dispatch({ type: TOGGLE_LEARNING_PATH_SUCCESS, payload: res.data })
+    })
+    .catch(err =>
+    {
+        dispatch({ type: TOGGLE_LEARNING_PATH_FAIL, payload: err })
+    })
+}
+
+//Toggle Learning Path ITEM Complete
+export const toggleLearningPathItem = (learningPathId, itemId) => dispatch =>
+{
+    dispatch({ type: TOGGLE_LEARNING_PATH_ITEM_START })
+    axiosWithAuth().get(`${baseURL}${learningPathId}/path-items/${itemId}/yours`)
+    .then(res =>
+    {
+        dispatch({ type: TOGGLE_LEARNING_PATH_ITEM_SUCCESS, payload: res.data })
+    })
+    .catch(err =>
+    {
+        dispatch({ type: TOGGLE_LEARNING_PATH_ITEM_FAIL, payload: err })
     })
 }
