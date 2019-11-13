@@ -11,7 +11,7 @@ import {
 // import components
 import DeleteModal from "../courses/DeleteModal";
 import CourseLearningPath from "./CourseLearningPath";
-import AddToLearningPath from './addToLearningPath/addToLearningPath'
+import AddToLearningPath from './addToLearningPath/AddToLearningPath'
 import { changePathOrder } from '../../utils/changePathOrder'
 
 // imports for Styled Components 

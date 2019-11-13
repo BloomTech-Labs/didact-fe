@@ -2,24 +2,31 @@ import React, {useEffect, useState} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {courseEndPoint, getLearningPaths, getYourLearningPaths  } from '../../store/actions'
 
+// Component Imports
 import Course from '../courses/Course'
 import LearningPathResults from './LearningPathResults'
 import LearningPathYourResults from './LearningPathYourResults'
 
-const SearchResults = (props) => {
+// Styling Import
+import styled from 'styled-components';
+
+const TitleH2 = styled.div `
+    max-width: 540px;
+    width: 100%;
+    text-align: center;
+    font-size: 2.6rem;
+    font-weight: bold;
+    padding: 10px;
+`
+
+const SearchResults = ({props, results}) => {
     const dispatch=useDispatch()
     const state=useSelector(state => state)
     const courses=state.coursesReducer.courses
     const learningPaths=state.learningPathReducer.learningPaths
     const yourLearningPaths=state.learningPathReducer.yourLearningPaths
-
     const allPaths=learningPaths.concat(yourLearningPaths);
 
-    const [values, setValues] = useState({
-        search: ''
-    });
-    const [results, setResults] = useState()
-    const [errors, setErrors] = useState();
 
     useEffect(() => {
         dispatch(courseEndPoint())
@@ -27,59 +34,45 @@ const SearchResults = (props) => {
         dispatch(getYourLearningPaths())
     }, [dispatch])
 
-    console.log(courses)
-    console.log(allPaths)
-
-    const handleChange = name => event => {
-        setValues({ ...values, [name]: event.target.value });
-    };
-
-    const handleSubmit = (event) => {
-        event.preventDefault()
-        setResults(values.search)
-    }
-
     
-
-
     return (
         <div>
-            <form onSubmit={handleSubmit}>
-            <input type="text" value={values.search} onChange={handleChange('search')}></input>
-            <button type="submit">Submit</button>
-            </form>
-            {results === '' ? <p>Search For Results</p> : (
+            {results === '' ? props.history.goBack() : (
             <>
             <div>
-            {results ? results.length > 1 ? (<h2>Learning Paths</h2>) : null : null}
+            {/* Your Learning Path Results */}
+            {results ? results.length > 1 ? (<TitleH2>Learning Paths</TitleH2>) : null : null}
             {results && yourLearningPaths ? yourLearningPaths.map(keyword => {
             return (
-                (keyword.name.includes(`${results}`)) || 
-                (keyword.description.includes(`${results}`)) ||
-                (!keyword.category === null && keyword.category.includes(`${results}`))
-            ) ?
-             <LearningPathYourResults props = {props} learningPath = {keyword}/> : null
-            }) : null}
-            {results && learningPaths ? learningPaths.map(keyword => {
+                (keyword.name.toLowerCase().includes(`${results.toLowerCase()}`)) || 
+                (keyword.description.toLowerCase().includes(`${results.toLowerCase()}`)) ||
+                (!keyword.category === null && keyword.category.toLowerCase().includes(`${results.toLowerCase()}`))
+            ) ? ( <LearningPathYourResults props = {props} learningPath = {keyword} results={results}/> ) : null}) : null}
+
+            {/* Learning Path Results */}
+            {results && learningPaths ? learningPaths.map((keyword) => {
             return (
-                (keyword.name.includes(`${results}`)) || 
-                (keyword.description.includes(`${results}`)) ||
-                (!keyword.category === null && keyword.category.includes(`${results}`))
+                (keyword.name.toLowerCase().includes(`${results.toLowerCase()}`)) || 
+                (keyword.description.toLowerCase().includes(`${results.toLowerCase()}`)) ||
+                (!keyword.category === null && keyword.category.toLowerCase().includes(`${results.toLowerCase()}`))
             ) ?
-             <LearningPathResults props = {props} learningPath = {keyword}/> : null
+             <LearningPathResults props = {props} learningPath = {keyword} results={results}/> :
+              null
             }) : null}
             </div>
+
+            {/* Courses Results */}
             <div>
-            {results ? results.length > 1 ? (<h2>Courses</h2>) : null : null}
-            {results ? courses.map(keyword => {
+            {results ? results.length > 1 ? (<TitleH2 style={{marginBottom: "-20px"}}>Courses</TitleH2>) : null : null}
+            {results && courses ? courses.map(keyword => {
             return (
-                (keyword.name.includes(`${results}`)) || 
-                (keyword.description.includes(`${results}`)) ||
-                (keyword.link.includes(`${results}`)) ||
-                (!keyword.category === null && keyword.category.includes(`${results}`)) ||
-                (keyword.foreign_instructors.includes(`${results}`)) 
+                (keyword.name.toLowerCase().includes(`${results.toLowerCase()}`)) || 
+                (keyword.description.toLowerCase().includes(`${results.toLowerCase()}`)) ||
+                (keyword.link.toLowerCase().includes(`${results.toLowerCase()}`)) ||
+                (!keyword.category === null && keyword.category.toLowerCase().includes(`${results.toLowerCase()}`)) ||
+                (keyword.foreign_instructors.toLowerCase().includes(`${results.toLowerCase()}`)) 
             ) ?
-             <Course course = {keyword}/> : null
+             <Course course = {keyword} results={results}/> : null
              }) : null}
             </div>
             </>

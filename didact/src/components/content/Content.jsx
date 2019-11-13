@@ -49,7 +49,8 @@ const Content = (props) => {
                     case ('yourlearningpaths'):
                         return <YourLearningPaths props={props}/>
                     case ('searchresults'):
-                        return <SearchResults props={props}/>
+                        console.log(props.results)
+                        return <SearchResults props={props} results={props.results}/>
                     default:
                         break;
                 }

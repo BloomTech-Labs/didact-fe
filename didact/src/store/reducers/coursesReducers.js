@@ -24,9 +24,9 @@ import {
     TOGGLE_COMPLETE_COURSE_START,
     TOGGLE_COMPLETE_COURSE_SUCCESS,
     TOGGLE_COMPLETE_COURSE_FAIL,
-    GET_USER_LESSON_COMPLETION_START,
-    GET_USER_LESSON_COMPLETION_SUCCESS,
-    GET_USER_LESSON_COMPLETION_FAIL,
+    GET_USER_COMPLETION_COURSE_START,
+    GET_USER_COMPLETION_COURSE_SUCCESS,
+    GET_USER_COMPLETION_COURSE_FAIL
 } from '../actions'
 
 const initialState = {
@@ -34,6 +34,7 @@ const initialState = {
     isLoading: false,
     error: '',
     course: {},
+    courseCompletion: {},
     detailedCourse: {},
     sections: []
 }
@@ -235,20 +236,20 @@ export const coursesReducer = (state = initialState, action) => {
             }
 
         //FIND COURSE COMPLETION BY ID
-        case GET_USER_LESSON_COMPLETION_START:
+        case GET_USER_COMPLETION_COURSE_START:
             return {
                 ...state,
                 isLoading: false,
                 error: ''
             } 
-        case GET_USER_LESSON_COMPLETION_SUCCESS:
+        case GET_USER_COMPLETION_COURSE_SUCCESS:
             return {
                 ...state,
                 isLoading: false,
-                course: action.payload,
+                courseCompletion: action.payload,
                 error: ""
             };
-        case GET_USER_LESSON_COMPLETION_FAIL:
+        case GET_USER_COMPLETION_COURSE_FAIL:
             return {
                 ...state,
                 isLoading: false,

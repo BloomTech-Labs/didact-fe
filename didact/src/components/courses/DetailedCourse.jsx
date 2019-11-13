@@ -33,7 +33,7 @@ const DetailedCourse = (props) => {
     const [lessonExpanded, setLessonExpanded] = useState(false)
 
     // state for completion
-    const courseCompletion = state.coursesReducer.course;
+    const courseCompletion = state.coursesReducer.courseCompletion;
     const sectionCompletion = state.sectionsReducer.section;
     const lessonCompletion = state.sectionsReducer.lesson;
 
