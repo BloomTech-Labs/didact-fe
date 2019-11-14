@@ -12,14 +12,28 @@ import {getDetailedCourse,
         toggleCompleteLesson, 
       } from '../../store/actions/index.js'
 
+//Material UI Imports
+import { makeStyles,} from '@material-ui/core/styles';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+//Material UI Icons
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 
-const DetailedCourse = (props) => {
+const useStyles = makeStyles(theme => ({
+   
+    span: {
+      cursor: 'pointer',
+      "&:hover":{
+        color: 'white'
+      }
+    }
+  }));
 
+const DetailedCourse = (props) => {
+    const classes = useStyles();
     const dispatch = useDispatch()
     const state = useSelector(state => state)
     const phoneSize = props.props.phoneSize;
@@ -59,9 +73,16 @@ const DetailedCourse = (props) => {
     const handleMarkCompleteLesson = (sectionId, detailId) => {
         dispatch(toggleCompleteLesson(course.id, sectionId, detailId))
     }
+    const handleBack = () => {
+        props.props.history.push('/courses')
+    }  
 
     if (!state.coursesReducer.isLoading && (course && sections)) {
         return (
+            <>
+             <div style={{display: 'flex', justifyContent: 'space-between', margin: '-10px 10px 10px 10px', borderBottom: '1px solid black'}}>
+                <p style={{fontWeight: 'bold', marginLeft: '10px', display: 'flex', flexDirection:'row', alignItems: 'center'}}><span className={classes.span}  onClick = {handleBack}>Courses</span><ChevronRightIcon style={{fontSize: '1.6rem'}}/><span>{course.name.substring(0, 25)}...</span></p>
+            </div>
                 <DetailedCourseWrapper>
                     <div className="courseWrapper">
                         <div style={{backgroundColor: '#386581', display: 'flex', alignItems: 'center', padding: '0px', margin: '0px', justifyContent: 'space-between'}}>
@@ -182,9 +203,16 @@ const DetailedCourse = (props) => {
                         )
                     })}
                 </DetailedCourseWrapper>
+                </>
         )
     } else {
-        return <h1>Loading...</h1>
+        return (
+        <>
+        <div style={{display: 'flex', justifyContent: 'space-between', margin: '-10px 10px 10px 10px', borderBottom: '1px solid black'}}>
+                <p style={{fontWeight: 'bold', marginLeft: '10px', display: 'flex', flexDirection:'row', alignItems: 'center'}}><span className={classes.span}  onClick = {handleBack}>Courses</span><ChevronRightIcon style={{fontSize: '1.6rem'}}/><span>Loading...</span></p>
+            </div>
+        <h1>Loading...</h1>
+        </>)
     }
 }
 

@@ -5,7 +5,10 @@ import { Link } from "react-router-dom";
 import { AddButton, ButtonText } from '../dashboard/ButtonStyles';
 import Course from './Course'
 
+//Material UI Imports
 import { makeStyles } from '@material-ui/core/styles';
+//Material UI Icons
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import AddCircleRoundedIcon from '@material-ui/icons/AddCircleRounded';
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 
@@ -65,7 +68,12 @@ function AllCourses(props) {
         dispatch(courseEndPoint());
     }, [dispatch]);
 
+ 
     return (
+    <div>
+        <div style={{display: 'flex', justifyContent: 'space-between', margin: '-10px 10px 10px 10px', borderBottom: '1px solid black'}}>
+                <p style={{fontWeight: 'bold', marginLeft: '10px', display: 'flex', flexDirection:'row', alignItems: 'center'}}><span>Courses</span><ChevronRightIcon style={{fontSize: '1.6rem'}}/><span>Overview</span></p>
+        </div>
         <div className = {tabletSize ? classes.rootTablet : classes.root}>
             {tabletSize ? (
             <div className = {classes.addButtonDivTablet}>
@@ -113,6 +121,7 @@ function AllCourses(props) {
                 </Link> */}
             </div>) : (null) }
         </div>
+    </div>
     );
 }
 
