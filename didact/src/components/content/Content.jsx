@@ -13,7 +13,7 @@ import AllLearningPaths from '../learningPaths/AllLearningPaths'
 import AddPathItems from '../learningPaths/pathItems/AddPathItems'
 import EditPathItems from '../learningPaths/pathItems/EditPathItems'
 import SearchResults from '../searchResults/SearchResults';
-
+import About from '../about/About'
 
 const Content = (props) => {
     
@@ -49,8 +49,9 @@ const Content = (props) => {
                     case ('yourlearningpaths'):
                         return <YourLearningPaths props={props}/>
                     case ('searchresults'):
-                        console.log(props.results)
                         return <SearchResults props={props} setValues={props.setValues} results={props.results}/>
+                    case ('about'):
+                        return <About props={props}/>
                     default:
                         break;
                 }

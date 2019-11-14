@@ -175,7 +175,7 @@ function MainPage(props) {
                                     </div>
 
                                     <div className="navSection">
-                                        <p>About</p>
+                                    <Link to='/about' style={{color: "white", textDecoration: "none"}}><p>About</p></Link>
                                         <p>Contact</p>
                                     </div>
                                 </div>
