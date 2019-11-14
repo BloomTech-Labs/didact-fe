@@ -1,5 +1,6 @@
 import axiosWithAuth from '../../utils/axiosWithAuth'
 import beURL from '../../utils/beURL'
+import {getDetailedCourse} from './index'
 
 export const GET_SECTIONS_START = "GET_SECTIONS_START"
 export const GET_SECTIONS_SUCCESS = "GET_SECTIONS_SUCCESS"
@@ -37,6 +38,7 @@ export const GET_USER_LESSON_COMPLETION_FAIL = "GET_USER_LESSON_COMPLETION_FAIL"
 export const GET_USER_SECTION_COMPLETION_START = "GET_USER_SECTION_COMPLETION_START"
 export const GET_USER_SECTION_COMPLETION_SUCCESS = "GET_USER_SECTION_COMPLETION_SUCCESS"
 export const GET_USER_SECTION_COMPLETION_FAIL = "GET_USER_SECTION_COMPLETION_FAIL"
+
 
 const baseURL = `${beURL}courses/`
 
@@ -171,11 +173,14 @@ export const toggleCompleteSection =(courseId, sectionId) => dispatch => {
     .then(res => {
         console.log(res)
         dispatch({type: TOGGLE_COMPLETE_SECTION_SUCCESS, payload: res.data})
+        return courseId
     })
+    .then(resId => dispatch(getDetailedCourse(resId)))
     .catch(err => {
         console.log(err)
         dispatch({type: TOGGLE_COMPLETE_SECTION_FAIL, payload: err})
     })
+    
 }
 
 // User Sections With Marked Completed
@@ -201,7 +206,9 @@ export const toggleCompleteLesson =(courseId, sectionId, detailId) => dispatch =
     .then(res => {
         console.log(res)
         dispatch({type: TOGGLE_COMPLETE_LESSON_SUCCESS, payload: res.data})
+        return courseId
     })
+    .then(resId => dispatch(getDetailedCourse(resId)))
     .catch(err => {
         console.log(err)
         dispatch({type: TOGGLE_COMPLETE_LESSON_FAIL, payload: err})

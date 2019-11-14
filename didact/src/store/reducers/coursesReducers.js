@@ -32,6 +32,7 @@ import {
 const initialState = {
     courses: [],
     isLoading: false,
+    isLoadingIcon: false,
     error: '',
     course: {},
     courseCompletion: {},
@@ -163,20 +164,20 @@ export const coursesReducer = (state = initialState, action) => {
         case GET_DETAILED_COURSE_START:
             return {
                 ...state,
-                isLoading: true,
+                isLoadingIcon: true,
                 error: "",
             }
         case GET_DETAILED_COURSE_SUCCESS:
             return {
                 ...state,
-                isLoading: false,
+                isLoadingIcon: false,
                 detailedCourse: action.payload,
                 error: "",
             }
         case GET_DETAILED_COURSE_FAIL:
             return {
                 ...state,
-                isLoading: false,
+                isLoadingIcon: false,
                 error: action.payload,
             }
         // ADD TAG TO COURSE
