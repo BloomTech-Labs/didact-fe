@@ -12,6 +12,8 @@ import MarkImage from '../../images/team/mark.png'
 
 // Icons
 import { FaDribbble, FaGithub } from 'react-icons/fa';
+//Material UI Icons
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 
 const About = ({props}) => {
 console.log(props)
@@ -33,7 +35,7 @@ console.log(props)
         <div>
             <div style={{display: 'flex', justifyContent: 'space-between', margin: '-10px 0 10px 0', borderBottom: '1px solid black'}}>
                 <p style={{fontWeight: 'bold', marginLeft: '10px'}}>About</p>
-                <p onClick = {handleBack} style={{cursor: 'pointer'}}>{`<${" "} Back To Dashboard`}</p>
+                <p onClick = {handleBack} style={{cursor: 'pointer', display: 'flex', flexDirection:'row', alignItems: 'center'}}><ChevronLeftIcon style={{fontSize: '1.6rem'}}/>{`${" "} Back To Dashboard`}</p>
             </div>
             <ContentDiv>
                 <div style={{margin: '-10px 0 60px 20px', maxWidth: "620px", width: "100%", fontSize: "1.6rem"}}>

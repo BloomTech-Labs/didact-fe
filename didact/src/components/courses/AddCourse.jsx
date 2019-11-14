@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
 import { addCourse } from '../../store/actions';
 import { useDispatch } from "react-redux";
+import { Mixpanel } from '../../utils/mixpanel';
 
+//Material UI Imports
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import { Mixpanel } from '../../utils/mixpanel';
+//Material UI Icons
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+
+//Styled Component Imports
 import { DidactField, DidactInput, DidactLabel, DidactTextArea, FormTitle } from '../dashboard/FormStyles'
 import { DidactButton } from '../dashboard/ButtonStyles'
 
@@ -19,6 +24,12 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexWrap: 'wrap',
   },
+  span: {
+    cursor: 'pointer',
+    "&:hover":{
+      color: 'white'
+    }
+  }
 }));
 
 export default function AddCourse({ props }) {
@@ -33,6 +44,11 @@ export default function AddCourse({ props }) {
     description: "",
   });
 
+  const handleBack = () => {
+    props.history.push('/courses')
+    
+}  
+
   const handleChange = name => event => {
     setValues({ ...values, [name]: event.target.value });
   };
@@ -44,6 +60,10 @@ export default function AddCourse({ props }) {
   }
 
   return (
+    <>
+    <div style={{display: 'flex', justifyContent: 'space-between', margin: '-10px 10px 10px 10px', borderBottom: '1px solid black'}}>
+        <p style={{fontWeight: 'bold', marginLeft: '10px', display: 'flex', flexDirection:'row', alignItems: 'center'}}><span className={classes.span} onClick = {handleBack}>Courses</span><ChevronRightIcon style={{fontSize: '1.6rem'}}/><span>Add New Course</span></p>
+    </div>
     <Card className={classes.card}>
       <CardContent>
         <form onSubmit={handleSubmit} className={classes.container} noValidate autoComplete="off">
@@ -72,5 +92,6 @@ export default function AddCourse({ props }) {
         </form>
       </CardContent>
     </Card>
+    </>
   );
 }
