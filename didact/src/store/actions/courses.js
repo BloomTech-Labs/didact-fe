@@ -41,7 +41,7 @@ export const courseEndPoint =() => dispatch => {
         dispatch({type: COURSE_DATA_SUCCESS, payload: res.data})
     })
     .catch(err => {
-        dispatch({type: COURSE_DATA_FAIL, payload: err})
+        dispatch({type: COURSE_DATA_FAIL, payload: err.response})
     })
 }
 

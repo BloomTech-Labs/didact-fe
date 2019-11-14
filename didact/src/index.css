@@ -42,7 +42,7 @@ h6 {
 }
 
 p, input, textarea, label {
- 
+  font-family: 'Open Sans', sans-serif;
   font-size: 1.4rem;
 }
 

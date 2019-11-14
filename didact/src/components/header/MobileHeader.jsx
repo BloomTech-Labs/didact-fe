@@ -97,7 +97,8 @@ const MobileHeaderComponent = (props) => {
                         <DashboardIcon style={{ fontSize: "28px" }}/>
                     </Button> */}
                     <Link to='/about' style={{color: "white", textDecoration: "none"}}><p style={{margin: '0 5px'}}>About</p></Link>
-                    <p style={{margin: '0 5px'}}>Contact</p>
+                    <Link to='/contact' style={{color: "white", textDecoration: "none"}}><p style={{margin: '0 5px'}}>Contact</p></Link>
+                    {/* <p style={{margin: '0 5px'}}>Contact</p> */}
                 </div>}
             </Toolbar>
         </AppBar>
