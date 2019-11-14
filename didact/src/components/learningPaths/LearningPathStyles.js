@@ -42,6 +42,12 @@ export const LearningPathWrapper = styled.div`
         width: 100%;
         text-align: left;
 
+
+        @media (max-width: 600px) {
+            margin: auto;
+            width: 100%;
+            }
+
         .upcomingCards {
             width: 100%;
             display: flex;
@@ -49,10 +55,17 @@ export const LearningPathWrapper = styled.div`
             flex-wrap: wrap;
 
             .long:last-child {
-                
+
                 .learningPathCard {
                     width: 826px;
                     height: 100%;
+
+                    @media (max-width: 600px) {
+                        max-width: 826px;
+                        width: 100%;
+                        margin: auto;
+                    }
+                   
                 }
             }
         }

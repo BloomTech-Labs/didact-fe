@@ -54,9 +54,9 @@ console.log(props)
                     <Card>
                         {person.img}
                         <PersonInfo>
-                            <div style={{fontFamily: "ITC Grouch"}}>
-                                <p style={{color: "white", fontSize: "20px", marginTop: "5px", fontWeight: 'bolder'}}>{person.name}</p>
-                                <p style={{color: "white", marginTop: "-20px"}}>{person.area}</p>
+                            <div >
+                                <p style={{fontFamily: 'ITC Grouch', color: "white", fontSize: "20px", marginTop: "5px", fontWeight: 'bolder'}}>{person.name}</p>
+                                <p style={{fontFamily: 'ITC Grouch', color: "white", marginTop: "-20px"}}>{person.area}</p>
                             </div>
                             <a style ={{color: "white"}} href={person.link}>{person.icon}</a>
                         </PersonInfo>

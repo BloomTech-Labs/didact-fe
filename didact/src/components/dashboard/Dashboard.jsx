@@ -16,6 +16,7 @@ const useStyles = makeStyles({
  
   current: {
     width: props => (props.mediumScreenSize)  ? '540px' : (props.phoneSize) ? "100%" : "400px",
+    // maxWidth: props => (props.phoneSize) ? "400px" : "540px",
 
   },
   container: {

@@ -79,7 +79,7 @@ const LearningPath = ({ id }) => {
                     <h2>{firstItemCourse.name}</h2>
                     {!firstItemCourse.path_id ?
                         (<div style={{display:'flex', justifyContent: 'space-between', width: '80%'}}>
-                            <div style={{display:'flex', flexDirection:'column', textAlign: "left"}}>
+                            <div style={{display:'flex', flexDirection:'column', textAlign: "left", margin: "10px 0 -10px 0"}}>
                             <span>Progress</span>
                             <span>{`${(firstItemCourse) ? (progressPecentage) : 0} %`}</span>
                             </div> 
@@ -104,7 +104,7 @@ const LearningPath = ({ id }) => {
                                                 <h2>{itemCourse.name}</h2>
                                                 {!itemCourse.path_id ? 
                                                 (<div style={{display:'flex', justifyContent: 'space-between', width: '80%'}}>
-                                                    <div style={{display:'flex', flexDirection:'column', textAlign: "left"}}>
+                                                    <div style={{display:'flex', flexDirection:'column', textAlign: "left", margin: "10px 0 -10px 0"}}>
                                                     <span>Progress</span>
                                                     <span>{`${(itemCourse) ? (((itemCourse.completed / itemCourse.total) * 100).toString().substring(0, 4)) : 0} %`}</span>
                                                     </div> 
@@ -134,7 +134,7 @@ const LearningPath = ({ id }) => {
                                             <div>
                                                 <h2>{itemCourse.name}</h2>
                                                 <div style={{display:'flex', justifyContent: 'space-between', width: '80%'}}>
-                                                    <div style={{display:'flex', flexDirection:'column', textAlign: "left"}}>
+                                                    <div style={{display:'flex', flexDirection:'column', textAlign: "left", margin: "10px 0 -10px 0"}}>
                                                     <span>Progress</span>
                                                     <span>{`100%`}</span>
                                                     </div> 
