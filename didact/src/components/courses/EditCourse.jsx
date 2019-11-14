@@ -5,6 +5,7 @@ import Tags from './Tags'
 import AddSection from './AddSection'
 import Sections from './Sections'
 
+//Material UI Imports
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import Card from '@material-ui/core/Card';

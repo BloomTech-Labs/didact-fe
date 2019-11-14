@@ -5,8 +5,24 @@ import { Link } from "react-router-dom";
 
 import { LearningPathWrapper } from './LearningPathStyles'
 
-const LearningPath = ({ id }) => {
+//Material UI Imports
+import { makeStyles,} from '@material-ui/core/styles';
+//Material UI Icons
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 
+const useStyles = makeStyles(theme => ({
+   
+    span: {
+      cursor: 'pointer',
+      "&:hover":{
+        color: 'white'
+      }
+    }
+  }));
+
+const LearningPath = ({ id, props }) => {
+    const classes = useStyles();
     const dispatch = useDispatch();
     const state = useSelector(state => state);
     const learningPath = state.learningPathReducer.learningPath;
@@ -50,21 +66,23 @@ const LearningPath = ({ id }) => {
     const progress = firstItemCourse && ((firstItemCourse.completed / firstItemCourse.total) * 100).toString()
     const progressPecentage = progress && Number(progress.substring(0, 4))
    
-
-    console.log(completionItemsCourses)
-    console.log('leanring apth', learningPath)
-    console.log('completion', learningPathCompletion)
+    const handleBack = () => {
+       props.history.push('/learning-paths')
+    }  
     
+    console.log(learningPath)
 
     return (
-        <LearningPathWrapper>
-            <div className='breadcrumb'>
-                <div className='breadcrumbTitle'>
-                    <p>{`Learning Paths > ${learningPathCompletion.name}`}</p>
-                    <Link to='/learning-paths'>{`< Back to Paths`}</Link>
-                </div>
-                <span></span>
+        <>
+        <div style={{display: 'flex', justifyContent: 'space-between', margin: '-10px 10px 10px 10px', borderBottom: '1px solid black'}}>
+                <p style={{fontWeight: 'bold', marginLeft: '10px', display: 'flex', flexDirection:'row', alignItems: 'center'}}><span className={classes.span}  onClick = {handleBack}>Learning Paths</span><ChevronRightIcon style={{fontSize: '1.6rem'}}/><span>{learningPath.name ? learningPath.name.substring(0, 20) : "Loading"}...</span></p>
+                {/* {!props.phoneSize ? (
+                    <p className={classes.span} style={{fontWeight: 'bold', display: 'flex', flexDirection:'row', alignItems: 'center'}} onClick = {handleBack}><ChevronLeftIcon style={{fontSize: '1.6rem'}}/>Back to Path</p>
+                ) : (
+                    <p className={classes.span} style={{fontWeight: 'bold', display: 'flex', flexDirection:'row', alignItems: 'center'}} onClick = {handleBack}><ChevronLeftIcon style={{fontSize: '2rem'}}/>Back</p>
+                )} */}
             </div>
+        <LearningPathWrapper>
             {firstItemCourse && <div className={'learningPathCourseWrappers current' + (firstItemCourse.path_id ? ' item' : '' + ((upcomingItemsCourses.length % 3 !== 0) || (upcomingItemsCourses.length === 1) ? ' long' : ''))}>
                 <div className='currentTitle'>
                     <h3>Current</h3>
@@ -154,6 +172,7 @@ const LearningPath = ({ id }) => {
                 </div>
             </div>
         </LearningPathWrapper>
+        </>
     )
 }
 
