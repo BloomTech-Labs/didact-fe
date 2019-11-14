@@ -11,6 +11,9 @@ import TextField from '@material-ui/core/TextField';
 import { DidactField, DidactInput, DidactLabel, DidactTextArea } from '../../dashboard/FormStyles'
 import { DidactButton } from "../../dashboard/ButtonStyles";
 
+//Material UI Icons
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+
 const useStyles = makeStyles(theme => ({
 
   button: {
@@ -34,6 +37,12 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexWrap: 'wrap',
   },
+  span: {
+    cursor: 'pointer',
+    "&:hover":{
+      color: 'white'
+    }
+  }
   
 }));
 
@@ -57,8 +66,21 @@ const AddPathItems = ({ props }) => {
     event.preventDefault();
     dispatch(postPathItem(props.match.params.id, values, props.history));
   }
+  
+  const handleBack = () => {
+       props.history.push('/learning-paths') 
+  } 
+
+  const backToLearningPath = () => {
+    props.history.push(`/learning-paths/${props.match.params.id}/edit`);
+  };
+
 
   return (
+    <>
+    <div style={{display: 'flex', justifyContent: 'space-between', margin: '-10px 10px 10px 10px', borderBottom: '1px solid black'}}>
+          <p style={{fontWeight: 'bold', marginLeft: '10px', display: 'flex', flexDirection:'row', alignItems: 'center'}}><span className={classes.span}  onClick={handleBack}>Learning Paths</span><ChevronRightIcon style={{fontSize: '1.6rem'}}/><span className={classes.span}  onClick={backToLearningPath}>Edit</span><ChevronRightIcon style={{fontSize: '1.6rem'}}/><span>Add Path Item</span></p>
+    </div>
     <Card className={classes.card}>
       <CardContent>
         <p className={classes.title} gutterBottom>
@@ -85,6 +107,7 @@ const AddPathItems = ({ props }) => {
         </form>
       </CardContent>
     </Card>
+    </>
   );
 }
 
