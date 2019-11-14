@@ -47,6 +47,9 @@ const LearningPath = ({ id }) => {
             upcomingItemsCourses.push(el)
         }
     })
+    const progress = firstItemCourse && ((firstItemCourse.completed / firstItemCourse.total) * 100).toString()
+    const progressPecentage = progress && Number(progress.substring(0, 4))
+   
 
     console.log(completionItemsCourses)
     console.log('leanring apth', learningPath)
@@ -74,6 +77,13 @@ const LearningPath = ({ id }) => {
                 </div>
                 <div className='learningPathCard'>
                     <h2>{firstItemCourse.name}</h2>
+                    {!firstItemCourse.path_id ?
+                        (<div style={{display:'flex', justifyContent: 'space-between', width: '80%'}}>
+                            <div style={{display:'flex', flexDirection:'column', textAlign: "left"}}>
+                            <span>Progress</span>
+                            <span>{`${(firstItemCourse) ? (progressPecentage) : 0} %`}</span>
+                            </div> 
+                        </div>): null} 
                     <p>{firstItemCourse.description}</p>
                     <div className='goToCourse'>
                         <h4>Udemy</h4>
@@ -92,6 +102,13 @@ const LearningPath = ({ id }) => {
                                         <div className='learningPathCard'>
                                             <div>
                                                 <h2>{itemCourse.name}</h2>
+                                                {!itemCourse.path_id ? 
+                                                (<div style={{display:'flex', justifyContent: 'space-between', width: '80%'}}>
+                                                    <div style={{display:'flex', flexDirection:'column', textAlign: "left"}}>
+                                                    <span>Progress</span>
+                                                    <span>{`${(itemCourse) ? (((itemCourse.completed / itemCourse.total) * 100).toString().substring(0, 4)) : 0} %`}</span>
+                                                    </div> 
+                                                </div>) : null}
                                                 <p>{itemCourse.description}</p>
                                             </div>
                                             <div className='goToCourse'>
@@ -116,6 +133,12 @@ const LearningPath = ({ id }) => {
                                         <div className='learningPathCard completed'>
                                             <div>
                                                 <h2>{itemCourse.name}</h2>
+                                                <div style={{display:'flex', justifyContent: 'space-between', width: '80%'}}>
+                                                    <div style={{display:'flex', flexDirection:'column', textAlign: "left"}}>
+                                                    <span>Progress</span>
+                                                    <span>{`100%`}</span>
+                                                    </div> 
+                                                </div>
                                                 <p>{itemCourse.description}</p>
                                             </div>
                                             <div className='goToCourse'>

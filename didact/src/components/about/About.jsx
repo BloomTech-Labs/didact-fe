@@ -9,6 +9,7 @@ import AndrewImage from '../../images/team/andrew.png'
 import ToddImage from '../../images/team/todd.png'
 import JonImage from '../../images/team/jon.png'
 import MarkImage from '../../images/team/mark.png'
+import BenImage from '../../images/team/ben.png'
 
 // Icons
 import { FaDribbble, FaGithub } from 'react-icons/fa';
@@ -28,7 +29,7 @@ console.log(props)
         {name: 'Eli Sacks', img: <PersonImage alt="" src={EliImage}/>, area: "Development", icon: <FaGithub style ={{width: '25px', height: "25", color: "white", marginBottom: '10px'}}/>, link: "https://github.com/Bastlifa"},
         {name: 'Todd McKenzie', img: <PersonImage alt="" src={ToddImage}/>, area: "Team Lead/ Development", icon: <FaGithub style ={{width: '25px', height: "25", color: "white", marginBottom: '10px'}}/>, link: "http://www.github.com/toddmckenzie"},
         {name: 'Seth Nadu', img: <PersonImage alt="" src={SethImage}/>, area: "Development", icon: <FaGithub style ={{width: '25px', height: "25", color: "white", marginBottom: '10px'}}/>, link: "https://github.com/sethnadu"},
-        {name: 'Ben Allen', img: <PersonImage alt="" src={AndrewImage}/>, area: "Development", icon: <FaGithub style ={{width: '25px', height: "25", color: "white", marginBottom: '10px'}}/>, link: "https://github.com/allenben746"},
+        {name: 'Ben Allen', img: <PersonImage alt="" src={BenImage}/>, area: "Development", icon: <FaGithub style ={{width: '25px', height: "25", color: "white", marginBottom: '10px'}}/>, link: "https://github.com/allenben746"},
     ]
 
     return (

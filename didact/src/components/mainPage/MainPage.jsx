@@ -20,7 +20,7 @@ import Profile from '../profile/Profile'
 
 const useStyles = makeStyles(theme => ({
     root: {
-        backgroundColor: "lightgray",
+        backgroundColor: "#EBE8E1",
     },
     content: {
         flexGrow: 1,

@@ -176,8 +176,8 @@ const EditCourse = ({ props, id }) => {
             <>
                 {/* <FinishEdit style={{ fontSize: '1.4rem' }} onClick={backToCourse}>{(props.match.params.pathId ? `<- BACK TO PATH` : `<- BACK TO COURSE`)}</FinishEdit> */}
                 <div style={{display: 'flex', justifyContent: 'space-between', margin: '-10px 10px 10px 10px', borderBottom: '1px solid black'}}>
-                <p style={{fontWeight: 'bold', marginLeft: '10px', display: 'flex', flexDirection:'row', alignItems: 'center'}}><span className={classes.span}  onClick={handleBack}>Courses</span><ChevronRightIcon style={{fontSize: '1.6rem'}}/><span className={classes.span} onClick={backToCourse}>{course.name && course.name.substring(0, 15)}...</span><ChevronRightIcon style={{fontSize: '1.6rem'}}/><span>Edit</span></p>
-                </div>
+                <p style={{fontWeight: 'bold', marginLeft: '10px', display: 'flex', flexDirection:'row', alignItems: 'center'}}><span className={classes.span}  onClick={handleBack}>Courses</span><ChevronRightIcon style={{fontSize: '1.6rem'}}/><span className={classes.span}  onClick={backToCourse}>{course.name && course.name.substring(0, 15)}...</span><ChevronRightIcon style={{fontSize: '1.6rem'}}/><span>Edit</span></p>
+            </div>
                 <div className={classes.root}>
                     {!courseEdit ?
                         (<Card className={classes.card} style={{ background: '#386581', color: 'white' }}>

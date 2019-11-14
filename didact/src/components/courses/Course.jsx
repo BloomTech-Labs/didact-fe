@@ -101,13 +101,11 @@ const Course = ({ course, addingCourses }) => {
     const dispatch = useDispatch();
     const learningPaths = state.learningPathReducer.yourLearningPathsOwned
     const detailedCourse = state.coursesReducer.detailedCourse
-    const singleCourseInfo = detailedCourse.course
     const filteredPaths = []
     const [expanded, setExpanded] = useState(false);
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
     const id = open ? 'simple-popover' : undefined;
- 
 
     useEffect(() => {
         dispatch(courseEndPoint());
@@ -117,25 +115,6 @@ const Course = ({ course, addingCourses }) => {
         dispatch(getYourLearningPathsOwned())
     }, [dispatch, state.learningPathReducer.learningPath]);
 
-// Get Sections and Progress
-//     useEffect(() => {
-//             dispatch(getDetailedCourse(course.id))
-//         }, [course.id])
-
-//    const progress = detailedCourse.course && ((detailedCourse.course.completed / detailedCourse.course.total) * 100).toString()
-//    const progressThree = progress && Number(progress.substring(0, 4))
-//    console.log(progressThree)
-
-   //LESSONS
-    // const [lessonCount, setLessonCount] = useState(0) 
-    // useEffect(() => {
-    //     detailedCourse.sections && detailedCourse.sections.map(el => {
-    //     setLessonCount(Number(lessonCount) + Number(el.details.length))
-        
-    // })
-    // }, [detailedCourse.sections])
-    
-    // console.log(lessonCount)
 
     const handleExpandClick = () => {
         setExpanded(!expanded);
@@ -221,7 +200,7 @@ const Course = ({ course, addingCourses }) => {
                         </div>
                     </h3>
                     <CardActions className={classes.descriptionDiv} style = {{color: "white"}} disableSpacing>
-                        <div style={{display:'flex', justifyContent: 'space-between', width: '80%'}}>
+                        {/* <div style={{display:'flex', justifyContent: 'space-between', width: '80%'}}> */}
                             {/* <div style={{display:'flex', flexDirection:'column', textAlign: "left"}}>
                             <span>Sections</span>
                             <span>{((detailedCourse.sections && detailedCourse.course) && detailedCourse.course.id === course.id) ? detailedCourse.sections.length : 0}</span>
@@ -230,7 +209,7 @@ const Course = ({ course, addingCourses }) => {
                             <span>Progress</span>
                             <span>{`${(detailedCourse.course && detailedCourse.course.id === course.id) ? (progressThree) : 0} %`}</span>
                             </div> */}
-                        </div>
+                        {/* </div> */}
                         <p style={{textAlign:'left', marginLeft: '15px'}}>{course.description && !expanded ? (`${course.description.substring(0, 150)} ...`) : null}</p>
                         <IconButton
                             className={clsx(classes.expand, {

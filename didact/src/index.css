@@ -1,5 +1,5 @@
 html {
-  background-color: #D3D3D3;
+  background-color: #EBE8E1;
   /* overflow-y: auto !important; */
   font-size: 62.5%;
   margin-left: calc(100vw - 100%);
@@ -111,7 +111,7 @@ p {
 
 
 #root {
-  background-color: #D3D3D3;
+  background-color: #EBE8E1;
 }
 
 body {
@@ -120,7 +120,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   padding-right: 0 !important;
-  background-color: #D3D3D3;
+  background-color: #EBE8E1;
   overflow-x: hidden;
   overflow-anchor:  none;
 }
