@@ -65,6 +65,9 @@ const SideList = ({ props }) => {
         props.props.history.push('/login')
     }
 
+    const firstName = userName.first_name ? userName.first_name.substring(0, 1).toUpperCase() + userName.first_name.substring(1) : null;
+    const lastName = userName.last_name ? userName.last_name.substring(0, 1).toUpperCase() + userName.last_name.substring(1) : null;
+
     return (
         <SideListWrapper>
             <ul className = {classes.list}>
@@ -112,7 +115,7 @@ const SideList = ({ props }) => {
 
             <div className='profileSection'>
                 {userName.photo ? <img src={userName.photo} alt = "Profile" className={classes.iconImageProfile} /> : <PermIdentityIcon  className={classes.iconImageProfile} />}
-                <p>{userName.first_name + ' ' + userName.last_name}</p>
+                <p>{firstName + ' ' + lastName}</p>
                 <p onClick={handleLogOut} className='logout'>Log Out</p>
             </div>
 

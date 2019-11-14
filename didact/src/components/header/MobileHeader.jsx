@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import { Link } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles'
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -95,7 +96,7 @@ const MobileHeaderComponent = (props) => {
                     {/* <Button onClick={() => props.props.history.push('/')} className={classes.iconToolBar} color="inherit">
                         <DashboardIcon style={{ fontSize: "28px" }}/>
                     </Button> */}
-                    <p style={{margin: '0 5px'}}>About</p>
+                    <Link to='/about' style={{color: "white", textDecoration: "none"}}><p style={{margin: '0 5px'}}>About</p></Link>
                     <p style={{margin: '0 5px'}}>Contact</p>
                 </div>}
             </Toolbar>

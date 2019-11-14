@@ -7,7 +7,7 @@ export const SideListWrapper = styled.div`
     height: 100%;
 
     .profileSection {
-        width: 213px;
+        width: 235px;
         margin: 0 auto;
         /* padding-top: 17px; */
         /* padding-bottom: 24px; */
@@ -16,8 +16,14 @@ export const SideListWrapper = styled.div`
         display: flex;
         justify-content: space-between;
         align-items: center;
-
+        
+        p {
+            font-weight: bold;
+        }
         p.logout {
+            font-weight: normal;
+            color: #2424246E;
+            font-size: 1.2rem;
 
             &:hover {
                 cursor: pointer;

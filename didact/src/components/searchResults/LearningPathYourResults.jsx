@@ -9,7 +9,7 @@ import { LearningPathsWrapper, LearningPathCard } from '../learningPaths/YourLea
 const AllLearningPaths = ({props, learningPath}) => {
     const dispatch = useDispatch()
     const state = useSelector(state => state)
-    console.log(learningPath)
+    // console.log(learningPath)
     const yourLearningPaths = state.learningPathReducer.yourLearningPaths
 
   

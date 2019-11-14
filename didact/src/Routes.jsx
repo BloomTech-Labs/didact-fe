@@ -74,6 +74,10 @@ const Routes = () => {
             (
                 <MainPage {...routeProps} page={'searchresults'} />
             )} />
+            <Route exact path='/about' render={routeProps =>
+            (
+                <MainPage {...routeProps} page={'about'} />
+            )} />
         </Switch>
     )
 };

@@ -12,7 +12,7 @@ const AllLearningPaths = ({props, learningPath}) => {
     const yourLearningPaths = state.learningPathReducer.yourLearningPaths
 
     const joinPath = (id, order) => {
-        dispatch(joinLearningPath(id, props.props.history, order))
+        dispatch(joinLearningPath(id, props.history, order))
     }
 
     return (

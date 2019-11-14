@@ -17,6 +17,7 @@ const TitleH2 = styled.div `
     font-size: 2.6rem;
     font-weight: bold;
     padding: 10px;
+    font-family: Open sans;
 `
 
 const SearchResults = ({props, results, setValues, values}) => {
@@ -36,14 +37,14 @@ const SearchResults = ({props, results, setValues, values}) => {
 
     const handleBack = () => {
         props.history.push('/')
-        setValues({ ...values, search: "" });
+        setValues({ ...values, search: "" })
         
     }    
     return (
         <div>
             <div style={{display: 'flex', justifyContent: 'space-between', margin: '-10px 10px 10px 10px', borderBottom: '1px solid black'}}>
                 <p style={{fontWeight: 'bold', marginLeft: '10px'}}>Search Results</p>
-                <p onClick = {handleBack} style={{marginRight: '10px', cursor: 'pointer'}}>{`<${" "} Back To Dashboard`}</p>
+                <p onClick = {handleBack} style={{cursor: 'pointer'}}>{`<${" "} Back To Dashboard`}</p>
             </div>
             {results === '' ? null : (
             <>
@@ -71,7 +72,7 @@ const SearchResults = ({props, results, setValues, values}) => {
 
             {/* Courses Results */}
             <div>
-            {results ? (<TitleH2 style={{marginBottom: "-20px"}}>Courses</TitleH2>) : null}
+            {results ? (<TitleH2 style={{marginBottom: "-30px"}}>Courses</TitleH2>) : null}
             {results && courses ? courses.map(keyword => {
             return (
                 (keyword.name.toLowerCase().includes(`${results.toLowerCase()}`)) || 

@@ -6,7 +6,7 @@ export const PageFlex = styled.div`
     /* width: auto; */
 
     .drawer {
-        padding-right: 30px;
+        padding-right: 20px;
     }
 
     .headerMain {

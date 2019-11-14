@@ -161,14 +161,13 @@ const DetailedCourse = (props) => {
                                                                     <a className="lessonTitleName" href={detail.link} target="_blank" rel="noopener noreferrer">{detail.name}</a>
                                                                     <p className="lessonTitleType">{detail.type}</p>
                                                                 </div>
-                                                                                                    {isLoadingIcon ? (
-                                                                <Loader type="Oval" style={{background: "#386581", margin: '0', padding: '0 5px 0 0', width: '20px'}} color="white" height={20} width={20} />)
-                                                                : 
-                                                                (detail.automatically_completed || detail.manually_completed ? 
-                                                                    <CheckCircleIcon onClick={() => handleMarkCompleteLesson(el.section.id, detail.id)} className='completeButton'/>
-                                                                    :
-                                                                    <CheckCircleIcon onClick={() => handleMarkCompleteLesson(el.section.id, detail.id)} className='notCompleteButton'/>)
-                                                                }
+                                                                {isLoadingIcon ? (
+                                                                    <Loader type="Oval" style={{background: "#386581", margin: '0', padding: '0 5px 0 0', width: '20px'}} color="white" height={20} width={20} />)
+                                                                    : 
+                                                                    (detail.automatically_completed || detail.manually_completed ? 
+                                                                        <CheckCircleIcon onClick={() => handleMarkCompleteLesson(el.section.id, detail.id)} className='completeButton'/>
+                                                                        :
+                                                                        <CheckCircleIcon onClick={() => handleMarkCompleteLesson(el.section.id, detail.id)} className='notCompleteButton'/>)}
                                                                 </div>
 
                                                             )
