@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { courseEndPoint } from "../../store/actions/index.js";
+import { courseEndPoint, getDetailedCourse } from "../../store/actions/index.js";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
@@ -46,11 +46,12 @@ const useStyles = makeStyles(theme => ({
   
     card: {
         maxWidth: 540,
+        width: "100%",
         margin: '40px 0 40px 0',
         borderRadius: '15px',
         boxShadow: 'none',
         backgroundColor: '#386581',
-        color: "white"
+        color: "white",
     },
     descriptionDiv: {
         width: "100%",
@@ -95,13 +96,16 @@ const useStyles = makeStyles(theme => ({
 
 
 const Course = ({ course, addingCourses }) => {
+    const state = useSelector(state => state);
     const classes = useStyles();
     const dispatch = useDispatch();
+    const learningPaths = state.learningPathReducer.yourLearningPathsOwned
+    const detailedCourse = state.coursesReducer.detailedCourse
+    const filteredPaths = []
     const [expanded, setExpanded] = useState(false);
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
     const id = open ? 'simple-popover' : undefined;
-    const state = useSelector(state => state);
 
     useEffect(() => {
         dispatch(courseEndPoint());
@@ -111,10 +115,11 @@ const Course = ({ course, addingCourses }) => {
         dispatch(getYourLearningPathsOwned())
     }, [dispatch, state.learningPathReducer.learningPath]);
 
+
     const handleExpandClick = () => {
         setExpanded(!expanded);
     };
-
+    
     const handleClick = event => {
         setAnchorEl(event.currentTarget);
     };
@@ -128,10 +133,6 @@ const Course = ({ course, addingCourses }) => {
         setAnchorEl(null);
     }
 
-    const learningPaths = state.learningPathReducer.yourLearningPathsOwned
-
-    const filteredPaths = []
-
     learningPaths.forEach(path => {
         if (!path.courseIds.includes(course.id)) filteredPaths.push(path)
     })
@@ -142,7 +143,7 @@ const Course = ({ course, addingCourses }) => {
                 <CardContent>
                     <h3 className={classes.title}>
                         <div className='courseTitle'>
-                            <span className={classes.courseTitle}>{course.name}</span>
+                            <span className={classes.courseTitle}>{`${course.name.substring(0, 25)} ...`}</span>
                         </div>
                         {addingCourses && <button className={classes.addCourse} onClick={handleClick}><img src={playlistAdd} alt='Add Course' /></button>}
                         <div>
@@ -199,7 +200,17 @@ const Course = ({ course, addingCourses }) => {
                         </div>
                     </h3>
                     <CardActions className={classes.descriptionDiv} style = {{color: "white"}} disableSpacing>
-                        <p >{course.description && !expanded ? (`${course.description.substring(0, 100)} ...`) : null}</p>
+                        {/* <div style={{display:'flex', justifyContent: 'space-between', width: '80%'}}> */}
+                            {/* <div style={{display:'flex', flexDirection:'column', textAlign: "left"}}>
+                            <span>Sections</span>
+                            <span>{((detailedCourse.sections && detailedCourse.course) && detailedCourse.course.id === course.id) ? detailedCourse.sections.length : 0}</span>
+                            </div>
+                            <div style={{display:'flex', flexDirection:'column', textAlign: "left"}}>
+                            <span>Progress</span>
+                            <span>{`${(detailedCourse.course && detailedCourse.course.id === course.id) ? (progressThree) : 0} %`}</span>
+                            </div> */}
+                        {/* </div> */}
+                        <p style={{textAlign:'left', marginLeft: '15px'}}>{course.description && !expanded ? (`${course.description.substring(0, 150)} ...`) : null}</p>
                         <IconButton
                             className={clsx(classes.expand, {
                                 [classes.expandOpen]: expanded,
@@ -213,14 +224,16 @@ const Course = ({ course, addingCourses }) => {
                     </CardActions>
                     <Collapse in={expanded} timeout="auto" unmountOnExit>
                         <CardContent style = {{padding: 'none'}}>
-                            <p className={classes.title} style = {{color: "white"}}>
+                            <p className={classes.title} style = {{color: "white", textAlign:'left', marginLeft: '15px'}}>
                                 {course.description}
                             </p>
                         </CardContent>
                     </Collapse>
-                    <p className={classes.pos}>{course.foreign_rating}</p>
-                    <p className={classes.pos}>{course.foreign_instructors}</p>
-                    <p className={classes.pos}>{course.category ? (`Category: ${course.category}`) : (null)}</p>
+                    <div style={{display: 'flex', justifyContent: "space-evenly", fontSize: '1.4rem'}}>
+                    <span className={classes.pos}>{course.foreign_rating}</span>
+                    <span className={classes.pos}>{course.foreign_instructors}</span>
+                    </div>
+                    <p>{course.category ? (`Category: ${course.category}`) : (null)}</p>
                 </CardContent>
                 <CardActions className={classes.buttonDiv}>
                     <Link to={`/courses/${course.id}`} ><DidactButton size="small">Go To Course</DidactButton></Link>

@@ -1,19 +1,23 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from "react-redux"
 import { Link } from "react-router-dom";
-
 import { getYourLearningPaths, quitLearningPath, updateYourPathOrder } from '../../store/actions/index'
 
-import { YourLearningPathsWrapper, LearningPathCard, ButtonStyles } from './YourLearningPathsStyles'
-
+//Material UI Imports
 import Modal from '@material-ui/core/Modal';            
 import { makeStyles } from '@material-ui/core/styles';
+//Material UI Icons
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+
+// Styled Component Imports
+import { YourLearningPathsWrapper, LearningPathCard, ButtonStyles } from './YourLearningPathsStyles'
 import { ButtonDiv, DidactButton } from '../dashboard/ButtonStyles'
-import { changePathOrder } from '../../utils/changePathOrder'
 import { DroppableDiv, PathInstructions} from "./DraggableStyles.js";
 
 //imports for react-beautiful-dnd
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import { changePathOrder } from '../../utils/changePathOrder'
+
 
 function getModalStyle() {
     const top = 50;
@@ -44,6 +48,8 @@ const YourLearningPaths = (props) => {
     const state = useSelector(state => state)
     const learningPaths = state.learningPathReducer.yourLearningPaths
 
+    // console.log(learningPaths)
+
     useEffect(_ => {
         dispatch(getYourLearningPaths())
     }, [dispatch])
@@ -60,6 +66,7 @@ const YourLearningPaths = (props) => {
         dispatch(quitLearningPath(currentId));
         setOpenModal(false);
     };
+ 
 
     const handleModalOpen = id => {
         setCurrentId(id)
@@ -92,6 +99,9 @@ const YourLearningPaths = (props) => {
     return (
       
         <div>
+            <div style={{display: 'flex', justifyContent: 'space-between', margin: '-10px 10px 10px 10px', borderBottom: '1px solid black'}}>
+                <p style={{fontWeight: 'bold', marginLeft: '10px', display: 'flex', flexDirection:'row', alignItems: 'center'}}><span>Learning Paths</span><ChevronRightIcon style={{fontSize: '1.6rem'}}/><span>Overview</span></p>
+            </div>
         <PathInstructions>Drag to Change Learning Path Order</PathInstructions>
         <YourLearningPathsWrapper style ={{margin: 'auto'}}>
             <DragDropContext onDragEnd={onDragEnd}>
@@ -101,6 +111,7 @@ const YourLearningPaths = (props) => {
                             <div className='yourLearningPaths'>
                                 {
                                     localState.length > 0 && (localState.map((learningPath, index) => {
+                                        console.log(learningPath)
                                         return (
                                         <Draggable draggableId={`${index}`} index={index} key={index}>
                                         {(provided, snapshot) => (
@@ -112,8 +123,14 @@ const YourLearningPaths = (props) => {
                                                 <div className='title'>
                                                     <h1 style={{ fontWeight: 'bold' }}>{learningPath.name}</h1>
                                                     <div>
+                                                        <div style={{display: 'flex', alignItems: 'center'}}>
                                                         <button><Link to={`/learning-paths/${learningPath.id}`}>Go To Path</Link></button>
-                                                        <button onClick={() => handleModalOpen(learningPath.id)} id={learningPath.id}>Leave Path</button>
+                                                        <div>
+                                                            {/* <p>{learningPath.courses.length}</p> */}
+                                                            <p></p>
+                                                            <p style={{color: 'white', cursor: 'pointer'}} onClick={() => handleModalOpen(learningPath.id)} id={learningPath.id}>Leave Path</p>
+                                                        </div>
+                                                        </div>
                                                         {openModal ? (
                                                             <Modal
                                                                 aria-labelledby="simple-modal-title"

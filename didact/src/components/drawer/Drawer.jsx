@@ -151,11 +151,13 @@ const DrawerComponent = (props) => {
           }),
           width: '65px',
           backgroundColor: "#565554",
+          overflow: 'hidden',
           marginLeft: '20px',
           height: '68px',
           marginTop: "10px",
           position: 'fixed',
           display: 'flex',
+          paddingLeft: '70px',
           justifyContent: 'center',
           alignItems: 'center',
           borderRadius: "19px",
@@ -175,7 +177,7 @@ const DrawerComponent = (props) => {
           :
           (
           <div className={classes.didactDivClosed}>
-            <h2 style={{fontSize: "3.2rem", color: 'white', fontFamily: 'ITC Grouch'}}>D</h2>
+            <h2 style={{fontSize: "3.2rem", color: 'white', fontFamily: 'ITC Grouch'}}>D<span style={{color: "#565554"}}>idact</span></h2>
           </div>
           )}
         <Drawer

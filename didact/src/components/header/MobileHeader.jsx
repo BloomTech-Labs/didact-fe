@@ -81,7 +81,7 @@ const MobileHeaderComponent = (props) => {
             className={classes.appBarMobile}
         >
             <Toolbar>
-                <Typography variant="h5"  style={{ fontFamily: "ITC Grouch", fontSize: "32px" }}>
+                <Typography variant="h5"  style={{ fontFamily: "ITC Grouch", fontSize: "32px", fontWeight: 'bold' }}>
                     Didact
                 </Typography>
                 <div className={search ? classes.searchDiv : classes.searchDivFalse}>
