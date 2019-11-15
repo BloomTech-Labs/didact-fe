@@ -34,8 +34,8 @@ const AllLearningPaths = (props) => {
     const learningPaths = state.learningPathReducer.learningPaths
     const yourLearningPaths = state.learningPathReducer.yourLearningPaths
 
-    const joinPath = (id, order) => {
-        console.log(yourLearningPaths.length)
+    const joinPath = (id, length) => {
+        let order = length + 1;
         console.log('Id', id)
         console.log('Order', order)
         dispatch(joinLearningPath(id, props.props.history, order))
@@ -58,7 +58,7 @@ const AllLearningPaths = (props) => {
                                 <div className='title'> 
                                     <h1>{learningPath.name}</h1>
                                     <div>
-                                        <button onClick={() => joinPath(learningPath.id, yourLearningPaths.length++)} id={learningPath.id}>Join Path</button>
+                                        <button onClick={() => joinPath(learningPath.id, yourLearningPaths.length)} id={learningPath.id}>Join Path</button>
                                     </div>
                                 </div>
                             </LearningPathCard>
