@@ -102,6 +102,13 @@ const YourLearningPaths = (props) => {
             <div style={{display: 'flex', justifyContent: 'space-between', margin: '-10px 10px 10px 10px', borderBottom: '1px solid black'}}>
                 <p style={{fontWeight: 'bold', marginLeft: '10px', display: 'flex', flexDirection:'row', alignItems: 'center'}}><span>Learning Paths</span><ChevronRightIcon style={{fontSize: '1.6rem'}}/><span>Overview</span></p>
             </div>
+            {props.props.mediumScreenSize || props.props.phoneSize ? 
+            (<ButtonStyles style={{display: "flex", justifyContent: 'flex-start'}}>   
+                <div className = "buttons">
+                    <Link style={{ fontSize: '1.4rem' }} to={'/learning-paths/join'}>Join a Learning Path</Link>
+                    <Link style={{ fontSize: '1.4rem' }} to={'/learning-paths/add'}>Create a New Learning Path</Link>
+                </div>
+            </ButtonStyles>) : null}
         <PathInstructions>Drag to Change Learning Path Order</PathInstructions>
         <YourLearningPathsWrapper style ={{margin: 'auto'}}>
             <DragDropContext onDragEnd={onDragEnd}>
@@ -170,13 +177,7 @@ const YourLearningPaths = (props) => {
             </div>) : null}
 
         </YourLearningPathsWrapper>
-        {props.props.mediumScreenSize || props.props.phoneSize ? 
-            (<ButtonStyles style={{display: "flex", justifyContent: 'flex-start'}}>   
-                <div className = "buttons">
-                    <Link style={{ fontSize: '1.4rem' }} to={'/learning-paths/join'}>Join a Learning Path</Link>
-                    <Link style={{ fontSize: '1.4rem' }} to={'/learning-paths/add'}>Create a New Learning Path</Link>
-                </div>
-            </ButtonStyles>) : null}
+        
         </div>
     )
 }

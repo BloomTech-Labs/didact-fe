@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { courseEndPoint, getYourLearningPaths } from "../../store/actions/index.js";
+import { getYourCourses, getYourLearningPaths } from "../../store/actions/index.js";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { AddButton, ButtonText } from '../dashboard/ButtonStyles';
@@ -65,7 +65,7 @@ function AllCourses(props) {
     const state = useSelector(state => state);
 
     useEffect(() => {
-        dispatch(courseEndPoint());
+        dispatch(getYourCourses());
     }, [dispatch]);
 
     useEffect(() => {
@@ -77,6 +77,7 @@ function AllCourses(props) {
         <div style={{display: 'flex', justifyContent: 'space-between', margin: '-10px 10px 10px 10px', borderBottom: '1px solid black'}}>
                 <p style={{fontWeight: 'bold', marginLeft: '10px', display: 'flex', flexDirection:'row', alignItems: 'center'}}><span>Courses</span><ChevronRightIcon style={{fontSize: '1.6rem'}}/><span>Overview</span></p>
         </div>
+        <h2 style={{margin: '10px', maxWidth: "540px", width: "100%", textAlign: 'left'}}>Your Courses</h2>
         <div className = {tabletSize ? classes.rootTablet : classes.root}>
             {tabletSize ? (
             <div className = {classes.addButtonDivTablet}>
@@ -98,8 +99,8 @@ function AllCourses(props) {
                 </Link>
             </div>) : (null) }
             <div>
-                {state.coursesReducer.courses
-                    ? state.coursesReducer.courses.map((course, i) => (
+                {state.coursesReducer.yourCourses
+                    ? state.coursesReducer.yourCourses.map((course, i) => (
                         <YourCourse key={i} course={course} addingCourses={addingCourses}/>
                     ))
                     : null}

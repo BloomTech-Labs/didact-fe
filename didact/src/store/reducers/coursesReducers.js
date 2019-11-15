@@ -26,7 +26,10 @@ import {
     TOGGLE_COMPLETE_COURSE_FAIL,
     GET_USER_COMPLETION_COURSE_START,
     GET_USER_COMPLETION_COURSE_SUCCESS,
-    GET_USER_COMPLETION_COURSE_FAIL
+    GET_USER_COMPLETION_COURSE_FAIL,
+    YOUR_COURSE_DATA_START,
+    YOUR_COURSE_DATA_SUCCESS,
+    YOUR_COURSE_DATA_FAIL,
 } from '../actions'
 
 const initialState = {
@@ -35,6 +38,7 @@ const initialState = {
     isLoadingIcon: false,
     error: '',
     course: {},
+    yourCourses: [],
     courseCompletion: {},
     detailedCourse: {},
     sections: []
@@ -58,6 +62,26 @@ export const coursesReducer = (state = initialState, action) => {
                 error: ""
         };
         case COURSE_DATA_FAIL:
+            return {
+                ...state,
+                isLoading: false,
+                error: action.payload
+            }; 
+            // GET ALL COURSES
+        case YOUR_COURSE_DATA_START:
+                return {
+                    ...state,
+                    isLoading: true,
+                    error: ''
+                };
+        case YOUR_COURSE_DATA_SUCCESS:
+            return {
+                ...state,
+                yourCourses: action.payload,
+                isLoading: false,
+                error: ""
+        };
+        case YOUR_COURSE_DATA_FAIL:
             return {
                 ...state,
                 isLoading: false,

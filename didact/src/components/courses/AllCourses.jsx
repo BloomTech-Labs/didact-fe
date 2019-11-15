@@ -85,6 +85,7 @@ function AllCourses(props) {
             <p style={{fontWeight: 'bold', marginLeft: '10px', display: 'flex', flexDirection:'row', alignItems: 'center'}}><span className={classes.span}  onClick={() => handleBack()}>Courses</span><ChevronRightIcon style={{fontSize: '1.6rem'}}/><span>All</span></p>
             <p className={classes.span} style={{fontWeight: 'bold', display: 'flex', flexDirection:'row', alignItems: 'center'}} onClick = {handleBack}><ChevronLeftIcon style={{fontSize: '1.6rem'}}/>Your Courses</p>
         </div>
+        <h2 style={{margin: '10px', maxWidth: "540px", width: "100%", textAlign: 'left'}}>All Courses</h2>
         <div className = {tabletSize ? classes.rootTablet : classes.root}>
             <div>
                 {state.coursesReducer.courses

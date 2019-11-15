@@ -30,6 +30,10 @@ export const TOGGLE_COMPLETE_COURSE_FAIL = "TOGGLE_COMPLETE_COURSE_FAIL"
 export const GET_USER_COMPLETION_COURSE_START = "GET_USER_COMPLETION_COURSE_START"
 export const GET_USER_COMPLETION_COURSE_SUCCESS = "GET_USER_COMPLETION_COURSE_SUCCESS"
 export const GET_USER_COMPLETION_COURSE_FAIL = "GET_USER_COMPLETION_COURSE_FAIL"
+export const YOUR_COURSE_DATA_START = "YOUR_COURSE_DATA_START"
+export const YOUR_COURSE_DATA_SUCCESS = "YOUR_COURSE_DATA_SUCCESS"
+export const YOUR_COURSE_DATA_FAIL = "YOUR_COURSE_DATA_FAIL"
+
 
 const baseURL = `${beURL}courses/`
 
@@ -42,6 +46,18 @@ export const courseEndPoint =() => dispatch => {
     })
     .catch(err => {
         dispatch({type: COURSE_DATA_FAIL, payload: err})
+    })
+}
+
+export const getYourCourses =() => dispatch => {
+    dispatch({type: YOUR_COURSE_DATA_START})
+    axiosWithAuth()
+    .get(`${baseURL}/allyours`)
+    .then(res => {
+        dispatch({type: YOUR_COURSE_DATA_SUCCESS, payload: res.data})
+    })
+    .catch(err => {
+        dispatch({type: YOUR_COURSE_DATA_FAIL, payload: err})
     })
 }
 
@@ -65,7 +81,7 @@ export const addCourse =(values, props) => dispatch => {
         dispatch({type: ADD_COURSE_DATA_SUCCESS, payload: {...values, id: res.data} })
         return res.data
     })
-    .then(response => props.match.params.id ? (dispatch(addNewCourseToLearningPath(props, response.id))) : props.history.push(`/courses/${response.id}/edit`))
+    .then(response => props.match.params.id ? (dispatch(addNewCourseToLearningPath(props, response.id))) : props.history.push(`/courses/yours/${response.id}/edit`))
     .catch(err => {
         dispatch({type: ADD_COURSE_DATA_FAIL, payload: err})
     })
