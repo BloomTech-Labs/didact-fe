@@ -19,7 +19,7 @@ const RegisterForm = (props) => {
 
     const state = useSelector(state => state.onboardingReducer)
     const dispatch = useDispatch()
-    const registerError = state.error;
+    const registerError = state.registerError;
 
     if (localStorage.getItem('token')) {
         props.history.push('/')

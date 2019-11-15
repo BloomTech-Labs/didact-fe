@@ -38,7 +38,6 @@ const SearchResults = ({props, results, setValues, values}) => {
     const handleBack = () => {
         props.history.push('/')
         setValues({ ...values, search: "" })
-        
     }    
     return (
         <div>

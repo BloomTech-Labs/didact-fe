@@ -9,6 +9,9 @@ export const REGISTER_FAILURE = 'REGISTER_FAILURE';
 export const VERIFY_START = 'VERIFY_START';
 export const VERIFY_SUCCESS = 'VERIFY_SUCCESS';
 export const VERIFY_FAILURE = 'VERIFY_FAILURE';
+export const SEND_CONTACT_MESSAGE_START = "SEND_CONTACT_MESSAGE_START"
+export const SEND_CONTACT_MESSAGE_SUCCESS = "SEND_CONTACT_MESSAGE_SUCCESS"
+export const SEND_CONTACT_MESSAGE_FAIL = "SEND_CONTACT_MESSAGE_FAIL"
 
 const baseURL = `${beURL}auth/`
 
@@ -16,7 +19,6 @@ const baseURL = `${beURL}auth/`
 
 export const loginAction = (history, form) => dispatch => {
     dispatch({ type: LOGIN_START })
-    console.log('baseURL', baseURL)
     axios
         .post(`${baseURL}login`, form)
         .then(res => {
@@ -48,14 +50,16 @@ export const verifyToken = (history) => dispatch => {
     dispatch({ type: VERIFY_START })
     axios.post(`${baseURL}`, { 'token': token })
         .then(res => {
+            console.log('Success', res)
             dispatch({ type: VERIFY_SUCCESS, payload: res.data })
         })
         .catch( async (err) => 
-            {
-                dispatch({ type: VERIFY_FAILURE, payload: err })
-                await localStorage.removeItem('token')
-                await history.push('/login')
-            })
+        {
+            await localStorage.removeItem('token')
+            console.log('Fail', err)
+            await dispatch({ type: VERIFY_FAILURE, payload: err.response })
+            await history.push('/login')
+        })
 }
 
 export const verifySocial = (props) => dispatch => {
@@ -67,4 +71,19 @@ export const verifySocial = (props) => dispatch => {
         })
         .then(props.history.push('/'))
         .catch(err => dispatch({ type: VERIFY_FAILURE, payload: err }))
+}
+
+export const sendContactMessage = (values) => dispatch =>
+{
+    dispatch({ type: SEND_CONTACT_MESSAGE_START })
+
+    axios.post(`${baseURL}contactmessage`, values)
+        .then(res =>
+        {
+            dispatch({ type: SEND_CONTACT_MESSAGE_SUCCESS })
+        })
+        .catch(err =>
+        {
+            dispatch({ type: SEND_CONTACT_MESSAGE_FAIL })
+        })
 }

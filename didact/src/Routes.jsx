@@ -4,8 +4,9 @@ import FormikLoginForm from "./components/login/Login.jsx";
 import FormikRegisterForm from "./components/register/Register.jsx";
 import Auth from './auth/Auth';
 import MainPage from './components/mainPage/MainPage';
+import PrivateRoute from './utils/PrivateRoute'
 
-const Routes = () => {
+const Routes = (props) => {
 
     return (
         <Switch>
@@ -89,6 +90,10 @@ const Routes = () => {
             <Route exact path='/about' render={routeProps =>
             (
                 <MainPage {...routeProps} page={'about'} />
+            )} />
+            <Route exact path='/contact' render={routeProps =>
+            (
+                <MainPage {...routeProps} page={'contact'} />
             )} />
         </Switch>
     )

@@ -16,6 +16,7 @@ import EditPathItems from '../learningPaths/pathItems/EditPathItems'
 import SearchResults from '../searchResults/SearchResults';
 import About from '../about/About'
 import AllYourCourses from '../courses/AllYourCourses'
+import Contact from '../contact/Contact'
 
 const Content = (props) => {
     
@@ -58,6 +59,8 @@ const Content = (props) => {
                         return <SearchResults props={props} setValues={props.setValues} results={props.results}/>
                     case ('about'):
                         return <About props={props}/>
+                    case ('contact'):
+                        return <Contact props={props}/>
                     default:
                         break;
                 }
