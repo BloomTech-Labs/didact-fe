@@ -44,6 +44,7 @@ export {
     GET_USER_COMPLETION_COURSE_START,
     GET_USER_COMPLETION_COURSE_SUCCESS,
     GET_USER_COMPLETION_COURSE_FAIL,
+    addApiCourse,
     findYoursById,
     toggleCompleteCourse,
     courseEndPoint,

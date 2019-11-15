@@ -12,11 +12,11 @@ export const PageFlex = styled.div`
     .headerMain {
         /* padding-left: 50px; */
         min-width: 826px;
-        /* width : 100%; */
+        width : 100%;
         margin: 0 0 0 15px;
 
         .header {
-            width: 825px;
+            min-width: 825px;
             width: 100%;
             display: flex;
             background: #242424BF;

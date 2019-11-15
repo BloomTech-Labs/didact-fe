@@ -31,9 +31,10 @@ export const GET_USER_COMPLETION_COURSE_START = "GET_USER_COMPLETION_COURSE_STAR
 export const GET_USER_COMPLETION_COURSE_SUCCESS = "GET_USER_COMPLETION_COURSE_SUCCESS"
 export const GET_USER_COMPLETION_COURSE_FAIL = "GET_USER_COMPLETION_COURSE_FAIL"
 
+
 const baseURL = `${beURL}courses/`
 
-export const courseEndPoint =() => dispatch => {
+export const courseEndPoint = () => dispatch => {
     dispatch({type: COURSE_DATA_START})
     axiosWithAuth()
     .get(`${baseURL}`)
@@ -41,11 +42,11 @@ export const courseEndPoint =() => dispatch => {
         dispatch({type: COURSE_DATA_SUCCESS, payload: res.data})
     })
     .catch(err => {
-        dispatch({type: COURSE_DATA_FAIL, payload: err})
+        dispatch({type: COURSE_DATA_FAIL, payload: err.response})
     })
 }
 
-export const getCourseById =(id) => dispatch => {
+export const getCourseById = (id) => dispatch => {
     dispatch({type: SINGLE_COURSE_DATA_START})
     axiosWithAuth()
     .get(`${baseURL}${id}`)
@@ -53,11 +54,11 @@ export const getCourseById =(id) => dispatch => {
         dispatch({type: SINGLE_COURSE_DATA_SUCCESS, payload: res.data})
     })
     .catch(err => {
-        dispatch({type: SINGLE_COURSE_DATA_FAIL, payload: err})
+        dispatch({type: SINGLE_COURSE_DATA_FAIL, payload: err.response})
     })
 }
 
-export const addCourse =(values, props) => dispatch => {
+export const addCourse = (values, props) => dispatch => {
     dispatch({type: ADD_COURSE_DATA_START})
     axiosWithAuth()
     .post(`${baseURL}`, values)
@@ -67,11 +68,26 @@ export const addCourse =(values, props) => dispatch => {
     })
     .then(response => props.match.params.id ? (dispatch(addNewCourseToLearningPath(props, response.id))) : props.history.push(`/courses/${response.id}/edit`))
     .catch(err => {
-        dispatch({type: ADD_COURSE_DATA_FAIL, payload: err})
+        dispatch({type: ADD_COURSE_DATA_FAIL, payload: err.response})
     })
 }
 
-export const editCourse =(id, changes) => dispatch => {
+export const addApiCourse = (values, props) => dispatch => {
+    dispatch({type: ADD_COURSE_DATA_START})
+    axiosWithAuth().post(`${beURL}udemy`, {link: values})
+    .then(res => {
+        console.log(res.data)
+        dispatch({type: ADD_COURSE_DATA_SUCCESS, payload: res.data})
+        return res.data
+    })
+    .then(response => props.match.params.id ? (dispatch(addNewCourseToLearningPath(props, response.id))) : props.history.push(`/courses/${response.id}/edit`))
+    .catch(err => {
+        console.log('error in action', err.response)
+        dispatch({type: ADD_COURSE_DATA_FAIL, payload: err.response})
+    })
+}
+
+export const editCourse = (id, changes) => dispatch => {
     dispatch({type: EDIT_COURSE_DATA_START})
     axiosWithAuth()
     .put(`${baseURL}${id}`, {changes})
@@ -79,12 +95,12 @@ export const editCourse =(id, changes) => dispatch => {
         dispatch({type: EDIT_COURSE_DATA_SUCCESS, payload: changes})
     })
     .catch(err => {
-        dispatch({type: EDIT_COURSE_DATA_FAIL, payload: err})
+        dispatch({type: EDIT_COURSE_DATA_FAIL, payload: err.response})
     })
 }
 
 
-export const deleteCourse =(id, history) => dispatch => {
+export const deleteCourse = (id, history) => dispatch => {
     dispatch({type: DELETE_COURSE_DATA_START})
     axiosWithAuth()
     .delete(`${baseURL}${id}`)
@@ -93,7 +109,7 @@ export const deleteCourse =(id, history) => dispatch => {
     })
     .then(() => history.push('/'))
     .catch(err => {
-        dispatch({type: DELETE_COURSE_DATA_FAIL, payload: err})
+        dispatch({type: DELETE_COURSE_DATA_FAIL, payload: err.response})
     })
 }
 
@@ -107,7 +123,7 @@ export const addTagToCourse = (id, tag) => dispatch =>
             dispatch({ type: ADD_TAG_TO_COURSE_SUCCESS })
         })
     .catch(err => {
-        dispatch({ type: ADD_TAG_TO_COURSE_FAIL, payload: err })
+        dispatch({ type: ADD_TAG_TO_COURSE_FAIL, payload: err.response })
     })
 }
 
@@ -140,11 +156,12 @@ export const getDetailedCourse = (id) => async dispatch =>
             course,
             sections
         }
-    
+        console.log('detailed course: ', detailedCourse)
         await dispatch({ type: GET_DETAILED_COURSE_SUCCESS, payload: detailedCourse })
     }
     catch(err)
     {
+        console.log(err.response)
         dispatch({ type: GET_DETAILED_COURSE_FAIL, payload: err })
     }
 }

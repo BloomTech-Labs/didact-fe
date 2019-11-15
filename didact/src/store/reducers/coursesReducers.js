@@ -26,7 +26,7 @@ import {
     TOGGLE_COMPLETE_COURSE_FAIL,
     GET_USER_COMPLETION_COURSE_START,
     GET_USER_COMPLETION_COURSE_SUCCESS,
-    GET_USER_COMPLETION_COURSE_FAIL
+    GET_USER_COMPLETION_COURSE_FAIL,
 } from '../actions'
 
 const initialState = {
@@ -37,7 +37,8 @@ const initialState = {
     course: {},
     courseCompletion: {},
     detailedCourse: {},
-    sections: []
+    sections: [],
+
 }
 
 export const coursesReducer = (state = initialState, action) => {
@@ -104,7 +105,7 @@ export const coursesReducer = (state = initialState, action) => {
                 ...state,
                 isLoading: false,
                 error: action.payload
-            };
+            }; 
 
         //  EDIT COURSE BY ID 
         case EDIT_COURSE_DATA_START:
