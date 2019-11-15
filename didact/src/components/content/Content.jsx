@@ -2,6 +2,7 @@ import React from 'react'
 
 import Dashboard from '../dashboard/Dashboard'
 import AddCourse from '../courses/AddCourse'
+import YourDetailedCourse from '../courses/yourDetailedCourse/YourDetailedCourse'
 import DetailedCourse from '../courses/DetailedCourse'
 import EditCourse from '../courses/EditCourse'
 import AllCourses from "../courses/AllCourses.jsx"
@@ -14,6 +15,7 @@ import AddPathItems from '../learningPaths/pathItems/AddPathItems'
 import EditPathItems from '../learningPaths/pathItems/EditPathItems'
 import SearchResults from '../searchResults/SearchResults';
 import About from '../about/About'
+import AllYourCourses from '../courses/AllYourCourses'
 import Contact from '../contact/Contact'
 
 const Content = (props) => {
@@ -31,8 +33,12 @@ const Content = (props) => {
                         return <AddCourse props = {props}/>
                     case ('courses'):
                         return <AllCourses props = {props}/>
+                    case ('yourcourses'):
+                        return <AllYourCourses props = {props}/>
                     case ('detailedcourse'):
                         return <DetailedCourse id={props.match.params.id} props = {props}/>
+                    case ('yourdetailedcourse'):
+                        return <YourDetailedCourse id={props.match.params.id} props = {props}/>
                     case ('editcourse'):
                         return <EditCourse id={props.match.params.id} props={props}/>
                     case ('addlearningpath'):

@@ -48,6 +48,11 @@ export {
     GET_USER_COMPLETION_COURSE_START,
     GET_USER_COMPLETION_COURSE_SUCCESS,
     GET_USER_COMPLETION_COURSE_FAIL,
+    YOUR_COURSE_DATA_START,
+    YOUR_COURSE_DATA_SUCCESS,
+    YOUR_COURSE_DATA_FAIL,
+    getYourCourses,
+    addApiCourse,
     findYoursById,
     toggleCompleteCourse,
     courseEndPoint,
@@ -57,6 +62,7 @@ export {
     deleteCourse,
     addTagToCourse,
     getDetailedCourse,
+    getYourDetailedCourse,
 } from './courses'
 
 export {

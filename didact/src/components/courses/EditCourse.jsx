@@ -5,6 +5,7 @@ import Tags from './Tags'
 import AddSection from './AddSection'
 import Sections from './Sections'
 
+//Material UI Imports
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
@@ -146,13 +147,13 @@ const EditCourse = ({ props, id }) => {
         if (props.match.params.pathId) {
             props.history.push(`/learning-paths/${props.match.params.pathId}`)
         } else {
-            props.history.push(`/courses/${props.match.params.id}`)
+            props.history.push(`/courses/yours/${props.match.params.id}`)
         }
 
     }
 
     const handleBack = () => {
-        props.history.push('/courses')
+        props.history.push('/courses/yours')
         
     } 
 
@@ -176,7 +177,7 @@ const EditCourse = ({ props, id }) => {
             <>
                 {/* <FinishEdit style={{ fontSize: '1.4rem' }} onClick={backToCourse}>{(props.match.params.pathId ? `<- BACK TO PATH` : `<- BACK TO COURSE`)}</FinishEdit> */}
                 <div style={{display: 'flex', justifyContent: 'space-between', margin: '-10px 10px 10px 10px', borderBottom: '1px solid black'}}>
-                <p style={{fontWeight: 'bold', marginLeft: '10px', display: 'flex', flexDirection:'row', alignItems: 'center'}}><span className={classes.span}  onClick={handleBack}>Courses</span><ChevronRightIcon style={{fontSize: '1.6rem'}}/><span className={classes.span}  onClick={backToCourse}>{course.name && course.name.substring(0, 15)}...</span><ChevronRightIcon style={{fontSize: '1.6rem'}}/><span>Edit</span></p>
+                <p style={{fontWeight: 'bold', marginLeft: '10px', display: 'flex', flexDirection:'row', alignItems: 'center'}}><span className={classes.span}  onClick={handleBack}>Courses</span><ChevronRightIcon style={{fontSize: '1.6rem'}}/><span className={classes.span}  onClick={backToCourse}>{course.name ? course.name.substring(0, 15) : "Loading"}...</span><ChevronRightIcon style={{fontSize: '1.6rem'}}/><span>Edit</span></p>
             </div>
                 <div className={classes.root}>
                     {!courseEdit ?

@@ -2,9 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { postLearningPath, getYourLearningPaths } from '../../store/actions';
 import { useDispatch, useSelector } from "react-redux";
 
+//Material UI Imports
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
+//Material UI Icons
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+
+//Styled Component Imports
 import { DidactField, DidactInput, DidactLabel, DidactTextArea, FormTitle } from '../dashboard/FormStyles'
 import { DidactButton } from '../dashboard/ButtonStyles'
 
@@ -18,6 +23,12 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexWrap: 'wrap',
   },
+  span: {
+    cursor: 'pointer',
+    "&:hover":{
+      color: 'white'
+    }
+  }
 }));
 
 const AddLearningPaths = ({ props }) => {
@@ -47,7 +58,15 @@ const AddLearningPaths = ({ props }) => {
     dispatch(postLearningPath(values, props.history));
   }
 
+  const handleBack = () => {
+    props.history.push('/courses')
+  }  
+
   return (
+    <>
+     <div style={{display: 'flex', justifyContent: 'space-between', margin: '-10px 10px 10px 10px', borderBottom: '1px solid black'}}>
+        <p style={{fontWeight: 'bold', marginLeft: '10px', display: 'flex', flexDirection:'row', alignItems: 'center'}}><span className={classes.span} onClick = {handleBack}>Learning Paths</span><ChevronRightIcon style={{fontSize: '1.6rem'}}/><span>Add New Path</span></p>
+    </div>
     <Card className={classes.card}>
       <CardContent>
         <form onSubmit={handleSubmit} className={classes.container} noValidate autoComplete="off">
@@ -68,6 +87,7 @@ const AddLearningPaths = ({ props }) => {
         </form>
       </CardContent>
     </Card>
+    </>
   );
 }
 
