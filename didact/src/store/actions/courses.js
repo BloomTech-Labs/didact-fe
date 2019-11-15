@@ -96,7 +96,7 @@ export const addApiCourse = (values, props) => dispatch => {
         dispatch({type: ADD_COURSE_DATA_SUCCESS, payload: res.data})
         return res.data
     })
-    .then(response => props.match.params.id ? (dispatch(addNewCourseToLearningPath(props, response.id))) : props.history.push(`/courses/${response.id}/edit`))
+    .then(response => props.match.params.id ? (dispatch(addNewCourseToLearningPath(props, response.id))) : props.history.push(`/courses/yours/${response.id}/edit`))
     .catch(err => {
         console.log('error in action', err.response)
         dispatch({type: ADD_COURSE_DATA_FAIL, payload: err.response})
