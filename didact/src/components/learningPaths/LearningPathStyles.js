@@ -149,6 +149,27 @@ export const LearningPathWrapper = styled.div`
         .learningPathCard {
             background: #386581;
             width: 100%;
+
+            .currentTitle {
+                display: flex;
+
+                .notCompleteButton {
+                    font-size: 2.2rem;
+                    color: white;
+                    opacity: .6;
+                    cursor: pointer;
+
+                    &:hover {
+                        opacity: 1;
+                    }
+                }
+
+                .completeButton {
+                    font-size: 2.2rem;
+                    color: black;
+                    cursor: pointer;
+                }
+            }
         }
 
         .editLearningButton {
@@ -186,6 +207,10 @@ export const LearningPathWrapper = styled.div`
             background: #D1E2EA;
             color: black;
         }
+    }
+
+    .completed {
+        margin-bottom: 52px;
     }
 
     .learningPathCard {

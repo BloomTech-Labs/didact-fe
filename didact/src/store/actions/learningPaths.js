@@ -297,6 +297,7 @@ export const getYourLearningPaths = (getYours) => dispatch =>
     axiosWithAuth().get(`${baseURL}yours`)
     .then(res =>
     {
+        console.log('Get Your LP', res)
         dispatch({ type: GET_YOUR_LEARNING_PATHS_SUCCESS, payload: res.data })
     })
     .catch(err =>
@@ -401,6 +402,7 @@ export const findForUserId = (learningPathId) => dispatch =>
     axiosWithAuth().get(`${baseURL}${learningPathId}/yours`)
     .then(res =>
     {
+        console.log('Learning Path Completion', res)
         dispatch({ type: GET_YOUR_LEARNING_PATH_COMPLETION_SUCCESS, payload: res.data })
     })
     .catch(err =>
@@ -413,10 +415,14 @@ export const findForUserId = (learningPathId) => dispatch =>
 export const toggleLearningPath = (learningPathId) => dispatch =>
 {
     dispatch({ type: TOGGLE_LEARNING_PATH_START })
-    axiosWithAuth().get(`${baseURL}${learningPathId}/yours`)
+    axiosWithAuth().put(`${baseURL}${learningPathId}/yours`)
     .then(res =>
     {
+        console.log(res)
         dispatch({ type: TOGGLE_LEARNING_PATH_SUCCESS, payload: res.data })
+    })
+    .then(res => {
+        dispatch(getYourLearningPaths())
     })
     .catch(err =>
     {
@@ -428,9 +434,10 @@ export const toggleLearningPath = (learningPathId) => dispatch =>
 export const toggleLearningPathItem = (learningPathId, itemId) => dispatch =>
 {
     dispatch({ type: TOGGLE_LEARNING_PATH_ITEM_START })
-    axiosWithAuth().get(`${baseURL}${learningPathId}/path-items/${itemId}/yours`)
+    axiosWithAuth().put(`${baseURL}${learningPathId}/path-items/${itemId}/yours`)
     .then(res =>
     {
+        console.log(res)
         dispatch({ type: TOGGLE_LEARNING_PATH_ITEM_SUCCESS, payload: res.data })
     })
     .catch(err =>

@@ -16,7 +16,6 @@ const baseURL = `${beURL}auth/`
 
 export const loginAction = (history, form) => dispatch => {
     dispatch({ type: LOGIN_START })
-    console.log('baseURL', baseURL)
     axios
         .post(`${baseURL}login`, form)
         .then(res => {
@@ -48,14 +47,16 @@ export const verifyToken = (history) => dispatch => {
     dispatch({ type: VERIFY_START })
     axios.post(`${baseURL}`, { 'token': token })
         .then(res => {
+            console.log('Success', res)
             dispatch({ type: VERIFY_SUCCESS, payload: res.data })
         })
         .catch( async (err) => 
-            {
-                dispatch({ type: VERIFY_FAILURE, payload: err })
-                await localStorage.removeItem('token')
-                await history.push('/login')
-            })
+        {
+            await localStorage.removeItem('token')
+            console.log('Fail', err)
+            await dispatch({ type: VERIFY_FAILURE, payload: err.response })
+            await history.push('/login')
+        })
 }
 
 export const verifySocial = (props) => dispatch => {

@@ -90,6 +90,10 @@ function MainPage(props) {
         dispatch(verifyToken(props.history))
     }, [token, dispatch, props.history])
 
+    if(!(localStorage.getItem('token'))){
+        props.history.push('/login')
+    }
+
     const handleDrawerOpen = () => {
         setOpen(!open);
     };
@@ -105,8 +109,6 @@ function MainPage(props) {
         props.history.push('/results')
         // setValues('')
     }
-
-    console.log(results)
 
     const handleDrawerOpenMobile = () => event => {
         if (

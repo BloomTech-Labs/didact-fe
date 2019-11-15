@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux";
-import { findForUserId, getLearningPath } from '../../store/actions/index.js'
+import { findForUserId, getLearningPath, toggleCompleteCourse, toggleLearningPath, toggleLearningPathItem } from '../../store/actions/index.js'
 import { Link } from "react-router-dom";
 
 import { LearningPathWrapper } from './LearningPathStyles'
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import Loader from "react-loader-spinner";
 
 //Material UI Imports
 import { makeStyles,} from '@material-ui/core/styles';
@@ -28,6 +30,9 @@ const LearningPath = ({ id, props }) => {
     const learningPath = state.learningPathReducer.learningPath;
     const learningPathCompletion = state.learningPathReducer.learningPathCompletion;
     const [completionItemsCourses, setCompletionItemsCourses] = useState([])
+    const isLoadingIcon = state.coursesReducer.isLoadingIcon
+    const isLoadingCourseToggle = state.coursesReducer.isLoading
+    const isLoadingLearningPathToggle = state.learningPathReducer.isLoading
 
     useEffect(_ => {
         dispatch(getLearningPath(id))
@@ -48,7 +53,7 @@ const LearningPath = ({ id, props }) => {
     const completedItemsCourses = []
 
     completionItemsCourses.forEach((el, index) => {
-        if(el.automatically_completed || el.manually_completed) {
+        if (el.automatically_completed || el.manually_completed) {
             completedItemsCourses.push(el)
         } else {
             notCompletedItemsCourses.push(el)
@@ -59,18 +64,38 @@ const LearningPath = ({ id, props }) => {
     const upcomingItemsCourses = []
 
     notCompletedItemsCourses.forEach((el, index) => {
-        if(!(index === 0)) {
+        if (!(index === 0)) {
             upcomingItemsCourses.push(el)
         }
     })
+
+    const handleMarkCompleteCourse = (courseId) => {
+        
+        dispatch(toggleCompleteCourse(courseId))
+        console.log('Course Toggle')
+        setTimeout(function(){
+            if((!isLoadingCourseToggle) || (state.learningPathReducer.learningPathCompletion === learningPathCompletion)) {
+                dispatch(findForUserId(id))
+            }
+        }, 100)
+    }
+
+    const handleMarkCompleteItem = (itemId) => {
+        dispatch(toggleLearningPathItem(id, itemId))
+        console.log('Item Toggle')
+        setTimeout(function(){
+            if((!isLoadingLearningPathToggle) || (state.learningPathReducer.learningPathCompletion === learningPathCompletion)) {
+                dispatch(findForUserId(id))
+            }
+        }, 100)
+    }
+
     const progress = firstItemCourse && ((firstItemCourse.completed / firstItemCourse.total) * 100).toString()
     const progressPecentage = progress && Number(progress.substring(0, 4))
    
     const handleBack = () => {
        props.history.push('/learning-paths')
-    }  
-    
-    console.log(learningPath)
+    }
 
     return (
         <>
@@ -82,8 +107,8 @@ const LearningPath = ({ id, props }) => {
                     <p className={classes.span} style={{fontWeight: 'bold', display: 'flex', flexDirection:'row', alignItems: 'center'}} onClick = {handleBack}><ChevronLeftIcon style={{fontSize: '2rem'}}/>Back</p>
                 )} */}
             </div>
-        <LearningPathWrapper>
-            {firstItemCourse && <div className={'learningPathCourseWrappers current' + (firstItemCourse.path_id ? ' item' : '' + ((upcomingItemsCourses.length % 3 !== 0) || (upcomingItemsCourses.length === 1) ? ' long' : ''))}>
+
+            {firstItemCourse && <div className={'learningPathCourseWrappers current' + (firstItemCourse.path_id ? ' item' : '' + ((upcomingItemsCourses.length % 2 !== 0) || (upcomingItemsCourses.length === 1) ? ' long' : ''))}>
                 <div className='currentTitle'>
                     <h3>Current</h3>
                     {
@@ -94,7 +119,21 @@ const LearningPath = ({ id, props }) => {
                     }
                 </div>
                 <div className='learningPathCard'>
-                    <h2>{firstItemCourse.name}</h2>
+                    <div className='currentTitle'>
+                        <h2>{firstItemCourse.name}</h2>
+                        {firstItemCourse.path_id && 
+                                    (firstItemCourse.automatically_completed || firstItemCourse.manually_completed ?
+                                        <CheckCircleIcon onClick={() => handleMarkCompleteItem(firstItemCourse.id)} className='completeButton' />
+                                        :
+                                        <CheckCircleIcon onClick={() => handleMarkCompleteItem(firstItemCourse.id)} className='notCompleteButton' />)
+                        }
+                        {!firstItemCourse.path_id &&
+                                (firstItemCourse.automatically_completed || firstItemCourse.manually_completed ?
+                                    <CheckCircleIcon onClick={() => handleMarkCompleteCourse(firstItemCourse.id)} className='completeButton' />
+                                    :
+                                    <CheckCircleIcon onClick={() => handleMarkCompleteCourse(firstItemCourse.id)} className='notCompleteButton' />)
+                        }
+                    </div>
                     {!firstItemCourse.path_id ?
                         (<div style={{display:'flex', justifyContent: 'space-between', width: '80%'}}>
                             <div style={{display:'flex', flexDirection:'column', textAlign: "left", margin: "10px 0 -10px 0"}}>
@@ -110,12 +149,12 @@ const LearningPath = ({ id, props }) => {
                 </div>
             </div>}
             <div className='learningPathCards'>
-                <h3>Upcoming</h3>
-                <div className='upcomingCards'>    
+            {upcomingItemsCourses.length > 0 && <h3>Upcoming</h3>}
+                <div className='upcomingCards'>
                     {
                         upcomingItemsCourses.map((itemCourse, index) => {
                             return (
-                                <div key={index} className={((upcomingItemsCourses.length % 3 === 0) || (upcomingItemsCourses.length === 1) ? 'long' : '')}>
+                                <div key={index} className={((upcomingItemsCourses.length % 2 !== 0) || (upcomingItemsCourses.length === 1) ? 'long' : '')}>
                                     <div className={'learningPathCourseWrappers upcoming' + (itemCourse.path_id ? ' item' : '')} key={index}>
                                         <div className='learningPathCard'>
                                             <div>
@@ -140,17 +179,34 @@ const LearningPath = ({ id, props }) => {
                         })
                     }
                 </div>
-                <h3>Completed</h3>
+                {completedItemsCourses.length > 0 && <h3>Completed</h3>}
                 <div className='completedCards'>
                     {
                         completedItemsCourses.map((itemCourse, index) => {
-                            console.log(completedItemsCourses.length % 3)
                             return (
                                 <div key={index} className={((completedItemsCourses.length % 3 === 0) || (completedItemsCourses.length === 1) ? ' long' : '')}>
                                     <div className={'learningPathCourseWrappers' + (itemCourse.path_id ? ' item' : '')} key={index}>
                                         <div className='learningPathCard completed'>
                                             <div>
                                                 <h2>{itemCourse.name}</h2>
+                                                {
+                                                    itemCourse.path_id &&
+                                                    (
+                                                        (itemCourse.automatically_completed || itemCourse.manually_completed ?
+                                                            <CheckCircleIcon onClick={() => handleMarkCompleteItem(itemCourse.id)} className='completeButton' />
+                                                            :
+                                                            <CheckCircleIcon onClick={() => handleMarkCompleteItem(itemCourse.id)} className='notCompleteButton' />)
+                                                    )
+                                                }
+                                                {
+                                                    !itemCourse.path_id &&
+                                                    (
+                                                        (itemCourse.automatically_completed || itemCourse.manually_completed ?
+                                                            <CheckCircleIcon onClick={() => handleMarkCompleteCourse(itemCourse.id)} className='completeButton' />
+                                                            :
+                                                            <CheckCircleIcon onClick={() => handleMarkCompleteCourse(itemCourse.id)} className='notCompleteButton' />)
+                                                    )
+                                                }
                                                 <div style={{display:'flex', justifyContent: 'space-between', width: '80%'}}>
                                                     <div style={{display:'flex', flexDirection:'column', textAlign: "left", margin: "10px 0 -10px 0"}}>
                                                     <span>Progress</span>
