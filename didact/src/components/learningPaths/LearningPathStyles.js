@@ -42,17 +42,36 @@ export const LearningPathWrapper = styled.div`
         width: 100%;
         text-align: left;
 
+        @media (max-width: 600px) {
+            width: 90;
+            margin: auto;
+            display: flex;
+            justify-content: space-evenly;
+        }
+
         .upcomingCards {
             width: 100%;
             display: flex;
             justify-content: space-between;
             flex-wrap: wrap;
 
+            @media (max-width: 600px) {
+                        width: 100%;
+                    }
+
+
             .long:last-child {
-                
+
                 .learningPathCard {
                     width: 826px;
                     height: 100%;
+
+                    @media (max-width: 600px) {
+                    width: 100%;
+                    margin: auto;
+                }
+
+        
                 }
             }
         }
@@ -63,11 +82,24 @@ export const LearningPathWrapper = styled.div`
             justify-content: space-between;
             flex-wrap: wrap;
 
+            @media (max-width: 600px) {
+                    width: 100%;
+                   
+                }
+
+            
             .long:last-child {
                 
                 .learningPathCard {
                     width: 826px;
                     height: 100%;
+
+                    @media (max-width: 600px) {
+                    width: 100%;
+                    max-width: 826px;
+                  
+                }
+
                 }
             }
         }
@@ -79,12 +111,19 @@ export const LearningPathWrapper = styled.div`
 
     .learningPathCourseWrappers {
         text-align: left;
+        
 
         .completed {
             background: #D1E2EA;
             opacity: 0.5;
             width: 395px;
             color: black;
+
+            @media (max-width: 600px) {
+                    width: 100%;
+                    min-width: 320px;
+                    margin-top: 10px;
+                }
         }
         
         a {
@@ -149,6 +188,11 @@ export const LearningPathWrapper = styled.div`
     .upcoming {
         width: 395px;
         margin-bottom: 52px;
+
+        @media (max-width: 600px) {
+                    width: 100%;
+                    margin: auto;
+                }
 
             .learningPathCard {
             background: #ADC8D9;

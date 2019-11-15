@@ -7,8 +7,24 @@ import { LearningPathWrapper } from './LearningPathStyles'
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import Loader from "react-loader-spinner";
 
-const LearningPath = ({ id }) => {
+//Material UI Imports
+import { makeStyles,} from '@material-ui/core/styles';
+//Material UI Icons
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 
+const useStyles = makeStyles(theme => ({
+   
+    span: {
+      cursor: 'pointer',
+      "&:hover":{
+        color: 'white'
+      }
+    }
+  }));
+
+const LearningPath = ({ id, props }) => {
+    const classes = useStyles();
     const dispatch = useDispatch();
     const state = useSelector(state => state);
     const learningPath = state.learningPathReducer.learningPath;
@@ -74,16 +90,24 @@ const LearningPath = ({ id }) => {
         }, 100)
     }
 
+    const progress = firstItemCourse && ((firstItemCourse.completed / firstItemCourse.total) * 100).toString()
+    const progressPecentage = progress && Number(progress.substring(0, 4))
+   
+    const handleBack = () => {
+       props.history.push('/learning-paths')
+    }
 
     return (
-        <LearningPathWrapper>
-            <div className='breadcrumb'>
-                <div className='breadcrumbTitle'>
-                    <p>{`Learning Paths > ${learningPathCompletion.name}`}</p>
-                    <Link to='/learning-paths'>{`< Back to Paths`}</Link>
-                </div>
-                <span></span>
+        <>
+        <div style={{display: 'flex', justifyContent: 'space-between', margin: '-10px 10px 10px 10px', borderBottom: '1px solid black'}}>
+                <p style={{fontWeight: 'bold', marginLeft: '10px', display: 'flex', flexDirection:'row', alignItems: 'center'}}><span className={classes.span}  onClick = {handleBack}>Learning Paths</span><ChevronRightIcon style={{fontSize: '1.6rem'}}/><span>{learningPath.name ? learningPath.name.substring(0, 20) : "Loading"}...</span></p>
+                {/* {!props.phoneSize ? (
+                    <p className={classes.span} style={{fontWeight: 'bold', display: 'flex', flexDirection:'row', alignItems: 'center'}} onClick = {handleBack}><ChevronLeftIcon style={{fontSize: '1.6rem'}}/>Back to Path</p>
+                ) : (
+                    <p className={classes.span} style={{fontWeight: 'bold', display: 'flex', flexDirection:'row', alignItems: 'center'}} onClick = {handleBack}><ChevronLeftIcon style={{fontSize: '2rem'}}/>Back</p>
+                )} */}
             </div>
+
             {firstItemCourse && <div className={'learningPathCourseWrappers current' + (firstItemCourse.path_id ? ' item' : '' + ((upcomingItemsCourses.length % 2 !== 0) || (upcomingItemsCourses.length === 1) ? ' long' : ''))}>
                 <div className='currentTitle'>
                     <h3>Current</h3>
@@ -110,10 +134,17 @@ const LearningPath = ({ id }) => {
                                     <CheckCircleIcon onClick={() => handleMarkCompleteCourse(firstItemCourse.id)} className='notCompleteButton' />)
                         }
                     </div>
+                    {!firstItemCourse.path_id ?
+                        (<div style={{display:'flex', justifyContent: 'space-between', width: '80%'}}>
+                            <div style={{display:'flex', flexDirection:'column', textAlign: "left", margin: "10px 0 -10px 0"}}>
+                            <span>Progress</span>
+                            <span>{`${(firstItemCourse) ? (progressPecentage) : 0} %`}</span>
+                            </div> 
+                        </div>): null} 
                     <p>{firstItemCourse.description}</p>
                     <div className='goToCourse'>
-                        <h4>Udemy</h4>
-                        {firstItemCourse.path_id ? <a href={firstItemCourse.link}>Go To {firstItemCourse.type.charAt(0).toUpperCase() + firstItemCourse.type.slice(1)}</a> : <a href={`/courses/${firstItemCourse.id}`}>Go To Course</a>}
+                    <h4>{firstItemCourse.link !== null ? (firstItemCourse.link.includes('Udemy') ? "udemy" : firstItemCourse.link.includes('coursera') ? "Coursera" : firstItemCourse.link.includes('youtube') ? "Youtube" : null) : null}</h4>
+                        {firstItemCourse.type ? <a href={firstItemCourse.link}>Go To {firstItemCourse.type.charAt(0).toUpperCase() + firstItemCourse.type.slice(1)}</a> : <a href={`/courses/yours/${firstItemCourse.id}`}>Go To Course</a>}
                     </div>
                 </div>
             </div>}
@@ -128,11 +159,18 @@ const LearningPath = ({ id }) => {
                                         <div className='learningPathCard'>
                                             <div>
                                                 <h2>{itemCourse.name}</h2>
+                                                {!itemCourse.path_id ? 
+                                                (<div style={{display:'flex', justifyContent: 'space-between', width: '80%'}}>
+                                                    <div style={{display:'flex', flexDirection:'column', textAlign: "left", margin: "10px 0 -10px 0"}}>
+                                                    <span>Progress</span>
+                                                    <span>{`${(itemCourse) ? (((itemCourse.completed / itemCourse.total) * 100).toString().substring(0, 4)) : 0} %`}</span>
+                                                    </div> 
+                                                </div>) : null}
                                                 <p>{itemCourse.description}</p>
                                             </div>
                                             <div className='goToCourse'>
-                                                <h4>Udemy</h4>
-                                                {itemCourse.path_id ? <a href={itemCourse.link}>Go To {itemCourse.type.charAt(0).toUpperCase() + itemCourse.type.slice(1)}</a> : <a href={`/courses/${itemCourse.id}`}>Go To Course</a>}
+                                            <h4>{itemCourse.link !== null ? (itemCourse.link.includes('Udemy') ? "udemy" : itemCourse.link.includes('coursera') ? "Coursera" : itemCourse.link.includes('youtube') ? "Youtube" : null) : null}</h4>
+                                                {itemCourse.type ? <a style={{cursor: 'pointer'}} href={itemCourse.link}>Go To {itemCourse.type.charAt(0).toUpperCase() + itemCourse.type.slice(1)}</a> : <a style={{cursor: 'pointer'}} href={`/courses/yours/${itemCourse.id}`}>Go To Course</a>}
                                             </div>
                                         </div>
                                     </div>
@@ -169,11 +207,17 @@ const LearningPath = ({ id }) => {
                                                             <CheckCircleIcon onClick={() => handleMarkCompleteCourse(itemCourse.id)} className='notCompleteButton' />)
                                                     )
                                                 }
+                                                <div style={{display:'flex', justifyContent: 'space-between', width: '80%'}}>
+                                                    <div style={{display:'flex', flexDirection:'column', textAlign: "left", margin: "10px 0 -10px 0"}}>
+                                                    <span>Progress</span>
+                                                    <span>{`100%`}</span>
+                                                    </div> 
+                                                </div>
                                                 <p>{itemCourse.description}</p>
                                             </div>
                                             <div className='goToCourse'>
-                                                <h4>Udemy</h4>
-                                                {itemCourse.path_id ? <a href={itemCourse.link}>Go To {itemCourse.type.charAt(0).toUpperCase() + itemCourse.type.slice(1)}</a> : <a href={`/courses/${itemCourse.id}`}>Go To Course</a>}
+                                            <h4>{itemCourse.link !== null ? (itemCourse.link.includes('Udemy') ? "udemy" : itemCourse.link.includes('coursera') ? "Coursera" : itemCourse.link.includes('youtube') ? "Youtube" : null) : null}</h4>
+                                                {itemCourse.path_id ? <a href={itemCourse.link}>Go To {itemCourse.type.charAt(0).toUpperCase() + itemCourse.type.slice(1)}</a> : <a href={`/courses/yours/${itemCourse.id}`}>Go To Course</a>}
                                             </div>
                                         </div>
                                     </div>
@@ -184,6 +228,7 @@ const LearningPath = ({ id }) => {
                 </div>
             </div>
         </LearningPathWrapper>
+        </>
     )
 }
 

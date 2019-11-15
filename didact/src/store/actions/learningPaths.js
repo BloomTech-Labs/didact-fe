@@ -241,7 +241,7 @@ export const addNewCourseToLearningPath = (props, courseId) => dispatch =>
     })
     .then(() => props.history.push(`/learning-paths/${props.match.params.id}/courses/${courseId}/edit`))
     .catch(err =>
-    {
+    {   
         dispatch({ type: POST_COURSE_TO_PATH_FAIL, payload: err })
     })
 }
@@ -249,7 +249,6 @@ export const addNewCourseToLearningPath = (props, courseId) => dispatch =>
 export const postCourseToPath = (pathId, courseId, order) => dispatch =>
 {
     dispatch({ type: POST_COURSE_TO_PATH_START })
-
     axiosWithAuth().post(`${baseURL}${pathId}/courses/${courseId}`, {order})
     .then(res =>
     {
@@ -257,6 +256,7 @@ export const postCourseToPath = (pathId, courseId, order) => dispatch =>
     })
     .catch(err =>
     {
+        console.log(err.response)
         dispatch({ type: POST_COURSE_TO_PATH_FAIL, payload: err })
     })
 }

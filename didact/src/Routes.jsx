@@ -15,24 +15,37 @@ const Routes = (props) => {
             <Route path="/register" component={FormikRegisterForm} >
             </Route>
             <Route path='/auth' component={Auth} />
-            <Route
-                exact path='/' 
-                render={routeProps => ( <MainPage {...routeProps} page={'dashboard'} /> )} />
-            <Route exact path='/courses' render={routeProps =>
+            <Route exact path='/' render={routeProps =>
+            (
+                <MainPage {...routeProps} page={'dashboard'} />
+            )} />
+            <Route exact path='/courses/all' render={routeProps =>
             (
                 <MainPage {...routeProps} page={'courses'} />
             )} />
-            <Route exact path='/courses/add' render={routeProps =>
+            <Route exact path='/courses' render={routeProps =>
+            (
+                <MainPage {...routeProps} page={'yourcourses'} />
+            )} />
+            <Route exact path='/courses/yours' render={routeProps =>
+            (
+                <MainPage {...routeProps} page={'yourcourses'} />
+            )} />
+            <Route exact path='/courses/yours/add' render={routeProps =>
             (
                 <MainPage {...routeProps} page={'addcourse'} />
             )} />
-            <Route path='/courses/:id/edit' render={routeProps =>
+            <Route path='/courses/yours/:id/edit' render={routeProps =>
             (
                 <MainPage {...routeProps} page={'editcourse'} />
             )} />
-            <Route exact path='/courses/:id' render={routeProps =>
+            <Route exact path='/courses/all/:id' render={routeProps =>
             (
                 <MainPage {...routeProps} page={'detailedcourse'} />
+            )} />
+            <Route exact path='/courses/yours/:id' render={routeProps =>
+            (
+                <MainPage {...routeProps} page={'yourdetailedcourse'} />
             )} />
              <Route exact path='/learning-paths/add' render={routeProps =>
             (
