@@ -136,7 +136,7 @@ const Course = ({ course, addingCourses }) => {
     learningPaths.forEach(path => {
         if (!path.courseIds.includes(course.id)) filteredPaths.push(path)
     })
-
+    console.log(learningPaths)
     return (
         <PopoverWrapper>
             <Card className={classes.card}>
@@ -236,7 +236,7 @@ const Course = ({ course, addingCourses }) => {
                     <p>{course.category ? (`Category: ${course.category}`) : (null)}</p>
                 </CardContent>
                 <CardActions className={classes.buttonDiv}>
-                    <Link to={`/courses/all/${course.id}`} ><DidactButton size="small">Go To Course</DidactButton></Link>
+                    <Link to={`/courses/yours/${course.id}`} ><DidactButton size="small">Go To Course</DidactButton></Link>
                 </CardActions>
             </Card>
         </PopoverWrapper>

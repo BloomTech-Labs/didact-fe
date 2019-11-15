@@ -73,10 +73,10 @@ function Dashboard({props}) {
         <p style={{fontSize: '2rem', fontWeight: 'bold', textAlign: 'left', marginLeft: '10px'}}>Current Learning Path</p>
             <LearningPathCard className={classes.current} style={{marginRight: '20px'}}>
                 <div className='title'>
-                    <h1 style={{ fontWeight: 'bold' }}>{learningPathOrder.length >= 1 && learningPathOrder[0].name}</h1>
+                    <h1 style={{ fontWeight: 'bold' }}>{learningPathOrder.length >= 1 ? learningPathOrder[0].name : "Join a Learning Path"}</h1>
                     <div style={{display:'flex'}}>
                         <div style={{display: 'flex', alignItems: 'center'}}>
-                        <button><Link to={`/learning-paths/${learningPathOrder.length >= 1 && learningPathOrder[0].id}`}>Go To Path</Link></button>
+                        <button><Link to={learningPathOrder.length >= 1 ? `/learning-paths/${learningPathOrder.length >= 1 && learningPathOrder[0].id}` : `learning-paths/join`}>{learningPathOrder.length >= 1 ? "Go To Path" : "Join A Path"}</Link></button>
                         </div>
                         <div style={{ color: 'white', fontWeight: 'bold', display: 'flex', justifyContent: 'center', marginLeft: '10px', flexDirection: "column"}}>
                           <span>{`${learningPathCourses && learningPathCourses.length} CLASSES`}</span>

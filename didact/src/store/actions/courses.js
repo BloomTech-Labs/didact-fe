@@ -30,6 +30,10 @@ export const TOGGLE_COMPLETE_COURSE_FAIL = "TOGGLE_COMPLETE_COURSE_FAIL"
 export const GET_USER_COMPLETION_COURSE_START = "GET_USER_COMPLETION_COURSE_START"
 export const GET_USER_COMPLETION_COURSE_SUCCESS = "GET_USER_COMPLETION_COURSE_SUCCESS"
 export const GET_USER_COMPLETION_COURSE_FAIL = "GET_USER_COMPLETION_COURSE_FAIL"
+export const YOUR_COURSE_DATA_START = "YOUR_COURSE_DATA_START"
+export const YOUR_COURSE_DATA_SUCCESS = "YOUR_COURSE_DATA_SUCCESS"
+export const YOUR_COURSE_DATA_FAIL = "YOUR_COURSE_DATA_FAIL"
+
 
 
 const baseURL = `${beURL}courses/`
@@ -43,6 +47,18 @@ export const courseEndPoint = () => dispatch => {
     })
     .catch(err => {
         dispatch({type: COURSE_DATA_FAIL, payload: err.response})
+    })
+}
+
+export const getYourCourses =() => dispatch => {
+    dispatch({type: YOUR_COURSE_DATA_START})
+    axiosWithAuth()
+    .get(`${baseURL}/allyours`)
+    .then(res => {
+        dispatch({type: YOUR_COURSE_DATA_SUCCESS, payload: res.data})
+    })
+    .catch(err => {
+        dispatch({type: YOUR_COURSE_DATA_FAIL, payload: err})
     })
 }
 
@@ -66,7 +82,7 @@ export const addCourse = (values, props) => dispatch => {
         dispatch({type: ADD_COURSE_DATA_SUCCESS, payload: {...values, id: res.data} })
         return res.data
     })
-    .then(response => props.match.params.id ? (dispatch(addNewCourseToLearningPath(props, response.id))) : props.history.push(`/courses/${response.id}/edit`))
+    .then(response => props.match.params.id ? (dispatch(addNewCourseToLearningPath(props, response.id))) : props.history.push(`/courses/yours/${response.id}/edit`))
     .catch(err => {
         dispatch({type: ADD_COURSE_DATA_FAIL, payload: err.response})
     })
@@ -80,7 +96,7 @@ export const addApiCourse = (values, props) => dispatch => {
         dispatch({type: ADD_COURSE_DATA_SUCCESS, payload: res.data})
         return res.data
     })
-    .then(response => props.match.params.id ? (dispatch(addNewCourseToLearningPath(props, response.id))) : props.history.push(`/courses/${response.id}/edit`))
+    .then(response => props.match.params.id ? (dispatch(addNewCourseToLearningPath(props, response.id))) : props.history.push(`/courses/yours/${response.id}/edit`))
     .catch(err => {
         console.log('error in action', err.response)
         dispatch({type: ADD_COURSE_DATA_FAIL, payload: err.response})
@@ -127,7 +143,7 @@ export const addTagToCourse = (id, tag) => dispatch =>
     })
 }
 
-export const getDetailedCourse = (id) => async dispatch =>
+export const getYourDetailedCourse = (id) => async dispatch =>
 {
     dispatch({ type: GET_DETAILED_COURSE_START })
     let sections = []
@@ -162,6 +178,41 @@ export const getDetailedCourse = (id) => async dispatch =>
     catch(err)
     {
         console.log(err.response)
+        dispatch({ type: GET_DETAILED_COURSE_FAIL, payload: err })
+    }
+}
+
+export const getDetailedCourse = (id) => async dispatch =>
+{
+    dispatch({ type: GET_DETAILED_COURSE_START })
+    let sections = []
+    let course
+    try
+    {
+        let courseRes = await axiosWithAuth().get(`${baseURL}${id}`)
+        course = courseRes.data
+        let sectionsRes = await axiosWithAuth().get(`${baseURL}${id}/sections`)
+        let sectionData = sectionsRes.data.sections
+    
+        for(let i=0; i<sectionData.length; i++)
+        {
+            let detailsRes = await axiosWithAuth().get(`${baseURL}${id}/sections/${sectionData[i].id}`)
+            sections.push({
+                section: sectionData[i],
+                details: detailsRes.data.courseSection
+            })
+        }
+    
+        let detailedCourse = 
+        {
+            course,
+            sections
+        }
+    
+        await dispatch({ type: GET_DETAILED_COURSE_SUCCESS, payload: detailedCourse })
+    }
+    catch(err)
+    {
         dispatch({ type: GET_DETAILED_COURSE_FAIL, payload: err })
     }
 }

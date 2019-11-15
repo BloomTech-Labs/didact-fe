@@ -104,8 +104,8 @@ const LearningPath = ({ id, props }) => {
                         </div>): null} 
                     <p>{firstItemCourse.description}</p>
                     <div className='goToCourse'>
-                        <h4>Udemy</h4>
-                        {firstItemCourse.path_id ? <a href={firstItemCourse.link}>Go To {firstItemCourse.type.charAt(0).toUpperCase() + firstItemCourse.type.slice(1)}</a> : <a href={`/courses/${firstItemCourse.id}`}>Go To Course</a>}
+                    <h4>{firstItemCourse.link !== null ? (firstItemCourse.link.includes('Udemy') ? "udemy" : firstItemCourse.link.includes('coursera') ? "Coursera" : firstItemCourse.link.includes('youtube') ? "Youtube" : null) : null}</h4>
+                        {firstItemCourse.type ? <a href={firstItemCourse.link}>Go To {firstItemCourse.type.charAt(0).toUpperCase() + firstItemCourse.type.slice(1)}</a> : <a href={`/courses/yours/${firstItemCourse.id}`}>Go To Course</a>}
                     </div>
                 </div>
             </div>}
@@ -130,8 +130,8 @@ const LearningPath = ({ id, props }) => {
                                                 <p>{itemCourse.description}</p>
                                             </div>
                                             <div className='goToCourse'>
-                                                <h4>Udemy</h4>
-                                                {itemCourse.path_id ? <a href={itemCourse.link}>Go To {itemCourse.type.charAt(0).toUpperCase() + itemCourse.type.slice(1)}</a> : <a href={`/courses/${itemCourse.id}`}>Go To Course</a>}
+                                            <h4>{itemCourse.link !== null ? (itemCourse.link.includes('Udemy') ? "udemy" : itemCourse.link.includes('coursera') ? "Coursera" : itemCourse.link.includes('youtube') ? "Youtube" : null) : null}</h4>
+                                                {itemCourse.type ? <a style={{cursor: 'pointer'}} href={itemCourse.link}>Go To {itemCourse.type.charAt(0).toUpperCase() + itemCourse.type.slice(1)}</a> : <a style={{cursor: 'pointer'}} href={`/courses/yours/${itemCourse.id}`}>Go To Course</a>}
                                             </div>
                                         </div>
                                     </div>
@@ -160,8 +160,8 @@ const LearningPath = ({ id, props }) => {
                                                 <p>{itemCourse.description}</p>
                                             </div>
                                             <div className='goToCourse'>
-                                                <h4>Udemy</h4>
-                                                {itemCourse.path_id ? <a href={itemCourse.link}>Go To {itemCourse.type.charAt(0).toUpperCase() + itemCourse.type.slice(1)}</a> : <a href={`/courses/${itemCourse.id}`}>Go To Course</a>}
+                                            <h4>{itemCourse.link !== null ? (itemCourse.link.includes('Udemy') ? "udemy" : itemCourse.link.includes('coursera') ? "Coursera" : itemCourse.link.includes('youtube') ? "Youtube" : null) : null}</h4>
+                                                {itemCourse.path_id ? <a href={itemCourse.link}>Go To {itemCourse.type.charAt(0).toUpperCase() + itemCourse.type.slice(1)}</a> : <a href={`/courses/yours/${itemCourse.id}`}>Go To Course</a>}
                                             </div>
                                         </div>
                                     </div>
