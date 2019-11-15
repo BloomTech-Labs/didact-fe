@@ -67,6 +67,7 @@ function AllCourses(props) {
     useEffect(() => {
         dispatch(courseEndPoint());
     }, [dispatch]);
+    console.log('all courses state', state.coursesReducer.courses)
 
  
     return (
