@@ -91,6 +91,10 @@ const Routes = (props) => {
             (
                 <MainPage {...routeProps} page={'about'} />
             )} />
+            <Route exact path='/contact' render={routeProps =>
+            (
+                <MainPage {...routeProps} page={'contact'} />
+            )} />
         </Switch>
     )
 };

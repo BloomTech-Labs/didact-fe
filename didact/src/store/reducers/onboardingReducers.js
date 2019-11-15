@@ -7,7 +7,11 @@ import {
     REGISTER_FAILURE,
     VERIFY_START,
     VERIFY_SUCCESS,
-    VERIFY_FAILURE } from '../actions'
+    VERIFY_FAILURE,
+    SEND_CONTACT_MESSAGE_START,
+    SEND_CONTACT_MESSAGE_SUCCESS,
+    SEND_CONTACT_MESSAGE_FAIL,
+} from '../actions'
 
 const initialState = {
     isLoading: false,
@@ -85,7 +89,25 @@ export const onboardingReducer = (state = initialState, action) => {
                 error: action.payload,
                 tokenVerified: false
             };
-
+        case SEND_CONTACT_MESSAGE_START:
+            return {
+                ...state,
+                isLoading: true,
+                error: "",
+            }
+        case SEND_CONTACT_MESSAGE_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                
+                error: "",
+            }
+        case SEND_CONTACT_MESSAGE_FAIL:
+            return {
+                ...state,
+                isLoading: false,
+                error: action.payload,
+            }
         default:
             return state;
     }

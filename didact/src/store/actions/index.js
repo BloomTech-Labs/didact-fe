@@ -9,10 +9,14 @@ export {
     VERIFY_START,
     VERIFY_SUCCESS,
     VERIFY_FAILURE,
+    SEND_CONTACT_MESSAGE_START,
+    SEND_CONTACT_MESSAGE_SUCCESS,
+    SEND_CONTACT_MESSAGE_FAIL,
     loginAction,
     registerAction,
     verifyToken,
-    verifySocial
+    verifySocial,
+    sendContactMessage
 } from './onboardingActions'
 
 export {
