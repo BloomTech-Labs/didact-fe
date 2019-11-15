@@ -4,8 +4,6 @@ import { Link } from "react-router-dom";
 
 import { getYourLearningPaths, quitLearningPath, updateYourPathOrder, toggleLearningPath } from '../../store/actions/index'
 
-import { YourLearningPathsWrapper, LearningPathCard, ButtonStyles } from './YourLearningPathsStyles'
-
 import Modal from '@material-ui/core/Modal';
 import { makeStyles } from '@material-ui/core/styles';
 //Material UI Icons
@@ -21,7 +19,6 @@ import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 
 //imports for react-beautiful-dnd
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import { changePathOrder } from '../../utils/changePathOrder'
 
 
 function getModalStyle() {
@@ -172,6 +169,7 @@ const YourLearningPaths = (props) => {
                                                                         <DidactButton onClick={handleDelete}>Yes</DidactButton>
                                                                     </ButtonDiv>
                                                                 </div>
+                                                                </Modal>
                                                             </div>
                                                         </LearningPathCard>
                                                     )}
