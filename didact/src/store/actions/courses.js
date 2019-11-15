@@ -227,7 +227,7 @@ export const toggleCompleteCourse =(id) => dispatch => {
         dispatch({type: TOGGLE_COMPLETE_COURSE_SUCCESS, payload: res.data})
         return id
     })
-    .then(resId => dispatch(getDetailedCourse(resId)))
+    .then(resId => dispatch(getYourDetailedCourse(resId)))
     .catch(err => {
         console.log(err)
         dispatch({type: TOGGLE_COMPLETE_COURSE_FAIL, payload: err})

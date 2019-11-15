@@ -205,6 +205,26 @@ export const coursesReducer = (state = initialState, action) => {
                 isLoadingIcon: false,
                 error: action.payload,
             }
+        //  // GET DETAILED COURSE
+        //  case GET_YOUR_DETAILED_COURSE_START:
+        //         return {
+        //             ...state,
+        //             isLoadingIcon: true,
+        //             error: "",
+        //         }
+        //     case GET_YOUR_DETAILED_COURSE_SUCCESS:
+        //         return {
+        //             ...state,
+        //             isLoadingIcon: false,
+        //             detailedCourse: action.payload,
+        //             error: "",
+        //         }
+        //     case GET_YOUR_DETAILED_COURSE_FAIL:
+        //         return {
+        //             ...state,
+        //             isLoadingIcon: false,
+        //             error: action.payload,
+        //         }
         // ADD TAG TO COURSE
         case ADD_TAG_TO_COURSE_START:
             return {

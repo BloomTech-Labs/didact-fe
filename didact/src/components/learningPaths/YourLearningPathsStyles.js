@@ -23,7 +23,8 @@ export const YourLearningPathsWrapper = styled.div`
     .yourLearningPaths {
         display: flex;
         flex-direction: column;
-        width: 540px;
+        max-width: 540px;
+        width: 100%;
 
         h3 {
             text-align: left;

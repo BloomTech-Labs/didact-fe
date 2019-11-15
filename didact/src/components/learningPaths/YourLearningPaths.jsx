@@ -59,7 +59,7 @@ const YourLearningPaths = (props) => {
         }
     })
 
-    // console.log(learningPaths)
+    console.log(learningPaths)
 
     useEffect(_ => {
         dispatch(getYourLearningPaths())
@@ -108,6 +108,7 @@ const YourLearningPaths = (props) => {
     };
 
     const handleMarkCompleteLearningPath = (id) => {
+        console.log(id)
         dispatch(toggleLearningPath(id))
     }
     console.log('LP', learningPaths)
