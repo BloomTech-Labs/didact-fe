@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { addCourse } from '../../store/actions';
+import { addCourse, addApiCourse } from '../../store/actions';
 import { useDispatch } from "react-redux";
 import { Mixpanel } from '../../utils/mixpanel';
 
@@ -56,7 +56,11 @@ export default function AddCourse({ props }) {
   const handleSubmit = event => {
     event.preventDefault();
     Mixpanel.track("Course Added.")
-    dispatch(addCourse(values, props));
+    console.log(values.link)
+   if(values.link.includes('udemy.com')) {
+     dispatch(addApiCourse(values.link, props))
+   }
+   else  dispatch(addCourse(values, props));
   }
 
   return (
@@ -69,6 +73,10 @@ export default function AddCourse({ props }) {
         <form onSubmit={handleSubmit} className={classes.container} noValidate autoComplete="off">
           <FormTitle>Course Overview</FormTitle>
           <DidactField>
+            <DidactLabel for='url'>Course Url</DidactLabel>
+            <DidactInput id='url' type='text' value={values.link || ""} onChange={handleChange('link')} placeholder='Course Url' />
+          </DidactField>
+          <DidactField>
             <DidactLabel for='title'>Course Name</DidactLabel>
             <DidactInput id='title' type='text' value={values.name || ""} onChange={handleChange('name')} placeholder='Course Name' />
           </DidactField>
@@ -79,10 +87,6 @@ export default function AddCourse({ props }) {
           <DidactField>
             <DidactLabel for='description'>Description</DidactLabel>
             <DidactTextArea rows="8" id='description' value={values.description || ""} onChange={handleChange('description')} placeholder='Description' />
-          </DidactField>
-          <DidactField>
-            <DidactLabel for='url'>Course Url</DidactLabel>
-            <DidactInput id='url' type='text' value={values.link || ""} onChange={handleChange('link')} placeholder='Course Url' />
           </DidactField>
           <DidactField>
             <DidactLabel for='category'>Category</DidactLabel>

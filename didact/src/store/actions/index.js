@@ -48,6 +48,7 @@ export {
     YOUR_COURSE_DATA_SUCCESS,
     YOUR_COURSE_DATA_FAIL,
     getYourCourses,
+    addApiCourse,
     findYoursById,
     toggleCompleteCourse,
     courseEndPoint,

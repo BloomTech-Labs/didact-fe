@@ -41,7 +41,8 @@ const initialState = {
     yourCourses: [],
     courseCompletion: {},
     detailedCourse: {},
-    sections: []
+    sections: [],
+
 }
 
 export const coursesReducer = (state = initialState, action) => {
@@ -128,7 +129,7 @@ export const coursesReducer = (state = initialState, action) => {
                 ...state,
                 isLoading: false,
                 error: action.payload
-            };
+            }; 
 
         //  EDIT COURSE BY ID 
         case EDIT_COURSE_DATA_START:
