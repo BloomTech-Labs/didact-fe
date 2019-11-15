@@ -45,13 +45,16 @@ function Dashboard({props}) {
   const dispatch = useDispatch();
   const state = useSelector(state => state);
 
+  const isLoadingVerify = state.onboardingReducer.isLoading
   const userName = state.onboardingReducer.user;
   const firstName = userName.first_name ? userName.first_name.substring(0, 1).toUpperCase() + userName.first_name.substring(1) : null;
   const classes = useStyles(props);
 
   useEffect(() => {
-    dispatch(courseEndPoint());
-  }, [dispatch]);
+    if(!isLoadingVerify){
+      dispatch(courseEndPoint());
+    }
+  }, [dispatch, isLoadingVerify]);
 
   return (
 

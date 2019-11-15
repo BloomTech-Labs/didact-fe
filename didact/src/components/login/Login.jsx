@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Form, Field, Formik } from "formik";
 import * as Yup from 'yup';
-import { loginAction } from '../../store/actions';
+import { loginAction, verifyToken } from '../../store/actions';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Wrapper, LoginWrapper, LoginFormWrapper } from './LoginStyles'
@@ -19,11 +19,7 @@ const LoginForm = (props) => {
 
     const state = useSelector(state => state.onboardingReducer)
     const dispatch = useDispatch()
-    const loginError = state.error;
-
-    if (localStorage.getItem('token')) {
-        props.history.push('/')
-    }
+    const loginError = state.loginError
 
     const handleLogin = (values) => {
         dispatch(loginAction(props.history, values))
@@ -63,7 +59,7 @@ const LoginForm = (props) => {
                                             <Field type="password" name="password" placeholder="Password"></Field>
                                             {touched.password && errors.password && <p className="errorMessage">Invalid Password</p>}
                                         </div>
-                                        {loginError ? <p style={{ color: "red" }}>You have entered an invalid email or password</p> : null}
+                                        {loginError ? <p style={{ color: "red" }}>You have entered an invalid email or password'</p> : null}
                                     </div>
                                     <div>
                                         <button type="submit">Login</button>

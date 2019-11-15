@@ -13,7 +13,9 @@ const initialState = {
     isLoading: false,
     error: '',
     tokenVerified: false,
-    user: {}
+    user: {},
+    loginError: false,
+    registerError: false,
 }
 
 export const onboardingReducer = (state = initialState, action) => {
@@ -31,12 +33,14 @@ export const onboardingReducer = (state = initialState, action) => {
                 ...state,
                 user: action.payload,
                 isLoading: false,
+                tokenVerified: true,
                 error: ""
                 };
         case LOGIN_FAILURE:
             return {
                 ...state,
                 error: action.payload,
+                loginError: true,
                 };
     
     //  Register Reducers
@@ -56,7 +60,8 @@ export const onboardingReducer = (state = initialState, action) => {
         case REGISTER_FAILURE:
             return {
                 ...state,
-                error: action.payload
+                error: action.payload,
+                registerError: true
                 };
 
     //  Facebook Login/Register
