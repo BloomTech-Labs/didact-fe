@@ -41,9 +41,15 @@ export const LargeFont = styled.p`
     text-align: left;
     font-weight: bold;
     margin: 0;
-    .first {
-        margin-top: 300px;
-    }
+    margin-top: 30px;
+`
+export const LargeFont1 = styled.p`
+    font-size: 48px;
+    font-family: Open Sans;
+    text-align: left;
+    font-weight: bold;
+    margin: 0;
+    border: 1px solid red;
 `
 
 export const SmallerFont = styled.p`
@@ -73,8 +79,15 @@ export const BlackBox = styled.div`
 export const WhiteLargeText = styled.p`
     color: white;
     font-size: 36px;
-    margin-left: 15px;
-   
+    margin-left: 40px;
+    margin-top: 60px;
+    margin-bottom: 0;
+`;
+export const WhiteLargeText1 = styled.p`
+    color: white;
+    font-size: 36px;
+    margin-left: 40px;
+    margin-top: 0
 `;
 
 export const StyledInput = styled.input`
@@ -82,9 +95,10 @@ export const StyledInput = styled.input`
     width: 370px;
     height: 60px;
     margin-left: 10px;
-    color: white;
+    color: #F4F6F8;
     margin-top: 130px;
-    margin-left: 100px;
+    margin-left: 140px;
+    border-radius: 5px;
 `;
 
 export const StyledBlueButton = styled.button`
@@ -95,6 +109,7 @@ export const StyledBlueButton = styled.button`
     border-radius: 5px;
     margin-top: 130px;
     margin-left: 30px;
+    border: 1px solid #386581;
 `;
 
 export const SmallText = styled.p`
@@ -106,4 +121,12 @@ export const SmallText = styled.p`
 export const SecondImg = styled.img`
     width: 1116px;
     height: 519px;
+    margin-bottom: 40px;
+`;
+
+export const StyledImgCircle = styled.img`
+    height: 24px;
+    width: 24px;
+    margin-top: 15px;
+    margin-left: 10px;
 `;
