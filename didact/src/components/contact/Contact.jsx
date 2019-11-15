@@ -66,7 +66,7 @@ const Contact = (props) =>
     const handleSubmit = event => {
         event.preventDefault();
         Mixpanel.track("Course Added.")
-        // dispatch(sendContactMessage())
+        dispatch(sendContactMessage(values))
     }
 
     const handleBack = () => {
