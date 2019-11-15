@@ -13,9 +13,10 @@ export const Heading = styled.div`
 `;
 
 export const DidactHeader = styled.h1`
-    fontSize: 40px;
-    font-family: ITC Grouch;
+    font-size: 40px;
+    font-family: ITCGrouch;
     margin-top: 50px;
+    font-weight: 800;
 `;
 
 export const StyledButton = styled.button`
@@ -29,7 +30,13 @@ export const StyledButton = styled.button`
     border-radius: 3px;
     font-family: Open Sans;
     fontSize: 14px;
-
+    &:hover {
+        background-color: black;
+        color: #EBE8E1;
+    }
+    &:focus {
+        outline: 0;
+        }
 `;
 
 export const Flex = styled.div`
@@ -39,23 +46,28 @@ export const LargeFont = styled.p`
     font-size: 48px;
     font-family: Open Sans;
     text-align: left;
-    font-weight: bold;
+    font-weight: 900;
     margin: 0;
     margin-top: 30px;
-`
+    letter-spacing: -1px;
+`;
+
 export const LargeFont1 = styled.p`
     font-size: 48px;
     font-family: Open Sans;
     text-align: left;
-    font-weight: bold;
+    font-weight: 900;
     margin: 0;
-    border: 1px solid red;
-`
+    margin-top: -10px;
+    letter-spacing: -1px;
+`;
 
 export const SmallerFont = styled.p`
-    font-size: 16px;
-    text-align: left:
-`
+    font-size: 18px;
+    text-align: left;
+    width: 370px;
+    margin-top: 20px;
+`;
 
 export const StyledImg = styled.img`
     height: 466px;
@@ -64,7 +76,8 @@ export const StyledImg = styled.img`
 `;
 
 export const Middle = styled.div`
-    width: 40%;
+    width: 37%;
+    margin-top: 20px;
 `;
 
 export const BlackBox = styled.div`
@@ -79,15 +92,17 @@ export const BlackBox = styled.div`
 export const WhiteLargeText = styled.p`
     color: white;
     font-size: 36px;
-    margin-left: 40px;
-    margin-top: 60px;
+    margin-left: 60px;
+    margin-top: 100px;
     margin-bottom: 0;
+    font-weight: 900;
 `;
 export const WhiteLargeText1 = styled.p`
     color: white;
     font-size: 36px;
-    margin-left: 40px;
-    margin-top: 0
+    margin-left: 60px;
+    margin-top: 0;
+    font-weight: 900;
 `;
 
 export const StyledInput = styled.input`
@@ -96,7 +111,7 @@ export const StyledInput = styled.input`
     height: 60px;
     margin-left: 10px;
     color: #F4F6F8;
-    margin-top: 130px;
+    margin-top: 120px;
     margin-left: 140px;
     border-radius: 5px;
 `;
@@ -107,15 +122,17 @@ export const StyledBlueButton = styled.button`
     color: white;
     background-color: #386581;
     border-radius: 5px;
-    margin-top: 130px;
+    margin-top: 125px;
     margin-left: 30px;
     border: 1px solid #386581;
 `;
 
 export const SmallText = styled.p`
     color: white;
-    margin-left: 60%;
-    margin-top: 15px;
+    margin-left: 50%;
+    font-size: 18px;
+    font-weight: 700;
+    margin-top: -20px;
 `;
 
 export const SecondImg = styled.img`
@@ -127,6 +144,6 @@ export const SecondImg = styled.img`
 export const StyledImgCircle = styled.img`
     height: 24px;
     width: 24px;
-    margin-top: 15px;
     margin-left: 10px;
+    margin-top: -18px;
 `;

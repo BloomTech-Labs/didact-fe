@@ -9,7 +9,7 @@ import playCircle from '../../images/play-circle.png';
 // }))
 
 
-export default function Landing() {
+export default function Landing({ history }) {
     const [ text, setText ] = useState('');
 
 
@@ -17,7 +17,7 @@ export default function Landing() {
     <Container>
         <Heading>
             <DidactHeader>Didact</DidactHeader>
-            <StyledButton>Login</StyledButton>
+            <StyledButton onClick={() => history.push('/login')}>Login</StyledButton>
         </Heading>
         <Flex>
             <Middle>
@@ -32,14 +32,14 @@ export default function Landing() {
         <BlackBox>
             <Flex>
                 <div>
-                    <WhiteLargeText className="top">
+                    <WhiteLargeText>
                         Get notified when 
                     </WhiteLargeText>
                     <WhiteLargeText1>
                         the beta goes live
                     </WhiteLargeText1>
                 </div>
-                <StyledInput placeholder="Enter your email address">
+                <StyledInput placeholder="    Enter your email address">
                 </StyledInput>
                 <StyledBlueButton>Sign Up</StyledBlueButton>
             </Flex>
