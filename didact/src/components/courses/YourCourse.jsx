@@ -199,6 +199,8 @@ const Course = ({ course, addingCourses }) => {
                             </Popover>
                         </div>
                     </h3>
+                    {course.description ? (
+                                <>
                     <CardActions className={classes.descriptionDiv} style = {{color: "white"}} disableSpacing>
                         {/* <div style={{display:'flex', justifyContent: 'space-between', width: '80%'}}> */}
                             {/* <div style={{display:'flex', flexDirection:'column', textAlign: "left"}}>
@@ -229,9 +231,10 @@ const Course = ({ course, addingCourses }) => {
                             </p>
                         </CardContent>
                     </Collapse>
+                    </>) : null}
                     <div style={{display: 'flex', justifyContent: "space-evenly", fontSize: '1.4rem'}}>
-                    <span className={classes.pos}>{course.foreign_rating}</span>
                     <span className={classes.pos}>{course.foreign_instructors}</span>
+                    <span className={classes.pos}>{course.foreign_rating}</span>
                     </div>
                     <p>{course.category ? (`Category: ${course.category}`) : (null)}</p>
                 </CardContent>

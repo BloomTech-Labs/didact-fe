@@ -36,7 +36,7 @@ export const ImageDiv = styled.div`
     border-radius: 20px;
     display: flex;
     flex-direction: row;
-    padding: 20px;
+    padding: 20px 20px 10px 20px;
     margin: 12px;
     font-family: ITC Grouch;
     align-items: center;
@@ -45,6 +45,7 @@ export const ImageDiv = styled.div`
 
  export const PersonImage = styled.img `
     width: 133px;
+    min-width: 133px;
     height: 116px;
     border-radius: 15px;
     object-fit: cover;

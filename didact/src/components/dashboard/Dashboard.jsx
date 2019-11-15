@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { courseEndPoint, getYourLearningPaths, getLearningPath } from "../../store/actions/index.js";
 import { useDispatch, useSelector } from "react-redux";
-import Course from "../courses/Course";
+import YourCourse from "../courses/YourCourse";
+import Course from '../courses/Course';
 
 //Material UI Imports
 import { makeStyles } from '@material-ui/core/styles';
@@ -78,10 +79,11 @@ function Dashboard({props}) {
                         <div style={{display: 'flex', alignItems: 'center'}}>
                         <button><Link to={learningPathOrder.length >= 1 ? `/learning-paths/${learningPathOrder.length >= 1 && learningPathOrder[0].id}` : `learning-paths/join`}>{learningPathOrder.length >= 1 ? "Go To Path" : "Join A Path"}</Link></button>
                         </div>
-                        <div style={{ color: 'white', fontWeight: 'bold', display: 'flex', justifyContent: 'center', marginLeft: '10px', flexDirection: "column"}}>
+                        {learningPathOrder.length >= 1 ? 
+                        (<div style={{ color: 'white', fontWeight: 'bold', display: 'flex', justifyContent: 'center', marginLeft: '10px', flexDirection: "column"}}>
                           <span>{`${learningPathCourses && learningPathCourses.length} CLASSES`}</span>
                           <span>{`${learningPath.pathItems && learningPath.pathItems.length} ITEMS`}</span>
-                        </div>
+                        </div>) : null }
                     </div>
                 </div>
             </LearningPathCard>
@@ -90,7 +92,7 @@ function Dashboard({props}) {
         <div className={classes.smallContainer} >
         <p style={{fontSize: '2rem', fontWeight: 'bold', textAlign: 'left', marginBottom: "-20px",}}>Current Course</p>
         {coursePathOrder.length >= 1 
-            ? (<Course course={coursePathOrder[0]} />)
+            ? (<YourCourse course={coursePathOrder[0]} />)
             : state.coursesReducer.courses[0]
             ? (<Course course={state.coursesReducer.courses[0]} />)
             : null }
