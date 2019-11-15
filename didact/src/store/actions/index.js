@@ -53,6 +53,7 @@ export {
     deleteCourse,
     addTagToCourse,
     getDetailedCourse,
+    getYourDetailedCourse,
 } from './courses'
 
 export {

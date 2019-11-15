@@ -111,7 +111,7 @@ export const addTagToCourse = (id, tag) => dispatch =>
     })
 }
 
-export const getDetailedCourse = (id) => async dispatch =>
+export const getYourDetailedCourse = (id) => async dispatch =>
 {
     dispatch({ type: GET_DETAILED_COURSE_START })
     let sections = []
@@ -129,6 +129,41 @@ export const getDetailedCourse = (id) => async dispatch =>
         {
             // let detailsRes = await axiosWithAuth().get(`${baseURL}${id}/sections/${sectionData[i].id}`)
             let detailsRes = await axiosWithAuth().get(`${baseURL}${id}/yoursections/${sectionData[i].id}`)
+            sections.push({
+                section: sectionData[i],
+                details: detailsRes.data.courseSection
+            })
+        }
+    
+        let detailedCourse = 
+        {
+            course,
+            sections
+        }
+    
+        await dispatch({ type: GET_DETAILED_COURSE_SUCCESS, payload: detailedCourse })
+    }
+    catch(err)
+    {
+        dispatch({ type: GET_DETAILED_COURSE_FAIL, payload: err })
+    }
+}
+
+export const getDetailedCourse = (id) => async dispatch =>
+{
+    dispatch({ type: GET_DETAILED_COURSE_START })
+    let sections = []
+    let course
+    try
+    {
+        let courseRes = await axiosWithAuth().get(`${baseURL}${id}`)
+        course = courseRes.data
+        let sectionsRes = await axiosWithAuth().get(`${baseURL}${id}/sections`)
+        let sectionData = sectionsRes.data.sections
+    
+        for(let i=0; i<sectionData.length; i++)
+        {
+            let detailsRes = await axiosWithAuth().get(`${baseURL}${id}/sections/${sectionData[i].id}`)
             sections.push({
                 section: sectionData[i],
                 details: detailsRes.data.courseSection

@@ -147,13 +147,13 @@ const EditCourse = ({ props, id }) => {
         if (props.match.params.pathId) {
             props.history.push(`/learning-paths/${props.match.params.pathId}`)
         } else {
-            props.history.push(`/courses/${props.match.params.id}`)
+            props.history.push(`/courses/yours/${props.match.params.id}`)
         }
 
     }
 
     const handleBack = () => {
-        props.history.push('/courses')
+        props.history.push('/courses/yours')
         
     } 
 

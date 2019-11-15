@@ -45,7 +45,7 @@ export default function AddCourse({ props }) {
   });
 
   const handleBack = () => {
-    props.history.push('/courses')
+    props.history.push('/courses/yours')
     
 }  
 
