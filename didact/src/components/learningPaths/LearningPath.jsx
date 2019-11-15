@@ -107,7 +107,7 @@ const LearningPath = ({ id, props }) => {
                     <p className={classes.span} style={{fontWeight: 'bold', display: 'flex', flexDirection:'row', alignItems: 'center'}} onClick = {handleBack}><ChevronLeftIcon style={{fontSize: '2rem'}}/>Back</p>
                 )} */}
             </div>
-
+        <LearningPathWrapper>
             {firstItemCourse && <div className={'learningPathCourseWrappers current' + (firstItemCourse.path_id ? ' item' : '' + ((upcomingItemsCourses.length % 2 !== 0) || (upcomingItemsCourses.length === 1) ? ' long' : ''))}>
                 <div className='currentTitle'>
                     <h3>Current</h3>

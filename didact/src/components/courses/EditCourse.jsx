@@ -198,11 +198,13 @@ const EditCourse = ({ props, id }) => {
                                         <ExpandMoreIcon />
                                     </IconButton>
                                 </CardActions>
+                                
                                 <Collapse in={expanded} timeout="auto" unmountOnExit>
                                     <CardContent>
                                         <p>{course.description}</p>
                                     </CardContent>
                                 </Collapse>
+                               
                                 <p>{course.foreign_instructors}</p>
                                 <p>{course.foreign_rating}</p>
                                 <a style={{ color: 'white' }} href={course.link} alt="course link">{course.link}</a>

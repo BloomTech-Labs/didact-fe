@@ -20,7 +20,6 @@ import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 //imports for react-beautiful-dnd
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
-
 function getModalStyle() {
     const top = 50;
     const left = 50;
@@ -128,6 +127,7 @@ const YourLearningPaths = (props) => {
             </ButtonStyles>) : null}
         <PathInstructions>Drag to Change Learning Path Order</PathInstructions>
         <YourLearningPathsWrapper style ={{margin: 'auto'}}>
+            <div className='mainContent'>
             <DragDropContext onDragEnd={onDragEnd}>
                 <Droppable droppableId="column-2">
                     {provided => (
@@ -145,10 +145,15 @@ const YourLearningPaths = (props) => {
                                             ref={provided.innerRef} 
                                             isDragging={snapshot.isDragging}>
                                                 <div className='title'>
-                                                    <h1 style={{ fontWeight: 'bold' }}>{learningPath.name}</h1>
+                                                    <div className='pathHeader'>
+                                                        <h1 style={{ fontWeight: 'bold' }}>{learningPath.name}</h1>
+                                                        {
+                                                            <CheckCircleIcon onClick={() => handleMarkCompleteLearningPath(learningPath.id)} className='notCompleteButton' />
+                                                        }
+                                                    </div>
                                                     <div>
                                                         <div style={{display: 'flex', alignItems: 'center'}}>
-                                                        <button><Link to={`/learning-paths/${learningPath.id}`}>Go To Path</Link></button>
+                                                        <Link to={`/learning-paths/${learningPath.id}`}><button>Go To Path</button></Link>
                                                         <div>
                                                             {/* <p>{learningPath.courses.length}</p> */}
                                                             <p></p>
@@ -168,9 +173,12 @@ const YourLearningPaths = (props) => {
                                                                         <DidactButton onClick={handleModalClose}>No</DidactButton>
                                                                         <DidactButton onClick={handleDelete}>Yes</DidactButton>
                                                                     </ButtonDiv>
+                                                                    </div>
+                                                            </Modal>
+                                                        ) : null}
                                                                 </div>
-                                                                </Modal>
                                                             </div>
+                                                            
                                                         </LearningPathCard>
                                                     )}
                                                 </Draggable>
@@ -225,16 +233,13 @@ const YourLearningPaths = (props) => {
                     {
                         learningPaths.length === 0 && <h1>You have not joined any learning paths</h1>
                     }
+                </div> 
                 </div>
-                </div>
-                {/* </Droppable>
-                </DragDropContext> */}
                 {(!props.props.phoneSize && !props.props.mediumScreenSize) ?
                     (<div className='buttons'>
                         <Link style={{ fontSize: '1.4rem' }} to={'/learning-paths/join'}>Join a Learning Path</Link>
                         <Link style={{ fontSize: '1.4rem' }} to={'/learning-paths/add'}>Create a New Learning Path</Link>
                     </div>) : null}
-
             </YourLearningPathsWrapper>
         </div>
     )
