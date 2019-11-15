@@ -5,6 +5,8 @@ import FormikRegisterForm from "./components/register/Register.jsx";
 import Auth from './auth/Auth';
 import MainPage from './components/mainPage/MainPage';
 import PrivateRoute from './utils/PrivateRoute'
+import Landing from './components/landing/Landing.jsx';
+
 
 const Routes = (props) => {
 
@@ -15,6 +17,7 @@ const Routes = (props) => {
             <Route path="/register" component={FormikRegisterForm} >
             </Route>
             <Route path='/auth' component={Auth} />
+            <Route path='/landing' component={Landing} />
             <Route exact path='/' render={routeProps =>
             (
                 <MainPage {...routeProps} page={'dashboard'} />
