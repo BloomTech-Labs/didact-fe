@@ -106,14 +106,12 @@ export const WhiteLargeText1 = styled.p`
 `;
 
 export const StyledInput = styled.input`
-    background-color: #F4F6F8;
     width: 370px;
     height: 60px;
-    margin-left: 10px;
-    color: #F4F6F8;
-    margin-top: 120px;
+    margin-top: 123px;
     margin-left: 140px;
     border-radius: 5px;
+    border: none;
 `;
 
 export const StyledBlueButton = styled.button`
