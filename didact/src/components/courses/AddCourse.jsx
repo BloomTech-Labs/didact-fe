@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { addCourse, addApiCourse } from '../../store/actions';
-import { useDispatch } from "react-redux";
+import { addCourse, addApiCourse, checkDatabase } from '../../store/actions';
+import { useDispatch, useSelector } from "react-redux";
 import { Mixpanel } from '../../utils/mixpanel';
+import AddUdemyCourse from "./AddUdemyCourse";
 
 //Material UI Imports
 import { makeStyles, withStyles } from '@material-ui/core/styles';
@@ -18,7 +19,8 @@ const useStyles = makeStyles(theme => ({
   card: {
     maxWidth: 540,
     borderRadius: 15,
-    boxShadow: 'none'
+    boxShadow: 'none',
+    marginLeft: "5px"
   },
   container: {
     display: 'flex',
@@ -35,6 +37,8 @@ const useStyles = makeStyles(theme => ({
 export default function AddCourse({ props }) {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const state = useSelector(state => state)
+  const inDB = state.coursesReducer.inDB;
   const [values, setValues] = useState({
     name: "",
     category: "",
@@ -56,11 +60,14 @@ export default function AddCourse({ props }) {
   const handleSubmit = event => {
     event.preventDefault();
     Mixpanel.track("Course Added.")
-    console.log(values.link)
-   if(values.link.includes('udemy.com')) {
-     dispatch(addApiCourse(values.link, props))
-   }
-   else  dispatch(addCourse(values, props));
+    dispatch(addCourse(values, props))
+  }
+
+  const handleSubmitUdemy = event => {
+    event.preventDefault();
+    Mixpanel.track("Course Check.")
+    if(values.link.includes('udemy.com')) dispatch(addApiCourse(values.link, props))
+    else dispatch(checkDatabase(values.link, props))
   }
 
   return (
@@ -68,10 +75,15 @@ export default function AddCourse({ props }) {
     <div style={{display: 'flex', justifyContent: 'space-between', margin: '-10px 10px 10px 10px', borderBottom: '1px solid black'}}>
         <p style={{fontWeight: 'bold', marginLeft: '10px', display: 'flex', flexDirection:'row', alignItems: 'center'}}><span className={classes.span} onClick = {handleBack}>Courses</span><ChevronRightIcon style={{fontSize: '1.6rem'}}/><span>Add New Course</span></p>
     </div>
+    {(inDB === 0) ? (
+      <AddUdemyCourse props = {props} values = {values} setValues = {setValues} handleSubmitUdemy={handleSubmitUdemy}/>
+      ) : (inDB < 0) ? (
     <Card className={classes.card}>
       <CardContent>
+      <p>{`${values.link} is not in the database, add course below`}</p>
         <form onSubmit={handleSubmit} className={classes.container} noValidate autoComplete="off">
           <FormTitle>Course Overview</FormTitle>
+          
           <DidactField>
             <DidactLabel for='url'>Course Url</DidactLabel>
             <DidactInput id='url' type='text' value={values.link || ""} onChange={handleChange('link')} placeholder='Course Url' />
@@ -96,6 +108,7 @@ export default function AddCourse({ props }) {
         </form>
       </CardContent>
     </Card>
+    ) : (props.history.push(`/courses/all/${inDB}`))}
     </>
   );
 }

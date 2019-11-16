@@ -107,9 +107,17 @@ const YourDetailedCourse = (props) => {
                                 })}
                             </div>
                             {course.id === id ? (
-                               <DidactButton >
-                                 <Link style={{ textDecoration: 'none', color: "inherit"}} to={`/courses/yours/${course.id}/edit`}>Edit Course</Link>
+                                !phoneSize ? (
+                                <DidactButton style={{marginLeft: '85%'}}>
+                                    <Link style={{ textDecoration: 'none', color: "inherit"}} to={`/courses/yours/${course.id}/edit`}>Edit Course</Link>
                                 </DidactButton> 
+                                ) : (
+                                <DidactButton style={{marginLeft: '70%'}}>
+                                    <Link style={{ textDecoration: 'none', color: "inherit"}} to={`/courses/yours/${course.id}/edit`}>Edit Course</Link>
+                                </DidactButton> 
+                                )
+                               
+
                             ) : (null)}
                             
                         </div>

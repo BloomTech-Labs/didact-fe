@@ -65,6 +65,14 @@ const useStyles = makeStyles(theme => ({
         margin: theme.spacing(1),
         minWidth: 120,
     },
+    button: {
+        backgroundColor: "#EBE8E1",
+        color: 'black',
+        borderRadius: 12,
+        height: "35px",
+        width: "123px",
+        border: 'none'
+    }
 }));
 
 const Tags = ({ props, course }) => {
@@ -109,8 +117,10 @@ const Tags = ({ props, course }) => {
     return (
         <>
             {!openForm ? (
-                <Card className={classes.card} style={{background: '#386581'}}>
+                <Card className={classes.card} >
+                    <p style={{textAlign: 'left', margin: '25px 0 0px 27px', color: "#858997"}}>Course Tags</p>
                     <CardContent className={classes.tagDisplay}>
+                        
                         {course.tags ? course.tags.map((tag, i) => {
                             return (
                                 <div key={i + tag + 1}>
@@ -122,11 +132,12 @@ const Tags = ({ props, course }) => {
 
                             )
                         }) : null}
-                        {!openForm ? <DidactButton style={{ marginLeft: '76%' }} onClick={handleClick} type='submit' size="small" variant="contained">New Tag</DidactButton> : null}
+                        {!openForm ? <button className={classes.button} style={{ marginLeft: '76%' }} onClick={handleClick} type='submit' size="small" variant="contained">New Tag</button> : null}
                     </CardContent>
                 </Card>)
                 :
                 (<Card className={classes.card}> 
+                   <p style={{textAlign: 'left', margin: '25px 0 0px 27px', color: "#858997"}}>Course Tags</p>
                     <CardContent className={classes.tagDisplay}>
                         {course.tags ? course.tags.map((tag, i) => {
                             return (

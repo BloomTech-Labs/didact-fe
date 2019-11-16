@@ -34,12 +34,12 @@ console.log(props)
 
     return (
         <div>
-            <div style={{display: 'flex', justifyContent: 'space-between', margin: '-10px 0 10px 0', borderBottom: '1px solid black'}}>
-                <p style={{fontWeight: 'bold', marginLeft: '10px'}}>About</p>
+            <div style={{display: 'flex', justifyContent: 'space-between', margin: '-10px 5px 10px 10px', borderBottom: '1px solid black'}}>
+                <p style={{fontWeight: 'bold'}}>About</p>
                 <p onClick = {handleBack} style={{cursor: 'pointer', display: 'flex', flexDirection:'row', alignItems: 'center'}}><ChevronLeftIcon style={{fontSize: '1.6rem'}}/>{`${" "} Back To Dashboard`}</p>
             </div>
             <ContentDiv>
-                <div style={{margin: '-10px 0 60px 20px', maxWidth: "620px", width: "100%", fontSize: "1.6rem"}}>
+                <div style={{margin: '-10px 0 60px 10px', maxWidth: "620px", width: "100%", fontSize: "1.6rem"}}>
                     <p>Didact was developed in Lambda Labs</p>
                     <p style={{marginTop: '50px'}}>There will also be additional text here that talks about other things about the project</p>
                 </div>

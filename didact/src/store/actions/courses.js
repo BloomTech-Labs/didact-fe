@@ -33,6 +33,9 @@ export const GET_USER_COMPLETION_COURSE_FAIL = "GET_USER_COMPLETION_COURSE_FAIL"
 export const YOUR_COURSE_DATA_START = "YOUR_COURSE_DATA_START"
 export const YOUR_COURSE_DATA_SUCCESS = "YOUR_COURSE_DATA_SUCCESS"
 export const YOUR_COURSE_DATA_FAIL = "YOUR_COURSE_DATA_FAIL"
+export const CHECK_DATABASE_START = "CHECK_DATABASE_START"
+export const CHECK_DATABASE_SUCCESS = "CHECK_DATABASE_SUCCESS"
+export const CHECK_DATABASE_FAIL = "CHECK_DATABASE_FAIL"
 
 
 
@@ -94,13 +97,37 @@ export const addApiCourse = (values, props) => dispatch => {
     .then(res => {
         console.log(res.data)
         dispatch({type: ADD_COURSE_DATA_SUCCESS, payload: res.data})
-        return res.data
+        return res  
     })
-    .then(response => props.match.params.id ? (dispatch(addNewCourseToLearningPath(props, response.id))) : props.history.push(`/courses/yours/${response.id}/edit`))
+    .then(response => {
+        console.log(response)
+        if(response.data.message) props.match.params.id ? (dispatch(addNewCourseToLearningPath(props, response.data.course.id))) :  props.history.push(`/courses/all/${response.data.course.id}/`)
+        else props.match.params.id ? (dispatch(addNewCourseToLearningPath(props, response.data.id))) : props.history.push(`/courses/yours/${response.data.id}/`)
+    })
     .catch(err => {
         console.log('error in action', err.response)
         dispatch({type: ADD_COURSE_DATA_FAIL, payload: err.response})
     })
+}
+
+export const checkDatabase = (values, props) => dispatch => {
+    console.log({link: values})
+    dispatch({type: CHECK_DATABASE_START})
+    axiosWithAuth().post(`${baseURL}checkdb`, {link: values})
+    .then(res => {
+        console.log(res.data)
+        dispatch({type: CHECK_DATABASE_SUCCESS, payload: res.data.id})
+        // return res.data
+    })
+    // .then(response => props.match.params.id ? (dispatch(addNewCourseToLearningPath(props, response.id))) : props.history.push(`/courses/yours/${response.id}/edit`))
+    .catch(err => {
+        console.log('error in action', err.response)
+        dispatch({type: CHECK_DATABASE_FAIL, payload: err.response})
+    })
+}
+
+export const clearState = () => dispatch => {
+    dispatch({type: CHECK_DATABASE_SUCCESS, payload: 0})
 }
 
 export const editCourse = (id, changes) => dispatch => {
@@ -151,7 +178,6 @@ export const getYourDetailedCourse = (id) => async dispatch =>
     try
     {
         let courseRes = await axiosWithAuth().get(`${baseURL}${id}/yours`)
-        console.log("CourseRes", courseRes)
         course = courseRes.data
         // let sectionsRes = await axiosWithAuth().get(`${baseURL}${id}/sections`)
         let sectionsRes = await axiosWithAuth().get(`${baseURL}${id}/yoursections`)
@@ -172,7 +198,6 @@ export const getYourDetailedCourse = (id) => async dispatch =>
             course,
             sections
         }
-        console.log('detailed course: ', detailedCourse)
         await dispatch({ type: GET_DETAILED_COURSE_SUCCESS, payload: detailedCourse })
     }
     catch(err)

@@ -3,6 +3,7 @@ import { getYourCourses, getYourLearningPaths } from "../../store/actions/index.
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { AddButton, ButtonText } from '../dashboard/ButtonStyles';
+import { ButtonStyles } from '../learningPaths/YourLearningPathsStyles'
 import YourCourse from './YourCourse'
 
 //Material UI Imports
@@ -33,7 +34,7 @@ const useStyles = makeStyles(theme => ({
         fontSize: '3.5rem',
         marginRight: '5px',
         marginLeft: '10px',
-        color: "#5b5b5b"
+        color: "white"
     }, 
   
     expand: {
@@ -70,7 +71,7 @@ function AllCourses(props) {
 
     useEffect(() => {
         dispatch(getYourLearningPaths())
-    }, dispatch)
+    }, [dispatch])
  
     return (
     <div>
@@ -81,23 +82,13 @@ function AllCourses(props) {
         <div className = {tabletSize ? classes.rootTablet : classes.root}>
             {tabletSize ? (
             <div className = {classes.addButtonDivTablet}>
-                <Link style={{ textDecoration: 'none' }} to='/courses/your/add'>
-                    <AddButton style = {{marginRight: '10px'}}>
-                        <AddCircleRoundedIcon  className = {classes.circleIcon}/>
-                        <ButtonText>New Course</ButtonText>
-                    </AddButton>
-                </Link>
-                {/* <AddButton style = {{marginRight: '10px'}}>
-                    <AddCircleRoundedIcon className = {classes.circleIcon}/>
-                    <ButtonText>Add Courses To Learning Path</ButtonText>
-                </AddButton> */}
-                <Link to="/courses/all" style={{ textDecoration: 'none' }} >
-                    <AddButton >
-                       <AddCircleRoundedIcon className = {classes.circleIcon}/>
-                        <ButtonText>All Courses</ButtonText>
-                    </AddButton>
-                </Link>
-            </div>) : (null) }
+                <ButtonStyles style={{display: "flex", justifyContent: 'flex-start'}}>   
+                    <div className = "buttons">
+                        <Link style={{ fontSize: '1.4rem' }} to={'/courses/yours/add'}>New Course</Link>
+                        <Link style={{ fontSize: '1.4rem' }} to={'/courses/all'}>All Courses</Link>
+                    </div>
+                </ButtonStyles>
+            </div>) : null }
             <div>
                 {state.coursesReducer.yourCourses
                     ? state.coursesReducer.yourCourses.map((course, i) => (
@@ -106,24 +97,15 @@ function AllCourses(props) {
                     : null}
 
             </div>
-            {!tabletSize ? (<div className = {classes.addButtonDiv}>
-                <Link style={{ textDecoration: 'none' }} to='/courses/yours/add'>
-                    <AddButton >
-                        <AddCircleRoundedIcon className = {classes.circleIcon}/>
-                        <ButtonText>New Course</ButtonText>
-                    </AddButton>
-                </Link>
-                {/* <AddButton onClick={handleAddingCourses}>
-                    <AddCircleRoundedIcon className = {classes.circleIcon}/>
-                    <ButtonText>{addingCourses ? "Done Adding" : "Add Courses"}</ButtonText
-                </AddButton> */}
-                <Link to="/courses/all" style={{ textDecoration: 'none' }} >
-                    <AddButton >
-                       <AddCircleRoundedIcon className = {classes.circleIcon}/>
-                        <ButtonText>All Courses</ButtonText>
-                    </AddButton>
-                </Link>
-            </div>) : (null) }
+            {!tabletSize ? (
+            <div className = {classes.addButtonDiv}>
+                <ButtonStyles style={{display: "flex", justifyContent: 'flex-start'}}>   
+                    <div className = "buttons">
+                        <Link style={{ fontSize: '1.4rem' }} to={'/courses/yours/add'}>New Course</Link>
+                        <Link style={{ fontSize: '1.4rem' }} to={'/courses/all'}>All Courses</Link>
+                    </div>
+                </ButtonStyles>
+            </div>) : null } 
         </div>
     </div>
     );

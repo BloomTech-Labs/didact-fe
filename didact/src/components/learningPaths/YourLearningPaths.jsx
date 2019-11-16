@@ -31,18 +31,19 @@ function getModalStyle() {
     };
 }
 
+const useStyles = makeStyles(theme => ({
+    paper: {
+        position: 'absolute',
+        width: 400,
+        backgroundColor: theme.palette.background.paper,
+        border: '2px solid #000',
+        boxShadow: theme.shadows[5],
+        padding: theme.spacing(2, 4, 3),
+    },
+}));
+
 const YourLearningPaths = (props) => {
     const [localState, setLocalState] = useState([])
-    const useStyles = makeStyles(theme => ({
-        paper: {
-            position: 'absolute',
-            width: 400,
-            backgroundColor: theme.palette.background.paper,
-            border: '2px solid #000',
-            boxShadow: theme.shadows[5],
-            padding: theme.spacing(2, 4, 3),
-        },
-    }));
     const classes = useStyles();
     const dispatch = useDispatch()
     const state = useSelector(state => state)
@@ -108,9 +109,11 @@ const YourLearningPaths = (props) => {
     };
 
     const handleMarkCompleteLearningPath = (id) => {
-        console.log(id)
+        console.log("clicked id", id)
         dispatch(toggleLearningPath(id))
     }
+
+
     console.log('LP', learningPaths)
 
     return (

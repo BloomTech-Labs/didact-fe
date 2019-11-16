@@ -47,22 +47,23 @@ const AllLearningPaths = (props) => {
          <div style={{display: 'flex', justifyContent: 'space-between', margin: '-10px 10px 10px 10px', borderBottom: '1px solid black'}}>
                 <p style={{fontWeight: 'bold', marginLeft: '10px', display: 'flex', flexDirection:'row', alignItems: 'center'}}><span className={classes.span}  onClick = {handleBack}>Learning Paths</span><ChevronRightIcon style={{fontSize: '1.6rem'}}/><span>Join Path</span></p>
         </div>
+        {!learningPaths.length === 0 ? (
         <LearningPathsWrapper>
-            {
-                    learningPaths.map((learningPath, index) => {
-                        return (
-                            <LearningPathCard key={index} style={{marginBottom: "20px"}}>
-                                <div className='title'> 
-                                    <h1>{learningPath.name}</h1>
-                                    <div>
-                                        <button onClick={() => joinPath(learningPath.id, yourLearningPaths.length)} id={learningPath.id}>Join Path</button>
-                                    </div>
-                                </div>
-                            </LearningPathCard>
-                        )
-                    })
-                }
-        </LearningPathsWrapper>
+            {learningPaths.map((learningPath, index) => {
+                return (
+                    <LearningPathCard key={index} style={{marginBottom: "20px"}}>
+                        <div className='title'> 
+                            <h1>{learningPath.name}</h1>
+                            <div>
+                                <button onClick={() => joinPath(learningPath.id, yourLearningPaths.length)} id={learningPath.id}>Join Path</button>
+                            </div>
+                        </div>
+                    </LearningPathCard>
+                )
+            })
+        }
+        </LearningPathsWrapper>)
+            : (<h2>No Learning Paths Available</h2>)}
         </>
     )
 }

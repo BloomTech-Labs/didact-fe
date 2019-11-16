@@ -133,12 +133,13 @@ const DrawerComponent = (props) => {
           backgroundColor: "#565554",
           marginLeft: '20px',
           height: '68px',
-          marginTop: "10px",
+          marginTop: "11px",
           position: 'fixed',
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
-          borderRadius: "19px",
+          cursor: 'pointer',
+          borderRadius: "18px",
           transition: theme.transitions.create("width", {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.enteringScreen,
@@ -161,6 +162,7 @@ const DrawerComponent = (props) => {
           justifyContent: 'center',
           alignItems: 'center',
           borderRadius: "19px",
+          cursor: 'pointer'
         },
     }));
 
@@ -168,16 +170,20 @@ const DrawerComponent = (props) => {
    
     const open = props.open
 
+     const handleBack = () => {
+        props.props.history.push('/')
+    }  
+
     return (
         <>
          {open ? 
-          (<div className={classes.didactDivOpen}>
-            <h2 style={{fontSize: "3.2rem", color: 'white', fontFamily: 'ITC Grouch'}}>Didact</h2>
+          (<div className={classes.didactDivOpen} onClick = {handleBack}>
+            <h2  style={{fontSize: "3.2rem", color: 'white', fontFamily: 'ITC Grouch'}}>Didact</h2>
           </div>)
           :
           (
-          <div className={classes.didactDivClosed}>
-            <h2 style={{fontSize: "3.2rem", color: 'white', fontFamily: 'ITC Grouch'}}>D<span style={{color: "#565554"}}>idact</span></h2>
+          <div className={classes.didactDivClosed} onClick = {handleBack}>
+            <h2 style={{fontSize: "3.2rem", color: 'white', fontFamily: 'ITC Grouch'}}>D<span  style={{color: "#565554"}}>idact</span></h2>
           </div>
           )}
         <Drawer
