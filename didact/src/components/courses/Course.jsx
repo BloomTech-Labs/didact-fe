@@ -12,11 +12,11 @@ import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import clsx from 'clsx';
-import IconButton from '@material-ui/core/IconButton';
-import Collapse from '@material-ui/core/Collapse';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Popover from '@material-ui/core/Popover'
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 
 import playlistAdd from '../../images/playlist_add_black_24x24.png'
 import closeIcon from '../../images/close_black_24x24.png'
@@ -85,10 +85,16 @@ const useStyles = makeStyles(theme => ({
         background: 'none',
         border: 'black',
         height: '100%',
+        display: "flex",
+        justifyContent: 'flex-end',
+        margin: '-21px -4px 15px 0',
+        position: "relative",
+        zIndex: 12
+        
     },
     courseTitle: {
         maxWidth: '512px',
-        paddingLeft: '20px'
+        color: "white"
     }
 
 }));
@@ -141,11 +147,10 @@ const Course = ({ course, addingCourses }) => {
         <PopoverWrapper>
             <Card className={classes.card}>
                 <CardContent>
-                    <h3 className={classes.title}>
-                        <div className='courseTitle'>
-                            <span className={classes.courseTitle}>{`${course.name.substring(0, 25)} ...`}</span>
-                        </div>
+                    <h3>
+                        <div style={{display: 'flex', justifyContent: 'flex-end', width: "100%"}}>
                         {addingCourses && <button className={classes.addCourse} onClick={handleClick}><img src={playlistAdd} alt='Add Course' /></button>}
+                        </div>
                         <div>
                             <Popover
                                 id={id}
@@ -199,43 +204,38 @@ const Course = ({ course, addingCourses }) => {
                             </Popover>
                         </div>
                     </h3>
-                    {course.description ? (
-                                <>
-                    <CardActions className={classes.descriptionDiv} style = {{color: "white"}} disableSpacing>
-                        {/* <div style={{display:'flex', justifyContent: 'space-between', width: '80%'}}> */}
-                            {/* <div style={{display:'flex', flexDirection:'column', textAlign: "left"}}>
-                            <span>Sections</span>
-                            <span>{((detailedCourse.sections && detailedCourse.course) && detailedCourse.course.id === course.id) ? detailedCourse.sections.length : 0}</span>
-                            </div>
-                            <div style={{display:'flex', flexDirection:'column', textAlign: "left"}}>
-                            <span>Progress</span>
-                            <span>{`${(detailedCourse.course && detailedCourse.course.id === course.id) ? (progressThree) : 0} %`}</span>
-                            </div> */}
-                        {/* </div> */}
-                        <p style={{textAlign:'left', marginLeft: '15px'}}>{course.description && !expanded ? (`${course.description.substring(0, 150)} ...`) : null}</p>
-                        <IconButton
-                            className={clsx(classes.expand, {
-                                [classes.expandOpen]: expanded,
-                            })}
-                            onClick={handleExpandClick}
-                            aria-expanded={expanded}
-                            aria-label="show more"
+
+                    <CardActions disableSpacing>
+                    <ExpansionPanel style={{marginTop: '-60px', backgroundColor: '#386581', border: 'none', boxShadow: 'none'}}>
+                    <ExpansionPanelSummary
+                        aria-controls="panel1a-content"
+                        id="panel1a-header"
+                        style={{fontSize: '2.8rem', textAlign: 'left', paddingLeft: '6px'}}
                         >
-                            <ExpandMoreIcon style={{fontSize: '2.8rem'}}/>
-                        </IconButton>
-                    </CardActions>
-                    <Collapse in={expanded} timeout="auto" unmountOnExit>
-                        <CardContent style = {{padding: 'none'}}>
-                            <p className={classes.title} style = {{color: "white", textAlign:'left', marginLeft: '15px'}}>
-                                {course.description}
+                        <div className='courseTitle' style={{display: 'flex', flexDirection: 'column'}}>
+                            <span className={classes.courseTitle}>{`${course.name.substring(0, 25)} ...`}</span>
+                            <div style={{textAlign: 'left', width: "100%", fontSize: '1.2rem', marginTop: '10px', paddingLeft: "2px", color: "white"}}>
+                            <span >{course.foreign_instructors}</span> 
+                            {course.description && course.description !== null ? (
+                            <div style={{display: 'flex', alignItems: "baseline", justifyContent: 'space-between'}}>
+                                <p style={{marginBottom: "-20px"}}>{`${course.description && course.description.substring(0, 130)}`}</p> 
+                                <ExpandMoreIcon style={{color: "white", display: "flex", paddingTop: '-10px'}}/>
+                            </div>    
+                            ) : 
+                            null}
+                            
+                            </div>
+                        </div>
+                        </ExpansionPanelSummary>
+                        {course.description && course.description !== null ? 
+                        (<ExpansionPanelDetails style={{padding: "0 10px 10px 8px", margin:"0px"}}>
+                            <p style ={{textAlign:'left', color: "white", marginTop: '0px', paddingRight: '25px'}}>
+                                {course.description.substring(130)}
                             </p>
-                        </CardContent>
-                    </Collapse>
-                    </>) : null}
-                    <div style={{display: 'flex', justifyContent: "space-evenly", fontSize: '1.4rem'}}>
-                    <span className={classes.pos}>{course.foreign_instructors}</span>
-                    <span className={classes.pos}>{course.foreign_rating}</span>
-                    </div>
+                        </ExpansionPanelDetails>
+                        ): null}
+                    </ExpansionPanel>
+                    </CardActions>
                     <p>{course.category ? (`Category: ${course.category}`) : (null)}</p>
                 </CardContent>
                 <CardActions className={classes.buttonDiv}>

@@ -75,7 +75,7 @@ function Dashboard({props}) {
     <div className={classes.container}>
       <div className={classes.smallContainer}>
         <p style={{fontSize: '2rem', fontWeight: 'bold', textAlign: 'left', marginLeft: '10px'}}>Current Learning Path</p>
-            <LearningPathCard className={classes.current} style={{marginRight: '20px'}}>
+            <LearningPathCard className={classes.current} style={{marginRight: '20px', paddingLeft: '33px'}}>
                 <div className='title'>
                     <h1 style={{ fontWeight: 'bold' }}>{learningPathOrder.length >= 1 ? learningPathOrder[0].name : "Join a Learning Path"}</h1>
                     <div style={{display:'flex'}}>

@@ -25,7 +25,7 @@ export const PageFlex = styled.div`
             justify-content: space-between;
             align-items: center;
             color: #EBE8E1;
-            padding: 10px 25px;
+            padding: 10px 15px;
 
             h2 {
                 margin: 0px 0px;
@@ -41,9 +41,7 @@ export const PageFlex = styled.div`
                 justify-self: "flex-end";
                 justify-content: flex-end;
 
-                p:first-child {
-                    margin-right: 33px;
-                }
+                
             }
         }
     }

@@ -1,5 +1,5 @@
 import React from 'react'
-import {ContentDiv, LambdaImage, ImageDiv, CardContainer, Card, PersonImage, PersonInfo} from './AboutStyles.js'
+import {ContentDiv, LambdaImage, ImageDiv, CardContainerOpen, CardContainer, Card, PersonImage, PersonInfo, CardOpen} from './AboutStyles.js'
 
 // Pictures
 import LambdaLogo from '../../images/lambdalogo.png'
@@ -23,13 +23,13 @@ console.log(props)
     }   
 
     const teamArray = [
-        {name: 'Andrew Allen', img: <PersonImage alt="" src={AndrewImage} />, area: "Development", icon: <FaGithub style ={{width: '25px', height: "25", color: "white", marginBottom: '10px'}}/>, link: "https://github.com/AndrewA0112"},
-        {name: 'Mark Dudlik', img: <PersonImage alt="" src={MarkImage}/>, area: "User Experience", icon: <FaDribbble style ={{width: '25px', height: "25", color: "white", marginBottom: '10px'}}/>, link: "http://markdudlik.com/"},
-        {name: 'Jonathan Scott',img: <PersonImage alt="" src={JonImage}/>, area: "Development", icon: <FaGithub style ={{width: '25px', height: "25", color: "white", marginBottom: '10px'}}/>, link: "https://github.com/jondscott21"},
-        {name: 'Eli Sacks', img: <PersonImage alt="" src={EliImage}/>, area: "Development", icon: <FaGithub style ={{width: '25px', height: "25", color: "white", marginBottom: '10px'}}/>, link: "https://github.com/Bastlifa"},
-        {name: 'Todd McKenzie', img: <PersonImage alt="" src={ToddImage}/>, area: "Team Lead/ Development", icon: <FaGithub style ={{width: '25px', height: "25", color: "white", marginBottom: '10px'}}/>, link: "http://www.github.com/toddmckenzie"},
-        {name: 'Seth Nadu', img: <PersonImage alt="" src={SethImage}/>, area: "Development", icon: <FaGithub style ={{width: '25px', height: "25", color: "white", marginBottom: '10px'}}/>, link: "https://github.com/sethnadu"},
-        {name: 'Ben Allen', img: <PersonImage alt="" src={BenImage}/>, area: "Development", icon: <FaGithub style ={{width: '25px', height: "25", color: "white", marginBottom: '10px'}}/>, link: "https://github.com/allenben746"},
+        {id: 1, name: 'Andrew Allen', img: <PersonImage alt="" src={AndrewImage} />, area: "Development", icon: <FaGithub style ={{width: '25px', height: "25", color: "white", marginBottom: '10px'}}/>, link: "https://github.com/AndrewA0112"},
+        {id: 2, name: 'Jonathan Scott',img: <PersonImage alt="" src={JonImage}/>, area: "Development", icon: <FaGithub style ={{width: '25px', height: "25", color: "white", marginBottom: '10px'}}/>, link: "https://github.com/jondscott21"},
+        {id: 3, name: 'Eli Sacks', img: <PersonImage alt="" src={EliImage}/>, area: "Development", icon: <FaGithub style ={{width: '25px', height: "25", color: "white", marginBottom: '10px'}}/>, link: "https://github.com/Bastlifa"},
+        {id: 4, name: 'Todd McKenzie', img: <PersonImage alt="" src={ToddImage}/>, area: "Team Lead/ Development", icon: <FaGithub style ={{width: '25px', height: "25", color: "white", marginBottom: '10px'}}/>, link: "http://www.github.com/toddmckenzie"},
+        {id: 5, name: 'Seth Nadu', img: <PersonImage alt="" src={SethImage}/>, area: "Development", icon: <FaGithub style ={{width: '25px', height: "25", color: "white", marginBottom: '10px'}}/>, link: "https://github.com/sethnadu"},
+        {id: 6, name: 'Ben Allen', img: <PersonImage alt="" src={BenImage}/>, area: "Development", icon: <FaGithub style ={{width: '25px', height: "25", color: "white", marginBottom: '10px'}}/>, link: "https://github.com/allenben746"},
+        {id: 7, name: 'Mark Dudlik', img: <PersonImage alt="" src={MarkImage}/>, area: "User Experience", icon: <FaDribbble style ={{width: '25px', height: "25", color: "white", marginBottom: '10px'}}/>, link: "http://markdudlik.com/"},
     ]
 
     return (
@@ -48,10 +48,11 @@ console.log(props)
                 </ImageDiv>
             </ContentDiv>
             <h4 style={{textAlign: 'left', marginLeft: '15px'}}>Team</h4>
-            <CardContainer>
+            {!props.open ? (
+            <CardContainerOpen>
                 {teamArray.map(person => {
                     return(
-                    <Card>
+                    <CardOpen>
                         {person.img}
                         <PersonInfo>
                             <div >
@@ -61,10 +62,28 @@ console.log(props)
                             <a style ={{color: "white"}} href={person.link}>{person.icon}</a>
                         </PersonInfo>
 
-                    </Card> )
+                    </CardOpen> )
                 })}
 
-            </CardContainer>
+            </CardContainerOpen>)
+            :(
+            <CardContainer>
+            {teamArray.map(person => {
+                return(
+                <Card>
+                    {person.img}
+                    <PersonInfo>
+                        <div >
+                            <p style={{fontFamily: 'ITC Grouch', color: "white", fontSize: "20px", marginTop: "5px", fontWeight: 'bolder'}}>{person.name}</p>
+                            <p style={{fontFamily: 'ITC Grouch', color: "white", marginTop: "-20px"}}>{person.area}</p>
+                        </div>
+                        <a style ={{color: "white"}} href={person.link}>{person.icon}</a>
+                    </PersonInfo>
+
+                </Card> )
+                })}
+            </CardContainer>  
+            )}
         </div>
     )
 }
