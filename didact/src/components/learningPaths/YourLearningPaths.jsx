@@ -53,6 +53,26 @@ const useStyles = makeStyles(theme => ({
     },
     buttonClosed: {
         marginLeft: '100px'
+    },
+    buttonDiv: {
+        display: 'flex',
+        justifyContent: 'flex-end', 
+        alignItems: 'center', 
+        width: '220px', 
+        margin: "0 0 0 auto"
+    },
+    buttonDivMobile: {
+        display: 'flex',
+        flexDirection: "column",
+        justifyContent: 'space-evenly', 
+        alignItems: 'flex-end', 
+        width: '150px', 
+        margin: "0 0 0 auto"
+    },
+    spanMobile: {
+        color: 'white',
+        cursor: 'pointer',
+        marginRight: "35px"
     }
 }));
 
@@ -176,14 +196,14 @@ const YourLearningPaths = (props) => {
                                                     <DragIndicatorIcon style={{color: 'white', fontSize: '3rem'}}/>
                                                     <div>
                                                         <div style={{display: 'flex', flexDirection: 'row'}}>
-                                                            <div style={{display: 'flex', flexDirection: "column", margin: '15px 10px 0 40px', fontSize: '.8rem', color: 'white', fontWeight: 'bold'}}>
+                                                            <div style={{display: 'flex', flexDirection: "column", margin: '15px 10px 0 40px', fontSize: '.8rem', color: 'white', fontWeight: 'bold', width: '100px'}}>
                                                                 <span>{`${learningPath.courses.length} CLASSES`}</span>
                                                                 <span>{`${learningPath.pathItems.length} ITEMS`}</span>
                                                             </div>
-                                                            <div style={{display: 'flex', justifyContent: 'flex-end', alignItems: 'center', width: '220px', margin: "0 0 0 auto"}}>
+                                                            <div className={!props.props.phoneSize ? classes.buttonDiv : classes.buttonDivMobile}>
                                                             <Link to={`/learning-paths/${learningPath.id}`}><button>Go To Path</button></Link>
                                                                 <div>
-                                                                    <p style={{color: 'white', cursor: 'pointer'}} onClick={() => handleModalOpen(learningPath.id)} id={learningPath.id}>Leave Path</p>
+                                                                    <p className={props.props.phoneSize ? classes.spanMobile : null} style={{color: 'white', cursor: 'pointer'}} onClick={() => handleModalOpen(learningPath.id)} id={learningPath.id}>Leave Path</p>
                                                                 </div>
                                                             </div>
                                                         </div>

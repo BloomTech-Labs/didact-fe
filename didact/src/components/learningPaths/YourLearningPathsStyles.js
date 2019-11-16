@@ -6,14 +6,16 @@ export const LearningPathsWrapper = styled.div`
     flex-direction: column;
 
     @media (max-width: 600px){
-        margin: auto;
-    }
+        /* margin: auto; */
+        width: 100%;
+    } 
 
 `
 
 export const YourLearningPathsWrapper = styled.div`
     /* margin-right: 30px; */
     display: flex;
+    width: 100%;
 
     .mainContent {
         display: flex;
@@ -31,9 +33,17 @@ export const YourLearningPathsWrapper = styled.div`
         max-width: 540px;
         width: 100%;
 
+        @media (max-width: 600px){
+        /* margin: auto; */
+        width: 100%;
+        max-width: 330px;
+        } 
+
+
         h3 {
             text-align: left;
         }
+
     }
 
     .completed {
@@ -41,6 +51,7 @@ export const YourLearningPathsWrapper = styled.div`
         
         .title h1 {
             color: black;
+
         }
     }
 
@@ -116,9 +127,10 @@ export const YourLearningPathsWrapper = styled.div`
 
 export const LearningPathCard = styled.div`
 
-    /* @media (max-width: 600px) {
-        margin: auto;
-        } */
+        @media(max-width: 600px){
+            width: 100%;
+        
+        }
 
         display: flex;
         justify-content: space-between;
@@ -132,12 +144,14 @@ export const LearningPathCard = styled.div`
         background-color: #386581;
 
         @media(max-width: 600px){
-        padding: 20px;
+            width: 100%;
+            min-width: calc(100vw - 100px)
         
-    }
+        }
 
         .completed {
             background: #D1E2EA;
+            width: 100%;
         }
 
         .title {
@@ -149,6 +163,15 @@ export const LearningPathCard = styled.div`
                 width: 100%;
                 justify-content: space-between;
                 align-items: center;
+
+                 h1 {
+                    
+                    @media(max-width: 600px){
+                        font-size: 2rem;
+                    
+                    }
+
+                }
 
                 .notCompleteButton {
                     font-size: 2.2rem;
