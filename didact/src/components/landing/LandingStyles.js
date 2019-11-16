@@ -76,7 +76,7 @@ export const StyledImg = styled.img`
 `;
 
 export const Middle = styled.div`
-    width: 37%;
+    width: 433px;
     margin-top: 20px;
 `;
 
@@ -123,11 +123,14 @@ export const StyledBlueButton = styled.button`
     margin-top: 125px;
     margin-left: 30px;
     border: 1px solid #386581;
+    &:focus {
+        outline: 0;
+        }
 `;
 
 export const SmallText = styled.p`
     color: white;
-    margin-left: 50%;
+    margin-left: 550px;
     font-size: 18px;
     font-weight: 700;
     margin-top: -20px;
@@ -145,3 +148,12 @@ export const StyledImgCircle = styled.img`
     margin-left: 10px;
     margin-top: -18px;
 `;
+
+export const Warning = styled.p`
+    font-size: 14px;
+    color: white;
+    margin-left: 600px;
+    margin-top: -50px;
+    width: 250px;
+    margin-bottom: 40px;
+`
