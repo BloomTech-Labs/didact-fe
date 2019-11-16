@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Container, Heading, DidactHeader, StyledButton, Flex, LargeFont, LargeFont1, SmallerFont, StyledImg, Middle, BlackBox, WhiteLargeText, WhiteLargeText1, StyledInput, StyledBlueButton, SmallText, SecondImg, StyledImgCircle, Warning } from './LandingStyles.js';
+import { Container, Heading, DidactHeader, StyledButton, Flex, LargeFont, LargeFont1, SmallerFont, StyledImg, Middle, BlackBox, WhiteLargeText, WhiteLargeText1, StyledInput, StyledBlueButton, SmallText, SecondImg, StyledImgCircle, Warning, SocialImg } from './LandingStyles.js';
 import computer from '../../images/computer.png';
 import computer2 from '../../images/computer2.png';
 import playCircle from '../../images/play-circle.png';
+import twitter from '../../images/Twitter.png';
 import axios from 'axios';
 import beURL from '../../utils/beURL.js';
 
@@ -15,15 +16,14 @@ const Landing = ({ history }) => {
 
     const sendEmail = () => {
         if (email !== '' && email.includes('@') && email.includes('.com')){
-             axios.post(`${beURL}emaillist`, email)
+             axios.post(`${beURL}auth/emaillist`, { email: email })
                 .then(res => {
-                    console.log('Successful')
                     setEmail('');
                     setError('')
                 })
                 .catch(err => {
                     setEmail('');
-                    setError('Please submit valid email again.')
+                    setError('This email may already be registered.')
                 })
         } else {
             setError('It must be a valid email.')
@@ -71,6 +71,9 @@ const Landing = ({ history }) => {
                 </Flex>
                 </BlackBox>
                 <SecondImg src={computer2} />
+                <a href="https://twitter.com/DidactLMS" target="_blank">
+                    <SocialImg src={twitter} target="_blank"/>
+                </a>
         </Container>
         )
 }

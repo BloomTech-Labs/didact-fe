@@ -157,3 +157,9 @@ export const Warning = styled.p`
     width: 250px;
     margin-bottom: 40px;
 `
+
+export const SocialImg = styled.img`
+    width: 20px;
+    margin-bottom: 20px;
+    margin-left: 800px;
+    `;
