@@ -193,10 +193,10 @@ const Lesson = ({ course, section, lesson, props }) => {
                  <>
                  {openModal ? <DeleteModal handleDelete={handleDelete} text={"lesson"} open={openModal} handleModalClose={handleModalClose} /> : null}
                 <div style={{ display: 'flex', alignItems: 'center', margin: '0 0 15px 0', borderBottom: 'grey solid 1px'}}>
-                    <TrashCan style={{fontSize: "2.6rem"}} onClick={handleModalOpen} />
-                    <EditIconButton style={{fontSize: "2.6rem"}} onClick={handleToggleLessonEdit} />
+                    <TrashCan style={{fontSize: "2.6rem", color: "#414D55"}} onClick={handleModalOpen} />
+                    <EditIconButton style={{fontSize: "2.6rem", color: '#414D55'}} onClick={handleToggleLessonEdit} />
                     <span style={{paddingLeft: '20px', width: '80%', display: "flex", flexDirection: 'row wrap', justifyContent: 'space-between', marginRight: '10px'}}>
-                        <a style={{ textDecoration: 'none', color: 'white', textAlign: "left", paddingRight: '5px'}} href={lesson.link}>{lesson.name}</a>
+                        <a style={{ textDecoration: 'none', color: '#414D55', textAlign: "left", paddingRight: '5px'}} href={lesson.link}>{lesson.name}</a>
                     </span>
                     <span style={{marginRight: '10px'}} >{lesson.type === "video" 
                         ? (<PlayCircleFilledIcon style={{fontSize: "2.6rem"}}/>) : lesson.type === "reading" 

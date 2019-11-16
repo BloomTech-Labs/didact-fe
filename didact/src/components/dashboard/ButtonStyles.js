@@ -11,7 +11,7 @@ export const AddButton = styled.div`
     justify-content: space-around;
     align-items: center;
     border: none;
-    background: #EEEFF3;
+    background: black;
     border-radius: 15px;
     margin-bottom: 10px;
     &:hover {
@@ -34,7 +34,7 @@ export const Plus = styled.span`
     /* padding-top: 3px; */
 `
 export const ButtonText = styled.p`
-    color: black;
+    color: white;
     padding-right: 15px;
     font-weight: bold;
 `
@@ -46,18 +46,18 @@ export const AddButtonInSection = styled.div`
     justify-content: space-around;
     align-items: center;
     border: none;
-    background: #EEEFF3;
+    background: black;
     border-radius: 25px;
     cursor: pointer;
     padding: 0 10px;
-    &:hover {
-        border: black solid 1px;
-    }
+    /* &:hover {
+        border: white solid 1px;
+    } */
 `
 
 export const PlusDivInSection = styled.div`
-    background: #575758;
-    color: #EEEFF3;
+    background-color: black;
+    color: black;
     height: 25px;
     width: 25px;
     border-radius: 50%;
@@ -70,7 +70,7 @@ export const PlusInSection = styled.span`
     padding-top: 2.5px;
 `
 export const ButtonTextInSection = styled.p`
-    color: black;
+    color: white;
     padding-right: 15px;
     font-size: 12px; 
     font-weight: bold;
@@ -209,10 +209,8 @@ export const TagStyles = styled.span `
         font-size: 14;
         font-weight: bold;
         margin: 3px;
-        margin-left: 10px;
-        padding: 5px 10px;
+        padding: 5px 10px 0 0;
         border-radius: 10px;
-        background: #5B5B5B;
         color: white;
 `
 

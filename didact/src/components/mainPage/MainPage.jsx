@@ -57,7 +57,7 @@ const useStyles = makeStyles(theme => ({
         alignItems: "center",
         backgroundColor: "#767573",
         width: "240px",
-        borderRadius: '15px',
+        borderRadius: "10px",
         padding: "0 6px",
         height: '32px'
     },

@@ -68,7 +68,7 @@ export const LearningPathWrapper = styled.div`
 
                     @media (max-width: 600px) {
                     width: 100%;
-                    margin: auto;
+                    margin: 10px;
                 }
 
         
@@ -133,7 +133,9 @@ export const LearningPathWrapper = styled.div`
         }
 
         .long:last-child {
-            width: 826px
+            max-width: 826px;
+            width: 100%;
+            margin: 10px;
         }
     }
 
@@ -186,7 +188,8 @@ export const LearningPathWrapper = styled.div`
     }
 
     .upcoming {
-        width: 395px;
+        max-width: 395px;
+        width: 100%;
         margin-bottom: 52px;
 
         @media (max-width: 600px) {
@@ -197,8 +200,9 @@ export const LearningPathWrapper = styled.div`
             .learningPathCard {
             background: #ADC8D9;
             color: black;
-            width: 395px;
-            margin: 0px;
+            max-width: 395px;
+            width: 100%;
+            margin: 10px;
         }
     }
 
@@ -206,6 +210,9 @@ export const LearningPathWrapper = styled.div`
         .learningPathCard {
             background: #D1E2EA;
             color: black;
+            max-width: 395px;
+            width: 100%;
+            margin: 10px;
         }
     }
 

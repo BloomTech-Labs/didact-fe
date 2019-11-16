@@ -9,9 +9,9 @@ import {
 } from "../../store/actions";
 
 // import components
+import AddToLearningPath from './addToLearningPath/AddToLearningPath'
 import DeleteModal from "../courses/DeleteModal";
 import CourseLearningPath from "./CourseLearningPath";
-import AddToLearningPath from './addToLearningPath/addToLearningPath'
 import { changePathOrder } from '../../utils/changePathOrder'
 
 // imports for Styled Components 

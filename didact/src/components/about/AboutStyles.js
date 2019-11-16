@@ -26,18 +26,21 @@ export const ImageDiv = styled.div`
  export const CardContainer = styled.div `
     width: 100%;
     display: flex;
-    flex-flow: row wrap; 
+    flex-flow: row wrap;
+    justify-content: space-between;
  `
 
  export const Card = styled.div `
-    width: 380px;
+    min-width: 380px;
+    width: 100%;
+    max-width: 420px;
     height: 166px;
     background-color: #565554;
     border-radius: 20px;
     display: flex;
     flex-direction: row;
     padding: 20px 20px 10px 20px;
-    margin: 12px;
+    margin: 12px 0;
     font-family: ITC Grouch;
     align-items: center;
  

@@ -47,21 +47,21 @@ const SearchResults = ({props, results, setValues, values}) => {
             </div>
             {results === '' ? null : (
             <>
-            <div>
+            <div style={{minHeight: '300px'}}>
             {/* Your Learning Path Results */}
-            {results ? (<TitleH2>Learning Paths</TitleH2>) : null}
+           <TitleH2>Learning Paths</TitleH2>
             {results && yourLearningPaths ? yourLearningPaths.map(keyword => {
             return (
-                (keyword.name.toLowerCase().includes(`${results.toLowerCase()}`)) || 
-                (keyword.description.toLowerCase().includes(`${results.toLowerCase()}`)) ||
+                (keyword.name && keyword.name.toLowerCase().includes(`${results.toLowerCase()}`)) || 
+                (keyword.description && keyword.description.toLowerCase().includes(`${results.toLowerCase()}`)) ||
                 (!keyword.category === null && keyword.category.toLowerCase().includes(`${results.toLowerCase()}`))
             ) ? ( <LearningPathYourResults props = {props} learningPath = {keyword} results={results}/> ) : null}) : null}
 
             {/* Learning Path Results */}
             {results && learningPaths ? learningPaths.map((keyword) => {
             return (
-                (keyword.name.toLowerCase().includes(`${results.toLowerCase()}`)) || 
-                (keyword.description.toLowerCase().includes(`${results.toLowerCase()}`)) ||
+                (keyword.name && keyword.name.toLowerCase().includes(`${results.toLowerCase()}`)) || 
+                (keyword.description && keyword.description.toLowerCase().includes(`${results.toLowerCase()}`)) ||
                 (!keyword.category === null && keyword.category.toLowerCase().includes(`${results.toLowerCase()}`))
             ) ?
              <LearningPathResults props = {props} learningPath = {keyword} results={results}/> :
@@ -71,14 +71,14 @@ const SearchResults = ({props, results, setValues, values}) => {
 
             {/* Courses Results */}
             <div>
-            {results ? (<TitleH2 style={{marginBottom: "-30px"}}>Courses</TitleH2>) : null}
+            <TitleH2 style={{marginBottom: "-30px"}}>Courses</TitleH2>
             {results && courses ? courses.map(keyword => {
             return (
-                (keyword.name.toLowerCase().includes(`${results.toLowerCase()}`)) || 
-                (keyword.description.toLowerCase().includes(`${results.toLowerCase()}`)) ||
-                (keyword.link.toLowerCase().includes(`${results.toLowerCase()}`)) ||
+                (keyword.name && keyword.name.toLowerCase().includes(`${results.toLowerCase()}`)) || 
+                (keyword.description && keyword.description.toLowerCase().includes(`${results.toLowerCase()}`)) ||
+                (keyword.link && keyword.link.toLowerCase().includes(`${results.toLowerCase()}`)) ||
                 (!keyword.category === null && keyword.category.toLowerCase().includes(`${results.toLowerCase()}`)) ||
-                (keyword.foreign_instructors.toLowerCase().includes(`${results.toLowerCase()}`)) 
+                (keyword.foreign_instructors && keyword.foreign_instructors.toLowerCase().includes(`${results.toLowerCase()}`)) 
             ) ?
              <Course course = {keyword} results={results}/> : null
              }) : null}
