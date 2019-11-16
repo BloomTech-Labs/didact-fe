@@ -20,6 +20,11 @@ export const YourLearningPathsWrapper = styled.div`
         flex-direction: column;
     }
 
+    .mainContentClosed {
+        display: flex;
+        flex-direction: column;
+    }
+
     .yourLearningPaths {
         display: flex;
         flex-direction: column;
@@ -73,6 +78,40 @@ export const YourLearningPathsWrapper = styled.div`
         font-size: 30px;
     }
 
+    .buttonsClosed {
+        padding-left: 200px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+
+        a {
+            background-color: #242424;
+            color: #F4F8FA;
+            text-decoration: none;
+            padding: 20px 30px;
+            margin-bottom: 22px;
+            border-radius: 19px;
+            width: 255px;
+            height: 61px;
+
+            &:first-child {
+                margin-right: 20px;
+            }
+
+            &:hover {
+                color: rgba(0, 0, 0, 1);
+                background-color: rgba(255, 255, 255, 1);
+                border: solid black 1px;
+                outline: none;
+            }   
+        }
+    }
+
+    h1 {
+        text-align: left;
+        font-size: 30px;
+    }
+
 `
 
 export const LearningPathCard = styled.div`
@@ -86,7 +125,7 @@ export const LearningPathCard = styled.div`
         align-items: center;
         background: white;
         border-radius: 19px;
-        padding: 35px 43px;
+        padding: 35px 33px 35px 10px;
         margin-bottom: 28px;
         max-width: 540px;
         width: 100%;
@@ -109,6 +148,7 @@ export const LearningPathCard = styled.div`
                 display: flex;
                 width: 100%;
                 justify-content: space-between;
+                align-items: center;
 
                 .notCompleteButton {
                     font-size: 2.2rem;
@@ -214,11 +254,14 @@ export const LearningPathCard = styled.div`
                 }
             }
         }
+        
     }
 
     h1 {
         text-align: left;
     }
+
+    
 `
 
 export const ButtonStyles = styled.div`
@@ -259,5 +302,9 @@ export const ButtonStyles = styled.div`
             }   
         }
     }
+
+   
+
+    
 
 `

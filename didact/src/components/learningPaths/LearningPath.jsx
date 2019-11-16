@@ -138,7 +138,7 @@ const LearningPath = ({ id, props }) => {
                         (<div style={{display:'flex', justifyContent: 'space-between', width: '80%'}}>
                             <div style={{display:'flex', flexDirection:'column', textAlign: "left", margin: "10px 0 -10px 0"}}>
                             <span>Progress</span>
-                            <span>{`${(firstItemCourse) ? (progressPecentage) : 0} %`}</span>
+                            <span>{`${(firstItemCourse && firstItemCourse.total > 1 ) ? (progressPecentage) : 0} %`}</span>
                             </div> 
                         </div>): null} 
                     <p>{firstItemCourse.description}</p>
@@ -163,7 +163,7 @@ const LearningPath = ({ id, props }) => {
                                                 (<div style={{display:'flex', justifyContent: 'space-between', width: '80%'}}>
                                                     <div style={{display:'flex', flexDirection:'column', textAlign: "left", margin: "10px 0 -10px 0"}}>
                                                     <span>Progress</span>
-                                                    <span>{`${(itemCourse) ? (((itemCourse.completed / itemCourse.total) * 100).toString().substring(0, 4)) : 0} %`}</span>
+                                                    <span>{`${(itemCourse && itemCourse.total > 1) ? (((itemCourse.completed / itemCourse.total) * 100).toString().substring(0, 4)) : 0} %`}</span>
                                                     </div> 
                                                 </div>) : null}
                                                 <p>{itemCourse.description}</p>

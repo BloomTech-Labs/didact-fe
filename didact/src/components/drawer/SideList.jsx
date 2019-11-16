@@ -11,7 +11,8 @@ import InboxIcon from "@material-ui/icons/MoveToInbox";
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import FolderOpenIcon from '@material-ui/icons/FolderOpen';
 import PermIdentityIcon from '@material-ui/icons/PermIdentity';
-
+//Material UI Icons
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { SideListWrapper } from './SideListStyles'
 
 const SideList = ({ props }) => {
@@ -64,7 +65,7 @@ const SideList = ({ props }) => {
         localStorage.clear('token')
         props.props.history.push('/login')
     }
-
+    console.log(props)
     const firstName = userName.first_name ? userName.first_name.substring(0, 1).toUpperCase() + userName.first_name.substring(1) : null;
     const lastName = userName.last_name ? userName.last_name.substring(0, 1).toUpperCase() + userName.last_name.substring(1) : null;
 
@@ -82,7 +83,12 @@ const SideList = ({ props }) => {
                 <div style={{display: 'flex', flexDirection: 'row', width: '100%', alignItems: 'center', outline: "none !important"}}>
                     <DashboardIcon style={{marginLeft: "17px", fontSize: "28px"}}/>
                     <p style={{marginLeft: "25px", fontWeight: 'bold'}}>Dashboard</p>
-                    <p className={classes.arrow}>></p>
+                    {props.props.location.pathname === "/" ? (
+                        <p className={classes.arrow}><ChevronRightIcon style={{fontSize: '2.4rem', marginTop: '6px'}}/></p>
+                    ) : (
+                        <p className={classes.arrow}><ChevronRightIcon style={{fontSize: '2.4rem', marginTop: '6px', color: "#5b5b5b"}}/></p>
+                    )}
+                    
                 </div>
                 </NavLink>
                 <NavLink
@@ -95,7 +101,11 @@ const SideList = ({ props }) => {
                      <div style={{display: 'flex', flexDirection: 'row', width: '100%', alignItems: 'center',}}>
                         <FolderOpenIcon style={{marginLeft: "17px", fontSize: "28px"}}/>
                         <p style={{marginLeft: "25px", fontWeight: 'bold'}}>Courses</p>
-                        <p className={classes.arrow}>></p>
+                        {props.props.location.pathname === "/courses" ? (
+                        <p className={classes.arrow}><ChevronRightIcon style={{fontSize: '2.4rem', marginTop: '6px'}}/></p>
+                        ) : (
+                        <p className={classes.arrow}><ChevronRightIcon style={{fontSize: '2.4rem', marginTop: '6px', color: "#5b5b5b"}}/></p>
+                        )}
                     </div>
                 </NavLink>
                 <NavLink
@@ -108,7 +118,11 @@ const SideList = ({ props }) => {
                      <div style={{display: 'flex', flexDirection: 'row', width: '100%', alignItems: 'center',}}>
                         <InboxIcon style={{marginLeft: "17px", fontSize: "28px"}}/>
                         <p style={{marginLeft: "25px", fontWeight: 'bold'}}>Learning Paths</p>
-                        <p className={classes.arrow}>></p>
+                        {props.props.location.pathname === "/learning-paths" ? (
+                        <p className={classes.arrow}><ChevronRightIcon style={{fontSize: '2.4rem', marginTop: '6px'}}/></p>
+                        ) : (
+                        <p className={classes.arrow}><ChevronRightIcon style={{fontSize: '2.4rem', marginTop: '6px', color: "#5b5b5b"}}/></p>
+                        )}
                     </div>
                 </NavLink>
             </ul>

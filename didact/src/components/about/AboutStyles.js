@@ -30,10 +30,16 @@ export const ImageDiv = styled.div`
     justify-content: space-between;
  `
 
+
+export const CardContainerOpen = styled.div `
+   width: 100%;
+   display: flex;
+   flex-flow: row wrap;
+   justify-content: space-between;
+`
+
  export const Card = styled.div `
-    min-width: 380px;
-    width: 100%;
-    max-width: 420px;
+    width: 390px;
     height: 166px;
     background-color: #565554;
     border-radius: 20px;
@@ -45,6 +51,20 @@ export const ImageDiv = styled.div`
     align-items: center;
  
  `
+
+export const CardOpen = styled.div `
+   width: 460px;
+   height: 166px;
+   background-color: #565554;
+   border-radius: 20px;
+   display: flex;
+   flex-direction: row;
+   padding: 20px 20px 10px 20px;
+   margin: 12px 0;
+   font-family: ITC Grouch;
+   align-items: center;
+
+`
 
  export const PersonImage = styled.img `
     width: 133px;
