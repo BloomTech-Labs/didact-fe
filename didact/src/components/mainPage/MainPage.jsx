@@ -1,25 +1,26 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { verifyToken } from "../../store/actions/index.js"
 import { useDispatch, useSelector } from "react-redux"
-import { PageFlex } from './PageStyles'
+import { PageFlex} from './PageStyles'
 import { makeStyles } from "@material-ui/core/styles"
 import { Link } from "react-router-dom"
-
+ 
+//Material UI Icons
 import CssBaseline from "@material-ui/core/CssBaseline"
 import useMediaQuery from "@material-ui/core/useMediaQuery"
 import DashboardIcon from '@material-ui/icons/Dashboard'
+import SearchIcon from '@material-ui/icons/Search';
 
 import DrawerComponent from '../drawer/Drawer'
 import MobileDrawerComponent from '../drawer/MobileDrawer'
 import MobileHeaderComponent from '../header/MobileHeader'
 import Content from '../content/Content'
-
 import Profile from '../profile/Profile'
 
 
 const useStyles = makeStyles(theme => ({
     root: {
-        backgroundColor: "lightgray",
+        backgroundColor: "#EBE8E1",
     },
     content: {
         flexGrow: 1,
@@ -34,34 +35,38 @@ const useStyles = makeStyles(theme => ({
     contentShadow: {
         background: "rgba(0, 0, 0, 0.8)",
         filter: "brightness(50%)",
+        overflowX: 'hidden',
         zIndex: 100,
         height: "100vh",
         top: 0,
         left: 0,
-        // flexGrow: 1,
         paddingLeft: "80px",
         padding: theme.spacing(2),
-
-
-
     },
-    // scrollBarMobileFix: {
-    //     position: "absolute",
-    //     right: 0,
-    //     height: "100vh",
-    //     // opacity: 0,
-    //     width: "10px",
-    //     backgroundColor: "black",
-    //     display: "block",
-    //     marginLeft: "10px",
-    //     zIndex: theme.root.zIndex + 1,
-    // },
     toolbar: {
         display: "flex",
         alignItems: "center", 
         justifyContent: "flex-end",
         padding: theme.spacing(0, 1),
         ...theme.mixins.toolbar,
+    },
+    // Search Functionality Styles
+    searchDiv: {
+        display: "flex",
+        flexDirection: 'row',
+        alignItems: "center",
+        backgroundColor: "#767573",
+        width: "240px",
+        borderRadius: "10px",
+        padding: "0 6px",
+        height: '32px'
+    },
+    searchInput: {
+        backgroundColor: 'inherit',
+        width: "211px",
+        border: 'none',
+        outline: "none",
+        height: '32px'
     }
 }));
 
@@ -71,20 +76,39 @@ function MainPage(props) {
     const phoneSize = useMediaQuery("(max-width:600px)");
     const tabletSize = useMediaQuery('(max-width:770px, min-width: 601px');
     const mediumScreenSize = useMediaQuery("(max-width:920px)");
-    const [open, setOpen] = React.useState(true);
-    const [openMobile, setOpenMobile] = React.useState(false);
-
     const userName = useSelector(state => state.onboardingReducer.user);
     const token = localStorage.getItem("token")
+    const [open, setOpen] = React.useState(true);
+    const [openMobile, setOpenMobile] = React.useState(false);
+    const [values, setValues] = useState({
+        search: ''
+    });
+    const [results, setResults] = useState()
+    
 
     useEffect(_ => {
         dispatch(verifyToken(props.history))
     }, [token, dispatch, props.history])
 
+    if(!(localStorage.getItem('token'))){
+        props.history.push('/landing')
+    }
+
     const handleDrawerOpen = () => {
         setOpen(!open);
     };
 
+    //Needed for Header Search Function
+    const handleChange = name => event => {
+        setValues({[name]: event.target.value });
+    };
+
+    const handleSubmit = (event) => {
+        event.preventDefault()
+        setResults(values.search)
+        props.history.push('/results')
+        // setValues('')
+    }
 
     const handleDrawerOpenMobile = () => event => {
         if (
@@ -112,10 +136,10 @@ function MainPage(props) {
                             <MobileDrawerComponent handleDrawerOpenMobile={handleDrawerOpenMobile()} openMobile={openMobile} props={props} />
                         </div>
                         <div>
-                            <MobileHeaderComponent props={props} tabletSize={tabletSize} userName={userName} />
+                            <MobileHeaderComponent handleSubmit = {handleSubmit} handleChange = {handleChange} values = {values} props={props} tabletSize={tabletSize} userName={userName} />
                             <main className={openMobile ? classes.contentShadow : classes.contentMobile}>
                                 <div className={classes.toolbar} />
-                                <Content phoneSize={phoneSize} open={open} {...props} />
+                                <Content phoneSize={phoneSize} open={open} {...props} results={results} values={values} setValues={setValues}/>
                                 {/*************************ADD COMPONENTS HERE *********************** */}
                             </main>
                         </div>
@@ -144,18 +168,22 @@ function MainPage(props) {
                                 {/* <HeaderComponent props = {props} open={open} /> */}
                                 {/* <HeaderComponent open={open} /> */}
                                 <div className="header">
-                                    <h2>Didact</h2>
+                                    {/* Search Functionality Below */}
+                                    <div className={classes.searchDiv}>
+                                    <SearchIcon style={{fontSize: '1.8rem', marginRight: '5px'}}/>
+                                    <form onSubmit={handleSubmit}>
+                                        <input className={classes.searchInput} type="text" value={values.search} onChange={handleChange('search')}></input>
+                                    </form>
+                                    </div>
+
                                     <div className="navSection">
-                                        <Link style={{ color: 'white' }} to="/" ><DashboardIcon  style={{ fontSize: "28px" }}/></Link>
-                                        {/* <MessageIcon /> */}
-                                        <p>{userName.email}</p>
-                                        {/* {!profileLockSize ? <Profile props = {props}/> : null } */}
-                                        <Profile props={props} />
+                                        <Link to='/about' style={{color: "white", textDecoration: "none", marginRight: '15px'}}><p>About</p></Link>
+                                        <Link to='/contact' style={{color: "white", textDecoration: "none"}}><p>Contact</p></Link>
                                     </div>
                                 </div>
                                 <main className={classes.content}>
                                     {/* <div className={classes.toolbar} /> */}
-                                    <Content mediumScreenSize={mediumScreenSize} phoneSize={phoneSize} open={open} tabletSize={tabletSize} {...props} />
+                                    <Content mediumScreenSize={mediumScreenSize} phoneSize={phoneSize} open={open} setValues={setValues} values={values} tabletSize={tabletSize} {...props} results={results}/>
                                     {/*************************ADD COMPONENTS HERE *********************** */}
                                 </main>
                             </div>

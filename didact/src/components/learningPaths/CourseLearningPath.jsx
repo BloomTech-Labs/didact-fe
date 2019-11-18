@@ -158,7 +158,7 @@ const CourseLearningPath = ({ course, index, props}) => {
                     </CardContent>
                     <CardActions>
                         {/* <Button style={{marginLeft: '70.5%'}} type='submit' size="small" variant="contained" className={classes.button} >Edit Course</Button> */}
-                        {course.path_id ? <DidactButton onClick = {handleToggleEdit} style={{marginLeft: '80%', width: "100%", height: '100%'}} type='submit' size="small" variant="contained">Edit Item</DidactButton> : null}
+                        {course.path_id ? <DidactButton onClick = {handleToggleEdit} style={{margin: "0 20px 15px 80%", width: "100%"}} type='submit' size="small" variant="contained">Edit Item</DidactButton> : null}
                     </CardActions>
                 </DraggableDiv>
                 ) : (course.path_id ? (<EditPathItems course = {course} props = {props} handleToggleEdit = {handleToggleEdit}/>) : null)

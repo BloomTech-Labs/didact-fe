@@ -5,13 +5,18 @@ import Tags from './Tags'
 import AddSection from './AddSection'
 import Sections from './Sections'
 
+//Material UI Imports
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Collapse from '@material-ui/core/Collapse';
+//Material UI Icons
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import EditIcon from '@material-ui/icons/Edit';
+
 import IconButton from '@material-ui/core/IconButton';
 import DeleteModal from './DeleteModal'
 import AddCircleRoundedIcon from '@material-ui/icons/AddCircleRounded';
@@ -51,7 +56,7 @@ const useStyles = makeStyles(theme => ({
         fontSize: '3.5rem',
         marginRight: '5px',
         marginLeft: '10px',
-        color: "#5b5b5b"
+        color: "white"
     },
     descriptionDiv: {
         width: "100%",
@@ -61,6 +66,21 @@ const useStyles = makeStyles(theme => ({
         fontSize: '1.4rem',
         padding: '0px'
     },
+    span: {
+        cursor: 'pointer',
+        "&:hover":{
+          color: 'white'
+        }
+    },
+    button: {
+        backgroundColor: "#EBE8E1",
+        color: 'black',
+        borderRadius: 12,
+        height: "35px",
+        width: "123px",
+        border: 'none',
+        cursor: 'pointer'
+    }
 
 }));
 
@@ -137,10 +157,16 @@ const EditCourse = ({ props, id }) => {
         if (props.match.params.pathId) {
             props.history.push(`/learning-paths/${props.match.params.pathId}`)
         } else {
-            props.history.push(`/courses/${props.match.params.id}`)
+            props.history.push(`/courses/yours/${props.match.params.id}`)
         }
 
     }
+
+    const handleBack = () => {
+        props.history.push('/courses/yours')
+        
+    } 
+
 
     const handleDelete = () => {
         dispatch(deleteCourse(props.match.params.id, props.history))
@@ -159,14 +185,19 @@ const EditCourse = ({ props, id }) => {
     if (!state.coursesReducer.isLoading) {
         return (
             <>
-                <FinishEdit style={{ fontSize: '1.4rem' }} onClick={backToCourse}>{(props.match.params.pathId ? `<- BACK TO PATH` : `<- BACK TO COURSE`)}</FinishEdit>
+                {/* <FinishEdit style={{ fontSize: '1.4rem' }} onClick={backToCourse}>{(props.match.params.pathId ? `<- BACK TO PATH` : `<- BACK TO COURSE`)}</FinishEdit> */}
+                <div style={{display: 'flex', justifyContent: 'space-between', margin: '-10px 10px 10px 10px', borderBottom: '1px solid black'}}>
+                <p style={{fontWeight: 'bold', marginLeft: '10px', display: 'flex', flexDirection:'row', alignItems: 'center'}}><span className={classes.span}  onClick={handleBack}>Courses</span><ChevronRightIcon style={{fontSize: '1.6rem'}}/><span className={classes.span}  onClick={backToCourse}>{course.name ? course.name.substring(0, 15) : "Loading"}...</span><ChevronRightIcon style={{fontSize: '1.6rem'}}/><span>Edit</span></p>
+            </div>
+                <div style={{display: "flex", flexDirection: 'row'}}>
                 <div className={classes.root}>
+                
                     {!courseEdit ?
                         (<Card className={classes.card} style={{ background: '#386581', color: 'white' }}>
                             <CardContent >
-                                <h3>{course.name}</h3>
+                                <h3 style={{textAlign: 'left', marginLeft: '15px'}} >{course.name}</h3>
                                 <CardActions className={classes.descriptionDiv} disableSpacing>
-                                    <p>{course.description && !expanded ? (`${course.description.substring(0, 100)} ...`) : null}</p>
+                                    <p style={{textAlign: 'left', marginLeft: '15px'}}>{course.description && !expanded ? (`${course.description.substring(0, 100)} ...`) : null}</p>
                                     <IconButton
                                         className={clsx(classes.expand, {
                                             [classes.expandOpen]: expanded,
@@ -179,18 +210,20 @@ const EditCourse = ({ props, id }) => {
                                         <ExpandMoreIcon />
                                     </IconButton>
                                 </CardActions>
+                                
                                 <Collapse in={expanded} timeout="auto" unmountOnExit>
                                     <CardContent>
-                                        <p>{course.description}</p>
+                                        <p style={{textAlign: 'left', marginLeft: '15px'}} >{course.description}</p>
                                     </CardContent>
                                 </Collapse>
-                                <p>{course.foreign_instructors}</p>
-                                <p>{course.foreign_rating}</p>
-                                <a style={{ color: 'white' }} href={course.link} alt="course link">{course.link}</a>
-                                <p>{course.category ? (`Category: ${course.category}`) : (null)}</p>
+                               
+                                <p style={{textAlign: 'left', marginLeft: '15px'}}>{course.foreign_instructors}</p>
+                                <p style={{textAlign: 'left', marginLeft: '15px'}}>{course.foreign_rating}</p>
+                                <a style={{ color: 'white', textAlign: 'left', marginLeft: '15px' }} href={course.link} alt="course link">{course.link}</a>
+                                <p style={{textAlign: 'left', marginLeft: '15px'}}>{course.category ? (`Category: ${course.category}`) : (null)}</p>
                             </CardContent>
                             <CardActions>
-                                <DidactButton onClick={toggleEdit} style={{ marginLeft: '75.5%' }} type='submit'>{editCourseText}</DidactButton>
+                                <button className={classes.button} onClick={toggleEdit} style={{ marginLeft: '75.5%' }} type='submit'>{!props.phoneSize ? editCourseText : <EditIcon style={{fontSize: '1.8rem'}}/>}</button>
                             </CardActions>
                         </Card>)
                         :
@@ -246,6 +279,10 @@ const EditCourse = ({ props, id }) => {
                             </AddButton>
                         </div>)
                     }
+                </div>
+                {/* <div style={{width: '200px', height: '60px', borderRadius: 15, backgroundColor: 'black'}}>
+
+                </div> */}
                 </div>
             </>
         )

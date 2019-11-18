@@ -9,9 +9,9 @@ import {
 } from "../../store/actions";
 
 // import components
+import AddToLearningPath from './addToLearningPath/AddToLearningPath'
 import DeleteModal from "../courses/DeleteModal";
 import CourseLearningPath from "./CourseLearningPath";
-import AddToLearningPath from './addToLearningPath/AddToLearningPath'
 import { changePathOrder } from '../../utils/changePathOrder'
 
 // imports for Styled Components 
@@ -26,9 +26,10 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
 import Collapse from "@material-ui/core/Collapse";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import IconButton from "@material-ui/core/IconButton";
-
+//Material UI Icons
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 //imports for react-beautiful-dnd
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
@@ -57,6 +58,12 @@ const useStyles = makeStyles(theme => ({
     fontSize: '1.4rem',
     padding: '0px'
   },
+  span: {
+    cursor: 'pointer',
+    "&:hover":{
+      color: 'white'
+    }
+  }
 }));
 
 
@@ -116,6 +123,12 @@ const EditLearningPaths = ({ id, props }) => {
     props.history.push(`/learning-paths/${id}`);
   };
 
+   const handleBack = () => {
+        props.history.push('/courses')
+        
+    } 
+
+
   const handleDelete = () => {
     dispatch(deleteLearningPath(id, props.history));
   };
@@ -162,10 +175,13 @@ const EditLearningPaths = ({ id, props }) => {
   if (!state.isLoading) {
     return (
       <>
-        <FinishEdit
+        {/* <FinishEdit
           onClick={backToLearningPath}
           style={{ fontSize: '1.4rem' }}
-        >{`<- BACK TO PATH`}</FinishEdit>
+        >{`<- BACK TO PATH`}</FinishEdit> */}
+        <div style={{display: 'flex', justifyContent: 'space-between', margin: '-10px 10px 10px 10px', borderBottom: '1px solid black'}}>
+                <p style={{fontWeight: 'bold', marginLeft: '10px', display: 'flex', flexDirection:'row', alignItems: 'center'}}><span className={classes.span}  onClick={handleBack}>Learning Paths</span><ChevronRightIcon style={{fontSize: '1.6rem'}}/><span className={classes.span}  onClick={backToLearningPath}>{learningPath.name && learningPath.name.substring(0, 15)}...</span><ChevronRightIcon style={{fontSize: '1.6rem'}}/><span>Edit</span></p>
+        </div>
         <div className={classes.root}>
           {learningPathEdit ? (
             <Card className={classes.card} style={{ background: '#386581', color: 'white' }}>
@@ -202,15 +218,7 @@ const EditLearningPaths = ({ id, props }) => {
                 </p>
               </CardContent>
               <CardActions>
-                <DidactButton
-                  onClick={toggleEdit}
-                  style={{ marginLeft: "70%", width: "100%", height: '100%'}}
-                  type="submit"
-                  size="small"
-                  variant="contained"
-                >
-                  Edit Description
-                </DidactButton>
+                <DidactButton onClick={toggleEdit} style={{ margin: "0 20px 15px 70%", width: "100%"}} type="submit">Edit Description</DidactButton>
               </CardActions>
             </Card>
           ) : (
@@ -242,22 +250,8 @@ const EditLearningPaths = ({ id, props }) => {
                   <DidactInput id='category' type='text' value={changes.category || ""} onChange={handleChange('category')} placeholder='Category' />  
                 </DidactField>
                   <ButtonDiv>
-                    <DidactButton
-                      style={{ marginLeft: "10px" }}
-                      onClick={handleCancel}
-                      size="small"
-                      variant="contained"
-                    >
-                      Cancel
-                    </DidactButton>
-                    <DidactButton
-                      type="submit"
-                      style={{ marginRight: "4%" }}
-                      size="small"
-                      variant="contained"
-                    >
-                      Submit Edit
-                    </DidactButton>
+                    <DidactButton style={{ marginLeft: "10px" }} onClick={handleCancel}>Cancel</DidactButton>
+                    <DidactButton type="submit" style={{ marginRight: "4%" }}>Submit Edit</DidactButton>
                   </ButtonDiv>
                 </form>
               </CardContent>

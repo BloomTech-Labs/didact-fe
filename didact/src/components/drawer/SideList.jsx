@@ -1,5 +1,6 @@
 import React from 'react'
 import { NavLink } from "react-router-dom";
+import { useSelector } from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles'
 
 import List from "@material-ui/core/List";
@@ -9,6 +10,10 @@ import ListItemText from "@material-ui/core/ListItemText";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import FolderOpenIcon from '@material-ui/icons/FolderOpen';
+import PermIdentityIcon from '@material-ui/icons/PermIdentity';
+//Material UI Icons
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import { SideListWrapper } from './SideListStyles'
 
 const SideList = ({ props }) => {
     const drawerStyles = makeStyles(theme => ({
@@ -41,14 +46,31 @@ const SideList = ({ props }) => {
             alignItems: 'center',
             width: "225px",
         },
+        iconImageProfile: {
+            width: "30px",
+            height: "30px",
+            borderRadius: "50%",
+            // marginTop: '20px',
+            objectFit: 'cover'
+        },
 
 
     }));
 
     const classes = drawerStyles();
 
+    const userName = useSelector(state => state.onboardingReducer.user);
+
+    const handleLogOut = () => {
+        localStorage.clear('token')
+        props.props.history.push('/login')
+    }
+    console.log(props)
+    const firstName = userName.first_name ? userName.first_name.substring(0, 1).toUpperCase() + userName.first_name.substring(1) : null;
+    const lastName = userName.last_name ? userName.last_name.substring(0, 1).toUpperCase() + userName.last_name.substring(1) : null;
+
     return (
-        <>
+        <SideListWrapper>
             <ul className = {classes.list}>
                 <NavLink
                     exact to="/"
@@ -61,7 +83,12 @@ const SideList = ({ props }) => {
                 <div style={{display: 'flex', flexDirection: 'row', width: '100%', alignItems: 'center', outline: "none !important"}}>
                     <DashboardIcon style={{marginLeft: "17px", fontSize: "28px"}}/>
                     <p style={{marginLeft: "25px", fontWeight: 'bold'}}>Dashboard</p>
-                    <p className={classes.arrow}>></p>
+                    {props.props.location.pathname === "/" ? (
+                        <p className={classes.arrow}><ChevronRightIcon style={{fontSize: '2.4rem', marginTop: '6px'}}/></p>
+                    ) : (
+                        <p className={classes.arrow}><ChevronRightIcon style={{fontSize: '2.4rem', marginTop: '6px', color: "#5b5b5b"}}/></p>
+                    )}
+                    
                 </div>
                 </NavLink>
                 <NavLink
@@ -74,7 +101,11 @@ const SideList = ({ props }) => {
                      <div style={{display: 'flex', flexDirection: 'row', width: '100%', alignItems: 'center',}}>
                         <FolderOpenIcon style={{marginLeft: "17px", fontSize: "28px"}}/>
                         <p style={{marginLeft: "25px", fontWeight: 'bold'}}>Courses</p>
-                        <p className={classes.arrow}>></p>
+                        {props.props.match.path.includes('/courses') ? (
+                        <p className={classes.arrow}><ChevronRightIcon style={{fontSize: '2.4rem', marginTop: '6px'}}/></p>
+                        ) : (
+                         <p className={classes.arrow}><ChevronRightIcon style={{fontSize: '2.4rem', marginTop: '6px', color: "#5b5b5b"}}/></p>
+                        )}
                     </div>
                 </NavLink>
                 <NavLink
@@ -87,10 +118,20 @@ const SideList = ({ props }) => {
                      <div style={{display: 'flex', flexDirection: 'row', width: '100%', alignItems: 'center',}}>
                         <InboxIcon style={{marginLeft: "17px", fontSize: "28px"}}/>
                         <p style={{marginLeft: "25px", fontWeight: 'bold'}}>Learning Paths</p>
-                        <p className={classes.arrow}>></p>
+                        {props.props.match.path.includes('/learning-paths') ? (
+                        <p className={classes.arrow}><ChevronRightIcon style={{fontSize: '2.4rem', marginTop: '6px'}}/></p>
+                        ) : (
+                        <p className={classes.arrow}><ChevronRightIcon style={{fontSize: '2.4rem', marginTop: '6px', color: "#5b5b5b"}}/></p>
+                        )}
                     </div>
                 </NavLink>
             </ul>
+
+            <div className='profileSection'>
+                {userName.photo ? <img src={userName.photo} alt = "Profile" className={classes.iconImageProfile} /> : <PermIdentityIcon  className={classes.iconImageProfile} />}
+                <p>{firstName + ' ' + lastName}</p>
+                <p onClick={handleLogOut} className='logout'>Log Out</p>
+            </div>
 
             {/* <List >
                 <ListItem button key="Activity" className = {classes.hoverTab}>
@@ -168,7 +209,7 @@ const SideList = ({ props }) => {
                     <ListItemText className={classes.arrow} primary=">" />
                 </ListItem>
             </List> */}
-        </>
+        </SideListWrapper>
     );
 }
 

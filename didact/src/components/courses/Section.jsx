@@ -8,11 +8,11 @@ import CardActions from '@material-ui/core/CardActions';
 import Collapse from '@material-ui/core/Collapse';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import IconButton from '@material-ui/core/IconButton';
-import { updateSection, getLessonsBySectionId, deleteSection } from '../../store/actions';
+import { updateSection, getLessonsBySectionId, deleteSection, getLessonsWithUserCompletion } from '../../store/actions';
 import Lessons from './Lessons'
 import AddLessons from './AddLessons'
 import DeleteModal from './DeleteModal'
-
+import EditIcon from '@material-ui/icons/Edit';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import { AddButtonInSection, ButtonTextInSection, ButtonDiv, DidactButton, TrashCanEdit } from '../dashboard/ButtonStyles';
 import { DidactField, DidactInput, DidactLabel, DidactTextArea, FormTitle } from '../dashboard/FormStyles'
@@ -54,16 +54,26 @@ const useStyles = makeStyles(theme => ({
         flexDirection: 'column',
         justifyContent: "space-between",
         fontSize: 12,
-        // color: "#757575"
+        color: "#757575",
+        textAlign: 'left'
     },
     descriptionTitle: {
         marginBottom: "0px",
-        color: 'white',
+       
     },
     iconCircle: {
-        color: "#575758",
+        color: "white",
         fontSize: "2rem",
     },
+    button: {
+        backgroundColor: "#EBE8E1",
+        color: 'black',
+        borderRadius: 12,
+        height: "35px",
+        width: "123px",
+        border: 'none',
+        cursor: 'pointer'
+    }
 
 }));
 
@@ -73,6 +83,7 @@ const Section = ({ course, section, props }) => {
     const classes = useStyles();
     const dispatch = useDispatch()
     const lessons = useSelector(state => state.sectionsReducer.lessons)
+    const lesson = useSelector(state => state.sectionsReducer.lesson)
     const [expanded, setExpanded] = useState(false);
     const [sectionEdit, setSectionEdit] = useState(false)
     const [addLessonChange, setAddLessonChange] = useState(false);
@@ -83,7 +94,6 @@ const Section = ({ course, section, props }) => {
         order: "",
         link: ""
     })
-
     useEffect(() => {
         setChanges({
             name: section.name,
@@ -92,7 +102,6 @@ const Section = ({ course, section, props }) => {
             description: section.description,
         })
     }, [section])
-
 
     useEffect(() => {
         dispatch(getLessonsBySectionId(props.match.params.id, section.id))
@@ -140,34 +149,17 @@ const Section = ({ course, section, props }) => {
     return (
         <>
             {!sectionEdit ?
-                (<Card className={classes.card} style={{background: '#386581', color: 'white'}}>
-                    <CardContent style={{ marginBottom: "10px" }}>
-                        <h3>
+                (<Card className={classes.card} >
+                    <CardContent style={{ textAlign: 'left', color: '#414D55'}}>
+                        <h3 style={{marginLeft: '15px'}}>
                             {section.name}
                         </h3>
                         <CardActions className={classes.descriptionDiv} disableSpacing>
-                            <p className={classes.descriptionTitle} >{section.description && !expanded ? (`${section.description.substring(0, 100)} ...`) : null}</p>
-                            <IconButton
-                                className={clsx(classes.expand, {
-                                    [classes.expandOpen]: expanded,
-                                })}
-                                onClick={handleExpandClick}
-                                aria-expanded={expanded}
-                                aria-label="show more"
-                            >
-                                <ExpandMoreIcon style={{color: 'white'}} />
-                            </IconButton>
+                            <p className={classes.descriptionTitle} >{section.description}</p>
                         </CardActions>
-                        <Collapse in={expanded} timeout="auto" unmountOnExit>
-                            <CardContent>
-                                <p>
-                                    {section.description}
-                                </p>
-                            </CardContent>
-                        </Collapse>
-                        <a style={{color: 'white'}} href={section.link} alt="section link">{section.link}</a>
+                        <a style={{color: '#414D55', marginLeft: '15px'}} href={section.link} alt="section link">{section.link}</a>
                         <CardActions style={{borderBottom: 'grey solid 1px'}}>
-                            <DidactButton style={{ marginLeft: '75%' }} onClick={toggleEdit} type='submit'>Edit Section</DidactButton>
+                            <button className ={classes.button} style={{ marginLeft: '75%' }} onClick={toggleEdit} type='submit'>{!props.phoneSize ? "Edit Section" : <EditIcon style={{fontSize: '1.6rem'}}/>}</button>
                         </CardActions>
                         {lessons ? <Lessons course={course} section={section} props={props} lessons={lessons} /> : null}
                             <AddButtonInSection style = {{marginBottom: '-10px'}}onClick={handleLessonFormToggle}>

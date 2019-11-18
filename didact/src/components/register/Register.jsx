@@ -3,9 +3,10 @@ import { Form, Field, Formik } from "formik";
 import * as Yup from 'yup';
 import { registerAction } from '../../store/actions';
 import { useDispatch, useSelector } from 'react-redux';
-import { Wrapper, RegisterWrapper, RegisterFormWrapper } from './RegisterStyles'
+import { Wrapper, RegisterWrapper, RegisterFormWrapper, Header } from './RegisterStyles'
 import HeaderNoIcons from '../header/HeaderNoIcons'
 import beURL from "../../utils/beURL";
+import RegisterImage from '../../images/computer2.png'
 
 const RegisterSchema = Yup.object().shape({
     email: Yup.string().required("Email is required").email("Must be an Email"),
@@ -19,7 +20,7 @@ const RegisterForm = (props) => {
 
     const state = useSelector(state => state.onboardingReducer)
     const dispatch = useDispatch()
-    const registerError = state.error;
+    const registerError = state.registerError;
 
     if (localStorage.getItem('token')) {
         props.history.push('/')
@@ -33,7 +34,14 @@ const RegisterForm = (props) => {
 
     return (
         <Wrapper>
-            <HeaderNoIcons history={props.history} />
+            <Header>
+                <h1>Didact</h1>
+                <div>
+                    <a>About</a>
+                    <a>Contact</a>
+                </div>
+            </Header>
+            <img src={RegisterImage}/>
             <RegisterWrapper>
                 <RegisterFormWrapper>
                     <div className="header">
@@ -97,8 +105,11 @@ const RegisterForm = (props) => {
                         )}
                     </Formik>
                     <div className="socialButtons">
-                        <a href={`${beURL}auth/facebook`}>Sign Up With Facebook</a>
-                        <a href={`${beURL}auth/google`}>Sign Up With Google</a>
+                        <a href={`${beURL}auth/facebook`} className='facebook'>Signup With Facebook</a>
+                        <a href={`${beURL}auth/google`} className='google'>Signup With Google</a>
+                    </div>
+                    <div className='loginLink'>
+                        <p>Already have an account? <a href='/login'>Login Here</a></p>
                     </div>
                 </RegisterFormWrapper>
             </RegisterWrapper>

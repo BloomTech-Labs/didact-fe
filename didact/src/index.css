@@ -1,5 +1,5 @@
 html {
-  background-color: #D3D3D3;
+  background-color: #EBE8E1;
   /* overflow-y: auto !important; */
   font-size: 62.5%;
   margin-left: calc(100vw - 100%);
@@ -45,6 +45,11 @@ p, input, textarea, label {
   font-family: 'Open Sans', sans-serif;
   font-size: 1.4rem;
 }
+
+/* p {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.4rem;
+} */
 
 a {
   font-family: 'Open Sans', sans-serif;
@@ -111,18 +116,16 @@ p {
 
 
 #root {
-  background-color: #D3D3D3;
+  background-color: #EBE8E1;
 }
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: ITC Grouch;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   padding-right: 0 !important;
-  background-color: #D3D3D3;
+  background-color: #EBE8E1;
   overflow-x: hidden;
   overflow-anchor:  none;
 }
@@ -130,6 +133,5 @@ body {
 
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+  font-family: ITC Grouch;
 }

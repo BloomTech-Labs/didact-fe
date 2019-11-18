@@ -18,7 +18,7 @@ export default function AddToLearningPath({props, itemsCourses}) {
             </IconDiv>
             </Link>
             
-            <Link to={`/learning-paths/${props.match.params.id}/courses/add/${itemsCourses.length}`} style={{textDecoration: 'none', color: '#5b5b5b'}} >
+            <Link to={`/learning-paths/${props.match.params.id}/courses/add/${itemsCourses.length + 1}`} style={{textDecoration: 'none', color: '#5b5b5b'}} >
             <IconDiv>
                 <NoteAddIcon style={{fontSize: "48px"}}/>
                 <p style={{fontSize: "12px"}}>Create New Course</p>

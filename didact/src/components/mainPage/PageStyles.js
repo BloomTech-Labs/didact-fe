@@ -6,17 +6,18 @@ export const PageFlex = styled.div`
     /* width: auto; */
 
     .drawer {
-        padding-right: 30px;
+        padding-right: 20px;
     }
 
     .headerMain {
         /* padding-left: 50px; */
+        min-width: 826px;
         width : 100%;
         margin: 0 0 0 15px;
 
         .header {
-            max-width: 840px;
-            width: calc(100% - 15px);
+            min-width: 825px;
+            width: 100%;
             display: flex;
             background: #242424BF;
             border-radius: 19px;
@@ -24,7 +25,7 @@ export const PageFlex = styled.div`
             justify-content: space-between;
             align-items: center;
             color: #EBE8E1;
-            padding: 10px 25px;
+            padding: 10px 15px;
 
             h2 {
                 margin: 0px 0px;
@@ -38,7 +39,9 @@ export const PageFlex = styled.div`
                 display: flex;
                 align-items: center;
                 justify-self: "flex-end";
-                justify-content: space-between;
+                justify-content: flex-end;
+
+                
             }
         }
     }

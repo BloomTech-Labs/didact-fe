@@ -6,18 +6,53 @@ export const LearningPathsWrapper = styled.div`
     flex-direction: column;
 
     @media (max-width: 600px){
-        margin: auto;
-    }
+        /* margin: auto; */
+        width: 100%;
+    } 
 
 `
 
 export const YourLearningPathsWrapper = styled.div`
     /* margin-right: 30px; */
     display: flex;
+    width: 100%;
+
+    .mainContent {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .mainContentClosed {
+        display: flex;
+        flex-direction: column;
+    }
 
     .yourLearningPaths {
         display: flex;
         flex-direction: column;
+        max-width: 540px;
+        width: 100%;
+
+        @media (max-width: 600px){
+        /* margin: auto; */
+        width: 100%;
+        max-width: 330px;
+        } 
+
+
+        h3 {
+            text-align: left;
+        }
+
+    }
+
+    .completed {
+        background: #D1E2EA;
+        
+        .title h1 {
+            color: black;
+
+        }
     }
 
     .buttons {
@@ -51,35 +86,115 @@ export const YourLearningPathsWrapper = styled.div`
 
     h1 {
         text-align: left;
+        font-size: 30px;
+    }
+
+    .buttonsClosed {
+        padding-left: 200px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+
+        a {
+            background-color: #242424;
+            color: #F4F8FA;
+            text-decoration: none;
+            padding: 20px 30px;
+            margin-bottom: 22px;
+            border-radius: 19px;
+            width: 255px;
+            height: 61px;
+
+            &:first-child {
+                margin-right: 20px;
+            }
+
+            &:hover {
+                color: rgba(0, 0, 0, 1);
+                background-color: rgba(255, 255, 255, 1);
+                border: solid black 1px;
+                outline: none;
+            }   
+        }
+    }
+
+    h1 {
+        text-align: left;
+        font-size: 30px;
     }
 
 `
 
 export const LearningPathCard = styled.div`
 
-    /* @media (max-width: 600px) {
-        margin: auto;
-        } */
+        @media(max-width: 600px){
+            width: 100%;
+        
+        }
 
         display: flex;
         justify-content: space-between;
         align-items: center;
         background: white;
         border-radius: 19px;
-        padding: 35px 43px;
+        padding: 35px 33px 35px 10px;
         margin-bottom: 28px;
         max-width: 540px;
         width: 100%;
         background-color: #386581;
 
         @media(max-width: 600px){
-        padding: 20px;
+            width: 100%;
+            min-width: calc(100vw - 100px)
         
-    }
+        }
 
+        .completed {
+            background: #D1E2EA;
+            width: 100%;
+        }
 
         .title {
             text-align: left;
+            width: 100%;
+
+            .pathHeader {
+                display: flex;
+                width: 100%;
+                justify-content: space-between;
+                align-items: center;
+
+                 h1 {
+                    
+                    @media(max-width: 600px){
+                        font-size: 2rem;
+                    
+                    }
+
+                }
+
+                .notCompleteButton {
+                    font-size: 2.2rem;
+                    color: white;
+                    opacity: .6;
+                    cursor: pointer;
+
+                    &:hover {
+                        opacity: 1;
+                    }
+                }
+
+                .completeButton {
+                    font-size: 2.2rem;
+                    color: black;
+                    cursor: pointer;
+                    opacity: .6;
+
+                    &:hover {
+                        opacity: 1;
+                    }
+                }
+            }
 
             h1 {
                 margin: 0;
@@ -91,7 +206,7 @@ export const LearningPathCard = styled.div`
                 background-color: #242424;
                 color: white;
                 padding: 8px 20px;
-                border-radius: 16px;
+                border-radius: 12px;
                 font-weight: bolder;
                 text-decoration: none;
                 border: none;
@@ -131,6 +246,7 @@ export const LearningPathCard = styled.div`
         display: flex;
         flex-flow: row wrap;
         justify-items: flex-start;
+        text-align: center;
 
         @media (max-width: 880px) {
             justify-content: center;
@@ -161,14 +277,17 @@ export const LearningPathCard = styled.div`
                 }
             }
         }
+        
     }
 
     h1 {
         text-align: left;
     }
+
+    
 `
 
-export const ButtonStyles = styled.div `
+export const ButtonStyles = styled.div`
     .buttons {
         padding-left: 30px;
         display: flex;
@@ -206,5 +325,9 @@ export const ButtonStyles = styled.div `
             }   
         }
     }
+
+   
+
+    
 
 `

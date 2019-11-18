@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Form, Field, Formik } from "formik";
 import * as Yup from 'yup';
-import { loginAction } from '../../store/actions';
+import { loginAction, verifyToken } from '../../store/actions';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Wrapper, LoginWrapper, LoginFormWrapper } from './LoginStyles'
-import HeaderNoIcons from '../header/HeaderNoIcons'
+import { Wrapper, LoginWrapper, LoginFormWrapper, Header } from './LoginStyles'
+
+import LoginImage from '../../images/computer.png'
 
 import beURL from '../../utils/beURL'
 
@@ -19,11 +20,7 @@ const LoginForm = (props) => {
 
     const state = useSelector(state => state.onboardingReducer)
     const dispatch = useDispatch()
-    const loginError = state.error;
-
-    if (localStorage.getItem('token')) {
-        props.history.push('/')
-    }
+    const loginError = state.loginError
 
     const handleLogin = (values) => {
         dispatch(loginAction(props.history, values))
@@ -31,7 +28,14 @@ const LoginForm = (props) => {
 
     return (
         <Wrapper>
-            <HeaderNoIcons history={props.history} />
+            <Header>
+                <h1>Didact</h1>
+                <div>
+                    <a>About</a>
+                    <a>Contact</a>
+                </div>
+            </Header>
+            <img src={LoginImage}/>
             <LoginWrapper>
                 <LoginFormWrapper>
                     <div className="header">
@@ -54,7 +58,7 @@ const LoginForm = (props) => {
                                 <div className="inputWrapper">
                                     <div>
                                         <div className={"input" + ((touched.email && errors.email) ? ' error' : '')}>
-                                            <p>Email</p>
+                                            <p>Email Address</p>
                                             <Field type="email" name="email" placeholder="Email"></Field>
                                             {touched.email && errors.email && <p className="errorMessage">Invalid Email Address</p>}
                                         </div>
@@ -73,8 +77,11 @@ const LoginForm = (props) => {
                         )}
                     </Formik>
                     <div className="socialButtons">
-                        <a href={`${beURL}auth/facebook`}>Sign In With Facebook</a>
-                        <a href={`${beURL}auth/google`}>Sign In With Google</a>
+                        <a href={`${beURL}auth/facebook`} className='facebook'>LogIn With Facebook</a>
+                        <a href={`${beURL}auth/google`} className='google'>LogIn With Google</a>
+                    </div>
+                    <div className='registerLink'>
+                        <p>Don't have an account yet? <a href='/register'>Register Here</a></p>
                     </div>
                 </LoginFormWrapper>
             </LoginWrapper>

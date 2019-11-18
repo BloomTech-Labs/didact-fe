@@ -7,13 +7,19 @@ import {
     REGISTER_FAILURE,
     VERIFY_START,
     VERIFY_SUCCESS,
-    VERIFY_FAILURE } from '../actions'
+    VERIFY_FAILURE,
+    SEND_CONTACT_MESSAGE_START,
+    SEND_CONTACT_MESSAGE_SUCCESS,
+    SEND_CONTACT_MESSAGE_FAIL,
+} from '../actions'
 
 const initialState = {
     isLoading: false,
     error: '',
     tokenVerified: false,
-    user: {}
+    user: {},
+    loginError: false,
+    registerError: false,
 }
 
 export const onboardingReducer = (state = initialState, action) => {
@@ -31,12 +37,14 @@ export const onboardingReducer = (state = initialState, action) => {
                 ...state,
                 user: action.payload,
                 isLoading: false,
+                tokenVerified: true,
                 error: ""
                 };
         case LOGIN_FAILURE:
             return {
                 ...state,
                 error: action.payload,
+                loginError: true,
                 };
     
     //  Register Reducers
@@ -56,7 +64,8 @@ export const onboardingReducer = (state = initialState, action) => {
         case REGISTER_FAILURE:
             return {
                 ...state,
-                error: action.payload
+                error: action.payload,
+                registerError: true
                 };
 
     //  Facebook Login/Register
@@ -80,7 +89,25 @@ export const onboardingReducer = (state = initialState, action) => {
                 error: action.payload,
                 tokenVerified: false
             };
-
+        case SEND_CONTACT_MESSAGE_START:
+            return {
+                ...state,
+                isLoading: true,
+                error: "",
+            }
+        case SEND_CONTACT_MESSAGE_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                
+                error: "",
+            }
+        case SEND_CONTACT_MESSAGE_FAIL:
+            return {
+                ...state,
+                isLoading: false,
+                error: action.payload,
+            }
         default:
             return state;
     }
