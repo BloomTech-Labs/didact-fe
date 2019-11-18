@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { LearningPathWrapper } from './LearningPathStyles'
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import Loader from "react-loader-spinner";
+import AddToLearningPath from './addToLearningPath/AddToLearningPath'
 
 //Material UI Imports
 import { makeStyles,} from '@material-ui/core/styles';
@@ -98,12 +99,10 @@ const LearningPath = ({ id, props }) => {
         <>
         <div style={{display: 'flex', justifyContent: 'space-between', margin: '-10px 10px 10px 10px', borderBottom: '1px solid black'}}>
                 <p style={{fontWeight: 'bold', marginLeft: '10px', display: 'flex', flexDirection:'row', alignItems: 'center'}}><span className={classes.span}  onClick = {handleBack}>Learning Paths</span><ChevronRightIcon style={{fontSize: '1.6rem'}}/><span>{learningPath.name ? learningPath.name.substring(0, 20) : "Loading"}...</span></p>
-                {/* {!props.phoneSize ? (
-                    <p className={classes.span} style={{fontWeight: 'bold', display: 'flex', flexDirection:'row', alignItems: 'center'}} onClick = {handleBack}><ChevronLeftIcon style={{fontSize: '1.6rem'}}/>Back to Path</p>
-                ) : (
-                    <p className={classes.span} style={{fontWeight: 'bold', display: 'flex', flexDirection:'row', alignItems: 'center'}} onClick = {handleBack}><ChevronLeftIcon style={{fontSize: '2rem'}}/>Back</p>
-                )} */}
             </div>
+        {!firstItemCourse ? (
+            <AddToLearningPath props = {props} itemsCourses = {completionItemsCourses}/>
+        ) : (
         <LearningPathWrapper>
             {firstItemCourse && <div className={'learningPathCourseWrappers current' + (firstItemCourse.path_id ? ' item' : '' + ((upcomingItemsCourses.length % 2 !== 0) || (upcomingItemsCourses.length === 1) ? ' long' : ''))}>
                 <div className='currentTitle'>
@@ -225,6 +224,7 @@ const LearningPath = ({ id, props }) => {
                 </div>
             </div>
         </LearningPathWrapper>
+        )}
         </>
     )
 }
