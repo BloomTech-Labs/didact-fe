@@ -8,7 +8,6 @@ import { Container, IconDiv } from './AddStyles.js';
 
 
 export default function AddToLearningPath({props, itemsCourses}) {
-    console.log(props)
 
     return (
         <Container>
@@ -24,7 +23,7 @@ export default function AddToLearningPath({props, itemsCourses}) {
                 <NoteAddIcon style={{fontSize: "48px"}}/>
                 <p style={{fontSize: "12px"}}>Create New Course</p>
             </IconDiv>
-            </Link>
+            </Link> 
 
             <Link to={`/learning-paths/${props.match.params.id}/items/add`} style={{textDecoration: 'none', color: '#5b5b5b'}}>
             <IconDiv>

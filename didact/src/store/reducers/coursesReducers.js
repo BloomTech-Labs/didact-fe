@@ -21,15 +21,28 @@ import {
     GET_DETAILED_COURSE_SUCCESS,
     GET_DETAILED_COURSE_FAIL,
     DELETE_TAGS_SUCCESS,
+    TOGGLE_COMPLETE_COURSE_START,
+    TOGGLE_COMPLETE_COURSE_SUCCESS,
+    TOGGLE_COMPLETE_COURSE_FAIL,
+    GET_USER_COMPLETION_COURSE_START,
+    GET_USER_COMPLETION_COURSE_SUCCESS,
+    GET_USER_COMPLETION_COURSE_FAIL,
+    YOUR_COURSE_DATA_START,
+    YOUR_COURSE_DATA_SUCCESS,
+    YOUR_COURSE_DATA_FAIL,
 } from '../actions'
 
 const initialState = {
     courses: [],
     isLoading: false,
+    isLoadingIcon: false,
     error: '',
     course: {},
+    yourCourses: [],
+    courseCompletion: {},
     detailedCourse: {},
-    sections: []
+    sections: [],
+
 }
 
 export const coursesReducer = (state = initialState, action) => {
@@ -50,6 +63,26 @@ export const coursesReducer = (state = initialState, action) => {
                 error: ""
         };
         case COURSE_DATA_FAIL:
+            return {
+                ...state,
+                isLoading: false,
+                error: action.payload
+            }; 
+            // GET ALL COURSES
+        case YOUR_COURSE_DATA_START:
+                return {
+                    ...state,
+                    isLoading: true,
+                    error: ''
+                };
+        case YOUR_COURSE_DATA_SUCCESS:
+            return {
+                ...state,
+                yourCourses: action.payload,
+                isLoading: false,
+                error: ""
+        };
+        case YOUR_COURSE_DATA_FAIL:
             return {
                 ...state,
                 isLoading: false,
@@ -96,7 +129,7 @@ export const coursesReducer = (state = initialState, action) => {
                 ...state,
                 isLoading: false,
                 error: action.payload
-            };
+            }; 
 
         //  EDIT COURSE BY ID 
         case EDIT_COURSE_DATA_START:
@@ -106,7 +139,6 @@ export const coursesReducer = (state = initialState, action) => {
                 error: ''
             };
         case EDIT_COURSE_DATA_SUCCESS:
-            console.log("EDIT_COURSE: ", action.payload)
             return {
                 ...state,
                 course: {
@@ -157,20 +189,20 @@ export const coursesReducer = (state = initialState, action) => {
         case GET_DETAILED_COURSE_START:
             return {
                 ...state,
-                isLoading: true,
+                isLoadingIcon: true,
                 error: "",
             }
         case GET_DETAILED_COURSE_SUCCESS:
             return {
                 ...state,
-                isLoading: false,
+                isLoadingIcon: false,
                 detailedCourse: action.payload,
                 error: "",
             }
         case GET_DETAILED_COURSE_FAIL:
             return {
                 ...state,
-                isLoading: false,
+                isLoadingIcon: false,
                 error: action.payload,
             }
         // ADD TAG TO COURSE
@@ -206,6 +238,48 @@ export const coursesReducer = (state = initialState, action) => {
                     tags: state.course.tags.filter(el => el !== action.payload)
                 },
                 error: "",
+            }
+
+        //Toggle Complete 
+        case TOGGLE_COMPLETE_COURSE_START:
+            return {
+                ...state,
+                isLoading: false,
+                error: ''
+            } 
+        case TOGGLE_COMPLETE_COURSE_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                course: action.payload,
+                error: ""
+            };
+        case TOGGLE_COMPLETE_COURSE_FAIL:
+            return {
+                ...state,
+                isLoading: false,
+                error: action.payload,
+            }
+
+        //FIND COURSE COMPLETION BY ID
+        case GET_USER_COMPLETION_COURSE_START:
+            return {
+                ...state,
+                isLoading: false,
+                error: ''
+            } 
+        case GET_USER_COMPLETION_COURSE_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                courseCompletion: action.payload,
+                error: ""
+            };
+        case GET_USER_COMPLETION_COURSE_FAIL:
+            return {
+                ...state,
+                isLoading: false,
+                error: action.payload,
             }
         default:
             return state;

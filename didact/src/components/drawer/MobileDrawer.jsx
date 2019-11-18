@@ -67,8 +67,6 @@ const MobileDrawerComponent = (props) => {
           drawerOpenMobile: {
             position: 'absolute',
             width: "240px",
-            // overflowAnchor:  "none",
-            // backgroundColor: '#eeeff3',
             height: '580px',
             margin: "37px 10px 10px 5px",
             borderRadius: "15px",
@@ -79,7 +77,6 @@ const MobileDrawerComponent = (props) => {
           },
           drawerCloseMobile: {
             overflow: "hidden",
-            // backgroundColor: '#eeeff3',
             height: '580px',
             margin: "73px 10px 0px 10px",
             borderRadius: "15px",
@@ -95,7 +92,7 @@ const MobileDrawerComponent = (props) => {
             }),
           },
         menuButtonMobile: {
-            marginRight: '-4px'
+            marginRight: '-8px'
         },
         menuButtonDesktop: {
             marginLeft: theme.spacing(1),
@@ -179,7 +176,7 @@ const MobileDrawerComponent = (props) => {
                     edge="start"
                     className={classes.menuButtonMobile}
                 >
-                    <MenuIcon />
+                    <MenuIcon style={{fontSize: '28px'}}/>
                 </IconButton>
             </div>
             {<SideList props = {props}/>}

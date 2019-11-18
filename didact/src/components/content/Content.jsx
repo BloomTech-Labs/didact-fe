@@ -1,9 +1,8 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-
 
 import Dashboard from '../dashboard/Dashboard'
 import AddCourse from '../courses/AddCourse'
+import YourDetailedCourse from '../courses/yourDetailedCourse/YourDetailedCourse'
 import DetailedCourse from '../courses/DetailedCourse'
 import EditCourse from '../courses/EditCourse'
 import AllCourses from "../courses/AllCourses.jsx"
@@ -14,69 +13,18 @@ import YourLearningPaths from '../learningPaths/YourLearningPaths'
 import AllLearningPaths from '../learningPaths/AllLearningPaths'
 import AddPathItems from '../learningPaths/pathItems/AddPathItems'
 import EditPathItems from '../learningPaths/pathItems/EditPathItems'
-
+import SearchResults from '../searchResults/SearchResults';
+import About from '../about/About'
+import AllYourCourses from '../courses/AllYourCourses'
+import Contact from '../contact/Contact'
 
 const Content = (props) => {
     
-    const contentStyles = makeStyles(theme => ({
-
-        placeholderDiv: {
-            display: "flex",
-            justifyContent: "center",
-            alignContent: "space-evenly",
-            margin: "20px 0",
-            flexFlow: "column wrap",
-        },
-        placeholderDivShadowed: {
-            display: "flex",
-            justifyContent: "center",
-            alignContent: "space-evenly",
-            margin: "20px 0",
-            flexFlow: "column wrap",
-        },
-        placeHolder: {
-            backgroundColor: "gray",
-            width: "240px",
-            height: "100px",
-            borderRadius: 15,
-            margin: "10px 0",
-        },
-        placeHolder2: {
-            backgroundColor: "#ebe8e1",
-            width: "240px",
-            height: "120px",
-            borderRadius: 15,
-            margin: "10px 0",
-        },
-    }));
-
-    const classes = contentStyles()
-
-    const open = props.open
-    const phoneSize = props.phoneSize
-    
-
     return (
 
         <div>
-            {/* {phoneSize ? (
-                open ? (
-                    <div className={classes.placeholderDiv}>
-                        <div className={classes.placeHolder} />
-                        <div className={classes.placeHolder2} />
-                    </div>
-                ) : (
-                    <div className={classes.placeholderDiv}>
-                    <div className={classes.placeHolder} />
-                    <div className={classes.placeHolder2} />
-                </div>
-                    )
-            ) : null} */}
             {(() =>
             {
-                // case ('courses'):
-                    //     return <DetailedCourse id={props.match.params.id} />
-
                 switch(props.page)
                 {
                     case ('dashboard'):
@@ -85,8 +33,12 @@ const Content = (props) => {
                         return <AddCourse props = {props}/>
                     case ('courses'):
                         return <AllCourses props = {props}/>
+                    case ('yourcourses'):
+                        return <AllYourCourses props = {props}/>
                     case ('detailedcourse'):
                         return <DetailedCourse id={props.match.params.id} props = {props}/>
+                    case ('yourdetailedcourse'):
+                        return <YourDetailedCourse id={props.match.params.id} props = {props}/>
                     case ('editcourse'):
                         return <EditCourse id={props.match.params.id} props={props}/>
                     case ('addlearningpath'):
@@ -103,6 +55,12 @@ const Content = (props) => {
                         return <AllLearningPaths props={props}/>
                     case ('yourlearningpaths'):
                         return <YourLearningPaths props={props}/>
+                    case ('searchresults'):
+                        return <SearchResults props={props} setValues={props.setValues} results={props.results}/>
+                    case ('about'):
+                        return <About props={props}/>
+                    case ('contact'):
+                        return <Contact props={props}/>
                     default:
                         break;
                 }

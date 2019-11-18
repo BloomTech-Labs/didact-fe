@@ -1,113 +1,234 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux";
-import { getLearningPath } from '../../store/actions/index.js'
+import { findForUserId, getLearningPath, toggleCompleteCourse, toggleLearningPath, toggleLearningPathItem } from '../../store/actions/index.js'
 import { Link } from "react-router-dom";
 
 import { LearningPathWrapper } from './LearningPathStyles'
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import Loader from "react-loader-spinner";
 
-const LearningPath = ({ id }) => {
+//Material UI Imports
+import { makeStyles,} from '@material-ui/core/styles';
+//Material UI Icons
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 
+const useStyles = makeStyles(theme => ({
+   
+    span: {
+      cursor: 'pointer',
+      "&:hover":{
+        color: 'white'
+      }
+    }
+  }));
+
+const LearningPath = ({ id, props }) => {
+    const classes = useStyles();
     const dispatch = useDispatch();
     const state = useSelector(state => state);
     const learningPath = state.learningPathReducer.learningPath;
-    const [itemsCourses, setItemsCourses] = useState([]);
+    const learningPathCompletion = state.learningPathReducer.learningPathCompletion;
+    const [completionItemsCourses, setCompletionItemsCourses] = useState([])
+    const isLoadingIcon = state.coursesReducer.isLoadingIcon
+    const isLoadingCourseToggle = state.coursesReducer.isLoading
+    const isLoadingLearningPathToggle = state.learningPathReducer.isLoading
 
     useEffect(_ => {
         dispatch(getLearningPath(id))
-    }, [dispatch])
+        dispatch(findForUserId(id))
+    }, [dispatch, id])
 
     useEffect(() => {
-        if (learningPath.pathItems) {
-            setItemsCourses(
-                ([...learningPath.pathItems, ...learningPath.courses].sort(
+        if (learningPathCompletion.pathItems) {
+            setCompletionItemsCourses(
+                ([...learningPathCompletion.pathItems, ...learningPathCompletion.courses].sort(
                     (a, b) => a.path_order - b.path_order
                 ))
             );
         }
-    }, [learningPath.pathItems, learningPath.courses])
+    }, [learningPathCompletion.pathItems, learningPathCompletion.courses])
+
+    const notCompletedItemsCourses = []
+    const completedItemsCourses = []
+
+    completionItemsCourses.forEach((el, index) => {
+        if (el.automatically_completed || el.manually_completed) {
+            completedItemsCourses.push(el)
+        } else {
+            notCompletedItemsCourses.push(el)
+        }
+    })
+
+    const firstItemCourse = notCompletedItemsCourses[0]
+    const upcomingItemsCourses = []
+
+    notCompletedItemsCourses.forEach((el, index) => {
+        if (!(index === 0)) {
+            upcomingItemsCourses.push(el)
+        }
+    })
+
+    const handleMarkCompleteCourse = (courseId) => {
+        
+        dispatch(toggleCompleteCourse(courseId))
+        console.log('Course Toggle')
+        setTimeout(function(){
+            if((!isLoadingCourseToggle) || (state.learningPathReducer.learningPathCompletion === learningPathCompletion)) {
+                dispatch(findForUserId(id))
+            }
+        }, 100)
+    }
+
+    const handleMarkCompleteItem = (itemId) => {
+        dispatch(toggleLearningPathItem(id, itemId))
+        console.log('Item Toggle')
+        setTimeout(function(){
+            if((!isLoadingLearningPathToggle) || (state.learningPathReducer.learningPathCompletion === learningPathCompletion)) {
+                dispatch(findForUserId(id))
+            }
+        }, 100)
+    }
+
+    const progress = firstItemCourse && ((firstItemCourse.completed / firstItemCourse.total) * 100).toString()
+    const progressPecentage = progress && Number(progress.substring(0, 4))
+   
+    const handleBack = () => {
+       props.history.push('/learning-paths')
+    }
 
     return (
-        <LearningPathWrapper>
-            <div className='editLearning'>
-                <div className='editLearningTitle'>
-                    {`Learning Path: ${learningPath.name}`}
-                </div>
-                {
-                    (learningPath.creatorId === state.onboardingReducer.user.id) &&
-                    <div className='editLearningButton'>
-                        <Link to={`/learning-paths/${id}/edit`}>Edit Path</Link>
-                    </div>
-                }
+        <>
+        <div style={{display: 'flex', justifyContent: 'space-between', margin: '-10px 10px 10px 10px', borderBottom: '1px solid black'}}>
+                <p style={{fontWeight: 'bold', marginLeft: '10px', display: 'flex', flexDirection:'row', alignItems: 'center'}}><span className={classes.span}  onClick = {handleBack}>Learning Paths</span><ChevronRightIcon style={{fontSize: '1.6rem'}}/><span>{learningPath.name ? learningPath.name.substring(0, 20) : "Loading"}...</span></p>
+                {/* {!props.phoneSize ? (
+                    <p className={classes.span} style={{fontWeight: 'bold', display: 'flex', flexDirection:'row', alignItems: 'center'}} onClick = {handleBack}><ChevronLeftIcon style={{fontSize: '1.6rem'}}/>Back to Path</p>
+                ) : (
+                    <p className={classes.span} style={{fontWeight: 'bold', display: 'flex', flexDirection:'row', alignItems: 'center'}} onClick = {handleBack}><ChevronLeftIcon style={{fontSize: '2rem'}}/>Back</p>
+                )} */}
             </div>
-            <div>
-                {
-                    itemsCourses.map((itemCourse, index) => {
-                        if (itemCourse.path_order === 0) {
-                            return (
-                                <div className='learningPathCourseWrappers' key={index}>
-                                    <h3>Current</h3>
-                                    <div className='learningPathCard'>
-                                        <h2>{itemCourse.name}</h2>
-                                        <p>{itemCourse.description}</p>
-                                        <div className='goToCourse'>
-                                            <h4>Udemy</h4>
-                                            {itemCourse.path_id ? <a href={itemCourse.link}>Go To {itemCourse.type.charAt(0).toUpperCase() + itemCourse.type.slice(1)}</a> : <a href={`/courses/${itemCourse.id}`}>Go To Course</a>}
-                                        </div>
-                                    </div>
-                                </div>
-                            )
-                        } else if (itemCourse.path_order === 1) {
-                            return (
-                                <div className='learningPathCourseWrappers' key={index}>
-                                    <h3>Next</h3>
-                                    <div className='learningPathCard'>
-                                        <h2>{itemCourse.name}</h2>
-                                        <p>{itemCourse.description}</p>
-                                        <div className='goToCourse'>
-                                            <h4>Udemy</h4>
-                                            {itemCourse.path_id ? <a href={itemCourse.link}>Go To {itemCourse.type.charAt(0).toUpperCase() + itemCourse.type.slice(1)}</a> : <a href={`/courses/${itemCourse.id}`}>Go To Course</a>}
-                                        </div>
-                                    </div>
-                                </div>
-                            )
-                        } else {
-                            return (
-                                <div className='learningPathCourseWrappers' key={index}>
-                                    {itemCourse.path_order === 2 && <h3>Upcoming</h3>}
-                                    <div className='learningPathCard'>
-                                        <h2>{itemCourse.name}</h2>
-                                        <p>{itemCourse.description}</p>
-                                        <div className='goToCourse'>
-                                            <h4>Udemy</h4>
-                                            {itemCourse.path_id ? <a href={itemCourse.link}>Go To {itemCourse.type.charAt(0).toUpperCase() + itemCourse.type.slice(1)}</a> : <a href={`/courses/${itemCourse.id}`}>Go To Course</a>}
-                                        </div>
-                                    </div>
-                                </div>
-                            )
-                        }
-                    })
-                }
-                {/* <div className='learningPathCourseWrappers'>
-                    <h3>Completed</h3>
-                    <div className='completed learningPathCard'>
-                        <h2>
-                            {course.name}
-                        </h2>
-                        <p>
-                            {course.description}
-                        </p>
-                        <div className='goToCourse'>
-                            <h4>
-                                Udemy
-                            </h4>
-                            <a>
-                                Go To Course
-                            </a>
+        <LearningPathWrapper>
+            {firstItemCourse && <div className={'learningPathCourseWrappers current' + (firstItemCourse.path_id ? ' item' : '' + ((upcomingItemsCourses.length % 2 !== 0) || (upcomingItemsCourses.length === 1) ? ' long' : ''))}>
+                <div className='currentTitle'>
+                    <h3>Current</h3>
+                    {
+                        (learningPathCompletion.creatorId === state.onboardingReducer.user.id) &&
+                        <div className='editLearningButton'>
+                            <Link to={`/learning-paths/${id}/edit`}>Edit</Link>
                         </div>
+                    }
+                </div>
+                <div className='learningPathCard'>
+                    <div className='currentTitle'>
+                        <h2>{firstItemCourse.name}</h2>
+                        {firstItemCourse.path_id && 
+                                    (firstItemCourse.automatically_completed || firstItemCourse.manually_completed ?
+                                        <CheckCircleIcon onClick={() => handleMarkCompleteItem(firstItemCourse.id)} className='completeButton' />
+                                        :
+                                        <CheckCircleIcon onClick={() => handleMarkCompleteItem(firstItemCourse.id)} className='notCompleteButton' />)
+                        }
+                        {!firstItemCourse.path_id &&
+                                (firstItemCourse.automatically_completed || firstItemCourse.manually_completed ?
+                                    <CheckCircleIcon onClick={() => handleMarkCompleteCourse(firstItemCourse.id)} className='completeButton' />
+                                    :
+                                    <CheckCircleIcon onClick={() => handleMarkCompleteCourse(firstItemCourse.id)} className='notCompleteButton' />)
+                        }
                     </div>
-                </div> */}
+                    {!firstItemCourse.path_id ?
+                        (<div style={{display:'flex', justifyContent: 'space-between', width: '80%'}}>
+                            <div style={{display:'flex', flexDirection:'column', textAlign: "left", margin: "10px 0 -10px 0"}}>
+                            <span>Progress</span>
+                            <span>{`${(firstItemCourse) ? (progressPecentage) : 0} %`}</span>
+                            </div> 
+                        </div>): null} 
+                    <p>{firstItemCourse.description}</p>
+                    <div className='goToCourse'>
+                    <h4>{firstItemCourse.link !== null ? (firstItemCourse.link.includes('Udemy') ? "udemy" : firstItemCourse.link.includes('coursera') ? "Coursera" : firstItemCourse.link.includes('youtube') ? "Youtube" : null) : null}</h4>
+                        {firstItemCourse.type ? <a href={firstItemCourse.link}>Go To {firstItemCourse.type.charAt(0).toUpperCase() + firstItemCourse.type.slice(1)}</a> : <a href={`/courses/yours/${firstItemCourse.id}`}>Go To Course</a>}
+                    </div>
+                </div>
+            </div>}
+            <div className='learningPathCards'>
+            {upcomingItemsCourses.length > 0 && <h3>Upcoming</h3>}
+                <div className='upcomingCards'>
+                    {
+                        upcomingItemsCourses.map((itemCourse, index) => {
+                            return (
+                                <div key={index} className={((upcomingItemsCourses.length % 2 !== 0) || (upcomingItemsCourses.length === 1) ? 'long' : '')}>
+                                    <div className={'learningPathCourseWrappers upcoming' + (itemCourse.path_id ? ' item' : '')} key={index}>
+                                        <div className='learningPathCard'>
+                                            <div>
+                                                <h2>{itemCourse.name}</h2>
+                                                {!itemCourse.path_id ? 
+                                                (<div style={{display:'flex', justifyContent: 'space-between', width: '80%'}}>
+                                                    <div style={{display:'flex', flexDirection:'column', textAlign: "left", margin: "10px 0 -10px 0"}}>
+                                                    <span>Progress</span>
+                                                    <span>{`${(itemCourse) ? (((itemCourse.completed / itemCourse.total) * 100).toString().substring(0, 4)) : 0} %`}</span>
+                                                    </div> 
+                                                </div>) : null}
+                                                <p>{itemCourse.description}</p>
+                                            </div>
+                                            <div className='goToCourse'>
+                                            <h4>{itemCourse.link !== null ? (itemCourse.link.includes('Udemy') ? "udemy" : itemCourse.link.includes('coursera') ? "Coursera" : itemCourse.link.includes('youtube') ? "Youtube" : null) : null}</h4>
+                                                {itemCourse.type ? <a style={{cursor: 'pointer'}} href={itemCourse.link}>Go To {itemCourse.type.charAt(0).toUpperCase() + itemCourse.type.slice(1)}</a> : <a style={{cursor: 'pointer'}} href={`/courses/yours/${itemCourse.id}`}>Go To Course</a>}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            )
+                        })
+                    }
+                </div>
+                {completedItemsCourses.length > 0 && <h3>Completed</h3>}
+                <div className='completedCards'>
+                    {
+                        completedItemsCourses.map((itemCourse, index) => {
+                            return (
+                                <div key={index} className={((completedItemsCourses.length % 3 === 0) || (completedItemsCourses.length === 1) ? ' long' : '')}>
+                                    <div className={'learningPathCourseWrappers' + (itemCourse.path_id ? ' item' : '')} key={index}>
+                                        <div className='learningPathCard completed'>
+                                            <div>
+                                                <h2>{itemCourse.name}</h2>
+                                                {
+                                                    itemCourse.path_id &&
+                                                    (
+                                                        (itemCourse.automatically_completed || itemCourse.manually_completed ?
+                                                            <CheckCircleIcon onClick={() => handleMarkCompleteItem(itemCourse.id)} className='completeButton' />
+                                                            :
+                                                            <CheckCircleIcon onClick={() => handleMarkCompleteItem(itemCourse.id)} className='notCompleteButton' />)
+                                                    )
+                                                }
+                                                {
+                                                    !itemCourse.path_id &&
+                                                    (
+                                                        (itemCourse.automatically_completed || itemCourse.manually_completed ?
+                                                            <CheckCircleIcon onClick={() => handleMarkCompleteCourse(itemCourse.id)} className='completeButton' />
+                                                            :
+                                                            <CheckCircleIcon onClick={() => handleMarkCompleteCourse(itemCourse.id)} className='notCompleteButton' />)
+                                                    )
+                                                }
+                                                <div style={{display:'flex', justifyContent: 'space-between', width: '80%'}}>
+                                                    <div style={{display:'flex', flexDirection:'column', textAlign: "left", margin: "10px 0 -10px 0"}}>
+                                                    <span>Progress</span>
+                                                    <span>{`100%`}</span>
+                                                    </div> 
+                                                </div>
+                                                <p>{itemCourse.description}</p>
+                                            </div>
+                                            <div className='goToCourse'>
+                                            <h4>{itemCourse.link !== null ? (itemCourse.link.includes('Udemy') ? "udemy" : itemCourse.link.includes('coursera') ? "Coursera" : itemCourse.link.includes('youtube') ? "Youtube" : null) : null}</h4>
+                                                {itemCourse.path_id ? <a href={itemCourse.link}>Go To {itemCourse.type.charAt(0).toUpperCase() + itemCourse.type.slice(1)}</a> : <a href={`/courses/yours/${itemCourse.id}`}>Go To Course</a>}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            )
+                        })
+                    }
+                </div>
             </div>
         </LearningPathWrapper>
+        </>
     )
 }
 

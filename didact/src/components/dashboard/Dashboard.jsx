@@ -1,88 +1,108 @@
-import React, { useEffect } from "react";
-import { courseEndPoint } from "../../store/actions/index.js";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { courseEndPoint, getYourLearningPaths, getLearningPath } from "../../store/actions/index.js";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, Route, Link } from "react-router-dom";
-import Course from "../courses/Course";
-import useMediaQuery from "@material-ui/core/useMediaQuery"
+import YourCourse from "../courses/YourCourse";
+import Course from '../courses/Course';
 
+//Material UI Imports
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
 
-import ReactTooltip from 'react-tooltip'
-import AddCircleRoundedIcon from '@material-ui/icons/AddCircleRounded';
+// Styled Component Imports
+import {LearningPathCard} from '../learningPaths/YourLearningPathsStyles'
 
-import { CoursesCard, CourseMenuDiv, CourseDiv } from './DashboardStyles'
-import { AddButton, PlusDiv, Plus, ButtonText } from './ButtonStyles';
 
 const useStyles = makeStyles({
-  welcome: {
-    marginRight: props => !props.phoneSize ? "30px" : '0',
-    borderRadius: 15,
-    marginLeft: props => !props.phoneSize ? "-8px" : '0',
-    fontSize: '1.1rem'
-  },
+ 
   current: {
-    width: props => (props.mediumScreenSize || props.phoneSize)  ? '100%' : '60%',
-    maxWidth: 600,
-    marginTop: '40px',
-    marginRight: props => (props.mediumScreenSize || props.phoneSize)  ? '0' :'15px',
-    height: '150px',
-    borderRadius: 15,
-    display: 'flex',
-    alignItems: "center",
-    justifyContent: 'center',
-    fontSize: '1.1rem'
+    width: props => (props.mediumScreenSize)  ? '540px' : (props.phoneSize) ? "100%" : "400px",
+    // maxWidth: props => (props.phoneSize) ? "400px" : "540px",
+
   },
   container: {
     display: 'flex',
-    flexDirection: 'column',
+    flexFlow: props => (props.mediumScreenSize || props.phoneSize)  ? 'row wrap' : 'row',
   },
-  rowContainer: {
+  
+  smallContainer: {
     display: 'flex',
-    flexFlow: props => (props.mediumScreenSize || props.phoneSize) ? 'row wrap' : "row",
-    justifyContent: props => (props.mediumScreenSize || props.phoneSize)  ? "center" : 'space-between',
-    maxWidth: 1115,
-    marginRight: props => !props.phoneSize ? "30px" : '0',
-    marginLeft: props => !props.phoneSize ? "-8px" : '0'
-  },
+    flexDirection: 'column'
+  }
 });
 
 function Dashboard({props}) {
+  const classes = useStyles(props);
   const dispatch = useDispatch();
   const state = useSelector(state => state);
 
+  const isLoadingVerify = state.onboardingReducer.isLoading
   const userName = state.onboardingReducer.user;
   const firstName = userName.first_name ? userName.first_name.substring(0, 1).toUpperCase() + userName.first_name.substring(1) : null;
-  const classes = useStyles(props);
-  console.log(props)
-
+  const learningPaths = state.learningPathReducer.yourLearningPaths
+  const learningPathCourses = state.learningPathReducer.learningPath.courses
+  const learningPath = state.learningPathReducer.learningPath
+  const [learningPathOrder, setLearningPathOrder] = useState([])
+  const [coursePathOrder, setCoursePathOrder] = useState([])
+  
 
   useEffect(() => {
-    dispatch(courseEndPoint());
-  }, [dispatch]);
+    if(!isLoadingVerify){
+      dispatch(courseEndPoint());
+      dispatch(getYourLearningPaths())
+    }
+  }, [dispatch, isLoadingVerify]);
+
+  useEffect(() => {
+    if(learningPathOrder.length > 1) dispatch(getLearningPath(learningPathOrder[0].id))
+    else {dispatch(getLearningPath(1))}
+  }, [dispatch, learningPathOrder])
+
+  useEffect(() => {
+    if(learningPathCourses) setCoursePathOrder([...learningPathCourses].sort((a,b) => a.path_order - b.path_order))
+  }, [learningPathCourses])
+
+  useEffect(() => {
+    if(learningPaths) setLearningPathOrder([...learningPaths].sort((a,b) => a.user_path_order - b.user_path_order))
+  }, [learningPaths])
 
   return (
-
+    <>
+    <div style={{display: 'flex', justifyContent: 'space-between', margin: '-10px 10px 10px 10px', borderBottom: '1px solid black'}}>
+        <p style={{fontWeight: 'bold', marginLeft: '10px', display: 'flex', flexDirection:'row', alignItems: 'center'}}>Dashboard</p>
+        <p style={{fontWeight: 'bold'}}>Welcome Back, {firstName}!</p>
+    </div>
     <div className={classes.container}>
-      <Card className={classes.welcome}>
-        <h1>Welcome Back, {firstName}!</h1>
-      </Card>
-      <div className={classes.rowContainer}>
-        <Card className={classes.current}>
-          <h2>Current Courses: </h2>
-        </Card>
+      <div className={classes.smallContainer}>
+        <p style={{fontSize: '2rem', fontWeight: 'bold', textAlign: 'left', marginLeft: '10px'}}>Current Learning Path</p>
+            <LearningPathCard className={classes.current} style={{marginRight: '20px'}}>
+                <div className='title'>
+                    <h1 style={{ fontWeight: 'bold' }}>{learningPathOrder.length >= 1 ? learningPathOrder[0].name : "Join a Learning Path"}</h1>
+                    <div style={{display:'flex'}}>
+                        <div style={{display: 'flex', alignItems: 'center'}}>
+                        <button><Link to={learningPathOrder.length >= 1 ? `/learning-paths/${learningPathOrder.length >= 1 && learningPathOrder[0].id}` : `learning-paths/join`}>{learningPathOrder.length >= 1 ? "Go To Path" : "Join A Path"}</Link></button>
+                        </div>
+                        {learningPathOrder.length >= 1 ? 
+                        (<div style={{ color: 'white', fontWeight: 'bold', display: 'flex', justifyContent: 'center', marginLeft: '10px', flexDirection: "column"}}>
+                          <span>{`${learningPathCourses && learningPathCourses.length} CLASSES`}</span>
+                          <span>{`${learningPath.pathItems && learningPath.pathItems.length} ITEMS`}</span>
+                        </div>) : null }
+                    </div>
+                </div>
+            </LearningPathCard>
+          </div>
         <div>
-        {state.coursesReducer.courses[0]
-          ? (<Course style={{width: '1000px'}} course={state.coursesReducer.courses[0]} />)
-          : null } 
-        </div>
+        <div className={classes.smallContainer} >
+        <p style={{fontSize: '2rem', fontWeight: 'bold', textAlign: 'left', marginBottom: "-20px",}}>Current Course</p>
+        {coursePathOrder.length >= 1 
+            ? (<YourCourse course={coursePathOrder[0]} />)
+            : state.coursesReducer.courses[0]
+            ? (<Course course={state.coursesReducer.courses[0]} />)
+            : null }
+        </div>      
       </div>
     </div>
-
+    </>
   );
 }
 

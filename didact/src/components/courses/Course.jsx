@@ -1,28 +1,26 @@
 import React, { useEffect, useState } from 'react';
-import { courseEndPoint } from "../../store/actions/index.js";
+import { courseEndPoint, getDetailedCourse } from "../../store/actions/index.js";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { AddButton, PlusDiv, Plus, ButtonText } from '../dashboard/ButtonStyles';
 
 import { getYourLearningPathsOwned, postCourseToPath } from '../../store/actions/index'
 
 import { AddCourseToPath, PopoverWrapper } from './CourseStyles'
+import { DidactButton } from '../dashboard/ButtonStyles'
 
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
 import clsx from 'clsx';
 import IconButton from '@material-ui/core/IconButton';
 import Collapse from '@material-ui/core/Collapse';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import AddCircleRoundedIcon from '@material-ui/icons/AddCircleRounded';
-import useMediaQuery from "@material-ui/core/useMediaQuery";
 import Popover from '@material-ui/core/Popover'
 
 import playlistAdd from '../../images/playlist_add_black_24x24.png'
 import closeIcon from '../../images/close_black_24x24.png'
+
 
 
 const useStyles = makeStyles(theme => ({
@@ -34,7 +32,7 @@ const useStyles = makeStyles(theme => ({
         padding: '10px',
         borderRadius: 15,
         width: '120px',
-        fontSize: "13px",
+        fontSize: "1.3rem",
         cursor: 'pointer'
     },
     buttonDiv: {
@@ -45,23 +43,15 @@ const useStyles = makeStyles(theme => ({
         marginTop: '40px',
         marginLeft: '20px'
     },
-    addButtonDivTablet: {
-        display: 'flex',
-        flexDirection: 'row',
-        marginBottom: "-20px"
-    },
+  
     card: {
-        // minWidth: 375,
-        maxWidth: 600,
+        maxWidth: 540,
+        width: "100%",
         margin: '40px 0 40px 0',
-        padding: '10px',
         borderRadius: '15px',
-        // backgroundColor: '#eeeff3'
-    },
-    circleIcon: {
-        fontSize: '3.5rem',
-        marginRight: '5px',
-        color: "#5b5b5b"
+        boxShadow: 'none',
+        backgroundColor: '#386581',
+        color: "white",
     },
     descriptionDiv: {
         width: "100%",
@@ -69,11 +59,11 @@ const useStyles = makeStyles(theme => ({
         flexDirection: 'column',
         justifyContent: "space-between",
         fontSize: 14,
-        color: "#757575"
+        color: "#757575",
+        padding: '0px'
     },
     expand: {
         transform: 'rotate(0deg)',
-        // marginLeft: 'auto',
         transition: theme.transitions.create('transform', {
             duration: theme.transitions.duration.shortest,
         }),
@@ -81,29 +71,13 @@ const useStyles = makeStyles(theme => ({
     expandOpen: {
         transform: 'rotate(180deg)',
     },
-    heading: {
-        fontSize: theme.typography.pxToRem(15),
-        fontWeight: theme.typography.fontWeightRegular,
-    },
-    pos: {
-        marginBottom: 12,
-    },
     root: {
         display: 'flex',
         flexDirection: 'row',
-        opacity: '0'
+        opacity: '0',
+        padding: '0px'
     },
-    rootTablet: {
-        display: 'flex',
-        flexDirection: 'column'
-    },
-    title: {
-        fontSize: 14,
-    },
-
-    tooltip: {
-        width: "400px"
-    },
+   
     title: {
         display: 'flex',
     },
@@ -112,28 +86,26 @@ const useStyles = makeStyles(theme => ({
         border: 'black',
         height: '100%',
     },
-    popoverRoot: {
-        // backgroundColor: 'rgba(0, 0, 0, 0.5)'
-        // backgroundColor: 'red',
-    },
     courseTitle: {
-        maxWidth: '512px'
+        maxWidth: '512px',
+        paddingLeft: '20px'
     }
 
 }));
 
 
+
 const Course = ({ course, addingCourses }) => {
-    const tabletSize = useMediaQuery("(max-width:1150px");
+    const state = useSelector(state => state);
     const classes = useStyles();
     const dispatch = useDispatch();
+    const learningPaths = state.learningPathReducer.yourLearningPathsOwned
+    const detailedCourse = state.coursesReducer.detailedCourse
+    const filteredPaths = []
     const [expanded, setExpanded] = useState(false);
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
     const id = open ? 'simple-popover' : undefined;
-    const state = useSelector(state => state);
-    // console.log('user', state.onboardingReducer.user)
-    // console.log(state.coursesReducer.courses)
 
     useEffect(() => {
         dispatch(courseEndPoint());
@@ -143,10 +115,11 @@ const Course = ({ course, addingCourses }) => {
         dispatch(getYourLearningPathsOwned())
     }, [dispatch, state.learningPathReducer.learningPath]);
 
+
     const handleExpandClick = () => {
         setExpanded(!expanded);
     };
-
+    
     const handleClick = event => {
         setAnchorEl(event.currentTarget);
     };
@@ -160,15 +133,6 @@ const Course = ({ course, addingCourses }) => {
         setAnchorEl(null);
     }
 
-    console.log(state.learningPathReducer.yourLearningPathsOwned)
-
-    // const filteredPaths = state.learningPathReducer.yourLearningPaths.filter(path => path)
-
-
-    const learningPaths = state.learningPathReducer.yourLearningPathsOwned
-
-    const filteredPaths = []
-
     learningPaths.forEach(path => {
         if (!path.courseIds.includes(course.id)) filteredPaths.push(path)
     })
@@ -177,12 +141,12 @@ const Course = ({ course, addingCourses }) => {
         <PopoverWrapper>
             <Card className={classes.card}>
                 <CardContent>
-                    <Typography className={classes.title} variant="h5" component="h2">
+                    <h3 className={classes.title}>
                         <div className='courseTitle'>
-                            <span className={classes.courseTitle}>{course.name}</span>
-                            {addingCourses && <button className={classes.addCourse} onClick={handleClick}><img src={playlistAdd} /></button>}
+                            <span className={classes.courseTitle}>{`${course.name.substring(0, 25)} ...`}</span>
                         </div>
-                        <div className={classes.popoverRoot}>
+                        {addingCourses && <button className={classes.addCourse} onClick={handleClick}><img src={playlistAdd} alt='Add Course' /></button>}
+                        <div>
                             <Popover
                                 id={id}
                                 open={open}
@@ -198,23 +162,23 @@ const Course = ({ course, addingCourses }) => {
                                 }}
                             >
                                 {
-                                    <AddCourseToPath className={classes.popoverRoot}>
+                                    <AddCourseToPath >
                                         {
                                             <div>
-                                                <div className='closePopover'>
-                                                    <img src={closeIcon} onClick={handleClose}/>
+                                                <div style ={{marginTop: '10px', paddingRight: '5px'}} className='closePopover'>
+                                                    <img src={closeIcon} onClick={handleClose} alt='Close'/>
                                                 </div>
                                                 <div className='learningPaths'>
-                                                    <h4>Add to Learning Path</h4>
+                                                    <h4 style={{margin: " -5px auto"}}>Add to Learning Path</h4>
                                                     {
                                                         (filteredPaths.length > 0 ?
                                                             (
                                                                 
                                                                 filteredPaths.length > 0 && (filteredPaths.map((learningPath, index) => {
                                                                     return (
-                                                                        <div className='learningPathTitle'>
-                                                                            <h3>{learningPath.name}</h3>
-                                                                            <button onClick={() => handleAddCourse(learningPath.id, course.id, learningPath.contentLength + 1)}><img src={playlistAdd}/></button>
+                                                                        <div className='learningPathTitle' key={index}>
+                                                                            <h5>{learningPath.name}</h5>
+                                                                            <button onClick={() => handleAddCourse(learningPath.id, course.id, learningPath.contentLength + 1)}><img src={playlistAdd} alt='Add Course'/></button>
                                                                         </div>
 
                                                                     )
@@ -225,7 +189,7 @@ const Course = ({ course, addingCourses }) => {
                                                     }
                                                 </div>
                                                 <div className='buttons'>
-                                                    <button onClick={handleClose}>Done</button>
+                                                    <DidactButton onClick={handleClose}>Done</DidactButton>
                                                     <a href='/learning-paths/add'>Create Learning Path</a>
                                                 </div>
                                             </div>
@@ -234,9 +198,21 @@ const Course = ({ course, addingCourses }) => {
                                 }
                             </Popover>
                         </div>
-                    </Typography>
-                    <CardActions className={classes.descriptionDiv} color="textSecondary" disableSpacing>
-                        <Typography >{course.description && !expanded ? (`${course.description.substring(0, 100)} ...`) : null}</Typography>
+                    </h3>
+                    {course.description ? (
+                                <>
+                    <CardActions className={classes.descriptionDiv} style = {{color: "white"}} disableSpacing>
+                        {/* <div style={{display:'flex', justifyContent: 'space-between', width: '80%'}}> */}
+                            {/* <div style={{display:'flex', flexDirection:'column', textAlign: "left"}}>
+                            <span>Sections</span>
+                            <span>{((detailedCourse.sections && detailedCourse.course) && detailedCourse.course.id === course.id) ? detailedCourse.sections.length : 0}</span>
+                            </div>
+                            <div style={{display:'flex', flexDirection:'column', textAlign: "left"}}>
+                            <span>Progress</span>
+                            <span>{`${(detailedCourse.course && detailedCourse.course.id === course.id) ? (progressThree) : 0} %`}</span>
+                            </div> */}
+                        {/* </div> */}
+                        <p style={{textAlign:'left', marginLeft: '15px'}}>{course.description && !expanded ? (`${course.description.substring(0, 150)} ...`) : null}</p>
                         <IconButton
                             className={clsx(classes.expand, {
                                 [classes.expandOpen]: expanded,
@@ -245,28 +221,25 @@ const Course = ({ course, addingCourses }) => {
                             aria-expanded={expanded}
                             aria-label="show more"
                         >
-                            <ExpandMoreIcon />
+                            <ExpandMoreIcon style={{fontSize: '2.8rem'}}/>
                         </IconButton>
                     </CardActions>
                     <Collapse in={expanded} timeout="auto" unmountOnExit>
-                        <CardContent>
-                            <Typography className={classes.title} color="textSecondary" paragraph>
+                        <CardContent style = {{padding: 'none'}}>
+                            <p className={classes.title} style = {{color: "white", textAlign:'left', marginLeft: '15px'}}>
                                 {course.description}
-                            </Typography>
+                            </p>
                         </CardContent>
                     </Collapse>
-                    <Typography className={classes.pos} color="textSecondary">
-                        {course.foreign_rating}
-                    </Typography>
-                    <Typography variant="body2" component="p">
-                        {course.foreign_instructors}
-                    </Typography>
-                    <Typography color="textSecondary">
-                        {course.category ? (`Category: ${course.category}`) : (null)}
-                    </Typography>
+                    </>) : null}
+                    <div style={{display: 'flex', justifyContent: "space-evenly", fontSize: '1.4rem'}}>
+                    <span className={classes.pos}>{course.foreign_instructors}</span>
+                    <span className={classes.pos}>{course.foreign_rating}</span>
+                    </div>
+                    <p>{course.category ? (`Category: ${course.category}`) : (null)}</p>
                 </CardContent>
                 <CardActions className={classes.buttonDiv}>
-                    <Link to={`/courses/${course.id}`} ><button className={classes.buttonCourse} size="small">Go To Course</button></Link>
+                    <Link to={`/courses/all/${course.id}`} ><DidactButton size="small">Go To Course</DidactButton></Link>
                 </CardActions>
             </Card>
         </PopoverWrapper>

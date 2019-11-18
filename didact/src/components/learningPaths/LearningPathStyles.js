@@ -1,24 +1,182 @@
 import styled from 'styled-components'
 
 export const LearningPathWrapper = styled.div`
-    /* border: 1px solid black; */
-    margin-right: 30px;
+    /* margin-right: 30px; */
+    display: flex;
+    flex-direction: column;
 
-    .editLearning {
-        width: 100%;
-        border-radius: 19px;
-        background-color: white;
+    @media (max-width: 600px) {
+        margin: auto;
+        }
+
+    .breadcrumb {
         display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 15px 30px;
-        font-weight: bold;
-        color: #141821;
-        max-width: 600px;
+        flex-direction: column;
 
+        .breadcrumbTitle {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            p {
+                font-weight: bold;
+            }
+
+            a {
+                text-decoration: none;
+                color: black;
+                font-weight: bold;
+            }
+        }
+
+        span {
+            border-top: black 1px solid;
+            width: 100%;
+        }
+    }
+
+    .learningPathCards{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        width: 100%;
+        text-align: left;
+
+        @media (max-width: 600px) {
+            width: 90;
+            margin: auto;
+            display: flex;
+            justify-content: space-evenly;
+        }
+
+        .upcomingCards {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+
+            @media (max-width: 600px) {
+                        width: 100%;
+                    }
+
+
+            .long:last-child {
+
+                .learningPathCard {
+                    width: 826px;
+                    height: 100%;
+
+                    @media (max-width: 600px) {
+                    width: 100%;
+                    margin: auto;
+                }
+
+        
+                }
+            }
+        }
+
+        .completedCards {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+
+            @media (max-width: 600px) {
+                    width: 100%;
+                   
+                }
+
+            
+            .long:last-child {
+                
+                .learningPathCard {
+                    width: 826px;
+                    height: 100%;
+
+                    @media (max-width: 600px) {
+                    width: 100%;
+                    max-width: 826px;
+                  
+                }
+
+                }
+            }
+        }
+
+        h3 {
+            width: 100%;
+        }
+    }
+
+    .learningPathCourseWrappers {
+        text-align: left;
+        
+
+        .completed {
+            background: #D1E2EA;
+            opacity: 0.5;
+            width: 395px;
+            color: black;
+
+            @media (max-width: 600px) {
+                    width: 100%;
+                    min-width: 320px;
+                    margin-top: 10px;
+                }
+        }
+        
+        a {
+            text-decoration: none;
+            min-width: 130px;
+            text-align: center;
+        }
+
+        .long:last-child {
+            width: 826px
+        }
+    }
+
+    .current {
+        width: 100%;
+
+        .currentTitle {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .learningPathCard {
+            background: #386581;
+            width: 100%;
+
+            .currentTitle {
+                display: flex;
+
+                .notCompleteButton {
+                    font-size: 2.2rem;
+                    color: white;
+                    opacity: .6;
+                    cursor: pointer;
+
+                    &:hover {
+                        opacity: 1;
+                    }
+                }
+
+                .completeButton {
+                    font-size: 2.2rem;
+                    color: black;
+                    cursor: pointer;
+                }
+            }
+        }
 
         .editLearningButton {
             font-size: .8rem;
+            margin-right: 20px;
+            color: #2424247D;
+            font-weight: bold;
             
             a {
                 color: black;
@@ -27,36 +185,64 @@ export const LearningPathWrapper = styled.div`
         }
     }
 
-    .learningPathCourseWrappers {
-        text-align: left;
-        max-width: 600px;
-        
-        h3 {
-            padding: 5px 15px;
-        }
+    .upcoming {
+        width: 395px;
+        margin-bottom: 52px;
 
-        .completed {
-            background: white;
-            opacity: 0.5;
-        }
-        
-        a {
-            text-decoration: none;
-            min-width: 130px;
-            text-align: center;
+        @media (max-width: 600px) {
+                    width: 100%;
+                    margin: auto;
+                }
+
+            .learningPathCard {
+            background: #ADC8D9;
+            color: black;
+            width: 395px;
+            margin: 0px;
         }
     }
 
+    .item {
+        .learningPathCard {
+            background: #D1E2EA;
+            color: black;
+        }
+    }
+
+    .completed {
+        margin-bottom: 52px;
+    }
+
     .learningPathCard {
+            color: white;
             background: white;
-            padding: 10px 30px;
+            padding: 35px 43px 30px 30px;
             border-radius: 19px;
-            margin: 25px 0px;
+            width: 540px;
+            height: 330px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            h2 {
+                margin: 0;
+                font-size: 2.4rem;
+                max-height: 68px;
+                overflow: hidden;
+            }
+
+            p {
+                margin: 0;
+                margin-top: 25px;
+                max-height: 100px;
+                overflow: hidden;
+            }
 
             .goToCourse {
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
+                margin-top: 25px;
                 
                 a {
                     background-color: #242424;
@@ -64,6 +250,10 @@ export const LearningPathWrapper = styled.div`
                     padding: 10px 15px;
                     border-radius: 16px;
                     font-weight: bolder;
+                }
+
+                h4 {
+                    margin: 0;
                 }
             }
         }

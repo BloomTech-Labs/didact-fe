@@ -54,6 +54,18 @@ import
     DELETE_PATH_ITEM_START,
     DELETE_PATH_ITEM_SUCCESS,
     DELETE_PATH_ITEM_FAIL,
+    UPDATE_YOUR_PATH_ORDER_START,
+    UPDATE_YOUR_PATH_ORDER_SUCCESS,
+    UPDATE_YOUR_PATH_ORDER_FAIL,
+    GET_YOUR_LEARNING_PATH_COMPLETION_START,
+    GET_YOUR_LEARNING_PATH_COMPLETION_SUCCESS,
+    GET_YOUR_LEARNING_PATH_COMPLETION_FAIL,
+    TOGGLE_LEARNING_PATH_START,
+    TOGGLE_LEARNING_PATH_SUCCESS,
+    TOGGLE_LEARNING_PATH_FAIL,
+    TOGGLE_LEARNING_PATH_ITEM_START,
+    TOGGLE_LEARNING_PATH_ITEM_SUCCESS,
+    TOGGLE_LEARNING_PATH_ITEM_FAIL,
 } from '../actions'
 
 const initialState =
@@ -64,6 +76,9 @@ const initialState =
     learningPath: {},
     yourLearningPaths: [],
     yourLearningPathsOwned: [],
+    learningPathCompletion: [],
+    learningPathToggle: {},
+    pathItemToggle: {}
 
 }
 
@@ -432,6 +447,86 @@ export const learningPathReducer = (state = initialState, action) =>
                 error: "",
             }
         case DELETE_PATH_ITEM_FAIL:
+            return {
+                ...state,
+                isLoading: false,
+                error: action.payload,
+            }
+        case UPDATE_YOUR_PATH_ORDER_START:
+            return {
+                ...state,
+                error: "",
+            }
+        case UPDATE_YOUR_PATH_ORDER_SUCCESS:
+            console.log('reducer', state.yourLearningPaths)
+            console.log('reducer incoming data', state.yourLearningPaths)
+            return {
+                ...state,
+                yourLearningPaths: action.payload,
+                isLoading: false,
+                error: "",
+            }
+        case UPDATE_YOUR_PATH_ORDER_FAIL:
+            return {
+                ...state,
+                isLoading: false,
+                error: action.payload,
+            }
+        // GET YOUR LEARNING PATH BY ID WITH COMPLETION 
+        case GET_YOUR_LEARNING_PATH_COMPLETION_START:
+                return {
+                    ...state,
+                    isLoading: true,
+                    error: "",
+                }
+        case GET_YOUR_LEARNING_PATH_COMPLETION_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                learningPathCompletion: action.payload,
+                error: "",
+            }
+        case GET_YOUR_LEARNING_PATH_COMPLETION_FAIL:
+            return {
+                ...state,
+                isLoading: false,
+                error: action.payload,
+            }
+        // TOGGLE LEARNING PATH 
+        case TOGGLE_LEARNING_PATH_START:
+                return {
+                    ...state,
+                    isLoading: true,
+                    error: "",
+                }
+        case TOGGLE_LEARNING_PATH_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                learningPathToggle: action.payload,
+                error: "",
+            }
+        case TOGGLE_LEARNING_PATH_FAIL:
+            return {
+                ...state,
+                isLoading: false,
+                error: action.payload,
+            }
+         // TOGGLE LEARNING PATH ITEM
+         case TOGGLE_LEARNING_PATH_ITEM_START:
+                return {
+                    ...state,
+                    isLoading: true,
+                    error: "",
+                }
+        case TOGGLE_LEARNING_PATH_ITEM_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                pathItemToggle: action.payload,
+                error: "",
+            }
+        case TOGGLE_LEARNING_PATH_ITEM_FAIL:
             return {
                 ...state,
                 isLoading: false,

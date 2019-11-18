@@ -38,15 +38,10 @@ const DrawerComponent = (props) => {
           },
           
           drawerOpen: {
-            // backgroundColor: '#eeeff3',
-            width: "240px",
+            width: "255px",
             height: "600px",
-            margin: "10px",
-            marginLeft: "10px",
-            marginRight: 0,
+            margin: " 103px 0 10px 10px",
             borderRadius: "15px",
-            // position: 'fixed',
-            // overflowY:"hidden",
             transition: theme.transitions.create("width", {
               easing: theme.transitions.easing.sharp,
               duration: theme.transitions.duration.enteringScreen,
@@ -57,7 +52,6 @@ const DrawerComponent = (props) => {
               easing: theme.transitions.easing.sharp,
               duration: theme.transitions.duration.leavingScreen,
             }),
-            // backgroundColor: '#eeeff3',
             overflowX: "hidden",
             overflowY:"hidden",
             marginLeft: "10px",
@@ -65,41 +59,11 @@ const DrawerComponent = (props) => {
             [theme.breakpoints.up("sm")]: {
               width: theme.spacing(8) + 1, 
               padding: 0,
-              marginTop: '10px',
-              // marginTop: "195px",
+              marginTop: '103px',
               height: "600px",
               borderRadius: "15px",
             },
           },
-          // drawerOpenMobile: {
-          //   backgroundColor: '#eeeff3',
-          //   position: 'fixed',
-          //   width: "240px",
-          //   height: "500px",
-          //   margin: "37px 0 10px 5px",
-          //   borderRadius: "15px",
-          //   transition: theme.transitions.create("width", {
-          //     easing: theme.transitions.easing.sharp,
-          //     duration: theme.transitions.duration.enteringScreen,
-          //   }),
-          // },
-          // drawerCloseMobile: {
-          //   transition: theme.transitions.create("width", {
-          //     easing: theme.transitions.easing.sharp,
-          //     duration: theme.transitions.duration.leavingScreen,
-          //   }),
-          //   backgroundColor: '#eeeff3',
-          //   overflow: "hidden",
-          //   height: "500px",
-          //   margin: "73px 10px 10px 10px",
-          //   borderRadius: "15px",
-          //   position: 'fixed',
-          //   zIndex: 1,
-          //   width: theme.spacing(7) + 1,
-          //   [theme.breakpoints.up("sm")]: {
-          //     width: theme.spacing(7) + 1,
-          //   },
-          // },
         menuButtonMobile: {
             marginRight: '-4px'
         },
@@ -163,7 +127,41 @@ const DrawerComponent = (props) => {
             justifyContent: "flex-end",
             padding: theme.spacing(0, 1),
             ...theme.mixins.toolbar,
-        }
+        },
+        didactDivOpen: {
+          width: '255px',
+          backgroundColor: "#565554",
+          marginLeft: '20px',
+          height: '68px',
+          marginTop: "10px",
+          position: 'fixed',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          borderRadius: "19px",
+          transition: theme.transitions.create("width", {
+            easing: theme.transitions.easing.sharp,
+            duration: theme.transitions.duration.enteringScreen,
+          }),
+        },
+        didactDivClosed: {
+          transition: theme.transitions.create("width", {
+            easing: theme.transitions.easing.sharp,
+            duration: theme.transitions.duration.leavingScreen,
+          }),
+          width: '65px',
+          backgroundColor: "#565554",
+          overflow: 'hidden',
+          marginLeft: '20px',
+          height: '68px',
+          marginTop: "10px",
+          position: 'fixed',
+          display: 'flex',
+          paddingLeft: '70px',
+          justifyContent: 'center',
+          alignItems: 'center',
+          borderRadius: "19px",
+        },
     }));
 
     const classes = drawerStyles();
@@ -172,17 +170,16 @@ const DrawerComponent = (props) => {
 
     return (
         <>
-         {/* {open ? (
-                <div className={classes.placeholderDiv}>
-                    <div className={classes.placeHolder} />
-                    <div className={classes.placeHolder2} />
-                </div>
-            ) : (
-                    <div className={classes.placeholderDiv}>
-                        <div className={classes.placeHolderClosed} />
-                        <div className={classes.placeHolder2Closed} />
-                    </div>
-                )} */}
+         {open ? 
+          (<div className={classes.didactDivOpen}>
+            <h2 style={{fontSize: "3.2rem", color: 'white', fontFamily: 'ITC Grouch'}}>Didact</h2>
+          </div>)
+          :
+          (
+          <div className={classes.didactDivClosed}>
+            <h2 style={{fontSize: "3.2rem", color: 'white', fontFamily: 'ITC Grouch'}}>D<span style={{color: "#565554"}}>idact</span></h2>
+          </div>
+          )}
         <Drawer
             anchor = "none"
             variant="permanent"
@@ -206,7 +203,7 @@ const DrawerComponent = (props) => {
                     edge="start"
                     className={classes.menuButtonDesktop}
                 >
-                    <MenuIcon />
+                    <MenuIcon style={{fontSize: '28px'}}/>
                 </IconButton>
             </div>
             {<SideList open = {open} props = {props}/>}

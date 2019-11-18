@@ -16,7 +16,9 @@ const useStyles = makeStyles(theme => ({
   title: {
     flexGrow: 1,
     display: "flex",
-    justifyContent: "flex-start"
+    justifyContent: "flex-start",
+    fontFamily: "ITC Grouch",
+     fontSize: "32px"
   },
   appBar: {
       margin: "10px auto",
@@ -30,7 +32,7 @@ const useStyles = makeStyles(theme => ({
   {
     textDecoration: 'none',
     color: 'lightgray',
-    fontSize: '1.5rem'
+    fontSize: '2rem'
   }
 }));
 
@@ -38,7 +40,6 @@ const useStyles = makeStyles(theme => ({
 const HeaderSecondary = (props) => {
     const classes = useStyles();
     const {history} = props
-    console.log('history', history.location.pathname)
     let linkTo = history.location.pathname.toLowerCase() === "/login" ? 'Register' : 'Login'
 
     return (

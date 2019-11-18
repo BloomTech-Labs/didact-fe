@@ -4,121 +4,71 @@ import {
   getLearningPath,
   updateLearningPath,
   deleteLearningPath,
-  updateLearningPathContentOrder
+  updateLearningPathContentOrder,
+  updateYourPathOrder
 } from "../../store/actions";
 
+// import components
 import DeleteModal from "../courses/DeleteModal";
-import {ButtonDiv, FinishEdit, DeleteForm } from "../dashboard/ButtonStyles";
-import {DroppableDiv, PathInstructions} from "./DraggableStyles.js";
 import CourseLearningPath from "./CourseLearningPath";
-import AddToLearningPath from './addToLearningPath/AddToLearningPath'
+import AddToLearningPath from './addToLearningPath/addToLearningPath'
+import { changePathOrder } from '../../utils/changePathOrder'
+
+// imports for Styled Components 
+import { DidactField, DidactInput, DidactLabel, DidactTextArea } from '../dashboard/FormStyles'
+import {ButtonDiv, FinishEdit, DidactButton, TrashCanEdit } from "../dashboard/ButtonStyles";
+import {DroppableDiv, PathInstructions} from "./DraggableStyles.js";
 
 //imports from material-ui
-import { makeStyles, withStyles } from "@material-ui/core/styles";
+import { makeStyles} from "@material-ui/core/styles";
 import clsx from "clsx";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
 import Collapse from "@material-ui/core/Collapse";
-import Button from "@material-ui/core/Button";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import IconButton from "@material-ui/core/IconButton";
-import Typography from "@material-ui/core/Typography";
-import TextField from "@material-ui/core/TextField";
+//Material UI Icons
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 //imports for react-beautiful-dnd
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 
+
 const useStyles = makeStyles(theme => ({
-  button: {
-    boxShadow: "none",
-    borderRadius: "15px",
-    background: "#EBE8E1",
-    // marginLeft: "70%",
-  },
   card: {
-    maxWidth: 600,
+    maxWidth: 540,
     borderRadius: 15,
     marginTop: "10px",
+    boxShadow: 'none',
   },
   title: {
     fontSize: 14,
     fontWeight: "bold",
   },
-  pos: {
-    marginBottom: 12,
-  },
   container: {
     display: "flex",
     flexWrap: "wrap",
   },
-  input: {
-    backgroundColor: "#F4F8FA",
-    filter: "brightness(95%)",
-    borderRadius: 15,
-  },
-  inputDescription: {
-    backgroundColor: "#F4F8FA",
-    filter: "brightness(95%)",
-    borderRadius: 15,
-    margin: "-16px -10px -16px -10px",
-    padding: "10px",
-  },
-  titleOrInstructorFields: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    width: "45%",
-    [`& fieldset`]: {
-      borderRadius: 15,
-    },
-  },
-  descriptionField: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    width: "93%",
-    [`& fieldset`]: {
-      borderRadius: 15,
-      margin: "3px",
-    },
-  },
-
   descriptionDiv: {
-    display: "flex",
-    justifyContent: "center",
+    width: "100%",
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: "space-between",
+    fontSize: '1.4rem',
+    padding: '0px'
   },
-
-  pathUrlField: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    width: "93%",
-    [`& fieldset`]: {
-      borderRadius: 15,
-    },
-  },
+  span: {
+    cursor: 'pointer',
+    "&:hover":{
+      color: 'white'
+    }
+  }
 }));
 
-const CssTextField = withStyles({
-  root: {
-    "& label.Mui-focused": {
-      color: "gray",
-    },
-    "& .MuiOutlinedInput-root": {
-      "& fieldset": {
-        borderColor: "gray",
-      },
-      "&:hover fieldset": {
-        borderColor: "gray",
-      },
-      "&.Mui-focused fieldset": {
-        border: "1px solid gray",
-      },
-    },
-  },
-})(TextField);
+
 
 const EditLearningPaths = ({ id, props }) => {
-  // console.log(id);
-  // console.log(props);
   const state = useSelector(state => state.learningPathReducer);
   const learningPath = state.learningPath;
   const dispatch = useDispatch();
@@ -132,13 +82,12 @@ const EditLearningPaths = ({ id, props }) => {
     category: "",
     description: "",
   });
-
-
+ 
+  // console.log(learningPath)
   useEffect(() => {
     dispatch(getLearningPath(id));
   }, [id, dispatch]);
 
-  console.log(learningPath);
   useEffect(() => {
     setChanges({
       name: learningPath.name,
@@ -174,6 +123,12 @@ const EditLearningPaths = ({ id, props }) => {
     props.history.push(`/learning-paths/${id}`);
   };
 
+   const handleBack = () => {
+        props.history.push('/courses')
+        
+    } 
+
+
   const handleDelete = () => {
     dispatch(deleteLearningPath(id, props.history));
   };
@@ -197,38 +152,20 @@ const EditLearningPaths = ({ id, props }) => {
     }
   }, [learningPath.pathItems, learningPath.courses])
 
-  // changes learning path array order on drag end
-  const changePathOrder = (starting, ending, arr) => {
-    let returned = arr.map((el, i) => {
-      if (`${i}` === starting) {
-        let spliced = arr.splice(starting, 1)[0];
-        arr.splice(ending, 0, spliced)
-        return arr
-      }
-      return arr
-    });
-    returned[starting].forEach((el, i) => el.path_order = i)
-    return returned[starting]
-  };
-
   // function for Drag and Drop calling changeArr above
   const onDragEnd = result => {
     const { destination, source, draggableId } = result;
-    console.log(result)
     if(!destination) {
         return
     }
-
     if(
         destination.droppableId === source.droppableId &&
         destination.index === source.index
     ) {
         return
     }
-    // see instantiation of function on line 198
+    // utils import function for updating array order and path order
     setItemsCourses(changePathOrder(draggableId, destination.index, [...itemsCourses]))
-
-    console.log(itemsCourses)
   
     dispatch(updateLearningPathContentOrder(itemsCourses, props.match.params.id))
 
@@ -238,26 +175,25 @@ const EditLearningPaths = ({ id, props }) => {
   if (!state.isLoading) {
     return (
       <>
-        <FinishEdit
+        {/* <FinishEdit
           onClick={backToLearningPath}
-        >{`<- BACK TO PATH`}</FinishEdit>
+          style={{ fontSize: '1.4rem' }}
+        >{`<- BACK TO PATH`}</FinishEdit> */}
+        <div style={{display: 'flex', justifyContent: 'space-between', margin: '-10px 10px 10px 10px', borderBottom: '1px solid black'}}>
+                <p style={{fontWeight: 'bold', marginLeft: '10px', display: 'flex', flexDirection:'row', alignItems: 'center'}}><span className={classes.span}  onClick={handleBack}>Learning Paths</span><ChevronRightIcon style={{fontSize: '1.6rem'}}/><span className={classes.span}  onClick={backToLearningPath}>{learningPath.name && learningPath.name.substring(0, 15)}...</span><ChevronRightIcon style={{fontSize: '1.6rem'}}/><span>Edit</span></p>
+        </div>
         <div className={classes.root}>
           {learningPathEdit ? (
-            <Card className={classes.card}>
+            <Card className={classes.card} style={{ background: '#386581', color: 'white' }}>
               <CardContent>
-                <Typography variant="h5" component="h2">
-                  {learningPath.name}
-                </Typography>
+                <h2>{learningPath.name}</h2>
                 <CardActions className={classes.descriptionDiv} disableSpacing>
-                  <Typography
-                    color="textSecondary"
-                    className={classes.descriptionTitle}
-                  >
+                  <p className={classes.descriptionTitle}>
                     {" "}
                     {learningPath.description && !expanded
-                      ? `${learningPath.description.substring(0, 100)} ...`
+                      ? (`${learningPath.description.substring(0, 100)} ...`)
                       : null}
-                  </Typography>
+                  </p>
                   <IconButton
                     className={clsx(classes.expand, {
                       [classes.expandOpen]: expanded,
@@ -265,43 +201,41 @@ const EditLearningPaths = ({ id, props }) => {
                     onClick={handleExpandClick}
                     aria-expanded={expanded}
                     aria-label="show more"
+                    style={{ color: 'white'}}
                   >
-                    <ExpandMoreIcon />
+                    <ExpandMoreIcon style={{ fontSize: '2.6rem' }}/>
                   </IconButton>
                 </CardActions>
                 <Collapse in={expanded} timeout="auto" unmountOnExit>
                   <CardContent>
-                    <Typography color="textSecondary" paragraph>
-                      {learningPath.description}
-                    </Typography>
+                    <p>{learningPath.description}</p>
                   </CardContent>
                 </Collapse>
-                <Typography color="textSecondary">
+                <p color="textSecondary">
                   {learningPath.category
                     ? `Category: ${learningPath.category}`
                     : null}
-                </Typography>
+                </p>
               </CardContent>
               <CardActions>
-                <Button
+                <DidactButton
                   onClick={toggleEdit}
-                  style={{ marginLeft: "70%" }}
+                  style={{ marginLeft: "70%", width: "100%", height: '100%'}}
                   type="submit"
                   size="small"
                   variant="contained"
-                  className={classes.button}
                 >
                   Edit Description
-                </Button>
+                </DidactButton>
               </CardActions>
             </Card>
           ) : (
             <Card className={classes.card}>
               <CardContent>
-                <Typography className={classes.title} gutterBottom>
+                <p className={classes.title} gutterBottom>
                   Learning Path Overview
-                </Typography>
-                <DeleteForm onClick={handleModalOpen}>X</DeleteForm>
+                </p>
+                <TrashCanEdit style={{fontSize: '2.6rem'}} onClick={handleModalOpen}></TrashCanEdit>
                 {openModal ? (
                   <DeleteModal
                     handleDelete={handleDelete}
@@ -310,78 +244,36 @@ const EditLearningPaths = ({ id, props }) => {
                     handleModalClose={handleModalClose}
                   />
                 ) : null}
-                <form
-                  onSubmit={handlePathSubmit}
-                  className={classes.container}
-                  noValidate
-                  autoComplete="off"
-                >
-                  <CssTextField
-                    id="standard-name"
-                    label="Learning Path Title"
-                    className={classes.pathUrlField}
-                    value={changes.name || ""}
-                    onChange={handleChange("name")}
-                    margin="normal"
-                    variant="outlined"
-                    placeholder="Learning Path Title"
-                    InputProps={{
-                      classes: {
-                        underline: classes.blackUnderline,
-                        input: classes.input,
-                      },
-                    }}
-                  />
-                  <CssTextField
-                    id="standard-name"
-                    label="Description"
-                    className={classes.descriptionField}
-                    value={changes.description || ""}
-                    onChange={handleChange("description")}
-                    margin="normal"
-                    multiline={true}
-                    rows="6"
-                    variant="outlined"
-                    placeholder="Description"
-                    InputProps={{
-                      classes: { input: classes.inputDescription },
-                    }}
-                  />
-                  <CssTextField
-                    id="standard-name"
-                    label="Category"
-                    className={classes.pathUrlField}
-                    value={changes.category || ""}
-                    onChange={handleChange("category")}
-                    margin="normal"
-                    variant="outlined"
-                    placeholder="Category"
-                    InputProps={{
-                      classes: {
-                        underline: classes.blackUnderline,
-                        input: classes.input,
-                      },
-                    }}
-                  />
+                <form onSubmit={handlePathSubmit} className={classes.container} noValidate autoComplete="off">
+                <DidactField>
+                  <DidactLabel for='title'>Learning Path Title</DidactLabel>
+                  <DidactInput id='title' type='text' value={changes.name || ""} onChange={handleChange('name')} placeholder='Learning Path Title' />  
+                </DidactField>
+                <DidactField>
+                  <DidactLabel for='description'>Description</DidactLabel>
+                  <DidactTextArea rows="8" id='description' value={changes.description || ""} onChange={handleChange('description')} placeholder='Description' />  
+                </DidactField>
+                <DidactField>
+                  <DidactLabel for='category'>Category</DidactLabel>
+                  <DidactInput id='category' type='text' value={changes.category || ""} onChange={handleChange('category')} placeholder='Category' />  
+                </DidactField>
                   <ButtonDiv>
-                    <Button
+                    <DidactButton
                       style={{ marginLeft: "10px" }}
                       onClick={handleCancel}
                       size="small"
                       variant="contained"
-                      className={classes.button}
                     >
                       Cancel
-                    </Button>
-                    <Button
+                    </DidactButton>
+                    <DidactButton
                       type="submit"
                       style={{ marginRight: "4%" }}
                       size="small"
                       variant="contained"
-                      className={classes.button}
                     >
                       Submit Edit
-                    </Button>
+                    </DidactButton>
                   </ButtonDiv>
                 </form>
               </CardContent>
@@ -390,8 +282,7 @@ const EditLearningPaths = ({ id, props }) => {
           <AddToLearningPath props = {props} itemsCourses = {itemsCourses}/>
 
           <PathInstructions>Drag to Change Learning Path Order</PathInstructions>
-          <DragDropContext onDragEnd={onDragEnd}
-          >
+          <DragDropContext onDragEnd={onDragEnd}>
             {<div>
               <Droppable droppableId="column-1">
                 {provided => (
