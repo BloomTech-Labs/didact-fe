@@ -97,9 +97,9 @@ function Dashboard({props}) {
         <div className={classes.smallContainer} >
         <p style={{fontSize: '2rem', fontWeight: 'bold', textAlign: 'left', marginBottom: "-20px",}}>Current Course</p>
         {coursePathOrder.length >= 1 
-            ? (<YourCourse course={coursePathOrder[0]}  />)
+            ? (<YourCourse props = {props} style={{color: 'black'}}course={coursePathOrder[0]}  />)
             : state.coursesReducer.courses[0]
-            ? (<Course course={state.coursesReducer.courses[0]} />)
+            ? (<Course props ={props} style={{color: 'black'}} course={state.coursesReducer.courses[0]} />)
             : null }
         </div>      
       </div>
