@@ -86,6 +86,8 @@ const YourLearningPaths = (props) => {
     const completedPaths = []
     const isLoadingLearningPathToggle = state.learningPathReducer.isLoading
 
+    console.log(learningPaths)
+
     learningPaths.forEach(el => {
         if ((el.total === el.completed) && el.total !== 0) {
             completedPaths.push(el)

@@ -18,12 +18,17 @@ const Landing = ({ history }) => {
         if (email !== '' && email.includes('@') && email.includes('.com')){
              axios.post(`${beURL}auth/emaillist`, { email: email })
                 .then(res => {
-                    setEmail('');
-                    setError('')
+                    if (res.data.message === "Email was already in database"){
+                        setError('This email is already registered.')
+                    } else {
+                        setEmail('');
+                        setError("Thanks! You'll get an email with beta signups open!")
+                    }
+                    
                 })
                 .catch(err => {
                     setEmail('');
-                    setError('This email may already be registered.')
+                    setError('Please try again.')
                 })
         } else {
             setError('It must be a valid email.')

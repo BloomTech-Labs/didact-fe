@@ -108,6 +108,10 @@ export const DetailedCourseWrapper = styled.div`
             display: flex;
             justify-content: space-between;
             width: 100%;
+
+            h4 {
+                font-size: 14px;
+            }
         }
 
         .lessonTitle {
