@@ -17,8 +17,10 @@ const useStyles = makeStyles({
  
   current: {
     width: props => (props.mediumScreenSize)  ? '540px' : (props.phoneSize) ? "100%" : "400px",
-    // maxWidth: props => (props.phoneSize) ? "400px" : "540px",
-
+    paddingLeft: '33px', 
+    paddingBottom: '25px', 
+    paddingTop: '0',
+    marginRight: props =>(props.phoneSize) ? "0px" : "40px"
   },
   container: {
     display: 'flex',
@@ -75,7 +77,7 @@ function Dashboard({props}) {
     <div className={classes.container}>
       <div className={classes.smallContainer}>
         <p style={{fontSize: '2rem', fontWeight: 'bold', textAlign: 'left', marginLeft: '10px'}}>Current Learning Path</p>
-            <LearningPathCard className={classes.current} style={{marginRight: '20px', paddingLeft: '33px', paddingBottom: '25px', paddingTop: '0'}}>
+            <LearningPathCard className={classes.current} >
                 <div className='title'>
                     <h3 style={{ fontFamily: 'ITC Grouch', color: "white", marginBottom: '40px'}}>{learningPathOrder.length >= 1 ? learningPathOrder[0].name : "Join a Learning Path"}</h3>
                     <div style={{display:'flex', justifyContent: 'flex-end'}}>
