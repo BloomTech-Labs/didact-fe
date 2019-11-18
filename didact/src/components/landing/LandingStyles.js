@@ -231,6 +231,10 @@ export const SecondImg = styled.img`
     width: 1116px;
     height: 519px;
     margin-bottom: 40px;
+    @media (max-width: 1000px){
+        width: 550px;
+        height: 275px;
+    }
     @media (max-width: 600px){
         width: 350px;
         height: 175px;
@@ -250,9 +254,9 @@ export const StyledImgCircle = styled.img`
 export const Warning = styled.p`
     font-size: 14px;
     color: white;
-    margin-left: 600px;
+    margin-left: 48%;
     margin-top: -50px;
-    width: 250px;
+    width: 360px;
     margin-bottom: 40px;
     @media (max-width: 1000px){
        display: none;
