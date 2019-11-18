@@ -5,11 +5,15 @@ export const Container = styled.div`
     background-color: #EBE8E1;
     width: 100%;
     height: 100%;
+    max-width: 1200px;
 `;
 
 export const Heading = styled.div`
     display: flex;
     margin-bottom: 40px;
+    @media (max-width: 600px){
+        flex-direction: column;
+    }
 `;
 
 export const DidactHeader = styled.h1`
@@ -17,6 +21,9 @@ export const DidactHeader = styled.h1`
     font-family: ITCGrouch;
     margin-top: 50px;
     font-weight: 800;
+    @media (max-width: 600px){
+        text-align: center; 
+    }
 `;
 
 export const StyledButton = styled.button`
@@ -24,7 +31,7 @@ export const StyledButton = styled.button`
     width: 170px;
     opacity: 1;
     border: 1px solid #242424;
-    margin-left: 70%;
+    margin-left: 75%;
     margin-top: 40px;
     background-color: #EBE8E1;
     border-radius: 3px;
@@ -37,11 +44,26 @@ export const StyledButton = styled.button`
     &:focus {
         outline: 0;
         }
+    @media (max-width: 1100px){
+        margin-left: 60%;
+    }
+    @media (max-width: 1000px){
+        margin-left: 50%;
+    }
+    @media (max-width: 600px){
+        margin-left: 5%;
+        align-self: center;
+        margin-bottom: -20px;
+    }
 `;
 
 export const Flex = styled.div`
     display: flex;
+    @media (max-width: 600px){
+        flex-direction: column;
+    }
 `;
+
 export const LargeFont = styled.p`
     font-size: 48px;
     font-family: Open Sans;
@@ -50,6 +72,10 @@ export const LargeFont = styled.p`
     margin: 0;
     margin-top: 30px;
     letter-spacing: -1px;
+    @media (max-width: 600px){
+        font-size: 40px;
+        margin-left: 25%;
+    }
 `;
 
 export const LargeFont1 = styled.p`
@@ -60,6 +86,12 @@ export const LargeFont1 = styled.p`
     margin: 0;
     margin-top: -10px;
     letter-spacing: -1px;
+    @media (max-width: 600px){
+        font-size: 40px;
+        margin-left: 25%;
+        margin-top: -20px;
+    }
+
 `;
 
 export const SmallerFont = styled.p`
@@ -67,26 +99,46 @@ export const SmallerFont = styled.p`
     text-align: left;
     width: 370px;
     margin-top: 20px;
+    @media (max-width: 600px){
+        font-size: 16px;
+        margin-left: 12%;
+        margin-right: 12%;
+        margin-bottom: 20px;
+    }
+   
 `;
 
 export const StyledImg = styled.img`
     height: 466px;
     width: 545px;
     margin-left: 5%;
+    @media (max-width: 600px){
+        width: 94%;
+        height: 270px;
+        margin-bottom: 30px;
+    }
 `;
 
 export const Middle = styled.div`
     width: 433px;
     margin-top: 20px;
+    @media (max-width: 450){
+        flex-direction: column;
+    }
 `;
+
 
 export const BlackBox = styled.div`
     background-color: black;
     height: 320px;
-    width: 1170px;
+    width: 1150px;
     border-radius: 10px;
     margin-bottom: 150px;
     margin-top: 60px;
+    @media (max-width: 600px){
+        width: 95%;
+        margin-left: 2%;
+    }
 `;
 
 export const WhiteLargeText = styled.p`
@@ -96,6 +148,11 @@ export const WhiteLargeText = styled.p`
     margin-top: 100px;
     margin-bottom: 0;
     font-weight: 900;
+    @media (max-width: 600px){
+        font-size: 26px;
+        margin-left: 2%;
+        margin-top: 20px;
+    }
 `;
 export const WhiteLargeText1 = styled.p`
     color: white;
@@ -103,6 +160,10 @@ export const WhiteLargeText1 = styled.p`
     margin-left: 60px;
     margin-top: 0;
     font-weight: 900;
+    @media (max-width: 600px){
+        font-size: 26px;
+        margin-left: 2%;
+    }
 `;
 
 export const StyledInput = styled.input`
@@ -112,6 +173,12 @@ export const StyledInput = styled.input`
     margin-left: 140px;
     border-radius: 5px;
     border: none;
+    @media (max-width: 600px){
+        width: 80%;
+        margin-left: 10%;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
 `;
 
 export const StyledBlueButton = styled.button`
@@ -126,6 +193,11 @@ export const StyledBlueButton = styled.button`
     &:focus {
         outline: 0;
         }
+    @media (max-width: 600px){
+        margin-top: 20px;
+        margin-left: 0;
+        align-self: center;
+    }
 `;
 
 export const SmallText = styled.p`
@@ -140,6 +212,10 @@ export const SecondImg = styled.img`
     width: 1116px;
     height: 519px;
     margin-bottom: 40px;
+    @media (max-width: 600px){
+        width: 350px;
+        height: 175px;
+    }
 `;
 
 export const StyledImgCircle = styled.img`
@@ -147,6 +223,9 @@ export const StyledImgCircle = styled.img`
     width: 24px;
     margin-left: 10px;
     margin-top: -18px;
+    @media (max-width: 600px){
+       display: none;
+    }
 `;
 
 export const Warning = styled.p`
@@ -156,6 +235,9 @@ export const Warning = styled.p`
     margin-top: -50px;
     width: 250px;
     margin-bottom: 40px;
+    @media (max-width: 600px){
+       display: none;
+    }
 `
 
 export const SocialImg = styled.img`
