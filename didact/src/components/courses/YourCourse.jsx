@@ -58,7 +58,6 @@ const useStyles = makeStyles(theme => ({
         display: 'flex',
         flexDirection: 'column',
         justifyContent: "space-between",
-        fontSize: 14,
         color: "#757575",
         padding: '0px'
     },
@@ -147,8 +146,7 @@ const Course = ({ course, addingCourses }) => {
         <PopoverWrapper>
         <Card className={classes.card}>
             <CardContent>
-                <h3>
-                    <div style={{display: 'flex', justifyContent: 'flex-end', width: "100%"}}>
+                    <div style={{display: 'flex', justifyContent: 'flex-end', paddingTop: '20px'}}>
                     {addingCourses && <button className={classes.addCourse} onClick={handleClick}><img src={playlistAdd} alt='Add Course' /></button>}
                     </div>
                     <div>
@@ -203,7 +201,6 @@ const Course = ({ course, addingCourses }) => {
                             }
                         </Popover>
                     </div>
-                </h3>
 
                 <CardActions disableSpacing>
                 <ExpansionPanel style={{marginTop: '-60px', backgroundColor: '#386581', border: 'none', boxShadow: 'none'}}>
@@ -213,7 +210,7 @@ const Course = ({ course, addingCourses }) => {
                     style={{fontSize: '2.8rem', textAlign: 'left', paddingLeft: '6px'}}
                     >
                     <div className='courseTitle' style={{display: 'flex', flexDirection: 'column'}}>
-                        <span className={classes.courseTitle}>{`${course.name.substring(0, 25)} ...`}</span>
+                        <h3 style={{fontFamily: 'ITC Grouch', color: "white"}}>{ course.name.length > 35 ? `${course.name.substring(0, 35)}...` : course.name}</h3>
                         <div style={{textAlign: 'left', width: "100%", fontSize: '1.2rem', marginTop: '10px', paddingLeft: "2px", color: "white"}}>
                         <span >{course.foreign_instructors}</span> 
                         {course.description && course.description !== null ? (
@@ -238,7 +235,7 @@ const Course = ({ course, addingCourses }) => {
                 </CardActions>
                 <p>{course.category ? (`Category: ${course.category}`) : (null)}</p>
             </CardContent>
-            <CardActions className={classes.buttonDiv}>
+            <CardActions className={classes.buttonDiv} style={{margin: '0 30px 20px 0'}}>
                 <Link to={`/courses/all/${course.id}`} ><DidactButton size="small">Go To Course</DidactButton></Link>
             </CardActions>
         </Card>

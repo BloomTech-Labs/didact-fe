@@ -46,6 +46,11 @@ p, input, textarea, label {
   font-size: 1.4rem;
 }
 
+/* p {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.4rem;
+} */
+
 a {
   font-family: 'Open Sans', sans-serif;
   font-size: 1.4rem;
