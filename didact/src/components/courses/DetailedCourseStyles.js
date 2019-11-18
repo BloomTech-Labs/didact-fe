@@ -8,7 +8,7 @@ export const DetailedCourseWrapper = styled.div`
         width: 100%; 
         background-color: #386581;
         color: white;
-        max-width: 540px;
+       
 
         .courseFooter {
             margin: 0;
@@ -26,6 +26,8 @@ export const DetailedCourseWrapper = styled.div`
 
             .tags {
                 display: flex;
+                justify-content: flex-start;
+                padding-left: 0;
                 flex-flow:row wrap;
                 width: 100%;
                 color: white;

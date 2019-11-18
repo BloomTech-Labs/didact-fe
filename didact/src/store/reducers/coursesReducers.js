@@ -30,6 +30,9 @@ import {
     YOUR_COURSE_DATA_START,
     YOUR_COURSE_DATA_SUCCESS,
     YOUR_COURSE_DATA_FAIL,
+    CHECK_DATABASE_START,
+    CHECK_DATABASE_SUCCESS,
+    CHECK_DATABASE_FAIL,
 } from '../actions'
 
 const initialState = {
@@ -42,6 +45,7 @@ const initialState = {
     courseCompletion: {},
     detailedCourse: {},
     sections: [],
+    inDB: 0
 
 }
 
@@ -203,6 +207,26 @@ export const coursesReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoadingIcon: false,
+                error: action.payload,
+            }
+        //  // CHECK DATABASE FOR URL
+         case CHECK_DATABASE_START:
+            return {
+                ...state,
+                isLoading: true,
+                error: "",
+            }
+        case CHECK_DATABASE_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                inDB: action.payload,
+                error: "",
+            }
+        case CHECK_DATABASE_FAIL:
+            return {
+                ...state,
+                isLoading: false,
                 error: action.payload,
             }
         // ADD TAG TO COURSE

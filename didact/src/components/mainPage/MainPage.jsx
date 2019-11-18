@@ -57,7 +57,7 @@ const useStyles = makeStyles(theme => ({
         alignItems: "center",
         backgroundColor: "#767573",
         width: "240px",
-        borderRadius: '15px',
+        borderRadius: "10px",
         padding: "0 6px",
         height: '32px'
     },
@@ -177,7 +177,7 @@ function MainPage(props) {
                                     </div>
 
                                     <div className="navSection">
-                                        <Link to='/about' style={{color: "white", textDecoration: "none"}}><p>About</p></Link>
+                                        <Link to='/about' style={{color: "white", textDecoration: "none", marginRight: '15px'}}><p>About</p></Link>
                                         <Link to='/contact' style={{color: "white", textDecoration: "none"}}><p>Contact</p></Link>
                                     </div>
                                 </div>

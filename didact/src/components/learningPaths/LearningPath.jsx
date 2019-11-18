@@ -38,7 +38,6 @@ const LearningPath = ({ id, props }) => {
         dispatch(getLearningPath(id))
         dispatch(findForUserId(id))
     }, [dispatch, id])
-
     useEffect(() => {
         if (learningPathCompletion.pathItems) {
             setCompletionItemsCourses(
@@ -72,7 +71,6 @@ const LearningPath = ({ id, props }) => {
     const handleMarkCompleteCourse = (courseId) => {
         
         dispatch(toggleCompleteCourse(courseId))
-        console.log('Course Toggle')
         setTimeout(function(){
             if((!isLoadingCourseToggle) || (state.learningPathReducer.learningPathCompletion === learningPathCompletion)) {
                 dispatch(findForUserId(id))
@@ -82,7 +80,6 @@ const LearningPath = ({ id, props }) => {
 
     const handleMarkCompleteItem = (itemId) => {
         dispatch(toggleLearningPathItem(id, itemId))
-        console.log('Item Toggle')
         setTimeout(function(){
             if((!isLoadingLearningPathToggle) || (state.learningPathReducer.learningPathCompletion === learningPathCompletion)) {
                 dispatch(findForUserId(id))
@@ -92,7 +89,7 @@ const LearningPath = ({ id, props }) => {
 
     const progress = firstItemCourse && ((firstItemCourse.completed / firstItemCourse.total) * 100).toString()
     const progressPecentage = progress && Number(progress.substring(0, 4))
-   
+    console.log(firstItemCourse)
     const handleBack = () => {
        props.history.push('/learning-paths')
     }
@@ -120,7 +117,7 @@ const LearningPath = ({ id, props }) => {
                 </div>
                 <div className='learningPathCard'>
                     <div className='currentTitle'>
-                        <h2>{firstItemCourse.name}</h2>
+                        <h1 style={{fontFamily: 'ITC Grouch'}}>{firstItemCourse.name}</h1>
                         {firstItemCourse.path_id && 
                                     (firstItemCourse.automatically_completed || firstItemCourse.manually_completed ?
                                         <CheckCircleIcon onClick={() => handleMarkCompleteItem(firstItemCourse.id)} className='completeButton' />
@@ -138,7 +135,7 @@ const LearningPath = ({ id, props }) => {
                         (<div style={{display:'flex', justifyContent: 'space-between', width: '80%'}}>
                             <div style={{display:'flex', flexDirection:'column', textAlign: "left", margin: "10px 0 -10px 0"}}>
                             <span>Progress</span>
-                            <span>{`${(firstItemCourse) ? (progressPecentage) : 0} %`}</span>
+                            <span>{`${(firstItemCourse && firstItemCourse.total > 1 ) ? (progressPecentage) : 0} %`}</span>
                             </div> 
                         </div>): null} 
                     <p>{firstItemCourse.description}</p>
@@ -163,7 +160,7 @@ const LearningPath = ({ id, props }) => {
                                                 (<div style={{display:'flex', justifyContent: 'space-between', width: '80%'}}>
                                                     <div style={{display:'flex', flexDirection:'column', textAlign: "left", margin: "10px 0 -10px 0"}}>
                                                     <span>Progress</span>
-                                                    <span>{`${(itemCourse) ? (((itemCourse.completed / itemCourse.total) * 100).toString().substring(0, 4)) : 0} %`}</span>
+                                                    <span>{`${(itemCourse && itemCourse.total > 1) ? (((itemCourse.completed / itemCourse.total) * 100).toString().substring(0, 4)) : 0} %`}</span>
                                                     </div> 
                                                 </div>) : null}
                                                 <p>{itemCourse.description}</p>

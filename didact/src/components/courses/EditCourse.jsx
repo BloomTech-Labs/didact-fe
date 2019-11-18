@@ -15,6 +15,7 @@ import Collapse from '@material-ui/core/Collapse';
 //Material UI Icons
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import EditIcon from '@material-ui/icons/Edit';
 
 import IconButton from '@material-ui/core/IconButton';
 import DeleteModal from './DeleteModal'
@@ -55,7 +56,7 @@ const useStyles = makeStyles(theme => ({
         fontSize: '3.5rem',
         marginRight: '5px',
         marginLeft: '10px',
-        color: "#5b5b5b"
+        color: "white"
     },
     descriptionDiv: {
         width: "100%",
@@ -70,7 +71,16 @@ const useStyles = makeStyles(theme => ({
         "&:hover":{
           color: 'white'
         }
-      }
+    },
+    button: {
+        backgroundColor: "#EBE8E1",
+        color: 'black',
+        borderRadius: 12,
+        height: "35px",
+        width: "123px",
+        border: 'none',
+        cursor: 'pointer'
+    }
 
 }));
 
@@ -179,13 +189,15 @@ const EditCourse = ({ props, id }) => {
                 <div style={{display: 'flex', justifyContent: 'space-between', margin: '-10px 10px 10px 10px', borderBottom: '1px solid black'}}>
                 <p style={{fontWeight: 'bold', marginLeft: '10px', display: 'flex', flexDirection:'row', alignItems: 'center'}}><span className={classes.span}  onClick={handleBack}>Courses</span><ChevronRightIcon style={{fontSize: '1.6rem'}}/><span className={classes.span}  onClick={backToCourse}>{course.name ? course.name.substring(0, 15) : "Loading"}...</span><ChevronRightIcon style={{fontSize: '1.6rem'}}/><span>Edit</span></p>
             </div>
+                <div style={{display: "flex", flexDirection: 'row'}}>
                 <div className={classes.root}>
+                
                     {!courseEdit ?
                         (<Card className={classes.card} style={{ background: '#386581', color: 'white' }}>
                             <CardContent >
-                                <h3>{course.name}</h3>
+                                <h3 style={{textAlign: 'left', marginLeft: '15px'}} >{course.name}</h3>
                                 <CardActions className={classes.descriptionDiv} disableSpacing>
-                                    <p>{course.description && !expanded ? (`${course.description.substring(0, 100)} ...`) : null}</p>
+                                    <p style={{textAlign: 'left', marginLeft: '15px'}}>{course.description && !expanded ? (`${course.description.substring(0, 100)} ...`) : null}</p>
                                     <IconButton
                                         className={clsx(classes.expand, {
                                             [classes.expandOpen]: expanded,
@@ -201,17 +213,17 @@ const EditCourse = ({ props, id }) => {
                                 
                                 <Collapse in={expanded} timeout="auto" unmountOnExit>
                                     <CardContent>
-                                        <p>{course.description}</p>
+                                        <p style={{textAlign: 'left', marginLeft: '15px'}} >{course.description}</p>
                                     </CardContent>
                                 </Collapse>
                                
-                                <p>{course.foreign_instructors}</p>
-                                <p>{course.foreign_rating}</p>
-                                <a style={{ color: 'white' }} href={course.link} alt="course link">{course.link}</a>
-                                <p>{course.category ? (`Category: ${course.category}`) : (null)}</p>
+                                <p style={{textAlign: 'left', marginLeft: '15px'}}>{course.foreign_instructors}</p>
+                                <p style={{textAlign: 'left', marginLeft: '15px'}}>{course.foreign_rating}</p>
+                                <a style={{ color: 'white', textAlign: 'left', marginLeft: '15px' }} href={course.link} alt="course link">{course.link}</a>
+                                <p style={{textAlign: 'left', marginLeft: '15px'}}>{course.category ? (`Category: ${course.category}`) : (null)}</p>
                             </CardContent>
                             <CardActions>
-                                <DidactButton onClick={toggleEdit} style={{ marginLeft: '75.5%' }} type='submit'>{editCourseText}</DidactButton>
+                                <button className={classes.button} onClick={toggleEdit} style={{ marginLeft: '75.5%' }} type='submit'>{!props.phoneSize ? editCourseText : <EditIcon style={{fontSize: '1.8rem'}}/>}</button>
                             </CardActions>
                         </Card>)
                         :
@@ -267,6 +279,10 @@ const EditCourse = ({ props, id }) => {
                             </AddButton>
                         </div>)
                     }
+                </div>
+                {/* <div style={{width: '200px', height: '60px', borderRadius: 15, backgroundColor: 'black'}}>
+
+                </div> */}
                 </div>
             </>
         )
