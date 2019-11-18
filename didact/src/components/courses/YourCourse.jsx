@@ -52,6 +52,7 @@ const useStyles = makeStyles(theme => ({
         boxShadow: 'none',
         backgroundColor: '#386581',
         color: "white",
+        position: 'relative'
     },
     descriptionDiv: {
         width: "100%",
@@ -141,7 +142,7 @@ const Course = ({ course, addingCourses }) => {
     learningPaths.forEach(path => {
         if (!path.courseIds.includes(course.id)) filteredPaths.push(path)
     })
-    console.log(learningPaths)
+    console.log(expanded)
     return (
         <PopoverWrapper>
         <Card className={classes.card}>
@@ -203,35 +204,36 @@ const Course = ({ course, addingCourses }) => {
                     </div>
 
                 <CardActions disableSpacing>
-                <ExpansionPanel style={{marginTop: '-60px', backgroundColor: '#386581', border: 'none', boxShadow: 'none'}}>
-                <ExpansionPanelSummary
+                <div style={{marginTop: '-60px', backgroundColor: '#386581', border: 'none', boxShadow: 'none'}}>
+                <div onClick={handleExpandClick}
                     aria-controls="panel1a-content"
                     id="panel1a-header"
-                    style={{fontSize: '2.8rem', textAlign: 'left', paddingLeft: '6px'}}
+                    style={{fontSize: '2.8rem', textAlign: 'left', paddingLeft: '6px', transition: `0.25s ease`}}
                     >
-                    <div className='courseTitle' style={{display: 'flex', flexDirection: 'column'}}>
+                    <div className='courseTitle' style={{display: 'flex', flexDirection: 'column', transition: `0.25s ease`}}>
                         <h3 style={{fontFamily: 'ITC Grouch', color: "white"}}>{ course.name.length > 35 ? `${course.name.substring(0, 35)}...` : course.name}</h3>
                         <div style={{textAlign: 'left', width: "100%", fontSize: '1.2rem', marginTop: '10px', paddingLeft: "2px", color: "white"}}>
                         <span >{course.foreign_instructors}</span> 
+                        <ExpandMoreIcon style={{position: 'absolute',color: "white", display: "flex", paddingTop: '-10px', top: "137px", left: "91%"}}/>
                         {course.description && course.description !== null ? (
-                        <div style={{display: 'flex', alignItems: "baseline", justifyContent: 'space-between'}}>
-                            <p style={{marginBottom: "-20px"}}>{`${course.description && course.description.substring(0, 130)}`}</p> 
-                            <ExpandMoreIcon style={{color: "white", display: "flex", paddingTop: '-10px'}}/>
+                        <div style={{display: 'flex', alignItems: "baseline", justifyContent: 'space-between', transition: `0.25s ease`}}>
+                            {course.description && !expanded ? (<p style={{marginBottom: "-20px", paddingRight: '42px'}}>{course.description.substring(0, 60)}...</p>) : (<p style={{marginBottom: "-20px", width: `calc(100% - 20px)`}}>{course.description}</p>)} 
+                            {/* <ExpandMoreIcon style={{color: "white", display: "flex", paddingTop: '-10px'}}/> */}
                         </div>    
                         ) : 
                         null}
                         
                         </div>
                     </div>
-                    </ExpansionPanelSummary>
-                    {course.description && course.description !== null ? 
+                    </div>
+                  {/* {course.description && course.description !== null ?
                     (<ExpansionPanelDetails style={{padding: "0 10px 10px 8px", margin:"0px"}}>
-                        <p style ={{textAlign:'left', color: "white", marginTop: '0px', paddingRight: '25px'}}>
-                            {course.description.substring(130)}
-                        </p>
+                      <p style ={{textAlign:'left', color: "white", marginTop: '0px', paddingRight: '25px'}}>
+                            {course.description}
+                        </p> 
                     </ExpansionPanelDetails>
-                    ): null}
-                </ExpansionPanel>
+                    ): null}  */}
+                </div>
                 </CardActions>
                 <p>{course.category ? (`Category: ${course.category}`) : (null)}</p>
             </CardContent>
