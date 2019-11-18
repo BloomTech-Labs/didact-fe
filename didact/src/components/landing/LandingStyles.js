@@ -59,7 +59,7 @@ export const StyledButton = styled.button`
 
 export const Flex = styled.div`
     display: flex;
-    @media (max-width: 600px){
+    @media (max-width: 800px){
         flex-direction: column;
     }
 `;
@@ -135,6 +135,10 @@ export const BlackBox = styled.div`
     border-radius: 10px;
     margin-bottom: 150px;
     margin-top: 60px;
+    @media (max-width: 1100px){
+        width: 95%;
+        margin-left: 2%;
+    }
     @media (max-width: 600px){
         width: 95%;
         margin-left: 2%;
@@ -148,6 +152,11 @@ export const WhiteLargeText = styled.p`
     margin-top: 100px;
     margin-bottom: 0;
     font-weight: 900;
+    @media (max-width: 1100px){
+        font-size: 26px;
+        margin-left: 2%;
+        margin-top: 60px;
+    }
     @media (max-width: 600px){
         font-size: 26px;
         margin-left: 2%;
@@ -160,7 +169,11 @@ export const WhiteLargeText1 = styled.p`
     margin-left: 60px;
     margin-top: 0;
     font-weight: 900;
-    @media (max-width: 600px){
+    @media (max-width: 1100px){
+        font-size: 26px;
+        margin-left: 2%;
+    }
+    @media (max-width: 800px){
         font-size: 26px;
         margin-left: 2%;
     }
@@ -173,7 +186,10 @@ export const StyledInput = styled.input`
     margin-left: 140px;
     border-radius: 5px;
     border: none;
-    @media (max-width: 600px){
+    @media (max-width: 1100px){
+        width: 300px;
+    }
+    @media (max-width: 800px){
         width: 80%;
         margin-left: 10%;
         margin-top: 0;
@@ -193,7 +209,7 @@ export const StyledBlueButton = styled.button`
     &:focus {
         outline: 0;
         }
-    @media (max-width: 600px){
+    @media (max-width: 800px){
         margin-top: 20px;
         margin-left: 0;
         align-self: center;
@@ -206,6 +222,9 @@ export const SmallText = styled.p`
     font-size: 18px;
     font-weight: 700;
     margin-top: -20px;
+    @media (max-width: 800px){
+       display: none;
+    }
 `;
 
 export const SecondImg = styled.img`
@@ -223,7 +242,7 @@ export const StyledImgCircle = styled.img`
     width: 24px;
     margin-left: 10px;
     margin-top: -18px;
-    @media (max-width: 600px){
+    @media (max-width: 800px){
        display: none;
     }
 `;
@@ -235,7 +254,7 @@ export const Warning = styled.p`
     margin-top: -50px;
     width: 250px;
     margin-bottom: 40px;
-    @media (max-width: 600px){
+    @media (max-width: 1000px){
        display: none;
     }
 `
