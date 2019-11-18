@@ -75,9 +75,9 @@ function Dashboard({props}) {
     <div className={classes.container}>
       <div className={classes.smallContainer}>
         <p style={{fontSize: '2rem', fontWeight: 'bold', textAlign: 'left', marginLeft: '10px'}}>Current Learning Path</p>
-            <LearningPathCard className={classes.current} style={{marginRight: '20px', paddingLeft: '33px', paddingBottom: '25px'}}>
+            <LearningPathCard className={classes.current} style={{marginRight: '20px', paddingLeft: '33px', paddingBottom: '25px', paddingTop: '0'}}>
                 <div className='title'>
-                    <h1 style={{ fontWeight: 'bold' }}>{learningPathOrder.length >= 1 ? learningPathOrder[0].name : "Join a Learning Path"}</h1>
+                    <h3 style={{ fontFamily: 'ITC Grouch', color: "white", marginBottom: '40px'}}>{learningPathOrder.length >= 1 ? learningPathOrder[0].name : "Join a Learning Path"}</h3>
                     <div style={{display:'flex', justifyContent: 'flex-end'}}>
                         <div style={{display: 'flex', alignItems: 'center'}}>
                         </div>

@@ -86,8 +86,6 @@ const YourLearningPaths = (props) => {
     const completedPaths = []
     const isLoadingLearningPathToggle = state.learningPathReducer.isLoading
 
-    console.log(learningPaths)
-
     learningPaths.forEach(el => {
         if ((el.total === el.completed) && el.total !== 0) {
             completedPaths.push(el)
@@ -95,8 +93,6 @@ const YourLearningPaths = (props) => {
             notCompletedPaths.push(el)
         }
     })
-
-    console.log(learningPaths)
 
     useEffect(_ => {
         dispatch(getYourLearningPaths())
@@ -145,12 +141,8 @@ const YourLearningPaths = (props) => {
     };
 
     const handleMarkCompleteLearningPath = (id) => {
-        console.log("clicked id", id)
         dispatch(toggleLearningPath(id))
     }
-
-
-    console.log('Props', props)
 
     return (
 
@@ -174,7 +166,6 @@ const YourLearningPaths = (props) => {
                             <div className={!props.props.open ? (classes.openCardDiv) : ('yourLearningPaths')}>
                                 {
                                     localState.length > 0 && (localState.map((learningPath, index) => {
-                                        console.log(learningPath)
                                         return (
                                         <Draggable draggableId={`${index}`} index={index} key={index}>
                                         {(provided, snapshot) => (
@@ -188,7 +179,7 @@ const YourLearningPaths = (props) => {
                                             >
                                                 <div className='title'>
                                                     <div className='pathHeader'>
-                                                        <h1 style={{ fontWeight: 'bold', marginLeft: '33px'}}>{learningPath.name}</h1>
+                                                        <h1 style={{ fontFamily: 'ITC Grouch', marginLeft: '33px'}}>{learningPath.name}</h1>
                                                         {
                                                             <CheckCircleIcon onClick={() => handleMarkCompleteLearningPath(learningPath.id)} style={{margin: "0 0 19px 10px"}} className='notCompleteButton' />
                                                         }
