@@ -58,7 +58,7 @@ export const verifyToken = (history) => dispatch => {
             await localStorage.removeItem('token')
             console.log('Fail', err)
             await dispatch({ type: VERIFY_FAILURE, payload: err.response })
-            await history.push('/login')
+            await history.push('/landing')
         })
 }
 

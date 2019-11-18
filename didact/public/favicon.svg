@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="150" height="150" viewBox="0 0 150 150">
+  <defs>
+    <clipPath id="clip-iPhone_X_XS_11_Pro_1">
+      <rect width="150" height="150"/>
+    </clipPath>
+  </defs>
+  <g id="iPhone_X_XS_11_Pro_1" data-name="iPhone X/XS/11 Pro – 1" clip-path="url(#clip-iPhone_X_XS_11_Pro_1)">
+    <rect width="150" height="150" fill="#fff"/>
+    <g id="Logo" transform="translate(-4 -4)">
+      <rect id="Bg" width="159" height="158" fill="rgba(36,36,36,0.75)"/>
+    </g>
+    <text id="D" transform="translate(29 116)" fill="#fff" font-size="120" font-family="GrouchITCbyBT-Regular, ITC Grouch"><tspan x="0" y="0">D</tspan></text>
+  </g>
+</svg>
