@@ -74,7 +74,7 @@ export const LargeFont = styled.p`
     letter-spacing: -1px;
     @media (max-width: 600px){
         font-size: 40px;
-        margin-left: 25%;
+        margin-left: 12%;
     }
 `;
 
@@ -88,7 +88,7 @@ export const LargeFont1 = styled.p`
     letter-spacing: -1px;
     @media (max-width: 600px){
         font-size: 40px;
-        margin-left: 25%;
+        margin-left: 12%;
         margin-top: -20px;
     }
 
