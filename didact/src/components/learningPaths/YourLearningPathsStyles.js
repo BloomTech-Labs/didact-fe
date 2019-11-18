@@ -206,7 +206,7 @@ export const LearningPathCard = styled.div`
                 background-color: #242424;
                 color: white;
                 padding: 8px 20px;
-                border-radius: 16px;
+                border-radius: 12px;
                 font-weight: bolder;
                 text-decoration: none;
                 border: none;

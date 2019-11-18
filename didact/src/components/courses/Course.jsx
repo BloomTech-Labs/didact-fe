@@ -239,7 +239,7 @@ const Course = ({ course, addingCourses }) => {
                     <p>{course.category ? (`Category: ${course.category}`) : (null)}</p>
                 </CardContent>
                 <CardActions className={classes.buttonDiv}>
-                    <Link to={`/courses/all/${course.id}`} ><DidactButton size="small">Go To Course</DidactButton></Link>
+                    <Link to={`/courses/all/${course.id}`} ><DidactButton>Go To Course</DidactButton></Link>
                 </CardActions>
             </Card>
         </PopoverWrapper>
