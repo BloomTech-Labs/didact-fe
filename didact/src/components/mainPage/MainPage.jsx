@@ -91,7 +91,7 @@ function MainPage(props) {
     }, [token, dispatch, props.history])
 
     if(!(localStorage.getItem('token'))){
-        props.history.push('/login')
+        props.history.push('/landing')
     }
 
     const handleDrawerOpen = () => {
