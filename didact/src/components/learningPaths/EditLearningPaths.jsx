@@ -30,17 +30,28 @@ import IconButton from "@material-ui/core/IconButton";
 //Material UI Icons
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 
 //imports for react-beautiful-dnd
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 
 
 const useStyles = makeStyles(theme => ({
+  // card: {
+  //   maxWidth: 540,
+  //   borderRadius: 15,
+  //   marginTop: "10px",
+  //   boxShadow: 'none',
+  // },
   card: {
     maxWidth: 540,
-    borderRadius: 15,
-    marginTop: "10px",
+    width: "100%",
+    margin: '40px 0 40px 0',
+    borderRadius: '15px',
     boxShadow: 'none',
+    backgroundColor: '#386581',
+    color: "white",
+    position: 'relative'
   },
   title: {
     fontSize: 14,
@@ -63,7 +74,15 @@ const useStyles = makeStyles(theme => ({
     "&:hover":{
       color: 'white'
     }
-  }
+  },
+  dropArrow: {
+    position: 'absolute',
+    color: "white",
+    display: "flex",
+    paddingTop: '-10px',
+    top: "131px",
+    left: "91%"
+},
 }));
 
 
@@ -182,10 +201,10 @@ const EditLearningPaths = ({ id, props }) => {
         <div style={{display: 'flex', justifyContent: 'space-between', margin: '-10px 10px 10px 10px', borderBottom: '1px solid black'}}>
                 <p style={{fontWeight: 'bold', marginLeft: '10px', display: 'flex', flexDirection:'row', alignItems: 'center'}}><span className={classes.span}  onClick={handleBack}>Learning Paths</span><ChevronRightIcon style={{fontSize: '1.6rem'}}/><span className={classes.span}  onClick={backToLearningPath}>{learningPath.name && learningPath.name.substring(0, 15)}...</span><ChevronRightIcon style={{fontSize: '1.6rem'}}/><span>Edit</span></p>
         </div>
-        <div className={classes.root}>
+        <div>
           {learningPathEdit ? (
             <Card className={classes.card} style={{ background: '#386581', color: 'white' }}>
-              <CardContent>
+              {/* <CardContent>
                 <h2>{learningPath.name}</h2>
                 <CardActions className={classes.descriptionDiv} disableSpacing>
                   <p className={classes.descriptionTitle}>
@@ -216,7 +235,40 @@ const EditLearningPaths = ({ id, props }) => {
                     ? `Category: ${learningPath.category}`
                     : null}
                 </p>
-              </CardContent>
+              </CardContent> */}
+             <CardContent>
+              <CardActions disableSpacing>
+                        <div style={{ backgroundColor: '#386581', border: 'none', boxShadow: 'none' }}>
+                            <div onClick={handleExpandClick}
+                                aria-controls="panel1a-content"
+                                id="panel1a-header"
+                                style={{ fontSize: '2.8rem', textAlign: 'left', paddingLeft: '6px', transition: `0.25s ease` }}
+                            >
+                                <div style={{ display: 'flex', flexDirection: 'column', transition: `0.25s ease` }}>
+                                    <h3 style={{ fontFamily: 'ITC Grouch', color: "white" }}>{learningPath.name && learningPath.name.length > 35 ? `${learningPath.name.substring(0, 35)}...` : learningPath.name}</h3>
+                                    <div style={{ textAlign: 'left', width: "100%", fontSize: '1.2rem', paddingLeft: "2px", color: "white" }}>
+                                   {learningPath.category
+                                      ?  <span >Category: {learningPath.category}</span>
+                                      : null}
+                                        {!expanded ?
+                                            (<ExpandMoreIcon className={props && props.match.url === '/' ? classes.dropArrowDashboard : classes.dropArrow} />)
+                                            :
+                                            (<ExpandLessIcon className={props && props.match.url === '/' ? classes.dropArrowDashboard : classes.dropArrow} />)}
+                                        {learningPath.description && learningPath.description !== null ? (
+                                            !expanded ? (<div style={{ display: 'flex', alignItems: "baseline", justifyContent: 'space-between', maxHeight: '35px', transition: `max-height 1s ease`, overflow: 'hidden' }}>
+                                                {learningPath.description && (<p style={{ paddingRight: '42px' }}>{learningPath.description}</p>)}
+                                            </div>) : (<div style={{ display: 'flex', alignItems: "baseline", justifyContent: 'space-between', maxHeight: '1000px', transition: `max-height 1s ease`, overflow: 'visible' }}>
+                                                {learningPath.description && (<p style={{ paddingRight: "42px" }}>{learningPath.description}</p>)}
+                                            </div>)
+                                        ) :
+                                            null}
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </CardActions>
+              </CardContent>      
               <CardActions>
                 <DidactButton onClick={toggleEdit} style={{ margin: "0 20px 15px 70%", width: "100%"}} type="submit">Edit Description</DidactButton>
               </CardActions>
