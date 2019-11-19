@@ -267,4 +267,7 @@ export const SocialImg = styled.img`
     width: 20px;
     margin-bottom: 20px;
     margin-left: 90%;
+    @media (max-width: 600px){
+        margin-left: 70%;
+    }
     `;
