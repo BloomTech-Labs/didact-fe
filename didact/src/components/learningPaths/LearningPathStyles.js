@@ -61,17 +61,14 @@ export const LearningPathWrapper = styled.div`
 
 
             .long:last-child {
+                width: 100%;
 
-                .learningPathCard {
-                    width: 826px;
-                    height: 100%;
-
-                    @media (max-width: 600px) {
-                    width: 100%;
-                    margin: 10px;
+                .upcoming {
+                    max-width: 826px;
                 }
 
-        
+                .learningPathCard {
+                    max-width: 826px;
                 }
             }
         }
@@ -83,23 +80,19 @@ export const LearningPathWrapper = styled.div`
             flex-wrap: wrap;
 
             @media (max-width: 600px) {
-                    width: 100%;
-                   
-                }
+                width: 100%;
+            }
 
             
             .long:last-child {
-                
-                .learningPathCard {
-                    width: 826px;
-                    height: 100%;
+                width: 100%;
 
-                    @media (max-width: 600px) {
-                    width: 100%;
+                .upcoming {
                     max-width: 826px;
-                  
                 }
 
+                .learningPathCard {
+                    max-width: 826px;
                 }
             }
         }
@@ -210,9 +203,14 @@ export const LearningPathWrapper = styled.div`
         .learningPathCard {
             background: #D1E2EA;
             color: black;
-            max-width: 395px;
+            max-width: 826px;
+            min-width: 395px;
             width: 100%;
             margin: 10px;
+        }
+
+        .learningPathCard.completed {
+            margin: 0;
         }
     }
 
@@ -250,6 +248,15 @@ export const LearningPathWrapper = styled.div`
                 justify-content: space-between;
                 align-items: center;
                 margin-top: 25px;
+
+                div {
+                    display: flex;
+                    align-items: center;
+
+                    h4 {
+                        margin-left: 15px;
+                    }
+                }
                 
                 a {
                     background-color: #242424;

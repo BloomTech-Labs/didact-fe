@@ -196,24 +196,6 @@ const LearningPath = ({ id, props }) => {
                                         <div className='learningPathCard completed'>
                                             <div>
                                                 <h2>{itemCourse.name}</h2>
-                                                {
-                                                    itemCourse.path_id &&
-                                                    (
-                                                        (itemCourse.automatically_completed || itemCourse.manually_completed ?
-                                                            <CheckCircleIcon onClick={() => handleMarkCompleteItem(itemCourse.id)} className='completeButton' />
-                                                            :
-                                                            <CheckCircleIcon onClick={() => handleMarkCompleteItem(itemCourse.id)} className='notCompleteButton' />)
-                                                    )
-                                                }
-                                                {
-                                                    !itemCourse.path_id &&
-                                                    (
-                                                        (itemCourse.automatically_completed || itemCourse.manually_completed ?
-                                                            <CheckCircleIcon onClick={() => handleMarkCompleteCourse(itemCourse.id)} className='completeButton' />
-                                                            :
-                                                            <CheckCircleIcon onClick={() => handleMarkCompleteCourse(itemCourse.id)} className='notCompleteButton' />)
-                                                    )
-                                                }
                                                 <div style={{display:'flex', justifyContent: 'space-between', width: '80%'}}>
                                                     <div style={{display:'flex', flexDirection:'column', textAlign: "left", margin: "10px 0 -10px 0"}}>
                                                     <span>Progress</span>
@@ -223,7 +205,27 @@ const LearningPath = ({ id, props }) => {
                                                 <p>{itemCourse.description}</p>
                                             </div>
                                             <div className='goToCourse'>
-                                            <h4>{itemCourse.link !== null ? (itemCourse.link.includes('Udemy') ? "udemy" : itemCourse.link.includes('coursera') ? "Coursera" : itemCourse.link.includes('youtube') ? "Youtube" : null) : null}</h4>
+                                                <div>
+                                                    {
+                                                            itemCourse.path_id &&
+                                                            (
+                                                                (itemCourse.automatically_completed || itemCourse.manually_completed ?
+                                                                    <CheckCircleIcon onClick={() => handleMarkCompleteItem(itemCourse.id)} className='completeButton' />
+                                                                    :
+                                                                    <CheckCircleIcon onClick={() => handleMarkCompleteItem(itemCourse.id)} className='notCompleteButton' />)
+                                                            )
+                                                        }
+                                                        {
+                                                            !itemCourse.path_id &&
+                                                            (
+                                                                (itemCourse.automatically_completed || itemCourse.manually_completed ?
+                                                                    <CheckCircleIcon onClick={() => handleMarkCompleteCourse(itemCourse.id)} className='completeButton' />
+                                                                    :
+                                                                    <CheckCircleIcon onClick={() => handleMarkCompleteCourse(itemCourse.id)} className='notCompleteButton' />)
+                                                            )
+                                                        }
+                                                    <h4>{itemCourse.link !== null ? (itemCourse.link.includes('Udemy') ? "udemy" : itemCourse.link.includes('coursera') ? "Coursera" : itemCourse.link.includes('youtube') ? "Youtube" : null) : null}</h4>
+                                                </div>
                                                 {itemCourse.path_id ? <a href={itemCourse.link}>Go To {itemCourse.type.charAt(0).toUpperCase() + itemCourse.type.slice(1)}</a> : <a href={`/courses/yours/${itemCourse.id}`}>Go To Course</a>}
                                             </div>
                                         </div>
