@@ -80,7 +80,7 @@ const SearchResults = ({props, results, setValues, values}) => {
                 (!keyword.category === null && keyword.category.toLowerCase().includes(`${results.toLowerCase()}`)) ||
                 (keyword.foreign_instructors && keyword.foreign_instructors.toLowerCase().includes(`${results.toLowerCase()}`)) 
             ) ?
-             <Course course = {keyword} results={results}/> : null
+             <Course props={props} course = {keyword} results={results}/> : null
              }) : null}
             </div>
             </>

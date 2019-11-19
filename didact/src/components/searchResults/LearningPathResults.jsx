@@ -18,7 +18,7 @@ const AllLearningPaths = ({props, learningPath}) => {
     return (
         <LearningPathsWrapper>
                <LearningPathCard style={{marginBottom: "20px"}}>
-            <div className='title'> 
+            <div className='title' style={{paddingLeft: '20px'}}> 
                 <h1>{learningPath.name}</h1>
                 <div>
                     <button onClick={() => joinPath(learningPath.id, yourLearningPaths.length)} id={learningPath.id}>Join Path</button>
