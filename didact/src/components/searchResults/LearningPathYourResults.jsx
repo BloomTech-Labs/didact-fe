@@ -16,7 +16,7 @@ const AllLearningPaths = ({props, learningPath}) => {
     return (
         <LearningPathsWrapper>
                <LearningPathCard style={{marginBottom: "20px"}}>
-            <div className='title'> 
+            <div className='title' style={{paddingLeft: '20px'}}> 
                 <h1>{learningPath.name}</h1>
                 <div>
                 <button><Link to={`/learning-paths/${learningPath.id}`}>Go To Path</Link></button>

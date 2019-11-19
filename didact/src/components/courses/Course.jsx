@@ -174,7 +174,7 @@ const Course = ({ course, addingCourses, props}) => {
     console.log(props)
     return (
         <PopoverWrapper>
-        <Card className={props && props.match.url === "/" ? classes.cardDashboard : classes.card}>
+        <Card className={props && (props.match.url.includes("results") || props.match.url === '/')  ? classes.cardDashboard : classes.card}>
             <CardContent>
                     <div style={{display: 'flex', justifyContent: 'flex-end', paddingTop: '20px'}}>
                     {addingCourses && <button className={classes.addCourse} onClick={handleClick}><img src={playlistAdd} alt='Add Course' /></button>}

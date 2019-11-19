@@ -1,6 +1,6 @@
 import axiosWithAuth from '../../utils/axiosWithAuth'
 import beURL from '../../utils/beURL'
-import {getDetailedCourse} from './index'
+import {getYourDetailedCourse} from './index'
 
 export const GET_SECTIONS_START = "GET_SECTIONS_START"
 export const GET_SECTIONS_SUCCESS = "GET_SECTIONS_SUCCESS"
@@ -175,7 +175,7 @@ export const toggleCompleteSection =(courseId, sectionId) => dispatch => {
         dispatch({type: TOGGLE_COMPLETE_SECTION_SUCCESS, payload: res.data})
         return courseId
     })
-    .then(resId => dispatch(getDetailedCourse(resId)))
+    .then(resId => dispatch(getYourDetailedCourse(resId)))
     .catch(err => {
         console.log(err)
         dispatch({type: TOGGLE_COMPLETE_SECTION_FAIL, payload: err})
@@ -208,7 +208,7 @@ export const toggleCompleteLesson =(courseId, sectionId, detailId) => dispatch =
         dispatch({type: TOGGLE_COMPLETE_LESSON_SUCCESS, payload: res.data})
         return courseId
     })
-    .then(resId => dispatch(getDetailedCourse(resId)))
+    .then(resId => dispatch(getYourDetailedCourse(resId)))
     .catch(err => {
         console.log(err)
         dispatch({type: TOGGLE_COMPLETE_LESSON_FAIL, payload: err})

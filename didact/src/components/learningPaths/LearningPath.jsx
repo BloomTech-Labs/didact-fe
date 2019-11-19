@@ -101,7 +101,18 @@ const LearningPath = ({ id, props }) => {
                 <p style={{fontWeight: 'bold', marginLeft: '10px', display: 'flex', flexDirection:'row', alignItems: 'center'}}><span className={classes.span}  onClick = {handleBack}>Learning Paths</span><ChevronRightIcon style={{fontSize: '1.6rem'}}/><span>{learningPath.name ? learningPath.name.substring(0, 20) : "Loading"}...</span></p>
             </div>
         {!firstItemCourse ? (
+            <>
+            <div className='currentTitle'>
+            {
+                <div className='currentTitle'>
+                    <div style={{width: '100%', textAlign: "right", marginTop: '10px'}}>
+                        <Link style={{color: "black", textDecoration: 'none', fontWeight: 'bold', paddingRight: '10px', cursor: 'none'}} to={`/learning-paths/${id}/edit`}>Edit</Link>
+                    </div>
+                </div>
+            }
+        </div>
             <AddToLearningPath props = {props} itemsCourses = {completionItemsCourses}/>
+            </>
         ) : (
         <LearningPathWrapper>
             {firstItemCourse && <div className={'learningPathCourseWrappers current' + (firstItemCourse.path_id ? ' item' : '' + ((upcomingItemsCourses.length % 2 !== 0) || (upcomingItemsCourses.length === 1) ? ' long' : ''))}>
