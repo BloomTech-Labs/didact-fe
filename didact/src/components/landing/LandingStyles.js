@@ -6,13 +6,18 @@ export const Container = styled.div`
     width: 100%;
     height: 100%;
     max-width: 1200px;
+    @media(max-width: 600px){
+        overflow-x: hidden;
+    }
 `;
 
 export const Heading = styled.div`
     display: flex;
     margin-bottom: 40px;
     @media (max-width: 600px){
-        flex-direction: column;
+        justify-content: space-around;
+        width: 100%;
+        margin-bottom: 0;
     }
 `;
 
@@ -51,9 +56,7 @@ export const StyledButton = styled.button`
         margin-left: 50%;
     }
     @media (max-width: 600px){
-        margin-left: 5%;
-        align-self: center;
-        margin-bottom: -20px;
+        margin-left: 0;
     }
 `;
 
@@ -89,7 +92,7 @@ export const LargeFont1 = styled.p`
     @media (max-width: 600px){
         font-size: 40px;
         margin-left: 12%;
-        margin-top: -20px;
+        ${'' /* margin-top: -20px; */}
     }
 
 `;
@@ -101,9 +104,9 @@ export const SmallerFont = styled.p`
     margin-top: 20px;
     @media (max-width: 600px){
         font-size: 16px;
-        margin-left: 12%;
-        margin-right: 12%;
-        margin-bottom: 20px;
+        width: 85%;
+        margin-left: 7.5%;
+        margin-bottom: 50px;
     }
    
 `;
@@ -113,9 +116,10 @@ export const StyledImg = styled.img`
     width: 545px;
     margin-left: 5%;
     @media (max-width: 600px){
-        width: 94%;
+        width: 310px;
         height: 270px;
         margin-bottom: 30px;
+        align-self: center;
     }
 `;
 
@@ -141,7 +145,7 @@ export const BlackBox = styled.div`
     }
     @media (max-width: 600px){
         width: 95%;
-        margin-left: 2%;
+        margin-left: 2.5%;
     }
 `;
 
@@ -266,7 +270,10 @@ export const Warning = styled.p`
 export const SocialImg = styled.img`
     width: 20px;
     margin-bottom: 20px;
-    margin-left: 90%;
+    margin-left: 99%;
+    @media (max-width: 1200px){
+        margin-left: 90%;
+    }
     @media (max-width: 600px){
         margin-left: 70%;
     }

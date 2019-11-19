@@ -39,7 +39,7 @@ const Landing = ({ history }) => {
     return (
         <Container>
             <Heading>
-                <DidactHeader>Didact</DidactHeader>
+                <DidactHeader style={{fontFamily: 'ITC Grouch'}}>Didact</DidactHeader>
                 <StyledButton onClick={() => history.push('/login')}>Login</StyledButton>
             </Heading>
             <Flex>
