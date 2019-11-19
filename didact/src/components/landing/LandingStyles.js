@@ -146,6 +146,7 @@ export const BlackBox = styled.div`
     @media (max-width: 600px){
         width: 95%;
         margin-left: 2.5%;
+        margin-bottom: 100px;
     }
 `;
 
