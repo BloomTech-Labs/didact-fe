@@ -50,7 +50,7 @@ const Landing = ({ history }) => {
                     <SmallerFont>All your courses in one spot, and a community to help you along the way.</SmallerFont>
                     
                 </Middle>
-                <StyledImg src={computer} />
+                <StyledImg src={computer2} />
             </Flex>
             <BlackBox>
                 <Flex>
@@ -75,7 +75,7 @@ const Landing = ({ history }) => {
                 <StyledImgCircle src={playCircle} onClick={() => history.push('/register')}/>
                 </Flex>
                 </BlackBox>
-                <SecondImg src={computer2} />
+                <SecondImg src={computer} />
                 <a href="https://twitter.com/DidactLMS" target="_blank">
                     <SocialImg src={twitter} target="_blank"/>
                 </a>
