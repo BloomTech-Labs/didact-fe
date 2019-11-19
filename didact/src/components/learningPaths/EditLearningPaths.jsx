@@ -218,15 +218,7 @@ const EditLearningPaths = ({ id, props }) => {
                 </p>
               </CardContent>
               <CardActions>
-                <DidactButton
-                  onClick={toggleEdit}
-                  style={{ marginLeft: "70%", width: "100%", height: '100%'}}
-                  type="submit"
-                  size="small"
-                  variant="contained"
-                >
-                  Edit Description
-                </DidactButton>
+                <DidactButton onClick={toggleEdit} style={{ margin: "0 20px 15px 70%", width: "100%"}} type="submit">Edit Description</DidactButton>
               </CardActions>
             </Card>
           ) : (
@@ -258,22 +250,8 @@ const EditLearningPaths = ({ id, props }) => {
                   <DidactInput id='category' type='text' value={changes.category || ""} onChange={handleChange('category')} placeholder='Category' />  
                 </DidactField>
                   <ButtonDiv>
-                    <DidactButton
-                      style={{ marginLeft: "10px" }}
-                      onClick={handleCancel}
-                      size="small"
-                      variant="contained"
-                    >
-                      Cancel
-                    </DidactButton>
-                    <DidactButton
-                      type="submit"
-                      style={{ marginRight: "4%" }}
-                      size="small"
-                      variant="contained"
-                    >
-                      Submit Edit
-                    </DidactButton>
+                    <DidactButton style={{ marginLeft: "10px" }} onClick={handleCancel}>Cancel</DidactButton>
+                    <DidactButton type="submit" style={{ marginRight: "4%" }}>Submit Edit</DidactButton>
                   </ButtonDiv>
                 </form>
               </CardContent>

@@ -1,5 +1,6 @@
 import axios from "axios";
 import beURL from '../../utils/beURL'
+import axiosWithAuth from "../../utils/axiosWithAuth";
 export const LOGIN_START = 'LOGIN_START';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
@@ -58,7 +59,7 @@ export const verifyToken = (history) => dispatch => {
             await localStorage.removeItem('token')
             console.log('Fail', err)
             await dispatch({ type: VERIFY_FAILURE, payload: err.response })
-            await history.push('/login')
+            await history.push('/landing')
         })
 }
 
@@ -77,9 +78,11 @@ export const sendContactMessage = (values) => dispatch =>
 {
     dispatch({ type: SEND_CONTACT_MESSAGE_START })
 
-    axios.post(`${baseURL}contactmessage`, values)
+    axiosWithAuth()
+    .post(`${baseURL}contactmessage`, values)
         .then(res =>
         {
+            console.log('res from send contact message', res)
             dispatch({ type: SEND_CONTACT_MESSAGE_SUCCESS })
         })
         .catch(err =>

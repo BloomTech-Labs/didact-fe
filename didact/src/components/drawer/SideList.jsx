@@ -101,10 +101,10 @@ const SideList = ({ props }) => {
                      <div style={{display: 'flex', flexDirection: 'row', width: '100%', alignItems: 'center',}}>
                         <FolderOpenIcon style={{marginLeft: "17px", fontSize: "28px"}}/>
                         <p style={{marginLeft: "25px", fontWeight: 'bold'}}>Courses</p>
-                        {props.props.location.pathname === "/courses" ? (
+                        {props.props.match.path.includes('/courses') ? (
                         <p className={classes.arrow}><ChevronRightIcon style={{fontSize: '2.4rem', marginTop: '6px'}}/></p>
                         ) : (
-                        <p className={classes.arrow}><ChevronRightIcon style={{fontSize: '2.4rem', marginTop: '6px', color: "#5b5b5b"}}/></p>
+                         <p className={classes.arrow}><ChevronRightIcon style={{fontSize: '2.4rem', marginTop: '6px', color: "#5b5b5b"}}/></p>
                         )}
                     </div>
                 </NavLink>
@@ -118,7 +118,7 @@ const SideList = ({ props }) => {
                      <div style={{display: 'flex', flexDirection: 'row', width: '100%', alignItems: 'center',}}>
                         <InboxIcon style={{marginLeft: "17px", fontSize: "28px"}}/>
                         <p style={{marginLeft: "25px", fontWeight: 'bold'}}>Learning Paths</p>
-                        {props.props.location.pathname === "/learning-paths" ? (
+                        {props.props.match.path.includes('/learning-paths') ? (
                         <p className={classes.arrow}><ChevronRightIcon style={{fontSize: '2.4rem', marginTop: '6px'}}/></p>
                         ) : (
                         <p className={classes.arrow}><ChevronRightIcon style={{fontSize: '2.4rem', marginTop: '6px', color: "#5b5b5b"}}/></p>
