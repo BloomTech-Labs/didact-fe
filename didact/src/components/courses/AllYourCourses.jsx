@@ -72,7 +72,7 @@ function AllCourses(props) {
     useEffect(() => {
         dispatch(getYourLearningPaths())
     }, [dispatch])
- 
+    console.log(props)
     return (
     <div>
         <div style={{display: 'flex', justifyContent: 'space-between', margin: '-10px 10px 10px 10px', borderBottom: '1px solid black'}}>
@@ -92,7 +92,7 @@ function AllCourses(props) {
             <div>
                 {state.coursesReducer.yourCourses
                     ? state.coursesReducer.yourCourses.map((course, i) => (
-                        <YourCourse key={i} course={course} addingCourses={addingCourses}/>
+                        <YourCourse key={i} course={course} addingCourses={addingCourses} props={props.props}/>
                     ))
                     : null}
 

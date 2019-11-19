@@ -7,6 +7,18 @@ export const ContentDiv = styled.div `
     justify-content: space-between;
     text-align: left;
     margin-top: 20px;
+  
+
+`
+
+export const ContentDivMobile = styled.div `
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    /* justify-content: space-e; */
+    text-align: left;
+    margin-top: 20px;
+    padding-right: 10px;
 
 `
 
@@ -18,9 +30,16 @@ export const ImageDiv = styled.div`
 `
 
  export const LambdaImage = styled.img `
-    width: 160px;
-    height: 160px;
+    width: 75px;
+    height: 75px;
  
+ `
+
+ export const BottomDiv = styled.div `
+   display: flex;
+   justify-content: flex-end;
+   margin: 100px 10px 50px 10px;
+
  `
 
  export const CardContainer = styled.div `

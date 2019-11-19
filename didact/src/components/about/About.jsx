@@ -1,5 +1,15 @@
 import React from 'react'
-import {ContentDiv, LambdaImage, ImageDiv, CardContainerOpen, CardContainer, Card, PersonImage, PersonInfo, CardOpen} from './AboutStyles.js'
+import {ContentDiv, 
+        ContentDivMobile, 
+        LambdaImage, 
+        ImageDiv, 
+        CardContainerOpen, 
+        CardContainer, 
+        Card, 
+        PersonImage, 
+        PersonInfo, 
+        BottomDiv,
+        CardOpen} from './AboutStyles.js'
 
 // Pictures
 import LambdaLogo from '../../images/lambdalogo.png'
@@ -38,15 +48,24 @@ console.log(props)
                 <p style={{fontWeight: 'bold'}}>About</p>
                 <p onClick = {handleBack} style={{cursor: 'pointer', display: 'flex', flexDirection:'row', alignItems: 'center'}}><ChevronLeftIcon style={{fontSize: '1.6rem'}}/>{`${" "} Back To Dashboard`}</p>
             </div>
-            <ContentDiv>
-                <div style={{margin: '-10px 0 60px 10px', maxWidth: "620px", width: "100%", fontSize: "1.6rem"}}>
-                    <p>Didact was developed in Lambda Labs</p>
-                    <p style={{marginTop: '50px'}}>There will also be additional text here that talks about other things about the project</p>
+            {!props.phoneSize ?
+            (<ContentDiv>
+                <div style={{margin: '-10px 0 10px 10px', width: "100%", fontSize: "1.6rem"}}>
+                    <p>There are extensive resources available for self-directed online education. However, studies have revealed that completion rates are often less than 10%. Many times, people sign up for classes they never start. Research shows that these issues are related to the ways students engage with online courses and the need for a more fully-realized educational experience and set of tools for online learners. </p>
                 </div>
-                <ImageDiv>
-                    <LambdaImage src={LambdaLogo} alt="Lambda School" />
-                </ImageDiv>
-            </ContentDiv>
+                <div style={{margin: '-10px 0 10px 10px', width: "100%", fontSize: "1.6rem"}}>
+                    <p>Didact aims to bring together online learning resources in a way that encourages thoughtful time management and goal setting with integrated support strategies so students can reach their self-educational goals, no matter the source of their lessons. The goal of Didact is to connect online education and student support services to enable higher completion rates and more successful students.</p>
+                </div>
+            </ContentDiv>)
+            :
+            (<ContentDivMobile>
+                <div style={{margin: '-10px 0 60px 10px', width: "100%", fontSize: "1.6rem"}}>
+                    <p>There are extensive resources available for self-directed online education. However, studies have revealed that completion rates are often less than 10%. Many times, people sign up for classes they never start. Research shows that these issues are related to the ways students engage with online courses and the need for a more fully-realized educational experience and set of tools for online learners. </p>
+                </div>
+                <div style={{margin: '-40px 0 20px 10px', width: "100%", fontSize: "1.6rem"}}>
+                    <p>Didact aims to bring together online learning resources in a way that encourages thoughtful time management and goal setting with integrated support strategies so students can reach their self-educational goals, no matter the source of their lessons. The goal of Didact is to connect online education and student support services to enable higher completion rates and more successful students.</p>
+                </div>
+            </ContentDivMobile> )} 
             <h4 style={{textAlign: 'left', marginLeft: '15px'}}>Team</h4>
             {!props.open ? (
             <CardContainerOpen>
@@ -84,6 +103,11 @@ console.log(props)
                 })}
             </CardContainer>  
             )}
+            <BottomDiv>
+                <p style={{margin: '52px 30px 0 0'}}>Didact was developed in Lambda Labs</p>
+                <LambdaImage src={LambdaLogo} />
+            </BottomDiv>
+
         </div>
     )
 }
