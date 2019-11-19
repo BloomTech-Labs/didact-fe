@@ -3,11 +3,13 @@ import styled from "styled-components";
 
 export const Container = styled.div`
     background-color: #EBE8E1;
-    width: 100%;
+    width: 1200px;
     height: 100%;
     max-width: 1200px;
     @media(max-width: 600px){
-        overflow-x: hidden;
+        ${'' /* overflow-x: hidden; */}
+        width: 100%;
+        height: 100%;
     }
 `;
 
@@ -36,7 +38,7 @@ export const StyledButton = styled.button`
     width: 170px;
     opacity: 1;
     border: 1px solid #242424;
-    margin-left: 75%;
+    margin-left: 840px;
     margin-top: 40px;
     background-color: #EBE8E1;
     border-radius: 3px;
@@ -49,12 +51,6 @@ export const StyledButton = styled.button`
     &:focus {
         outline: 0;
         }
-    @media (max-width: 1100px){
-        margin-left: 60%;
-    }
-    @media (max-width: 1000px){
-        margin-left: 50%;
-    }
     @media (max-width: 600px){
         margin-left: 0;
     }
@@ -62,7 +58,7 @@ export const StyledButton = styled.button`
 
 export const Flex = styled.div`
     display: flex;
-    @media (max-width: 800px){
+    @media (max-width: 600px){
         flex-direction: column;
     }
 `;
@@ -92,7 +88,6 @@ export const LargeFont1 = styled.p`
     @media (max-width: 600px){
         font-size: 40px;
         margin-left: 12%;
-        ${'' /* margin-top: -20px; */}
     }
 
 `;
@@ -126,9 +121,6 @@ export const StyledImg = styled.img`
 export const Middle = styled.div`
     width: 433px;
     margin-top: 20px;
-    @media (max-width: 450){
-        flex-direction: column;
-    }
 `;
 
 
@@ -139,10 +131,6 @@ export const BlackBox = styled.div`
     border-radius: 10px;
     margin-bottom: 150px;
     margin-top: 60px;
-    @media (max-width: 1100px){
-        width: 95%;
-        margin-left: 2%;
-    }
     @media (max-width: 600px){
         width: 95%;
         margin-left: 2.5%;
@@ -157,11 +145,6 @@ export const WhiteLargeText = styled.p`
     margin-top: 100px;
     margin-bottom: 0;
     font-weight: 900;
-    @media (max-width: 1100px){
-        font-size: 26px;
-        margin-left: 2%;
-        margin-top: 60px;
-    }
     @media (max-width: 600px){
         font-size: 26px;
         margin-left: 2%;
@@ -174,11 +157,7 @@ export const WhiteLargeText1 = styled.p`
     margin-left: 60px;
     margin-top: 0;
     font-weight: 900;
-    @media (max-width: 1100px){
-        font-size: 26px;
-        margin-left: 2%;
-    }
-    @media (max-width: 800px){
+    @media (max-width: 600px){
         font-size: 26px;
         margin-left: 2%;
     }
@@ -191,10 +170,7 @@ export const StyledInput = styled.input`
     margin-left: 140px;
     border-radius: 5px;
     border: none;
-    @media (max-width: 1100px){
-        width: 300px;
-    }
-    @media (max-width: 800px){
+    @media (max-width: 600px){
         width: 80%;
         margin-left: 10%;
         margin-top: 0;
@@ -214,7 +190,7 @@ export const StyledBlueButton = styled.button`
     &:focus {
         outline: 0;
         }
-    @media (max-width: 800px){
+    @media (max-width: 600px){
         margin-top: 20px;
         margin-left: 0;
         align-self: center;
@@ -227,7 +203,7 @@ export const SmallText = styled.p`
     font-size: 18px;
     font-weight: 700;
     margin-top: -20px;
-    @media (max-width: 800px){
+    @media (max-width: 600px){
        display: none;
     }
 `;
@@ -236,10 +212,6 @@ export const SecondImg = styled.img`
     width: 1116px;
     height: 519px;
     margin-bottom: 40px;
-    @media (max-width: 1000px){
-        width: 550px;
-        height: 275px;
-    }
     @media (max-width: 600px){
         width: 350px;
         height: 175px;
@@ -251,7 +223,7 @@ export const StyledImgCircle = styled.img`
     width: 24px;
     margin-left: 10px;
     margin-top: -18px;
-    @media (max-width: 800px){
+    @media (max-width: 600px){
        display: none;
     }
 `;
@@ -263,7 +235,8 @@ export const Warning = styled.p`
     margin-top: -50px;
     width: 360px;
     margin-bottom: 40px;
-    @media (max-width: 1000px){
+    height: 20px;
+    @media (max-width: 600px){
        display: none;
     }
 `
@@ -272,9 +245,6 @@ export const SocialImg = styled.img`
     width: 20px;
     margin-bottom: 20px;
     margin-left: 99%;
-    @media (max-width: 1200px){
-        margin-left: 90%;
-    }
     @media (max-width: 600px){
         margin-left: 70%;
     }
