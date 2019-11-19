@@ -9,7 +9,7 @@ import {
 } from "../../store/actions";
 
 // import components
-import AddToLearningPath from './addToLearningPath/addToLearningPath'
+import AddToLearningPath from './addToLearningPath/AddToLearningPath'
 import DeleteModal from "../courses/DeleteModal";
 import CourseLearningPath from "./CourseLearningPath";
 import { changePathOrder } from '../../utils/changePathOrder'
