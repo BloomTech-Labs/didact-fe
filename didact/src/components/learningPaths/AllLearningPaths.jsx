@@ -40,7 +40,7 @@ const AllLearningPaths = (props) => {
         console.log('Order', order)
         dispatch(joinLearningPath(id, props.props.history, order))
     }
-
+    console.log(learningPaths)
     const handleBack = () => {
         props.props.history.push('/courses') 
     } 
@@ -49,12 +49,12 @@ const AllLearningPaths = (props) => {
         <>
          <div style={{display: 'flex', justifyContent: 'space-between', margin: '-10px 10px 10px 10px', borderBottom: '1px solid black'}}>
                 <p style={{fontWeight: 'bold', marginLeft: '10px', display: 'flex', flexDirection:'row', alignItems: 'center'}}><span className={classes.span}  onClick = {handleBack}>Learning Paths</span><ChevronRightIcon style={{fontSize: '1.6rem'}}/><span>Join Path</span></p>
-        </div>
-        {!learningPaths.length === 0 ? (
+        </div> 
+        {learningPaths && learningPaths.length > 0 ? (
         <LearningPathsWrapper>
-            {learningPaths.map((learningPath, index) => {
+            {learningPaths && learningPaths.map((learningPath, index) => {
                 return (
-                    <LearningPathCard key={index} style={{marginBottom: "20px"}}>
+                    <LearningPathCard key={index} style={{paddingLeft: '30px', marginBottom: "20px"}}>
                         <div className='title'> 
                             <h1>{learningPath.name}</h1>
                             <div>
@@ -65,7 +65,8 @@ const AllLearningPaths = (props) => {
                 )
             })
         }
-        </LearningPathsWrapper>)
+        </LearningPathsWrapper>
+        )
             : (<h2>No Learning Paths Available</h2>)}
         </>
     )
