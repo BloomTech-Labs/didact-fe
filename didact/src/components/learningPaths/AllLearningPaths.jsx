@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-
+import {Link } from 'react-router-dom'
 import { getLearningPaths, joinLearningPath, getYourLearningPaths } from '../../store/actions/index'
 
 import { LearningPathsWrapper, LearningPathCard } from './YourLearningPathsStyles'
@@ -59,6 +59,7 @@ const AllLearningPaths = (props) => {
                             <h1>{learningPath.name}</h1>
                             <div>
                                 <button onClick={() => joinPath(learningPath.id, yourLearningPaths.length)} id={learningPath.id}>Join Path</button>
+                                <Link to={`/learning-paths/${learningPath.id}`}><button>Go To Path</button></Link>
                             </div>
                         </div>
                     </LearningPathCard>
