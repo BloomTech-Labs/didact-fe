@@ -31,6 +31,7 @@ import IconButton from "@material-ui/core/IconButton";
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
+import EditIcon from '@material-ui/icons/Edit';
 
 //imports for react-beautiful-dnd
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
@@ -49,8 +50,6 @@ const useStyles = makeStyles(theme => ({
     margin: '40px 0 40px 0',
     borderRadius: '15px',
     boxShadow: 'none',
-    backgroundColor: '#386581',
-    color: "white",
     position: 'relative'
   },
   title: {
@@ -83,6 +82,15 @@ const useStyles = makeStyles(theme => ({
     top: "131px",
     left: "91%"
 },
+  button: {
+    backgroundColor: "#EBE8E1",
+    color: 'black',
+    borderRadius: 12,
+    height: "35px",
+    width: "123px",
+    border: 'none',
+    cursor: 'pointer'
+}
 }));
 
 
@@ -96,6 +104,7 @@ const EditLearningPaths = ({ id, props }) => {
   const [learningPathEdit, setLearningPathEdit] = useState(true);
   const [openModal, setOpenModal] = useState(false);
   const [itemsCourses, setItemsCourses] = useState([]);
+
   const [changes, setChanges] = useState({
     name: "",
     category: "",
@@ -114,6 +123,8 @@ const EditLearningPaths = ({ id, props }) => {
       description: learningPath.description,
     });
   }, [learningPath]);
+
+  
 
   const toggleEdit = () => {
     setLearningPathEdit(!learningPathEdit);
@@ -194,48 +205,12 @@ const EditLearningPaths = ({ id, props }) => {
   if (!state.isLoading) {
     return (
       <>
-        {/* <FinishEdit
-          onClick={backToLearningPath}
-          style={{ fontSize: '1.4rem' }}
-        >{`<- BACK TO PATH`}</FinishEdit> */}
         <div style={{display: 'flex', justifyContent: 'space-between', margin: '-10px 10px 10px 10px', borderBottom: '1px solid black'}}>
                 <p style={{fontWeight: 'bold', marginLeft: '10px', display: 'flex', flexDirection:'row', alignItems: 'center'}}><span className={classes.span}  onClick={handleBack}>Learning Paths</span><ChevronRightIcon style={{fontSize: '1.6rem'}}/><span className={classes.span}  onClick={backToLearningPath}>{learningPath.name && learningPath.name.substring(0, 15)}...</span><ChevronRightIcon style={{fontSize: '1.6rem'}}/><span>Edit</span></p>
         </div>
         <div>
           {learningPathEdit ? (
             <Card className={classes.card} style={{ background: '#386581', color: 'white' }}>
-              {/* <CardContent>
-                <h2>{learningPath.name}</h2>
-                <CardActions className={classes.descriptionDiv} disableSpacing>
-                  <p className={classes.descriptionTitle}>
-                    {" "}
-                    {learningPath.description && !expanded
-                      ? (`${learningPath.description.substring(0, 100)} ...`)
-                      : null}
-                  </p>
-                  <IconButton
-                    className={clsx(classes.expand, {
-                      [classes.expandOpen]: expanded,
-                    })}
-                    onClick={handleExpandClick}
-                    aria-expanded={expanded}
-                    aria-label="show more"
-                    style={{ color: 'white'}}
-                  >
-                    <ExpandMoreIcon style={{ fontSize: '2.6rem' }}/>
-                  </IconButton>
-                </CardActions>
-                <Collapse in={expanded} timeout="auto" unmountOnExit>
-                  <CardContent>
-                    <p>{learningPath.description}</p>
-                  </CardContent>
-                </Collapse>
-                <p color="textSecondary">
-                  {learningPath.category
-                    ? `Category: ${learningPath.category}`
-                    : null}
-                </p>
-              </CardContent> */}
              <CardContent>
               <CardActions disableSpacing>
                         <div style={{ backgroundColor: '#386581', border: 'none', boxShadow: 'none' }}>
@@ -246,22 +221,36 @@ const EditLearningPaths = ({ id, props }) => {
                             >
                                 <div style={{ display: 'flex', flexDirection: 'column', transition: `0.25s ease` }}>
                                     <h3 style={{ fontFamily: 'ITC Grouch', color: "white" }}>{learningPath.name && learningPath.name.length > 35 ? `${learningPath.name.substring(0, 35)}...` : learningPath.name}</h3>
-                                    <div style={{ textAlign: 'left', width: "100%", fontSize: '1.2rem', paddingLeft: "2px", color: "white" }}>
+                                    <div style={{ textAlign: 'left', width: "100%", fontSize: '1.2rem', paddingLeft: "2px", marginTop: "-10px", color: "white" }}>
                                    {learningPath.category
                                       ?  <span >Category: {learningPath.category}</span>
                                       : null}
+                                      {learningPath.description && learningPath.description.length > 55 ?
+                                      (
+                                        <>
                                         {!expanded ?
-                                            (<ExpandMoreIcon className={props && props.match.url === '/' ? classes.dropArrowDashboard : classes.dropArrow} />)
+                                            (
+                                            <>
+                                              <ExpandMoreIcon className={classes.dropArrow} />
+                                              <div style={{ display: 'flex', alignItems: "baseline", justifyContent: 'space-between', maxHeight: '35px', transition: `max-height 1s ease`, overflow: 'hidden' }}>
+                                                  {learningPath.description && (<p style={{ paddingRight: '42px' }}>{learningPath.description}</p>)}
+                                              </div>
+                                            </>
+                                            )
                                             :
-                                            (<ExpandLessIcon className={props && props.match.url === '/' ? classes.dropArrowDashboard : classes.dropArrow} />)}
-                                        {learningPath.description && learningPath.description !== null ? (
-                                            !expanded ? (<div style={{ display: 'flex', alignItems: "baseline", justifyContent: 'space-between', maxHeight: '35px', transition: `max-height 1s ease`, overflow: 'hidden' }}>
-                                                {learningPath.description && (<p style={{ paddingRight: '42px' }}>{learningPath.description}</p>)}
-                                            </div>) : (<div style={{ display: 'flex', alignItems: "baseline", justifyContent: 'space-between', maxHeight: '1000px', transition: `max-height 1s ease`, overflow: 'visible' }}>
-                                                {learningPath.description && (<p style={{ paddingRight: "42px" }}>{learningPath.description}</p>)}
-                                            </div>)
-                                        ) :
-                                            null}
+                                            (
+                                            <>
+                                              <ExpandLessIcon className={classes.dropArrow} />
+                                              <div style={{ display: 'flex', alignItems: "baseline", justifyContent: 'space-between', maxHeight: '1000px', transition: `max-height 1s ease`, overflow: 'visible' }}>
+                                                  {learningPath.description && (<p style={{ paddingRight: "42px" }}>{learningPath.description}</p>)}
+                                              </div>
+                                            </>
+                                            )}
+                                        ) 
+                                        </>
+                                        ) : learningPath.description && learningPath.description.length <= 55 ? (
+                                          (learningPath.description && (<p style={{ paddingRight: "42px" }}>{learningPath.description}</p>))
+                                        ) : null}
 
                                     </div>
                                 </div>
@@ -270,7 +259,7 @@ const EditLearningPaths = ({ id, props }) => {
                     </CardActions>
               </CardContent>      
               <CardActions>
-                <DidactButton onClick={toggleEdit} style={{ margin: "0 20px 15px 70%", width: "100%"}} type="submit">Edit Description</DidactButton>
+                 <button className={classes.button} onClick={toggleEdit} style={{ margin: "0 20px 15px 70%", width: "100%"}} type="submit">{!props.phoneSize ? "Edit Description" : <EditIcon style={{fontSize: '1.8rem'}}/>}</button>
               </CardActions>
             </Card>
           ) : (
