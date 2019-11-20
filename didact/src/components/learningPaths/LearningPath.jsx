@@ -34,6 +34,7 @@ const LearningPath = ({ id, props }) => {
     const isLoadingIcon = state.coursesReducer.isLoadingIcon
     const isLoadingCourseToggle = state.coursesReducer.isLoading
     const isLoadingLearningPathToggle = state.learningPathReducer.isLoading
+    const user = state.onboardingReducer.user;
 
     useEffect(_ => {
         dispatch(getLearningPath(id))
@@ -90,7 +91,8 @@ const LearningPath = ({ id, props }) => {
 
     const progress = firstItemCourse && ((firstItemCourse.completed / firstItemCourse.total) * 100).toString()
     const progressPecentage = progress && Number(progress.substring(0, 4))
-    console.log(firstItemCourse)
+    console.log(user)
+    console.log(learningPath)
     const handleBack = () => {
        props.history.push('/learning-paths')
     }
@@ -100,7 +102,7 @@ const LearningPath = ({ id, props }) => {
         <div style={{display: 'flex', justifyContent: 'space-between', margin: '-10px 10px 10px 10px', borderBottom: '1px solid black'}}>
                 <p style={{fontWeight: 'bold', marginLeft: '10px', display: 'flex', flexDirection:'row', alignItems: 'center'}}><span className={classes.span}  onClick = {handleBack}>Learning Paths</span><ChevronRightIcon style={{fontSize: '1.6rem'}}/><span>{learningPath.name ? learningPath.name.substring(0, 20) : "Loading"}...</span></p>
             </div>
-        {!firstItemCourse ? (
+        {!firstItemCourse && (learningPath.creatorId === user.id) ? (
             <>
             <div className='currentTitle'>
             {
@@ -112,6 +114,11 @@ const LearningPath = ({ id, props }) => {
             }
         </div>
             <AddToLearningPath props = {props} itemsCourses = {completionItemsCourses}/>
+            </>
+        ) : (!firstItemCourse && (learningPath.creatorId !== user.id)) ? (
+            <>
+            <h3>Sorry, the owner hasn't added any Courses or Items</h3>
+            <h4>Check back Soon!</h4>
             </>
         ) : (
         <LearningPathWrapper>
