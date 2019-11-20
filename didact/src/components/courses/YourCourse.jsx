@@ -41,7 +41,7 @@ const useStyles = makeStyles(theme => ({
         marginTop: '40px',
         marginLeft: '20px'
     },
-  
+
     card: {
         maxWidth: 540,
         width: "100%",
@@ -53,7 +53,7 @@ const useStyles = makeStyles(theme => ({
         position: 'relative'
     },
 
-     cardDashboard: {
+    cardDashboard: {
         maxWidth: 540,
         width: "100%",
         margin: '40px 0 40px 0',
@@ -89,7 +89,7 @@ const useStyles = makeStyles(theme => ({
         opacity: '0',
         padding: '0px'
     },
-   
+
     title: {
         display: 'flex',
     },
@@ -102,7 +102,7 @@ const useStyles = makeStyles(theme => ({
         margin: '-21px -4px 15px 0',
         position: "relative",
         zIndex: 12
-        
+
     },
     courseTitle: {
         maxWidth: '512px',
@@ -110,18 +110,18 @@ const useStyles = makeStyles(theme => ({
     },
     dropArrow: {
         position: 'absolute',
-        color: "white", 
-        display: "flex", 
-        paddingTop: '-10px', 
-        top: "131px", 
+        color: "white",
+        display: "flex",
+        paddingTop: '-10px',
+        top: "131px",
         left: "91%"
     },
     dropArrowDashboard: {
         position: 'absolute',
-        color: "white", 
-        display: "flex", 
-        paddingTop: '-10px', 
-        top: "129px", 
+        color: "white",
+        display: "flex",
+        paddingTop: '-10px',
+        top: "129px",
         left: "87%"
     }
 
@@ -129,7 +129,7 @@ const useStyles = makeStyles(theme => ({
 
 
 
-const YourCourse = ({ course, addingCourses, props}) => {
+const YourCourse = ({ course, addingCourses, props }) => {
     const state = useSelector(state => state);
     const classes = useStyles();
     const dispatch = useDispatch();
@@ -152,9 +152,9 @@ const YourCourse = ({ course, addingCourses, props}) => {
 
 
     const handleExpandClick = () => {
-            setExpanded(!expanded)
+        setExpanded(!expanded)
     };
-    
+
     const handleClick = event => {
         setAnchorEl(event.currentTarget);
     };
@@ -174,10 +174,10 @@ const YourCourse = ({ course, addingCourses, props}) => {
     console.log(props)
     return (
         <PopoverWrapper>
-        <Card className={props && props.match.url === "/" ? classes.cardDashboard : classes.card}>
-            <CardContent>
-                    <div style={{display: 'flex', justifyContent: 'flex-end', paddingTop: '20px'}}>
-                    {addingCourses && <button className={classes.addCourse} onClick={handleClick}><img src={playlistAdd} alt='Add Course' /></button>}
+            <Card className={props && props.match.url === "/" ? classes.cardDashboard : classes.card}>
+                <CardContent>
+                    <div style={{ display: 'flex', justifyContent: 'flex-end', paddingTop: '20px' }}>
+                        {addingCourses && <button className={classes.addCourse} onClick={handleClick}><img src={playlistAdd} alt='Add Course' /></button>}
                     </div>
                     <div>
                         <Popover
@@ -198,20 +198,20 @@ const YourCourse = ({ course, addingCourses, props}) => {
                                 <AddCourseToPath >
                                     {
                                         <div>
-                                            <div style ={{marginTop: '10px', paddingRight: '5px'}} className='closePopover'>
-                                                <img src={closeIcon} onClick={handleClose} alt='Close'/>
+                                            <div style={{ marginTop: '10px', paddingRight: '5px' }} className='closePopover'>
+                                                <img src={closeIcon} onClick={handleClose} alt='Close' />
                                             </div>
                                             <div className='learningPaths'>
-                                                <h4 style={{margin: " -5px auto"}}>Add to Learning Path</h4>
+                                                <h4 style={{ margin: " -5px auto" }}>Add to Learning Path</h4>
                                                 {
                                                     (filteredPaths.length > 0 ?
                                                         (
-                                                            
+
                                                             filteredPaths.length > 0 && (filteredPaths.map((learningPath, index) => {
                                                                 return (
                                                                     <div className='learningPathTitle' key={index}>
                                                                         <h5>{learningPath.name}</h5>
-                                                                        <button onClick={() => handleAddCourse(learningPath.id, course.id, learningPath.contentLength + 1)}><img src={playlistAdd} alt='Add Course'/></button>
+                                                                        <button onClick={() => handleAddCourse(learningPath.id, course.id, learningPath.contentLength + 1)}><img src={playlistAdd} alt='Add Course' /></button>
                                                                     </div>
 
                                                                 )
@@ -232,42 +232,42 @@ const YourCourse = ({ course, addingCourses, props}) => {
                         </Popover>
                     </div>
 
-                <CardActions disableSpacing>
-                <div style={{marginTop: '-60px', backgroundColor: '#386581', border: 'none', boxShadow: 'none'}}>
-                <div onClick={handleExpandClick}
-                    aria-controls="panel1a-content"
-                    id="panel1a-header"
-                    style={{fontSize: '2.8rem', textAlign: 'left', paddingLeft: '6px', transition: `0.25s ease`}}
-                    >
-                    <div className='courseTitle' style={{display: 'flex', flexDirection: 'column', transition: `0.25s ease`}}>
-                        <h3 style={{fontFamily: 'ITC Grouch', color: "white"}}>{ course.name.length > 35 ? `${course.name.substring(0, 35)}...` : course.name}</h3>
-                        <div style={{textAlign: 'left', width: "100%", fontSize: '1.2rem', marginTop: '10px', paddingLeft: "2px", color: "white"}}>
-                        <span >{course.foreign_instructors}</span> 
-                        {!expanded ?
-                        (<ExpandMoreIcon className={props && props.match.url === '/' ? classes.dropArrowDashboard : classes.dropArrow}/>)
-                        :
-                        (<ExpandLessIcon className={props && props.match.url === '/' ?  classes.dropArrowDashboard : classes.dropArrow}/>)}
-                        {course.description && course.description !== null ? (
-                        !expanded ?  (<div style={{display: 'flex', alignItems: "baseline", justifyContent: 'space-between', maxHeight: '35px', transition: `max-height 1s ease`, overflow: 'hidden'}}>
-                            {course.description && (<p style={{paddingRight: '42px' }}>{course.description}</p>)}
-                        </div>) : (<div style={{display: 'flex', alignItems: "baseline", justifyContent: 'space-between', maxHeight: '1000px', transition: `max-height 1s ease`, overflow: 'visible'}}>
-                            {course.description && (<p style={{paddingRight: "42px" }}>{course.description}</p>)} 
-                        </div>)  
-                        ) : 
-                        null}
-                        
+                    <CardActions disableSpacing>
+                        <div style={{ marginTop: '-60px', backgroundColor: '#386581', border: 'none', boxShadow: 'none' }}>
+                            <div onClick={handleExpandClick}
+                                aria-controls="panel1a-content"
+                                id="panel1a-header"
+                                style={{ fontSize: '2.8rem', textAlign: 'left', paddingLeft: '6px', transition: `0.25s ease` }}
+                            >
+                                <div className='courseTitle' style={{ display: 'flex', flexDirection: 'column', transition: `0.25s ease` }}>
+                                    <h3 style={{ fontFamily: 'ITC Grouch', color: "white" }}>{course.name.length > 35 ? `${course.name.substring(0, 35)}...` : course.name}</h3>
+                                    <div style={{ textAlign: 'left', width: "100%", fontSize: '1.2rem', marginTop: '10px', paddingLeft: "2px", color: "white" }}>
+                                        <span >{course.foreign_instructors}</span>
+                                        {!expanded ?
+                                            (<ExpandMoreIcon className={props && props.match.url === '/' ? classes.dropArrowDashboard : classes.dropArrow} />)
+                                            :
+                                            (<ExpandLessIcon className={props && props.match.url === '/' ? classes.dropArrowDashboard : classes.dropArrow} />)}
+                                        {course.description && course.description !== null ? (
+                                            !expanded ? (<div style={{ display: 'flex', alignItems: "baseline", justifyContent: 'space-between', maxHeight: '35px', transition: `max-height 1s ease`, overflow: 'hidden' }}>
+                                                {course.description && (<p style={{ paddingRight: '42px' }}>{course.description}</p>)}
+                                            </div>) : (<div style={{ display: 'flex', alignItems: "baseline", justifyContent: 'space-between', maxHeight: '1000px', transition: `max-height 1s ease`, overflow: 'visible' }}>
+                                                {course.description && (<p style={{ paddingRight: "42px" }}>{course.description}</p>)}
+                                            </div>)
+                                        ) :
+                                            null}
+
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    </div>
-                </div>
+                    </CardActions>
+                    <p>{course.category ? (`Category: ${course.category}`) : (null)}</p>
+                </CardContent>
+                <CardActions className={classes.buttonDiv} style={{ margin: '0 30px 20px 0' }}>
+                    <Link to={`/courses/yours/${course.id}`} ><DidactButton>Go To Course</DidactButton></Link>
                 </CardActions>
-                <p>{course.category ? (`Category: ${course.category}`) : (null)}</p>
-            </CardContent>
-            <CardActions className={classes.buttonDiv} style={{margin: '0 30px 20px 0'}}>
-                <Link to={`/courses/yours/${course.id}`} ><DidactButton>Go To Course</DidactButton></Link>
-            </CardActions>
-        </Card>
-    </PopoverWrapper>
+            </Card>
+        </PopoverWrapper>
 
 
     )

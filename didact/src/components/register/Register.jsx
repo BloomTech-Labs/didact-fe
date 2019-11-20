@@ -35,7 +35,7 @@ const RegisterForm = (props) => {
     return (
         <Wrapper>
             <Header>
-                <h1>Didact</h1>
+                <h1 style={{fontFamily: 'ITC Grouch'}}>Didact</h1>
                 <div>
                     <a>About</a>
                     <a>Contact</a>
