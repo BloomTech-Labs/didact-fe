@@ -5,9 +5,9 @@ import { useDispatch } from 'react-redux';
 import { Mixpanel } from '../../utils/mixpanel';
 import { addLessonToSection } from '../../store/actions'
 import { ButtonDiv, DidactButton } from '../dashboard/ButtonStyles'
-import { DidactField, DidactInput, DidactLabel, DidactTextArea } from '../dashboard/FormStyles'
+import { DidactField, DidactInput, DidactLabel } from '../dashboard/FormStyles'
 
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import CardContent from '@material-ui/core/CardContent';
 
 const useStyles = makeStyles(theme => ({
@@ -20,7 +20,6 @@ const useStyles = makeStyles(theme => ({
     card: {
         width: '50vw',
         maxWidth: 500,
-        // minWidth: 375,
         borderRadius: 15,
         margin: '10px 0',
         boxShadow: 'none'
@@ -35,7 +34,6 @@ const useStyles = makeStyles(theme => ({
     },
     expand: {
         transform: 'rotate(0deg)',
-        // marginLeft: 'auto',
         transition: theme.transitions.create('transform', {
             duration: theme.transitions.duration.shortest,
         }),
@@ -46,7 +44,6 @@ const useStyles = makeStyles(theme => ({
     container: {
         display: 'flex',
         flexWrap: 'wrap',
-        // margin: '10px',
     },
     input: {
         backgroundColor: '#F4F8FA',
@@ -59,7 +56,6 @@ const useStyles = makeStyles(theme => ({
         display: "flex",
         flexDirection: "row",
         justifyContent: 'center',
-        // padding: '0'
     },
     descriptionTitle: {
         marginBottom: "0px"
@@ -67,7 +63,6 @@ const useStyles = makeStyles(theme => ({
 
 
 }));
-
 
 const initalValues = {
     name: "",
@@ -104,24 +99,24 @@ const AddLesson = (props) => {
         <>
             <div className = {classes.root}>
                 <CardContent>
-                    <p className={classes.title} gutterBottom>
+                    <p className={classes.title}>
                         Add Lesson
                      </p>
                     <form onSubmit={handleSubmit} className={classes.container} noValidate autoComplete="off">
                         <DidactField>
-                            <DidactLabel for='title'>Lesson Name</DidactLabel>
+                            <DidactLabel htmlFor='title'>Lesson Name</DidactLabel>
                             <DidactInput id='title' type='text' value={values.name || ""} onChange={handleChange('name')} placeholder='Lesson Name' />  
                         </DidactField>
                         <DidactField>
-                            <DidactLabel for='link'>URL Link</DidactLabel>
+                            <DidactLabel htmlFor='link'>URL Link</DidactLabel>
                             <DidactInput id='link' type='text' value={values.link || ""} onChange={handleChange('link')} placeholder='URL Link' />  
                         </DidactField>
                         <DidactField>
-                            <DidactLabel for='order'>Order</DidactLabel>
+                            <DidactLabel htmlFor='order'>Order</DidactLabel>
                             <DidactInput id='order' type='text' value={values.order || ""} onChange={handleChange('order')} placeholder='Order' />  
                         </DidactField>
                         <DidactField>
-                            <DidactLabel for='type'>Type</DidactLabel>
+                            <DidactLabel htmlFor='type'>Type</DidactLabel>
                             <DidactInput id='type' type='text' value={values.type || ""} onChange={handleChange('type')} placeholder='Type' />  
                         </DidactField>
                         <ButtonDiv>

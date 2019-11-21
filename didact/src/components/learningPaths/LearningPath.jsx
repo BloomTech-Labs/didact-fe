@@ -1,18 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux";
-import { findForUserId, getLearningPath, toggleCompleteCourse, toggleLearningPath, toggleLearningPathItem } from '../../store/actions/index.js'
+import { findForUserId, getLearningPath, toggleCompleteCourse, toggleLearningPathItem } from '../../store/actions/index.js'
 import { Link } from "react-router-dom";
 
 import { LearningPathWrapper } from './LearningPathStyles'
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
-import Loader from "react-loader-spinner";
 import AddToLearningPath from './addToLearningPath/AddToLearningPath'
 
 //Material UI Imports
 import { makeStyles,} from '@material-ui/core/styles';
 //Material UI Icons
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 
 const useStyles = makeStyles(theme => ({
    
@@ -31,7 +29,6 @@ const LearningPath = ({ id, props }) => {
     const learningPath = state.learningPathReducer.learningPath;
     const learningPathCompletion = state.learningPathReducer.learningPathCompletion;
     const [completionItemsCourses, setCompletionItemsCourses] = useState([])
-    const isLoadingIcon = state.coursesReducer.isLoadingIcon
     const isLoadingCourseToggle = state.coursesReducer.isLoading
     const isLoadingLearningPathToggle = state.learningPathReducer.isLoading
     const user = state.onboardingReducer.user;
@@ -91,8 +88,7 @@ const LearningPath = ({ id, props }) => {
 
     const progress = firstItemCourse && ((firstItemCourse.completed / firstItemCourse.total) * 100).toString()
     const progressPecentage = progress && Number(progress.substring(0, 4))
-    console.log(user)
-    console.log(learningPath)
+
     const handleBack = () => {
        props.history.push('/learning-paths')
     }

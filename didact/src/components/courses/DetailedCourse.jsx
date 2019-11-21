@@ -1,17 +1,10 @@
 import React, { useEffect, useState } from "react"
 import { useSelector, useDispatch } from "react-redux"
-import { Link } from "react-router-dom";
-import Loader from "react-loader-spinner";
 
 import { DetailedCourseWrapper } from './DetailedCourseStyles'
-import { DidactButton, TagStyles } from '../dashboard/ButtonStyles'
+import { TagStyles } from '../dashboard/ButtonStyles'
 
-import {
-    getDetailedCourse,
-    toggleCompleteCourse,
-    toggleCompleteSection,
-    toggleCompleteLesson,
-} from '../../store/actions/index.js'
+import { getDetailedCourse } from '../../store/actions/index.js'
 
 //Material UI Imports
 import { makeStyles, } from '@material-ui/core/styles';
@@ -21,7 +14,6 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 //Material UI Icons
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 
 const useStyles = makeStyles(theme => ({
 
@@ -38,15 +30,11 @@ const DetailedCourse = (props) => {
     const dispatch = useDispatch()
     const state = useSelector(state => state)
     const phoneSize = props.props.phoneSize;
-    const id = state.onboardingReducer.user.id
     const detailedCourse = state.coursesReducer.detailedCourse
     const course = detailedCourse.course
     const sections = detailedCourse.sections
-    const isLoadingIcon = state.coursesReducer.isLoadingIcon
     const [expanded, setExpanded] = useState(false)
     const [lessonExpanded, setLessonExpanded] = useState(false)
-
-    console.log(detailedCourse)
 
     useEffect(_ => {
         dispatch(getDetailedCourse(props.id))
@@ -63,17 +51,6 @@ const DetailedCourse = (props) => {
         setLessonExpanded(isExpanded ? panel : false)
     }
 
-    const handleMarkCompleteCourse = () => {
-        dispatch(toggleCompleteCourse(course.id))
-    }
-
-    const handleMarkCompleteSection = (sectionId) => {
-        dispatch(toggleCompleteSection(course.id, sectionId))
-    }
-
-    const handleMarkCompleteLesson = (sectionId, detailId) => {
-        dispatch(toggleCompleteLesson(course.id, sectionId, detailId))
-    }
     const handleBack = () => {
         props.props.history.push('/courses')
     }
@@ -88,14 +65,6 @@ const DetailedCourse = (props) => {
                     <div className="courseWrapper">
                         <div style={{ backgroundColor: '#386581', display: 'flex', alignItems: 'center', padding: '0px', margin: '0px', justifyContent: 'space-between' }}>
                             <h1>{course.name}</h1>
-                            {/* {isLoadingIcon ? (
-                            <Loader type="Oval" style={{background: "#386581", margin: '0', padding: '0 5px 0 0', width: '20px'}} color="white" height={20} width={20} />)
-                            : 
-                            (course.automatically_completed || course.manually_completed ? 
-                            <CheckCircleIcon onClick={handleMarkCompleteCourse} className='completeButton'/>
-                            :
-                            <CheckCircleIcon onClick={handleMarkCompleteCourse} className='notCompleteButton'/>)
-                          } */}
                         </div>
                         <p>{course.description}</p>
                         <p>{course.category ? (`Category: ${course.category}`) : (null)}</p>
@@ -107,12 +76,6 @@ const DetailedCourse = (props) => {
                                     )
                                 })}
                             </div>
-                            {/* {course.id === id ? (
-                               <DidactButton >
-                                 <Link style={{ textDecoration: 'none', color: "inherit"}} to={`/courses/${course.id}/edit`}>Edit Course</Link>
-                                </DidactButton> 
-                            ) : (null)} */}
-
                         </div>
                     </div>
                     {sections.map((el, index) => {
@@ -130,14 +93,6 @@ const DetailedCourse = (props) => {
                                 >
                                     <div>
                                         <h3>{`Section ${index + 1}: ${el.section.name}`}</h3>
-                                        {/* {isLoadingIcon ? (
-                                        <Loader type="Oval" style={{background: "#386581", margin: '0', padding: '0 5px 0 0', width: '20px'}} color="white" height={20} width={20} />)
-                                        : 
-                                        (el.section.automatically_completed || el.section.manually_completed ? 
-                                        <CheckCircleIcon onClick={() => handleMarkCompleteSection(el.section.id)} className='completeButton'/>
-                                        :
-                                        <CheckCircleIcon onClick={() => handleMarkCompleteSection(el.section.id)} className='notCompleteButton'/>)
-                                    } */}
                                     </div>
                                 </ExpansionPanelSummary>
                                 <ExpansionPanelDetails>
@@ -183,13 +138,6 @@ const DetailedCourse = (props) => {
                                                                         <a className="lessonTitleName" href={detail.link} target="_blank" rel="noopener noreferrer">{detail.name}</a>
                                                                         <p className="lessonTitleType">{detail.type}</p>
                                                                     </div>
-                                                                    {/* {isLoadingIcon ? (
-                                                                    <Loader type="Oval" style={{background: "#386581", margin: '0', padding: '0 5px 0 0', width: '20px'}} color="white" height={20} width={20} />)
-                                                                    : 
-                                                                    (detail.automatically_completed || detail.manually_completed ? 
-                                                                        <CheckCircleIcon onClick={() => handleMarkCompleteLesson(el.section.id, detail.id)} className='completeButton'/>
-                                                                        :
-                                                                        <CheckCircleIcon onClick={() => handleMarkCompleteLesson(el.section.id, detail.id)} className='notCompleteButton'/>)} */}
                                                                 </div>
 
                                                             )

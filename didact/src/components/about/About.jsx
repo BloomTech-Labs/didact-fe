@@ -2,7 +2,6 @@ import React from 'react'
 import {ContentDiv, 
         ContentDivMobile, 
         LambdaImage, 
-        ImageDiv, 
         CardContainerOpen, 
         CardContainer, 
         Card, 
@@ -27,7 +26,6 @@ import { FaDribbble, FaGithub } from 'react-icons/fa';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 
 const About = ({props}) => {
-console.log(props)
     const handleBack = () => {
         props.history.push('/')
     }   

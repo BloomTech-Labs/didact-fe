@@ -458,8 +458,6 @@ export const learningPathReducer = (state = initialState, action) =>
                 error: "",
             }
         case UPDATE_YOUR_PATH_ORDER_SUCCESS:
-            console.log('reducer', state.yourLearningPaths)
-            console.log('reducer incoming data', state.yourLearningPaths)
             return {
                 ...state,
                 yourLearningPaths: action.payload,

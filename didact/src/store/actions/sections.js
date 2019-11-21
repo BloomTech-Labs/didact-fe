@@ -171,13 +171,11 @@ export const toggleCompleteSection =(courseId, sectionId) => dispatch => {
     axiosWithAuth()
     .put(`${baseURL}${courseId}/sections/${sectionId}/togglecomplete`)
     .then(res => {
-        console.log(res)
         dispatch({type: TOGGLE_COMPLETE_SECTION_SUCCESS, payload: res.data})
         return courseId
     })
     .then(resId => dispatch(getYourDetailedCourse(resId)))
     .catch(err => {
-        console.log(err)
         dispatch({type: TOGGLE_COMPLETE_SECTION_FAIL, payload: err})
     })
     
@@ -189,11 +187,9 @@ export const getSectionsWithUserCompletion =(courseId) => dispatch => {
     axiosWithAuth()
     .get(`${baseURL}${courseId}/yoursections/`)
     .then(res => {
-        console.log(res)
         dispatch({type: GET_USER_SECTION_COMPLETION_SUCCESS, payload: res.data})
     })
     .catch(err => {
-        console.log(err)
         dispatch({type: GET_USER_SECTION_COMPLETION_FAIL, payload: err})
     })
 }
@@ -204,13 +200,11 @@ export const toggleCompleteLesson =(courseId, sectionId, detailId) => dispatch =
     axiosWithAuth()
     .put(`${baseURL}${courseId}/sections/${sectionId}/details/${detailId}/togglecomplete`)
     .then(res => {
-        console.log(res)
         dispatch({type: TOGGLE_COMPLETE_LESSON_SUCCESS, payload: res.data})
         return courseId
     })
     .then(resId => dispatch(getYourDetailedCourse(resId)))
     .catch(err => {
-        console.log(err)
         dispatch({type: TOGGLE_COMPLETE_LESSON_FAIL, payload: err})
     })
 }
@@ -221,11 +215,9 @@ export const getLessonsWithUserCompletion =(courseId, sectionId) => dispatch => 
     axiosWithAuth()
     .get(`${baseURL}${courseId}/yoursections/${sectionId}`)
     .then(res => {
-        console.log(res)
         dispatch({type: GET_USER_LESSON_COMPLETION_SUCCESS, payload: res.data})
     })
     .catch(err => {
-        console.log(err)
         dispatch({type: GET_USER_LESSON_COMPLETION_FAIL, payload: err})
     })
 }

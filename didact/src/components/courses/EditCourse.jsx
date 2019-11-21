@@ -20,7 +20,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteModal from './DeleteModal'
 import AddCircleRoundedIcon from '@material-ui/icons/AddCircleRounded';
-import { AddButton, ButtonText, ButtonDiv, FinishEdit, TrashCanEdit, DidactButton } from '../dashboard/ButtonStyles';
+import { AddButton, ButtonText, ButtonDiv, TrashCanEdit, DidactButton } from '../dashboard/ButtonStyles';
 import { DidactField, DidactInput, DidactLabel, DidactTextArea, FormTitle } from '../dashboard/FormStyles';
 
 
@@ -113,7 +113,7 @@ const EditCourse = ({ props, id }) => {
         } else {
             setEditCourseText("Edit")
         }
-    })
+    }, [props.phoneSize])
 
     useEffect(() => {
         setChanges({

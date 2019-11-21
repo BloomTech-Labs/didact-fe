@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { courseEndPoint, getDetailedCourse } from "../../store/actions/index.js";
+import { courseEndPoint } from "../../store/actions/index.js";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
@@ -134,7 +134,6 @@ const YourCourse = ({ course, addingCourses, props }) => {
     const classes = useStyles();
     const dispatch = useDispatch();
     const learningPaths = state.learningPathReducer.yourLearningPathsOwned
-    const detailedCourse = state.coursesReducer.detailedCourse
     const filteredPaths = []
     const [expanded, setExpanded] = useState(false);
     const [anchorEl, setAnchorEl] = useState(null);
@@ -171,7 +170,7 @@ const YourCourse = ({ course, addingCourses, props }) => {
     learningPaths.forEach(path => {
         if (!path.courseIds.includes(course.id)) filteredPaths.push(path)
     })
-    console.log(props)
+
     return (
         <PopoverWrapper>
             <Card className={props && props.match.url === "/" ? classes.cardDashboard : classes.card}>

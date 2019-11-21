@@ -95,33 +95,25 @@ export const addApiCourse = (values, props) => dispatch => {
     dispatch({type: ADD_COURSE_DATA_START})
     axiosWithAuth().post(`${beURL}udemy`, {link: values})
     .then(res => {
-        console.log(res.data)
         dispatch({type: ADD_COURSE_DATA_SUCCESS, payload: res.data})
         return res  
     })
     .then(response => {
-        console.log(response)
         if(response.data.message) props.match.params.id ? (dispatch(addNewCourseToLearningPath(props, response.data.course.id))) :  props.history.push(`/courses/all/${response.data.course.id}/`)
         else props.match.params.id ? (dispatch(addNewCourseToLearningPath(props, response.data.id))) : props.history.push(`/courses/yours/${response.data.id}/`)
     })
     .catch(err => {
-        console.log('error in action', err.response)
         dispatch({type: ADD_COURSE_DATA_FAIL, payload: err.response})
     })
 }
 
 export const checkDatabase = (values, props) => dispatch => {
-    console.log({link: values})
     dispatch({type: CHECK_DATABASE_START})
     axiosWithAuth().post(`${baseURL}checkdb`, {link: values})
     .then(res => {
-        console.log(res.data)
         dispatch({type: CHECK_DATABASE_SUCCESS, payload: res.data.id})
-        // return res.data
     })
-    // .then(response => props.match.params.id ? (dispatch(addNewCourseToLearningPath(props, response.id))) : props.history.push(`/courses/yours/${response.id}/edit`))
     .catch(err => {
-        console.log('error in action', err.response)
         dispatch({type: CHECK_DATABASE_FAIL, payload: err.response})
     })
 }
@@ -202,7 +194,6 @@ export const getYourDetailedCourse = (id) => async dispatch =>
     }
     catch(err)
     {
-        console.log(err.response)
         dispatch({ type: GET_DETAILED_COURSE_FAIL, payload: err })
     }
 }
@@ -248,13 +239,11 @@ export const toggleCompleteCourse =(id) => dispatch => {
     axiosWithAuth()
     .put(`${baseURL}${id}/togglecomplete`)
     .then(res => {
-        console.log(res)
         dispatch({type: TOGGLE_COMPLETE_COURSE_SUCCESS, payload: res.data})
         return id
     })
     .then(resId => dispatch(getYourDetailedCourse(resId)))
     .catch(err => {
-        console.log(err)
         dispatch({type: TOGGLE_COMPLETE_COURSE_FAIL, payload: err})
     })
 }
@@ -265,11 +254,9 @@ export const findYoursById =(id) => dispatch => {
     axiosWithAuth()
     .get(`${baseURL}${id}/yours`)
     .then(res => {
-        console.log(res)
         dispatch({type: GET_USER_COMPLETION_COURSE_SUCCESS, payload: res.data})
     })
     .catch(err => {
-        console.log(err)
         dispatch({type: GET_USER_COMPLETION_COURSE_FAIL, payload: err})
     })
 }

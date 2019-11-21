@@ -7,7 +7,6 @@ import Course from '../courses/Course';
 
 //Material UI Imports
 import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
 
 // Styled Component Imports
 import {LearningPathCard} from '../learningPaths/YourLearningPathsStyles'

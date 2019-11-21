@@ -7,9 +7,7 @@ export const DroppableDiv = styled.div`
 
 export const DraggableDiv = styled(Card)`
     max-width: 540px;
-    /* box-shadow: ${props => (props.isDragging ? '0 10px 20px rgba(0,0,0,0.4), 0 6px 6px rgba(0,0,0,0.23) !important'  : "0px 1px 3px 0px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 2px 1px -1px rgba(0,0,0,0.12) !important")}; */
-    /* background-color: ${props => (props.isDragging ? '#386581 !important'  : "#386581")}; */
-    opacity: ${props => (props.isDragging ? '.7 !important'  : "1")};
+    opacity: ${props => (props.isdragging === 'true' ? '.7 !important'  : "1")};
     border-radius: 15px;
 `
 
@@ -20,7 +18,3 @@ export const PathInstructions = styled.div`
     margin: 15px 0;
     font-size: 2.0rem;
 `
-
-// .card-3 {
-//     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-//   }
