@@ -4,7 +4,6 @@ import * as Yup from 'yup';
 import { registerAction } from '../../store/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { Wrapper, RegisterWrapper, RegisterFormWrapper, Header } from './RegisterStyles'
-import HeaderNoIcons from '../header/HeaderNoIcons'
 import beURL from "../../utils/beURL";
 import RegisterImage from '../../images/computer2.png'
 
@@ -27,8 +26,6 @@ const RegisterForm = (props) => {
     }
 
     const handleRegister = (values) => {
-        console.log('Props', props.history)
-        console.log('Values', values)
         dispatch(registerAction(props.history, values))
     }
 
@@ -37,11 +34,11 @@ const RegisterForm = (props) => {
             <Header>
                 <h1 style={{fontFamily: 'ITC Grouch'}}>Didact</h1>
                 <div>
-                    <a>About</a>
-                    <a>Contact</a>
+                    {/* <a>About</a>
+                    <a>Contact</a> */}
                 </div>
             </Header>
-            <img src={RegisterImage}/>
+            <img src={RegisterImage} alt='computer on a desk'/>
             <RegisterWrapper>
                 <RegisterFormWrapper>
                     <div className="header">

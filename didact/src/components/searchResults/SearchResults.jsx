@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {courseEndPoint, getLearningPaths, getYourLearningPaths  } from '../../store/actions'
 
@@ -26,8 +26,6 @@ const SearchResults = ({props, results, setValues, values}) => {
     const courses=state.coursesReducer.courses
     const learningPaths=state.learningPathReducer.learningPaths
     const yourLearningPaths=state.learningPathReducer.yourLearningPaths
-    const allPaths=learningPaths.concat(yourLearningPaths);
-
 
     useEffect(() => {
         dispatch(courseEndPoint())

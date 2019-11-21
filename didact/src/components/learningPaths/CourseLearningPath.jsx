@@ -8,7 +8,7 @@ import CardActions from '@material-ui/core/CardActions';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import DeleteModal from '../courses/DeleteModal'
-import { TrashCanEdit, DidactButton } from '../dashboard/ButtonStyles';
+import { TrashCanEdit } from '../dashboard/ButtonStyles';
 import {DraggableDiv} from "./DraggableStyles.js";
 import EditPathItems from './pathItems/EditPathItems';
 
@@ -150,35 +150,8 @@ const CourseLearningPath = ({ course, index, props}) => {
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
                     ref={provided.innerRef} 
-                    isDragging={snapshot.isDragging}>
+                    isdragging={snapshot.isDragging ? 'true' : 'false'}>
                     <CardContent>
-                        {/* <h3>{course.name}</h3>
-                        <CardActions className={classes.descriptionDiv} disableSpacing >
-                            <p className={classes.descriptionTitle} > {course.description && !expanded ? (`${course.description.substring(0, 100)} ...`) : null}</p>
-                            <IconButton
-                                className={clsx(classes.expand, {
-                                    [classes.expandOpen]: expanded,
-                                })}
-                                onClick={handleExpandClick}
-                                aria-expanded={expanded}
-                                aria-label="show more"
-                                style={{ color: 'white'}}
-                            >
-                                <ExpandMoreIcon />
-                            </IconButton>
-                        </CardActions>
-                        <Collapse in={expanded} timeout="auto" unmountOnExit>
-                            <CardContent>
-                                <p>{course.description}</p>
-                            </CardContent>
-                        </Collapse>
-                        <p>{course.foreign_instructors}</p>
-                        <p>{course.foreign_rating}</p>
-                        <a href={course.link} alt = "course link" style = {{color: 'white', cursor: 'pointer'}}>
-                        {course.link}
-                         </a>
-                        <p>{course.category ? (`Category: ${course.category}`) : (null)}</p>
-                        <p>{course.type ? (course.type) : (null)}</p> */}
                             <div style={{border: 'none', boxShadow: 'none', paddingTop: "0", paddingLeft: '10px', display: 'flex'}}>
                                 <div onClick={handleExpandClick}
                                     aria-controls="panel1a-content"

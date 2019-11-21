@@ -4,11 +4,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
-import DashboardIcon from '@material-ui/icons/Dashboard';
 import SearchIcon from '@material-ui/icons/Search';
-
-import Profile from '../profile/Profile'
 
 const MobileHeaderComponent = (props) => {
 
@@ -19,10 +15,7 @@ const MobileHeaderComponent = (props) => {
             backgroundColor: '#5b5b5b',
             color: 'white',
             position: 'fixed',
-            // margin: '0'
-
         },
-
         iconImage: {
             width: "40px",
             height: "40px",

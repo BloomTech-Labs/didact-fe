@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from "react-redux"
 import { Link } from "react-router-dom";
-import Loader from "react-loader-spinner";
 import { getYourLearningPaths, quitLearningPath, updateYourPathOrder, toggleLearningPath } from '../../store/actions/index'
 
 import Modal from '@material-ui/core/Modal';
@@ -14,7 +13,7 @@ import DragIndicatorIcon from '@material-ui/icons/DragIndicator';
 import { YourLearningPathsWrapper, LearningPathCard, ButtonStyles } from './YourLearningPathsStyles'
 import { ButtonDiv, DidactButton } from '../dashboard/ButtonStyles'
 import { changePathOrder } from '../../utils/changePathOrder'
-import { DroppableDiv, PathInstructions } from "./DraggableStyles.js";
+import { DroppableDiv } from "./DraggableStyles.js";
 
 
 
@@ -84,9 +83,6 @@ const YourLearningPaths = (props) => {
     const learningPaths = state.learningPathReducer.yourLearningPaths
     const notCompletedPaths = []
     const completedPaths = []
-    const isLoadingLearningPathToggle = state.learningPathReducer.isLoading
-
-    console.log(learningPaths)
 
     learningPaths.forEach(el => {
         if ((el.total === el.completed) && el.total !== 0) {
@@ -175,7 +171,7 @@ const YourLearningPaths = (props) => {
                                             {...provided.draggableProps}
                                             {...provided.dragHandleProps}
                                             ref={provided.innerRef} 
-                                            isDragging={snapshot.isDragging}
+                                            isdragging={snapshot.isDragging ? 'true' : 'false'}
                                             className = {!props.props.open ? (classes.cardWidth) : (null)}
                                             
                                             >

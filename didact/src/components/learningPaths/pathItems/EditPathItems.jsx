@@ -110,7 +110,7 @@ const EditPathItems = ({ course, props, handleToggleEdit }) => {
     <>
       <Card className={classes.card}>
         <CardContent>
-          <p className={classes.title} gutterBottom>
+          <p className={classes.title}>
             Learning Path Overview
            </p>
            <TrashCanEdit style={{fontSize: '2.6rem'}} onClick={handleModalOpen}></TrashCanEdit>
@@ -129,19 +129,19 @@ const EditPathItems = ({ course, props, handleToggleEdit }) => {
             autoComplete="off"
           >
             <DidactField>
-              <DidactLabel for='title'>Item Name</DidactLabel>
+              <DidactLabel htmlFor='title'>Item Name</DidactLabel>
               <DidactInput id='title' type='text' value={changes.name || ""} onChange={handleChange('name')} placeholder='Item Name' />
             </DidactField>
             <DidactField>
-              <DidactLabel for='description'>Description</DidactLabel>
+              <DidactLabel htmlFor='description'>Description</DidactLabel>
               <DidactTextArea rows="8" id='description' value={changes.description || ""} onChange={handleChange('description')} placeholder='Description' />
             </DidactField>
             <DidactField>
-              <DidactLabel for='link'>Url Link</DidactLabel>
+              <DidactLabel htmlFor='link'>Url Link</DidactLabel>
               <DidactInput id='link' type='text' value={changes.link || ""} onChange={handleChange('link')} placeholder='Url Link' />
             </DidactField>
             <DidactField>
-              <DidactLabel for='type'>Type</DidactLabel>
+              <DidactLabel htmlFor='type'>Type</DidactLabel>
               <DidactInput id='type' type='text' value={changes.type || ""} onChange={handleChange('type')} placeholder='Type' />
             </DidactField>
             <ButtonDiv>

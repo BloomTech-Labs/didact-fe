@@ -2,12 +2,9 @@ import React, { useState } from 'react';
 import { postPathItem } from '../../../store/actions';
 import { useDispatch } from "react-redux";
 
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
 import { DidactField, DidactInput, DidactLabel, DidactTextArea } from '../../dashboard/FormStyles'
 import { DidactButton } from "../../dashboard/ButtonStyles";
 
@@ -83,24 +80,24 @@ const AddPathItems = ({ props }) => {
     </div>
     <Card className={classes.card}>
       <CardContent>
-        <p className={classes.title} gutterBottom>
+        <p className={classes.title}>
           Learning Path Item Overview
           </p>
         <form onSubmit={handleSubmit} className={classes.container} noValidate autoComplete="off">
           <DidactField>
-            <DidactLabel for='title'>Item Name</DidactLabel>
+            <DidactLabel htmlFor='title'>Item Name</DidactLabel>
             <DidactInput id='title' type='text' value={values.name || ""} onChange={handleChange('name')} placeholder='Item Name' />
           </DidactField>
           <DidactField>
-            <DidactLabel for='description'>Description</DidactLabel>
+            <DidactLabel htmlFor='description'>Description</DidactLabel>
             <DidactTextArea rows="8" id='description' value={values.description || ""} onChange={handleChange('description')} placeholder='Description' />
           </DidactField>
           <DidactField>
-            <DidactLabel for='link'>Url Link</DidactLabel>
+            <DidactLabel htmlFor='link'>Url Link</DidactLabel>
             <DidactInput id='link' type='text' value={values.link || ""} onChange={handleChange('link')} placeholder='Url Link' />
           </DidactField>
           <DidactField>
-            <DidactLabel for='type'>Type</DidactLabel>
+            <DidactLabel htmlFor='type'>Type</DidactLabel>
             <DidactInput id='type' type='text' value={values.type || ""} onChange={handleChange('type')} placeholder='Type' />
           </DidactField>
           <DidactButton type='submit' size="small" variant="contained">Create Item</DidactButton>

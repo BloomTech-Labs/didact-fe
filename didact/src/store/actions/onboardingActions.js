@@ -51,13 +51,11 @@ export const verifyToken = (history) => dispatch => {
     dispatch({ type: VERIFY_START })
     axios.post(`${baseURL}`, { 'token': token })
         .then(res => {
-            console.log('Success', res)
             dispatch({ type: VERIFY_SUCCESS, payload: res.data })
         })
         .catch( async (err) => 
         {
             await localStorage.removeItem('token')
-            console.log('Fail', err)
             await dispatch({ type: VERIFY_FAILURE, payload: err.response })
             await history.push('/landing')
         })
@@ -82,7 +80,6 @@ export const sendContactMessage = (values) => dispatch =>
     .post(`${baseURL}contactmessage`, values)
         .then(res =>
         {
-            console.log('res from send contact message', res)
             dispatch({ type: SEND_CONTACT_MESSAGE_SUCCESS })
         })
         .catch(err =>

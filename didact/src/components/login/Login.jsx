@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Form, Field, Formik } from "formik";
 import * as Yup from 'yup';
-import { loginAction, verifyToken } from '../../store/actions';
+import { loginAction } from '../../store/actions';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Wrapper, LoginWrapper, LoginFormWrapper, Header } from './LoginStyles'
@@ -31,11 +31,11 @@ const LoginForm = (props) => {
             <Header>
                 <h1 style={{fontFamily: 'ITC Grouch'}}>Didact</h1>
                 <div>
-                    <a>About</a>
-                    <a>Contact</a>
+                    {/* <a>About</a>
+                    <a>Contact</a> */}
                 </div>
             </Header>
-            <img src={LoginImage}/>
+            <img src={LoginImage} alt='computer on a desk'/>
             <LoginWrapper>
                 <LoginFormWrapper>
                     <div className="header">

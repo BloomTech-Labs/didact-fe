@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { courseEndPoint } from "../../store/actions/index.js";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { AddButton, ButtonText } from '../dashboard/ButtonStyles';
 import Course from './Course'
 
 //Material UI Imports
@@ -10,7 +8,6 @@ import { makeStyles } from '@material-ui/core/styles';
 //Material UI Icons
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import AddCircleRoundedIcon from '@material-ui/icons/AddCircleRounded';
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 
@@ -74,7 +71,6 @@ function AllCourses(props) {
     useEffect(() => {
         dispatch(courseEndPoint());
     }, [dispatch]);
-    console.log('all courses state', state.coursesReducer.courses)
 
     const handleBack = () => {
         props.props.history.push('/courses/yours')

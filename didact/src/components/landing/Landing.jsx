@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import { Container, Heading, DidactHeader, StyledButton, Flex, LargeFont, LargeFont1, SmallerFont, StyledImg, Middle, BlackBox, WhiteLargeText, WhiteLargeText1, StyledInput, StyledBlueButton, SmallText, SecondImg, StyledImgCircle, Warning, SocialImg } from './LandingStyles.js';
 import computer from '../../images/computer.png';
 import computer2 from '../../images/computer2.png';
@@ -76,7 +75,7 @@ const Landing = ({ history }) => {
                 </Flex>
                 </BlackBox>
                 <SecondImg src={computer} />
-                <a href="https://twitter.com/DidactLMS" target="_blank">
+                <a href="https://twitter.com/DidactLMS" target="_blank" rel="noopener noreferrer">
                     <SocialImg src={twitter} target="_blank"/>
                 </a>
         </Container>

@@ -4,8 +4,7 @@ import {
   getLearningPath,
   updateLearningPath,
   deleteLearningPath,
-  updateLearningPathContentOrder,
-  updateYourPathOrder
+  updateLearningPathContentOrder
 } from "../../store/actions";
 
 // import components
@@ -16,17 +15,14 @@ import { changePathOrder } from '../../utils/changePathOrder'
 
 // imports for Styled Components 
 import { DidactField, DidactInput, DidactLabel, DidactTextArea } from '../dashboard/FormStyles'
-import {ButtonDiv, FinishEdit, DidactButton, TrashCanEdit } from "../dashboard/ButtonStyles";
+import {ButtonDiv, DidactButton, TrashCanEdit } from "../dashboard/ButtonStyles";
 import {DroppableDiv, PathInstructions} from "./DraggableStyles.js";
 
 //imports from material-ui
 import { makeStyles} from "@material-ui/core/styles";
-import clsx from "clsx";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
-import Collapse from "@material-ui/core/Collapse";
-import IconButton from "@material-ui/core/IconButton";
 //Material UI Icons
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
@@ -38,12 +34,6 @@ import { DragDropContext, Droppable } from "react-beautiful-dnd";
 
 
 const useStyles = makeStyles(theme => ({
-  // card: {
-  //   maxWidth: 540,
-  //   borderRadius: 15,
-  //   marginTop: "10px",
-  //   boxShadow: 'none',
-  // },
   card: {
     maxWidth: 540,
     width: "100%",
@@ -111,7 +101,6 @@ const EditLearningPaths = ({ id, props }) => {
     description: "",
   });
  
-  // console.log(learningPath)
   useEffect(() => {
     dispatch(getLearningPath(id));
   }, [id, dispatch]);
@@ -265,7 +254,7 @@ const EditLearningPaths = ({ id, props }) => {
           ) : (
             <Card className={classes.card}>
               <CardContent>
-                <p className={classes.title} gutterBottom>
+                <p className={classes.title}>
                   Learning Path Overview
                 </p>
                 <TrashCanEdit style={{fontSize: '2.6rem'}} onClick={handleModalOpen}></TrashCanEdit>
@@ -279,15 +268,15 @@ const EditLearningPaths = ({ id, props }) => {
                 ) : null}
                 <form onSubmit={handlePathSubmit} className={classes.container} noValidate autoComplete="off">
                 <DidactField>
-                  <DidactLabel for='title'>Learning Path Title</DidactLabel>
+                  <DidactLabel htmlFor='title'>Learning Path Title</DidactLabel>
                   <DidactInput id='title' type='text' value={changes.name || ""} onChange={handleChange('name')} placeholder='Learning Path Title' />  
                 </DidactField>
                 <DidactField>
-                  <DidactLabel for='description'>Description</DidactLabel>
+                  <DidactLabel htmlFor='description'>Description</DidactLabel>
                   <DidactTextArea rows="8" id='description' value={changes.description || ""} onChange={handleChange('description')} placeholder='Description' />  
                 </DidactField>
                 <DidactField>
-                  <DidactLabel for='category'>Category</DidactLabel>
+                  <DidactLabel htmlFor='category'>Category</DidactLabel>
                   <DidactInput id='category' type='text' value={changes.category || ""} onChange={handleChange('category')} placeholder='Category' />  
                 </DidactField>
                   <ButtonDiv>

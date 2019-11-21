@@ -1,14 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles';
-import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
-import Collapse from '@material-ui/core/Collapse';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import IconButton from '@material-ui/core/IconButton';
-import { updateSection, getLessonsBySectionId, deleteSection, getLessonsWithUserCompletion } from '../../store/actions';
+import { updateSection, getLessonsBySectionId, deleteSection } from '../../store/actions';
 import Lessons from './Lessons'
 import AddLessons from './AddLessons'
 import DeleteModal from './DeleteModal'
@@ -83,8 +79,6 @@ const Section = ({ course, section, props }) => {
     const classes = useStyles();
     const dispatch = useDispatch()
     const lessons = useSelector(state => state.sectionsReducer.lessons)
-    const lesson = useSelector(state => state.sectionsReducer.lesson)
-    const [expanded, setExpanded] = useState(false);
     const [sectionEdit, setSectionEdit] = useState(false)
     const [addLessonChange, setAddLessonChange] = useState(false);
     const [openModal, setOpenModal] = useState(false);
@@ -110,10 +104,6 @@ const Section = ({ course, section, props }) => {
     const toggleEdit = () => {
         setSectionEdit(!sectionEdit)
     }
-
-    const handleExpandClick = () => {
-        setExpanded(!expanded);
-    };
 
     const handleChange = name => event => {
         setChanges({ ...changes, [name]: event.target.value });
@@ -177,19 +167,19 @@ const Section = ({ course, section, props }) => {
                         <form onSubmit={handleSubmit} className={classes.container} noValidate autoComplete="off">
                             <FormTitle>Edit Section</FormTitle>
                             <DidactField>
-                                <DidactLabel for='title'>Lesson Name</DidactLabel>
+                                <DidactLabel htmlFor='title'>Lesson Name</DidactLabel>
                                 <DidactInput id='title' type='text' value={changes.name || ""} onChange={handleChange('name')} placeholder='Lesson Name' />
                             </DidactField>
                             <DidactField>
-                                <DidactLabel for='order'>Section Order</DidactLabel>
+                                <DidactLabel htmlFor='order'>Section Order</DidactLabel>
                                 <DidactInput id='order' type='text' value={changes.order || ""} onChange={handleChange('order')} placeholder='Section Order' />
                             </DidactField>
                             <DidactField>
-                                <DidactLabel for='description'>Description</DidactLabel>
+                                <DidactLabel htmlFor='description'>Description</DidactLabel>
                                 <DidactTextArea rows="8" id='description' value={changes.description || ""} onChange={handleChange('description')} placeholder='Description' />
                             </DidactField>
                             <DidactField>
-                                <DidactLabel for='link'>URL Link</DidactLabel>
+                                <DidactLabel htmlFor='link'>URL Link</DidactLabel>
                                 <DidactInput id='link' type='text' value={changes.link || ""} onChange={handleChange('link')} placeholder='URL Link' />
                             </DidactField>
                             <ButtonDiv>
