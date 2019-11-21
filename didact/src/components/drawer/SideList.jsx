@@ -3,10 +3,10 @@ import { NavLink } from "react-router-dom";
 import { useSelector } from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles'
 
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
+// import List from "@material-ui/core/List";
+// import ListItem from "@material-ui/core/ListItem";
+// import ListItemIcon from "@material-ui/core/ListItemIcon";
+// import ListItemText from "@material-ui/core/ListItemText";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import FolderOpenIcon from '@material-ui/icons/FolderOpen';
@@ -65,7 +65,7 @@ const SideList = ({ props }) => {
         localStorage.clear('token')
         props.props.history.push('/login')
     }
-    console.log(props)
+
     const firstName = userName.first_name ? userName.first_name.substring(0, 1).toUpperCase() + userName.first_name.substring(1) : null;
     const lastName = userName.last_name ? userName.last_name.substring(0, 1).toUpperCase() + userName.last_name.substring(1) : null;
 

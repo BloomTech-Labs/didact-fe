@@ -232,7 +232,6 @@ export const deleteTagFromPath = (tag, id) => dispatch =>
 export const addNewCourseToLearningPath = (props, courseId) => dispatch =>
 {
     const order = Number(props.match.params.order + 1);
-    console.log("Learning Path New Course Add",props, courseId)
     dispatch({ type: POST_COURSE_TO_PATH_START })
     const pathId = props.match.params.id;
     axiosWithAuth().post(`${baseURL}${pathId}/courses/${courseId}`, {order: order})
@@ -257,7 +256,6 @@ export const postCourseToPath = (pathId, courseId, order) => dispatch =>
     })
     .catch(err =>
     {
-        console.log(err.response)
         dispatch({ type: POST_COURSE_TO_PATH_FAIL, payload: err })
     })
 }
@@ -298,7 +296,6 @@ export const getYourLearningPaths = (getYours) => dispatch =>
     axiosWithAuth().get(`${baseURL}yours`)
     .then(res =>
     {
-        console.log('Get Your LP', res)
         dispatch({ type: GET_YOUR_LEARNING_PATHS_SUCCESS, payload: res.data })
     })
     .catch(err =>
@@ -369,7 +366,6 @@ export const deletePathItem = (pathId, itemId) => dispatch =>
 }
 
 export const updateLearningPathContentOrder = (learningPathContent, path_id) => dispatch => {
-    console.log('in action', learningPathContent)
     dispatch({ type: UPDATE_PATH_CONTENT_START })
     axiosWithAuth().put(`${baseURL}${path_id}/order`, {learningPathContent: learningPathContent})
     .then(res => {
@@ -381,14 +377,11 @@ export const updateLearningPathContentOrder = (learningPathContent, path_id) => 
 }
 
 export const updateYourPathOrder = (pathArray) => dispatch => {
-    console.log(pathArray)
     let reqObj = []
     reqObj = pathArray.map(el => {return {pathId: el.id, userPathOrder: el.user_path_order}})
-    console.log('in the action', reqObj)
     dispatch({type: UPDATE_YOUR_PATH_ORDER_START})
     axiosWithAuth().put(`${baseURL}`, {pathOrderArray: reqObj})
     .then(res => {
-        console.log(res)
         dispatch({type: UPDATE_YOUR_PATH_ORDER_SUCCESS, payload: pathArray})
     })
     .catch(err => {
@@ -403,7 +396,6 @@ export const findForUserId = (learningPathId) => dispatch =>
     axiosWithAuth().get(`${baseURL}${learningPathId}/yours`)
     .then(res =>
     {
-        console.log('Learning Path Completion', res)
         dispatch({ type: GET_YOUR_LEARNING_PATH_COMPLETION_SUCCESS, payload: res.data })
     })
     .catch(err =>
@@ -419,7 +411,6 @@ export const toggleLearningPath = (learningPathId) => dispatch =>
     axiosWithAuth().put(`${baseURL}${learningPathId}/yours`)
     .then(res =>
     {
-        console.log(res)
         dispatch({ type: TOGGLE_LEARNING_PATH_SUCCESS, payload: res.data })
     })
     .then(res => {
@@ -438,7 +429,6 @@ export const toggleLearningPathItem = (learningPathId, itemId) => dispatch =>
     axiosWithAuth().put(`${baseURL}${learningPathId}/path-items/${itemId}/yours`)
     .then(res =>
     {
-        console.log(res)
         dispatch({ type: TOGGLE_LEARNING_PATH_ITEM_SUCCESS, payload: res.data })
     })
     .catch(err =>

@@ -8,12 +8,9 @@ import { addSectionToCourse } from '../../store/actions'
 import { DidactField, DidactInput, DidactLabel, DidactTextArea, FormTitle } from '../dashboard/FormStyles'
 import { ButtonDiv, DidactButton } from '../dashboard/ButtonStyles'
 
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-
 
 
 const useStyles = makeStyles(theme => ({
@@ -114,25 +111,6 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-const CssTextField = withStyles({
-    root: {
-        '& label.Mui-focused': {
-            color: 'gray',
-        },
-        '& .MuiOutlinedInput-root': {
-            '& fieldset': {
-                borderColor: 'gray',
-            },
-            '&:hover fieldset': {
-                borderColor: 'gray',
-            },
-            '&.Mui-focused fieldset': {
-                border: '1px solid gray',
-            },
-
-        },
-    },
-})(TextField);
 const initalValues = {
     name: "",
     description: "",
@@ -170,19 +148,19 @@ const AddSection = ({course, props, setAddSectionChange}) => {
                     <form onSubmit={handleSubmit} className={classes.container} noValidate autoComplete="off">
                         <FormTitle>Add Section </FormTitle>
                         <DidactField>
-                            <DidactLabel for='title'>Lesson Name</DidactLabel>
+                            <DidactLabel htmlFor='title'>Lesson Name</DidactLabel>
                             <DidactInput id='title' type='text' value={values.name || ""} onChange={handleChange('name')} placeholder='Lesson Name' />  
                         </DidactField>
                         <DidactField>
-                            <DidactLabel for='order'>Order</DidactLabel>
+                            <DidactLabel htmlFor='order'>Order</DidactLabel>
                             <DidactInput id='order' type='text' value={values.order || ""} onChange={handleChange('order')} placeholder='Order' />  
                         </DidactField>
                         <DidactField>
-                            <DidactLabel for='description'>Description</DidactLabel>
+                            <DidactLabel htmlFor='description'>Description</DidactLabel>
                             <DidactTextArea rows="8" id='description' value={values.description || ""} onChange={handleChange('description')} placeholder='Description' />  
                         </DidactField>
                         <DidactField>
-                            <DidactLabel for='link'>URL Link</DidactLabel>
+                            <DidactLabel htmlFor='link'>URL Link</DidactLabel>
                             <DidactInput id='link' type='text' value={values.link || ""} onChange={handleChange('link')} placeholder='URL Link' />  
                         </DidactField>
                         <ButtonDiv>

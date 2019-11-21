@@ -8,14 +8,12 @@ import { Link } from "react-router-dom"
 //Material UI Icons
 import CssBaseline from "@material-ui/core/CssBaseline"
 import useMediaQuery from "@material-ui/core/useMediaQuery"
-import DashboardIcon from '@material-ui/icons/Dashboard'
 import SearchIcon from '@material-ui/icons/Search';
 
 import DrawerComponent from '../drawer/Drawer'
 import MobileDrawerComponent from '../drawer/MobileDrawer'
 import MobileHeaderComponent from '../header/MobileHeader'
 import Content from '../content/Content'
-import Profile from '../profile/Profile'
 
 
 const useStyles = makeStyles(theme => ({

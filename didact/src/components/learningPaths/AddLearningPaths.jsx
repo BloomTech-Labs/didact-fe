@@ -32,7 +32,6 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const AddLearningPaths = ({ props }) => {
-  console.log(props)
   const classes = useStyles();
   const dispatch = useDispatch();
   const state = useSelector(state => state)
@@ -72,15 +71,15 @@ const AddLearningPaths = ({ props }) => {
         <form onSubmit={handleSubmit} className={classes.container} noValidate autoComplete="off">
           <FormTitle>Learning Path Overview</FormTitle>
           <DidactField>
-            <DidactLabel for='title'>Title</DidactLabel>
+            <DidactLabel htmlFor='title'>Title</DidactLabel>
             <DidactInput id='title' type='text' value={values.name || ""} onChange={handleChange('name')} placeholder='Learning Path Title' />
           </DidactField>
           <DidactField>
-            <DidactLabel for='description'>Description</DidactLabel>
+            <DidactLabel htmlFor='description'>Description</DidactLabel>
             <DidactTextArea id='description' value={values.description || ""} onChange={handleChange('description')} placeholder='Description' rows="8" />
           </DidactField>
           <DidactField>
-            <DidactLabel for='category'>Category</DidactLabel>
+            <DidactLabel htmlFor='category'>Category</DidactLabel>
             <DidactInput id='category' type='text' value={values.category || ""} onChange={handleChange('category')} placeholder='Category' />
           </DidactField>
           <DidactButton style={{ marginLeft: '72%' }} type='submit'>Create Path</DidactButton>

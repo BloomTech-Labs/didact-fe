@@ -45,8 +45,6 @@ const YourDetailedCourse = (props) => {
     const [expanded, setExpanded] = useState(false)
     const [lessonExpanded, setLessonExpanded] = useState(false)
 
-    console.log(detailedCourse)
-
     useEffect(_ => {
         dispatch(getYourDetailedCourse(props.id))
     }, [dispatch, props.id])

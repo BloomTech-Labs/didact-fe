@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { getYourCourses, getYourLearningPaths } from "../../store/actions/index.js";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { AddButton, ButtonText } from '../dashboard/ButtonStyles';
 import { ButtonStyles } from '../learningPaths/YourLearningPathsStyles'
 import YourCourse from './YourCourse'
 
@@ -10,7 +9,6 @@ import YourCourse from './YourCourse'
 import { makeStyles } from '@material-ui/core/styles';
 //Material UI Icons
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import AddCircleRoundedIcon from '@material-ui/icons/AddCircleRounded';
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 
@@ -72,7 +70,7 @@ function AllCourses(props) {
     useEffect(() => {
         dispatch(getYourLearningPaths())
     }, [dispatch])
-    console.log(props)
+
     return (
     <div>
         <div style={{display: 'flex', justifyContent: 'space-between', margin: '-10px 10px 10px 10px', borderBottom: '1px solid black'}}>

@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { updateLesson, deleteLesson } from '../../store/actions'
-import { makeStyles, withStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
-import {EditLessonButton, EditIconButton, ButtonDiv, DeleteForm, TrashCan, DidactButton} from '../dashboard/ButtonStyles'
-import { DidactField, DidactInput, DidactLabel, DidactTextArea } from '../dashboard/FormStyles'
+import { makeStyles } from '@material-ui/core/styles';
+import { EditIconButton, ButtonDiv, TrashCan, DidactButton} from '../dashboard/ButtonStyles'
+import { DidactField, DidactInput, DidactLabel } from '../dashboard/FormStyles'
 import DeleteModal from './DeleteModal';
 
 import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
@@ -115,26 +114,6 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-const CssTextField = withStyles({
-    root: {
-        '& label.Mui-focused': {
-            color: 'gray',
-        },
-        '& .MuiOutlinedInput-root': {
-            '& fieldset': {
-                borderColor: 'gray',
-            },
-            '&:hover fieldset': {
-                borderColor: 'gray',
-            },
-            '&.Mui-focused fieldset': {
-                border: '1px solid gray',
-            },
-
-        },
-    },
-})(TextField);
-
 const Lesson = ({ course, section, lesson, props }) => {
     const [toggleLessonEdit, setToggleLessonEdit] = useState(false)
     const classes = useStyles();
@@ -210,19 +189,19 @@ const Lesson = ({ course, section, lesson, props }) => {
                 {/* <DeleteForm onClick={handleModalOpen}>X</DeleteForm> */}
                  <form onSubmit={handleSubmit} className={classes.container} noValidate autoComplete="off">
                     <DidactField>
-                        <DidactLabel for='title'>Lesson Name</DidactLabel>
+                        <DidactLabel htmlFor='title'>Lesson Name</DidactLabel>
                         <DidactInput id='title' type='text' value={changes.name || ""} onChange={handleChange('name')} placeholder='Lesson Name' />  
                     </DidactField>
                     <DidactField>
-                        <DidactLabel for='link'>URL Link</DidactLabel>
+                        <DidactLabel htmlFor='link'>URL Link</DidactLabel>
                         <DidactInput id='link' type='text' value={changes.link || ""} onChange={handleChange('link')} placeholder='URL Link' />  
                     </DidactField>
                     <DidactField>
-                        <DidactLabel for='order'>Order</DidactLabel>
+                        <DidactLabel htmlFor='order'>Order</DidactLabel>
                         <DidactInput id='order' type='text' value={changes.order || ""} onChange={handleChange('order')} placeholder='Order' />  
                     </DidactField>
                     <DidactField>
-                        <DidactLabel for='type'>Type</DidactLabel>
+                        <DidactLabel htmlFor='type'>Type</DidactLabel>
                         <DidactInput id='type' type='text' value={changes.type || ""} onChange={handleChange('type')} placeholder='Type' />  
                     </DidactField>
                     <ButtonDiv>
