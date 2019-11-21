@@ -6,34 +6,42 @@ export const PageFlex = styled.div`
     /* width: auto; */
 
     .drawer {
-        padding-right: 30px;
+        padding-right: 20px;
     }
 
     .headerMain {
         /* padding-left: 50px; */
+        min-width: 826px;
         width : 100%;
         margin: 0 0 0 15px;
 
         .header {
-            width: calc(100% - 30px);
+            min-width: 825px;
+            width: 100%;
             display: flex;
-            background: #5b5b5b;
+            background: #242424BF;
             border-radius: 19px;
             margin-top: 10px;
             justify-content: space-between;
             align-items: center;
-            color: white;
-            padding: 5px 15px;
+            color: #EBE8E1;
+            padding: 10px 15px;
 
             h2 {
                 margin: 0px 0px;
+                font-family: ITC Grouch;
+                font-size: 32px;
             }
 
             .navSection {
-                width: 300px;
+                width: 100%;
+                max-width: 250px;
                 display: flex;
                 align-items: center;
-                justify-content: space-between;
+                justify-self: "flex-end";
+                justify-content: flex-end;
+
+                
             }
         }
     }

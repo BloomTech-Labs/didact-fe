@@ -2,39 +2,19 @@ import React, { useEffect, useState } from "react";
 import { courseEndPoint } from "../../store/actions/index.js";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { AddButton, PlusDiv, Plus, ButtonText } from '../dashboard/ButtonStyles';
+import { AddButton, ButtonText } from '../dashboard/ButtonStyles';
 import Course from './Course'
 
-import ReactTooltip from 'react-tooltip'
-
-// import { CoursesCard, CourseMenuDiv, CourseDiv } from '../dashboard/DashboardStyles'
-// import { AddButton, PlusDiv, Plus, ButtonText } from '../dashboard//ButtonStyles';
-
+//Material UI Imports
 import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
-import clsx from 'clsx';
-import IconButton from '@material-ui/core/IconButton';
-import Collapse from '@material-ui/core/Collapse';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+//Material UI Icons
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import AddCircleRoundedIcon from '@material-ui/icons/AddCircleRounded';
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 
 const useStyles = makeStyles(theme => ({
-    buttonCourse: {
-        border: "none",
-        margin: "20px",
-        backgroundColor: '#f2e9d4',
-        outline: 'none',
-        padding: '10px',
-        borderRadius: 15,
-        width: '120px',
-        fontSize: "13px",
-        cursor: 'pointer'
-    },
     buttonDiv: {
         display: "flex",
         justifyContent: 'flex-end',
@@ -45,29 +25,18 @@ const useStyles = makeStyles(theme => ({
     },
     addButtonDivTablet: {
         display: 'flex',
-        flexDirection: 'row',
-        marginBottom: "-20px"
+        flexFlow: 'row wrap',
+        marginBottom: "-20px",
+        maxWidth: '500px'
     },
-    card: {
-        // minWidth: 375,
-        maxWidth: 550,
-        margin: '40px 10px 40px 0',
-        padding: '10px',
-        borderRadius: '15px',
-        // backgroundColor: '#eeeff3'
-    },
+  
     circleIcon: {
         fontSize: '3.5rem',
         marginRight: '5px',
+        marginLeft: '10px',
         color: "#5b5b5b"
-    },
-    descriptionDiv: {
-        width: "100%",
-        display: 'flex',
-        justifyContent: "space-between",
-        fontSize: 14,
-        color: "#757575"
-    },
+    }, 
+  
     expand: {
         transform: 'rotate(0deg)',
         // marginLeft: 'auto',
@@ -78,91 +47,58 @@ const useStyles = makeStyles(theme => ({
     expandOpen: {
         transform: 'rotate(180deg)',
     },
-    heading: {
-        fontSize: theme.typography.pxToRem(15),
-        fontWeight: theme.typography.fontWeightRegular,
-    },
-    pos: {
-        marginBottom: 12,
-    },
     root: {
         display: 'flex',
         flexDirection: 'row',
+        marginTop: '-40px'
     },
     rootTablet: {
         display: 'flex',
         flexDirection: 'column',
     },
-    title: {
-        fontSize: 14,
-    },
-
-    tooltip: {
-        width: "400px"
-    },
-
+    span: {
+        cursor: 'pointer',
+        "&:hover":{
+          color: 'white'
+        }
+      }
 }));
 
 function AllCourses(props) {
     const tabletSize = useMediaQuery("(max-width:1150px)");
     const classes = useStyles();
     const dispatch = useDispatch();
-    const [expanded, setExpanded] = useState(false);
+    const [addingCourses] = useState(true)
     const state = useSelector(state => state);
-    console.log('user', state.onboardingReducer.user)
-    console.log(state.coursesReducer.courses)
 
     useEffect(() => {
         dispatch(courseEndPoint());
     }, [dispatch]);
+    console.log('all courses state', state.coursesReducer.courses)
 
-    const handleExpandClick = () => {
-        setExpanded(!expanded);
-    };
-
+    const handleBack = () => {
+        props.props.history.push('/courses/yours')
+    }  
+ 
     return (
+    <div>
+        <div style={{display: 'flex', justifyContent: 'space-between', margin: '-10px 10px 10px 10px', borderBottom: '1px solid black'}}>
+            <p style={{fontWeight: 'bold', marginLeft: '10px', display: 'flex', flexDirection:'row', alignItems: 'center'}}><span className={classes.span}  onClick={() => handleBack()}>Courses</span><ChevronRightIcon style={{fontSize: '1.6rem'}}/><span>All</span></p>
+            <p className={classes.span} style={{fontWeight: 'bold', display: 'flex', flexDirection:'row', alignItems: 'center'}} onClick = {handleBack}><ChevronLeftIcon style={{fontSize: '1.6rem'}}/>Your Courses</p>
+        </div>
+        <h2 style={{margin: '10px', maxWidth: "540px", width: "100%", textAlign: 'left'}}>All Courses</h2>
         <div className = {tabletSize ? classes.rootTablet : classes.root}>
-            {tabletSize ? (<div className = {classes.addButtonDivTablet}>
-                <Link style={{ textDecoration: 'none' }} to='/courses/add'>
-                    <AddButton style = {{marginRight: '10px'}}>
-                        <AddCircleRoundedIcon className = {classes.circleIcon}/>
-                        <ButtonText>Add Course</ButtonText>
-                    </AddButton>
-                </Link>
-                {/* <Link style={{ textDecoration: 'none' }} to='/courses/add'>
-                    <AddButton>
-                        <PlusDiv>
-                            <Plus>+</Plus>
-                        </PlusDiv>
-                        <ButtonText>Add Course</ButtonText>
-                    </AddButton>
-                </Link> */}
-            </div>) : (null) }
             <div>
                 {state.coursesReducer.courses
                     ? state.coursesReducer.courses.map((course, i) => (
-                        <Course key = {i} course = {course} />
+                        <Course key={i} course={course} addingCourses={addingCourses}/>
                     ))
                     : null}
 
             </div>
-            {!tabletSize ? (<div className = {classes.addButtonDiv}>
-                <Link style={{ textDecoration: 'none' }} to='/courses/add'>
-                    <AddButton>
-                        <AddCircleRoundedIcon className = {classes.circleIcon}/>
-                        <ButtonText>Add Course</ButtonText>
-                    </AddButton>
-                </Link>
-                {/* <Link style={{ textDecoration: 'none' }} to='/courses/add'>
-                    <AddButton>
-                        <PlusDiv>
-                            <Plus>+</Plus>
-                        </PlusDiv>
-                        <ButtonText>Add Course</ButtonText>
-                    </AddButton>
-                </Link> */}
-            </div>) : (null) }
+            
         </div>
+    </div>
     );
 }
 

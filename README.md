@@ -1,157 +1,203 @@
-🚫 Note: All lines that start with 🚫 are instructions and should be deleted before this is posted to your portfolio. This is intended to be a guideline, feel free to add your own flare to it.
+# Didact
 
-🚫 The numbers 1️⃣ through 5️⃣ next to each item represent the week that part of the docs needs to be comepleted by.  Make sure to delete the numbers by the end of Labs.
+You can find the deployed project at [https://didactlms.com](https://didactlms.com).
 
-🚫 Each student has a required minimum number of meaningful PRs each week per the rubric. Contributing to docs does NOT count as a PR to meet your weekly requirements.
+## Contributors
 
-# 1️⃣ Title of project goes here
 
-1️⃣ You can find the deployed project at [🚫URL NAME GOES HERE](🚫copy and paste URL here).
-
-## 4️⃣ Contributors
-
-🚫Add contributor info below, make sure add images and edit the social links for each member. Add to or delete these place-holders as needed
-
-|                                       [Student 1](https://github.com/)                                        |                                       [Student 2](https://github.com/)                                        |                                       [Student 3](https://github.com/)                                        |                                       [Student 4](https://github.com/)                                        |                                       [Student 5](https://github.com/)                                        |
-| :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: |
-|                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/)                       |
-|                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/)                 |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/honda0306)             |           [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Mister-Corn)            |          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/NandoTheessen)           |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/wvandolah)             |
-| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) |
+|                                       [Andrew Allen](https://github.com/AndrewA0112)                                        |                                       [Jonathan Scott](https://jonathanscott.io/)                                        |                                       [Eli Sacks](http://www.eli-sacks.com/)                                        |                                       [Seth Nadu](https://www.sethnadu.com/)                                        |                                       [Ben Allen](https://github.com/allenben746)                                        |                                       [Mark Dudlik](http://markdudlik.com/)                                        |                                       [Todd McKenzie](http://www.github.com/toddmckenzie)                                        |
+| :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: |
+|                      [<img src="./didact/src/images/team/andrew.png" width = "200" />](https://github.com/AndrewA0112)                       |                      [<img src="./didact/src/images/team/jon.png" width = "200" />](https://jonathanscott.io/)                       |                      [<img src="./didact/src/images/team/eli.png" width = "200" />](http://www.eli-sacks.com/)                       |                      [<img src="./didact/src/images/team/seth.png" width = "200" />](https://www.sethnadu.com/)                       |                      [<img src="./didact/src/images/team/ben.png" width = "200" />](https://github.com/allenben746)                       |                      [<img src="./didact/src/images/team/mark.png" width = "200" />](http://markdudlik.com/)                       |                      [<img src="./didact/src/images/team/todd.png" width = "200" />](http://www.github.com/toddmckenzie)                       |
+|                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/AndrewA0112)                 |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/jondscott21)             |           [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Bastlifa)            |          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/sethnadu)           |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/allenben746)             |            [<img src="https://github.com/favicon.ico" width="15"> ](http://markdudlik.com/)             |            [<img src="https://github.com/favicon.ico" width="15"> ](http://www.github.com/toddmckenzie)             |
+| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/andrewmkal/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/jonathandavidscott/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/eli-sacks-055588187/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/seth-nadu-8b5983187/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/benjamin-allen-a4279a166/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ]( https://www.linkedin.com/in/markdudlik/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) |
 
 <br>
 <br>
-
-🚫 4️⃣ Optional examples of using images with links for your tech stack, make sure to change these to fit your project
 
 ![MIT](https://img.shields.io/packagist/l/doctrine/orm.svg)
-![React](https://img.shields.io/badge/react-v16.7.0--alpha.2-blue.svg)
-![Typescript](https://img.shields.io/npm/types/typescript.svg?style=flat)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/b5c4db1c-b10d-42c3-b157-3746edd9e81d/deploy-status)](netlify link goes in these parenthesis)
-[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
-
-🚫 more info on using badges [here](https://github.com/badges/shields)
+![React](https://img.shields.io/badge/react-v16.10.2-blue.svg)
+![Redux](https://img.shields.io/badge/redux-v4.0.4-764ABC.svg)
+![Styled-Components](https://img.shields.io/badge/styled--components-v4.4.0-DB7093)
+![MaterialUI](https://img.shields.io/badge/MaterialUI-v4.5.0-1976D2)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/b5c4db1c-b10d-42c3-b157-3746edd9e81d/deploy-status)](https://didact-fe.netlify.com/)
 
 ## Project Overview
 
-1️⃣ [Trello Board](🚫add link to trello board here)
+[Trello Board](https://trello.com/b/USMOefCg/labs17-didact)
 
-1️⃣ [Product Canvas](🚫add link to product canvas here)
+[Product Canvas](https://www.notion.so/Didact-d8e3ae50c35c4179b24eb84ae647059d)
 
-1️⃣ [UX Design files](🚫add link to design files here) - 🚫 delete if not applicable
+[UX Design files](https://xd.adobe.com/spec/827f4bac-04fb-419f-57e2-7f7aec06e6df-f44e/)
 
-🚫 Replace lorem ipsum with a description of your project
+Didact is a hub that supports self-directed online learners through teaching and learning together
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Didact believes everyone is a teacher, and the strongest way to learn is as part of a community that teaches and learns together.
 
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Didact aims to bring together online learning resources in a way that encourages thoughtful time management and goal setting with integrated support strategies so students can reach their self-educational goals, no matter the source of their lessons.
 
+### Key Features
 
-### 4️⃣ Key Features
+-    Adding online courses manually or via Udemy url
+-    Adding learning paths
+-    Adding courses and single goal todos to a learning path
+-    Tracking user progress on paths and courses
+-    search functionality for courses/paths
 
--    feature one
--    feature two
--    feature three
--    feature four
--    feature five
-
-## 1️⃣ Tech Stack
+## Tech Stack
 
 ### Front end built using:
 
-#### _Front end framework goes here_
+#### [React](https://reactjs.org/docs/getting-started.html)
 
-🚫 Why did you choose this framework?
+-    Popular framework with a big support ecosystem 
+-    Fast and scalable 
+-    Focus on dry code
 
--    point one
--    point two
--    point three
--    point four
+#### [Redux](https://redux.js.org/introduction/getting-started)
 
-🚫List the rest of the front end features and libraries in the same format as the framework above.
+-    Centralized state management via a single store 
+-    Scales very well in large projects
 
-#### Front end deployed to `🚫insert service here`
+#### [MaterialUI](https://material-ui.com/getting-started/usage/)
 
-#### [Back end](🚫link to back end repo here) built using:
+-    Solid CSS library with nice animation features built in
 
-#### 🚫 back end framework goes here
+#### [Styled-Components](https://www.styled-components.com/docs/basics#getting-started)
 
--    point one
--    point two
--    point three
+- The ability create easily reusable code in the form of React components that reduces CSS code duplication
 
-🚫 List the rest of the back end end features and libraries in the same format as the framework above
+#### [Axios](https://github.com/axios/axios)
+
+- Cleaner to write REST calls than using 'Fetch'
+
+#### [MixPanel](https://mixpanel.com/)
+
+- Tracking data in a concise and easy way
+
+#### [Passport.js](http://www.passportjs.org/)
+
+- Free alternative to auth0
+- Handles social logins in a relatively simple way
+
+#### [React-BeautifulDND](https://github.com/atlassian/react-beautiful-dnd)
+
+- Simplifies dragging and dropping HTML elements
+
+#### [Formik](https://jaredpalmer.com/formik/docs/overview)
+
+- Handles form security in a clean way
+
+#### [Yup](https://github.com/jquense/yup)
+
+- Form validation made easy
+- Native integration with Formik
+
+#### Front end deployed to `https://didact-fe.netlify.com/`
+
+#### [Back end](https://github.com/Lambda-School-Labs/didact-be) built using:
+
+####  [Node.js](https://nodejs.org/en/about/)
+
+-    quick spin up
+-    familiarity
+-    good documentation
+
+### [Express](https://expressjs.com/)
+
+-    We knew how to use it
+-    It's lightweight
+-    Works with nodejs
+-    Many useful packages
+
+#### [Passport.js](http://www.passportjs.org/)
+
+- Free alternative to auth0
+- Handles social logins in a relatively simple way
+
+#### [Knex](http://knexjs.org/)
+
+- Simplifies SQL queries
+
+
+#### [Sendgrid](https://sendgrid.com/)
+
+- Allows for third party email service
+
+#### [Axios](https://github.com/axios/axios)
+
+- Simplifies ajax/REST calls
+
+#### [Bcryptjs](https://www.npmjs.com/package/bcrypt)
+
+- Hashes passwords 
+
+#### [Cors](https://www.npmjs.com/package/cors)
+
+- Allows us to make ajax calls to 
+
+#### [Dotenv](https://www.npmjs.com/package/dotenv)
+
+- To process .env variables
+
+#### [Helmet](https://helmetjs.github.io/)
+
+- secures your express app with HTTP headers
+
+#### [JsonWebToken](https://jwt.io/)
+
+- Generates a 64 bit token containing user credentials
+
+
+#### [PostgreSQL](https://www.postgresql.org/)
+
+- SQL dataBase solution for deployment
+
+#### [Sqlite3](https://www.sqlite.org/index.html)
+
+- SQL dataBase solution for development
 
 # APIs
 
-## 2️⃣ Authentication API here
+## Passport.js (google/facebook APIs)
 
-🚫Replace text below with a description of the API
+Passport.js interfaces with google and facebook auth apis to allow users to sign in via existing social accounts
 
-Water's like me. It's laaazy ... Boy, it always looks for the easiest way to do things A little happy sunlight shining through there. Let all these little things happen. Don't fight them. Learn to use them. Even the worst thing we can do here is good.
+## Udemy API
 
-## 2️⃣ Payment API here
+https://www.udemy.com/developers/affiliate/models/user/
 
-🚫Replace text below with a description of the API
+"The Udemy Affiliate API exposes a lot of functionalities of Udemy to help developers build client applications and integrations with Udemy.
+<br>
+<br>
+It is organized around REST. Our API is designed to have predictable, resource-oriented URLs and to use HTTP response codes to indicate API errors. We use built-in HTTP features, like HTTP authentication and HTTP verbs, which can be understood by off-the-shelf HTTP clients. We only accept https calls to the API. All responses will be returned in JSON format, including errors. OAuth 2 protocol is used for user authorization (not documented yet).
+<br>
+<br>
+Udemy Affiliate API is currently at version 2.0 and the root endpoint is https://www.udemy.com/api-2.0/ for all resources."
 
-This is the way you take out your flustrations. Get away from those little Christmas tree things we used to make in school. Isn't it fantastic that you can change your mind and create all these happy things? Everything's not great in life, but we can still find beauty in it.
-
-## 3️⃣ Misc API here
-
-🚫Replace text below with a description of the API
-
-You can do anything your heart can imagine. In life you need colors. This is where you take out all your hostilities and frustrations. It's better than kicking the puppy dog around and all that so. I'm sort of a softy, I couldn't shoot Bambi except with a camera. Trees get lonely too, so we'll give him a little friend. We'll lay all these little funky little things in there.
-
-## 3️⃣ Misc API here
-
-🚫Replace text below with a description of the API
-
-When you do it your way you can go anywhere you choose. Let your heart take you to wherever you want to be. If I paint something, I don't want to have to explain what it is. A tree needs to be your friend if you're going to paint him. That's a son of a gun of a cloud. Even the worst thing we can do here is good.
-
-## 3️⃣ Misc API here
-
-🚫Replace text below with a description of the API
-
-Volunteering your time; it pays you and your whole community fantastic dividends. Maybe there's a happy little waterfall happening over here. You can spend all day playing with mountains. We don't have to be committed. We are just playing here. You have freedom here. The only guide is your heart. It's cold, but it's beautiful.
-
-# 3️⃣ Environment Variables
+# Environment Variables
 
 In order for the app to function correctly, the user must set up their own environment variables. There should be a .env file containing the following:
 
-🚫These are just examples, replace them with the specifics for your app
+    *  REACT_APP_MIXPANEL - Mixpanel token used for tracking user actions
 
-    *  REACT_APP_apiKey - this is your Google API key, which can be generated in the Google Cloud Console
-    *  REACT_APP_authDomain - when you set up your Firebase project, this information will be in the dashboard
-    *  REACT_APP_databaseURL - in the Firebase dashboard
-    *  REACT_APP_projectID - in the Firebase dashboard
-    *  REACT_APP_storageBucket - in the Firebase dashboard
-    *  REACT_APP_messagingSenderId - in the Firebase dashboard
-    *  REACT_APP_stripe_API - this is your public Stripe API key, generated in the Stripe dashboard
-    *  REACT_APP_backendURL - optional for your local development server
-    *  REACT_APP_clientid - this is the Stripe_connect clientID, generated in Stripe_connect settings
-    *  REACT_APP_stripe_plan - this is the ID for a second Stripe subscription plan, generated under Stripe products
-
-# 5️⃣ Content Licenses
-
-🚫For all content - images, icons, etc, use this table to document permission of use. Remove the two placeholders and add you content to this table
+# Content Licenses
 
 | Image Filename | Source / Creator | License                                                                      |
 | -------------- | ---------------- | ---------------------------------------------------------------------------- |
-| doodles.png    | Nicole Bennett   | [Creative Commons](https://www.toptal.com/designers/subtlepatterns/doodles/) |
-| rings.svg      | Sam Herbert      | [MIT](https://github.com/SamHerbert/SVG-Loaders)                             |
+| ITC Grouch Font    | Tom Carnase, Ronne Bonder   | [EULA](https://www.fonts.com/font/bitstream/itc-grouch) |
+| 
 
-# 4️⃣ Testing
+# Testing
 
-🚫Document what you used for testing and why
+Cypress.io was used for testing
+- It has nice end-to-end functionality with good documentation and built in examples
 
-# 4️⃣ Installation Instructions
+# Installation Instructions
 
-🚫explain how to install the required dependencies to get this project up and running with yarn and NPM
+    * yarn install
 
 ## Other Scripts
 
-🚫replace these examples with your own
-
-    * typecheck - runs the TypeScript compiler
     * build - creates a build of the application
     * start - starts the production server after a build is created
     * test - runs tests in **tests** directory \* eject - copy the configuration files and dependencies into the project so you have full control over them
@@ -194,4 +240,4 @@ These contribution guidelines have been adapted from [this good-Contributing.md-
 
 ## Documentation
 
-See [Backend Documentation](🚫_link to your backend readme here_) for details on the backend of our project.
+See [Backend Documentation](https://github.com/Lambda-School-Labs/didact-be) for details on the backend of our project.

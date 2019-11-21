@@ -1,16 +1,17 @@
 import styled from 'styled-components'
-
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
 
 // Button with Plus sign
 
 export const AddButton = styled.div`
     height: 75px;
-    width: 175px;
+    width: 160px;
     display: flex;
     justify-content: space-around;
     align-items: center;
     border: none;
-    background: #EEEFF3;
+    background: black;
     border-radius: 15px;
     margin-bottom: 10px;
     &:hover {
@@ -33,7 +34,7 @@ export const Plus = styled.span`
     /* padding-top: 3px; */
 `
 export const ButtonText = styled.p`
-    color: black;
+    color: white;
     padding-right: 15px;
     font-weight: bold;
 `
@@ -45,18 +46,18 @@ export const AddButtonInSection = styled.div`
     justify-content: space-around;
     align-items: center;
     border: none;
-    background: #EEEFF3;
+    background: black;
     border-radius: 25px;
-    margin: -53px 10px 10px 10px;
+    cursor: pointer;
     padding: 0 10px;
-    &:hover {
-        cursor: 'pointer';
-    }
+    /* &:hover {
+        border: white solid 1px;
+    } */
 `
 
 export const PlusDivInSection = styled.div`
-    background: #575758;
-    color: #EEEFF3;
+    background-color: black;
+    color: black;
     height: 25px;
     width: 25px;
     border-radius: 50%;
@@ -69,7 +70,7 @@ export const PlusInSection = styled.span`
     padding-top: 2.5px;
 `
 export const ButtonTextInSection = styled.p`
-    color: black;
+    color: white;
     padding-right: 15px;
     font-size: 12px; 
     font-weight: bold;
@@ -103,20 +104,53 @@ export const P = styled.p`
 
 // Edit lesson button
 
-export const EditLessonButton = styled.button`
+export const DidactButton = styled.button`
        box-shadow: none;
-        border-radius: 15px;
-        background: #EBE8E1;
-        height: 30px;
-        width: 112px;
+        border-radius: 12px;
+        color: white;
+        background: rgba(36, 36, 36, 1);
+        height: 35px;
+        width: 123px;
         border: none;
         margin-left: 10px;
+        margin-top: 10px;
         cursor: pointer;
         &:hover {
-        color: rgba(0, 0, 0, 0.87);
-        box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 3px 1px -2px rgba(0,0,0,0.12);
-        background-color: #e0e0e0;
-        
+        color: rgba(0, 0, 0, 1);
+        background-color: rgba(255, 255, 255, 1);
+        border: solid black 1px;
+        outline: none;
+    }
+`
+
+export const EditIconButton = styled(EditIcon)`
+    box-shadow: none;
+    border-radius: 12px;
+    color: rgba(255, 255, 255, .25);
+    height: 30px;
+    width: 112px;
+    border: none;
+    margin-left: 10px;
+    cursor: pointer;
+        &:hover {
+            color: rgba(255, 255, 255, 1);
+    }
+`
+
+export const TrashCan = styled(DeleteIcon)`
+    color: rgba(255, 255, 255, .25);
+    cursor: pointer;
+    &:hover {
+        color: rgba(255, 255, 255, 1);    
+    }
+`
+
+export const TrashCanEdit = styled(DeleteIcon)`
+    color: rgba(36, 36, 36, .25);
+    margin-left: 90%;
+    &:hover {
+        cursor: pointer;
+        color: rgba(36, 36, 36, 1);    
     }
 `
 
@@ -127,13 +161,16 @@ export const ButtonDiv = styled.div`
     justify-content: space-between;
     width: 100%;
     margin-bottom: 10px;
+    flex-direction: row;
+
+
 `
 
 // finish edit and return to course button
 
 export const FinishEdit = styled.div`
     background:  #EBE8E1;
-    max-width: 500px;
+    max-width: 540px;
     width: 100%;
     border-radius: 15px;
     height: 30px;
@@ -172,9 +209,8 @@ export const TagStyles = styled.span `
         font-size: 14;
         font-weight: bold;
         margin: 3px;
-        margin-left: 10px;
-        padding: 5px 10px;
+        padding: 5px 10px 0 0;
         border-radius: 10px;
-        background: #5B5B5B;
         color: white;
 `
+

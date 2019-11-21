@@ -2,10 +2,14 @@ import styled from 'styled-components'
 
 export const RegisterFormWrapper = styled.div`
 
-    width: 80%;
+    width: 510px;
     margin: 0 auto;
     padding-bottom: 50px;
     padding-top: 20px; 
+
+    @media(max-width: 600px) {
+        width: 475px;
+    }
 
     .header {
         text-align: left;
@@ -82,29 +86,98 @@ export const RegisterFormWrapper = styled.div`
 
     .socialButtons {
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         a {
             text-decoration: none;
             color: white;
-            background: rgb(91,91,91);
-            width: 35%;
+            width: 204px;
             border-radius: 4px;
             padding: 15px;
+            
+            &:first-child {
+                margin-right: 24px;
+            }
+        }
+
+        .facebook {
+            background: #255B9B;
+        }
+
+        .google {
+            background: #D82C32;
+        }
+    }
+
+    .loginLink {
+        
+        padding-top: 40px;
+
+        p {
+            margin: 0;
+        }
+        
+        a {
+            color: #242424BF;
+            font-weight: bold;
         }
     }
 `
 
 export const RegisterWrapper = styled.div`
-    width: calc(100% - 20px);
-    max-width: 600px;
+    position: absolute;
+    left: 38%;
+    right: 0;
+    top: 50px;
+    bottom:0;
+    margin: auto;
+    width: 670px;
     min-width: 375px;
+    height: 770px;
     background: white;
     border-radius: 4px;
     margin: 0 auto;
     margin-top: 50px;
+
+    @media(max-width: 600px) {
+        width: 500px;
+        position: relative;
+
+    }
+`
+
+export const Header = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+
+    div {
+        
+        a:first-child {
+            margin-right: 33px;
+        }
+    }
 `
 
 export const Wrapper = styled.div`
     width: calc(100% - 20px);
-    margin: 0 auto auto auto;
+    margin: 0 auto 50px auto;
+    position: relative;
+
+    img {
+        position: absolute;
+        left: 0;
+        right: 100%;
+        top: 1000px;
+        bottom:0;
+        margin: auto;
+    }
+
+    @media(max-width: 600px) {
+        margin: 0;
+
+        img {
+            display: none
+        }
+    }
 `

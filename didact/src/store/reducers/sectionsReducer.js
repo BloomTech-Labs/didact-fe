@@ -23,6 +23,18 @@ import {
     DELETE_LESSON_START,
     DELETE_LESSON_SUCCESS,
     DELETE_LESSON_FAIL,
+    TOGGLE_COMPLETE_SECTION_START,
+    TOGGLE_COMPLETE_SECTION_SUCCESS,
+    TOGGLE_COMPLETE_SECTION_FAIL,
+    TOGGLE_COMPLETE_LESSON_START,
+    TOGGLE_COMPLETE_LESSON_SUCCESS,
+    TOGGLE_COMPLETE_LESSON_FAIL,
+    GET_USER_LESSON_COMPLETION_START,
+    GET_USER_LESSON_COMPLETION_SUCCESS,
+    GET_USER_LESSON_COMPLETION_FAIL,
+    GET_USER_SECTION_COMPLETION_START,
+    GET_USER_SECTION_COMPLETION_SUCCESS,
+    GET_USER_SECTION_COMPLETION_FAIL,
 } from '../actions'
 
 const initialState =
@@ -85,15 +97,13 @@ export const sectionsReducer = (state = initialState, action) => {
             }
         case UPDATE_SECTION_SUCCESS:
             let temp = { ...state }
-            console.log('reducer payload', action.payload.changes)
-            temp.sections.map((el, i) => {
+            temp.sections.forEach((el, i) => {
                 if (action.payload.id === el.id) {
                     temp.sections[i] = action.payload.changes
                     temp.sections[i].id = action.payload.id
                 }
             })
             temp.sections.sort((a, b) => a.order - b.order)
-            console.log('reducer log:', temp.sections)
             return {
                 ...state,
                 sections: temp.sections,
@@ -165,7 +175,6 @@ export const sectionsReducer = (state = initialState, action) => {
                 error: "",
             }
         case ADD_LESSON_SUCCESS:
-            console.log(action.payload)
             return {
                 ...state,
                 isLoading: false,
@@ -215,6 +224,88 @@ export const sectionsReducer = (state = initialState, action) => {
                 error: "",
             }
         case DELETE_LESSON_FAIL:
+            return {
+                ...state,
+                isLoading: false,
+                error: action.payload,
+            }
+        //Toggle Complete Section
+        case TOGGLE_COMPLETE_SECTION_START:
+            return {
+                ...state,
+                isLoading: false,
+                error: ''
+            } 
+        case TOGGLE_COMPLETE_SECTION_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                section: action.payload,
+                error: ""
+            };
+        case TOGGLE_COMPLETE_SECTION_FAIL:
+            return {
+                ...state,
+                isLoading: false,
+                error: action.payload,
+            }
+            // User Lessons Marked Completed
+        case GET_USER_SECTION_COMPLETION_START:
+            return {
+                ...state,
+                isLoading: false,
+                error: ''
+            } 
+        case GET_USER_SECTION_COMPLETION_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                section: action.payload,
+                error: ""
+            };
+        case GET_USER_SECTION_COMPLETION_FAIL:
+            return {
+                ...state,
+                isLoading: false,
+                error: action.payload,
+            } 
+
+            //Toggle Complete Lesson
+        case TOGGLE_COMPLETE_LESSON_START:
+                return {
+                    ...state,
+                    isLoading: false,
+                    error: ''
+                } 
+            case TOGGLE_COMPLETE_LESSON_SUCCESS:
+                return {
+                    ...state,
+                    isLoading: false,
+                    lesson: action.payload,
+                    error: ""
+                };
+            case TOGGLE_COMPLETE_LESSON_FAIL:
+                return {
+                    ...state,
+                    isLoading: false,
+                    error: action.payload,
+                }
+                
+        // User Lessons Marked Completed
+        case GET_USER_LESSON_COMPLETION_START:
+            return {
+                ...state,
+                isLoading: false,
+                error: ''
+            } 
+        case GET_USER_LESSON_COMPLETION_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                lesson: action.payload,
+                error: ""
+            };
+        case GET_USER_LESSON_COMPLETION_FAIL:
             return {
                 ...state,
                 isLoading: false,

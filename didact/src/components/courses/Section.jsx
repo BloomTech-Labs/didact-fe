@@ -1,23 +1,22 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Collapse from '@material-ui/core/Collapse';
-import Button from '@material-ui/core/Button';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
-import { updateSection, getLessonsBySectionId, deleteSection } from '../../store/actions';
+import { updateSection, getLessonsBySectionId, deleteSection, getLessonsWithUserCompletion } from '../../store/actions';
 import Lessons from './Lessons'
 import AddLessons from './AddLessons'
 import DeleteModal from './DeleteModal'
-
+import EditIcon from '@material-ui/icons/Edit';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
-import { AddButtonInSection, ButtonTextInSection, ButtonDiv, DeleteForm } from '../dashboard/ButtonStyles';
+import { AddButtonInSection, ButtonTextInSection, ButtonDiv, DidactButton, TrashCanEdit } from '../dashboard/ButtonStyles';
+import { DidactField, DidactInput, DidactLabel, DidactTextArea, FormTitle } from '../dashboard/FormStyles'
+
 
 const useStyles = makeStyles(theme => ({
 
@@ -27,29 +26,17 @@ const useStyles = makeStyles(theme => ({
         flexDirection: "column",
         alignItems: "flex-start"
     },
-    button: {
-        boxShadow: 'none',
-        borderRadius: '15px',
-        background: '#EBE8E1',
-        // marginLeft: '70%',
-    },
     card: {
         width: '100%',
-        maxWidth: 500,
+        maxWidth: 540,
         minWidth: 220,
         borderRadius: 15,
-        margin: '10px 0'
-    },
-    title: {
-        fontSize: 14,
-        fontWeight: 'bold',
-    },
-    pos: {
-        marginBottom: 12,
+        margin: '10px 0',
+        padding: '5px',
+        boxShadow: 'none'
     },
     expand: {
         transform: 'rotate(0deg)',
-        // marginLeft: 'auto',
         transition: theme.transitions.create('transform', {
             duration: theme.transitions.duration.shortest,
         }),
@@ -60,92 +47,45 @@ const useStyles = makeStyles(theme => ({
     container: {
         display: 'flex',
         flexWrap: 'wrap',
-        // margin: '10px',
     },
-    input: {
-        backgroundColor: '#F4F8FA',
-        filter: "brightness(95%)",
-        borderRadius: 15,
-
-    },
-    inputDescription: {
-        backgroundColor: '#F4F8FA',
-        filter: "brightness(95%)",
-        borderRadius: 15,
-        margin: '-16px -10px -16px -10px',
-        padding: '10px',
-
-    },
-    titleOrInstructorFields: {
-        marginLeft: theme.spacing(1),
-        marginRight: theme.spacing(1),
-        width: '45%',
-        [`& fieldset`]: {
-            borderRadius: 15,
-        },
-    },
-    descriptionField: {
-        marginLeft: theme.spacing(1),
-        marginRight: theme.spacing(1),
-        width: '93%',
-        [`& fieldset`]: {
-            borderRadius: 15,
-            margin: "3px",
-
-        },
-    },
-
-    courseUrlField: {
-        marginLeft: theme.spacing(1),
-        marginRight: theme.spacing(1),
-        width: '93%',
-        [`& fieldset`]: {
-            borderRadius: 15,
-        },
-    },
-
     descriptionDiv: {
         display: "flex",
-        flexDirection: "row",
-        justifyContent: 'center',
-        // padding: '0'
+        width: "100%",
+        flexDirection: 'column',
+        justifyContent: "space-between",
+        fontSize: 12,
+        color: "#757575",
+        textAlign: 'left'
     },
     descriptionTitle: {
-        marginBottom: "0px"
+        marginBottom: "0px",
+       
     },
     iconCircle: {
-        color: "#575758",
+        color: "white",
         fontSize: "2rem",
     },
+    button: {
+        backgroundColor: "#EBE8E1",
+        color: 'black',
+        borderRadius: 12,
+        height: "35px",
+        width: "123px",
+        border: 'none',
+        cursor: 'pointer'
+    }
 
 }));
 
-const CssTextField = withStyles({
-    root: {
-        '& label.Mui-focused': {
-            color: 'gray',
-        },
-        '& .MuiOutlinedInput-root': {
-            '& fieldset': {
-                borderColor: 'gray',
-            },
-            '&:hover fieldset': {
-                borderColor: 'gray',
-            },
-            '&.Mui-focused fieldset': {
-                border: '1px solid gray',
-            },
 
-        },
-    },
-})(TextField);
 
 const Section = ({ course, section, props }) => {
     const classes = useStyles();
     const dispatch = useDispatch()
     const lessons = useSelector(state => state.sectionsReducer.lessons)
+    const lesson = useSelector(state => state.sectionsReducer.lesson)
     const [expanded, setExpanded] = useState(false);
-    const [sectionEdit, setSectionEdit] = useState(true)
+    const [sectionEdit, setSectionEdit] = useState(false)
     const [addLessonChange, setAddLessonChange] = useState(false);
     const [openModal, setOpenModal] = useState(false);
     const [changes, setChanges] = useState({
@@ -154,7 +94,6 @@ const Section = ({ course, section, props }) => {
         order: "",
         link: ""
     })
-
     useEffect(() => {
         setChanges({
             name: section.name,
@@ -163,7 +102,6 @@ const Section = ({ course, section, props }) => {
             description: section.description,
         })
     }, [section])
-
 
     useEffect(() => {
         dispatch(getLessonsBySectionId(props.match.params.id, section.id))
@@ -193,7 +131,7 @@ const Section = ({ course, section, props }) => {
 
     const handleCancel = event => {
         event.preventDefault()
-        setSectionEdit(true)
+        setSectionEdit(false)
     }
 
     const handleDelete = () => {
@@ -210,112 +148,57 @@ const Section = ({ course, section, props }) => {
 
     return (
         <>
-            {sectionEdit ? (
-                <Card className={classes.card}>
-                    <CardContent style={{ marginBottom: "20px" }}>
-                        <Typography variant="h5" component="h2">
+            {!sectionEdit ?
+                (<Card className={classes.card} >
+                    <CardContent style={{ textAlign: 'left', color: '#414D55'}}>
+                        <h3 style={{marginLeft: '15px'}}>
                             {section.name}
-                        </Typography>
+                        </h3>
                         <CardActions className={classes.descriptionDiv} disableSpacing>
-                            <Typography color="textSecondary" className={classes.descriptionTitle} >{section.description && !expanded ? (`${section.description.substring(0, 100)} ...`) : null}</Typography>
-                            <IconButton
-                                className={clsx(classes.expand, {
-                                    [classes.expandOpen]: expanded,
-                                })}
-                                onClick={handleExpandClick}
-                                aria-expanded={expanded}
-                                aria-label="show more"
-                            >
-                                <ExpandMoreIcon />
-                            </IconButton>
+                            <p className={classes.descriptionTitle} >{section.description}</p>
                         </CardActions>
-                        <Collapse in={expanded} timeout="auto" unmountOnExit>
-                            <CardContent>
-                                <Typography color="textSecondary" paragraph>
-                                    {section.description}
-                                </Typography>
-                            </CardContent>
-                        </Collapse>
-                        <a href={section.link} variant="body2" component="p" alt = "section link" style = {{color: 'black', cursor: 'pointer'}}>
-                            {section.link}
-                        </a>
-                        <Typography color="textSecondary" style = {{textAlign: "left", marginLeft: "22px"}}>
-                            Order: {section.order}
-                        </Typography>
-                    </CardContent>
-                    {lessons ? <Lessons course={course} section={section} props={props} lessons={lessons} /> : null}
-                    <CardActions>
-                        <Button style={{marginLeft: '70%'}} onClick={toggleEdit} type='submit' size="small" variant="contained" className={classes.button} >Edit Section</Button>
-                    </CardActions>
-                    <AddButtonInSection onClick={handleLessonFormToggle}>
-                        <AddCircleIcon className={classes.iconCircle} />
-                        <ButtonTextInSection>Add Lesson</ButtonTextInSection>
-                    </AddButtonInSection>
-                    {addLessonChange ? <AddLessons props={props} section={section} setAddLessonChange={setAddLessonChange} /> : null}
-                </Card>
-            ) : (
-                    <Card className={classes.card}>
-                        <CardContent>
-                        <DeleteForm onClick={handleModalOpen}>X</DeleteForm>
-                        {openModal ? <DeleteModal handleDelete={handleDelete} text={"section"} open={openModal} handleModalClose={handleModalClose} /> : null}
-                            <Typography className={classes.title} gutterBottom>
-                                Add Section
-                         </Typography>
-                            <form onSubmit={handleSubmit} className={classes.container} noValidate autoComplete="off">
-                                <CssTextField
-                                    id="standard-name"
-                                    label='Name'
-                                    className={classes.titleOrInstructorFields}
-                                    value={changes.name}
-                                    onChange={handleChange('name')}
-                                    margin="normal"
-                                    variant="outlined"
-                                    placeholder="Name"
-                                    InputProps={{ classes: { input: classes.input } }}
-                                />
-                                <CssTextField
-                                    id="standard-name"
-                                    label="Order"
-                                    className={classes.titleOrInstructorFields}
-                                    value={changes.order}
-                                    onChange={handleChange('order')}
-                                    margin="normal"
-                                    variant="outlined"
-                                    placeholder="Instructors"
-                                    InputProps={{ classes: { input: classes.input } }}
-                                />
-                                <CssTextField
-                                    id="standard-name"
-                                    label="Description"
-                                    className={classes.descriptionField}
-                                    value={changes.description}
-                                    onChange={handleChange('description')}
-                                    margin="normal"
-                                    multiline={true}
-                                    rows='6'
-                                    variant="outlined"
-                                    placeholder="Description"
-                                    InputProps={{ classes: { input: classes.inputDescription } }}
-                                />
-                                <CssTextField
-                                    id="standard-name"
-                                    label="Section Url"
-                                    className={classes.courseUrlField}
-                                    value={changes.link}
-                                    onChange={handleChange('link')}
-                                    margin="normal"
-                                    variant="outlined"
-                                    placeholder="Course Url"
-                                    InputProps={{ classes: { input: classes.input } }}
-                                />
-                                <ButtonDiv>
-                                    <Button style={{ marginLeft: '10px' }} onClick={handleCancel} size="small" variant="contained" className={classes.button} >Cancel</Button>
-                                    <Button type='submit' style={{ marginRight: '4%' }} size="small" variant="contained" className={classes.button} >Submit Edit</Button>
-                                </ButtonDiv>
-                            </form>
+                        <a style={{color: '#414D55', marginLeft: '15px'}} href={section.link} alt="section link">{section.link}</a>
+                        <CardActions style={{borderBottom: 'grey solid 1px'}}>
+                            <button className ={classes.button} style={{ marginLeft: '75%' }} onClick={toggleEdit} type='submit'>{!props.phoneSize ? "Edit Section" : <EditIcon style={{fontSize: '1.6rem'}}/>}</button>
+                        </CardActions>
+                        {lessons ? <Lessons course={course} section={section} props={props} lessons={lessons} /> : null}
+                            <AddButtonInSection style = {{marginBottom: '-10px'}}onClick={handleLessonFormToggle}>
+                                <AddCircleIcon className={classes.iconCircle} />
+                                <ButtonTextInSection>Add Lesson</ButtonTextInSection>
+                            </AddButtonInSection>
                         </CardContent>
-                    </Card>
-                )
+                    {addLessonChange ? <AddLessons props={props} section={section} setAddLessonChange={setAddLessonChange} /> : null}
+                </Card>)
+                :
+                (<Card className={classes.card}>
+                    <CardContent>
+                        <TrashCanEdit style={{ fontSize: '2.6rem' }} onClick={handleModalOpen}></TrashCanEdit>
+                        {openModal ? <DeleteModal handleDelete={handleDelete} text={"this section"} open={openModal} handleModalClose={handleModalClose} /> : null}
+                        <form onSubmit={handleSubmit} className={classes.container} noValidate autoComplete="off">
+                            <FormTitle>Edit Section</FormTitle>
+                            <DidactField>
+                                <DidactLabel for='title'>Lesson Name</DidactLabel>
+                                <DidactInput id='title' type='text' value={changes.name || ""} onChange={handleChange('name')} placeholder='Lesson Name' />
+                            </DidactField>
+                            <DidactField>
+                                <DidactLabel for='order'>Section Order</DidactLabel>
+                                <DidactInput id='order' type='text' value={changes.order || ""} onChange={handleChange('order')} placeholder='Section Order' />
+                            </DidactField>
+                            <DidactField>
+                                <DidactLabel for='description'>Description</DidactLabel>
+                                <DidactTextArea rows="8" id='description' value={changes.description || ""} onChange={handleChange('description')} placeholder='Description' />
+                            </DidactField>
+                            <DidactField>
+                                <DidactLabel for='link'>URL Link</DidactLabel>
+                                <DidactInput id='link' type='text' value={changes.link || ""} onChange={handleChange('link')} placeholder='URL Link' />
+                            </DidactField>
+                            <ButtonDiv>
+                                <DidactButton style={{ marginLeft: '10px' }} onClick={handleCancel} size="small" variant="contained" >Cancel</DidactButton>
+                                <DidactButton type='submit' style={{ marginRight: '4%' }} size="small" variant="contained" >Submit Edit</DidactButton>
+                            </ButtonDiv>
+                        </form>
+                    </CardContent>
+                </Card>)
             }
         </>
     )

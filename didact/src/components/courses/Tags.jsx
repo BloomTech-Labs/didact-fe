@@ -1,26 +1,23 @@
 import React, { useState, useEffect } from 'react'
 import { addTag, getTags, deleteTag } from '../../store/actions'
 import { useSelector, useDispatch } from 'react-redux';
-import { CoursesCard, CourseMenuDiv, CourseDiv } from '../dashboard/DashboardStyles';
-import { TagDelete, P } from '../dashboard/ButtonStyles';
-import { TagInput, TagSelect } from './SelectStyles'
+import { TagDelete, P, DidactButton } from '../dashboard/ButtonStyles';
+import {  TagSelect } from './SelectStyles'
+import { DidactTagForm } from '../dashboard/FormStyles'
 
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
 import { ButtonDiv } from '../dashboard/ButtonStyles';
 
 const useStyles = makeStyles(theme => ({
     card: {
         width: '100%',
-        maxWidth: 500,
+        maxWidth: 540,
         minWidth: 220,
         borderRadius: 15,
-        margin: '10px 0'
+        margin: '10px 0',
+        boxShadow: 'none'
     },
     button: {
         boxShadow: 'none',
@@ -42,13 +39,13 @@ const useStyles = makeStyles(theme => ({
         borderRadius: 15,
     },
     title: {
-        fontSize: 14,
+        fontSize: '1.4rem',
         fontWeight: 'bold',
         margin: '3px',
         marginLeft: '10px',
         padding: '5px 10px',
         borderRadius: '10px',
-        background: '#5B5B5B',
+        background: 'rgba(80, 80, 80, 1)',
         color: 'white'
     },
     titleOrInstructorFields: {
@@ -68,27 +65,15 @@ const useStyles = makeStyles(theme => ({
         margin: theme.spacing(1),
         minWidth: 120,
     },
+    button: {
+        backgroundColor: "#EBE8E1",
+        color: 'black',
+        borderRadius: 12,
+        height: "35px",
+        width: "123px",
+        border: 'none'
+    }
 }));
-
-const CssTextField = withStyles({
-    root: {
-        '& label.Mui-focused': {
-            color: 'gray',
-        },
-        '& .MuiOutlinedInput-root': {
-            '& fieldset': {
-                borderColor: 'gray',
-            },
-            '&:hover fieldset': {
-                borderColor: 'gray',
-            },
-            '&.Mui-focused fieldset': {
-                border: '1px solid gray',
-            },
-
-        },
-    },
-})(TextField);
 
 const Tags = ({ props, course }) => {
 
@@ -96,14 +81,14 @@ const Tags = ({ props, course }) => {
     const dispatch = useDispatch()
     const state = useSelector(state => state.tagsReducer)
     const allTags = state.tags
-    const [openForm, setOpenForm] = useState(true)
+    const [openForm, setOpenForm] = useState(false)
     const [tag, setTag] = useState({
         tag: ''
     });
 
     useEffect(() => {
         dispatch(getTags())
-    }, [])
+    }, [dispatch])
 
     const handleChange = name => event => {
         setTag({ ...tag, [name]: event.target.value });
@@ -131,54 +116,55 @@ const Tags = ({ props, course }) => {
 
     return (
         <>
-            <Card className={classes.card}>
-                <CardContent className={classes.tagDisplay}>
-                    {course.tags ? course.tags.map((tag, i) => {
-                        return (
-                            <div key={i + tag + 1}>
-                                <div style={{ position: 'relative' }} key={i + tag + 2} className={classes.title}>
-                                    <TagDelete key={i + tag + 3} onClick={() => handleTagDelete(tag)}><P key={i + tag + 4}>x</P></TagDelete><span key={i + tag + 5} style={{ paddingRight: '5px' }}>{tag}</span>
+            {!openForm ? (
+                <Card className={classes.card} >
+                    <p style={{textAlign: 'left', margin: '25px 0 0px 27px', color: "#858997"}}>Course Tags</p>
+                    <CardContent className={classes.tagDisplay}>
+                        
+                        {course.tags ? course.tags.map((tag, i) => {
+                            return (
+                                <div key={i + tag + 1}>
+                                    <div style={{ position: 'relative' }} key={i + tag + 2} className={classes.title}>
+                                        <TagDelete key={i + tag + 3} onClick={() => handleTagDelete(tag)}><P key={i + tag + 4}>x</P></TagDelete><span key={i + tag + 5} style={{ paddingRight: '5px' }}>{tag}</span>
+                                    </div>
+
                                 </div>
 
-                            </div>
+                            )
+                        }) : null}
+                        {!openForm ? <button className={classes.button} style={{ marginLeft: '76%' }} onClick={handleClick} type='submit' size="small" variant="contained">New Tag</button> : null}
+                    </CardContent>
+                </Card>)
+                :
+                (<Card className={classes.card}> 
+                   <p style={{textAlign: 'left', margin: '25px 0 0px 27px', color: "#858997"}}>Course Tags</p>
+                    <CardContent className={classes.tagDisplay}>
+                        {course.tags ? course.tags.map((tag, i) => {
+                            return (
+                                
+                                <div key={i + tag + 1}>
+                                    <div style={{ position: 'relative' }} key={i + tag + 2} className={classes.title}>
+                                        <TagDelete key={i + tag + 3} onClick={() => handleTagDelete(tag)}><P key={i + tag + 4}>x</P></TagDelete><span key={i + tag + 5} style={{ paddingRight: '5px' }}>{tag}</span>
+                                    </div>
 
-                        )
-                    }) : null}
-                   {!openForm ? <Button style={{ marginLeft: '76.5%' }} onClick={handleClick} type='submit' size="small" variant="contained" className={classes.button}>NEW TAG</Button> : null }
-                </CardContent>
-
-                {openForm ? (
-                    <>
-                        <form onSubmit={handleSubmit} className={classes.container} noValidate autoComplete="off">
-                            {/* <CssTextField
-                                id="standard-name"
-                                list='tags'
-                                label='Add Tag'
-                                className={classes.titleOrInstructorFields}
-                                value={tag.name}
-                                onChange={handleChange('tag')}
-                                margin="normal"
-                                variant="outlined"
-                                placeholder="Name"
-                                InputProps={{ classes: { input: classes.input } }}
-                            /> */}
-                            <label for='tag-input' >Select an Existing Tag, or Create a New Tag
-                            <TagInput id='tag-input' placeholder="Tag" value={tag.tag} onChange={handleChange('tag')} name="tag" list='tags' />
-                            <TagSelect id='tags' style={{overflowY: "auto !important"}} onChange={handleChange('tag')}>
-                                {allTags.map(el => {
-                                    return (<option key={el.id} value={el.name} >{el.name}</option>)
-                                })}
-                            </TagSelect>
-                            </label>
-                            <ButtonDiv>
-                                <Button style={{ marginLeft: '10px' }} onClick={handleCancel} size="small" variant="contained" className={classes.button} >CANCEL</Button>
-                                <Button type='submit'  style={{ marginRight: '4%' }} size="small" variant="contained" className={classes.button} >Add Tag</Button>
-                            </ButtonDiv>
-                        </form>
-
-                    </>
-                ) : null}
-            </Card>
+                        </div>)}) : null}
+                                <form onSubmit={handleSubmit} className={classes.container} noValidate autoComplete="off">
+                                    <label style={{ margin: "10px auto auto auto" }} for='tag-input' >Select an Existing Tag, or Create a New Tag
+                                    <DidactTagForm id='tag-input' placeholder="Tag" value={tag.tag} onChange={handleChange('tag')} name="tag" list='tags' />
+                                        <TagSelect id='tags' style={{ overflowY: "auto !important" }} onChange={handleChange('tag')}>
+                                            {allTags.map(el => {
+                                                return (<option key={el.id} value={el.name} >{el.name}</option>)
+                                            })}
+                                        </TagSelect>
+                                    </label>
+                                    <ButtonDiv>
+                                        <DidactButton style={{ marginLeft: '10px' }} onClick={handleCancel} size="small" variant="contained"  >Cancel</DidactButton>
+                                        <DidactButton type='submit' style={{ marginRight: '4%' }} size="small" variant="contained" >Add Tag</DidactButton>
+                                    </ButtonDiv>
+                                </form>
+                        
+                    </CardContent>
+                </Card>)}
         </>
     )
 }
