@@ -3,24 +3,20 @@ import { Form, Field, Formik } from "formik";
 import * as Yup from 'yup';
 import { loginAction } from '../../store/actions';
 import { useDispatch, useSelector } from 'react-redux';
-
 import { Wrapper, LoginWrapper, LoginFormWrapper, Header } from './LoginStyles'
-
 import LoginImage from '../../images/computer.png'
-
 import beURL from '../../utils/beURL'
-
 const LoginSchema = Yup.object().shape({
     email: Yup.string().required("Email is required").email(),
     password: Yup.string().required("Password is required")
 });
-
-
 const LoginForm = (props) => {
+    const state = useSelector(state => state.onboardingReducer)
+    const dispatch = useDispatch()
+    const loginError = state.loginError
     const handleLogin = (values) => {
         dispatch(loginAction(props.history, values))
     }
-
     return (
         <Wrapper>
             <Header>
@@ -83,5 +79,4 @@ const LoginForm = (props) => {
         </Wrapper>
     )
 }
-
 export default LoginForm;
