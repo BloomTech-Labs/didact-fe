@@ -21,6 +21,8 @@ You can find the deployed project at [https://didactlms.com](https://didactlms.c
 ![MaterialUI](https://img.shields.io/badge/MaterialUI-v4.5.0-1976D2)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/b5c4db1c-b10d-42c3-b157-3746edd9e81d/deploy-status)](https://didact-fe.netlify.com/)
 
+### [![Maintainability](https://api.codeclimate.com/v1/badges/6b06d371d495d32a92af/maintainability)](https://codeclimate.com/github/Lambda-School-Labs/didact-fe/maintainability)
+
 ## Project Overview
 
 [Trello Board](https://trello.com/b/USMOefCg/labs17-didact)
