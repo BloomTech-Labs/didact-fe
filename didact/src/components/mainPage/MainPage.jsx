@@ -55,18 +55,53 @@ const useStyles = makeStyles(theme => ({
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: "#767573",
-    width: "240px",
+    backgroundColor: "#eeeeee",
+    width: "445px",
     borderRadius: "10px",
+    border: "1px solid black",
     padding: "0 6px",
-    height: "32px"
+    paddingLeft: "0%",
+    height: "57px"
   },
+
+  formPart: {
+    display: "flex",
+    flexDirection: "row",
+    height: "57px",
+    width: "370px"
+  },
+
   searchInput: {
     backgroundColor: "inherit",
-    width: "211px",
+    width: "340px",
     border: "none",
     outline: "none",
-    height: "32px"
+    height: "57px",
+    border: "none"
+  },
+  filterDiv: {
+    backgroundColor: "#ffffff",
+    marginRight: "8%",
+    marginTop: "0.5%",
+    borderRadius: "10px 0 0 10px",
+    height: "53px",
+    width: "107px",
+    outline: "none",
+    border: "none"
+  },
+  dropFilter: {
+    marginTop: "8%",
+    border: "none",
+    outline: "none",
+    borderRight: "1px solid black",
+    height: "40px"
+  },
+  searchIcon: {
+    marginTop: "5%",
+    color: "black"
+  },
+  searcher: {
+    marginLeft: "2%"
   }
 }));
 
@@ -178,7 +213,6 @@ function MainPage(props) {
           {/* {openMobile ?
                         (
                         <div className = {classes.scrollBarMobileFix}>
-
                         </div>
                         ) : ( 
                         null )
@@ -203,36 +237,45 @@ function MainPage(props) {
               <div className="header">
                 {/* Search Functionality Below */}
                 <div className={classes.searchDiv}>
-                  <SearchIcon
-                    style={{ fontSize: "1.8rem", marginRight: "5px" }}
-                  />
-                  <form onSubmit={handleSubmit}>
+                  <form className={classes.formPart} onSubmit={handleSubmit}>
+                    <div className={classes.filterDiv}>
+                      <select
+                        className={classes.dropFilter}
+                        value={values.filter}
+                        onChange={handleChange("filter")}
+                      >
+                        <option value="title" select>
+                          Title
+                        </option>
+                        <option value="topic">Topic</option>
+                        <option value="creator">Creator</option>
+                        <option value="description">Description</option>
+                        <option value="tag">Tag</option>
+                      </select>
+                    </div>
                     <input
                       className={classes.searchInput}
                       type="text"
                       value={values.search}
                       onChange={handleChange("search")}
                     />
-                    <select
-                      value={values.filter}
-                      onChange={handleChange("filter")}
-                    >
-                      <option value="" select>
-                        Title
-                      </option>
-                      <option value="topic">Topic</option>
-                      <option value="creator">Creator</option>
-                      <option value="description">Description</option>
-                      <option value="tag">Tag</option>
-                    </select>
+                    <SearchIcon
+                      className={classes.searchIcon}
+                      style={{
+                        fontSize: "1.8rem",
+                        marginRight: "5px",
+                        color: "black"
+                      }}
+                    />
                   </form>
+                  <p className={classes.searcher}>Search</p>
                 </div>
 
                 <div className="navSection">
                   <Link
                     to="/about"
                     style={{
-                      color: "white",
+                      color: "black",
                       textDecoration: "none",
                       marginRight: "20px"
                     }}
@@ -241,7 +284,7 @@ function MainPage(props) {
                   </Link>
                   <Link
                     to="/contact"
-                    style={{ color: "white", textDecoration: "none" }}
+                    style={{ color: "black", textDecoration: "none" }}
                   >
                     <p>Contact</p>
                   </Link>
