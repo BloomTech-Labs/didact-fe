@@ -218,10 +218,9 @@ function MainPage(props) {
                       onChange={handleChange("filter")}
                     >
                       <option value="" select>
-                        Category
+                        Title
                       </option>
                       <option value="topic">Topic</option>
-                      <option value="title">Title</option>
                       <option value="creator">Creator</option>
                       <option value="description">Description</option>
                       <option value="tag">Tag</option>

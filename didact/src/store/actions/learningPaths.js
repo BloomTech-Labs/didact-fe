@@ -136,7 +136,7 @@ export const postLearningPath = (values, history) => dispatch => {
   let path = {
     name: values.name,
     description: values.description || "",
-    category: values.category || ""
+    topic: values.topic || ""
   };
   let pathObj = { path, userPathOrder: values.userPathOrder };
   axiosWithAuth()
