@@ -18,6 +18,7 @@ import DrawerComponent from "../drawer/Drawer";
 import MobileDrawerComponent from "../drawer/MobileDrawer";
 import MobileHeaderComponent from "../header/MobileHeader";
 import Content from "../content/Content";
+import styled from "styled-components";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -79,6 +80,7 @@ const useStyles = makeStyles(theme => ({
     height: "57px",
     border: "none"
   },
+
   filterDiv: {
     backgroundColor: "#ffffff",
     marginRight: "8%",
@@ -87,27 +89,40 @@ const useStyles = makeStyles(theme => ({
     height: "53px",
     width: "107px",
     outline: "none",
-    border: "none"
+    border: "none",
+    display: "flex",
+    justifyContent: "center"
   },
+
   dropFilter: {
     marginTop: "8%",
+    // marginLeft: "18%",
     border: "none",
     outline: "none",
     borderRight: "1px solid black",
-    height: "40px"
+    height: "40px",
+    display: "flex",
+    justifyContent: "center",
+    fontFamily: "open-sans",
+    fontWeight: "bold",
+    fontSize: "1.5rem",
+    textAlign: "center"
   },
+
   searchIcon: {
     marginTop: "5%",
     color: "black"
   },
+
   searcher: {
-    marginLeft: "2%"
+    marginLeft: "2%",
+    fontFamily: "open-sans",
+    fontSize: "1.5rem",
+    fontWeight: "bold"
   }
 }));
 
-// const DropSearch = styled.div`
-//   padding: 10%;
-// `;
+const dropOption = styled.option``;
 
 function MainPage(props) {
   const dispatch = useDispatch();
