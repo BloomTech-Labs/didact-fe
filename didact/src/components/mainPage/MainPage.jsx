@@ -22,7 +22,7 @@ import styled from "styled-components";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    backgroundColor: "#EBE8E1"
+    backgroundColor: "#EEEEEE"
   },
   content: {
     flexGrow: 1,
@@ -59,7 +59,7 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: "#eeeeee",
     width: "445px",
     borderRadius: "10px",
-    border: "1px solid black",
+    border: "2px solid black",
     padding: "0 6px",
     paddingLeft: "0%",
     height: "57px"
@@ -111,18 +111,39 @@ const useStyles = makeStyles(theme => ({
     fontSize: "1.5rem",
     textAlign: "center"
   },
+  searchButton: {
+    display: "flex",
+    alignItems: "center",
+    border: "none",
+    outline: "none",
+    height: "50px",
+    marginTop: "0.8%",
+    marginLeft: "9%",
+    borderRadius: "10px",
+    background: "transparent",
 
-  searchIcon: {
-    marginTop: "5%",
-    color: "black"
-  },
-
-  searcher: {
-    marginLeft: "2%",
-    fontFamily: "open-sans",
-    fontSize: "1.5rem",
-    fontWeight: "bold"
+    "&:hover": {
+      background: "#ffffff"
+    },
+    "&:active": {
+      boxShadow: "0 5px #666",
+      transform: "translateY(4px)"
+    }
   }
+
+  // searchIcon: {
+  //   marginTop: "5%",
+  //   marginLeft: "8%",
+  //   color: "black"
+  // },
+
+  // searcher: {
+  //   marginTop: "5%",
+  //   marginLeft: "1%",
+  //   fontFamily: "open-sans",
+  //   fontSize: "1.5rem",
+  //   fontWeight: "bold"
+  // }
 }));
 
 const dropOption = styled.option``;
@@ -277,16 +298,22 @@ function MainPage(props) {
                       value={values.search}
                       onChange={handleChange("search")}
                     />
-                    <SearchIcon
-                      className={classes.searchIcon}
-                      style={{
-                        fontSize: "1.8rem",
-                        marginRight: "5px",
-                        color: "black"
-                      }}
-                    />
+                    <button
+                      className={classes.searchButton}
+                      type="submit"
+                      OnSubmit={handleSubmit}
+                    >
+                      <SearchIcon
+                        className={classes.searchIcon}
+                        style={{
+                          fontSize: "1.8rem",
+                          marginRight: "5px",
+                          color: "black"
+                        }}
+                      />
+                      <p className={classes.searcher}>Search</p>
+                    </button>
                   </form>
-                  <p className={classes.searcher}>Search</p>
                 </div>
 
                 <div className="navSection">
