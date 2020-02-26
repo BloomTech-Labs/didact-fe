@@ -78,7 +78,10 @@ const useStyles = makeStyles(theme => ({
     border: "none",
     outline: "none",
     height: "57px",
-    border: "none"
+    border: "none",
+    fontFamily: "open-sans",
+    fontWeight: "bold",
+    fontSize: "1.6rem"
   },
 
   filterDiv: {
