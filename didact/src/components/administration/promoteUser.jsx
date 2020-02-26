@@ -18,7 +18,10 @@ const promoteUser = () => {
         <form>
             <label>E-mail:</label>
             <input name="email" value={inputValues.email} onChange={handleChange} />
-            
+            <select>
+                <option value="moderator">Moderator</option>
+                {user.owner ? <option value="admin">Admin</option> && <option value="owner">Owner</option>: null}
+            </select>
         </form>
     )
 }
