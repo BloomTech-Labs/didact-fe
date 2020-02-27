@@ -29,20 +29,17 @@ const SearchResults = ({ props, results, setValues, values }) => {
   const state = useSelector(state => state);
   const courses = state.coursesReducer.courses;
   const learningPaths = state.learningPathReducer.learningPaths;
-  const yourLearningPaths = state.learningPathReducer.yourLearningPaths;
 
   useEffect(() => {
     dispatch(courseEndPoint(results));
     dispatch(getLearningPaths(results));
-    dispatch(getYourLearningPaths(results));
-  }, [dispatch]);
+  }, [dispatch, results]);
 
   const handleBack = () => {
     props.history.push("/");
     setValues({ ...values, search: "" });
   };
 
-  console.log("this is results in searchResults.jsx", results);
   return (
     <div>
       <div
@@ -59,32 +56,27 @@ const SearchResults = ({ props, results, setValues, values }) => {
           style={{ cursor: "pointer" }}
         >{`<${" "} Back To Dashboard`}</p>
       </div>
-      {results === "" ? null : (
+      {/* {results === "" ? null : ( */}
         <>
           <div style={{ minHeight: "300px" }}>
-            {/* Your Learning Path Results */}
-            <TitleH2>Your Learning Paths</TitleH2>
-            {/* <LearningPathYourResults
+            {learningPaths.length === 0 ? <TitleH2>No Results In Paths</TitleH2> : <TitleH2>Learning Paths</TitleH2> }
+            {learningPaths.length > 0 ? learningPaths.map(path => (
+              <LearningPathResults
+              key={path.id}
               props={props}
-              learningPath={keyword}
+              learningPath={path}
               results={results}
             />
-            <TitleH2>Learning Paths</TitleH2>
-            <LearningPathResults
-              props={props}
-              learningPath={keyword}
-              results={results}
-            /> */}
+            )) : null}
           </div>
-
           {/* Courses Results */}
           <div>
-            <TitleH2 style={{ marginBottom: "-30px" }}>Courses</TitleH2>
-
-            {/* <Course props={props} course={keyword} results={results} /> */}
+            {courses.length === 0 ? <TitleH2 style={{ marginBottom: "-30px" }}>No Results In Courses</TitleH2> : <TitleH2 style={{ marginBottom: "-30px" }}>Courses</TitleH2>}
+            {courses.length > 0 ? courses.map(course => (
+                <Course props={props} course={course} results={results} key={course.id}/>
+              )) : null}
           </div>
         </>
-      )}
     </div>
   );
 };

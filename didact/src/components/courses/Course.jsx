@@ -227,7 +227,7 @@ const Course = ({ course, addingCourses, props }) => {
                           filteredPaths.map((learningPath, index) => {
                             return (
                               <div className="learningPathTitle" key={ index }>
-                                <h5>{ learningPath.name }</h5>
+                                <h5>{ learningPath.title }</h5>
                                 <button
                                   onClick={ () =>
                                     handleAddCourse(

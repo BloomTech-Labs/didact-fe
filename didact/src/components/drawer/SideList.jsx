@@ -2,11 +2,14 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
+import { Link } from "react-router-dom";
 
-// import List from "@material-ui/core/List";
-// import ListItem from "@material-ui/core/ListItem";
-// import ListItemIcon from "@material-ui/core/ListItemIcon";
-// import ListItemText from "@material-ui/core/ListItemText";
+import ClickAwayListener from "@material-ui/core/ClickAwayListener";
+import Grow from "@material-ui/core/Grow";
+import Paper from "@material-ui/core/Paper";
+import Popper from "@material-ui/core/Popper";
+import MenuItem from "@material-ui/core/MenuItem";
+import MenuList from "@material-ui/core/MenuList";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import FolderOpenIcon from "@material-ui/icons/FolderOpen";
@@ -19,7 +22,7 @@ import { SideListWrapper } from "./SideListStyles";
 const SideList = ({ props }) => {
   const drawerStyles = makeStyles(theme => ({
     activeTab: {
-      backgroundColor: "green",
+      backgroundColor: "#ffffff",
       borderRadius: "0 20px 20px 0",
       width: "225px",
       color: "white",
@@ -45,12 +48,33 @@ const SideList = ({ props }) => {
       alignItems: "center",
       width: "225px"
     },
+
+    navigationLinks: {
+      display: "flex",
+      flexDirection: "column",
+      paddingRight: "15%",
+      paddingTop: "10%"
+    },
+
     iconImageProfile: {
       width: "30px",
       height: "30px",
       borderRadius: "50%",
       // marginTop: '20px',
       objectFit: "cover"
+    },
+
+    root: {
+      display: "flex"
+    },
+    paper: {
+      marginRight: theme.spacing(2)
+    },
+
+    menuLister: {
+      background: "#eeeeee",
+      border: "none",
+      width: "225px"
     }
   }));
 
@@ -72,6 +96,38 @@ const SideList = ({ props }) => {
       userName.last_name.substring(1)
     : null;
 
+  // state for dropdown links
+  const [open, setOpen] = React.useState(false);
+  const anchorRef = React.useRef(null);
+
+  const handleToggle = () => {
+    setOpen(prevOpen => !prevOpen);
+  };
+
+  const handleClose = event => {
+    if (anchorRef.current && anchorRef.current.contains(event.target)) {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+  function handleListKeyDown(event) {
+    if (event.key === "Tab") {
+      event.preventDefault();
+      setOpen(false);
+    }
+  }
+  // return focus to the button when we transitioned from !open -> open
+  const prevOpen = React.useRef(open);
+  React.useEffect(() => {
+    if (prevOpen.current === true && open === false) {
+      anchorRef.current.focus();
+    }
+
+    prevOpen.current = open;
+  }, [open]);
+
   return (
     <SideListWrapper>
       <ul className={classes.list}>
@@ -83,7 +139,7 @@ const SideList = ({ props }) => {
             color: "#5b5b5b",
             outline: "none !important"
           }}
-          activeStyle={{ color: "white" }}
+          activeStyle={{ color: "black" }}
           activeClassName={classes.activeTab}
           className={classes.listItem}
           key="Dashboard"
@@ -125,7 +181,7 @@ const SideList = ({ props }) => {
             color: "#5b5b5b",
             outline: "none !important"
           }}
-          activeStyle={{ color: "white" }}
+          activeStyle={{ color: "black" }}
           activeClassName={classes.activeTab}
           className={classes.listItem}
           key="Add Course"
@@ -161,12 +217,16 @@ const SideList = ({ props }) => {
         </NavLink>
         <NavLink
           to="/learning-paths"
+          ref={anchorRef}
+          aria-controls={open ? "menu-list-grow" : undefined}
+          aria-haspopup="true"
+          onClick={handleToggle}
           style={{
             textDecoration: "none",
             color: "#5b5b5b",
             outline: "none !important"
           }}
-          activeStyle={{ color: "white" }}
+          activeStyle={{ color: "black" }}
           activeClassName={classes.activeTab}
           className={classes.listItem}
           key="Learning Paths"
@@ -183,6 +243,7 @@ const SideList = ({ props }) => {
             <p style={{ marginLeft: "25px", fontWeight: "bold" }}>
               Learning Paths
             </p>
+
             {props.props.match.path.includes("/learning-paths") ? (
               <p className={classes.arrow}>
                 <ChevronRightIcon
@@ -202,14 +263,73 @@ const SideList = ({ props }) => {
             )}
           </div>
         </NavLink>
-        {/* <NavLink
-          to="/nothing"
+        <Popper
+          open={open}
+          anchorEl={anchorRef.current}
+          role={undefined}
+          transition
+          disablePortal
+        >
+          {({ TransitionProps, placement }) => (
+            <Grow
+              {...TransitionProps}
+              style={{
+                transformOrigin:
+                  placement === "bottom" ? "center top" : "center bottom"
+              }}
+            >
+              <Paper>
+                <ClickAwayListener onClickAway={handleClose}>
+                  <div className={classes.menuLister}>
+                    <MenuList
+                      autoFocusItem={open}
+                      id="menu-list-grow"
+                      onKeyDown={handleListKeyDown}
+                    >
+                      <MenuItem>
+                        <NavLink
+                          to="/current"
+                          style={{
+                            textDecoration: "none",
+                            color: "#5b5b5b",
+
+                            fontFamily: "sans-serif",
+                            fontWeight: "semi bold"
+                          }}
+                        >
+                          Current
+                        </NavLink>
+                      </MenuItem>
+                      <MenuItem>
+                        <NavLink
+                          to="/create"
+                          style={{
+                            textDecoration: "none",
+                            color: "#5b5b5b",
+
+                            fontFamily: "sans-serif",
+                            fontWeight: "semi bold"
+                          }}
+                        >
+                          Create
+                        </NavLink>
+                      </MenuItem>
+                      <MenuItem>Join</MenuItem>
+                    </MenuList>
+                  </div>
+                </ClickAwayListener>
+              </Paper>
+            </Grow>
+          )}
+        </Popper>
+        <NavLink
+          to="/about"
           style={{
             textDecoration: "none",
             color: "#5b5b5b",
             outline: "none !important"
           }}
-          activeStyle={{ color: "white" }}
+          activeStyle={{ color: "black" }}
           activeClassName={classes.activeTab}
           className={classes.listItem}
           key="Resources"
@@ -242,7 +362,31 @@ const SideList = ({ props }) => {
               </p>
             )}
           </div>
-        </NavLink> */}
+        </NavLink>
+        <div className={classes.navigationLinks}>
+          <Link
+            to="/about"
+            style={{
+              color: "black",
+              textDecoration: "none",
+              fontFamily: "sans-serif",
+              fontWeight: "semi bold"
+            }}
+          >
+            <p>About</p>
+          </Link>
+          <Link
+            to="/contact"
+            style={{
+              color: "black",
+              textDecoration: "none",
+              fontFamily: "sans-serif",
+              fontWeight: "semi bold"
+            }}
+          >
+            <p>Contact</p>
+          </Link>
+        </div>
       </ul>
 
       <div className="profileSection">

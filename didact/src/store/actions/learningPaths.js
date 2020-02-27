@@ -85,7 +85,6 @@ const baseURL = `${beURL}learning-paths/`;
 
 export const getLearningPaths = results => dispatch => {
   dispatch({ type: GET_LEARNING_PATHS_START });
-
   axiosWithAuth()
     .get(
       `${baseURL}`,
@@ -101,8 +100,6 @@ export const getLearningPaths = results => dispatch => {
     .catch(err => {
       dispatch({ type: GET_LEARNING_PATHS_FAIL, payload: err });
     });
-
-  console.log("this is getLearningPaths headers in learningPath.js", results);
 };
 
 export const searchLearningPathsByTag = (tag = "") => dispatch => {
@@ -316,15 +313,12 @@ export const getYourLearningPaths = (getYours, results) => dispatch => {
         : null
     )
     .then(res => {
+      console.log("Your paths data", res.data)
       dispatch({ type: GET_YOUR_LEARNING_PATHS_SUCCESS, payload: res.data });
     })
     .catch(err => {
       dispatch({ type: GET_YOUR_LEARNING_PATHS_FAIL, payload: err });
     });
-  console.log(
-    "this is getYourLearningPaths headers in learningPath.js",
-    results
-  );
 };
 
 export const getYourLearningPathsOwned = getYours => dispatch => {

@@ -8,7 +8,7 @@ const AllLearningPaths = ({props, learningPath}) => {
         <LearningPathsWrapper>
                <LearningPathCard style={{marginBottom: "20px"}}>
             <div className='title' style={{paddingLeft: '20px'}}> 
-                <h1>{learningPath.name}</h1>
+                <h1>{learningPath.title}</h1>
                 <div>
                 <button><Link to={`/learning-paths/${learningPath.id}`}>Go To Path</Link></button>
                 </div>

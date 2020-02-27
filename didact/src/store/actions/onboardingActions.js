@@ -24,7 +24,6 @@ export const loginAction = (history, form) => dispatch => {
         .post(`${baseURL}login`, form)
         .then(res => {
             localStorage.setItem("token", res.data.token)
-            console.log("RES.DATAAAAAAAAAAAAAA", res.data)
             dispatch({ type: LOGIN_SUCCESS, payload: res.data })
         })
         .then(() => history.push("/"))
