@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
+import { Link } from "react-router-dom";
 
 // import List from "@material-ui/core/List";
 // import ListItem from "@material-ui/core/ListItem";
@@ -45,6 +46,13 @@ const SideList = ({ props }) => {
       alignItems: "center",
       width: "225px"
     },
+
+    navigationLinks: {
+      display: "flex",
+      flexDirection: "column",
+      paddingRight: "15%"
+    },
+
     iconImageProfile: {
       width: "30px",
       height: "30px",
@@ -183,6 +191,7 @@ const SideList = ({ props }) => {
             <p style={{ marginLeft: "25px", fontWeight: "bold" }}>
               Learning Paths
             </p>
+
             {props.props.match.path.includes("/learning-paths") ? (
               <p className={classes.arrow}>
                 <ChevronRightIcon
@@ -243,6 +252,30 @@ const SideList = ({ props }) => {
             )}
           </div>
         </NavLink>
+        <div className={classes.navigationLinks}>
+          <Link
+            to="/about"
+            style={{
+              color: "black",
+              textDecoration: "none",
+              fontFamily: "sans-serif",
+              fontWeight: "semi bold"
+            }}
+          >
+            <p>About</p>
+          </Link>
+          <Link
+            to="/contact"
+            style={{
+              color: "black",
+              textDecoration: "none",
+              fontFamily: "sans-serif",
+              fontWeight: "semi bold"
+            }}
+          >
+            <p>Contact</p>
+          </Link>
+        </div>
       </ul>
 
       <div className="profileSection">

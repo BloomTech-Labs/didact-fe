@@ -148,14 +148,14 @@ const DrawerComponent = props => {
         duration: theme.transitions.duration.leavingScreen
       }),
       width: "65px",
-      backgroundColor: "#565554",
+      backgroundColor: "#eeeeee",
       overflow: "hidden",
       marginLeft: "20px",
       height: "68px",
       marginTop: "10px",
       position: "fixed",
       display: "flex",
-      paddingLeft: "70px",
+      // paddingLeft: "70px",
       justifyContent: "center",
       alignItems: "center",
       borderRadius: "19px",
@@ -202,8 +202,11 @@ const DrawerComponent = props => {
           {/* <h2
             style={{
               fontSize: "3.2rem",
-              color: "white",
-              fontFamily: "ITC Grouch"
+              color: "black",
+              fontFamily: "dinosaur",
+              fontFamily: "sans-serif",
+              fontWeight: "900",
+              fontStyle: "normal"
             }}
           >
             D<span style={{ color: "#565554" }}>idact</span>
