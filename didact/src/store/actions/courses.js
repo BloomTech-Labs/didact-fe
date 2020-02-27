@@ -43,6 +43,7 @@ export const CHECK_DATABASE_FAIL = "CHECK_DATABASE_FAIL";
 const baseURL = `${beURL}courses/`;
 
 export const courseEndPoint = results => dispatch => {
+  console.log(results)
   dispatch({ type: COURSE_DATA_START });
 
   axiosWithAuth()
@@ -55,12 +56,12 @@ export const courseEndPoint = results => dispatch => {
         : null
     )
     .then(res => {
-      dispatch({ type: COURSE_DATA_SUCCESS, payload: res.data });
+      console.log(res.data)
+      dispatch({ type: COURSE_DATA_SUCCESS, payload: res.data});
     })
     .catch(err => {
       dispatch({ type: COURSE_DATA_FAIL, payload: err.response });
     });
-  console.log("this is headers in courses.js", results);
 };
 
 export const getYourCourses = () => dispatch => {

@@ -159,7 +159,7 @@ function MainPage(props) {
   const [openMobile, setOpenMobile] = React.useState(false);
   const [values, setValues] = useState({
     search: "",
-    filter: ""
+    filter: "title"
   });
   const [results, setResults] = useState();
 
@@ -282,7 +282,7 @@ function MainPage(props) {
                         value={values.filter}
                         onChange={handleChange("filter")}
                       >
-                        <option value="title" select>
+                        <option value="title">
                           Title
                         </option>
                         <option value="topic">Topic</option>
