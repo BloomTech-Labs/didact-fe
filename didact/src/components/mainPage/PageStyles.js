@@ -3,10 +3,11 @@ import styled from "styled-components";
 export const PageFlex = styled.div`
   width: 100%;
   display: flex;
+  position: left;
   /* width: auto; */
 
   .drawer {
-    padding-right: 20px;
+    padding-right: 10px;
   }
 
   .headerMain {

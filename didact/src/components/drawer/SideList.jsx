@@ -19,7 +19,7 @@ import { SideListWrapper } from "./SideListStyles";
 const SideList = ({ props }) => {
   const drawerStyles = makeStyles(theme => ({
     activeTab: {
-      backgroundColor: "green",
+      backgroundColor: "#ffffff",
       borderRadius: "0 20px 20px 0",
       width: "225px",
       color: "white",
@@ -83,7 +83,7 @@ const SideList = ({ props }) => {
             color: "#5b5b5b",
             outline: "none !important"
           }}
-          activeStyle={{ color: "white" }}
+          activeStyle={{ color: "black" }}
           activeClassName={classes.activeTab}
           className={classes.listItem}
           key="Dashboard"
@@ -125,7 +125,7 @@ const SideList = ({ props }) => {
             color: "#5b5b5b",
             outline: "none !important"
           }}
-          activeStyle={{ color: "white" }}
+          activeStyle={{ color: "black" }}
           activeClassName={classes.activeTab}
           className={classes.listItem}
           key="Add Course"
@@ -166,7 +166,7 @@ const SideList = ({ props }) => {
             color: "#5b5b5b",
             outline: "none !important"
           }}
-          activeStyle={{ color: "white" }}
+          activeStyle={{ color: "black" }}
           activeClassName={classes.activeTab}
           className={classes.listItem}
           key="Learning Paths"
@@ -202,7 +202,7 @@ const SideList = ({ props }) => {
             )}
           </div>
         </NavLink>
-        {/* <NavLink
+        <NavLink
           to="/nothing"
           style={{
             textDecoration: "none",
@@ -242,7 +242,7 @@ const SideList = ({ props }) => {
               </p>
             )}
           </div>
-        </NavLink> */}
+        </NavLink>
       </ul>
 
       <div className="profileSection">

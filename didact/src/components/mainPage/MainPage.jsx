@@ -44,6 +44,9 @@ const useStyles = makeStyles(theme => ({
     paddingLeft: "80px",
     padding: theme.spacing(2)
   },
+
+  mainDrawerComponent: {},
+
   toolbar: {
     display: "flex",
     alignItems: "center",
@@ -87,9 +90,9 @@ const useStyles = makeStyles(theme => ({
   filterDiv: {
     backgroundColor: "#ffffff",
     marginRight: "8%",
-    marginTop: "0.5%",
+    marginTop: "0.6%",
     borderRadius: "10px 0 0 10px",
-    height: "53px",
+    height: "52px",
     width: "107px",
     outline: "none",
     border: "none",
@@ -99,7 +102,6 @@ const useStyles = makeStyles(theme => ({
 
   dropFilter: {
     marginTop: "8%",
-    // marginLeft: "18%",
     border: "none",
     outline: "none",
     borderRight: "1px solid black",
@@ -145,8 +147,6 @@ const useStyles = makeStyles(theme => ({
   //   fontWeight: "bold"
   // }
 }));
-
-const dropOption = styled.option``;
 
 function MainPage(props) {
   const dispatch = useDispatch();
