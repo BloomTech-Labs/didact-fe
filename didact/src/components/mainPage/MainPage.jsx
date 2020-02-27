@@ -3,7 +3,7 @@ import { verifyToken } from "../../store/actions/index.js";
 import { useDispatch, useSelector } from "react-redux";
 import { PageFlex } from "./PageStyles";
 import { makeStyles } from "@material-ui/core/styles";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 // import styled from "styled-components";
 
 //Material UI Icons
@@ -18,7 +18,6 @@ import DrawerComponent from "../drawer/Drawer";
 import MobileDrawerComponent from "../drawer/MobileDrawer";
 import MobileHeaderComponent from "../header/MobileHeader";
 import Content from "../content/Content";
-import styled from "styled-components";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -301,7 +300,7 @@ function MainPage(props) {
                     <button
                       className={classes.searchButton}
                       type="submit"
-                      OnSubmit={handleSubmit}
+                      onSubmit={handleSubmit}
                     >
                       <SearchIcon
                         className={classes.searchIcon}
@@ -316,7 +315,7 @@ function MainPage(props) {
                   </form>
                 </div>
 
-                <div className="navSection">
+                {/* <div className="navSection">
                   <Link
                     to="/about"
                     style={{
@@ -333,7 +332,7 @@ function MainPage(props) {
                   >
                     <p>Contact</p>
                   </Link>
-                </div>
+                </div> */}
               </div>
               <main className={classes.content}>
                 {/* <div className={classes.toolbar} /> */}
