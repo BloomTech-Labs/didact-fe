@@ -46,7 +46,7 @@ export default function AddCourse({ props }) {
   const state = useSelector(state => state);
   const inDB = state.coursesReducer.inDB;
   const [values, setValues] = useState({
-    name: "",
+    title: "",
     topic: "",
     foreign_instructors: "",
     foreign_rating: "",
@@ -79,43 +79,43 @@ export default function AddCourse({ props }) {
   return (
     <>
       <div
-        style={{
+        style={ {
           display: "flex",
           justifyContent: "space-between",
           margin: "-10px 10px 10px 10px",
           borderBottom: "1px solid black"
-        }}
+        } }
       >
         <p
-          style={{
+          style={ {
             fontWeight: "bold",
             marginLeft: "10px",
             display: "flex",
             flexDirection: "row",
             alignItems: "center"
-          }}
+          } }
         >
-          <span className={classes.span} onClick={handleBack}>
+          <span className={ classes.span } onClick={ handleBack }>
             Courses
           </span>
-          <ChevronRightIcon style={{ fontSize: "1.6rem" }} />
+          <ChevronRightIcon style={ { fontSize: "1.6rem" } } />
           <span>Add New Course</span>
         </p>
       </div>
-      {inDB === 0 ? (
+      { inDB === 0 ? (
         <AddUdemyCourse
-          props={props}
-          values={values}
-          setValues={setValues}
-          handleSubmitUdemy={handleSubmitUdemy}
+          props={ props }
+          values={ values }
+          setValues={ setValues }
+          handleSubmitUdemy={ handleSubmitUdemy }
         />
       ) : inDB < 0 ? (
-        <Card className={classes.card}>
+        <Card className={ classes.card }>
           <CardContent>
-            <p>{`${values.link} is not in the database, add course below`}</p>
+            <p>{ `${values.link} is not in the database, add course below` }</p>
             <form
-              onSubmit={handleSubmit}
-              className={classes.container}
+              onSubmit={ handleSubmit }
+              className={ classes.container }
               noValidate
               autoComplete="off"
             >
@@ -126,19 +126,19 @@ export default function AddCourse({ props }) {
                 <DidactInput
                   id="url"
                   type="text"
-                  value={values.link || ""}
-                  onChange={handleChange("link")}
+                  value={ values.link || "" }
+                  onChange={ handleChange("link") }
                   placeholder="Course Url"
                 />
               </DidactField>
               <DidactField>
-                <DidactLabel for="title">Course Name</DidactLabel>
+                <DidactLabel for="title">Course Title</DidactLabel>
                 <DidactInput
                   id="title"
                   type="text"
-                  value={values.name || ""}
-                  onChange={handleChange("name")}
-                  placeholder="Course Name"
+                  value={ values.title || "" }
+                  onChange={ handleChange("title") }
+                  placeholder="Course Title"
                 />
               </DidactField>
               <DidactField>
@@ -146,8 +146,8 @@ export default function AddCourse({ props }) {
                 <DidactInput
                   id="instructors"
                   type="text"
-                  value={values.foreign_instructors || ""}
-                  onChange={handleChange("foreign_instructors")}
+                  value={ values.foreign_instructors || "" }
+                  onChange={ handleChange("foreign_instructors") }
                   placeholder="Instructors"
                 />
               </DidactField>
@@ -156,8 +156,8 @@ export default function AddCourse({ props }) {
                 <DidactTextArea
                   rows="8"
                   id="description"
-                  value={values.description || ""}
-                  onChange={handleChange("description")}
+                  value={ values.description || "" }
+                  onChange={ handleChange("description") }
                   placeholder="Description"
                 />
               </DidactField>
@@ -166,20 +166,20 @@ export default function AddCourse({ props }) {
                 <DidactInput
                   id="topic"
                   type="text"
-                  value={values.topic || ""}
-                  onChange={handleChange("topic")}
+                  value={ values.topic || "" }
+                  onChange={ handleChange("topic") }
                   placeholder="Topic"
                 />
               </DidactField>
-              <DidactButton type="submit" style={{ marginLeft: "72%" }}>
+              <DidactButton type="submit" style={ { marginLeft: "72%" } }>
                 Add Course
               </DidactButton>
             </form>
           </CardContent>
         </Card>
       ) : (
-        props.history.push(`/courses/all/${inDB}`)
-      )}
+            props.history.push(`/courses/all/${inDB}`)
+          ) }
     </>
   );
 }

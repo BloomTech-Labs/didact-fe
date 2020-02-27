@@ -24,11 +24,12 @@ export const loginAction = (history, form) => dispatch => {
         .post(`${baseURL}login`, form)
         .then(res => {
             localStorage.setItem("token", res.data.token)
+            console.log("RES.DATAAAAAAAAAAAAAA", res.data)
             dispatch({ type: LOGIN_SUCCESS, payload: res.data })
         })
         .then(() => history.push("/"))
         .catch(err => {
-            dispatch({type: LOGIN_FAILURE, payload: err })
+            dispatch({ type: LOGIN_FAILURE, payload: err })
         })
 }
 
@@ -53,8 +54,7 @@ export const verifyToken = (history) => dispatch => {
         .then(res => {
             dispatch({ type: VERIFY_SUCCESS, payload: res.data })
         })
-        .catch( async (err) => 
-        {
+        .catch(async (err) => {
             await localStorage.removeItem('token')
             await dispatch({ type: VERIFY_FAILURE, payload: err.response })
             await history.push('/landing')
@@ -72,18 +72,15 @@ export const verifySocial = (props) => dispatch => {
         .catch(err => dispatch({ type: VERIFY_FAILURE, payload: err }))
 }
 
-export const sendContactMessage = (values) => dispatch =>
-{
+export const sendContactMessage = (values) => dispatch => {
     dispatch({ type: SEND_CONTACT_MESSAGE_START })
 
     axiosWithAuth()
-    .post(`${baseURL}contactmessage`, values)
-        .then(res =>
-        {
+        .post(`${baseURL}contactmessage`, values)
+        .then(res => {
             dispatch({ type: SEND_CONTACT_MESSAGE_SUCCESS })
         })
-        .catch(err =>
-        {
+        .catch(err => {
             dispatch({ type: SEND_CONTACT_MESSAGE_FAIL })
         })
 }

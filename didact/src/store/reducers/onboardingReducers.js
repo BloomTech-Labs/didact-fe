@@ -1,9 +1,9 @@
-import { 
-    LOGIN_START, 
-    LOGIN_SUCCESS, 
-    LOGIN_FAILURE, 
-    REGISTER_START, 
-    REGISTER_SUCCESS, 
+import {
+    LOGIN_START,
+    LOGIN_SUCCESS,
+    LOGIN_FAILURE,
+    REGISTER_START,
+    REGISTER_SUCCESS,
     REGISTER_FAILURE,
     VERIFY_START,
     VERIFY_SUCCESS,
@@ -23,59 +23,61 @@ const initialState = {
 }
 
 export const onboardingReducer = (state = initialState, action) => {
-    switch(action.type) {
 
-    //   Native Login Reducers
+    switch (action.type) {
+
+        //   Native Login Reducers
         case LOGIN_START:
             return {
                 ...state,
                 isLoading: true,
                 error: ""
-                };
-        case LOGIN_SUCCESS: 
+            };
+        case LOGIN_SUCCESS:
+            console.log("77777777777777777777777777777777", action.payload)
             return {
                 ...state,
                 user: action.payload,
                 isLoading: false,
                 tokenVerified: true,
                 error: ""
-                };
+            };
         case LOGIN_FAILURE:
             return {
                 ...state,
                 error: action.payload,
                 loginError: true,
-                };
-    
-    //  Register Reducers
+            };
+
+        //  Register Reducers
         case REGISTER_START:
             return {
                 ...state,
                 isLoading: true,
                 error: ""
-                };
-        case REGISTER_SUCCESS: 
+            };
+        case REGISTER_SUCCESS:
             return {
                 ...state,
                 isLoading: false,
                 user: action.payload,
                 error: ""
-                };
+            };
         case REGISTER_FAILURE:
             return {
                 ...state,
                 error: action.payload,
                 registerError: true
-                };
+            };
 
-    //  Facebook Login/Register
+        //  Facebook Login/Register
         case VERIFY_START:
             return {
                 ...state,
                 isLoading: true,
                 error: ""
             };
-        case VERIFY_SUCCESS: 
+        case VERIFY_SUCCESS:
             return {
                 ...state,
                 isLoading: false,
@@ -99,7 +101,7 @@ export const onboardingReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoading: false,
-                
+
                 error: "",
             }
         case SEND_CONTACT_MESSAGE_FAIL:
