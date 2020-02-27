@@ -3,7 +3,7 @@ import { verifyToken } from "../../store/actions/index.js";
 import { useDispatch, useSelector } from "react-redux";
 import { PageFlex } from "./PageStyles";
 import { makeStyles } from "@material-ui/core/styles";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 // import styled from "styled-components";
 
 //Material UI Icons
@@ -18,7 +18,6 @@ import DrawerComponent from "../drawer/Drawer";
 import MobileDrawerComponent from "../drawer/MobileDrawer";
 import MobileHeaderComponent from "../header/MobileHeader";
 import Content from "../content/Content";
-import styled from "styled-components";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -44,6 +43,9 @@ const useStyles = makeStyles(theme => ({
     paddingLeft: "80px",
     padding: theme.spacing(2)
   },
+
+  mainDrawerComponent: {},
+
   toolbar: {
     display: "flex",
     alignItems: "center",
@@ -87,9 +89,9 @@ const useStyles = makeStyles(theme => ({
   filterDiv: {
     backgroundColor: "#ffffff",
     marginRight: "8%",
-    marginTop: "0.5%",
+    marginTop: "0.6%",
     borderRadius: "10px 0 0 10px",
-    height: "53px",
+    height: "52px",
     width: "107px",
     outline: "none",
     border: "none",
@@ -99,7 +101,6 @@ const useStyles = makeStyles(theme => ({
 
   dropFilter: {
     marginTop: "8%",
-    // marginLeft: "18%",
     border: "none",
     outline: "none",
     borderRight: "1px solid black",
@@ -145,8 +146,6 @@ const useStyles = makeStyles(theme => ({
   //   fontWeight: "bold"
   // }
 }));
-
-const dropOption = styled.option``;
 
 function MainPage(props) {
   const dispatch = useDispatch();
@@ -301,7 +300,7 @@ function MainPage(props) {
                     <button
                       className={classes.searchButton}
                       type="submit"
-                      OnSubmit={handleSubmit}
+                      onSubmit={handleSubmit}
                     >
                       <SearchIcon
                         className={classes.searchIcon}
@@ -316,7 +315,7 @@ function MainPage(props) {
                   </form>
                 </div>
 
-                <div className="navSection">
+                {/* <div className="navSection">
                   <Link
                     to="/about"
                     style={{
@@ -333,7 +332,7 @@ function MainPage(props) {
                   >
                     <p>Contact</p>
                   </Link>
-                </div>
+                </div> */}
               </div>
               <main className={classes.content}>
                 {/* <div className={classes.toolbar} /> */}
