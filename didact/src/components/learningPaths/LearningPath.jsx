@@ -130,7 +130,7 @@ const LearningPath = ({ id, props }) => {
                                 </div>
                                 <div className='learningPathCard'>
                                     <div className='currentTitle'>
-                                        <h1 style={ { fontFamily: 'ITC Grouch' } }>{ firstItemCourse.name }</h1>
+                                        <h1 style={ { fontFamily: 'ITC Grouch' } }>{ firstItemCourse.title }</h1>
                                         { firstItemCourse.path_id &&
                                             (firstItemCourse.automatically_completed || firstItemCourse.manually_completed ?
                                                 <CheckCircleIcon onClick={ () => handleMarkCompleteItem(firstItemCourse.id) } className='completeButton' />
@@ -168,7 +168,7 @@ const LearningPath = ({ id, props }) => {
                                                     <div className={ 'learningPathCourseWrappers upcoming' + (itemCourse.path_id ? ' item' : '') } key={ index }>
                                                         <div className='learningPathCard'>
                                                             <div>
-                                                                <h2>{ itemCourse.name }</h2>
+                                                                <h2>{ itemCourse.title || itemCourse.name }</h2>
                                                                 { !itemCourse.path_id ?
                                                                     (<div style={ { display: 'flex', justifyContent: 'space-between', width: '80%' } }>
                                                                         <div style={ { display: 'flex', flexDirection: 'column', textAlign: "left", margin: "10px 0 -10px 0" } }>
@@ -198,7 +198,7 @@ const LearningPath = ({ id, props }) => {
                                                     <div className={ 'learningPathCourseWrappers' + (itemCourse.path_id ? ' item' : '') } key={ index }>
                                                         <div className='learningPathCard completed'>
                                                             <div>
-                                                                <h2>{ itemCourse.name }</h2>
+                                                                <h2>{ itemCourse.title }</h2>
                                                                 <div style={ { display: 'flex', justifyContent: 'space-between', width: '80%' } }>
                                                                     <div style={ { display: 'flex', flexDirection: 'column', textAlign: "left", margin: "10px 0 -10px 0" } }>
                                                                         <span>Progress</span>

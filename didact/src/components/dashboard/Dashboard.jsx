@@ -78,7 +78,7 @@ function Dashboard({ props }) {
           <p style={ { fontSize: '2rem', fontWeight: 'bold', textAlign: 'left', marginLeft: '10px' } }>Current Learning Path</p>
           <LearningPathCard className={ classes.current } >
             <div className='title'>
-              <h3 style={ { fontFamily: 'ITC Grouch', color: "white", marginBottom: '40px' } }>{ learningPathOrder.length >= 1 ? learningPathOrder[0].name : "Join a Learning Path" }</h3>
+              <h3 style={ { fontFamily: 'ITC Grouch', color: "white", marginBottom: '40px' } }>{ learningPathOrder.length >= 1 ? learningPathOrder[0].title : "Join a Learning Path" }</h3>
               <div style={ { display: 'flex', justifyContent: 'flex-end' } }>
                 <div style={ { display: 'flex', alignItems: 'center' } }>
                 </div>
