@@ -6,7 +6,6 @@ const addResource = () => {
     const [articleValues, setArticleValues] = useState({
         date: freshDate.toISOString().slice(0, 10),
         title: '',
-        brief: '',
         body: '',
         topic: ''
     })
@@ -18,7 +17,13 @@ const addResource = () => {
     })
 
     const handleChange = e => {
+        contentType === 'article' ? setArticleValues({...articleValues, [e.target.name]: e.target.value})
+        : setNonArticleValues({...nonArticleValues, [e.target.name]: e.target.value})
+    }
 
+    const handleSubmit = e => {
+        e.preventDefault();
+        //insert axios call here once endpoints set up
     }
 
     return (
