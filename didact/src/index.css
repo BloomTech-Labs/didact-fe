@@ -1,19 +1,24 @@
 html {
-  background-color: #EBE8E1;
+  background-color: #ebe8e1;
   /* overflow-y: auto !important; */
   font-size: 62.5%;
   margin-left: calc(100vw - 100%);
 }
 
-@media (max-width: 600px){
+@media (max-width: 600px) {
   html {
     margin-left: 0;
     width: 100vw;
   }
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Open Sans', sans-serif;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Open Sans", sans-serif;
   font-weight: 800;
 }
 
@@ -41,8 +46,11 @@ h6 {
   font-size: 1.6rem;
 }
 
-p, input, textarea, label {
-  font-family: 'Open Sans', sans-serif;
+p,
+input,
+textarea,
+label {
+  font-family: "Open Sans", sans-serif;
   font-size: 1.4rem;
 }
 
@@ -52,27 +60,29 @@ p, input, textarea, label {
 } */
 
 a {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 1.4rem;
   text-decoration: none;
 }
 
 button {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 1.4rem;
   font-weight: 700;
 }
 
 ::placeholder {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 
-::-webkit-input-placeholder { /* Edge */
-  font-family: 'Open Sans', sans-serif;
+::-webkit-input-placeholder {
+  /* Edge */
+  font-family: "Open Sans", sans-serif;
 }
 
-:-ms-input-placeholder { /* Internet Explorer 10-11 */
-  font-family: 'Open Sans', sans-serif;
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  font-family: "Open Sans", sans-serif;
 }
 
 /* * {
@@ -111,12 +121,8 @@ p {
   line-height: 1.4;
 } */
 
-
-
-
-
 #root {
-  background-color: #EBE8E1;
+  background-color: #eeeeee;
 }
 
 body {
@@ -125,12 +131,10 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   padding-right: 0 !important;
-  background-color: #EBE8E1;
+  background-color: #eeeeee;
   overflow-x: hidden;
-  overflow-anchor:  none;
+  overflow-anchor: none;
 }
-
-
 
 code {
   font-family: ITC Grouch;
