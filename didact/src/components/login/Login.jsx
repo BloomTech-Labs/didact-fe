@@ -29,56 +29,56 @@ const LoginForm = (props) => {
     return (
         <Wrapper>
             <Header>
-                <h1 style={{fontFamily: 'ITC Grouch'}}>Didact</h1>
+                <h1 style={ { fontFamily: 'ITC Grouch' } }>Didact</h1>
                 <div>
                     {/* <a>About</a>
                     <a>Contact</a> */}
                 </div>
             </Header>
-            <img src={LoginImage} alt='computer on a desk'/>
+            <img src={ LoginImage } alt='computer on a desk' />
             <LoginWrapper>
                 <LoginFormWrapper>
                     <div className="header">
                         <h1>Login</h1>
                     </div>
                     <Formik
-                        initialValues={{
+                        initialValues={ {
                             email: '',
                             password: '',
-                        }}
-                        validateOnChange={false}
-                        validateOnBlur={false}
-                        validationSchema={LoginSchema}
-                        onSubmit={values => {
+                        } }
+                        validateOnChange={ false }
+                        validateOnBlur={ false }
+                        validationSchema={ LoginSchema }
+                        onSubmit={ values => {
                             handleLogin(values)
-                        }}
+                        } }
                     >
-                        {({ errors, touched }) => (
+                        { ({ errors, touched }) => (
                             <Form>
                                 <div className="inputWrapper">
                                     <div>
-                                        <div className={"input" + ((touched.email && errors.email) ? ' error' : '')}>
+                                        <div className={ "input" + ((touched.email && errors.email) ? ' error' : '') }>
                                             <p>Email Address</p>
                                             <Field type="email" name="email" placeholder="Email"></Field>
-                                            {touched.email && errors.email && <p className="errorMessage">Invalid Email Address</p>}
+                                            { touched.email && errors.email && <p className="errorMessage">Invalid Email Address</p> }
                                         </div>
-                                        <div className={"input" + ((touched.password && errors.password) ? ' error' : '')}>
+                                        <div className={ "input" + ((touched.password && errors.password) ? ' error' : '') }>
                                             <p>Password</p>
                                             <Field type="password" name="password" placeholder="Password"></Field>
-                                            {touched.password && errors.password && <p className="errorMessage">Invalid Password</p>}
+                                            { touched.password && errors.password && <p className="errorMessage">Invalid Password</p> }
                                         </div>
-                                        {loginError ? <p style={{ color: "red" }}>You have entered an invalid email or password</p> : null}
+                                        { loginError ? <p style={ { color: "red" } }>You have entered an invalid email or password</p> : null }
                                     </div>
                                     <div>
                                         <button type="submit">Login</button>
                                     </div>
                                 </div>
                             </Form>
-                        )}
+                        ) }
                     </Formik>
                     <div className="socialButtons">
-                        <a href={`${beURL}auth/facebook`} className='facebook'>LogIn With Facebook</a>
-                        <a href={`${beURL}auth/google`} className='google'>LogIn With Google</a>
+                        <a href={ `${beURL}auth/facebook` } className='facebook'>LogIn With Facebook</a>
+                        <a href={ `${beURL}auth/google` } className='google'>LogIn With Google</a>
                     </div>
                     <div className='registerLink'>
                         <p>Don't have an account yet? <a href='/register'>Register Here</a></p>
