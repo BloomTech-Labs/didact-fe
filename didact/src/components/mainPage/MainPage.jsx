@@ -210,41 +210,41 @@ function MainPage(props) {
   return (
     // MOBILE CODE ****************************************************************************
     <>
-      {phoneSize || tabletSize ? (
-        <div className={classes.root} onClick={() => closeHandleClick()}>
+      { phoneSize || tabletSize ? (
+        <div className={ classes.root } onClick={ () => closeHandleClick() }>
           <CssBaseline />
           <>
             <div>
               <MobileDrawerComponent
-                handleDrawerOpenMobile={handleDrawerOpenMobile()}
-                openMobile={openMobile}
-                props={props}
+                handleDrawerOpenMobile={ handleDrawerOpenMobile() }
+                openMobile={ openMobile }
+                props={ props }
               />
             </div>
             <div>
               <MobileHeaderComponent
-                handleSubmit={handleSubmit}
-                handleChange={handleChange}
-                values={values}
-                props={props}
-                tabletSize={tabletSize}
-                userName={userName}
+                handleSubmit={ handleSubmit }
+                handleChange={ handleChange }
+                values={ values }
+                props={ props }
+                tabletSize={ tabletSize }
+                userName={ userName }
               />
               <main
                 className={
                   openMobile ? classes.contentShadow : classes.contentMobile
                 }
               >
-                <div className={classes.toolbar} />
+                <div className={ classes.toolbar } />
                 <Content
-                  phoneSize={phoneSize}
-                  open={open}
-                  {...props}
-                  results={results}
-                  values={values}
-                  setValues={setValues}
+                  phoneSize={ phoneSize }
+                  open={ open }
+                  { ...props }
+                  results={ results }
+                  values={ values }
+                  setValues={ setValues }
                 />
-                {/*************************ADD COMPONENTS HERE *********************** */}
+                {/*************************ADD COMPONENTS HERE *********************** */ }
               </main>
             </div>
           </>
@@ -257,65 +257,64 @@ function MainPage(props) {
                          } */}
         </div>
       ) : (
-        // END OF MOBILE CODE *******************************************************************
-        // BEGINNING OF DESKTOP CODE ************************************************************
-        <div className={classes.root}>
-          <CssBaseline />
-          <PageFlex>
-            <div className="drawer">
-              <DrawerComponent
-                handleDrawerOpen={handleDrawerOpen}
-                open={open}
-                props={props}
-              />
-            </div>
-            <div className="headerMain">
-              {/* <HeaderComponent props = {props} open={open} /> */}
-              {/* <HeaderComponent open={open} /> */}
-              <div className="header">
-                {/* Search Functionality Below */}
-                <div className={classes.searchDiv}>
-                  <form className={classes.formPart} onSubmit={handleSubmit}>
-                    <div className={classes.filterDiv}>
-                      <select
-                        className={classes.dropFilter}
-                        value={values.filter}
-                        onChange={handleChange("filter")}
-                      >
-                        <option value="title">
-                          Title
+          // END OF MOBILE CODE *******************************************************************
+          // BEGINNING OF DESKTOP CODE ************************************************************
+          <div className={ classes.root }>
+            <CssBaseline />
+            <PageFlex>
+              <div className="drawer">
+                <DrawerComponent
+                  handleDrawerOpen={ handleDrawerOpen }
+                  open={ open }
+                  props={ props }
+                />
+              </div>
+              <div className="headerMain">
+                {/* <HeaderComponent props = {props} open={open} /> */ }
+                {/* <HeaderComponent open={open} /> */ }
+                <div className="header">
+                  {/* Search Functionality Below */ }
+                  <div className={ classes.searchDiv }>
+                    <form className={ classes.formPart } onSubmit={ handleSubmit }>
+                      <div className={ classes.filterDiv }>
+                        <select
+                          className={ classes.dropFilter }
+                          value={ values.filter }
+                          onChange={ handleChange("filter") }
+                        >
+                          <option value="title">
+                            Title
                         </option>
-                        <option value="topic">Topic</option>
-                        <option value="creator">Creator</option>
-                        <option value="description">Description</option>
-                        <option value="tag">Tag</option>
-                      </select>
-                    </div>
-                    <input
-                      className={classes.searchInput}
-                      type="text"
-                      value={values.search}
-                      onChange={handleChange("search")}
-                    />
-                    <button
-                      className={classes.searchButton}
-                      type="submit"
-                      onSubmit={handleSubmit}
-                    >
-                      <SearchIcon
-                        className={classes.searchIcon}
-                        style={{
-                          fontSize: "1.8rem",
-                          marginRight: "5px",
-                          color: "black"
-                        }}
+                          <option value="topic">Topic</option>
+                          <option value="creator">Creator</option>
+                          <option value="description">Description</option>
+                          <option value="tag">Tag</option>
+                        </select>
+                      </div>
+                      <input
+                        className={ classes.searchInput }
+                        type="text"
+                        value={ values.search }
+                        onChange={ handleChange("search") }
                       />
-                      <p className={classes.searcher}>Search</p>
-                    </button>
-                  </form>
-                </div>
-
-                {/* <div className="navSection">
+                      <button
+                        className={ classes.searchButton }
+                        type="submit"
+                        onSubmit={ handleSubmit }
+                      >
+                        <SearchIcon
+                          className={ classes.searchIcon }
+                          style={ {
+                            fontSize: "1.8rem",
+                            marginRight: "5px",
+                            color: "black"
+                          } }
+                        />
+                        <p className={ classes.searcher }>Search</p>
+                      </button>
+                    </form>
+                  </div>
+                  {/* <div className="navSection">
                   <Link
                     to="/about"
                     style={{
@@ -333,25 +332,25 @@ function MainPage(props) {
                     <p>Contact</p>
                   </Link>
                 </div> */}
+                </div>
+                <main className={ classes.content }>
+                  {/* <div className={classes.toolbar} /> */ }
+                  <Content
+                    mediumScreenSize={ mediumScreenSize }
+                    phoneSize={ phoneSize }
+                    open={ open }
+                    setValues={ setValues }
+                    values={ values }
+                    tabletSize={ tabletSize }
+                    { ...props }
+                    results={ results }
+                  />
+                  {/*************************ADD COMPONENTS HERE *********************** */ }
+                </main>
               </div>
-              <main className={classes.content}>
-                {/* <div className={classes.toolbar} /> */}
-                <Content
-                  mediumScreenSize={mediumScreenSize}
-                  phoneSize={phoneSize}
-                  open={open}
-                  setValues={setValues}
-                  values={values}
-                  tabletSize={tabletSize}
-                  {...props}
-                  results={results}
-                />
-                {/*************************ADD COMPONENTS HERE *********************** */}
-              </main>
-            </div>
-          </PageFlex>
-        </div>
-      )}
+            </PageFlex>
+          </div>
+        ) }
     </>
   );
 }
