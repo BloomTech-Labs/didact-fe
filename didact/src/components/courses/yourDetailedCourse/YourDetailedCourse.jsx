@@ -39,6 +39,7 @@ const YourDetailedCourse = props => {
   const phoneSize = props.props.phoneSize;
   const id = state.onboardingReducer.user.id;
   const admin = state.onboardingReducer.user.admin;
+  const owner = state.onboardingReducer.user.owner;
   const user = state.onboardingReducer.user
   console.log("XXXXXXXXXXXXXXXXXXXX", state.onboardingReducer)
   const detailedCourse = state.coursesReducer.detailedCourse;
@@ -159,7 +160,7 @@ const YourDetailedCourse = props => {
                     );
                   }) }
               </div>
-              { course.creator_id === id || admin === true ? (
+              { course.creator_id === id || admin === true || owner === true ? (
                 !phoneSize ? (
                   <DidactButton style={ { marginLeft: "85%" } }>
                     <Link
