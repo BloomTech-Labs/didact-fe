@@ -19,7 +19,7 @@ import { SideListWrapper } from "./SideListStyles";
 const SideList = ({ props }) => {
   const drawerStyles = makeStyles(theme => ({
     activeTab: {
-      backgroundColor: "#5b5b5b",
+      backgroundColor: "green",
       borderRadius: "0 20px 20px 0",
       width: "225px",
       color: "white",
@@ -31,7 +31,7 @@ const SideList = ({ props }) => {
       marginRight: "10px",
       width: "100%",
       fontSize: "2rem",
-      color: "white"
+      color: "#5b5b5b"
     },
     list: {
       display: "flex",
