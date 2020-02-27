@@ -10,14 +10,15 @@ import thunk from "redux-thunk";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router } from "react-router-dom";
 import reducer from "./store/reducers";
+import logger from 'redux-logger'
 
-const store = createStore(reducer, applyMiddleware(thunk));
+const store = createStore(reducer, applyMiddleware(thunk, logger));
 dotenv.config()
 
 ReactDOM.render(
   <Router>
-    <Provider store={store}>
-        <App />
+    <Provider store={ store }>
+      <App />
     </Provider>
   </Router>, document.getElementById('root'));
 
