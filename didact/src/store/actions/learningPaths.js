@@ -90,8 +90,8 @@ export const getLearningPaths = results => dispatch => {
       `${baseURL}`,
       results
         ? {
-            headers: { query: results.search, filter: results.filter }
-          }
+          headers: { query: results.search, filter: results.filter }
+        }
         : null
     )
     .then(res => {
@@ -131,7 +131,7 @@ export const getLearningPath = id => dispatch => {
 export const postLearningPath = (values, history) => dispatch => {
   dispatch({ type: POST_LEARNING_PATH_START });
   let path = {
-    name: values.name,
+    title: values.title,
     description: values.description || "",
     topic: values.topic || ""
   };
@@ -308,8 +308,8 @@ export const getYourLearningPaths = (getYours, results) => dispatch => {
       `${baseURL}yours`,
       results
         ? {
-            headers: { query: results.search, filter: results.filter }
-          }
+          headers: { query: results.search, filter: results.filter }
+        }
         : null
     )
     .then(res => {

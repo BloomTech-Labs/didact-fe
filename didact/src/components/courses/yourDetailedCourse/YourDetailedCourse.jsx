@@ -39,6 +39,8 @@ const YourDetailedCourse = props => {
   const phoneSize = props.props.phoneSize;
   const id = state.onboardingReducer.user.id;
   const admin = state.onboardingReducer.user.admin;
+  // const owner = state.onboardingReducer.user.owner;
+  // const moderator = state.onboardingReducer.user.moderator;
   const user = state.onboardingReducer.user
   console.log("XXXXXXXXXXXXXXXXXXXX", state.onboardingReducer)
   const detailedCourse = state.coursesReducer.detailedCourse;
