@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 
 const Source = (props) => {
     const source = props.source;
@@ -10,3 +11,5 @@ const Source = (props) => {
         </Link>
     )
 }
+
+export default Source;
