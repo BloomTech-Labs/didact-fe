@@ -77,7 +77,6 @@ const useStyles = makeStyles(theme => ({
   searchInput: {
     backgroundColor: "inherit",
     width: "340px",
-    border: "none",
     outline: "none",
     height: "57px",
     border: "none",
@@ -184,6 +183,7 @@ function MainPage(props) {
   };
 
   const handleSubmit = event => {
+    Mixpanel.track("Search Query")
     event.preventDefault();
     setResults(values);
     props.history.push("/results");

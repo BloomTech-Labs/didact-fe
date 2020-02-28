@@ -85,6 +85,30 @@ const Routes = (props) => {
             (
                 <MainPage {...routeProps} page={'editcourse'} />
             )} />
+            <Route exact path='/tools' render={routeProps =>
+            (
+                <MainPage {...routeProps} page={'tools'} />
+            )} />
+            <Route exact path='/tools/:toolId' render={routeProps =>
+            (
+                <MainPage {...routeProps} page={'tool'} />
+            )} />
+            <Route exact path='/articles' render={routeProps =>
+            (
+                <MainPage {...routeProps} page={'articles'} />
+            )} />
+            <Route exact path='/articles/:articleId' render={routeProps =>
+            (
+                <MainPage {...routeProps} page={'article'} />
+            )} />
+            <Route exact path='/sources' render={routeProps =>
+            (
+                <MainPage {...routeProps} page={'sources'} />
+            )} />
+            <Route exact path='/sources/:sourceId' render={routeProps =>
+            (
+                <MainPage {...routeProps} page={'source'} />
+            )} />
             <Route exact path='/results' render={routeProps =>
             (
                 <MainPage {...routeProps} page={'searchresults'} />
