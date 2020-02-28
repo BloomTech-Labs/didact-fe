@@ -195,7 +195,7 @@ function MainPage(props) {
 
   const handleLogOut = () => {
     localStorage.clear("token");
-    props.props.history.push("/login");
+    props.history.push("/login");
   };
 
   const firstName = userName.first_name
