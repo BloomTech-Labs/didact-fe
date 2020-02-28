@@ -1,5 +1,6 @@
 import React from 'react';
 import ArticleBrief from './ArticleBrief.jsx'
+import { useSelector } from 'react-redux'
 
 const Articles = props => {
     const state = useSelector(state => state);

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 
 const Tool = (props) => {
     const tool = props.tool;
@@ -10,3 +11,5 @@ const Tool = (props) => {
         </Link>
     )
 }
+
+export default Tool;
