@@ -13,7 +13,11 @@ import YourLearningPaths from '../learningPaths/YourLearningPaths'
 import AllLearningPaths from '../learningPaths/AllLearningPaths'
 import AddPathItems from '../learningPaths/pathItems/AddPathItems'
 import EditPathItems from '../learningPaths/pathItems/EditPathItems'
-import SearchResults from '../searchResults/SearchResults';
+import Tools from '../resources/Tools'
+import Sources from '../resources/Sources'
+import Articles from '../resources/Articles'
+import ArticleFull from '../resources/ArticleFull'
+import SearchResults from '../searchResults/SearchResults'
 import About from '../about/About'
 import AllYourCourses from '../courses/AllYourCourses'
 import Contact from '../contact/Contact'
@@ -55,6 +59,14 @@ const Content = (props) => {
                         return <AllLearningPaths props={props}/>
                     case ('yourlearningpaths'):
                         return <YourLearningPaths props={props}/>
+                    case('tools'):
+                        return <Tools props={props} />
+                    case('sources'):
+                        return <Sources props={props} />
+                    case('articles'):
+                        return <Articles props={props} />
+                    case('articlefull'):
+                        return <ArticleFull props={props} id={props.match.params.id} />
                     case ('searchresults'):
                         return <SearchResults props={props} setValues={props.setValues} results={props.results}/>
                     case ('about'):

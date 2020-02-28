@@ -183,6 +183,7 @@ function MainPage(props) {
   };
 
   const handleSubmit = event => {
+    Mixpanel.track("Search Query")
     event.preventDefault();
     setResults(values);
     props.history.push("/results");
