@@ -4,12 +4,18 @@ import { useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 
-import ClickAwayListener from "@material-ui/core/ClickAwayListener";
-import Grow from "@material-ui/core/Grow";
-import Paper from "@material-ui/core/Paper";
-import Popper from "@material-ui/core/Popper";
-import MenuItem from "@material-ui/core/MenuItem";
-import MenuList from "@material-ui/core/MenuList";
+// testing 123
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
+import Collapse from "@material-ui/core/Collapse";
+import DraftsIcon from "@material-ui/icons/Drafts";
+import SendIcon from "@material-ui/icons/Send";
+import ExpandLess from "@material-ui/icons/ExpandLess";
+import ExpandMore from "@material-ui/icons/ExpandMore";
+import StarBorder from "@material-ui/icons/StarBorder";
+
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import FolderOpenIcon from "@material-ui/icons/FolderOpen";
@@ -65,16 +71,12 @@ const SideList = ({ props }) => {
     },
 
     root: {
-      display: "flex"
+      // width: "100%",
+      // maxWidth: 360
+      // backgroundColor: theme.palette.background.paper
     },
-    paper: {
-      marginRight: theme.spacing(2)
-    },
-
-    menuLister: {
-      background: "#eeeeee",
-      border: "none",
-      width: "225px"
+    nested: {
+      paddingLeft: theme.spacing(4)
     }
   }));
 
@@ -96,37 +98,11 @@ const SideList = ({ props }) => {
       userName.last_name.substring(1)
     : null;
 
-  // state for dropdown links
-  const [open, setOpen] = React.useState(false);
-  const anchorRef = React.useRef(null);
+  const [open, setOpen] = React.useState(true);
 
-  const handleToggle = () => {
-    setOpen(prevOpen => !prevOpen);
+  const handleClick = () => {
+    setOpen(!open);
   };
-
-  const handleClose = event => {
-    if (anchorRef.current && anchorRef.current.contains(event.target)) {
-      return;
-    }
-
-    setOpen(false);
-  };
-
-  function handleListKeyDown(event) {
-    if (event.key === "Tab") {
-      event.preventDefault();
-      setOpen(false);
-    }
-  }
-  // return focus to the button when we transitioned from !open -> open
-  const prevOpen = React.useRef(open);
-  React.useEffect(() => {
-    if (prevOpen.current === true && open === false) {
-      anchorRef.current.focus();
-    }
-
-    prevOpen.current = open;
-  }, [open]);
 
   return (
     <SideListWrapper>
@@ -215,115 +191,66 @@ const SideList = ({ props }) => {
             )}
           </div>
         </NavLink>
-        <NavLink
-          to="/learning-paths"
-          ref={anchorRef}
-          aria-controls={open ? "menu-list-grow" : undefined}
-          aria-haspopup="true"
-          onClick={handleToggle}
-          style={{
-            textDecoration: "none",
-            color: "#5b5b5b",
-            outline: "none !important"
-          }}
-          activeStyle={{ color: "black" }}
-          activeClassName={classes.activeTab}
-          className={classes.listItem}
-          key="Learning Paths"
-        >
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              width: "100%",
-              alignItems: "center"
-            }}
-          >
-            <InboxIcon style={{ marginLeft: "17px", fontSize: "28px" }} />
-            <p style={{ marginLeft: "25px", fontWeight: "bold" }}>
-              Learning Paths
-            </p>
 
-            {props.props.match.path.includes("/learning-paths") ? (
-              <p className={classes.arrow}>
-                <ChevronRightIcon
-                  style={{ fontSize: "2.4rem", marginTop: "6px" }}
-                />
-              </p>
-            ) : (
-              <p className={classes.arrow}>
-                <ChevronRightIcon
-                  style={{
-                    fontSize: "2.4rem",
-                    marginTop: "6px",
-                    color: "#5b5b5b"
-                  }}
-                />
-              </p>
-            )}
-          </div>
-        </NavLink>
-        <Popper
-          open={open}
-          anchorEl={anchorRef.current}
-          role={undefined}
-          transition
-          disablePortal
-        >
-          {({ TransitionProps, placement }) => (
-            <Grow
-              {...TransitionProps}
+        <List component="nav">
+          <ListItem onClick={handleClick}>
+            <NavLink
+              to="/learning-paths"
               style={{
-                transformOrigin:
-                  placement === "bottom" ? "center top" : "center bottom"
+                textDecoration: "none",
+                color: "#5b5b5b",
+                outline: "none !important"
               }}
+              activeStyle={{ color: "black" }}
+              activeClassName={classes.activeTab}
+              className={classes.listItem}
+              key="Learning Paths"
             >
-              <Paper>
-                <ClickAwayListener onClickAway={handleClose}>
-                  <div className={classes.menuLister}>
-                    <MenuList
-                      autoFocusItem={open}
-                      id="menu-list-grow"
-                      onKeyDown={handleListKeyDown}
-                    >
-                      <MenuItem>
-                        <NavLink
-                          to="/current"
-                          style={{
-                            textDecoration: "none",
-                            color: "#5b5b5b",
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  width: "100%",
+                  alignItems: "center"
+                }}
+              >
+                <InboxIcon style={{ marginLeft: "17px", fontSize: "28px" }} />
+                <p style={{ marginLeft: "25px", fontWeight: "bold" }}>
+                  Learning Paths
+                </p>
 
-                            fontFamily: "sans-serif",
-                            fontWeight: "semi bold"
-                          }}
-                        >
-                          Current
-                        </NavLink>
-                      </MenuItem>
-                      <MenuItem>
-                        <NavLink
-                          to="/create"
-                          style={{
-                            textDecoration: "none",
-                            color: "#5b5b5b",
+                {props.props.match.path.includes("/learning-paths") ? (
+                  <p className={classes.arrow}>
+                    <ChevronRightIcon
+                      style={{ fontSize: "2.4rem", marginTop: "6px" }}
+                    />
+                  </p>
+                ) : (
+                  <p className={classes.arrow}>
+                    <ChevronRightIcon
+                      style={{
+                        fontSize: "2.4rem",
+                        marginTop: "6px",
+                        color: "#5b5b5b"
+                      }}
+                    />
+                  </p>
+                )}
+              </div>
+              {/* {open ? <ExpandLess /> : <ExpandMore />} */}
+            </NavLink>
+          </ListItem>
+          <Collapse in={open} timeout="auto" unmountOnExit>
+            <List>
+              <ListItem>
+                <NavLink to="/learning-paths/current">Current</NavLink>
+              </ListItem>
+            </List>
+          </Collapse>
+        </List>
 
-                            fontFamily: "sans-serif",
-                            fontWeight: "semi bold"
-                          }}
-                        >
-                          Create
-                        </NavLink>
-                      </MenuItem>
-                      <MenuItem>Join</MenuItem>
-                    </MenuList>
-                  </div>
-                </ClickAwayListener>
-              </Paper>
-            </Grow>
-          )}
-        </Popper>
         <NavLink
-          to="/about"
+          to="/resources"
           style={{
             textDecoration: "none",
             color: "#5b5b5b",
@@ -404,83 +331,6 @@ const SideList = ({ props }) => {
           Log Out
         </p>
       </div>
-
-      {/* <List >
-                <ListItem button key="Activity" className = {classes.hoverTab}>
-                    <ListItemIcon>
-                        <InboxIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Activity" />
-                    <ListItemText className={classes.arrow} primary=">" />
-                </ListItem>
-            </List> */}
-      {/* <List >
-                <ListItem
-                    button
-                    component={NavLink}
-                    to="/courses"
-                    style={{ textDecoration: "none" }}
-                    activeClassName={classes.activeTab}
-                    key="Add Course">
-                    <ListItemIcon>
-                        <FolderOpenIcon style={{paddingLeft: "4px", fontSize: "32px"}}/>
-                    </ListItemIcon>
-                    <p>Courses</p>
-                    <p className={classes.arrow}>></p>
-                </ListItem>
-            </List>
-
-            <List >
-                <ListItem
-                    button
-                    component={NavLink}
-                    to="/learning-paths"
-                    style={{ textDecoration: "none" }}
-                    activeClassName={classes.activeTab}
-                    key="Learning Paths">
-                    <ListItemIcon>
-                        <InboxIcon style={{paddingLeft: "4px", fontSize: "32px"}}/>
-                    </ListItemIcon>
-                    <p>Learning Paths</p>
-                    <p className={classes.arrow}>></p>
-                </ListItem>
-            </List> */}
-      {/*<List >
-                <ListItem className = {classes.hoverTab} button key="Tasks">
-                    <ListItemIcon>
-                        <DoneAllIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Tasks" />
-                    <ListItemText className={classes.arrow} primary=">" />
-                </ListItem>
-            </List>
-            <List >
-                <ListItem className = {classes.hoverTab} button key="Calendar">
-                    <ListItemIcon>
-                        <EventIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Calendar" />
-                    <ListItemText className={classes.arrow} primary=">" />
-                </ListItem>
-            </List>
-            <List >
-                <ListItem className = {classes.hoverTab} button key="Tools">
-                    <ListItemIcon>
-                        <SettingsIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Tools" />
-                    <ListItemText className={classes.arrow} primary=">" />
-                </ListItem>
-            </List>
-            <List >
-                <ListItem className = {classes.hoverTab} button key="Profile">
-                    <ListItemIcon>
-                        <PersonIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Profile" />
-                    <ListItemText className={classes.arrow} primary=">" />
-                </ListItem>
-            </List> */}
     </SideListWrapper>
   );
 };
