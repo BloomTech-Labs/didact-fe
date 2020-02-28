@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 
 import { DetailedCourseWrapper } from "./DetailedCourseStyles";
-import { TagStyles } from "../dashboard/ButtonStyles";
+import { DidactButton, TagStyles } from "../dashboard/ButtonStyles";
 
 import { getDetailedCourse } from "../../store/actions/index.js";
 
@@ -30,6 +31,9 @@ const DetailedCourse = props => {
   const state = useSelector(state => state);
   const phoneSize = props.props.phoneSize;
   const detailedCourse = state.coursesReducer.detailedCourse;
+  const owner = state.onboardingReducer.user.owner;
+  const admin = state.onboardingReducer.user.admin;
+  const moderator = state.onboardingReducer.user.moderator;
   const course = detailedCourse.course;
   const sections = detailedCourse.sections;
   const [expanded, setExpanded] = useState(false);
@@ -110,6 +114,31 @@ const DetailedCourse = props => {
                   }) }
               </div>
             </div>
+            {/* //replace code below with restrictions when working */ }
+
+            { owner === true || admin === true || moderator === true ? (
+              !phoneSize ? (
+                <DidactButton style={ { marginLeft: "85%" } }>
+                  <Link
+                    style={ { textDecoration: "none", color: "inherit" } }
+                    to={ `/courses/all/${course.id}/edit` }
+                  >
+                    Edit Course
+                    </Link>
+                </DidactButton>
+              ) : (
+                  <DidactButton style={ { marginLeft: "70%" } }>
+                    <Link
+                      style={ { textDecoration: "none", color: "inherit" } }
+                      to={ `/courses/all/${course.id}/edit` }
+                    >
+                      Edit Course
+                    </Link>
+                  </DidactButton>
+                )
+            ) : null }
+
+
           </div>
           { sections.map((el, index) => {
             const videoLength = el.details.filter(

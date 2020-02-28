@@ -32,6 +32,9 @@ export {
     EDIT_COURSE_DATA_START,
     EDIT_COURSE_DATA_SUCCESS,
     EDIT_COURSE_DATA_FAIL,
+    EDIT_COURSE_DATA_REVISED_START,
+    EDIT_COURSE_DATA_REVISED_SUCCESS,
+    EDIT_COURSE_DATA_REVISED_FAIL,
     DELETE_COURSE_DATA_START,
     DELETE_COURSE_DATA_SUCCESS,
     DELETE_TAGS_SUCCESS,
@@ -63,6 +66,7 @@ export {
     getCourseById,
     addCourse,
     editCourse,
+    editCourseRevised,
     deleteCourse,
     addTagToCourse,
     getDetailedCourse,
@@ -135,8 +139,7 @@ export {
     deleteLesson,
 } from './sections'
 
-export
-{
+export {
     GET_LEARNING_PATHS_START,
     GET_LEARNING_PATHS_SUCCESS,
     GET_LEARNING_PATHS_FAIL,
