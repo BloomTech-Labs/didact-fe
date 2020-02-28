@@ -224,8 +224,8 @@ const DrawerComponent = props => {
         </div>
       )}
       <Drawer
-        anchor="none"
         variant="permanent"
+        anchor="none"
         className={clsx(classes.drawer, {
           [classes.drawerOpen]: open,
           [classes.drawerClose]: !open

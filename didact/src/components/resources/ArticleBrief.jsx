@@ -1,6 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 
-const Article = (props) => {
+const ArticleBrief = (props) => {
     const article = props.article;
     const brief = article.body.slice(0, 55);
 
@@ -13,3 +14,5 @@ const Article = (props) => {
         </div>
     )
 }
+
+export default ArticleBrief;

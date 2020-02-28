@@ -69,7 +69,7 @@ const About = ({props}) => {
             <CardContainerOpen>
                 {teamArray.map(person => {
                     return(
-                    <CardOpen>
+                    <CardOpen key={person.id}>
                         {person.img}
                         <PersonInfo>
                             <div >
