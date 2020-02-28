@@ -11,9 +11,9 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import SearchIcon from "@material-ui/icons/Search";
 
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import DashboardIcon from "@material-ui/icons/Dashboard";
-import FolderOpenIcon from "@material-ui/icons/FolderOpen";
+// import InboxIcon from "@material-ui/icons/MoveToInbox";
+// import DashboardIcon from "@material-ui/icons/Dashboard";
+// import FolderOpenIcon from "@material-ui/icons/FolderOpen";
 import PermIdentityIcon from "@material-ui/icons/PermIdentity";
 
 // Select Dropdown

@@ -31,7 +31,8 @@ const DrawerComponent = props => {
     drawer: {
       width: 0,
       flexShrink: 0,
-      whiteSpace: "nowrap"
+      whiteSpace: "nowrap",
+      marginBottom: "60%"
     },
 
     drawerOpen: {
