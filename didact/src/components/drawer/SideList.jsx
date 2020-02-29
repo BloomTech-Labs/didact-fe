@@ -66,14 +66,21 @@ const SideList = ({ props }) => {
       // marginTop: '20px',
       objectFit: "cover"
     },
-
-    root: {
-      width: "100%",
-      maxWidth: 360,
-      backgroundColor: theme.palette.background.paper
+    collapseNav: {
+      textDecoration: "none",
+      textAlign: "center"
     },
+
+    // root: {
+    //   width: "100%",
+    //   maxWidth: 360,
+    //   backgroundColor: theme.palette.background.paper
+    // },
     nested: {
-      paddingLeft: theme.spacing(4)
+      paddingLeft: theme.spacing(4),
+      marginLeft: "20%",
+      textDecoration: "none",
+      color: "black"
     }
   }));
 
@@ -216,7 +223,7 @@ const SideList = ({ props }) => {
               >
                 <InboxIcon style={{ marginLeft: "17px", fontSize: "28px" }} />
                 <p style={{ marginLeft: "25px", fontWeight: "bold" }}>
-                  <ListItemText primary="Learning Paths" />
+                  Learning Paths
                 </p>
 
                 {props.props.match.path.includes("/learning-paths") ? (
@@ -240,16 +247,51 @@ const SideList = ({ props }) => {
               {/* {open ? <ExpandLess /> : <ExpandMore />} */}
             </NavLink>
           </nav>
-          <Collapse in={open} timeout="auto" unmountOnExit>
-            {/* </List> */}
-            <ListItem button className={classes.nested}>
-              <ListItemText primary="Starred" />
-            </ListItem>
-          </Collapse>
+          <div className={classes.collapseNav}>
+            <Collapse in={open} timeout="auto" unmountOnExit>
+              {/* </List> */}
+              <ListItem className={classes.nested}>
+                <Link
+                  to="/learning-paths/current"
+                  style={{
+                    fontSize: "1.3rem",
+                    marginTop: "6px",
+                    color: "#5b5b5b"
+                  }}
+                >
+                  Current
+                </Link>
+              </ListItem>
+              <ListItem className={classes.nested}>
+                <Link
+                  to="/learning-paths/create"
+                  style={{
+                    fontSize: "1.3rem",
+                    marginTop: "6px",
+                    color: "#5b5b5b"
+                  }}
+                >
+                  Create
+                </Link>
+              </ListItem>
+              <ListItem className={classes.nested}>
+                <Link
+                  to="/learning-paths/join"
+                  style={{
+                    fontSize: "1.3rem",
+                    marginTop: "6px",
+                    color: "#5b5b5b"
+                  }}
+                >
+                  Join
+                </Link>
+              </ListItem>
+            </Collapse>
+          </div>
         </div>
 
         <NavLink
-          to="/about"
+          to="/courses"
           style={{
             textDecoration: "none",
             color: "#5b5b5b",

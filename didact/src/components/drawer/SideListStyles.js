@@ -6,6 +6,7 @@ export const SideListWrapper = styled.div`
   justify-content: space-between;
   height: 100%;
   background: #eeeeee;
+  overflow: hidden;
   // margin-right: 50%;
 
   .profileSection {
