@@ -4,17 +4,14 @@ import { useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 
-// testing 123
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import Collapse from "@material-ui/core/Collapse";
-import DraftsIcon from "@material-ui/icons/Drafts";
-import SendIcon from "@material-ui/icons/Send";
+// new feature dropdown for nav
 import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
-import StarBorder from "@material-ui/icons/StarBorder";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemText from "@material-ui/core/ListItemText";
+import Collapse from "@material-ui/core/Collapse";
+////
 
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import DashboardIcon from "@material-ui/icons/Dashboard";
@@ -42,7 +39,7 @@ const SideList = ({ props }) => {
       fontSize: "2rem",
       color: "#5b5b5b"
     },
-    list: {
+    listing: {
       display: "flex",
       flexDirection: "column",
       margin: "10px 0px",
@@ -71,9 +68,9 @@ const SideList = ({ props }) => {
     },
 
     root: {
-      // width: "100%",
-      // maxWidth: 360
-      // backgroundColor: theme.palette.background.paper
+      width: "100%",
+      maxWidth: 360,
+      backgroundColor: theme.palette.background.paper
     },
     nested: {
       paddingLeft: theme.spacing(4)
@@ -98,7 +95,9 @@ const SideList = ({ props }) => {
       userName.last_name.substring(1)
     : null;
 
-  const [open, setOpen] = React.useState(true);
+  // state for dropdown links
+
+  const [open, setOpen] = React.useState(false);
 
   const handleClick = () => {
     setOpen(!open);
@@ -106,7 +105,7 @@ const SideList = ({ props }) => {
 
   return (
     <SideListWrapper>
-      <ul className={classes.list}>
+      <ul className={classes.listing}>
         <NavLink
           exact
           to="/"
@@ -192,8 +191,9 @@ const SideList = ({ props }) => {
           </div>
         </NavLink>
 
-        <List component="nav">
-          <ListItem onClick={handleClick}>
+        <div className={classes.learningPathDiv}>
+          {/* <List component="learning-path-nav" className={classes.root}> */}
+          <nav onClick={handleClick}>
             <NavLink
               to="/learning-paths"
               style={{
@@ -216,7 +216,7 @@ const SideList = ({ props }) => {
               >
                 <InboxIcon style={{ marginLeft: "17px", fontSize: "28px" }} />
                 <p style={{ marginLeft: "25px", fontWeight: "bold" }}>
-                  Learning Paths
+                  <ListItemText primary="Learning Paths" />
                 </p>
 
                 {props.props.match.path.includes("/learning-paths") ? (
@@ -239,18 +239,17 @@ const SideList = ({ props }) => {
               </div>
               {/* {open ? <ExpandLess /> : <ExpandMore />} */}
             </NavLink>
-          </ListItem>
+          </nav>
           <Collapse in={open} timeout="auto" unmountOnExit>
-            <List>
-              <ListItem>
-                <NavLink to="/learning-paths/current">Current</NavLink>
-              </ListItem>
-            </List>
+            {/* </List> */}
+            <ListItem button className={classes.nested}>
+              <ListItemText primary="Starred" />
+            </ListItem>
           </Collapse>
-        </List>
+        </div>
 
         <NavLink
-          to="/resources"
+          to="/about"
           style={{
             textDecoration: "none",
             color: "#5b5b5b",
