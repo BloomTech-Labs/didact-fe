@@ -20,7 +20,7 @@ export const PageFlex = styled.div`
       min-width: 825px;
       width: 100%;
       display: flex;
-      background: #ebe8e1;
+      background: #eeeeee;
       border-radius: 19px;
       margin-top: 10px;
       justify-content: space-between;
