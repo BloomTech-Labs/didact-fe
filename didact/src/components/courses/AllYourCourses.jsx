@@ -27,14 +27,14 @@ const useStyles = makeStyles(theme => ({
         marginBottom: "-20px",
         maxWidth: '500px'
     },
-  
+
     circleIcon: {
         fontSize: '3.5rem',
         marginRight: '5px',
         marginLeft: '10px',
         color: "white"
-    }, 
-  
+    },
+
     expand: {
         transform: 'rotate(0deg)',
         // marginLeft: 'auto',
@@ -72,40 +72,40 @@ function AllCourses(props) {
     }, [dispatch])
 
     return (
-    <div>
-        <div style={{display: 'flex', justifyContent: 'space-between', margin: '-10px 10px 10px 10px', borderBottom: '1px solid black'}}>
-                <p style={{fontWeight: 'bold', marginLeft: '10px', display: 'flex', flexDirection:'row', alignItems: 'center'}}><span>Courses</span><ChevronRightIcon style={{fontSize: '1.6rem'}}/><span>Overview</span></p>
-        </div>
-        <h2 style={{margin: '10px', maxWidth: "540px", width: "100%", textAlign: 'left'}}>Your Courses</h2>
-        <div className = {tabletSize ? classes.rootTablet : classes.root}>
-            {tabletSize ? (
-            <div className = {classes.addButtonDivTablet}>
-                <ButtonStyles style={{display: "flex", justifyContent: 'flex-start'}}>   
-                    <div className = "buttons">
-                        <Link style={{ fontSize: '1.4rem' }} to={'/courses/yours/add'}>New Course</Link>
-                        <Link style={{ fontSize: '1.4rem' }} to={'/courses/all'}>All Courses</Link>
-                    </div>
-                </ButtonStyles>
-            </div>) : null }
-            <div>
-                {state.coursesReducer.yourCourses
-                    ? state.coursesReducer.yourCourses.map((course, i) => (
-                        <YourCourse key={i} course={course} addingCourses={addingCourses} props={props.props}/>
-                    ))
-                    : null}
-
+        <div>
+            <div style={ { display: 'flex', justifyContent: 'space-between', margin: '-10px 10px 10px 10px', borderBottom: '1px solid black' } }>
+                <p style={ { fontWeight: 'bold', marginLeft: '10px', display: 'flex', flexDirection: 'row', alignItems: 'center' } }><span>Courses</span><ChevronRightIcon style={ { fontSize: '1.6rem' } } /><span>Overview</span></p>
             </div>
-            {!tabletSize ? (
-            <div className = {classes.addButtonDiv}>
-                <ButtonStyles style={{display: "flex", justifyContent: 'flex-start'}}>   
-                    <div className = "buttons">
-                        <Link style={{ fontSize: '1.4rem' }} to={'/courses/yours/add'}>New Course</Link>
-                        <Link style={{ fontSize: '1.4rem' }} to={'/courses/all'}>All Courses</Link>
-                    </div>
-                </ButtonStyles>
-            </div>) : null } 
+            <h2 style={ { margin: '10px', maxWidth: "540px", width: "100%", textAlign: 'left' } }>Your Courses</h2>
+            <div className={ tabletSize ? classes.rootTablet : classes.root }>
+                { tabletSize ? (
+                    <div className={ classes.addButtonDivTablet }>
+                        <ButtonStyles style={ { display: "flex", justifyContent: 'flex-start' } }>
+                            <div className="buttons">
+                                <Link style={ { fontSize: '1.4rem' } } to={ '/courses/yours/add' }>New Course</Link>
+                                <Link style={ { fontSize: '1.4rem' } } to={ '/courses/all' }>All Courses</Link>
+                            </div>
+                        </ButtonStyles>
+                    </div>) : null }
+                <div>
+                    { state.coursesReducer.yourCourses
+                        ? state.coursesReducer.yourCourses.map((course, i) => (
+                            <YourCourse key={ i } course={ course } addingCourses={ addingCourses } props={ props.props } />
+                        ))
+                        : null }
+
+                </div>
+                { !tabletSize ? (
+                    <div className={ classes.addButtonDiv }>
+                        <ButtonStyles style={ { display: "flex", justifyContent: 'flex-start' } }>
+                            <div className="buttons">
+                                <Link style={ { fontSize: '1.4rem' } } to={ '/courses/yours/add' }>New Course</Link>
+                                <Link style={ { fontSize: '1.4rem' } } to={ '/courses/all' }>All Courses</Link>
+                            </div>
+                        </ButtonStyles>
+                    </div>) : null }
+            </div>
         </div>
-    </div>
     );
 }
 

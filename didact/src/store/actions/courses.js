@@ -14,6 +14,9 @@ export const ADD_COURSE_DATA_FAIL = "ADD_COURSE_DATA_FAIL";
 export const EDIT_COURSE_DATA_START = "EDIT_COURSE_DATA_START";
 export const EDIT_COURSE_DATA_SUCCESS = "EDIT_COURSE_DATA_SUCCESS";
 export const EDIT_COURSE_DATA_FAIL = "EDIT_COURSE_DATA_FAIL";
+export const EDIT_COURSE_DATA_REVISED_START = "EDIT_COURSE_DATA_REVISED_START";
+export const EDIT_COURSE_DATA_REVISED_SUCCESS = "EDIT_COURSE_DATA_REVISED_SUCCESS";
+export const EDIT_COURSE_DATA_REVISED_FAIL = "EDIT_COURSE_DATA_REVISED_FAIL";
 export const DELETE_COURSE_DATA_START = "DELETE_COURSE_DATA_START";
 export const DELETE_COURSE_DATA_SUCCESS = "DELETE_COURSE_DATA_SUCCESS";
 export const DELETE_TAGS_SUCCESS = "DELETE_TAGS_SUCCESS";
@@ -51,13 +54,13 @@ export const courseEndPoint = results => dispatch => {
       `${baseURL}`,
       results
         ? {
-            headers: { query: results.search, filter: results.filter }
-          }
+          headers: { query: results.search, filter: results.filter }
+        }
         : null
     )
     .then(res => {
       console.log(res.data)
-      dispatch({ type: COURSE_DATA_SUCCESS, payload: res.data});
+      dispatch({ type: COURSE_DATA_SUCCESS, payload: res.data });
     })
     .catch(err => {
       dispatch({ type: COURSE_DATA_FAIL, payload: err.response });
@@ -157,6 +160,18 @@ export const editCourse = (id, changes) => dispatch => {
     })
     .catch(err => {
       dispatch({ type: EDIT_COURSE_DATA_FAIL, payload: err.response });
+    });
+};
+
+export const editCourseRevised = (id, changes) => dispatch => {
+  dispatch({ type: EDIT_COURSE_DATA_REVISED_START });
+  axiosWithAuth()
+    .put(`${baseURL}all/${id}`, { changes })
+    .then(res => {
+      dispatch({ type: EDIT_COURSE_DATA_REVISED_SUCCESS, payload: changes });
+    })
+    .catch(err => {
+      dispatch({ type: EDIT_COURSE_DATA_REVISED_FAIL, payload: err.response });
     });
 };
 

@@ -26,14 +26,14 @@ const useStyles = makeStyles(theme => ({
         marginBottom: "-20px",
         maxWidth: '500px'
     },
-  
+
     circleIcon: {
         fontSize: '3.5rem',
         marginRight: '5px',
         marginLeft: '10px',
         color: "#5b5b5b"
-    }, 
-  
+    },
+
     expand: {
         transform: 'rotate(0deg)',
         // marginLeft: 'auto',
@@ -55,10 +55,10 @@ const useStyles = makeStyles(theme => ({
     },
     span: {
         cursor: 'pointer',
-        "&:hover":{
-          color: 'white'
+        "&:hover": {
+            color: 'white'
         }
-      }
+    }
 }));
 
 function AllCourses(props) {
@@ -74,27 +74,27 @@ function AllCourses(props) {
 
     const handleBack = () => {
         props.props.history.push('/courses/yours')
-    }  
- 
+    }
+
     return (
-    <div>
-        <div style={{display: 'flex', justifyContent: 'space-between', margin: '-10px 10px 10px 10px', borderBottom: '1px solid black'}}>
-            <p style={{fontWeight: 'bold', marginLeft: '10px', display: 'flex', flexDirection:'row', alignItems: 'center'}}><span className={classes.span}  onClick={() => handleBack()}>Courses</span><ChevronRightIcon style={{fontSize: '1.6rem'}}/><span>All</span></p>
-            <p className={classes.span} style={{fontWeight: 'bold', display: 'flex', flexDirection:'row', alignItems: 'center'}} onClick = {handleBack}><ChevronLeftIcon style={{fontSize: '1.6rem'}}/>Your Courses</p>
-        </div>
-        <h2 style={{margin: '10px', maxWidth: "540px", width: "100%", textAlign: 'left'}}>All Courses</h2>
-        <div className = {tabletSize ? classes.rootTablet : classes.root}>
-            <div>
-                {state.coursesReducer.courses
-                    ? state.coursesReducer.courses.map((course, i) => (
-                        <Course key={i} course={course} addingCourses={addingCourses}/>
-                    ))
-                    : null}
+        <div>
+            <div style={ { display: 'flex', justifyContent: 'space-between', margin: '-10px 10px 10px 10px', borderBottom: '1px solid black' } }>
+                <p style={ { fontWeight: 'bold', marginLeft: '10px', display: 'flex', flexDirection: 'row', alignItems: 'center' } }><span className={ classes.span } onClick={ () => handleBack() }>Courses</span><ChevronRightIcon style={ { fontSize: '1.6rem' } } /><span>All</span></p>
+                <p className={ classes.span } style={ { fontWeight: 'bold', display: 'flex', flexDirection: 'row', alignItems: 'center' } } onClick={ handleBack }><ChevronLeftIcon style={ { fontSize: '1.6rem' } } />Your Courses</p>
+            </div>
+            <h2 style={ { margin: '10px', maxWidth: "540px", width: "100%", textAlign: 'left' } }>All Courses</h2>
+            <div className={ tabletSize ? classes.rootTablet : classes.root }>
+                <div>
+                    { state.coursesReducer.courses
+                        ? state.coursesReducer.courses.map((course, i) => (
+                            <Course key={ i } course={ course } addingCourses={ addingCourses } />
+                        ))
+                        : null }
+
+                </div>
 
             </div>
-            
         </div>
-    </div>
     );
 }
 

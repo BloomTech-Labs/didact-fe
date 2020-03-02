@@ -5,6 +5,7 @@ import AddCourse from '../courses/AddCourse'
 import YourDetailedCourse from '../courses/yourDetailedCourse/YourDetailedCourse'
 import DetailedCourse from '../courses/DetailedCourse'
 import EditCourse from '../courses/EditCourse'
+import EditAllCourse from '../courses/EditAllCourse'
 import AllCourses from "../courses/AllCourses.jsx"
 import AddLearningPaths from '../learningPaths/AddLearningPaths'
 import EditLearningPaths from '../learningPaths/EditLearningPaths'
@@ -23,40 +24,40 @@ import AllYourCourses from '../courses/AllYourCourses'
 import Contact from '../contact/Contact'
 
 const Content = (props) => {
-    
+
     return (
 
         <div>
-            {(() =>
-            {
-                switch(props.page)
-                {
+            { (() => {
+                switch (props.page) {
                     case ('dashboard'):
-                        return <Dashboard props = {props}/>
+                        return <Dashboard props={ props } />
                     case ('addcourse'):
-                        return <AddCourse props = {props}/>
+                        return <AddCourse props={ props } />
                     case ('courses'):
-                        return <AllCourses props = {props}/>
+                        return <AllCourses props={ props } />
                     case ('yourcourses'):
-                        return <AllYourCourses props = {props}/>
+                        return <AllYourCourses props={ props } />
                     case ('detailedcourse'):
-                        return <DetailedCourse id={props.match.params.id} props = {props}/>
+                        return <DetailedCourse id={ props.match.params.id } props={ props } />
                     case ('yourdetailedcourse'):
-                        return <YourDetailedCourse id={props.match.params.id} props = {props}/>
+                        return <YourDetailedCourse id={ props.match.params.id } props={ props } />
                     case ('editcourse'):
-                        return <EditCourse id={props.match.params.id} props={props}/>
+                        return <EditCourse id={ props.match.params.id } props={ props } />
+                    case ('editallcourse'):
+                        return <EditAllCourse id={ props.match.params.id } props={ props } />
                     case ('addlearningpath'):
-                        return <AddLearningPaths props={props}/>
+                        return <AddLearningPaths props={ props } />
                     case ('editlearningpath'):
-                        return <EditLearningPaths id={props.match.params.id} props={props}/>
+                        return <EditLearningPaths id={ props.match.params.id } props={ props } />
                     case ('learningpath'):
-                        return <LearningPath props={props} id={props.match.params.id}/>
+                        return <LearningPath props={ props } id={ props.match.params.id } />
                     case ('addpathitem'):
-                        return <AddPathItems props={props}/>
+                        return <AddPathItems props={ props } />
                     case ('editpathitem'):
-                        return <EditPathItems props={props}/>
+                        return <EditPathItems props={ props } />
                     case ('learningpaths'):
-                        return <AllLearningPaths props={props}/>
+                        return <AllLearningPaths props={ props } />
                     case ('yourlearningpaths'):
                         return <YourLearningPaths props={props}/>
                     case('tools'):
@@ -68,15 +69,15 @@ const Content = (props) => {
                     case('articlefull'):
                         return <ArticleFull props={props} id={props.match.params.id} />
                     case ('searchresults'):
-                        return <SearchResults props={props} setValues={props.setValues} results={props.results}/>
+                        return <SearchResults props={ props } setValues={ props.setValues } results={ props.results } />
                     case ('about'):
-                        return <About props={props}/>
+                        return <About props={ props } />
                     case ('contact'):
-                        return <Contact props={props}/>
+                        return <Contact props={ props } />
                     default:
                         break;
                 }
-            })()}
+            })() }
         </div>
     )
 }
