@@ -12,6 +12,7 @@ const DrawerComponent = props => {
   const drawerStyles = makeStyles(theme => ({
     activeTab: {
       backgroundColor: "gray",
+
       borderRadius: "0 20px 20px 0",
       width: "215px",
       color: "white",
@@ -32,12 +33,13 @@ const DrawerComponent = props => {
       width: 0,
       flexShrink: 0,
       whiteSpace: "nowrap",
-      marginBottom: "60%"
+      marginBottom: "60%",
+      height: "100%"
     },
 
     drawerOpen: {
       width: "255px",
-      height: "600px",
+      height: "100%",
       margin: " 103px 0 10px 10px",
       borderRadius: "15px",
       transition: theme.transitions.create("width", {
