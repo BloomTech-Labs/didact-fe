@@ -5,4 +5,4 @@
     REACT_APP_BE_URL = https://didactlms-staging.herokuapp.com/api/
 
 [context."master/branch"]
-    REACT_APP_BE_URL = https://didactlms.herokuapp.com/api/
+    REACT_APP_BE_URL = https://didactlms-staging.herokuapp.com/api/
