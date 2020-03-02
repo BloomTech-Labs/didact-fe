@@ -31,7 +31,8 @@ const DrawerComponent = props => {
     drawer: {
       width: 0,
       flexShrink: 0,
-      whiteSpace: "nowrap"
+      whiteSpace: "nowrap",
+      marginBottom: "60%"
     },
 
     drawerOpen: {
@@ -223,8 +224,8 @@ const DrawerComponent = props => {
         </div>
       )}
       <Drawer
-        anchor="none"
         variant="permanent"
+        anchor="none"
         className={clsx(classes.drawer, {
           [classes.drawerOpen]: open,
           [classes.drawerClose]: !open

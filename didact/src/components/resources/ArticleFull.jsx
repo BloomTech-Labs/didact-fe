@@ -13,3 +13,5 @@ const ArticleFull = props => {
 
     )
 }
+
+export default ArticleFull;

@@ -3,6 +3,7 @@ import { verifyToken } from "../../store/actions/index.js";
 import { useDispatch, useSelector } from "react-redux";
 import { PageFlex } from "./PageStyles";
 import { makeStyles } from "@material-ui/core/styles";
+import { Mixpanel } from 'mixpanel-browser'
 // import { Link } from "react-router-dom";
 // import styled from "styled-components";
 
@@ -11,6 +12,11 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import SearchIcon from "@material-ui/icons/Search";
 
+// import InboxIcon from "@material-ui/icons/MoveToInbox";
+// import DashboardIcon from "@material-ui/icons/Dashboard";
+// import FolderOpenIcon from "@material-ui/icons/FolderOpen";
+import PermIdentityIcon from "@material-ui/icons/PermIdentity";
+
 // Select Dropdown
 // import { InputLabel, Select, MenuItem } from "@material-ui/core";
 
@@ -18,6 +24,7 @@ import DrawerComponent from "../drawer/Drawer";
 import MobileDrawerComponent from "../drawer/MobileDrawer";
 import MobileHeaderComponent from "../header/MobileHeader";
 import Content from "../content/Content";
+import { ProfileWrapper } from "./profileStyle";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -77,7 +84,6 @@ const useStyles = makeStyles(theme => ({
   searchInput: {
     backgroundColor: "inherit",
     width: "340px",
-    border: "none",
     outline: "none",
     height: "57px",
     border: "none",
@@ -129,6 +135,13 @@ const useStyles = makeStyles(theme => ({
     "&:active": {
       boxShadow: "0 5px #666",
       transform: "translateY(4px)"
+    },
+    iconImageProfile: {
+      width: "30px",
+      height: "30px",
+      borderRadius: "50%",
+      // marginTop: '20px',
+      objectFit: "cover"
     }
   }
 
@@ -178,12 +191,29 @@ function MainPage(props) {
     setOpen(!open);
   };
 
+  // const userName = useSelector(state => state.onboardingReducer.user);
+
+  const handleLogOut = () => {
+    localStorage.clear("token");
+    props.history.push("/login");
+  };
+
+  const firstName = userName.first_name
+    ? userName.first_name.substring(0, 1).toUpperCase() +
+      userName.first_name.substring(1)
+    : null;
+  const lastName = userName.last_name
+    ? userName.last_name.substring(0, 1).toUpperCase() +
+      userName.last_name.substring(1)
+    : null;
+
   //Needed for Header Search Function
   const handleChange = name => event => {
     setValues({ ...values, [name]: event.target.value });
   };
 
   const handleSubmit = event => {
+    Mixpanel.track("Search Query")
     event.preventDefault();
     setResults(values);
     props.history.push("/results");
@@ -209,82 +239,81 @@ function MainPage(props) {
 
   return (
     // MOBILE CODE ****************************************************************************
-    <>
-      { phoneSize || tabletSize ? (
-        <div className={ classes.root } onClick={ () => closeHandleClick() }>
-          <CssBaseline />
-          <>
-            <div>
-              <MobileDrawerComponent
-                handleDrawerOpenMobile={ handleDrawerOpenMobile() }
-                openMobile={ openMobile }
-                props={ props }
-              />
-            </div>
-            <div>
-              <MobileHeaderComponent
-                handleSubmit={ handleSubmit }
-                handleChange={ handleChange }
-                values={ values }
-                props={ props }
-                tabletSize={ tabletSize }
-                userName={ userName }
-              />
-              <main
-                className={
-                  openMobile ? classes.contentShadow : classes.contentMobile
-                }
-              >
-                <div className={ classes.toolbar } />
-                <Content
-                  phoneSize={ phoneSize }
-                  open={ open }
-                  { ...props }
-                  results={ results }
-                  values={ values }
-                  setValues={ setValues }
+    <ProfileWrapper>
+      <>
+        {phoneSize || tabletSize ? (
+          <div className={classes.root} onClick={() => closeHandleClick()}>
+            <CssBaseline />
+            <>
+              <div>
+                <MobileDrawerComponent
+                  handleDrawerOpenMobile={handleDrawerOpenMobile()}
+                  openMobile={openMobile}
+                  props={props}
                 />
-                {/*************************ADD COMPONENTS HERE *********************** */ }
-              </main>
-            </div>
-          </>
-          {/* {openMobile ?
+              </div>
+              <div>
+                <MobileHeaderComponent
+                  handleSubmit={handleSubmit}
+                  handleChange={handleChange}
+                  values={values}
+                  props={props}
+                  tabletSize={tabletSize}
+                  userName={userName}
+                />
+                <main
+                  className={
+                    openMobile ? classes.contentShadow : classes.contentMobile
+                  }
+                >
+                  <div className={classes.toolbar} />
+                  <Content
+                    phoneSize={phoneSize}
+                    open={open}
+                    {...props}
+                    results={results}
+                    values={values}
+                    setValues={setValues}
+                  />
+                  {/*************************ADD COMPONENTS HERE *********************** */}
+                </main>
+              </div>
+            </>
+            {/* {openMobile ?
                         (
                         <div className = {classes.scrollBarMobileFix}>
                         </div>
                         ) : ( 
                         null )
                          } */}
-        </div>
-      ) : (
+          </div>
+        ) : (
           // END OF MOBILE CODE *******************************************************************
           // BEGINNING OF DESKTOP CODE ************************************************************
-          <div className={ classes.root }>
+          <div className={classes.root}>
             <CssBaseline />
             <PageFlex>
               <div className="drawer">
                 <DrawerComponent
-                  handleDrawerOpen={ handleDrawerOpen }
-                  open={ open }
-                  props={ props }
+                  handleDrawerOpen={handleDrawerOpen}
+                  open={open}
+                  props={props}
                 />
               </div>
               <div className="headerMain">
-                {/* <HeaderComponent props = {props} open={open} /> */ }
-                {/* <HeaderComponent open={open} /> */ }
+                {/* <HeaderComponent props = {props} open={open} /> */}
+                {/* <HeaderComponent open={open} /> */}
                 <div className="header">
-                  {/* Search Functionality Below */ }
-                  <div className={ classes.searchDiv }>
-                    <form className={ classes.formPart } onSubmit={ handleSubmit }>
-                      <div className={ classes.filterDiv }>
+                  {/* Search Functionality Below */}
+                  <div className={classes.searchDiv}>
+                    <form className={classes.formPart} onSubmit={handleSubmit}>
+                      <div className={classes.filterDiv}>
                         <select
-                          className={ classes.dropFilter }
-                          value={ values.filter }
-                          onChange={ handleChange("filter") }
+                          className={classes.dropFilter}
+                          value={values.filter}
+                          onChange={handleChange("filter")}
                         >
-                          <option value="title">
-                            Title
-                        </option>
+                          <option value="title">Title</option>
                           <option value="topic">Topic</option>
                           <option value="creator">Creator</option>
                           <option value="description">Description</option>
@@ -292,66 +321,64 @@ function MainPage(props) {
                         </select>
                       </div>
                       <input
-                        className={ classes.searchInput }
+                        className={classes.searchInput}
                         type="text"
-                        value={ values.search }
-                        onChange={ handleChange("search") }
+                        value={values.search}
+                        onChange={handleChange("search")}
                       />
                       <button
-                        className={ classes.searchButton }
+                        className={classes.searchButton}
                         type="submit"
-                        onSubmit={ handleSubmit }
+                        onSubmit={handleSubmit}
                       >
                         <SearchIcon
-                          className={ classes.searchIcon }
-                          style={ {
+                          className={classes.searchIcon}
+                          style={{
                             fontSize: "1.8rem",
                             marginRight: "5px",
                             color: "black"
-                          } }
+                          }}
                         />
-                        <p className={ classes.searcher }>Search</p>
+                        <p className={classes.searcher}>Search</p>
                       </button>
                     </form>
                   </div>
-                  {/* <div className="navSection">
-                  <Link
-                    to="/about"
-                    style={{
-                      color: "black",
-                      textDecoration: "none",
-                      marginRight: "20px"
-                    }}
-                  >
-                    <p>About</p>
-                  </Link>
-                  <Link
-                    to="/contact"
-                    style={{ color: "black", textDecoration: "none" }}
-                  >
-                    <p>Contact</p>
-                  </Link>
-                </div> */}
+                  <div className="profileSection">
+                    {userName.photo ? (
+                      <img
+                        src={userName.photo}
+                        alt="Profile"
+                        className={classes.iconImageProfile}
+                      />
+                    ) : (
+                      <PermIdentityIcon className={classes.iconImageProfile} />
+                    )}
+                    <p>{firstName + " " + lastName}</p>
+                    <p onClick={handleLogOut} className="logout">
+                      Log Out
+                    </p>
+                  </div>
                 </div>
-                <main className={ classes.content }>
-                  {/* <div className={classes.toolbar} /> */ }
+                <main className={classes.content}>
+                  {/* <div className={classes.toolbar} /> */}
                   <Content
-                    mediumScreenSize={ mediumScreenSize }
-                    phoneSize={ phoneSize }
-                    open={ open }
-                    setValues={ setValues }
-                    values={ values }
-                    tabletSize={ tabletSize }
-                    { ...props }
-                    results={ results }
+                    mediumScreenSize={mediumScreenSize}
+                    phoneSize={phoneSize}
+                    open={open}
+                    setValues={setValues}
+                    values={values}
+                    tabletSize={tabletSize}
+                    {...props}
+                    results={results}
                   />
-                  {/*************************ADD COMPONENTS HERE *********************** */ }
+                  {/*************************ADD COMPONENTS HERE *********************** */}
                 </main>
               </div>
             </PageFlex>
           </div>
-        ) }
-    </>
+        )}
+      </>
+    </ProfileWrapper>
   );
 }
 

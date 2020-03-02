@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Mixpanel } from '../../utils/mixpanel' 
 
 const addResource = () => {
     const freshDate = new Date()
@@ -23,6 +24,8 @@ const addResource = () => {
 
     const handleSubmit = e => {
         e.preventDefault();
+        contentType === 'article' ? Mixpanel.track("Article Created")
+        : Mixpanel.track("Nonarticle resource created")
         //insert axios call here once endpoints set up
     }
 
