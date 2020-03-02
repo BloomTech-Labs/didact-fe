@@ -9,6 +9,8 @@ export const SideListWrapper = styled.div`
   overflow: hidden;
   // margin-right: 50%;
 
+  // profile section
+
   .profileSection {
     width: 235px;
     margin: 0 auto;

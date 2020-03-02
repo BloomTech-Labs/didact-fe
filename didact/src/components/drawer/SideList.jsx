@@ -5,18 +5,18 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 
 // new feature dropdown for nav
-import ExpandLess from "@material-ui/icons/ExpandLess";
-import ExpandMore from "@material-ui/icons/ExpandMore";
-import List from "@material-ui/core/List";
+// import ExpandLess from "@material-ui/icons/ExpandLess";
+// import ExpandMore from "@material-ui/icons/ExpandMore";
+// import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
+// import ListItemText from "@material-ui/core/ListItemText";
 import Collapse from "@material-ui/core/Collapse";
 ////
 
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import FolderOpenIcon from "@material-ui/icons/FolderOpen";
-import PermIdentityIcon from "@material-ui/icons/PermIdentity";
+// import PermIdentityIcon from "@material-ui/icons/PermIdentity";
 //Material UI Icons
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import SettingsIcon from "@material-ui/icons/Settings";
@@ -419,7 +419,7 @@ const SideList = ({ props }) => {
         </div>
       </ul>
 
-      <div className="profileSection">
+      {/* <div className="profileSection">
         {userName.photo ? (
           <img
             src={userName.photo}
@@ -433,7 +433,7 @@ const SideList = ({ props }) => {
         <p onClick={handleLogOut} className="logout">
           Log Out
         </p>
-      </div>
+      </div> */}
     </SideListWrapper>
   );
 };
