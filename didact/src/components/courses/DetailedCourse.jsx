@@ -31,6 +31,7 @@ const DetailedCourse = props => {
   const state = useSelector(state => state);
   const phoneSize = props.props.phoneSize;
   const detailedCourse = state.coursesReducer.detailedCourse;
+  const id = state.onboardingReducer.user.id;
   const owner = state.onboardingReducer.user.owner;
   const admin = state.onboardingReducer.user.admin;
   const moderator = state.onboardingReducer.user.moderator;
@@ -116,7 +117,7 @@ const DetailedCourse = props => {
             </div>
             {/* //replace code below with restrictions when working */ }
 
-            { owner === true || admin === true || moderator === true ? (
+            { course.creator_id === id || owner === true || admin === true || moderator === true ? (
               !phoneSize ? (
                 <DidactButton style={ { marginLeft: "85%" } }>
                   <Link

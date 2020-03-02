@@ -26,6 +26,10 @@ const LearningPath = ({ id, props }) => {
     const classes = useStyles();
     const dispatch = useDispatch();
     const state = useSelector(state => state);
+    const owner = state.onboardingReducer.user.owner
+    console.log("OOOOOOOOOOOOWNER", owner)
+    const admin = state.onboardingReducer.user.admin
+    const moderator = state.onboardingReducer.user.moderator
     const learningPath = state.learningPathReducer.learningPath;
     const learningPathCompletion = state.learningPathReducer.learningPathCompletion;
     const [completionItemsCourses, setCompletionItemsCourses] = useState([])
@@ -98,7 +102,7 @@ const LearningPath = ({ id, props }) => {
             <div style={ { display: 'flex', justifyContent: 'space-between', margin: '-10px 10px 10px 10px', borderBottom: '1px solid black' } }>
                 <p style={ { fontWeight: 'bold', marginLeft: '10px', display: 'flex', flexDirection: 'row', alignItems: 'center' } }><span className={ classes.span } onClick={ handleBack }>Learning Paths</span><ChevronRightIcon style={ { fontSize: '1.6rem' } } /><span>{ learningPath.title ? learningPath.title.substring(0, 20) : "Loading" }...</span></p>
             </div>
-            { !firstItemCourse && (learningPath.creatorId === user.id) ? (
+            { !firstItemCourse && (learningPath.creatorId === user.id) || owner === true || admin === true || moderator === true ? (
                 <>
                     <div className='currentTitle'>
                         {
