@@ -102,7 +102,7 @@ const LearningPath = ({ id, props }) => {
             <div style={ { display: 'flex', justifyContent: 'space-between', margin: '-10px 10px 10px 10px', borderBottom: '1px solid black' } }>
                 <p style={ { fontWeight: 'bold', marginLeft: '10px', display: 'flex', flexDirection: 'row', alignItems: 'center' } }><span className={ classes.span } onClick={ handleBack }>Learning Paths</span><ChevronRightIcon style={ { fontSize: '1.6rem' } } /><span>{ learningPath.title ? learningPath.title.substring(0, 20) : "Loading" }...</span></p>
             </div>
-            { !firstItemCourse && (learningPath.creatorId === user.id) || owner === true || admin === true || moderator === true ? (
+            { !firstItemCourse && (learningPath.creatorId === user.id || owner === true || admin === true || moderator === true) ? (
                 <>
                     <div className='currentTitle'>
                         {
@@ -126,7 +126,7 @@ const LearningPath = ({ id, props }) => {
                                 <div className='currentTitle'>
                                     <h3>Current</h3>
                                     {
-                                        (learningPathCompletion.creatorId === state.onboardingReducer.user.id) &&
+                                        (learningPathCompletion.creatorId === state.onboardingReducer.user.id || owner === true || admin === true || moderator === true) &&
                                         <div className='editLearningButton'>
                                             <Link to={ `/learning-paths/${id}/edit` }>Edit</Link>
                                         </div>
