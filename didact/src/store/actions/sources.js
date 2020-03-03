@@ -1,0 +1,15 @@
+import axiosWithAuth from "../../utils/axiosWithAuth";
+import beURL from "../../utils/beURL"
+
+export const SOURCE_DATA_START = "SOURCE_DATA_START";
+export const SOURCE_DATA_SUCCESS = "SOURCE_DATA_SUCCESS";
+export const SOURCE_DATA_FAIL = "SOURCE_DATA_FAIL";
+export const ADD_SOURCE_START = "ADD_SOURCE_START";
+export const ADD_SOURCE_SUCCESS = "ADD_SOURCE_SUCCESS";
+export const ADD_SOURCE_FAIL = "ADD_SOURCE_FAIL";
+export const EDIT_SOURCE_START = "EDIT_SOURCE_START";
+export const EDIT_SOURCE_SUCCESS = "EDIT_SOURCE_SUCCESS";
+export const EDIT_SOURCE_FAIL = "EDIT_SOURCE_FAIL";
+export const DELETE_SOURCE_START = "DELETE_SOURCE_START";
+export const DELETE_SOURCE_SUCCESS = "DELETE_SOURCE_SUCCESS";
+export const DELETE_SOURCE_FAIL = "DELETE_SOURCE_FAIL";
