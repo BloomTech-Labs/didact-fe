@@ -4,6 +4,7 @@ export const PageFlex = styled.div`
   width: 100%;
   display: flex;
   position: left;
+
   /* width: auto; */
 
   .drawer {

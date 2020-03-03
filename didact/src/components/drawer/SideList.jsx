@@ -16,7 +16,7 @@ import Collapse from "@material-ui/core/Collapse";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import FolderOpenIcon from "@material-ui/icons/FolderOpen";
-// import PermIdentityIcon from "@material-ui/icons/PermIdentity";
+import PermIdentityIcon from "@material-ui/icons/PermIdentity";
 //Material UI Icons
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import SettingsIcon from "@material-ui/icons/Settings";
@@ -92,21 +92,21 @@ const SideList = ({ props }) => {
 
   const classes = drawerStyles();
 
-  const userName = useSelector(state => state.onboardingReducer.user);
+  // const userName = useSelector(state => state.onboardingReducer.user);
 
   const handleLogOut = () => {
     localStorage.clear("token");
     props.props.history.push("/login");
   };
 
-  const firstName = userName.first_name
-    ? userName.first_name.substring(0, 1).toUpperCase() +
-      userName.first_name.substring(1)
-    : null;
-  const lastName = userName.last_name
-    ? userName.last_name.substring(0, 1).toUpperCase() +
-      userName.last_name.substring(1)
-    : null;
+  // const firstName = userName.first_name
+  //   ? userName.first_name.substring(0, 1).toUpperCase() +
+  //     userName.first_name.substring(1)
+  //   : null;
+  // const lastName = userName.last_name
+  //   ? userName.last_name.substring(0, 1).toUpperCase() +
+  //     userName.last_name.substring(1)
+  //   : null;
 
   // state for dropdown links
 
