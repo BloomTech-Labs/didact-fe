@@ -2,6 +2,9 @@ import {
   ARTICLE_DATA_START,
   ARTICLE_DATA_SUCCESS,
   ARTICLE_DATA_FAIL,
+  ARTICLE_BY_ID_START,
+  ARTICLE_BY_ID_SUCCESS, 
+  ARTICLE_BY_ID_FAIL,
   ADD_ARTICLE_START,
   ADD_ARTICLE_SUCCESS,
   ADD_ARTICLE_FAIL,
@@ -10,13 +13,8 @@ import {
   EDIT_ARTICLE_FAIL,
   DELETE_ARTICLE_START,
   DELETE_ARTICLE_SUCCESS,
-  DELETE_ARTICLE_FAIL,
-  getArticles,
-  getArticleById,
-  editArticle,
-  deleteArticle
+  DELETE_ARTICLE_FAIL
 } from "../actions";
-import { ARTICLE_BY_ID_SUCCESS, ARTICLE_BY_ID_FAIL } from "../actions/articles";
 
 const initialState = {
   articles: [],
@@ -70,7 +68,7 @@ export const articlesReducer = (state = initialState, action) => {
       return {
         ...state,
         isLoading: false,
-        articles: [...articles, action.payload]
+        articles: [...state.articles, action.payload]
       };
     case ADD_ARTICLE_FAIL:
       return {

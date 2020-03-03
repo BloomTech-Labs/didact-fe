@@ -1,18 +1,27 @@
-import React from 'react';
-import Tool from './Tool.jsx'
-import { useSelector } from 'react-redux'
+import React, { useEffect } from "react";
+import Tool from "./Tool.jsx";
+import { useSelector, useDispatch } from "react-redux";
+import { getTools } from "../../store/actions";
+import { Link } from "react-router-dom";
 
 const Tools = props => {
-    const state = useSelector(state => state);
-    const tools = state.resourcesReducer.tools;
+  const dispatch = useDispatch();
+  const state = useSelector(state => state);
+  const user = state.onboardingReducer.user;
+  const tools = state.toolsReducer.tools;
 
-    return (
-        <div className="tools-list">
-        {tools.map(tool => (
-            <Tool tool={tool} key={tool.id}/>
-        ))}
-        </div>
-    )
-}
+  useEffect(() => {
+    dispatch(getTools());
+  }, [tools]);
+
+  return (
+    <div className="tools-list">
+      {user.owner || user.admin ? <Link to="/resource-form">Add</Link> : null}
+      {tools.map(tool => (
+        <Tool tool={tool} key={tool.id} />
+      ))}
+    </div>
+  );
+};
 
 export default Tools;

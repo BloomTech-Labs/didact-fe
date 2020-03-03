@@ -17,7 +17,7 @@ export const DELETE_ARTICLE_START = "DELETE_ARTICLE_START";
 export const DELETE_ARTICLE_SUCCESS = "DELETE_ARTICLE_SUCCESS";
 export const DELETE_ARTICLE_FAIL = "DELETE_ARTICLE_FAIL";
 
-const baseURL = `${beURL}/articles`;
+const baseURL = `${beURL}articles`;
 
 export const getArticles = () => dispatch => {
   dispatch({ type: ARTICLE_DATA_START });

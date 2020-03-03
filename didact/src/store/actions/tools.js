@@ -17,16 +17,19 @@ export const DELETE_TOOL_START = "DELETE_TOOL_START";
 export const DELETE_TOOL_SUCCESS = "DELETE_TOOL_SUCCESS";
 export const DELETE_TOOL_FAIL = "DELETE_TOOL_FAIL";
 
-const baseURL = `${beURL}/tools`;
+const baseURL = `${beURL}tools`;
 
 export const getTools = () => dispatch => {
+
   dispatch({ type: TOOL_DATA_START });
   axiosWithAuth()
     .get(baseURL)
     .then(result => {
+      console.log("Tool data", result)
       dispatch({ type: TOOL_DATA_SUCCESS, payload: result.data });
     })
     .catch(error => {
+      console.log("Tool error", error)
       dispatch({ type: TOOL_DATA_FAIL, payload: error.response });
     });
 };

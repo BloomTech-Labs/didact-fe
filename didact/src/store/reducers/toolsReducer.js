@@ -2,6 +2,9 @@ import {
   TOOL_DATA_START,
   TOOL_DATA_SUCCESS,
   TOOL_DATA_FAIL,
+  TOOL_BY_ID_START,
+  TOOL_BY_ID_SUCCESS,
+  TOOL_BY_ID_FAIL,
   ADD_TOOL_START,
   ADD_TOOL_SUCCESS,
   ADD_TOOL_FAIL,
@@ -10,11 +13,7 @@ import {
   EDIT_TOOL_FAIL,
   DELETE_TOOL_START,
   DELETE_TOOL_SUCCESS,
-  DELETE_TOOL_FAIL,
-  getTools,
-  getToolById,
-  editTool,
-  deleteTool
+  DELETE_TOOL_FAIL
 } from "../actions";
 
 const initialState = {
@@ -69,7 +68,7 @@ export const toolsReducer = (state = initialState, action) => {
       return {
         ...state,
         isLoading: false,
-        tools: [...tools, action.payload]
+        tools: [...state.tools, action.payload]
       };
     case ADD_TOOL_FAIL:
       return {

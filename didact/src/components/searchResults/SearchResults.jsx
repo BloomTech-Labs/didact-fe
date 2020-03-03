@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   courseEndPoint,
   getLearningPaths,
-  getYourLearningPaths
 } from "../../store/actions";
 
 // Component Imports

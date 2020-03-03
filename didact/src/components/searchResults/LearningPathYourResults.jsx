@@ -1,6 +1,5 @@
 import React from 'react'
 import {Link} from "react-router-dom"
-import { Mixpanel } from 'mixpanel-browser'
 
 import { LearningPathsWrapper, LearningPathCard } from '../learningPaths/YourLearningPathsStyles'
 

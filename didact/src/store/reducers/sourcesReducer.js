@@ -2,6 +2,9 @@ import {
   SOURCE_DATA_START,
   SOURCE_DATA_SUCCESS,
   SOURCE_DATA_FAIL,
+  SOURCE_BY_ID_START,
+  SOURCE_BY_ID_SUCCESS,
+  SOURCE_BY_ID_FAIL,
   ADD_SOURCE_START,
   ADD_SOURCE_SUCCESS,
   ADD_SOURCE_FAIL,
@@ -10,11 +13,7 @@ import {
   EDIT_SOURCE_FAIL,
   DELETE_SOURCE_START,
   DELETE_SOURCE_SUCCESS,
-  DELETE_SOURCE_FAIL,
-  getSources,
-  getSourceById,
-  editSource,
-  deleteSource
+  DELETE_SOURCE_FAIL
 } from "../actions";
 
 const initialState = {
@@ -69,7 +68,7 @@ export const sourcesReducer = (state = initialState, action) => {
       return {
         ...state,
         isLoading: false,
-        sources: [...sources, action.payload]
+        sources: [...state.sources, action.payload]
       };
     case ADD_SOURCE_FAIL:
       return {

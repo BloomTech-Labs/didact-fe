@@ -17,7 +17,7 @@ export const DELETE_SOURCE_START = "DELETE_SOURCE_START";
 export const DELETE_SOURCE_SUCCESS = "DELETE_SOURCE_SUCCESS";
 export const DELETE_SOURCE_FAIL = "DELETE_SOURCE_FAIL";
 
-const baseURL = `${beURL}/sources`;
+const baseURL = `${beURL}sources`;
 
 export const getSources = () => dispatch => {
   dispatch({ type: SOURCE_DATA_START });
