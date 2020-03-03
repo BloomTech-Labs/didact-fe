@@ -55,7 +55,7 @@ export const editArticle = (id, changes) => dispatch => {
     })
 }
 
-export const deleteArticle = id = dispatch => {
+export const deleteArticle = id => dispatch => {
     dispatch({ type: DELETE_ARTICLE_START })
     .delete(`${baseURL}/${id}`)
     .then(result => {
