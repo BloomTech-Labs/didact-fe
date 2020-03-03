@@ -6,7 +6,13 @@ export const SideListWrapper = styled.div`
   justify-content: space-between;
   height: 100%;
   background: #eeeeee;
-  overflow: hidden;
+  // position: relative;
+  // overflow: hidden;
+  overflow-y: scroll;
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
 
   // margin-right: 50%;
 

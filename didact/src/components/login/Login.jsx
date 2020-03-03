@@ -27,7 +27,7 @@ const LoginForm = props => {
   };
 
   return (
-    <Wrapper style={{ marginLeft: "20%" }}>
+    <Wrapper>
       <Header>
         <h1 style={{ fontFamily: "ITC Grouch" }}>Didact</h1>
         <div>{/* <a>About</a>

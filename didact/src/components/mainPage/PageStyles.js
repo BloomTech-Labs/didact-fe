@@ -8,14 +8,14 @@ export const PageFlex = styled.div`
   /* width: auto; */
 
   .drawer {
-    padding-right: 10px;
+    // padding-right: 10px;
   }
 
   .headerMain {
-    /* padding-left: 50px; */
+    // padding-left: 50px;
     min-width: 826px;
     width: 100%;
-    margin: 0 0 0 15px;
+    margin: 0 auto;
 
     .header {
       min-width: 825px;

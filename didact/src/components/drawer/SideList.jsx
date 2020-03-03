@@ -1,15 +1,10 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 
-// new feature dropdown for nav
-// import ExpandLess from "@material-ui/icons/ExpandLess";
-// import ExpandMore from "@material-ui/icons/ExpandMore";
-// import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
-// import ListItemText from "@material-ui/core/ListItemText";
 import Collapse from "@material-ui/core/Collapse";
 ////
 
@@ -55,7 +50,7 @@ const SideList = ({ props }) => {
     navigationLinks: {
       display: "flex",
       flexDirection: "column",
-      paddingRight: "15%",
+      // paddingRight: "15%",
       paddingTop: "10%"
     },
 
@@ -91,24 +86,6 @@ const SideList = ({ props }) => {
   }));
 
   const classes = drawerStyles();
-
-  // const userName = useSelector(state => state.onboardingReducer.user);
-
-  const handleLogOut = () => {
-    localStorage.clear("token");
-    props.props.history.push("/login");
-  };
-
-  // const firstName = userName.first_name
-  //   ? userName.first_name.substring(0, 1).toUpperCase() +
-  //     userName.first_name.substring(1)
-  //   : null;
-  // const lastName = userName.last_name
-  //   ? userName.last_name.substring(0, 1).toUpperCase() +
-  //     userName.last_name.substring(1)
-  //   : null;
-
-  // state for dropdown links
 
   const [open, setOpen] = React.useState(false);
 
@@ -418,22 +395,6 @@ const SideList = ({ props }) => {
           </Link>
         </div>
       </ul>
-
-      {/* <div className="profileSection">
-        {userName.photo ? (
-          <img
-            src={userName.photo}
-            alt="Profile"
-            className={classes.iconImageProfile}
-          />
-        ) : (
-          <PermIdentityIcon className={classes.iconImageProfile} />
-        )}
-        <p>{firstName + " " + lastName}</p>
-        <p onClick={handleLogOut} className="logout">
-          Log Out
-        </p>
-      </div> */}
     </SideListWrapper>
   );
 };

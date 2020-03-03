@@ -123,10 +123,10 @@ const DrawerComponent = props => {
     toolbar: {
       display: "flex",
       alignItems: "center",
-      // justifyContent: "flex-end",
+
       padding: theme.spacing(0, 1),
       paddingBottom: "100px",
-      // marginTop: "25px",
+
       background: "#eeeeee",
       ...theme.mixins.toolbar
     },
