@@ -11,9 +11,9 @@ const Routes = (props) => {
 
     return (
         <Switch>
-            <Route path="/login" component={FormikLoginForm} >
+            <Route path="/login" component={ FormikLoginForm } >
             </Route>
-            <Route path="/register" component={FormikRegisterForm} >
+            <Route path="/register" component={ FormikRegisterForm } >
             </Route>
             <Route path='/auth' component={Auth} />
             <Route path='/landing' component={Landing} />
@@ -41,6 +41,10 @@ const Routes = (props) => {
             (
                 <MainPage {...routeProps} page={'editcourse'} />
             )} />
+            <Route path='/courses/all/:id/edit' render={ routeProps =>
+                (
+                    <MainPage { ...routeProps } page={ 'editallcourse' } />
+            ) } />
             <Route exact path='/courses/all/:id' render={routeProps =>
             (
                 <MainPage {...routeProps} page={'detailedcourse'} />

@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getCourseById, editCourse, deleteCourse } from "../../store/actions";
+import {
+  getCourseById,
+  editCourseRevised,
+  deleteCourse
+} from "../../store/actions";
 import Tags from "./Tags";
 import AddSection from "./AddSection";
 import Sections from "./Sections";
@@ -93,7 +97,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const EditCourse = ({ props, id }) => {
+const EditAllCourse = ({ props, id }) => {
   const state = useSelector(state => state);
   const course = state.coursesReducer.course;
   const dispatch = useDispatch();
@@ -141,7 +145,7 @@ const EditCourse = ({ props, id }) => {
 
   const handleCourseSubmit = event => {
     event.preventDefault();
-    dispatch(editCourse(course.id, changes));
+    dispatch(editCourseRevised(course.id, changes));
     toggleEdit();
   };
 
@@ -418,4 +422,4 @@ const EditCourse = ({ props, id }) => {
   }
 };
 
-export default EditCourse;
+export default EditAllCourse;

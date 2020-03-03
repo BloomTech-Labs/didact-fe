@@ -1,22 +1,12 @@
 import styled from "styled-components";
 
-export const SideListWrapper = styled.div`
+export const ProfileWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
   background: #eeeeee;
-  // position: relative;
-  // overflow: hidden;
-  overflow-y: scroll;
-
-  ::-webkit-scrollbar {
-    display: none;
-  }
-
   // margin-right: 50%;
-
-  // profile section
 
   .profileSection {
     width: 235px;
@@ -24,7 +14,6 @@ export const SideListWrapper = styled.div`
     /* padding-top: 17px; */
     /* padding-bottom: 24px; */
     padding: 17px 15px 24px 15px;
-    border-top: #7070704a 1px solid;
     display: flex;
     justify-content: space-between;
     align-items: center;
