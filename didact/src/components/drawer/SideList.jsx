@@ -21,12 +21,13 @@ const SideList = ({ props }) => {
   const drawerStyles = makeStyles(theme => ({
     activeTab: {
       backgroundColor: "#ffffff",
-      borderRadius: "0 20px 20px 0",
+      borderRadius: "0 7px 7px 0",
       width: "225px",
-      color: "white",
+      // color: "white",
       height: "50px",
       margin: "10px 0px"
     },
+
     arrow: {
       textAlign: "right",
       marginRight: "10px",
@@ -50,8 +51,8 @@ const SideList = ({ props }) => {
     navigationLinks: {
       display: "flex",
       flexDirection: "column",
-      // paddingRight: "15%",
-      paddingTop: "10%"
+      paddingRight: "15%",
+      paddingTop: "25%"
     },
 
     iconImageProfile: {
@@ -63,7 +64,8 @@ const SideList = ({ props }) => {
     },
     collapseNav: {
       textDecoration: "none",
-      textAlign: "center"
+      textAlign: "left",
+      marginRight: "20%"
     },
 
     root: {
@@ -282,7 +284,7 @@ const SideList = ({ props }) => {
         <div className={classes.resourcesDiv}>
           <nav onClick={resourcesHandleClick}>
             <NavLink
-              to="/about"
+              to={window}
               style={{
                 textDecoration: "none",
                 color: "#5b5b5b",
