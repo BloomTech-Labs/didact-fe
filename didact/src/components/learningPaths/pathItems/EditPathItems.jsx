@@ -1,53 +1,54 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  updatePathItem,
-  deletePathItem
-} from "../../../store/actions";
+import { updatePathItem, deletePathItem } from "../../../store/actions";
 
 import DeleteModal from "../../courses/DeleteModal";
-import { ButtonDiv, TrashCanEdit, DidactButton } from "../../dashboard/ButtonStyles";
-import { DidactField, DidactInput, DidactLabel, DidactTextArea } from '../../dashboard/FormStyles'
+import {
+  ButtonDiv,
+  TrashCanEdit,
+  DidactButton
+} from "../../dashboard/ButtonStyles";
+import {
+  DidactField,
+  DidactInput,
+  DidactLabel,
+  DidactTextArea
+} from "../../dashboard/FormStyles";
 
 //imports from material-ui
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 
-
-
-
 const useStyles = makeStyles(theme => ({
   button: {
     boxShadow: "none",
     borderRadius: "15px",
-    background: "#EBE8E1",
+    background: "#EBE8E1"
     // marginLeft: "70%",
   },
   card: {
     maxWidth: 540,
     borderRadius: 15,
-    marginTop: "10px",
+    marginTop: "10px"
   },
   title: {
     fontSize: 14,
-    fontWeight: "bold",
+    fontWeight: "bold"
   },
   pos: {
-    marginBottom: 12,
+    marginBottom: 12
   },
   container: {
     display: "flex",
-    flexWrap: "wrap",
+    flexWrap: "wrap"
   },
 
   descriptionDiv: {
     display: "flex",
-    justifyContent: "center",
-  },
-
+    justifyContent: "center"
+  }
 }));
-
 
 const EditPathItems = ({ course, props, handleToggleEdit }) => {
   const state = useSelector(state => state.learningPathReducer);
@@ -68,7 +69,7 @@ const EditPathItems = ({ course, props, handleToggleEdit }) => {
       name: course.name,
       type: course.type,
       link: course.link,
-      description: course.description,
+      description: course.description
     });
   }, [course]);
 
@@ -86,12 +87,10 @@ const EditPathItems = ({ course, props, handleToggleEdit }) => {
     setChanges({ ...changes, [name]: event.target.value });
   };
 
-
   const handleCancel = event => {
     event.preventDefault();
     handleToggleEdit();
   };
-
 
   const handleDelete = () => {
     dispatch(deletePathItem(props.match.params.id, course.id));
@@ -105,15 +104,15 @@ const EditPathItems = ({ course, props, handleToggleEdit }) => {
     setOpenModal(false);
   };
 
-
   return (
     <>
       <Card className={classes.card}>
         <CardContent>
-          <p className={classes.title}>
-            Learning Path Overview
-           </p>
-           <TrashCanEdit style={{fontSize: '2.6rem'}} onClick={handleModalOpen}></TrashCanEdit>
+          <p className={classes.title}>Learning Path Overview</p>
+          <TrashCanEdit
+            style={{ fontSize: "2.6rem" }}
+            onClick={handleModalOpen}
+          ></TrashCanEdit>
           {openModal ? (
             <DeleteModal
               handleDelete={handleDelete}
@@ -129,20 +128,44 @@ const EditPathItems = ({ course, props, handleToggleEdit }) => {
             autoComplete="off"
           >
             <DidactField>
-              <DidactLabel htmlFor='title'>Item Name</DidactLabel>
-              <DidactInput id='title' type='text' value={changes.name || ""} onChange={handleChange('name')} placeholder='Item Name' />
+              <DidactLabel htmlFor="title">Item Name</DidactLabel>
+              <DidactInput
+                id="title"
+                type="text"
+                value={changes.name || ""}
+                onChange={handleChange("name")}
+                placeholder="Item Name"
+              />
             </DidactField>
             <DidactField>
-              <DidactLabel htmlFor='description'>Description</DidactLabel>
-              <DidactTextArea rows="8" id='description' value={changes.description || ""} onChange={handleChange('description')} placeholder='Description' />
+              <DidactLabel htmlFor="description">Description</DidactLabel>
+              <DidactTextArea
+                rows="8"
+                id="description"
+                value={changes.description || ""}
+                onChange={handleChange("description")}
+                placeholder="Description"
+              />
             </DidactField>
             <DidactField>
-              <DidactLabel htmlFor='link'>Url Link</DidactLabel>
-              <DidactInput id='link' type='text' value={changes.link || ""} onChange={handleChange('link')} placeholder='Url Link' />
+              <DidactLabel htmlFor="link">Url Link</DidactLabel>
+              <DidactInput
+                id="link"
+                type="text"
+                value={changes.link || ""}
+                onChange={handleChange("link")}
+                placeholder="Url Link"
+              />
             </DidactField>
             <DidactField>
-              <DidactLabel htmlFor='type'>Type</DidactLabel>
-              <DidactInput id='type' type='text' value={changes.type || ""} onChange={handleChange('type')} placeholder='Type' />
+              <DidactLabel htmlFor="type">Type</DidactLabel>
+              <DidactInput
+                id="type"
+                type="text"
+                value={changes.type || ""}
+                onChange={handleChange("type")}
+                placeholder="Type"
+              />
             </DidactField>
             <ButtonDiv>
               <DidactButton

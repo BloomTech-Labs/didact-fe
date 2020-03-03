@@ -1,22 +1,17 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 
-// new feature dropdown for nav
-// import ExpandLess from "@material-ui/icons/ExpandLess";
-// import ExpandMore from "@material-ui/icons/ExpandMore";
-// import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
-// import ListItemText from "@material-ui/core/ListItemText";
 import Collapse from "@material-ui/core/Collapse";
 ////
 
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import FolderOpenIcon from "@material-ui/icons/FolderOpen";
-// import PermIdentityIcon from "@material-ui/icons/PermIdentity";
+import PermIdentityIcon from "@material-ui/icons/PermIdentity";
 //Material UI Icons
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import SettingsIcon from "@material-ui/icons/Settings";
@@ -26,12 +21,13 @@ const SideList = ({ props }) => {
   const drawerStyles = makeStyles(theme => ({
     activeTab: {
       backgroundColor: "#ffffff",
-      borderRadius: "0 20px 20px 0",
+      borderRadius: "0 7px 7px 0",
       width: "225px",
-      color: "white",
+      // color: "white",
       height: "50px",
       margin: "10px 0px"
     },
+
     arrow: {
       textAlign: "right",
       marginRight: "10px",
@@ -56,7 +52,7 @@ const SideList = ({ props }) => {
       display: "flex",
       flexDirection: "column",
       paddingRight: "15%",
-      paddingTop: "10%"
+      paddingTop: "25%"
     },
 
     iconImageProfile: {
@@ -68,7 +64,8 @@ const SideList = ({ props }) => {
     },
     collapseNav: {
       textDecoration: "none",
-      textAlign: "center"
+      textAlign: "left",
+      marginRight: "20%"
     },
 
     root: {
@@ -91,24 +88,6 @@ const SideList = ({ props }) => {
   }));
 
   const classes = drawerStyles();
-
-  const userName = useSelector(state => state.onboardingReducer.user);
-
-  const handleLogOut = () => {
-    localStorage.clear("token");
-    props.props.history.push("/login");
-  };
-
-  const firstName = userName.first_name
-    ? userName.first_name.substring(0, 1).toUpperCase() +
-      userName.first_name.substring(1)
-    : null;
-  const lastName = userName.last_name
-    ? userName.last_name.substring(0, 1).toUpperCase() +
-      userName.last_name.substring(1)
-    : null;
-
-  // state for dropdown links
 
   const [open, setOpen] = React.useState(false);
 
@@ -305,7 +284,7 @@ const SideList = ({ props }) => {
         <div className={classes.resourcesDiv}>
           <nav onClick={resourcesHandleClick}>
             <NavLink
-              to="/about"
+              to={window}
               style={{
                 textDecoration: "none",
                 color: "#5b5b5b",
@@ -418,22 +397,6 @@ const SideList = ({ props }) => {
           </Link>
         </div>
       </ul>
-
-      {/* <div className="profileSection">
-        {userName.photo ? (
-          <img
-            src={userName.photo}
-            alt="Profile"
-            className={classes.iconImageProfile}
-          />
-        ) : (
-          <PermIdentityIcon className={classes.iconImageProfile} />
-        )}
-        <p>{firstName + " " + lastName}</p>
-        <p onClick={handleLogOut} className="logout">
-          Log Out
-        </p>
-      </div> */}
     </SideListWrapper>
   );
 };

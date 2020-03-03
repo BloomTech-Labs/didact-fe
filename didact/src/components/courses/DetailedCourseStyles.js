@@ -1,164 +1,159 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
 export const DetailedCourseWrapper = styled.div`
-    width:100%;
-    box-shadow: 'none';
+  width: 100%;
+  box-shadow: "none";
 
-    .courseWrapper {
-        width: 100%; 
-        background-color: #386581;
-        color: white;
-       
+  .courseWrapper {
+    width: 100%;
+    background-color: #ffffff;
+    color: black;
 
-        .courseFooter {
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-flow:row wrap;
-            justify-content: space-between;
-            color: white;
-            background-color: #386581;
+    .courseFooter {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-between;
+      color: black;
+      background-color: #ffffff;
 
-            .buttons {
-                margin: 0;
-                padding: 0;
-            }
-
-            .tags {
-                display: flex;
-                justify-content: flex-start;
-                padding-left: 0;
-                flex-flow:row wrap;
-                width: 100%;
-                color: white;
-                background-color: #386581;
-             
-            }
-        }
-    }
-
-    .notCompleteButton {
-        font-size: 2.2rem;
-        color: white;
-        opacity: .6;
-        cursor: pointer;
-
-        &:hover {
-            opacity: 1;
-        }
-    }
-
-    .completeButton {
-        font-size: 2.2rem;
-        color: black;
-        cursor: pointer;
-    }
-
-    .expansionPanel {
-
-        margin: 20px 0px;
-        padding: 15px 30px;
-        box-shadow: 'none';
-        color: white;
-        background-color: #386581;
-        max-width: 540px;
-        width: 100%;
-
-        .expansionPanelSummary {
+      .buttons {
         margin: 0;
         padding: 0;
-        color: white;
-        background-color: #386581;
-        
-        }
+      }
 
-        div{
-            padding: 0;
-            margin: 0;
-            border-radius: 19px;
-            color: white;
-            background-color: #386581;
-        }
-
-        &:before {
-            height: 0px;
-        }
-
-        &:last-child {
-            border-radius: 19px;
-        }
-
-        .expandIcon {
-            :hover {
-                background: lightgray;
-                border-radius: 50%;
-            }
-        }
+      .tags {
+        display: flex;
+        justify-content: flex-start;
+        padding-left: 0;
+        flex-flow: row wrap;
+        width: 100%;
+        color: black;
+        background-color: #ffffff;
+      }
     }
+  }
 
-    .lessonExpansionPanel {
-        margin: 20px 0px;
-        padding: 15px 30px;
-        box-shadow: none;
-        font-size: 1.2rem;
-        max-width: 540px;
-        width: 100%; 
+  .notCompleteButton {
+    font-size: 2.2rem;
+    color: black;
+    opacity: 0.6;
+    cursor: pointer;
 
-        .lessonExpansionSummary {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
+    &:hover {
+      opacity: 1;
+    }
+  }
 
-            h4 {
-                font-size: 14px;
-            }
-        }
+  .completeButton {
+    font-size: 2.2rem;
+    color: black;
+    cursor: pointer;
+  }
 
-        .lessonTitle {
-            display: flex;
-            flex-direction: column;
+  .expansionPanel {
+    margin: 20px 0px;
+    padding: 15px 30px;
+    box-shadow: "none";
+    color: black;
+    background-color: #ffffff;
+    max-width: 540px;
+    width: 100%;
 
-            .lessonTitleName {
-                font-weight: bold;
-                margin-bottom: 0px;
-                margin-top: 8px;
-                text-decoration: none;
-                color: white;
-
-                &:hover {
-                    text-decoration: underline;
-                }
-            }
-
-            .lessonTitleType {
-                color: lightgray;
-                font-size: 12px;
-                margin-top: 0;
-                text-transform: uppercase;
-            }
-        }
-
-        &:before {
-            height: 0px;
-        }
+    .expansionPanelSummary {
+      margin: 0;
+      padding: 0;
+      color: black;
+      background-color: #ffffff;
     }
 
     div {
-        background: white;
-        border-radius: 19px;
-        margin: 20px 0px;
-        padding: 25px 30px;
-        text-align: left;
+      padding: 0;
+      margin: 0;
+      border-radius: 19px;
+      color: black;
+      background-color: #ffffff;
+    }
 
-        .expansionWrapper {
-            margin: 0;
-            padding: 0;
+    &:before {
+      height: 0px;
+    }
+
+    &:last-child {
+      border-radius: 19px;
+    }
+
+    .expandIcon {
+      :hover {
+        background: lightgray;
+        border-radius: 50%;
+      }
+    }
+  }
+
+  .lessonExpansionPanel {
+    margin: 20px 0px;
+    padding: 15px 30px;
+    box-shadow: none;
+    font-size: 1.2rem;
+    max-width: 540px;
+    width: 100%;
+
+    .lessonExpansionSummary {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+
+      h4 {
+        font-size: 14px;
+      }
+    }
+
+    .lessonTitle {
+      display: flex;
+      flex-direction: column;
+
+      .lessonTitleName {
+        font-weight: bold;
+        margin-bottom: 0px;
+        margin-top: 8px;
+        text-decoration: none;
+        color: black;
+
+        &:hover {
+          text-decoration: underline;
         }
-    }
+      }
 
-    span.tag{
+      .lessonTitleType {
+        color: lightgray;
+        font-size: 12px;
+        margin-top: 0;
         text-transform: uppercase;
-        margin: 5px 10px 5px 0px;
+      }
     }
-`
 
+    &:before {
+      height: 0px;
+    }
+  }
+
+  div {
+    background: white;
+    border-radius: 19px;
+    margin: 20px 0px;
+    padding: 25px 30px;
+    text-align: left;
+
+    .expansionWrapper {
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  span.tag {
+    text-transform: uppercase;
+    margin: 5px 10px 5px 0px;
+  }
+`;

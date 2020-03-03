@@ -3,7 +3,7 @@ import { verifyToken } from "../../store/actions/index.js";
 import { useDispatch, useSelector } from "react-redux";
 import { PageFlex } from "./PageStyles";
 import { makeStyles } from "@material-ui/core/styles";
-import { Mixpanel } from 'mixpanel-browser'
+import { Mixpanel } from "mixpanel-browser";
 // import { Link } from "react-router-dom";
 // import styled from "styled-components";
 
@@ -239,146 +239,156 @@ function MainPage(props) {
 
   return (
     // MOBILE CODE ****************************************************************************
-    <ProfileWrapper>
-      <>
-        {phoneSize || tabletSize ? (
-          <div className={classes.root} onClick={() => closeHandleClick()}>
-            <CssBaseline />
-            <>
-              <div>
-                <MobileDrawerComponent
-                  handleDrawerOpenMobile={handleDrawerOpenMobile()}
-                  openMobile={openMobile}
-                  props={props}
-                />
-              </div>
-              <div>
-                <MobileHeaderComponent
-                  handleSubmit={handleSubmit}
-                  handleChange={handleChange}
-                  values={values}
-                  props={props}
-                  tabletSize={tabletSize}
-                  userName={userName}
-                />
-                <main
-                  className={
-                    openMobile ? classes.contentShadow : classes.contentMobile
-                  }
-                >
-                  <div className={classes.toolbar} />
-                  <Content
-                    phoneSize={phoneSize}
-                    open={open}
-                    {...props}
-                    results={results}
-                    values={values}
-                    setValues={setValues}
+    <div className={classes.mainPageDiv}>
+      <ProfileWrapper>
+        <>
+          {phoneSize || tabletSize ? (
+            <div className={classes.root} onClick={() => closeHandleClick()}>
+              <CssBaseline />
+              <>
+                <div>
+                  <MobileDrawerComponent
+                    handleDrawerOpenMobile={handleDrawerOpenMobile()}
+                    openMobile={openMobile}
+                    props={props}
                   />
-                  {/*************************ADD COMPONENTS HERE *********************** */}
-                </main>
-              </div>
-            </>
-            {/* {openMobile ?
+                </div>
+                <div>
+                  <MobileHeaderComponent
+                    handleSubmit={handleSubmit}
+                    handleChange={handleChange}
+                    values={values}
+                    props={props}
+                    tabletSize={tabletSize}
+                    userName={userName}
+                  />
+                  <main
+                    className={
+                      openMobile ? classes.contentShadow : classes.contentMobile
+                    }
+                  >
+                    <div className={classes.toolbar} />
+                    <Content
+                      phoneSize={phoneSize}
+                      open={open}
+                      {...props}
+                      results={results}
+                      values={values}
+                      setValues={setValues}
+                    />
+                    {/*************************ADD COMPONENTS HERE *********************** */}
+                  </main>
+                </div>
+              </>
+              {/* {openMobile ?
                         (
                         <div className = {classes.scrollBarMobileFix}>
                         </div>
                         ) : ( 
                         null )
                          } */}
-          </div>
-        ) : (
-          // END OF MOBILE CODE *******************************************************************
-          // BEGINNING OF DESKTOP CODE ************************************************************
-          <div className={classes.root}>
-            <CssBaseline />
-            <PageFlex>
-              <div className="drawer">
-                <DrawerComponent
-                  handleDrawerOpen={handleDrawerOpen}
-                  open={open}
-                  props={props}
-                />
-              </div>
-              <div className="headerMain">
-                {/* <HeaderComponent props = {props} open={open} /> */}
-                {/* <HeaderComponent open={open} /> */}
-                <div className="header">
-                  {/* Search Functionality Below */}
-                  <div className={classes.searchDiv}>
-                    <form className={classes.formPart} onSubmit={handleSubmit}>
-                      <div className={classes.filterDiv}>
-                        <select
-                          className={classes.dropFilter}
-                          value={values.filter}
-                          onChange={handleChange("filter")}
-                        >
-                          <option value="title">Title</option>
-                          <option value="topic">Topic</option>
-                          <option value="creator">Creator</option>
-                          <option value="description">Description</option>
-                          <option value="tag">Tag</option>
-                        </select>
-                      </div>
-                      <input
-                        className={classes.searchInput}
-                        type="text"
-                        value={values.search}
-                        onChange={handleChange("search")}
-                      />
-                      <button
-                        className={classes.searchButton}
-                        type="submit"
+            </div>
+          ) : (
+            // END OF MOBILE CODE *******************************************************************
+            // BEGINNING OF DESKTOP CODE ************************************************************
+            <div className={classes.root}>
+              <CssBaseline />
+              <PageFlex>
+                <div
+                  className="drawer"
+                  // style={{ border: "3px solid black", marginTop: "10%" }}
+                >
+                  <DrawerComponent
+                    handleDrawerOpen={handleDrawerOpen}
+                    open={open}
+                    props={props}
+                  />
+                </div>
+                <div className="headerMain">
+                  {/* <HeaderComponent props = {props} open={open} /> */}
+                  {/* <HeaderComponent open={open} /> */}
+                  <div className="header">
+                    {/* Search Functionality Below */}
+                    <div className={classes.searchDiv}>
+                      <form
+                        className={classes.formPart}
                         onSubmit={handleSubmit}
                       >
-                        <SearchIcon
-                          className={classes.searchIcon}
-                          style={{
-                            fontSize: "1.8rem",
-                            marginRight: "5px",
-                            color: "black"
-                          }}
+                        <div className={classes.filterDiv}>
+                          <select
+                            className={classes.dropFilter}
+                            value={values.filter}
+                            onChange={handleChange("filter")}
+                          >
+                            <option value="title">Title</option>
+                            <option value="topic">Topic</option>
+                            <option value="creator">Creator</option>
+                            <option value="description">Description</option>
+                            <option value="tag">Tag</option>
+                          </select>
+                        </div>
+                        <input
+                          className={classes.searchInput}
+                          type="text"
+                          value={values.search}
+                          onChange={handleChange("search")}
                         />
-                        <p className={classes.searcher}>Search</p>
-                      </button>
-                    </form>
+                        <button
+                          className={classes.searchButton}
+                          type="submit"
+                          onSubmit={handleSubmit}
+                        >
+                          <SearchIcon
+                            className={classes.searchIcon}
+                            style={{
+                              fontSize: "1.8rem",
+                              marginRight: "5px",
+                              color: "black"
+                            }}
+                          />
+                          <p className={classes.searcher}>Search</p>
+                        </button>
+                      </form>
+                    </div>
+                    <div className="profileSection">
+                      {userName.photo ? (
+                        <img
+                          src={userName.photo}
+                          alt="Profile"
+                          className={classes.iconImageProfile}
+                        />
+                      ) : (
+                        <PermIdentityIcon
+                          className={classes.iconImageProfile}
+                        />
+                      )}
+                      <p>{firstName + " " + lastName}</p>
+                      <p onClick={handleLogOut} className="logout">
+                        Log Out
+                      </p>
+                    </div>
                   </div>
-                  <div className="profileSection">
-                    {userName.photo ? (
-                      <img
-                        src={userName.photo}
-                        alt="Profile"
-                        className={classes.iconImageProfile}
-                      />
-                    ) : (
-                      <PermIdentityIcon className={classes.iconImageProfile} />
-                    )}
-                    <p>{firstName + " " + lastName}</p>
-                    <p onClick={handleLogOut} className="logout">
-                      Log Out
-                    </p>
-                  </div>
+                  <main className={classes.content}>
+                    {/* <div className={classes.toolbar} /> */}
+                    <Content
+                      mediumScreenSize={mediumScreenSize}
+                      phoneSize={phoneSize}
+                      open={open}
+                      setValues={setValues}
+                      values={values}
+                      tabletSize={tabletSize}
+                      {...props}
+                      results={results}
+                    />
+                    {/*************************ADD COMPONENTS HERE *********************** */}
+                  </main>
                 </div>
-                <main className={classes.content}>
-                  {/* <div className={classes.toolbar} /> */}
-                  <Content
-                    mediumScreenSize={mediumScreenSize}
-                    phoneSize={phoneSize}
-                    open={open}
-                    setValues={setValues}
-                    values={values}
-                    tabletSize={tabletSize}
-                    {...props}
-                    results={results}
-                  />
-                  {/*************************ADD COMPONENTS HERE *********************** */}
-                </main>
-              </div>
-            </PageFlex>
-          </div>
-        )}
-      </>
-    </ProfileWrapper>
+              </PageFlex>
+            </div>
+          )}
+        </>
+      </ProfileWrapper>
+    </div>
   );
 }
 
