@@ -8,6 +8,7 @@ import {
   postCourseToPath
 } from "../../store/actions/index";
 
+import { Mixpanel } from '../../utils/mixpanel'
 import { AddCourseToPath, PopoverWrapper } from "./CourseStyles";
 import { DidactButton } from "../dashboard/ButtonStyles";
 
@@ -143,6 +144,14 @@ const Course = ({ course, addingCourses, props }) => {
   useEffect(() => {
     dispatch(getYourLearningPathsOwned());
   }, [dispatch, state.learningPathReducer.learningPath]);
+
+  const panelTracker = e => {
+    if(props.track === true){
+      Mixpanel.track("Course Result Clicked")
+    } else {
+      return
+    }
+  }
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -366,7 +375,7 @@ const Course = ({ course, addingCourses, props }) => {
           className={ classes.buttonDiv }
           style={ { margin: "0 30px 20px 0" } }
         >
-          <Link to={ `/courses/all/${course.id}` }>
+          <Link onClick={panelTracker} to={ `/courses/all/${course.id}` }>
             <DidactButton size="small">Go To Course</DidactButton>
           </Link>
         </CardActions>

@@ -73,7 +73,7 @@ const SearchResults = ({ props, results, setValues, values }) => {
           <div>
             {courses.length === 0 ? <TitleH2 style={{ marginBottom: "-30px" }}>No Results In Courses</TitleH2> : <TitleH2 style={{ marginBottom: "-30px" }}>Courses</TitleH2>}
             {courses.length > 0 ? courses.map(course => (
-                <Course props={props} course={course} results={results} key={course.id}/>
+                <Course props={props} tracked={true} course={course} results={results} key={course.id}/>
               )) : null}
           </div>
         </>

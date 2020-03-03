@@ -450,7 +450,7 @@ const EditLearningPaths = ({ id, props }) => {
                             course={ order }
                             index={ index }
                           />
-                        )) }
+                        ))}
                       { provided.placeholder }
                     </DroppableDiv>
                   ) }
