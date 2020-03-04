@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
 
-const promoteUser = () => {
-    const state = userSelector(state => state);
+const PromoteUser = () => {
+    const state = useSelector(state => state);
     const user = state.onboardingReducer.user;
     const [inputValues, setInputValues] = useState({
         email: '',
@@ -25,3 +26,5 @@ const promoteUser = () => {
         </form>
     )
 }
+
+export default PromoteUser;

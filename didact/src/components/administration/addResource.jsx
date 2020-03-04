@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Mixpanel } from '../../utils/mixpanel' 
 
-const addResource = () => {
+const AddResource = () => {
     const freshDate = new Date()
     const [contentType, setContentType] = useState('')
     const [articleValues, setArticleValues] = useState({
@@ -22,6 +22,10 @@ const addResource = () => {
         : setNonArticleValues({...nonArticleValues, [e.target.name]: e.target.value})
     }
 
+    const handleType = e => {
+        setContentType(e.target.value)
+    }
+
     const handleSubmit = e => {
         e.preventDefault();
         contentType === 'article' ? Mixpanel.track("Article Created")
@@ -31,25 +35,23 @@ const addResource = () => {
 
     return (
         <div>
-            <select value={contentType} onChange={handleChange}>
-                <option value="article">Article</option>
+            <select value={contentType} onChange={handleType}>
                 <option value="tool">Tool</option>
+                <option value="article">Article</option>
                 <option value="source">Source</option>
             </select>
             {contentType === 'article' ? (
-                <form onSubmit={handleArticleSubmit}>
+                <form onSubmit={handleSubmit}>
                    <label>Title</label>
                    <input value={articleValues.title} onChange={handleChange} />
-                   <label>Brief</label>
-                   <input value={articleValues.brief} onChange={handleChange}/>
                    <label>Body</label>
-                   <input value={articleValues.body} onChange={handleChange}/>
+                   <textarea value={articleValues.body} onChange={handleChange}/>
                    <label>Topic</label>
                    <input value={articleValues.topic} onChange={handleChange}/>
                    <button type="submit">Submit</button>
                 </form>
             ) : (
-                <form onSubmit={handleAltSubmit}>
+                <form onSubmit={handleSubmit}>
                    <label>Name</label>
                    <input value={nonArticleValues.name} onChange={handleChange} />
                    <label>Link</label>
@@ -64,3 +66,5 @@ const addResource = () => {
         </div>
     )
 }
+
+export default AddResource;

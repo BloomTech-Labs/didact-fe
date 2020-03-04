@@ -113,6 +113,14 @@ const Routes = (props) => {
             (
                 <MainPage {...routeProps} page={'source'} />
             )} />
+            <Route exact path='/resource-form' render={routeProps =>
+            (
+                <MainPage {...routeProps} page={'resource-form'} />
+            )} />
+            <Route exact path='/promote-user' render={routeProps =>
+            (
+                <MainPage {...routeProps} page={'promote-user'} />
+            )} />
             <Route exact path='/results' render={routeProps =>
             (
                 <MainPage {...routeProps} page={'searchresults'} />

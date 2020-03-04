@@ -22,6 +22,8 @@ import SearchResults from '../searchResults/SearchResults'
 import About from '../about/About'
 import AllYourCourses from '../courses/AllYourCourses'
 import Contact from '../contact/Contact'
+import AddResource from '../administration/AddResource'
+import PromoteUser from '../administration/PromoteUser'
 
 const Content = (props) => {
 
@@ -32,6 +34,10 @@ const Content = (props) => {
                 switch (props.page) {
                     case ('dashboard'):
                         return <Dashboard props={ props } />
+                    case('resource-form'):
+                        return <AddResource props={props} />
+                    case('promote-user'):
+                        return <PromoteUser props={props} />
                     case ('addcourse'):
                         return <AddCourse props={ props } />
                     case ('courses'):
