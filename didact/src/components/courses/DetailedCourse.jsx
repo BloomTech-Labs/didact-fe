@@ -6,7 +6,7 @@ import { DetailedCourseWrapper } from "./DetailedCourseStyles";
 import { DidactButton, TagStyles } from "../dashboard/ButtonStyles";
 
 import { getDetailedCourse } from "../../store/actions/index.js";
-
+import {Mixpanel} from '../../utils/mixpanel'
 //Material UI Imports
 import { makeStyles } from "@material-ui/core/styles";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
@@ -40,9 +40,15 @@ const DetailedCourse = props => {
   const [expanded, setExpanded] = useState(false);
   const [lessonExpanded, setLessonExpanded] = useState(false);
 
-  useEffect(
-    _ => {
+  useEffect(() => {
       dispatch(getDetailedCourse(props.id));
+      if(props.location.state.tracked){
+        console.log("yarg")
+        Mixpanel.track("Course Result Clicked")
+      } else {
+        console.log("arg")
+        return
+      }
     },
     [dispatch, props.id]
   );

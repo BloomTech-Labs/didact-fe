@@ -42,7 +42,6 @@ const YourDetailedCourse = props => {
   const owner = state.onboardingReducer.user.owner;
   const moderator = state.onboardingReducer.user.moderator;
   const user = state.onboardingReducer.user;
-  console.log("XXXXXXXXXXXXXXXXXXXX", state.onboardingReducer);
   const detailedCourse = state.coursesReducer.detailedCourse;
   const course = detailedCourse.course;
   const sections = detailedCourse.sections;
@@ -80,8 +79,6 @@ const YourDetailedCourse = props => {
   const handleBack = () => {
     props.props.history.push("/courses/yours");
   };
-  console.log("ZZZZZZZZZZZZZZZZZZZZZ", admin);
-  console.log("BBBBBBBBBBBBBBBBB", user);
   if (!state.coursesReducer.isLoading && course && sections) {
     return (
       <>

@@ -46,7 +46,6 @@ export const CHECK_DATABASE_FAIL = "CHECK_DATABASE_FAIL";
 const baseURL = `${beURL}courses/`;
 
 export const courseEndPoint = results => dispatch => {
-  console.log(results)
   dispatch({ type: COURSE_DATA_START });
 
   axiosWithAuth()
@@ -59,7 +58,6 @@ export const courseEndPoint = results => dispatch => {
         : null
     )
     .then(res => {
-      console.log(res.data)
       dispatch({ type: COURSE_DATA_SUCCESS, payload: res.data });
     })
     .catch(err => {

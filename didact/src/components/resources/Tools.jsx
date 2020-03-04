@@ -12,7 +12,7 @@ const Tools = props => {
 
   useEffect(() => {
     dispatch(getTools());
-  }, [tools]);
+  }, [dispatch]);
 
   return (
     <div className="tools-list">

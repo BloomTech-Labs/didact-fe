@@ -12,7 +12,7 @@ const Articles = props => {
 
   useEffect(() => {
     dispatch(getArticles());
-  }, [articles]);
+  }, [dispatch]);
 
   return (
     <div className="articles-list">

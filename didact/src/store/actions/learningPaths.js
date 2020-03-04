@@ -313,7 +313,6 @@ export const getYourLearningPaths = (getYours, results) => dispatch => {
         : null
     )
     .then(res => {
-      console.log("Your paths data", res.data)
       dispatch({ type: GET_YOUR_LEARNING_PATHS_SUCCESS, payload: res.data });
     })
     .catch(err => {

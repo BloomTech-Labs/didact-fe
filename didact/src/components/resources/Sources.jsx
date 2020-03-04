@@ -12,7 +12,7 @@ const Sources = props => {
 
   useEffect(() => {
     dispatch(getSources());
-  }, [sources]);
+  }, [dispatch]);
 
   return (
     <div className="sources-list">

@@ -45,7 +45,7 @@ const Content = (props) => {
                     case ('yourcourses'):
                         return <AllYourCourses props={ props } />
                     case ('detailedcourse'):
-                        return <DetailedCourse id={ props.match.params.id } props={ props } />
+                        return <DetailedCourse id={ props.match.params.id } props={ props } location={props.location} />
                     case ('yourdetailedcourse'):
                         return <YourDetailedCourse id={ props.match.params.id } props={ props } />
                     case ('editcourse'):
