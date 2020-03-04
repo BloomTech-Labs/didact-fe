@@ -66,12 +66,12 @@ const useStyles = makeStyles(theme => ({
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: "#eeeeee",
-    width: "445px",
-    borderRadius: "10px",
-    border: "2px solid black",
+    width: "345px",
+    borderRadius: "7px",
+    border: "1px solid black",
     padding: "0 6px",
     paddingLeft: "0%",
-    height: "57px"
+    height: "37px"
   },
 
   formPart: {
@@ -93,12 +93,12 @@ const useStyles = makeStyles(theme => ({
   },
 
   filterDiv: {
-    backgroundColor: "#ffffff",
+    backgroundColor: "#eeeeee",
     marginRight: "8%",
-    marginTop: "0.6%",
-    borderRadius: "10px 0 0 10px",
-    height: "52px",
-    width: "107px",
+    marginTop: "3%",
+    borderRadius: "7px 0 0 7px",
+    height: "35px",
+    // width: "107px",
     outline: "none",
     border: "none",
     display: "flex",
@@ -110,54 +110,56 @@ const useStyles = makeStyles(theme => ({
     border: "none",
     outline: "none",
     borderRight: "1px solid black",
-    height: "40px",
+    height: "20px",
     display: "flex",
     justifyContent: "center",
     fontFamily: "open-sans",
     fontWeight: "bold",
     fontSize: "1.5rem",
-    textAlign: "center"
+    textAlign: "center",
+    backgroundColor: "#eeeeee"
   },
   searchButton: {
     display: "flex",
     alignItems: "center",
     border: "none",
     outline: "none",
-    height: "50px",
-    marginTop: "0.8%",
-    marginLeft: "9%",
-    borderRadius: "10px",
+    height: "30px",
+    marginTop: "3.4%",
+    marginLeft: "-54%",
+    borderRadius: "7px",
     background: "transparent",
+    fontFamily: "open-sans",
 
     "&:hover": {
       background: "#ffffff"
+      // border: "1px solid black"
     },
     "&:active": {
       boxShadow: "0 5px #666",
       transform: "translateY(4px)"
     },
     iconImageProfile: {
-      width: "30px",
-      height: "30px",
+      width: "20px",
+      height: "20px",
       borderRadius: "50%",
       // marginTop: '20px',
       objectFit: "cover"
     }
+  },
+
+  searchIcon: {
+    marginTop: "-1%"
+  },
+
+  searcher: {
+    marginTop: "13%",
+    marginLeft: "-4%",
+    fontFamily: "open-sans"
+
+    // fontSize: "1.5rem",
+    // fontWeight: "bold"
   }
-
-  // searchIcon: {
-  //   marginTop: "5%",
-  //   marginLeft: "8%",
-  //   color: "black"
-  // },
-
-  // searcher: {
-  //   marginTop: "5%",
-  //   marginLeft: "1%",
-  //   fontFamily: "open-sans",
-  //   fontSize: "1.5rem",
-  //   fontWeight: "bold"
-  // }
 }));
 
 function MainPage(props) {
