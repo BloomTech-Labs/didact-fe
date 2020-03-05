@@ -96,38 +96,38 @@ const useStyles = makeStyles(theme => ({
     marginLeft: "5%"
   },
 
-  // filterDiv: {
-  //   backgroundColor: "#eeeeee",
-  //   marginRight: "8%",
-  //   marginTop: "3%",
-  //   borderRadius: "7px 0 0 7px",
-  //   height: "35px",
-  //   // width: "107px",
-  //   outline: "none",
-  //   border: "none",
-  //   display: "flex",
-  //   justifyContent: "center",
-  //   borderColor: "green",
-  //   outline: "none !important"
+  filterDiv: {
+    backgroundColor: "#eeeeee",
+    marginRight: "8%",
+    marginTop: "3%",
+    borderRadius: "7px 0 0 7px",
+    height: "35px",
+    // width: "107px",
+    outline: "none",
+    border: "none",
+    display: "flex",
+    justifyContent: "center",
+    borderColor: "green",
+    outline: "none !important"
 
-  //   // boxShadow: "1px 1px 1px 1px rgba(0,0,0,.5)"
-  // },
+    // boxShadow: "1px 1px 1px 1px rgba(0,0,0,.5)"
+  },
 
-  // dropFilter: {
-  //   marginTop: "8%",
-  //   border: "none",
-  //   outline: "none",
-  //   borderRight: "1px solid black",
-  //   height: "20px",
-  //   display: "flex",
-  //   justifyContent: "center",
-  //   fontFamily: "open-sans",
-  //   fontWeight: "bold",
-  //   fontSize: "1.5rem",
-  //   textAlign: "center",
-  //   backgroundColor: "#eeeeee"
-  //   // display: "none"
-  // },
+  dropFilter: {
+    marginTop: "8%",
+    border: "none",
+    outline: "none",
+    borderRight: "1px solid black",
+    height: "20px",
+    display: "flex",
+    justifyContent: "center",
+    fontFamily: "open-sans",
+    fontWeight: "bold",
+    fontSize: "1.5rem",
+    textAlign: "center",
+    backgroundColor: "#eeeeee"
+    // display: "none"
+  },
 
   searchButton: {
     display: "flex",
