@@ -3,7 +3,9 @@ import { verifyToken } from "../../store/actions/index.js";
 import { useDispatch, useSelector } from "react-redux";
 import { PageFlex } from "./PageStyles";
 import { makeStyles } from "@material-ui/core/styles";
-import { Mixpanel } from "mixpanel-browser";
+
+import { Mixpanel } from '../../utils/mixpanel'
+
 import SearchFiltered from "../searchComponents/searchFiltered";
 
 // import { Link } from "react-router-dom";
@@ -227,8 +229,8 @@ function MainPage(props) {
   };
 
   const handleSubmit = event => {
-    //Mixpanel.track("Search Query")
     event.preventDefault();
+    Mixpanel.track("Search Query")
     setResults(values);
     props.history.push("/results");
     // dropHide.style.display = "block";

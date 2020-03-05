@@ -93,7 +93,7 @@ const Routes = (props) => {
             (
                 <MainPage {...routeProps} page={'tools'} />
             )} />
-            <Route exact path='/tools/:toolId' render={routeProps =>
+            <Route exact path='/tools/:id' render={routeProps =>
             (
                 <MainPage {...routeProps} page={'tool'} />
             )} />
@@ -101,7 +101,7 @@ const Routes = (props) => {
             (
                 <MainPage {...routeProps} page={'articles'} />
             )} />
-            <Route exact path='/articles/:articleId' render={routeProps =>
+            <Route exact path='/articles/:id' render={routeProps =>
             (
                 <MainPage {...routeProps} page={'article'} />
             )} />
@@ -109,9 +109,17 @@ const Routes = (props) => {
             (
                 <MainPage {...routeProps} page={'sources'} />
             )} />
-            <Route exact path='/sources/:sourceId' render={routeProps =>
+            <Route exact path='/sources/:id' render={routeProps =>
             (
                 <MainPage {...routeProps} page={'source'} />
+            )} />
+            <Route exact path='/resource-form' render={routeProps =>
+            (
+                <MainPage {...routeProps} page={'resource-form'} />
+            )} />
+            <Route exact path='/promote-user' render={routeProps =>
+            (
+                <MainPage {...routeProps} page={'promote-user'} />
             )} />
             <Route exact path='/results' render={routeProps =>
             (

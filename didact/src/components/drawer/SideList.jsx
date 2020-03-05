@@ -333,7 +333,7 @@ const SideList = ({ props }) => {
               {/* </List> */}
               <ListItem className={classes.nested}>
                 <Link
-                  to="/"
+                  to="/tools"
                   style={{
                     fontSize: "1.3rem",
                     marginTop: "6px",
@@ -345,7 +345,7 @@ const SideList = ({ props }) => {
               </ListItem>
               <ListItem className={classes.nested}>
                 <Link
-                  to="/"
+                  to="/sources"
                   style={{
                     fontSize: "1.3rem",
                     marginTop: "6px",
@@ -357,7 +357,7 @@ const SideList = ({ props }) => {
               </ListItem>
               <ListItem className={classes.nested}>
                 <Link
-                  to="/"
+                  to="/articles"
                   style={{
                     fontSize: "1.3rem",
                     marginTop: "6px",

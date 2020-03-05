@@ -1,18 +1,37 @@
-import React from 'react';
-import ArticleBrief from './ArticleBrief.jsx'
-import { useSelector } from 'react-redux'
+import React, { useEffect } from "react";
+import ArticleBrief from "./ArticleBrief.jsx";
+import ExternalArticleBrief from "./ExternalArticleBrief";
+import { useSelector, useDispatch } from "react-redux";
+import { getArticles } from "../../store/actions";
+import { Link } from "react-router-dom";
+import { DidactButton } from "../dashboard/ButtonStyles";
 
 const Articles = props => {
-    const state = useSelector(state => state);
-    const articles = state.resourcesReducer.articles;
+  const dispatch = useDispatch();
+  const state = useSelector(state => state);
+  const user = state.onboardingReducer.user;
+  const articles = state.articlesReducer.articles;
 
-    return (
-        <div className="articles-list">
-        {articles.map(article => (
-            <ArticleBrief article={article} key={article.id}/>
-        ))}
-        </div>
-    )
-}
+  useEffect(() => {
+    dispatch(getArticles());
+  }, [dispatch]);
+
+  return (
+    <div className="articles-list">
+      {user.owner || user.admin ? (
+        <DidactButton>
+          <Link to="/resource-form">Add</Link>
+        </DidactButton>
+      ) : null}
+      {articles.map(article =>
+        article.body ? (
+          <ArticleBrief article={article} key={article.date} />
+        ) : (
+          <ExternalArticleBrief article={article} key={article.id} />
+        )
+      )}
+    </div>
+  );
+};
 
 export default Articles;
