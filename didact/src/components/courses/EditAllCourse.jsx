@@ -143,11 +143,12 @@ const EditAllCourse = ({ props, id }) => {
     setCourseEdit(!courseEdit);
   };
 
-  const handleCourseSubmit = event => {
-    event.preventDefault();
-    dispatch(editCourseRevised(course.id, changes));
-    toggleEdit();
-  };
+    const handleCourseSubmit = event => {
+        event.preventDefault();
+        dispatch(editCourseRevised(course.id, changes));
+        toggleEdit();
+        props.history.push("/courses/all")
+    };
 
   const handleChange = name => event => {
     setChanges({ ...changes, [name]: event.target.value });

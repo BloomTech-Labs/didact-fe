@@ -36,11 +36,11 @@ const useStyles = makeStyles(theme => ({
   },
   span: {
     cursor: 'pointer',
-    "&:hover":{
+    "&:hover": {
       color: 'white'
     }
   }
-  
+
 }));
 
 
@@ -63,10 +63,10 @@ const AddPathItems = ({ props }) => {
     event.preventDefault();
     dispatch(postPathItem(props.match.params.id, values, props.history));
   }
-  
+
   const handleBack = () => {
-       props.history.push('/learning-paths') 
-  } 
+    props.history.push('/learning-paths')
+  }
 
   const backToLearningPath = () => {
     props.history.push(`/learning-paths/${props.match.params.id}/edit`);
@@ -75,35 +75,35 @@ const AddPathItems = ({ props }) => {
 
   return (
     <>
-    <div style={{display: 'flex', justifyContent: 'space-between', margin: '-10px 10px 10px 10px', borderBottom: '1px solid black'}}>
-          <p style={{fontWeight: 'bold', marginLeft: '10px', display: 'flex', flexDirection:'row', alignItems: 'center'}}><span className={classes.span}  onClick={handleBack}>Learning Paths</span><ChevronRightIcon style={{fontSize: '1.6rem'}}/><span className={classes.span}  onClick={backToLearningPath}>Edit</span><ChevronRightIcon style={{fontSize: '1.6rem'}}/><span>Add Path Item</span></p>
-    </div>
-    <Card className={classes.card}>
-      <CardContent>
-        <p className={classes.title}>
-          Learning Path Item Overview
+      <div style={ { display: 'flex', justifyContent: 'space-between', margin: '-10px 10px 10px 10px', borderBottom: '1px solid black' } }>
+        <p style={ { fontWeight: 'bold', marginLeft: '10px', display: 'flex', flexDirection: 'row', alignItems: 'center' } }><span className={ classes.span } onClick={ handleBack }>Learning Paths</span><ChevronRightIcon style={ { fontSize: '1.6rem' } } /><span className={ classes.span } onClick={ backToLearningPath }>Edit</span><ChevronRightIcon style={ { fontSize: '1.6rem' } } /><span>Add Path Item</span></p>
+      </div>
+      <Card className={ classes.card }>
+        <CardContent>
+          <p className={ classes.title }>
+            Learning Path Item Overview
           </p>
-        <form onSubmit={handleSubmit} className={classes.container} noValidate autoComplete="off">
-          <DidactField>
-            <DidactLabel htmlFor='title'>Item Name</DidactLabel>
-            <DidactInput id='title' type='text' value={values.name || ""} onChange={handleChange('name')} placeholder='Item Name' />
-          </DidactField>
-          <DidactField>
-            <DidactLabel htmlFor='description'>Description</DidactLabel>
-            <DidactTextArea rows="8" id='description' value={values.description || ""} onChange={handleChange('description')} placeholder='Description' />
-          </DidactField>
-          <DidactField>
-            <DidactLabel htmlFor='link'>Url Link</DidactLabel>
-            <DidactInput id='link' type='text' value={values.link || ""} onChange={handleChange('link')} placeholder='Url Link' />
-          </DidactField>
-          <DidactField>
-            <DidactLabel htmlFor='type'>Type</DidactLabel>
-            <DidactInput id='type' type='text' value={values.type || ""} onChange={handleChange('type')} placeholder='Type' />
-          </DidactField>
-          <DidactButton type='submit' size="small" variant="contained">Create Item</DidactButton>
-        </form>
-      </CardContent>
-    </Card>
+          <form onSubmit={ handleSubmit } className={ classes.container } noValidate autoComplete="off">
+            <DidactField>
+              <DidactLabel htmlFor='name'>Item Name</DidactLabel>
+              <DidactInput id='name' type='text' value={ values.name || "" } onChange={ handleChange('name') } placeholder='Item Name' />
+            </DidactField>
+            <DidactField>
+              <DidactLabel htmlFor='description'>Description</DidactLabel>
+              <DidactTextArea rows="8" id='description' value={ values.description || "" } onChange={ handleChange('description') } placeholder='Description' />
+            </DidactField>
+            <DidactField>
+              <DidactLabel htmlFor='link'>Url Link</DidactLabel>
+              <DidactInput id='link' type='text' value={ values.link || "" } onChange={ handleChange('link') } placeholder='Url Link' />
+            </DidactField>
+            <DidactField>
+              <DidactLabel htmlFor='type'>Type</DidactLabel>
+              <DidactInput id='type' type='text' value={ values.type || "" } onChange={ handleChange('type') } placeholder='Type' />
+            </DidactField>
+            <DidactButton type='submit' size="small" variant="contained">Create Item</DidactButton>
+          </form>
+        </CardContent>
+      </Card>
     </>
   );
 }
