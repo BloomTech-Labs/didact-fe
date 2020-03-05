@@ -12,7 +12,7 @@ import {
   editExternalArticle,
   deleteExternalArticle
 } from "../../store/actions";
-
+import DeleteModal from "../courses/DeleteModal";
 import { TrashCanEdit, DidactButton } from "../dashboard/ButtonStyles";
 
 import Card from "@material-ui/core/Card";
@@ -21,6 +21,7 @@ import { useDispatch, useSelector } from "react-redux";
 const EditExternalArticle = ({ props, id }) => {
   const dispatch = useDispatch();
   const article = useSelector(state => state.articlesReducer.externalArticle);
+  const [openModal, setOpenModal] = useState(false);
   const [changes, setChanges] = useState({
     title: "",
     description: "",
@@ -45,6 +46,14 @@ const EditExternalArticle = ({ props, id }) => {
     setChanges({ ...changes, [e.target.name]: e.target.value });
   };
 
+  const handleModalOpen = e => {
+    setOpenModal(true);
+  };
+
+  const handleModalClose = e => {
+    setOpenModal(false);
+  };
+
   const handleDelete = e => {
     dispatch(deleteExternalArticle(id));
     props.history.push("/articles");
@@ -58,7 +67,15 @@ const EditExternalArticle = ({ props, id }) => {
 
   return (
     <Card>
-      <TrashCanEdit onClick={handleDelete}></TrashCanEdit>
+      <TrashCanEdit onClick={handleModalOpen}></TrashCanEdit>
+      {openModal ? (
+        <DeleteModal
+          text={"this article"}
+          open={openModal}
+          handleModalClose={handleModalClose}
+          handleDelete={handleDelete}
+        />
+      ) : null}
       <form onSubmit={handleSubmit}>
         <DidactField>
           <DidactLabel>Article Title</DidactLabel>

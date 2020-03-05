@@ -7,12 +7,13 @@ import { editSource, deleteSource, getSourceById } from "../../store/actions";
 import { DidactField, DidactInput, DidactLabel } from "../dashboard/FormStyles";
 
 import { DidactButton, TrashCanEdit } from "../dashboard/ButtonStyles";
-
+import DeleteModal from "../courses/DeleteModal";
 import Card from "@material-ui/core/Card";
 
 const EditSource = ({ props, id }) => {
   const dispatch = useDispatch();
   const source = useSelector(state => state.sourcesReducer.source);
+  const [openModal, setOpenModal] = useState(false);
   const [changes, setChanges] = useState({
     name: "",
     description: "",
@@ -35,6 +36,14 @@ const EditSource = ({ props, id }) => {
     setChanges({ ...changes, [e.target.name]: e.target.value });
   };
 
+  const handleModalOpen = e => {
+    setOpenModal(true);
+  };
+
+  const handleModalClose = e => {
+    setOpenModal(false);
+  };
+
   const handleDelete = e => {
     dispatch(deleteSource(source.id));
     props.history.push("/sources");
@@ -47,7 +56,15 @@ const EditSource = ({ props, id }) => {
 
   return (
     <Card>
-      <TrashCanEdit onClick={handleDelete}></TrashCanEdit>
+      <TrashCanEdit onClick={handleModalOpen}></TrashCanEdit>
+      {openModal ? (
+        <DeleteModal
+          text={"this source"}
+          open={openModal}
+          handleModalClose={handleModalClose}
+          handleDelete={handleDelete}
+        />
+      ) : null}
       <form onSubmit={handleSubmit}>
         <DidactField>
           <DidactLabel>Source Name</DidactLabel>
