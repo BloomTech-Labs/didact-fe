@@ -12,7 +12,11 @@ const Tool = props => {
 
   return (
     <Card className="tool">
-      {user.owner || user.admin ? <DidactButton>Edit</DidactButton> : null}
+      {user.owner || user.admin ? (
+        <DidactButton>
+          <Link to={`/tools/${tool.id}/edit`}>Edit</Link>
+        </DidactButton>
+      ) : null}
       <h1>{tool.name}</h1>
       {/* This will be hidden by dropdown */}
       <p>{tool.description}</p>

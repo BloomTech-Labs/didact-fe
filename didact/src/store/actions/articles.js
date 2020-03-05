@@ -58,6 +58,7 @@ export const getArticleById = id => dispatch => {
 };
 
 export const addArticle = article => dispatch => {
+  console.log(article);
   dispatch({ type: ADD_ARTICLE_START });
   axiosWithAuth()
     .post(`${baseURL}`, article)

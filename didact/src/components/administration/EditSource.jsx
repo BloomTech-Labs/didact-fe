@@ -10,7 +10,7 @@ import { DidactButton, TrashCanEdit } from "../dashboard/ButtonStyles";
 
 import Card from "@material-ui/core/Card";
 
-const EditSource = props => {
+const EditSource = ({ props, id }) => {
   const dispatch = useDispatch();
   const source = useSelector(state => state.sourcesReducer.source);
   const [changes, setChanges] = useState({
@@ -20,7 +20,7 @@ const EditSource = props => {
   });
 
   useEffect(() => {
-    dispatch(getSourceById(props.id));
+    dispatch(getSourceById(id));
   }, []);
 
   useEffect(() => {
@@ -41,7 +41,7 @@ const EditSource = props => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(editSource(props.id, changes));
+    dispatch(editSource(id, changes));
   };
 
   return (

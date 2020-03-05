@@ -5,6 +5,9 @@ import {
   ARTICLE_BY_ID_START,
   ARTICLE_BY_ID_SUCCESS,
   ARTICLE_BY_ID_FAIL,
+  EXTERNAL_ARTICLE_BY_ID_START,
+  EXTERNAL_ARTICLE_BY_ID_SUCCESS,
+  EXTERNAL_ARTICLE_BY_ID_FAIL,
   ADD_EXTERNAL_ARTICLE_START,
   ADD_EXTERNAL_ARTICLE_SUCCESS,
   ADD_EXTERNAL_ARTICLE_FAIL,
@@ -64,6 +67,23 @@ export const articlesReducer = (state = initialState, action) => {
         article: action.payload
       };
     case ARTICLE_BY_ID_FAIL:
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload
+      };
+    case EXTERNAL_ARTICLE_BY_ID_START:
+      return {
+        ...state,
+        isLoading: true
+      };
+    case EXTERNAL_ARTICLE_BY_ID_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        externalArticle: action.payload
+      };
+    case EXTERNAL_ARTICLE_BY_ID_FAIL:
       return {
         ...state,
         isLoading: false,

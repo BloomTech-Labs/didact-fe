@@ -25,7 +25,7 @@ const Articles = props => {
       ) : null}
       {articles.map(article =>
         article.body ? (
-          <ArticleBrief article={article} key={article.date} />
+          <ArticleBrief article={article} key={article.title} />
         ) : (
           <ExternalArticleBrief article={article} key={article.id} />
         )

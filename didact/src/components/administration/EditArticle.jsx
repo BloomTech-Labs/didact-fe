@@ -16,28 +16,28 @@ import {
 import { DidactButton } from "../dashboard/ButtonStyles";
 
 import Card from "@material-ui/core/Card";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
-const EditArticle = props => {
+const EditArticle = ({ props, id }) => {
   const dispatch = useDispatch();
   const article = useSelector(state => state.articlesReducer.article);
-  const freshDate = new Date();
   const [changes, setChanges] = useState({
-    date: freshDate.toLocaleDateString("en-US"),
+    date: "",
     title: "",
     body: "",
     topic: ""
   });
 
   useEffect(() => {
-    dispatch(getArticleById(props.id));
+    dispatch(getArticleById(id));
   }, []);
 
   useEffect(() => {
     setChanges({
-      name: article.name,
-      description: article.description,
-      link: article.link
+      date: article.date,
+      title: article.title,
+      body: article.body,
+      topic: article.topic
     });
   }, [article]);
 
@@ -46,17 +46,26 @@ const EditArticle = props => {
   };
 
   const handleDelete = e => {
-    dispatch(deleteArticle(article.id, article.title));
+    dispatch(deleteArticle(id, article.title));
   };
 
   const handleSubmit = e => {
     e.preventDefault();
     dispatch(editArticle(id, changes));
+    props.history.push("/articles");
   };
 
   return (
     <Card>
       <form onSubmit={handleSubmit}>
+        <DidactField>
+          <DidactLabel>Article Date</DidactLabel>
+          <DidactInput
+            value={changes.date}
+            onChange={handleChange}
+            name="date"
+          />
+        </DidactField>
         <DidactField>
           <DidactLabel>Article Title</DidactLabel>
           <DidactInput

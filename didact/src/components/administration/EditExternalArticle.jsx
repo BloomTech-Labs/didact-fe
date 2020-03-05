@@ -8,6 +8,7 @@ import {
 } from "../dashboard/FormStyles";
 
 import {
+  getExternalArticleById,
   editExternalArticle,
   deleteExternalArticle
 } from "../../store/actions";
@@ -17,7 +18,7 @@ import { DidactButton } from "../dashboard/ButtonStyles";
 import Card from "@material-ui/core/Card";
 import { useDispatch, useSelector } from "react-redux";
 
-const EditExternalArticle = props => {
+const EditExternalArticle = ({ props, id }) => {
   const dispatch = useDispatch();
   const article = useSelector(state => state.articlesReducer.externalArticle);
   const [changes, setChanges] = useState({
@@ -28,13 +29,14 @@ const EditExternalArticle = props => {
   });
 
   useEffect(() => {
-    dispatch(getExternalArticleById(props.id));
-  });
+    dispatch(getExternalArticleById(id));
+  }, []);
 
   useEffect(() => {
     setChanges({
-      name: article.name,
+      title: article.title,
       description: article.description,
+      topic: article.topic,
       link: article.link
     });
   }, [article]);
@@ -44,12 +46,13 @@ const EditExternalArticle = props => {
   };
 
   const handleDelete = e => {
-    dispatch(deleteExternalArticle(article.id));
+    dispatch(deleteExternalArticle(id));
   };
 
   const handleSubmit = e => {
     e.preventDefault();
     dispatch(editExternalArticle(id, changes));
+    props.history.push("/articles");
   };
 
   return (
@@ -58,7 +61,7 @@ const EditExternalArticle = props => {
         <DidactField>
           <DidactLabel>Article Title</DidactLabel>
           <DidactInput
-            value={changes.title}
+            value={changes.title || ""}
             onChange={handleChange}
             name="title"
           />
@@ -66,7 +69,7 @@ const EditExternalArticle = props => {
         <DidactField>
           <DidactLabel>Article Description</DidactLabel>
           <DidactTextArea
-            value={changes.body}
+            value={changes.description || ""}
             onChange={handleChange}
             name="description"
           />
@@ -74,7 +77,7 @@ const EditExternalArticle = props => {
         <DidactField>
           <DidactLabel>Article Topic</DidactLabel>
           <DidactInput
-            value={changes.topic}
+            value={changes.topic || ""}
             onChange={handleChange}
             name="topic"
           />
@@ -82,7 +85,7 @@ const EditExternalArticle = props => {
         <DidactField>
           <DidactLabel>Article Link</DidactLabel>
           <DidactInput
-            value={changes.link}
+            value={changes.link || ""}
             onChange={handleChange}
             name="link"
           />

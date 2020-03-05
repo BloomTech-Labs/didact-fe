@@ -10,7 +10,7 @@ import { DidactButton } from "../dashboard/ButtonStyles";
 
 import Card from "@material-ui/core/Card";
 
-const SourceForm = props => {
+const SourceForm = ({ props }) => {
   const dispatch = useDispatch();
   const [source, setSource] = useState({
     name: "",
@@ -25,6 +25,7 @@ const SourceForm = props => {
   const handleSubmit = e => {
     e.preventDefault();
     dispatch(addSource(source));
+    props.history.push("/sources");
   };
 
   return (

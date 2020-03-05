@@ -26,6 +26,8 @@ import AddResource from "../administration/AddResource";
 import PromoteUser from "../administration/PromoteUser";
 import EditSource from "../administration/EditSource";
 import EditTool from "../administration/EditTool";
+import EditArticle from "../administration/EditArticle";
+import EditExternalArticle from "../administration/EditExternalArticle";
 
 const Content = props => {
   return (
@@ -88,6 +90,12 @@ const Content = props => {
             return <Articles props={props} />;
           case "article":
             return <ArticleFull props={props} id={props.match.params.id} />;
+          case "edit-article":
+            return <EditArticle props={props} id={props.match.params.id} />;
+          case "edit-external-article":
+            return (
+              <EditExternalArticle props={props} id={props.match.params.id} />
+            );
           case "searchresults":
             return (
               <SearchResults

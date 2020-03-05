@@ -23,13 +23,13 @@ const AddResource = ({ props }) => {
       {(() => {
         switch (contentType) {
           case "tool":
-            return <ToolForm />;
+            return <ToolForm props={props} />;
           case "article":
-            return <ArticleForm />;
+            return <ArticleForm props={props} />;
           case "external-article":
-            return <ExternalArticleForm />;
+            return <ExternalArticleForm props={props} />;
           case "source":
-            return <SourceForm />;
+            return <SourceForm props={props} />;
           default:
             break;
         }

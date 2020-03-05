@@ -10,7 +10,7 @@ import { DidactButton } from "../dashboard/ButtonStyles";
 
 import Card from "@material-ui/core/Card";
 
-const EditTool = props => {
+const EditTool = ({ props, id }) => {
   const dispatch = useDispatch();
   const tool = useSelector(state => state.toolsReducer.tool);
   const [changes, setChanges] = useState({
@@ -20,7 +20,7 @@ const EditTool = props => {
   });
 
   useEffect(() => {
-    dispatch(getToolById(props.id));
+    dispatch(getToolById(id));
   }, []);
 
   useEffect(() => {
@@ -36,12 +36,13 @@ const EditTool = props => {
   };
 
   const handleDelete = e => {
-    dispatch(deleteTool(tool.id));
+    dispatch(deleteTool(id));
   };
 
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(editTool(props.id, changes));
+    dispatch(editTool(id, changes));
+    props.history.push("/tools");
   };
 
   return (

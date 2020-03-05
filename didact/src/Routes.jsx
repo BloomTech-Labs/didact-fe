@@ -141,6 +141,20 @@ const Routes = props => {
       />
       <Route
         exact
+        path="/articles/:id/edit"
+        render={routeProps => (
+          <MainPage {...routeProps} page={"edit-article"} />
+        )}
+      />
+      <Route
+        exact
+        path="/external-articles/:id/edit"
+        render={routeProps => (
+          <MainPage {...routeProps} page={"edit-external-article"} />
+        )}
+      />
+      <Route
+        exact
         path="/sources"
         render={routeProps => <MainPage {...routeProps} page={"sources"} />}
       />
