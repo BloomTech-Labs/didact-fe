@@ -24,6 +24,8 @@ import AllYourCourses from '../courses/AllYourCourses'
 import Contact from '../contact/Contact'
 import AddResource from '../administration/AddResource'
 import PromoteUser from '../administration/PromoteUser'
+import ToolDetailed from '../resources/ToolDetailed'
+import SourceDetailed from '../resources/SourceDetailed'
 
 const Content = (props) => {
 
@@ -68,12 +70,16 @@ const Content = (props) => {
                         return <YourLearningPaths props={props}/>
                     case('tools'):
                         return <Tools props={props} />
+                    case('tool'):
+                        return <ToolDetailed props={props} id={ props.match.params.id } />
                     case('sources'):
                         return <Sources props={props} />
+                    case('source'):
+                        return <SourceDetailed props={props} id={ props.match.params.id } />
                     case('articles'):
                         return <Articles props={props} />
-                    case('articlefull'):
-                        return <ArticleFull props={props} id={props.match.params.id} />
+                    case('article'):
+                        return <ArticleFull props={props} id={ props.match.params.id } />
                     case ('searchresults'):
                         return <SearchResults props={ props } setValues={ props.setValues } results={ props.results } />
                     case ('about'):

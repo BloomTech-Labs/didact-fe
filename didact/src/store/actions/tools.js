@@ -20,16 +20,13 @@ export const DELETE_TOOL_FAIL = "DELETE_TOOL_FAIL";
 const baseURL = `${beURL}tools`;
 
 export const getTools = () => dispatch => {
-
   dispatch({ type: TOOL_DATA_START });
   axiosWithAuth()
     .get(baseURL)
     .then(result => {
-      console.log("Tool data", result)
       dispatch({ type: TOOL_DATA_SUCCESS, payload: result.data });
     })
     .catch(error => {
-      console.log("Tool error", error)
       dispatch({ type: TOOL_DATA_FAIL, payload: error.response });
     });
 };
@@ -43,6 +40,18 @@ export const getToolById = id => dispatch => {
     })
     .catch(error => {
       dispatch({ type: TOOL_BY_ID_FAIL, payload: error.response });
+    });
+};
+
+export const addTool = tool => dispatch => {
+  dispatch({ type: ADD_TOOL_START });
+  axiosWithAuth()
+    .post(`${baseURL}`, tool)
+    .then(result => {
+      dispatch({ type: ADD_TOOL_SUCCESS, payload: tool });
+    })
+    .catch(error => {
+      dispatch({ type: ADD_TOOL_FAIL, payload: error.response });
     });
 };
 

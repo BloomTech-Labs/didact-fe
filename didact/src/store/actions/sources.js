@@ -31,6 +31,18 @@ export const getSources = () => dispatch => {
     });
 };
 
+export const addSource = source => dispatch => {
+  dispatch({ type: ADD_SOURCE_START });
+  axiosWithAuth()
+    .post(baseURL, source)
+    .then(result => {
+      dispatch({ type: ADD_SOURCE_SUCCESS, payload: source });
+    })
+    .catch(error => {
+      dispatch({ type: ADD_SOURCE_FAIL, payload: error.response });
+    });
+};
+
 export const getSourceById = id => dispatch => {
   dispatch({ type: SOURCE_BY_ID_START });
   axiosWithAuth()

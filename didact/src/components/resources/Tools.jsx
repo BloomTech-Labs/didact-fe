@@ -3,7 +3,7 @@ import Tool from "./Tool.jsx";
 import { useSelector, useDispatch } from "react-redux";
 import { getTools } from "../../store/actions";
 import { Link } from "react-router-dom";
-
+import { DidactButton } from "../dashboard/ButtonStyles";
 const Tools = props => {
   const dispatch = useDispatch();
   const state = useSelector(state => state);
@@ -16,7 +16,11 @@ const Tools = props => {
 
   return (
     <div className="tools-list">
-      {user.owner || user.admin ? <Link to="/resource-form">Add</Link> : null}
+      {user.owner || user.admin ? (
+        <DidactButton>
+          <Link to="/resource-form">Add</Link>
+        </DidactButton>
+      ) : null}
       {tools.map(tool => (
         <Tool tool={tool} key={tool.id} />
       ))}

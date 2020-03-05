@@ -36,10 +36,23 @@ export const getArticleById = id => dispatch => {
   axiosWithAuth()
     .get(`${baseURL}/${id}`)
     .then(result => {
+      console.log(result);
       dispatch({ type: ARTICLE_BY_ID_SUCCESS, payload: result.data });
     })
     .catch(error => {
       dispatch({ type: ARTICLE_BY_ID_FAIL, payload: error.response });
+    });
+};
+
+export const addArticle = article => dispatch => {
+  dispatch({ type: ADD_ARTICLE_START });
+  axiosWithAuth()
+    .post(`${baseURL}`, article)
+    .then(result => {
+      dispatch({ type: ADD_ARTICLE_SUCCESS, payload: article });
+    })
+    .catch(error => {
+      dispatch({ type: ADD_ARTICLE_FAIL, payload: error.response });
     });
 };
 
@@ -58,6 +71,41 @@ export const editArticle = (id, changes) => dispatch => {
 export const deleteArticle = id => dispatch => {
   dispatch({ type: DELETE_ARTICLE_START })
     .delete(`${baseURL}/${id}`)
+    .then(result => {
+      dispatch({ type: DELETE_ARTICLE_SUCCESS, payload: id });
+    })
+    .catch(error => {
+      dispatch({ type: DELETE_ARTICLE_FAIL, payload: error.response });
+    });
+};
+
+export const addExternalArticle = article => dispatch => {
+  dispatch({ type: ADD_ARTICLE_START });
+  axiosWithAuth()
+    .post(`${baseURL}/external`, article)
+    .then(result => {
+      dispatch({ type: ADD_ARTICLE_SUCCESS, payload: article });
+    })
+    .catch(error => {
+      dispatch({ type: ADD_ARTICLE_FAIL, payload: error.response });
+    });
+};
+
+export const editExternalArticle = (id, changes) => dispatch => {
+  dispatch({ type: EDIT_ARTICLE_START });
+  axiosWithAuth()
+    .put(`${baseURL}/external/${id}`, changes)
+    .then(result => {
+      dispatch({ type: EDIT_ARTICLE_SUCCESS, changes });
+    })
+    .catch(error => {
+      dispatch({ type: EDIT_ARTICLE_FAIL, payload: error.response });
+    });
+};
+
+export const deleteExternalArticle = id => dispatch => {
+  dispatch({ type: DELETE_ARTICLE_START })
+    .delete(`${baseURL}/external/${id}`)
     .then(result => {
       dispatch({ type: DELETE_ARTICLE_SUCCESS, payload: id });
     })
