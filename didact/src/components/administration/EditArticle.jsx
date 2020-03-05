@@ -1,6 +1,4 @@
-import React, { useState } from "react";
-import axiosWithAuth from "../../utils/axiosWithAuth";
-import beURL from "../../utils/beURL";
+import React, { useState, useEffect } from "react";
 
 import {
   DidactField,
@@ -9,14 +7,20 @@ import {
   DidactTextArea
 } from "../dashboard/FormStyles";
 
-import { editArticle } from "../../store/actions";
+import {
+  editArticle,
+  deleteArticle,
+  getArticleById
+} from "../../store/actions";
 
 import { DidactButton } from "../dashboard/ButtonStyles";
 
 import Card from "@material-ui/core/Card";
+import { useSelector } from "react-redux";
 
 const EditArticle = props => {
   const dispatch = useDispatch();
+  const article = useSelector(state => state.articlesReducer.article);
   const freshDate = new Date();
   const [changes, setChanges] = useState({
     date: freshDate.toLocaleDateString("en-US"),
@@ -25,8 +29,24 @@ const EditArticle = props => {
     topic: ""
   });
 
+  useEffect(() => {
+    dispatch(getArticleById(props.id));
+  }, []);
+
+  useEffect(() => {
+    setChanges({
+      name: article.name,
+      description: article.description,
+      link: article.link
+    });
+  }, [article]);
+
   const handleChange = e => {
     setChanges({ ...changes, [e.target.name]: e.target.value });
+  };
+
+  const handleDelete = e => {
+    dispatch(deleteArticle(article.id, article.title));
   };
 
   const handleSubmit = e => {

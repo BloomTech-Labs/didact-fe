@@ -1,9 +1,8 @@
-import React, { useState } from "react";
-import axiosWithAuth from "../../utils/axiosWithAuth";
-import beURL from "../../utils/beURL";
-import { useDispatch } from "react-redux";
+import React, { useState, useEffect } from "react";
 
-import { editSource } from "../../store/actions";
+import { useDispatch, useSelector } from "react-redux";
+
+import { editSource, deleteSource, getSourceById } from "../../store/actions";
 
 import { DidactField, DidactInput, DidactLabel } from "../dashboard/FormStyles";
 
@@ -13,14 +12,31 @@ import Card from "@material-ui/core/Card";
 
 const EditSource = props => {
   const dispatch = useDispatch();
+  const source = useSelector(state => state.sourcesReducer.source);
   const [changes, setChanges] = useState({
     name: "",
     description: "",
     link: ""
   });
 
+  useEffect(() => {
+    dispatch(getSourceById(props.id));
+  }, []);
+
+  useEffect(() => {
+    setChanges({
+      name: source.name,
+      description: source.description,
+      link: source.link
+    });
+  }, [source]);
+
   const handleChange = e => {
     setChanges({ ...changes, [e.target.name]: e.target.value });
+  };
+
+  const handleDelete = e => {
+    dispatch(deleteSource(source.id));
   };
 
   const handleSubmit = e => {

@@ -49,7 +49,6 @@ const initialState = {
 };
 
 export const coursesReducer = (state = initialState, action) => {
-  console.log("Courses in Course Reducer:", state.courses);
   switch (action.type) {
     // GET ALL COURSES
     case COURSE_DATA_START:

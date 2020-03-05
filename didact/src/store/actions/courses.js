@@ -59,10 +59,6 @@ export const courseEndPoint = results => dispatch => {
         : null
     )
     .then(res => {
-      console.log(
-        `Course Queries: ${results.search}, ${results.filter}`,
-        res.data
-      );
       dispatch({ type: COURSE_DATA_SUCCESS, payload: res.data });
     })
     .catch(err => {

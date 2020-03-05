@@ -171,6 +171,7 @@ const EditLearningPaths = ({ id, props }) => {
         )
       );
     }
+    console.log(learningPath.pathItems);
   }, [learningPath.pathItems, learningPath.courses]);
 
   // function for Drag and Drop calling changeArr above
@@ -443,15 +444,16 @@ const EditLearningPaths = ({ id, props }) => {
                       // innerRef={provided.innerRef}
                       {...provided.droppableProps}
                     >
-                      {itemsCourses &&
-                        itemsCourses.map((order, index) => (
-                          <CourseLearningPath
-                            props={props}
-                            key={index}
-                            course={order}
-                            index={index}
-                          />
-                        ))}
+                      {itemsCourses
+                        ? itemsCourses.map((order, index) => (
+                            <CourseLearningPath
+                              props={props}
+                              key={index}
+                              course={order}
+                              index={index}
+                            />
+                          ))
+                        : null}
                       {provided.placeholder}
                     </DroppableDiv>
                   )}

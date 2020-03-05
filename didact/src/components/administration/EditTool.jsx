@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
-import { editTool } from "../../store/actions";
+import { editTool, deleteTool, getToolById } from "../../store/actions";
 
 import { DidactField, DidactInput, DidactLabel } from "../dashboard/FormStyles";
 
@@ -12,14 +12,31 @@ import Card from "@material-ui/core/Card";
 
 const EditTool = props => {
   const dispatch = useDispatch();
+  const tool = useSelector(state => state.toolsReducer.tool);
   const [changes, setChanges] = useState({
     name: "",
     description: "",
     link: ""
   });
 
+  useEffect(() => {
+    dispatch(getToolById(props.id));
+  }, []);
+
+  useEffect(() => {
+    setChanges({
+      name: tool.name,
+      description: tool.description,
+      link: tool.link
+    });
+  }, [tool]);
+
   const handleChange = e => {
     setChanges({ ...changes, [e.target.name]: e.target.value });
+  };
+
+  const handleDelete = e => {
+    dispatch(deleteTool(tool.id));
   };
 
   const handleSubmit = e => {
@@ -31,7 +48,7 @@ const EditTool = props => {
     <Card>
       <form onSubmit={handleSubmit}>
         <DidactField>
-          <DidactLabel>Name</DidactLabel>
+          <DidactLabel>Tool Name</DidactLabel>
           <DidactInput
             type="text"
             value={changes.name || ""}
@@ -40,7 +57,7 @@ const EditTool = props => {
           />
         </DidactField>
         <DidactField>
-          <DidactLabel>Description</DidactLabel>
+          <DidactLabel>Tool Description</DidactLabel>
           <DidactInput
             type="text"
             value={changes.description || ""}
@@ -49,7 +66,7 @@ const EditTool = props => {
           />
         </DidactField>
         <DidactField>
-          <DidactLabel>Link</DidactLabel>
+          <DidactLabel>Tool Link</DidactLabel>
           <DidactInput
             type="text"
             value={changes.link || ""}

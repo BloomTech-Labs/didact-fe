@@ -80,7 +80,6 @@ const initialState = {
 };
 
 export const learningPathReducer = (state = initialState, action) => {
-  console.log("Learning Paths in Learning Path Reducer:", state.learningPaths);
   switch (action.type) {
     case GET_LEARNING_PATHS_START:
       return {

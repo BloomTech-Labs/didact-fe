@@ -1,6 +1,4 @@
-import React, { useState } from "react";
-import axiosWithAuth from "../../utils/axiosWithAuth";
-import beURL from "../../utils/beURL";
+import React, { useState, useEffect } from "react";
 
 import {
   DidactField,
@@ -9,13 +7,19 @@ import {
   DidactTextArea
 } from "../dashboard/FormStyles";
 
-import { editExternalArticle } from "../../store/actions";
+import {
+  editExternalArticle,
+  deleteExternalArticle
+} from "../../store/actions";
 
 import { DidactButton } from "../dashboard/ButtonStyles";
 
 import Card from "@material-ui/core/Card";
+import { useDispatch, useSelector } from "react-redux";
 
 const EditExternalArticle = props => {
+  const dispatch = useDispatch();
+  const article = useSelector(state => state.articlesReducer.externalArticle);
   const [changes, setChanges] = useState({
     title: "",
     description: "",
@@ -23,8 +27,24 @@ const EditExternalArticle = props => {
     link: ""
   });
 
+  useEffect(() => {
+    dispatch(getExternalArticleById(props.id));
+  });
+
+  useEffect(() => {
+    setChanges({
+      name: article.name,
+      description: article.description,
+      link: article.link
+    });
+  }, [article]);
+
   const handleChange = e => {
     setChanges({ ...changes, [e.target.name]: e.target.value });
+  };
+
+  const handleDelete = e => {
+    dispatch(deleteExternalArticle(article.id));
   };
 
   const handleSubmit = e => {

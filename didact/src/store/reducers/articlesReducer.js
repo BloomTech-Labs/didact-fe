@@ -3,14 +3,23 @@ import {
   ARTICLE_DATA_SUCCESS,
   ARTICLE_DATA_FAIL,
   ARTICLE_BY_ID_START,
-  ARTICLE_BY_ID_SUCCESS, 
+  ARTICLE_BY_ID_SUCCESS,
   ARTICLE_BY_ID_FAIL,
+  ADD_EXTERNAL_ARTICLE_START,
+  ADD_EXTERNAL_ARTICLE_SUCCESS,
+  ADD_EXTERNAL_ARTICLE_FAIL,
   ADD_ARTICLE_START,
   ADD_ARTICLE_SUCCESS,
   ADD_ARTICLE_FAIL,
+  EDIT_EXTERNAL_ARTICLE_START,
+  EDIT_EXTERNAL_ARTICLE_SUCCESS,
+  EDIT_EXTERNAL_ARTICLE_FAIL,
   EDIT_ARTICLE_START,
   EDIT_ARTICLE_SUCCESS,
   EDIT_ARTICLE_FAIL,
+  DELETE_EXTERNAL_ARTICLE_START,
+  DELETE_EXTERNAL_ARTICLE_SUCCESS,
+  DELETE_EXTERNAL_ARTICLE_FAIL,
   DELETE_ARTICLE_START,
   DELETE_ARTICLE_SUCCESS,
   DELETE_ARTICLE_FAIL
@@ -20,7 +29,8 @@ const initialState = {
   articles: [],
   isLoading: false,
   error: "",
-  article: {}
+  article: {},
+  externalArticle: {}
 };
 
 export const articlesReducer = (state = initialState, action) => {
@@ -76,6 +86,23 @@ export const articlesReducer = (state = initialState, action) => {
         isLoading: false,
         error: action.payload
       };
+    case ADD_EXTERNAL_ARTICLE_START:
+      return {
+        ...state,
+        isLoading: true
+      };
+    case ADD_EXTERNAL_ARTICLE_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        articles: [...state.articles, action.payload]
+      };
+    case ADD_EXTERNAL_ARTICLE_FAIL:
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload
+      };
     case EDIT_ARTICLE_START:
       return {
         ...state,
@@ -93,6 +120,23 @@ export const articlesReducer = (state = initialState, action) => {
         isLoading: false,
         error: action.payload
       };
+    case EDIT_EXTERNAL_ARTICLE_START:
+      return {
+        ...state,
+        isLoading: true
+      };
+    case EDIT_EXTERNAL_ARTICLE_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        externalArticle: action.payload
+      };
+    case EDIT_EXTERNAL_ARTICLE_FAIL:
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload
+      };
     case DELETE_ARTICLE_START:
       return {
         ...state,
@@ -105,6 +149,23 @@ export const articlesReducer = (state = initialState, action) => {
         articles: state.articles.filter(el => el.id !== action.payload)
       };
     case DELETE_ARTICLE_FAIL:
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload
+      };
+    case DELETE_EXTERNAL_ARTICLE_START:
+      return {
+        ...state,
+        isLoading: true
+      };
+    case DELETE_EXTERNAL_ARTICLE_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        articles: state.articles.filter(el => el.title !== action.payload)
+      };
+    case DELETE_EXTERNAL_ARTICLE_FAIL:
       return {
         ...state,
         isLoading: false,
