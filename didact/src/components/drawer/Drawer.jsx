@@ -33,14 +33,14 @@ const DrawerComponent = props => {
       width: 0,
       flexShrink: 0,
       whiteSpace: "nowrap",
-      marginBottom: "60%",
+      // marginBottom: "70%",
       height: "100%"
     },
 
     drawerOpen: {
       width: "255px",
       height: "100%",
-      margin: " 103px 0 10px 10px",
+      margin: " 80px 0 10px 10px",
       borderRadius: "15px",
       transition: theme.transitions.create("width", {
         easing: theme.transitions.easing.sharp,
@@ -59,7 +59,7 @@ const DrawerComponent = props => {
       [theme.breakpoints.up("sm")]: {
         width: theme.spacing(8) + 1,
         padding: 0,
-        marginTop: "103px",
+        marginTop: "80px",
         height: "600px",
         borderRadius: "15px"
       }
@@ -123,17 +123,19 @@ const DrawerComponent = props => {
     toolbar: {
       display: "flex",
       alignItems: "center",
-      justifyContent: "flex-end",
+
       padding: theme.spacing(0, 1),
+      paddingBottom: "10px",
+
+      background: "#eeeeee",
       ...theme.mixins.toolbar
     },
     didactDivOpen: {
       width: "255px",
       backgroundColor: "#eeeeee",
 
-      marginLeft: "20px",
       height: "68px",
-      marginTop: "11px",
+      marginTop: "-20px",
       position: "fixed",
       display: "flex",
       justifyContent: "center",
@@ -152,16 +154,16 @@ const DrawerComponent = props => {
       }),
       width: "65px",
       backgroundColor: "#eeeeee",
-      overflow: "hidden",
-      marginLeft: "20px",
+      // overflow: "hidden",
+      marginLeft: "0.4%",
       height: "68px",
-      marginTop: "10px",
+      marginTop: "-20px",
       position: "fixed",
       display: "flex",
-      // paddingLeft: "70px",
+      paddingRight: "40px",
       justifyContent: "center",
       alignItems: "center",
-      borderRadius: "19px",
+      borderRadius: "18px",
       cursor: "pointer"
     }
   }));
@@ -176,83 +178,81 @@ const DrawerComponent = props => {
 
   return (
     <>
-      {open ? (
-        <div className={classes.didactDivOpen} onClick={handleBack}>
-          <h2
-            style={{
-              fontSize: "3.2rem",
-              color: "black",
-              fontFamily: "dinosaur",
-              fontFamily: "sans-serif",
-              fontWeight: "900",
-              fontStyle: "normal"
-            }}
-          >
-            DIDACT
-          </h2>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={props.handleDrawerOpen}
-            edge="start"
-            className={classes.menuButtonDesktop}
-          >
-            <MenuIcon style={{ fontSize: "28px" }} />
-          </IconButton>
-        </div>
-      ) : (
-        <div className={classes.didactDivClosed} onClick={handleBack}>
-          {/* <h2
-            style={{
-              fontSize: "3.2rem",
-              color: "black",
-              fontFamily: "dinosaur",
-              fontFamily: "sans-serif",
-              fontWeight: "900",
-              fontStyle: "normal"
-            }}
-          >
-            D<span style={{ color: "#565554" }}>idact</span>
-          </h2> */}
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={props.handleDrawerOpen}
-            edge="start"
-            className={classes.menuButtonDesktop}
-          >
-            <MenuIcon style={{ fontSize: "28px" }} />
-          </IconButton>
-        </div>
-      )}
-      <Drawer
-        variant="permanent"
-        anchor="none"
-        className={clsx(classes.drawer, {
-          [classes.drawerOpen]: open,
-          [classes.drawerClose]: !open
-        })}
-        classes={{
-          paper: clsx({
+      <div classname={classes.drawerDiver}>
+        <Drawer
+          variant="permanent"
+          anchor="left"
+          className={clsx(classes.drawer, {
             [classes.drawerOpen]: open,
             [classes.drawerClose]: !open
-          })
-        }}
-        open={open}
-      >
-        {/* <div className={classes.toolbar}>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={props.handleDrawerOpen}
-            edge="start"
-            className={classes.menuButtonDesktop}
-          >
-            <MenuIcon style={{ fontSize: "28px" }} />
-          </IconButton>
-        </div> */}
-        {<SideList open={open} props={props} />}
-      </Drawer>
+          })}
+          classes={{
+            paper: clsx({
+              [classes.drawerOpen]: open,
+              [classes.drawerClose]: !open
+            })
+          }}
+          open={open}
+        >
+          <div className={classes.toolbar}>
+            {open ? (
+              <div className={classes.didactDivOpen} onClick={handleBack}>
+                <h2
+                  style={{
+                    fontSize: "3.2rem",
+                    color: "black",
+                    fontFamily: "dinosaur",
+                    fontFamily: "sans-serif",
+                    fontWeight: "900",
+                    fontStyle: "normal"
+                  }}
+                >
+                  DIDACT
+                </h2>
+                <IconButton
+                  color="inherit"
+                  aria-label="open drawer"
+                  onClick={props.handleDrawerOpen}
+                  edge="start"
+                  className={classes.menuButtonDesktop}
+                >
+                  <MenuIcon style={{ fontSize: "28px", textAlign: "center" }} />
+                </IconButton>
+              </div>
+            ) : (
+              <div className={classes.didactDivClosed} onClick={handleBack}>
+                <h2
+                  style={{
+                    fontSize: "3.2rem",
+                    color: "black",
+                    fontFamily: "dinosaur",
+                    fontFamily: "sans-serif",
+                    fontWeight: "900",
+                    fontStyle: "normal"
+                  }}
+                >
+                  <IconButton
+                    color="inherit"
+                    aria-label="open drawer"
+                    onClick={props.handleDrawerOpen}
+                    edge="start"
+                    className={classes.menuButtonDesktop}
+                  >
+                    <MenuIcon
+                      style={{
+                        fontSize: "28px",
+
+                        textAlign: "center"
+                      }}
+                    />
+                  </IconButton>
+                </h2>
+              </div>
+            )}
+          </div>
+          {<SideList open={open} props={props} />}
+        </Drawer>
+      </div>
     </>
   );
 };

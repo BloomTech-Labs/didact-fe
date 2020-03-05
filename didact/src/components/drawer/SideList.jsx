@@ -1,22 +1,16 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 
-// new feature dropdown for nav
-// import ExpandLess from "@material-ui/icons/ExpandLess";
-// import ExpandMore from "@material-ui/icons/ExpandMore";
-// import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
-// import ListItemText from "@material-ui/core/ListItemText";
 import Collapse from "@material-ui/core/Collapse";
 ////
 
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import FolderOpenIcon from "@material-ui/icons/FolderOpen";
-// import PermIdentityIcon from "@material-ui/icons/PermIdentity";
 //Material UI Icons
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import SettingsIcon from "@material-ui/icons/Settings";
@@ -26,12 +20,13 @@ const SideList = ({ props }) => {
   const drawerStyles = makeStyles(theme => ({
     activeTab: {
       backgroundColor: "#ffffff",
-      borderRadius: "0 20px 20px 0",
+      borderRadius: "0 7px 7px 0",
       width: "225px",
-      color: "white",
+      // color: "white",
       height: "50px",
       margin: "10px 0px"
     },
+
     arrow: {
       textAlign: "right",
       marginRight: "10px",
@@ -52,12 +47,12 @@ const SideList = ({ props }) => {
       width: "225px"
     },
 
-    navigationLinks: {
-      display: "flex",
-      flexDirection: "column",
-      paddingRight: "15%",
-      paddingTop: "10%"
-    },
+    // navigationLinks: {
+    //   display: "flex",
+    //   flexDirection: "column",
+    //   paddingRight: "15%",
+    //   paddingTop: "25%"
+    // },
 
     iconImageProfile: {
       width: "30px",
@@ -68,7 +63,8 @@ const SideList = ({ props }) => {
     },
     collapseNav: {
       textDecoration: "none",
-      textAlign: "center"
+      textAlign: "left",
+      marginRight: "20%"
     },
 
     root: {
@@ -91,24 +87,6 @@ const SideList = ({ props }) => {
   }));
 
   const classes = drawerStyles();
-
-  const userName = useSelector(state => state.onboardingReducer.user);
-
-  const handleLogOut = () => {
-    localStorage.clear("token");
-    props.props.history.push("/login");
-  };
-
-  const firstName = userName.first_name
-    ? userName.first_name.substring(0, 1).toUpperCase() +
-      userName.first_name.substring(1)
-    : null;
-  const lastName = userName.last_name
-    ? userName.last_name.substring(0, 1).toUpperCase() +
-      userName.last_name.substring(1)
-    : null;
-
-  // state for dropdown links
 
   const [open, setOpen] = React.useState(false);
 
@@ -305,7 +283,7 @@ const SideList = ({ props }) => {
         <div className={classes.resourcesDiv}>
           <nav onClick={resourcesHandleClick}>
             <NavLink
-              to="/about"
+              to={window}
               style={{
                 textDecoration: "none",
                 color: "#5b5b5b",
@@ -330,7 +308,7 @@ const SideList = ({ props }) => {
                 <p style={{ marginLeft: "25px", fontWeight: "bold" }}>
                   Resources
                 </p>
-                {props.props.match.path.includes("/about") ? (
+                {props.props.match.path.includes("/") ? (
                   <p className={classes.arrow}>
                     <ChevronRightIcon
                       style={{ fontSize: "2.4rem", marginTop: "6px" }}
@@ -355,7 +333,7 @@ const SideList = ({ props }) => {
               {/* </List> */}
               <ListItem className={classes.nested}>
                 <Link
-                  to="/"
+                  to="/tools"
                   style={{
                     fontSize: "1.3rem",
                     marginTop: "6px",
@@ -367,7 +345,7 @@ const SideList = ({ props }) => {
               </ListItem>
               <ListItem className={classes.nested}>
                 <Link
-                  to="/"
+                  to="/sources"
                   style={{
                     fontSize: "1.3rem",
                     marginTop: "6px",
@@ -379,7 +357,7 @@ const SideList = ({ props }) => {
               </ListItem>
               <ListItem className={classes.nested}>
                 <Link
-                  to="/"
+                  to="/articles"
                   style={{
                     fontSize: "1.3rem",
                     marginTop: "6px",
@@ -391,49 +369,56 @@ const SideList = ({ props }) => {
               </ListItem>
             </Collapse>
           </div>
-        </div>
 
-        <div className={classes.navigationLinks}>
-          <Link
+          <NavLink
             to="/about"
             style={{
-              color: "black",
               textDecoration: "none",
-              fontFamily: "sans-serif",
-              fontWeight: "semi bold"
+              color: "#5b5b5b",
+              outline: "none !important"
             }}
+            activeStyle={{ color: "black" }}
+            activeClassName={classes.activeTab}
+            className={classes.listItem}
+            key="about"
           >
-            <p>About</p>
-          </Link>
-          <Link
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                width: "100%",
+                marginLeft: "20%"
+              }}
+            >
+              <p style={{ marginLeft: "25px", fontWeight: "bold" }}>About</p>
+            </div>
+          </NavLink>
+
+          <NavLink
             to="/contact"
             style={{
-              color: "black",
               textDecoration: "none",
-              fontFamily: "sans-serif",
-              fontWeight: "semi bold"
+              color: "#5b5b5b",
+              outline: "none !important"
             }}
+            activeStyle={{ color: "black" }}
+            activeClassName={classes.activeTab}
+            className={classes.listItem}
+            key="about"
           >
-            <p>Contact</p>
-          </Link>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                width: "100%",
+                marginLeft: "20%"
+              }}
+            >
+              <p style={{ marginLeft: "25px", fontWeight: "bold" }}>Contact</p>
+            </div>
+          </NavLink>
         </div>
       </ul>
-
-      {/* <div className="profileSection">
-        {userName.photo ? (
-          <img
-            src={userName.photo}
-            alt="Profile"
-            className={classes.iconImageProfile}
-          />
-        ) : (
-          <PermIdentityIcon className={classes.iconImageProfile} />
-        )}
-        <p>{firstName + " " + lastName}</p>
-        <p onClick={handleLogOut} className="logout">
-          Log Out
-        </p>
-      </div> */}
     </SideListWrapper>
   );
 };

@@ -27,7 +27,7 @@ const useStyles = makeStyles(theme => ({
   span: {
     cursor: "pointer",
     "&:hover": {
-      color: "white"
+      color: "black"
     }
   }
 }));
@@ -41,8 +41,7 @@ const YourDetailedCourse = props => {
   const admin = state.onboardingReducer.user.admin;
   const owner = state.onboardingReducer.user.owner;
   const moderator = state.onboardingReducer.user.moderator;
-  const user = state.onboardingReducer.user
-  console.log("XXXXXXXXXXXXXXXXXXXX", state.onboardingReducer)
+  const user = state.onboardingReducer.user;
   const detailedCourse = state.coursesReducer.detailedCourse;
   const course = detailedCourse.course;
   const sections = detailedCourse.sections;
@@ -80,111 +79,112 @@ const YourDetailedCourse = props => {
   const handleBack = () => {
     props.props.history.push("/courses/yours");
   };
-  console.log("ZZZZZZZZZZZZZZZZZZZZZ", admin)
-  console.log("BBBBBBBBBBBBBBBBB", user)
   if (!state.coursesReducer.isLoading && course && sections) {
     return (
       <>
         <div
-          style={ {
+          style={{
             display: "flex",
             justifyContent: "space-between",
             margin: "-10px 10px 10px 10px",
             borderBottom: "1px solid black"
-          } }
+          }}
         >
           <p
-            style={ {
+            style={{
               fontWeight: "bold",
               marginLeft: "10px",
               display: "flex",
               flexDirection: "row",
               alignItems: "center"
-            } }
+            }}
           >
-            <span className={ classes.span } onClick={ handleBack }>
+            <span className={classes.span} onClick={handleBack}>
               Courses
             </span>
-            <ChevronRightIcon style={ { fontSize: "1.6rem" } } />
-            <span>{ course.title.substring(0, 25) }...</span>
+            <ChevronRightIcon style={{ fontSize: "1.6rem" }} />
+            <span>{course.title.substring(0, 25)}...</span>
           </p>
         </div>
         <DetailedCourseWrapper>
           <div className="courseWrapper">
             <div
-              style={ {
-                backgroundColor: "#386581",
+              style={{
+                backgroundColor: "white",
                 display: "flex",
                 alignItems: "center",
                 padding: "0px",
                 margin: "0px",
                 justifyContent: "space-between"
-              } }
+              }}
             >
-              <h1>{ course.title }</h1>
-              { isLoadingIcon ? (
+              <h1>{course.title}</h1>
+              {isLoadingIcon ? (
                 <Loader
                   type="Oval"
-                  style={ {
-                    background: "#386581",
+                  style={{
+                    background: "white",
                     margin: "0",
                     padding: "0 5px 0 0",
                     width: "20px"
-                  } }
-                  color="white"
-                  height={ 20 }
-                  width={ 20 }
+                  }}
+                  color="black"
+                  height={20}
+                  width={20}
                 />
               ) : course.automatically_completed ||
                 course.manually_completed ? (
-                    <CheckCircleIcon
-                      onClick={ handleMarkCompleteCourse }
-                      className="completeButton"
-                    />
-                  ) : (
-                    <CheckCircleIcon
-                      onClick={ handleMarkCompleteCourse }
-                      className="notCompleteButton"
-                    />
-                  ) }
+                <CheckCircleIcon
+                  onClick={handleMarkCompleteCourse}
+                  className="completeButton"
+                />
+              ) : (
+                <CheckCircleIcon
+                  onClick={handleMarkCompleteCourse}
+                  className="notCompleteButton"
+                />
+              )}
             </div>
-            <p>{ course.description }</p>
-            <p>{ course.topic ? `Topic: ${course.topic}` : null }</p>
+            <p>{course.description}</p>
+            <p>{course.topic ? `Topic: ${course.topic}` : null}</p>
             <div className="courseFooter">
               <div className="tags">
-                { course.tags &&
+                {course.tags &&
                   course.tags.map((tag, index) => {
                     return (
-                      <TagStyles key={ index } className="tag">
-                        { tag }
+                      <TagStyles key={index} className="tag">
+                        {tag}
                       </TagStyles>
                     );
-                  }) }
+                  })}
               </div>
-              { course.creator_id === id || owner === true || admin === true || moderator === true ? (
+              {course.creator_id === id ||
+              owner === true ||
+              admin === true ||
+              moderator === true ? (
                 !phoneSize ? (
-                  <DidactButton style={ { marginLeft: "85%" } }>
+                  <DidactButton style={{ marginLeft: "85%" }}>
                     <Link
-                      style={ { textDecoration: "none", color: "inherit" } }
-                      to={ `/courses/yours/${course.id}/edit` }
+                      style={{ textDecoration: "none", color: "inherit" }}
+                      to={`/courses/yours/${course.id}/edit`}
                     >
                       Edit Course
                     </Link>
                   </DidactButton>
                 ) : (
-                    <DidactButton style={ { marginLeft: "70%" } }>
-                      <Link
-                        style={ { textDecoration: "none", color: "inherit" } }
-                        to={ `/courses/yours/${course.id}/edit` }
-                      >
-                        Edit Course
+                  <DidactButton style={{ marginLeft: "70%" }}>
+                    <Link
+                      style={{ textDecoration: "none", color: "inherit" }}
+                      to={`/courses/yours/${course.id}/edit`}
+                    >
+                      Edit Course
                     </Link>
-                    </DidactButton>
-                  )
-              ) : null }
+                  </DidactButton>
+                )
+              ) : null}
             </div>
           </div>
-          { sections.map((el, index) => {
+          {sections.map((el, index) => {
             const videoLength = el.details.filter(
               detail => detail.type === "video"
             ).length;
@@ -199,181 +199,181 @@ const YourDetailedCourse = props => {
             ).length;
             return (
               <ExpansionPanel
-                key={ index }
+                key={index}
                 className="expansionPanel"
-                expanded={ expanded === `panel${index}` }
-                onChange={ handleChange(`panel${index}`) }
+                expanded={expanded === `panel${index}`}
+                onChange={handleChange(`panel${index}`)}
               >
                 <ExpansionPanelSummary
-                  expandIcon={ <ExpandMoreIcon className="expandIcon" /> }
-                  aria-controls={ `panel${index}bh-content` }
-                  id={ `panel${index}bh-header` }
+                  expandIcon={<ExpandMoreIcon className="expandIcon" />}
+                  aria-controls={`panel${index}bh-content`}
+                  id={`panel${index}bh-header`}
                   className="expansionPanelSummary"
                 >
                   <div>
-                    <h3>{ `Section ${index + 1}: ${el.section.name}` }</h3>
-                    { isLoadingIcon ? (
+                    <h3>{`Section ${index + 1}: ${el.section.name}`}</h3>
+                    {isLoadingIcon ? (
                       <Loader
                         type="Oval"
-                        style={ {
-                          background: "#386581",
+                        style={{
+                          background: "#ffffff",
                           margin: "0",
                           padding: "0 5px 0 0",
                           width: "20px"
-                        } }
-                        color="white"
-                        height={ 20 }
-                        width={ 20 }
+                        }}
+                        color="black"
+                        height={20}
+                        width={20}
                       />
                     ) : el.section.automatically_completed ||
                       el.section.manually_completed ? (
-                          <CheckCircleIcon
-                            onClick={ () => handleMarkCompleteSection(el.section.id) }
-                            className="completeButton"
-                          />
-                        ) : (
-                          <CheckCircleIcon
-                            onClick={ () => handleMarkCompleteSection(el.section.id) }
-                            className="notCompleteButton"
-                          />
-                        ) }
+                      <CheckCircleIcon
+                        onClick={() => handleMarkCompleteSection(el.section.id)}
+                        className="completeButton"
+                      />
+                    ) : (
+                      <CheckCircleIcon
+                        onClick={() => handleMarkCompleteSection(el.section.id)}
+                        className="notCompleteButton"
+                      />
+                    )}
                   </div>
                 </ExpansionPanelSummary>
                 <ExpansionPanelDetails>
-                  <div style={ { width: "100%" } }>
-                    <p>{ el.section.description }</p>
+                  <div style={{ width: "100%" }}>
+                    <p>{el.section.description}</p>
                     <ExpansionPanel
                       className="lessonExpansionPanel"
-                      expanded={ lessonExpanded === `lessonPanel${index}` }
-                      onChange={ handleLessonExpansion(`lessonPanel${index}`) }
+                      expanded={lessonExpanded === `lessonPanel${index}`}
+                      onChange={handleLessonExpansion(`lessonPanel${index}`)}
                     >
                       <ExpansionPanelSummary
-                        expandIcon={ <ExpandMoreIcon className="expandIcon" /> }
-                        aria-controls={ `lessonPanel${index}bh-content` }
-                        id={ `lessonPanel${index}bh-header` }
+                        expandIcon={<ExpandMoreIcon className="expandIcon" />}
+                        aria-controls={`lessonPanel${index}bh-content`}
+                        id={`lessonPanel${index}bh-header`}
                         className="expansionPanelSummary"
                       >
-                        { !phoneSize ? (
+                        {!phoneSize ? (
                           <div className="lessonExpansionSummary">
-                            <h4 style={ { textAlign: "center" } }>Lessons</h4>
-                            { videoLength > 0 && (
-                              <h4>{ `${videoLength} Videos` }</h4>
-                            ) }
-                            { readingLength > 0 && (
-                              <h4>{ `${readingLength} Readings` }</h4>
-                            ) }
-                            { quizLength > 0 && (
-                              <h4>{ `${quizLength} Quizzes` }</h4>
-                            ) }
-                            { assignmentLength > 0 && (
-                              <h4>{ `${assignmentLength} Assignments` }</h4>
-                            ) }
+                            <h4 style={{ textAlign: "center" }}>Lessons</h4>
+                            {videoLength > 0 && (
+                              <h4>{`${videoLength} Videos`}</h4>
+                            )}
+                            {readingLength > 0 && (
+                              <h4>{`${readingLength} Readings`}</h4>
+                            )}
+                            {quizLength > 0 && (
+                              <h4>{`${quizLength} Quizzes`}</h4>
+                            )}
+                            {assignmentLength > 0 && (
+                              <h4>{`${assignmentLength} Assignments`}</h4>
+                            )}
                           </div>
                         ) : (
-                            <div
-                              className="lessonExpansionSummary"
-                              style={ { display: "flex", flexDirection: "column" } }
-                            >
-                              <div>
-                                <h4 style={ { textAlign: "center" } }>Lessons</h4>
-                              </div>
-                              <div
-                                style={ {
-                                  display: "flex",
-                                  flexFlow: "row wrap",
-                                  justifyContent: "space-evenly"
-                                } }
-                              >
-                                { videoLength > 0 && (
-                                  <h4
-                                    style={ { padding: "0 5px" } }
-                                  >{ `${videoLength} Videos` }</h4>
-                                ) }
-                                { readingLength > 0 && (
-                                  <h4
-                                    style={ { padding: "0 5px" } }
-                                  >{ `${readingLength} Readings` }</h4>
-                                ) }
-                                { quizLength > 0 && (
-                                  <h4
-                                    style={ { padding: "0 5px" } }
-                                  >{ `${quizLength} Quizzes` }</h4>
-                                ) }
-                                { assignmentLength > 0 && (
-                                  <h4
-                                    style={ { padding: "0 5px" } }
-                                  >{ `${assignmentLength} Assignments` }</h4>
-                                ) }
-                              </div>
+                          <div
+                            className="lessonExpansionSummary"
+                            style={{ display: "flex", flexDirection: "column" }}
+                          >
+                            <div>
+                              <h4 style={{ textAlign: "center" }}>Lessons</h4>
                             </div>
-                          ) }
+                            <div
+                              style={{
+                                display: "flex",
+                                flexFlow: "row wrap",
+                                justifyContent: "space-evenly"
+                              }}
+                            >
+                              {videoLength > 0 && (
+                                <h4
+                                  style={{ padding: "0 5px" }}
+                                >{`${videoLength} Videos`}</h4>
+                              )}
+                              {readingLength > 0 && (
+                                <h4
+                                  style={{ padding: "0 5px" }}
+                                >{`${readingLength} Readings`}</h4>
+                              )}
+                              {quizLength > 0 && (
+                                <h4
+                                  style={{ padding: "0 5px" }}
+                                >{`${quizLength} Quizzes`}</h4>
+                              )}
+                              {assignmentLength > 0 && (
+                                <h4
+                                  style={{ padding: "0 5px" }}
+                                >{`${assignmentLength} Assignments`}</h4>
+                              )}
+                            </div>
+                          </div>
+                        )}
                       </ExpansionPanelSummary>
                       <ExpansionPanelDetails>
                         <div>
-                          { el.details
+                          {el.details
                             .sort((a, b) => a.order - b.order)
                             .map((detail, i) => {
                               return (
                                 <div
-                                  key={ i }
-                                  style={ {
+                                  key={i}
+                                  style={{
                                     display: "flex",
                                     flexDirection: "row",
                                     alignItems: "center",
                                     justifyContent: "space-between"
-                                  } }
+                                  }}
                                 >
                                   <div className="lessonTitle">
                                     <a
                                       className="lessonTitleName"
-                                      href={ detail.link }
+                                      href={detail.link}
                                       target="_blank"
                                       rel="noopener noreferrer"
                                     >
-                                      { detail.name }
+                                      {detail.name}
                                     </a>
                                     <p className="lessonTitleType">
-                                      { detail.type }
+                                      {detail.type}
                                     </p>
                                   </div>
-                                  { isLoadingIcon ? (
+                                  {isLoadingIcon ? (
                                     <Loader
                                       type="Oval"
-                                      style={ {
-                                        background: "#386581",
+                                      style={{
+                                        background: "white",
                                         margin: "0",
                                         padding: "0 5px 0 0",
                                         width: "20px"
-                                      } }
-                                      color="white"
-                                      height={ 20 }
-                                      width={ 20 }
+                                      }}
+                                      color="black"
+                                      height={20}
+                                      width={20}
                                     />
                                   ) : detail.automatically_completed ||
                                     detail.manually_completed ? (
-                                        <CheckCircleIcon
-                                          onClick={ () =>
-                                            handleMarkCompleteLesson(
-                                              el.section.id,
-                                              detail.id
-                                            )
-                                          }
-                                          className="completeButton"
-                                        />
-                                      ) : (
-                                        <CheckCircleIcon
-                                          onClick={ () =>
-                                            handleMarkCompleteLesson(
-                                              el.section.id,
-                                              detail.id
-                                            )
-                                          }
-                                          className="notCompleteButton"
-                                        />
-                                      ) }
+                                    <CheckCircleIcon
+                                      onClick={() =>
+                                        handleMarkCompleteLesson(
+                                          el.section.id,
+                                          detail.id
+                                        )
+                                      }
+                                      className="completeButton"
+                                    />
+                                  ) : (
+                                    <CheckCircleIcon
+                                      onClick={() =>
+                                        handleMarkCompleteLesson(
+                                          el.section.id,
+                                          detail.id
+                                        )
+                                      }
+                                      className="notCompleteButton"
+                                    />
+                                  )}
                                 </div>
                               );
-                            }) }
+                            })}
                         </div>
                       </ExpansionPanelDetails>
                     </ExpansionPanel>
@@ -381,7 +381,7 @@ const YourDetailedCourse = props => {
                 </ExpansionPanelDetails>
               </ExpansionPanel>
             );
-          }) }
+          })}
         </DetailedCourseWrapper>
       </>
     );
@@ -389,26 +389,26 @@ const YourDetailedCourse = props => {
     return (
       <>
         <div
-          style={ {
+          style={{
             display: "flex",
             justifyContent: "space-between",
             margin: "-10px 10px 10px 10px",
             borderBottom: "1px solid black"
-          } }
+          }}
         >
           <p
-            style={ {
+            style={{
               fontWeight: "bold",
               marginLeft: "10px",
               display: "flex",
               flexDirection: "row",
               alignItems: "center"
-            } }
+            }}
           >
-            <span className={ classes.span } onClick={ handleBack }>
+            <span className={classes.span} onClick={handleBack}>
               Courses
             </span>
-            <ChevronRightIcon style={ { fontSize: "1.6rem" } } />
+            <ChevronRightIcon style={{ fontSize: "1.6rem" }} />
             <span>Loading...</span>
           </p>
         </div>

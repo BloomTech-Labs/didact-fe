@@ -1,7 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { getArticleById } from '../../store/actions';
 
-const ArticleFull = props => {
-    const article = props.article
+const ArticleFull = ({props, id}) => {
+    const dispatch = useDispatch()
+    const state = useSelector(state => state)
+    const article = state.articlesReducer.article
+
+    useEffect(() => {
+        dispatch(getArticleById(id))
+    }, [dispatch, id])
 
     return (
         <div className="article-full">

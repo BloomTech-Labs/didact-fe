@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-
+import { Mixpanel } from '../../utils/mixpanel'
 import { joinLearningPath } from '../../store/actions/index'
 
 import { LearningPathsWrapper, LearningPathCard } from '../learningPaths/YourLearningPathsStyles'
@@ -12,6 +12,7 @@ const AllLearningPaths = ({props, learningPath}) => {
 
     const joinPath = (id, order) => {
         dispatch(joinLearningPath(id, props.history, order))
+        Mixpanel.track("Path Result Joined")
     }
 
     return (
