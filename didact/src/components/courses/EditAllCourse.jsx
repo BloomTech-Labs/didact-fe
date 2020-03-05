@@ -143,6 +143,7 @@ const EditAllCourse = ({ props, id }) => {
         event.preventDefault();
         dispatch(editCourseRevised(course.id, changes));
         toggleEdit();
+        props.history.push("/courses/all")
     };
 
     const handleChange = name => event => {

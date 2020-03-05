@@ -27,7 +27,6 @@ const LearningPath = ({ id, props }) => {
     const dispatch = useDispatch();
     const state = useSelector(state => state);
     const owner = state.onboardingReducer.user.owner
-    console.log("OOOOOOOOOOOOWNER", owner)
     const admin = state.onboardingReducer.user.admin
     const moderator = state.onboardingReducer.user.moderator
     const learningPath = state.learningPathReducer.learningPath;
