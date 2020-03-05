@@ -14,6 +14,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 // Styled Component Imports
 import { LearningPathCard } from "../learningPaths/YourLearningPathsStyles";
+import { TopDashboardCard } from "./DashboardStyles";
 
 const useStyles = makeStyles({
   current: {
@@ -24,6 +25,13 @@ const useStyles = makeStyles({
     paddingTop: "0",
     marginRight: props => (props.phoneSize ? "0px" : "40px")
   },
+
+  topContainer: {
+    display: "flex",
+    flexFlow: props =>
+      props.mediumScreenSize || props.phoneSize ? "row wrap" : "row"
+  },
+
   container: {
     display: "flex",
     flexFlow: props =>
@@ -91,10 +99,12 @@ function Dashboard({ props }) {
           margin: "-10px 10px 10px 10px",
           borderBottom: "1px solid black"
         }}
-      >
+      ></div>
+      <div>
         <p
           style={{
             fontWeight: "bold",
+            fontFamily: "Open Sans",
             marginLeft: "10px",
             display: "flex",
             flexDirection: "row",
@@ -103,8 +113,15 @@ function Dashboard({ props }) {
         >
           Dashboard
         </p>
-        <p style={{ fontWeight: "bold" }}>Welcome Back, {firstName}!</p>
       </div>
+      <TopDashboardCard>
+        <div className={classes.topContainer}>
+          <title>Title</title>
+          <h2>Date: Time</h2>
+          <p style={{ fontWeight: "bold" }}>Welcome Back, {firstName}!</p>
+        </div>
+      </TopDashboardCard>
+
       <div className={classes.container}>
         <div className={classes.smallContainer}>
           <p
