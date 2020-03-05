@@ -11,7 +11,6 @@ import Collapse from "@material-ui/core/Collapse";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import FolderOpenIcon from "@material-ui/icons/FolderOpen";
-import PermIdentityIcon from "@material-ui/icons/PermIdentity";
 //Material UI Icons
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import SettingsIcon from "@material-ui/icons/Settings";
@@ -48,12 +47,12 @@ const SideList = ({ props }) => {
       width: "225px"
     },
 
-    navigationLinks: {
-      display: "flex",
-      flexDirection: "column",
-      paddingRight: "15%",
-      paddingTop: "25%"
-    },
+    // navigationLinks: {
+    //   display: "flex",
+    //   flexDirection: "column",
+    //   paddingRight: "15%",
+    //   paddingTop: "25%"
+    // },
 
     iconImageProfile: {
       width: "30px",
@@ -309,7 +308,7 @@ const SideList = ({ props }) => {
                 <p style={{ marginLeft: "25px", fontWeight: "bold" }}>
                   Resources
                 </p>
-                {props.props.match.path.includes("/about") ? (
+                {props.props.match.path.includes("/") ? (
                   <p className={classes.arrow}>
                     <ChevronRightIcon
                       style={{ fontSize: "2.4rem", marginTop: "6px" }}
@@ -370,31 +369,54 @@ const SideList = ({ props }) => {
               </ListItem>
             </Collapse>
           </div>
-        </div>
 
-        <div className={classes.navigationLinks}>
-          <Link
+          <NavLink
             to="/about"
             style={{
-              color: "black",
               textDecoration: "none",
-              fontFamily: "sans-serif",
-              fontWeight: "semi bold"
+              color: "#5b5b5b",
+              outline: "none !important"
             }}
+            activeStyle={{ color: "black" }}
+            activeClassName={classes.activeTab}
+            className={classes.listItem}
+            key="about"
           >
-            <p>About</p>
-          </Link>
-          <Link
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                width: "100%",
+                marginLeft: "20%"
+              }}
+            >
+              <p style={{ marginLeft: "25px", fontWeight: "bold" }}>About</p>
+            </div>
+          </NavLink>
+
+          <NavLink
             to="/contact"
             style={{
-              color: "black",
               textDecoration: "none",
-              fontFamily: "sans-serif",
-              fontWeight: "semi bold"
+              color: "#5b5b5b",
+              outline: "none !important"
             }}
+            activeStyle={{ color: "black" }}
+            activeClassName={classes.activeTab}
+            className={classes.listItem}
+            key="about"
           >
-            <p>Contact</p>
-          </Link>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                width: "100%",
+                marginLeft: "20%"
+              }}
+            >
+              <p style={{ marginLeft: "25px", fontWeight: "bold" }}>Contact</p>
+            </div>
+          </NavLink>
         </div>
       </ul>
     </SideListWrapper>

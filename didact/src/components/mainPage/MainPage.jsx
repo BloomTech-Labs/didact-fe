@@ -3,7 +3,11 @@ import { verifyToken } from "../../store/actions/index.js";
 import { useDispatch, useSelector } from "react-redux";
 import { PageFlex } from "./PageStyles";
 import { makeStyles } from "@material-ui/core/styles";
+
 import { Mixpanel } from '../../utils/mixpanel'
+
+import SearchFiltered from "../searchComponents/searchFiltered";
+
 // import { Link } from "react-router-dom";
 // import styled from "styled-components";
 
@@ -66,12 +70,13 @@ const useStyles = makeStyles(theme => ({
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: "#eeeeee",
-    width: "445px",
-    borderRadius: "10px",
-    border: "2px solid black",
+    width: "345px",
+    borderRadius: "7px",
+    border: "1px solid black",
     padding: "0 6px",
     paddingLeft: "0%",
-    height: "57px"
+    height: "37px",
+    boxShadow: "1px 1px 1px 1px rgba(0,0,0,.5)"
   },
 
   formPart: {
@@ -89,20 +94,25 @@ const useStyles = makeStyles(theme => ({
     border: "none",
     fontFamily: "open-sans",
     fontWeight: "bold",
-    fontSize: "1.6rem"
+    fontSize: "1.6rem",
+    marginLeft: "5%"
   },
 
   filterDiv: {
-    backgroundColor: "#ffffff",
+    backgroundColor: "#eeeeee",
     marginRight: "8%",
-    marginTop: "0.6%",
-    borderRadius: "10px 0 0 10px",
-    height: "52px",
-    width: "107px",
+    marginTop: "3%",
+    borderRadius: "7px 0 0 7px",
+    height: "35px",
+    // width: "107px",
     outline: "none",
     border: "none",
     display: "flex",
-    justifyContent: "center"
+    justifyContent: "center",
+    borderColor: "green",
+    outline: "none !important"
+
+    // boxShadow: "1px 1px 1px 1px rgba(0,0,0,.5)"
   },
 
   dropFilter: {
@@ -110,54 +120,58 @@ const useStyles = makeStyles(theme => ({
     border: "none",
     outline: "none",
     borderRight: "1px solid black",
-    height: "40px",
+    height: "20px",
     display: "flex",
     justifyContent: "center",
     fontFamily: "open-sans",
     fontWeight: "bold",
     fontSize: "1.5rem",
-    textAlign: "center"
+    textAlign: "center",
+    backgroundColor: "#eeeeee"
+    // display: "none"
   },
+
   searchButton: {
     display: "flex",
     alignItems: "center",
     border: "none",
     outline: "none",
-    height: "50px",
-    marginTop: "0.8%",
-    marginLeft: "9%",
-    borderRadius: "10px",
+    height: "30px",
+    marginTop: "3.4%",
+    marginLeft: "-35%",
+    borderRadius: "7px",
     background: "transparent",
+    fontFamily: "open-sans",
 
     "&:hover": {
       background: "#ffffff"
+      // border: "1px solid black"
     },
     "&:active": {
       boxShadow: "0 5px #666",
       transform: "translateY(4px)"
     },
     iconImageProfile: {
-      width: "30px",
-      height: "30px",
+      width: "20px",
+      height: "20px",
       borderRadius: "50%",
       // marginTop: '20px',
       objectFit: "cover"
     }
+  },
+
+  searchIcon: {
+    marginTop: "-1%"
+  },
+
+  searcher: {
+    marginTop: "13%",
+    marginLeft: "-4%",
+    fontFamily: "open-sans"
+
+    // fontSize: "1.5rem",
+    // fontWeight: "bold"
   }
-
-  // searchIcon: {
-  //   marginTop: "5%",
-  //   marginLeft: "8%",
-  //   color: "black"
-  // },
-
-  // searcher: {
-  //   marginTop: "5%",
-  //   marginLeft: "1%",
-  //   fontFamily: "open-sans",
-  //   fontSize: "1.5rem",
-  //   fontWeight: "bold"
-  // }
 }));
 
 function MainPage(props) {
@@ -175,6 +189,8 @@ function MainPage(props) {
     filter: "title"
   });
   const [results, setResults] = useState();
+
+  let dropHide = React.createRef();
 
   useEffect(
     _ => {
@@ -217,6 +233,7 @@ function MainPage(props) {
     Mixpanel.track("Search Query")
     setResults(values);
     props.history.push("/results");
+    // dropHide.style.display = "block";
     console.log(values);
 
     // setValues('')
@@ -305,51 +322,86 @@ function MainPage(props) {
                   />
                 </div>
                 <div className="headerMain">
+                  {/* <SearchFiltered /> */}
                   {/* <HeaderComponent props = {props} open={open} /> */}
                   {/* <HeaderComponent open={open} /> */}
                   <div className="header">
                     {/* Search Functionality Below */}
-                    <div className={classes.searchDiv}>
-                      <form
-                        className={classes.formPart}
-                        onSubmit={handleSubmit}
-                      >
-                        <div className={classes.filterDiv}>
-                          <select
-                            className={classes.dropFilter}
-                            value={values.filter}
-                            onChange={handleChange("filter")}
-                          >
-                            <option value="title">Title</option>
-                            <option value="topic">Topic</option>
-                            <option value="creator">Creator</option>
-                            <option value="description">Description</option>
-                            <option value="tag">Tag</option>
-                          </select>
-                        </div>
-                        <input
-                          className={classes.searchInput}
-                          type="text"
-                          value={values.search}
-                          onChange={handleChange("search")}
-                        />
-                        <button
-                          className={classes.searchButton}
-                          type="submit"
+
+                    {props.location.pathname === "/results" ? (
+                      <div className={classes.searchDiv}>
+                        <form
+                          className={classes.formPart}
                           onSubmit={handleSubmit}
                         >
-                          <SearchIcon
-                            className={classes.searchIcon}
-                            style={{
-                              fontSize: "1.8rem",
-                              marginRight: "5px",
-                              color: "black"
-                            }}
+                          <div className={classes.filterDiv}>
+                            <select
+                              className={classes.dropFilter}
+                              value={values.filter}
+                              onChange={handleChange("filter")}
+                              // ref={dropHide}
+                            >
+                              <option value="title">Title</option>
+                              <option value="topic">Topic</option>
+                              <option value="creator">Creator</option>
+                              <option value="description">Description</option>
+                              <option value="tag">Tag</option>
+                            </select>
+                          </div>
+                          <input
+                            className={classes.searchInput}
+                            type="text"
+                            value={values.search}
+                            onChange={handleChange("search")}
                           />
-                          <p className={classes.searcher}>Search</p>
-                        </button>
-                      </form>
-                    </div>
+                          <button
+                            className={classes.searchButton}
+                            type="submit"
+                            onSubmit={handleSubmit}
+                          >
+                            <SearchIcon
+                              className={classes.searchIcon}
+                              style={{
+                                fontSize: "1.8rem",
+                                marginRight: "5px",
+                                color: "black"
+                              }}
+                            />
+                            <p className={classes.searcher}>Search</p>
+                          </button>
+                        </form>
+                      </div>
+                    ) : (
+                      <div className={classes.searchDiv}>
+                        <form
+                          className={classes.formPart}
+                          onSubmit={handleSubmit}
+                        >
+                          <input
+                            className={classes.searchInput}
+                            type="text"
+                            value={values.search}
+                            onChange={handleChange("search")}
+                          />
+                          <button
+                            className={classes.searchButton}
+                            type="submit"
+                            onSubmit={handleSubmit}
+                          >
+                            <SearchIcon
+                              className={classes.searchIcon}
+                              style={{
+                                fontSize: "1.8rem",
+                                marginRight: "5px",
+                                color: "black"
+                              }}
+                            />
+                            <p className={classes.searcher}>Search</p>
+                          </button>
+                        </form>
+                      </div>
+                    )}
+
                     <div className="profileSection">
                       {userName.photo ? (
                         <img

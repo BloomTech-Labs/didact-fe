@@ -40,7 +40,7 @@ const DrawerComponent = props => {
     drawerOpen: {
       width: "255px",
       height: "100%",
-      margin: " 103px 0 10px 10px",
+      margin: " 80px 0 10px 10px",
       borderRadius: "15px",
       transition: theme.transitions.create("width", {
         easing: theme.transitions.easing.sharp,
@@ -59,7 +59,7 @@ const DrawerComponent = props => {
       [theme.breakpoints.up("sm")]: {
         width: theme.spacing(8) + 1,
         padding: 0,
-        marginTop: "103px",
+        marginTop: "80px",
         height: "600px",
         borderRadius: "15px"
       }
@@ -125,7 +125,7 @@ const DrawerComponent = props => {
       alignItems: "center",
 
       padding: theme.spacing(0, 1),
-      paddingBottom: "100px",
+      paddingBottom: "10px",
 
       background: "#eeeeee",
       ...theme.mixins.toolbar
@@ -181,7 +181,7 @@ const DrawerComponent = props => {
       <div classname={classes.drawerDiver}>
         <Drawer
           variant="permanent"
-          // anchor="left"
+          anchor="left"
           className={clsx(classes.drawer, {
             [classes.drawerOpen]: open,
             [classes.drawerClose]: !open
