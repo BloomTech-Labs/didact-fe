@@ -90,14 +90,19 @@ export const getLearningPaths = results => dispatch => {
       `${baseURL}`,
       results
         ? {
-          headers: { query: results.search, filter: results.filter }
-        }
+            headers: { query: results.search, filter: results.filter }
+          }
         : null
     )
     .then(res => {
+      console.log(
+        `Learning Path Queries: ${results.search}, ${results.filter}`,
+        res.data
+      );
       dispatch({ type: GET_LEARNING_PATHS_SUCCESS, payload: res.data });
     })
     .catch(err => {
+      console.log(`Learning Path Queries Failed: ${err.response}`);
       dispatch({ type: GET_LEARNING_PATHS_FAIL, payload: err });
     });
 };
@@ -308,8 +313,8 @@ export const getYourLearningPaths = (getYours, results) => dispatch => {
       `${baseURL}yours`,
       results
         ? {
-          headers: { query: results.search, filter: results.filter }
-        }
+            headers: { query: results.search, filter: results.filter }
+          }
         : null
     )
     .then(res => {

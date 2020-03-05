@@ -178,7 +178,7 @@ const DrawerComponent = props => {
 
   return (
     <>
-      <div classname={classes.drawerDiver}>
+      <div className={classes.drawerDiver}>
         <Drawer
           variant="permanent"
           // anchor="left"

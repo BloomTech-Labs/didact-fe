@@ -7,13 +7,13 @@ const ArticleBrief = props => {
   const author = article.first_name + " " + article.last_name;
 
   return (
-    <div>
+    <Card>
       <h1>{article.title}</h1>
       <h2>{article.date}</h2>
       <h2>{author}</h2>
       <p>{brief}...</p>
       <Link to={`/articles/${article.id}`}>Go To Article</Link>
-    </div>
+    </Card>
   );
 };
 

@@ -1,12 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
+
+import { useDispatch } from "react-redux";
 
 import { editTool } from "../../store/actions";
 
 import { DidactField, DidactInput, DidactLabel } from "../dashboard/FormStyles";
 
+import { DidactButton } from "../dashboard/ButtonStyles";
+
 import Card from "@material-ui/core/Card";
 
-const EditTool = () => {
+const EditTool = props => {
+  const dispatch = useDispatch();
   const [changes, setChanges] = useState({
     name: "",
     description: "",
@@ -19,7 +24,7 @@ const EditTool = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(editTool(id, changes));
+    dispatch(editTool(props.id, changes));
   };
 
   return (

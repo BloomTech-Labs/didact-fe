@@ -4,11 +4,12 @@ const ArticleBrief = props => {
   const article = props.article;
 
   return (
-    <div className="external-article-brief">
+    <Card className="external-article-brief">
       <h1>{article.title}</h1>
+      {/* This will be hidden by dropdown */}
       <h2>{article.description}</h2>
       <a href={article.link}>Go To Article</a>
-    </div>
+    </Card>
   );
 };
 

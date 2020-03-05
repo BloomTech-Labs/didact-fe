@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axiosWithAuth from "../../utils/axiosWithAuth";
 import beURL from "../../utils/beURL";
+import { useDispatch } from "react-redux";
 
 import { editSource } from "../../store/actions";
 
@@ -11,6 +12,7 @@ import { DidactButton, TrashCanEdit } from "../dashboard/ButtonStyles";
 import Card from "@material-ui/core/Card";
 
 const EditSource = props => {
+  const dispatch = useDispatch();
   const [changes, setChanges] = useState({
     name: "",
     description: "",
@@ -23,7 +25,7 @@ const EditSource = props => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(editSource(id, changes));
+    dispatch(editSource(props.id, changes));
   };
 
   return (
