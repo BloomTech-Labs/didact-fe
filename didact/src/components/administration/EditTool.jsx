@@ -6,7 +6,7 @@ import { editTool, deleteTool, getToolById } from "../../store/actions";
 
 import { DidactField, DidactInput, DidactLabel } from "../dashboard/FormStyles";
 
-import { DidactButton } from "../dashboard/ButtonStyles";
+import { TrashCanEdit, DidactButton } from "../dashboard/ButtonStyles";
 
 import Card from "@material-ui/core/Card";
 
@@ -37,6 +37,7 @@ const EditTool = ({ props, id }) => {
 
   const handleDelete = e => {
     dispatch(deleteTool(id));
+    props.history.push("/tools");
   };
 
   const handleSubmit = e => {
@@ -47,6 +48,7 @@ const EditTool = ({ props, id }) => {
 
   return (
     <Card>
+      <TrashCanEdit onClick={handleDelete}></TrashCanEdit>
       <form onSubmit={handleSubmit}>
         <DidactField>
           <DidactLabel>Tool Name</DidactLabel>

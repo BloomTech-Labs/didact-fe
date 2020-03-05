@@ -68,7 +68,8 @@ export const editTool = (id, changes) => dispatch => {
 };
 
 export const deleteTool = id => dispatch => {
-  dispatch({ type: DELETE_TOOL_START })
+  dispatch({ type: DELETE_TOOL_START });
+  axiosWithAuth()
     .delete(`${baseURL}/${id}`)
     .then(result => {
       dispatch({ type: DELETE_TOOL_SUCCESS, payload: id });

@@ -37,6 +37,7 @@ const EditSource = ({ props, id }) => {
 
   const handleDelete = e => {
     dispatch(deleteSource(source.id));
+    props.history.push("/sources");
   };
 
   const handleSubmit = e => {
@@ -46,6 +47,7 @@ const EditSource = ({ props, id }) => {
 
   return (
     <Card>
+      <TrashCanEdit onClick={handleDelete}></TrashCanEdit>
       <form onSubmit={handleSubmit}>
         <DidactField>
           <DidactLabel>Source Name</DidactLabel>

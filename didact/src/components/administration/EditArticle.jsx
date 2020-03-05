@@ -13,7 +13,7 @@ import {
   getArticleById
 } from "../../store/actions";
 
-import { DidactButton } from "../dashboard/ButtonStyles";
+import { TrashCanEdit, DidactButton } from "../dashboard/ButtonStyles";
 
 import Card from "@material-ui/core/Card";
 import { useSelector, useDispatch } from "react-redux";
@@ -47,6 +47,7 @@ const EditArticle = ({ props, id }) => {
 
   const handleDelete = e => {
     dispatch(deleteArticle(id, article.title));
+    props.history.push("/articles");
   };
 
   const handleSubmit = e => {
@@ -57,6 +58,7 @@ const EditArticle = ({ props, id }) => {
 
   return (
     <Card>
+      <TrashCanEdit onClick={handleDelete}></TrashCanEdit>
       <form onSubmit={handleSubmit}>
         <DidactField>
           <DidactLabel>Article Date</DidactLabel>

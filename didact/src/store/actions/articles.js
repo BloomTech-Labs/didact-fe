@@ -83,7 +83,8 @@ export const editArticle = (id, changes) => dispatch => {
 };
 
 export const deleteArticle = (id, title) => dispatch => {
-  dispatch({ type: DELETE_ARTICLE_START })
+  dispatch({ type: DELETE_ARTICLE_START });
+  axiosWithAuth()
     .delete(`${baseURL}/${id}`)
     .then(result => {
       dispatch({ type: DELETE_ARTICLE_SUCCESS, payload: title });
@@ -130,7 +131,8 @@ export const editExternalArticle = (id, changes) => dispatch => {
 };
 
 export const deleteExternalArticle = (id, title) => dispatch => {
-  dispatch({ type: DELETE_EXTERNAL_ARTICLE_START })
+  dispatch({ type: DELETE_EXTERNAL_ARTICLE_START });
+  axiosWithAuth()
     .delete(`${baseURL}/external/${id}`)
     .then(result => {
       dispatch({ type: DELETE_EXTERNAL_ARTICLE_SUCCESS, payload: title });
