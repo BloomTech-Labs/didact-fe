@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 const ArticleBrief = props => {
   const article = props.article;
   const user = useSelector(state => state.onboardingReducer.user);
-  const brief = article.body.slice(0, 55);
+  const brief = article.body.slice(0, 75);
   const author = article.first_name + " " + article.last_name;
 
   return (
