@@ -3,6 +3,9 @@ import styled from "styled-components";
 export const TopDashboardCard = styled.div`
   @media (max-width: 600px) {
     width: 100%;
+    // z-index: -1;
+    // position: relative;
+    
   }
 
   display: flex;
@@ -106,6 +109,16 @@ export const TopDashboardCard = styled.div`
 //         }
 //       }
     }`;
+
+export const TopDashboardArt = styled.div`
+  display: flex;
+  // border: 1px solid black;
+  width: 354px;
+  height: 353px;
+  margin-left: 30%;
+  margin-top: -4%;
+  position: absolute;
+`;
 
 export const CoursesCard = styled.div`
   display: flex;

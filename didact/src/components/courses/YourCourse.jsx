@@ -372,14 +372,14 @@ const YourCourse = ({ course, addingCourses, props }) => {
               display: "flex",
               justifyContent: "space-between",
               color: "#242424",
-              // border: "1px solid black",
               width: "120px"
             }}
           >
             <span
               style={{
                 fontWeight: "bold",
-                marginTop: "2%"
+                marginTop: "2%",
+                fontFamily: "Open Sans"
               }}
             >
               View Item

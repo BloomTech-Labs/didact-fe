@@ -12,6 +12,7 @@ import { AddCourseToPath, PopoverWrapper } from "./CourseStyles";
 import { DidactButton } from "../dashboard/ButtonStyles";
 
 import { makeStyles } from "@material-ui/core/styles";
+import ArrowRightAltRoundedIcon from "@material-ui/icons/ArrowRightAltRounded";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
@@ -368,22 +369,63 @@ const Course = ({ course, addingCourses, props, tracked }) => {
           className={classes.buttonDiv}
           style={{ margin: "0 30px 20px 0" }}
         >
-          {tracked 
-          ? 
-          <Link to={{
-          pathname: `/courses/all/${course.id}`,
-          state: { tracked: tracked }
-          }} >
-            <DidactButton size="small">Go To Course</DidactButton>
-          </Link> 
-          : 
-          <Link to={{
-          pathname: `/courses/all/${course.id}`,
-          state: { tracked: false }
-          }} >
-            <DidactButton size="small">Go To Course</DidactButton>
-          </Link> }
-          
+          {tracked ? (
+            <Link
+              to={{
+                pathname: `/courses/all/${course.id}`,
+                state: { tracked: tracked }
+              }}
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                color: "#242424",
+                width: "120px"
+              }}
+            >
+              <span
+                style={{
+                  fontWeight: "bold",
+                  marginTop: "2%",
+                  fontFamily: "Open Sans"
+                }}
+              >
+                View Item
+              </span>
+              <ArrowRightAltRoundedIcon
+                style={{
+                  fontSize: "2em"
+                }}
+              />
+            </Link>
+          ) : (
+            <Link
+              to={{
+                pathname: `/courses/all/${course.id}`,
+                state: { tracked: false }
+              }}
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                color: "#242424",
+                width: "120px"
+              }}
+            >
+              <span
+                style={{
+                  fontWeight: "bold",
+                  marginTop: "2%",
+                  fontFamily: "Open Sans"
+                }}
+              >
+                View Item
+              </span>
+              <ArrowRightAltRoundedIcon
+                style={{
+                  fontSize: "2em"
+                }}
+              />
+            </Link>
+          )}
         </CardActions>
       </Card>
     </PopoverWrapper>

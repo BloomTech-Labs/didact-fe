@@ -9,12 +9,17 @@ import { useDispatch, useSelector } from "react-redux";
 import YourCourse from "../courses/YourCourse";
 import Course from "../courses/Course";
 
+//art
+import sphere from "../../assets/sphere.png";
+import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
+
 //Material UI Imports
 import { makeStyles } from "@material-ui/core/styles";
 
 // Styled Component Imports
 import { LearningPathCard } from "../learningPaths/YourLearningPathsStyles";
 import { TopDashboardCard } from "./DashboardStyles";
+import { TopDashboardArt } from "./DashboardStyles";
 
 const useStyles = makeStyles({
   current: {
@@ -108,16 +113,31 @@ function Dashboard({ props }) {
             marginLeft: "10px",
             display: "flex",
             flexDirection: "row",
-            alignItems: "center"
+            alignItems: "center",
+            marginTop: "5%"
           }}
         >
           Dashboard
         </p>
+        <TopDashboardArt>
+          <img
+            src={sphere}
+            style={{ margin: "0 auto", height: "270px", zIndex: "2" }}
+            alt="sphere"
+          />
+        </TopDashboardArt>
+        {/* <FiberManualRecordIcon
+          style={{
+            color: "#52bbb4",
+            fontSize: "18em",
+            margin: 0
+          }} */}
       </div>
       <TopDashboardCard>
         <div className={classes.topContainer}>
+          <div></div>
           <span>SUBTITLE</span>
-          <h1>Title</h1>
+          <h1>Title </h1>
           <div>
             <span>Date: Time</span>
           </div>
