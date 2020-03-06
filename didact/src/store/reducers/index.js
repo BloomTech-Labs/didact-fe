@@ -1,12 +1,13 @@
 import { onboardingReducer } from "./onboardingReducers.js";
 import { coursesReducer } from "./coursesReducers.js";
-import {tagsReducer} from './tagsReducer';
+import { tagsReducer } from './tagsReducer';
 import { sectionsReducer } from './sectionsReducer'
-import {learningPathReducer} from './learningPathReducer'
-import {combineReducers} from 'redux';
-import {toolsReducer} from './toolsReducer'
-import {sourcesReducer} from './sourcesReducer'
-import {articlesReducer} from './articlesReducer'
+import { learningPathReducer } from './learningPathReducer'
+import { combineReducers } from 'redux';
+import { toolsReducer } from './toolsReducer'
+import { sourcesReducer } from './sourcesReducer'
+import { articlesReducer } from './articlesReducer'
+import { usersProfilesReducer } from './usersProfilesReducer'
 
 
 const reducer = combineReducers({
@@ -17,7 +18,8 @@ const reducer = combineReducers({
     learningPathReducer,
     toolsReducer,
     sourcesReducer,
-    articlesReducer
+    articlesReducer,
+    usersProfilesReducer
 });
 
 export default reducer;
