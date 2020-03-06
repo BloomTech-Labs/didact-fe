@@ -237,8 +237,6 @@ function MainPage(props) {
   });
   const [results, setResults] = useState();
 
-  let dropHide = React.createRef();
-
   useEffect(
     _ => {
       dispatch(verifyToken(props.history));

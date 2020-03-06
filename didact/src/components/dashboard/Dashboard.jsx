@@ -26,11 +26,11 @@ const useStyles = makeStyles({
     marginRight: props => (props.phoneSize ? "0px" : "40px")
   },
 
-  topContainer: {
-    display: "flex",
-    flexFlow: props =>
-      props.mediumScreenSize || props.phoneSize ? "row wrap" : "row"
-  },
+  // topContainer: {
+  //   display: "flex",
+  //   flexFlow: props =>
+  //     props.mediumScreenSize || props.phoneSize ? "row wrap" : "row"
+  // },
 
   container: {
     display: "flex",
@@ -116,9 +116,17 @@ function Dashboard({ props }) {
       </div>
       <TopDashboardCard>
         <div className={classes.topContainer}>
-          <title>Title</title>
-          <h2>Date: Time</h2>
-          <p style={{ fontWeight: "bold" }}>Welcome Back, {firstName}!</p>
+          <span>SUBTITLE</span>
+          <h1>Title</h1>
+          <div>
+            <span>Date: Time</span>
+          </div>
+          <div>
+            <p style={{ fontWeight: "bold" }}>
+              Welcome Back,
+              <br /> {firstName}!
+            </p>
+          </div>
         </div>
       </TopDashboardCard>
 
@@ -132,7 +140,7 @@ function Dashboard({ props }) {
               marginLeft: "10px"
             }}
           >
-            Current Learning Path
+            Recent Activity
           </p>
           <LearningPathCard className={classes.current}>
             <div className="title">
@@ -194,7 +202,7 @@ function Dashboard({ props }) {
                 marginBottom: "-20px"
               }}
             >
-              Current Course
+              Next Item
             </p>
             {coursePathOrder.length >= 1 ? (
               <YourCourse
