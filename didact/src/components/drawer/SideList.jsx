@@ -108,10 +108,10 @@ const SideList = ({ props }) => {
           to="/"
           style={{
             textDecoration: "none",
-            color: "#5b5b5b",
+            color: "#242424BF",
             outline: "none !important"
           }}
-          activeStyle={{ color: "black" }}
+          activeStyle={{ color: "#242424BF" }}
           activeClassName={classes.activeTab}
           className={classes.listItem}
           key="Dashboard"
@@ -126,18 +126,26 @@ const SideList = ({ props }) => {
             }}
           >
             <DashboardIcon style={{ marginLeft: "17px", fontSize: "28px" }} />
-            <p style={{ marginLeft: "25px", fontWeight: "bold" }}>Dashboard</p>
+            <p
+              style={{
+                marginLeft: "25px",
+                fontWeight: "bold",
+                fontSize: "14px"
+              }}
+            >
+              Dashboard
+            </p>
             {props.props.location.pathname === "/" ? (
               <p className={classes.arrow}>
                 <ChevronRightIcon
-                  style={{ fontSize: "2.4rem", marginTop: "6px" }}
+                  style={{ fontSize: "2rem", marginTop: "6px" }}
                 />
               </p>
             ) : (
               <p className={classes.arrow}>
                 <ChevronRightIcon
                   style={{
-                    fontSize: "2.4rem",
+                    fontSize: "2rem",
                     marginTop: "6px",
                     color: "#5b5b5b"
                   }}
@@ -167,18 +175,26 @@ const SideList = ({ props }) => {
             }}
           >
             <FolderOpenIcon style={{ marginLeft: "17px", fontSize: "28px" }} />
-            <p style={{ marginLeft: "25px", fontWeight: "bold" }}>Courses</p>
+            <p
+              style={{
+                marginLeft: "25px",
+                fontWeight: "bold",
+                fontSize: "14px"
+              }}
+            >
+              Courses
+            </p>
             {props.props.match.path.includes("/courses") ? (
               <p className={classes.arrow}>
                 <ChevronRightIcon
-                  style={{ fontSize: "2.4rem", marginTop: "6px" }}
+                  style={{ fontSize: "2rem", marginTop: "6px" }}
                 />
               </p>
             ) : (
               <p className={classes.arrow}>
                 <ChevronRightIcon
                   style={{
-                    fontSize: "2.4rem",
+                    fontSize: "2rem",
                     marginTop: "6px",
                     color: "#5b5b5b"
                   }}
@@ -212,21 +228,27 @@ const SideList = ({ props }) => {
                 }}
               >
                 <InboxIcon style={{ marginLeft: "17px", fontSize: "28px" }} />
-                <p style={{ marginLeft: "25px", fontWeight: "bold" }}>
+                <p
+                  style={{
+                    marginLeft: "25px",
+                    fontWeight: "bold",
+                    fontSize: "14px"
+                  }}
+                >
                   Learning Paths
                 </p>
 
                 {props.props.match.path.includes("/learning-paths") ? (
                   <p className={classes.arrow}>
                     <ChevronRightIcon
-                      style={{ fontSize: "2.4rem", marginTop: "6px" }}
+                      style={{ fontSize: "2rem", marginTop: "6px" }}
                     />
                   </p>
                 ) : (
                   <p className={classes.arrow}>
                     <ChevronRightIcon
                       style={{
-                        fontSize: "2.4rem",
+                        fontSize: "2rem",
                         marginTop: "6px",
                         color: "#5b5b5b"
                       }}
@@ -244,8 +266,8 @@ const SideList = ({ props }) => {
                 <Link
                   to="/learning-paths/current"
                   style={{
-                    fontSize: "1.3rem",
-                    marginTop: "6px",
+                    fontSize: "12px",
+
                     color: "#5b5b5b"
                   }}
                 >
@@ -256,8 +278,8 @@ const SideList = ({ props }) => {
                 <Link
                   to="/learning-paths/add"
                   style={{
-                    fontSize: "1.3rem",
-                    marginTop: "6px",
+                    fontSize: "12px",
+
                     color: "#5b5b5b"
                   }}
                 >
@@ -268,8 +290,8 @@ const SideList = ({ props }) => {
                 <Link
                   to="/learning-paths/join"
                   style={{
-                    fontSize: "1.3rem",
-                    marginTop: "6px",
+                    fontSize: "12px",
+
                     color: "#5b5b5b"
                   }}
                 >
@@ -305,13 +327,19 @@ const SideList = ({ props }) => {
                 <SettingsIcon
                   style={{ marginLeft: "17px", fontSize: "28px" }}
                 />
-                <p style={{ marginLeft: "25px", fontWeight: "bold" }}>
+                <p
+                  style={{
+                    marginLeft: "25px",
+                    fontWeight: "bold",
+                    fontSize: "14px"
+                  }}
+                >
                   Resources
                 </p>
                 {props.props.match.path.includes("/") ? (
                   <p className={classes.arrow}>
                     <ChevronRightIcon
-                      style={{ fontSize: "2.4rem", marginTop: "6px" }}
+                      style={{ fontSize: "2rem", marginTop: "6px" }}
                     />
                   </p>
                 ) : (
@@ -319,7 +347,7 @@ const SideList = ({ props }) => {
                     <ChevronRightIcon
                       style={{
                         fontSize: "2.4rem",
-                        marginTop: "6px",
+
                         color: "#5b5b5b"
                       }}
                     />
@@ -335,8 +363,8 @@ const SideList = ({ props }) => {
                 <Link
                   to="/tools"
                   style={{
-                    fontSize: "1.3rem",
-                    marginTop: "6px",
+                    fontSize: "12px",
+
                     color: "#5b5b5b"
                   }}
                 >
@@ -347,8 +375,8 @@ const SideList = ({ props }) => {
                 <Link
                   to="/sources"
                   style={{
-                    fontSize: "1.3rem",
-                    marginTop: "6px",
+                    fontSize: "12px",
+
                     color: "#5b5b5b"
                   }}
                 >
@@ -359,7 +387,7 @@ const SideList = ({ props }) => {
                 <Link
                   to="/articles"
                   style={{
-                    fontSize: "1.3rem",
+                    fontSize: "12px",
                     marginTop: "6px",
                     color: "#5b5b5b"
                   }}
@@ -390,7 +418,15 @@ const SideList = ({ props }) => {
                 marginLeft: "20%"
               }}
             >
-              <p style={{ marginLeft: "25px", fontWeight: "bold" }}>About</p>
+              <p
+                style={{
+                  marginLeft: "25px",
+                  fontWeight: "bold",
+                  fontSize: "14px"
+                }}
+              >
+                About
+              </p>
             </div>
           </NavLink>
 

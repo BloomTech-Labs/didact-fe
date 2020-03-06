@@ -201,9 +201,11 @@ const DrawerComponent = props => {
                   style={{
                     fontSize: "3.2rem",
                     color: "black",
-                    fontFamily: "dinosaur",
-                    fontFamily: "sans-serif",
-                    fontWeight: "900",
+                    font: "black 32px",
+                    fontFamily: "DINosaur",
+                    letterSpacing: "7px",
+                    color: "#242424",
+                    // fontWeight: "900",
                     fontStyle: "normal"
                   }}
                 >
@@ -216,17 +218,17 @@ const DrawerComponent = props => {
                   edge="start"
                   className={classes.menuButtonDesktop}
                 >
-                  <MenuIcon style={{ fontSize: "28px", textAlign: "center" }} />
+                  <MenuIcon style={{ fontSize: "24px", textAlign: "center" }} />
                 </IconButton>
               </div>
             ) : (
               <div className={classes.didactDivClosed} onClick={handleBack}>
                 <h2
                   style={{
-                    fontSize: "3.2rem",
-                    color: "black",
-                    fontFamily: "dinosaur",
-                    fontFamily: "sans-serif",
+                    fontSize: "32px",
+                    color: "#242424",
+                    // fontFamily: "dinosaur",
+                    // fontFamily: "sans-serif",
                     fontWeight: "900",
                     fontStyle: "normal"
                   }}
@@ -240,7 +242,7 @@ const DrawerComponent = props => {
                   >
                     <MenuIcon
                       style={{
-                        fontSize: "28px",
+                        fontSize: "24px",
 
                         textAlign: "center"
                       }}

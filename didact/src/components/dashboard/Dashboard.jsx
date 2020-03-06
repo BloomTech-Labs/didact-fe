@@ -9,11 +9,17 @@ import { useDispatch, useSelector } from "react-redux";
 import YourCourse from "../courses/YourCourse";
 import Course from "../courses/Course";
 
+//art
+import sphere from "../../assets/sphere.png";
+import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
+
 //Material UI Imports
 import { makeStyles } from "@material-ui/core/styles";
 
 // Styled Component Imports
 import { LearningPathCard } from "../learningPaths/YourLearningPathsStyles";
+import { TopDashboardCard } from "./DashboardStyles";
+import { TopDashboardArt } from "./DashboardStyles";
 
 const useStyles = makeStyles({
   current: {
@@ -24,6 +30,13 @@ const useStyles = makeStyles({
     paddingTop: "0",
     marginRight: props => (props.phoneSize ? "0px" : "40px")
   },
+
+  // topContainer: {
+  //   display: "flex",
+  //   flexFlow: props =>
+  //     props.mediumScreenSize || props.phoneSize ? "row wrap" : "row"
+  // },
+
   container: {
     display: "flex",
     flexFlow: props =>
@@ -91,20 +104,52 @@ function Dashboard({ props }) {
           margin: "-10px 10px 10px 10px",
           borderBottom: "1px solid black"
         }}
-      >
+      ></div>
+      <div>
         <p
           style={{
             fontWeight: "bold",
+            fontFamily: "Open Sans",
             marginLeft: "10px",
             display: "flex",
             flexDirection: "row",
-            alignItems: "center"
+            alignItems: "center",
+            marginTop: "5%"
           }}
         >
           Dashboard
         </p>
-        <p style={{ fontWeight: "bold" }}>Welcome Back, {firstName}!</p>
+        <TopDashboardArt>
+          <img
+            src={sphere}
+            style={{ margin: "0 auto", height: "270px", zIndex: "2" }}
+            alt="sphere"
+          />
+        </TopDashboardArt>
+        {/* <FiberManualRecordIcon
+          style={{
+            color: "#52bbb4",
+            fontSize: "18em",
+            margin: 0
+          }} */}
       </div>
+      <TopDashboardCard>
+        <div className={classes.topContainer}>
+          <div></div>
+          <span>SUBTITLE</span>
+          <h1>Title </h1>
+          <div>
+            <span>Date: Time</span>
+          </div>
+          <div>
+            <p style={{ fontWeight: "bold" }}>
+              Welcome Back,
+              <br /> {firstName}!
+            </p>
+          </div>
+        </div>
+      </TopDashboardCard>
+
       <div className={classes.container}>
         <div className={classes.smallContainer}>
           <p
@@ -115,7 +160,7 @@ function Dashboard({ props }) {
               marginLeft: "10px"
             }}
           >
-            Current Learning Path
+            Recent Activity
           </p>
           <LearningPathCard className={classes.current}>
             <div className="title">
@@ -177,7 +222,7 @@ function Dashboard({ props }) {
                 marginBottom: "-20px"
               }}
             >
-              Current Course
+              Next Item
             </p>
             {coursePathOrder.length >= 1 ? (
               <YourCourse

@@ -58,8 +58,8 @@ export const YourLearningPathsWrapper = styled.div`
     justify-content: flex-start;
 
     a {
-      background-color: #242424;
-      color: #f4f8fa;
+      background-color: #ffffff;
+      color: #242424;
       text-decoration: none;
       padding: 20px 30px;
       margin-bottom: 22px;

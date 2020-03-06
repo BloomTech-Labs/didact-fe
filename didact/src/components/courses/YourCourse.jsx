@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { courseEndPoint } from "../../store/actions/index.js";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import ArrowRightAltRoundedIcon from "@material-ui/icons/ArrowRightAltRounded";
 
 import {
   getYourLearningPathsOwned,
@@ -365,8 +366,30 @@ const YourCourse = ({ course, addingCourses, props }) => {
           className={classes.buttonDiv}
           style={{ margin: "0 30px 20px 0" }}
         >
-          <Link to={`/courses/yours/${course.id}`}>
-            <DidactButton>Go To Course</DidactButton>
+          <Link
+            to={`/courses/yours/${course.id}`}
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              color: "#242424",
+              width: "120px"
+            }}
+          >
+            <span
+              style={{
+                fontWeight: "bold",
+                marginTop: "2%",
+                fontFamily: "Open Sans"
+              }}
+            >
+              View Item
+            </span>
+            <ArrowRightAltRoundedIcon
+              style={{
+                fontSize: "2em"
+              }}
+            />
+            {/* <DidactButton>Go To Course</DidactButton> */}
           </Link>
         </CardActions>
       </Card>
