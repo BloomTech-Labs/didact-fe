@@ -3,8 +3,7 @@ import Tool from "./Tool.jsx";
 import { useSelector, useDispatch } from "react-redux";
 import { getTools } from "../../store/actions";
 import { Link } from "react-router-dom";
-import { DidactButton } from "../dashboard/ButtonStyles";
-import { ResourceGrid, HeaderStyled } from "./resourceStyles";
+import { ResourceGrid, HeaderStyled, ResourceWrapper } from "./resourceStyles";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 
 const Tools = props => {
@@ -18,7 +17,7 @@ const Tools = props => {
   }, [dispatch]);
 
   return (
-    <div>
+    <ResourceWrapper>
       <HeaderStyled>
         <p className="header-navs">
           <span>Resources</span>
@@ -26,18 +25,20 @@ const Tools = props => {
           <span>Tools</span>
         </p>
       </HeaderStyled>
-      {user.owner || user.admin ? (
-        <DidactButton>
-          <Link to="/resource-form">Add</Link>
-        </DidactButton>
-      ) : null}
-      <h2>Tools</h2>
+      <div className={user.owner || user.admin ? "title-admin" : "title"}>
+        <h2>Tools</h2>
+        {user.owner || user.admin ? (
+          <button>
+            <Link to="/resource-form">Add</Link>
+          </button>
+        ) : null}
+      </div>
       <ResourceGrid>
         {tools.map(tool => (
           <Tool tool={tool} key={tool.id} />
         ))}
       </ResourceGrid>
-    </div>
+    </ResourceWrapper>
   );
 };
 

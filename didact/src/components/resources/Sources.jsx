@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { getSources } from "../../store/actions";
 import { Link } from "react-router-dom";
 import { ResourceGrid, HeaderStyled } from "./resourceStyles";
-import { DidactButton } from "../dashboard/ButtonStyles";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 const Sources = props => {
   const dispatch = useDispatch();
@@ -26,9 +25,9 @@ const Sources = props => {
         </p>
       </HeaderStyled>
       {user.owner || user.admin ? (
-        <DidactButton>
+        <button>
           <Link to="/resource-form">Add</Link>
-        </DidactButton>
+        </button>
       ) : null}
       <h2>Sources</h2>
       <ResourceGrid className="sources-list">

@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Card from "@material-ui/core/Card";
-import { DidactButton } from "../dashboard/ButtonStyles";
 import { useSelector } from "react-redux";
 const ArticleBrief = props => {
   const article = props.article;
@@ -12,9 +11,9 @@ const ArticleBrief = props => {
   return (
     <Card>
       {user.owner || user.admin ? (
-        <DidactButton>
+        <button>
           <Link to={`/articles/${article.id}/edit`}>Edit</Link>
-        </DidactButton>
+        </button>
       ) : null}
       <h1>{article.title}</h1>
       <h2>{article.date}</h2>

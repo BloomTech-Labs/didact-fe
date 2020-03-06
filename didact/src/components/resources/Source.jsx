@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Card from "@material-ui/core/Card";
 import { Link } from "react-router-dom";
-import { DidactButton } from "../dashboard/ButtonStyles";
 import { useSelector } from "react-redux";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import ExpandLessIcon from "@material-ui/icons/ExpandLess";
@@ -18,9 +17,9 @@ const Source = props => {
   return (
     <Card className="source">
       {user.owner || user.admin ? (
-        <DidactButton>
+        <button>
           <Link to={`/sources/${source.id}/edit`}>Edit</Link>
-        </DidactButton>
+        </button>
       ) : null}
       <h1>{source.name}</h1>
       {/* This will be hidden by dropdown */}

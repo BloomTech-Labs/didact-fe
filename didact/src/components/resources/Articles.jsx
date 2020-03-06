@@ -5,7 +5,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { getArticles } from "../../store/actions";
 import { Link } from "react-router-dom";
 import { DidactButton } from "../dashboard/ButtonStyles";
-
+import { ResourceGrid, HeaderStyled } from "./resourceStyles";
+import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 const Articles = props => {
   const dispatch = useDispatch();
   const state = useSelector(state => state);
@@ -17,19 +18,29 @@ const Articles = props => {
   }, [dispatch]);
 
   return (
-    <div className="articles-list">
+    <div>
+      <HeaderStyled>
+        <p className="header-navs">
+          <span>Resources</span>
+          <ChevronRightIcon style={{ fontSize: "1.6rem" }} />
+          <span>Articles</span>
+        </p>
+      </HeaderStyled>
       {user.owner || user.admin ? (
-        <DidactButton>
+        <button>
           <Link to="/resource-form">Add</Link>
-        </DidactButton>
+        </button>
       ) : null}
-      {articles.map(article =>
-        article.body ? (
-          <ArticleBrief article={article} key={article.title} />
-        ) : (
-          <ExternalArticleBrief article={article} key={article.id} />
-        )
-      )}
+      <h2>Articles</h2>
+      <ResourceGrid className="articles-list">
+        {articles.map(article =>
+          article.body ? (
+            <ArticleBrief article={article} key={article.title} />
+          ) : (
+            <ExternalArticleBrief article={article} key={article.id} />
+          )
+        )}
+      </ResourceGrid>
     </div>
   );
 };

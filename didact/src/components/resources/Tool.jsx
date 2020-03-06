@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import Card from "@material-ui/core/Card";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { DidactButton } from "../dashboard/ButtonStyles";
-import { getToolById } from "../../store/actions";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 const Tool = props => {
@@ -20,9 +18,9 @@ const Tool = props => {
   return (
     <Card className="tool">
       {user.owner || user.admin ? (
-        <DidactButton>
+        <button>
           <Link to={`/tools/${tool.id}/edit`}>Edit</Link>
-        </DidactButton>
+        </button>
       ) : null}
       <h1>{tool.name}</h1>
       {/* This will be hidden by dropdown */}
