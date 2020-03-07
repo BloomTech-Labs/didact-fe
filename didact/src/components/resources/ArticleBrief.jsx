@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Card from "@material-ui/core/Card";
 import { useSelector } from "react-redux";
+import { ArticleWrapper } from "./resourceStyles";
 const ArticleBrief = props => {
   const article = props.article;
   const user = useSelector(state => state.onboardingReducer.user);
@@ -9,18 +10,23 @@ const ArticleBrief = props => {
   const author = article.first_name + " " + article.last_name;
 
   return (
-    <Card>
+    <ArticleWrapper>
       {user.owner || user.admin ? (
-        <button>
+        <div className="article-header">
+          <h1>{article.title}</h1>
           <Link to={`/articles/${article.id}/edit`}>Edit</Link>
-        </button>
-      ) : null}
-      <h1>{article.title}</h1>
+        </div>
+      ) : (
+        <h1>{article.title}</h1>
+      )}
       <h2>{article.date}</h2>
-      <h2>{author}</h2>
-      <p>{brief}...</p>
-      <Link to={`/articles/${article.id}`}>Go To Article</Link>
-    </Card>
+      <div className="body-div">
+        <p>{brief}...</p>
+      </div>
+      <div className="link-div">
+        <Link to={`/articles/${article.id}`}>Go To Article</Link>
+      </div>
+    </ArticleWrapper>
   );
 };
 
