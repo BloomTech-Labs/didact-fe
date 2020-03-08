@@ -47,7 +47,7 @@ export const YourLearningPathsWrapper = styled.div`
     background: #d1e2ea;
 
     .title h1 {
-      color: black;
+      color: #242424;
     }
   }
 
@@ -74,7 +74,7 @@ export const YourLearningPathsWrapper = styled.div`
       &:hover {
         color: rgba(0, 0, 0, 1);
         background-color: rgba(255, 255, 255, 1);
-        border: solid black 1px;
+        border: solid #242424 1px;
         outline: none;
       }
     }
@@ -106,9 +106,9 @@ export const YourLearningPathsWrapper = styled.div`
       }
 
       &:hover {
-        color: rgba(0, 0, 0, 1);
+        color: #242424;
         background-color: rgba(255, 255, 255, 1);
-        border: solid black 1px;
+        border: solid #242424;
         outline: none;
       }
     }
@@ -164,7 +164,7 @@ export const LearningPathCard = styled.div`
 
       .notCompleteButton {
         font-size: 2.2rem;
-        color: black;
+        color: #242424;
         opacity: 0.6;
         cursor: pointer;
 
@@ -175,7 +175,7 @@ export const LearningPathCard = styled.div`
 
       .completeButton {
         font-size: 2.2rem;
-        color: black;
+        color: #242424;
         cursor: pointer;
         opacity: 0.6;
 
@@ -188,24 +188,24 @@ export const LearningPathCard = styled.div`
     h1 {
       margin: 0;
       padding-bottom: 20px;
-      color: black;
+      color: #242424;
     }
 
     button {
-      background-color: #242424;
-      color: black;
+      background-color: #ffffff;
+      color: #242424;
       padding: 8px 20px;
+      border: 1px solid #242424;
       border-radius: 12px;
       font-weight: bolder;
       text-decoration: none;
-      border: none;
+      // border: none;
       margin-right: 10px;
       width: 125px;
       height: 35px;
-      border: transparent solid 1px;
 
       a {
-        color: black;
+        color: #242424;
         /* font-weight: bolder; */
         text-decoration: none;
       }
@@ -215,14 +215,14 @@ export const LearningPathCard = styled.div`
       }
 
       &:hover {
-        color: rgba(0, 0, 0, 1);
-        background-color: rgba(255, 255, 255, 1);
-        border: solid black 1px;
+        color: #ffffff;
+        background-color: #242424;
+        border: solid #242424 1px;
         outline: none;
         cursor: pointer;
 
         a {
-          color: black;
+          color: #ffffff;
         }
       }
     }
@@ -241,7 +241,7 @@ export const LearningPathCard = styled.div`
     }
 
     a {
-      color: black;
+      color: #242424;
       background: white;
       text-decoration: none;
       padding: 20px 30px;
@@ -301,9 +301,9 @@ export const ButtonStyles = styled.div`
       }
 
       &:hover {
-        color: rgba(0, 0, 0, 1);
+        color: #242424;
         background-color: rgba(255, 255, 255, 1);
-        border: solid black 1px;
+        border: solid #242424 1px;
         outline: none;
       }
     }
