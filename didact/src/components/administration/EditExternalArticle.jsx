@@ -67,7 +67,10 @@ const EditExternalArticle = ({ props, id }) => {
 
   return (
     <Card>
-      <TrashCanEdit onClick={handleModalOpen}></TrashCanEdit>
+      <TrashCanEdit
+        onClick={handleModalOpen}
+        style={{ marginTop: "10px" }}
+      ></TrashCanEdit>
       {openModal ? (
         <DeleteModal
           text={"this article"}

@@ -6,11 +6,13 @@ import { getArticles } from "../../store/actions";
 import { Link } from "react-router-dom";
 import { DidactButton } from "../dashboard/ButtonStyles";
 import {
-  ResourceGrid,
-  HeaderStyled,
-  ResourceWrapper,
-  MainArticleGrid
-} from "./resourceStyles";
+  ArticleGrid,
+  MainArticleGrid,
+  SecondaryArticleGrid,
+  StylishBlock
+} from "./articleStyles";
+import coolimage from "../../images/coolimage.png";
+import { HeaderStyled, ResourceWrapper } from "./resourceStyles";
 import FeatureArticle from "./FeatureArticle";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import { PlusDiv, Plus } from "../dashboard/ButtonStyles";
@@ -21,8 +23,9 @@ const Articles = props => {
   const user = state.onboardingReducer.user;
   const articles = state.articlesReducer.articles;
   const sortedArticles = articles.slice().sort((a, b) => a.date - b.date);
-  const mainArticles = sortedArticles.slice(1, 5);
-  const otherArticles = sortedArticles.slice(5);
+  const mainArticles = sortedArticles.slice(1, 3);
+  const secondaryArticles = sortedArticles.slice(4, 6);
+  const otherArticles = sortedArticles.slice(6);
 
   useEffect(() => {
     dispatch(getArticles());
@@ -76,15 +79,33 @@ const Articles = props => {
         ) : null}
       </div>
       <MainArticleGrid>
-        {mainArticles.map(article =>
-          article.body ? (
-            <ArticleBrief article={article} key={article.title} />
-          ) : (
-            <ExternalArticleBrief article={article} key={article.id} />
-          )
-        )}
+        {mainArticles &&
+          mainArticles.map(article =>
+            article.body ? (
+              <ArticleBrief article={article} key={article.title} />
+            ) : (
+              <ExternalArticleBrief article={article} key={article.id} />
+            )
+          )}
       </MainArticleGrid>
-      <ResourceGrid className="articles-list">
+      <SecondaryArticleGrid>
+        {secondaryArticles &&
+          secondaryArticles.map(article =>
+            article.body ? (
+              <ArticleBrief article={article} key={article.title} />
+            ) : (
+              <ExternalArticleBrief article={article} key={article.id} />
+            )
+          )}
+        {secondaryArticles.length > 1 && (
+          <StylishBlock>
+            <div className="circle"></div>
+            <img src={coolimage} />
+          </StylishBlock>
+        )}
+      </SecondaryArticleGrid>
+
+      <ArticleGrid className="articles-list">
         {otherArticles.map(article =>
           article.body ? (
             <ArticleBrief article={article} key={article.title} />
@@ -92,7 +113,7 @@ const Articles = props => {
             <ExternalArticleBrief article={article} key={article.id} />
           )
         )}
-      </ResourceGrid>
+      </ArticleGrid>
     </ResourceWrapper>
   );
 };

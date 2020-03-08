@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getArticleById } from "../../store/actions";
-import { FullArticleStyled, HeaderStyled } from "./resourceStyles";
+import { FullArticleStyled } from "./articleStyles";
+import { HeaderStyled } from "./resourceStyles";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import articlefillerimg from "../../images/articlefillerimg.png";
 import { Link } from "react-router-dom";
@@ -25,6 +26,8 @@ const ArticleFull = ({ props, id }) => {
           <Link to="/articles">
             <span>Articles</span>
           </Link>
+          <ChevronRightIcon style={{ fontSize: "1.6rem" }} />
+          <span>{article.title}</span>
         </p>
       </HeaderStyled>
       <h1>{article.title}</h1>
@@ -33,7 +36,8 @@ const ArticleFull = ({ props, id }) => {
       <div className="img-div">
         <img src={articlefillerimg} />
       </div>
-      <p>{article.body}</p>
+      {article.body &&
+        article.body.split("\n").map(portion => <p>{portion}</p>)}
     </FullArticleStyled>
   );
 };

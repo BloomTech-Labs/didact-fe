@@ -53,6 +53,7 @@ const ArticleForm = ({ props }) => {
             value={article.body}
             onChange={handleChange}
             name="body"
+            rows="12"
           />
         </DidactField>
         <DidactField>

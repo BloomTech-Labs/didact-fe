@@ -1,5 +1,5 @@
 import React from "react";
-import { FeaturedArticle } from "./resourceStyles";
+import { FeaturedArticle } from "./articleStyles";
 import { Link } from "react-router-dom";
 
 const FeatureArticle = props => {
