@@ -69,7 +69,7 @@ const EditArticle = ({ props, id }) => {
     <Card>
       <TrashCanEdit
         onClick={handleModalOpen}
-        style={{ marginTop: "10px" }}
+        style={{ marginTop: "10px", fontSize: "2.6rem" }}
       ></TrashCanEdit>
       {openModal ? (
         <DeleteModal
