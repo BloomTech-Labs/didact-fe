@@ -41,6 +41,7 @@ export const LearningPathWrapper = styled.div`
     justify-content: space-between;
     width: 100%;
     text-align: left;
+    
 
     @media (max-width: 600px) {
       width: 90;
@@ -54,7 +55,7 @@ export const LearningPathWrapper = styled.div`
       display: flex;
       justify-content: space-between;
       flex-wrap: wrap;
-
+      
       @media (max-width: 600px) {
         width: 100%;
       }
@@ -68,6 +69,8 @@ export const LearningPathWrapper = styled.div`
 
         .learningPathCard {
           max-width: 826px;
+          
+
         }
       }
     }

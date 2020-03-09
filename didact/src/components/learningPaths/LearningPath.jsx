@@ -423,7 +423,8 @@ const LearningPath = ({ id, props }) => {
                                 justifyContent: "space-between",
                                 color: "#242424",
                                 width: "120px",
-                                marginLeft: "72%"
+                                marginLeft: "35%",
+                                marginBottom: "15%"
                                 // marginTop: "-3%"
                               }}
                             >
