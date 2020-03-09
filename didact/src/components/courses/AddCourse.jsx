@@ -83,7 +83,7 @@ export default function AddCourse({ props }) {
           display: "flex",
           justifyContent: "space-between",
           margin: "-10px 10px 10px 10px",
-          borderBottom: "1px solid black"
+          borderTop: "1px solid black"
         }}
       >
         <p

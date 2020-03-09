@@ -163,7 +163,7 @@ const YourLearningPaths = props => {
           display: "flex",
           justifyContent: "space-between",
           margin: "-10px 10px 10px 10px",
-          borderBottom: "1px solid black"
+          borderTop: "1px solid black"
         }}
       >
         <p
@@ -183,12 +183,12 @@ const YourLearningPaths = props => {
       {props.props.mediumScreenSize || props.props.phoneSize ? (
         <ButtonStyles style={{ display: "flex", justifyContent: "flex-start" }}>
           <div className="buttons">
-            <Link style={{ fontSize: "1.4rem" }} to={"/learning-paths/join"}>
+            {/* <Link style={{ fontSize: "1.4rem" }} to={"/learning-paths/join"}>
               Join a Learning Path
             </Link>
             <Link style={{ fontSize: "1.4rem" }} to={"/learning-paths/add"}>
               Create a New Learning Path
-            </Link>
+            </Link> */}
           </div>
         </ButtonStyles>
       ) : null}

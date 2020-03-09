@@ -256,17 +256,17 @@ export const LearningPathWrapper = styled.div`
         }
       }
 
-      a {
-        background-color: #242424;
-        color: white;
-        padding: 10px 15px;
-        border-radius: 16px;
-        font-weight: bolder;
-      }
+  //     a {
+  //       background-color: #242424;
+  //       color: white;
+  //       padding: 10px 15px;
+  //       border-radius: 16px;
+  //       font-weight: bolder;
+  //     }
 
-      h4 {
-        margin: 0;
-      }
-    }
-  }
+  //     h4 {
+  //       margin: 0;
+  //     }
+  //   }
+  // }
 `;

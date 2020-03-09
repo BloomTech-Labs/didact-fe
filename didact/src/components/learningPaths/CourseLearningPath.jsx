@@ -177,7 +177,7 @@ const CourseLearningPath = ({ course, index, props }) => {
                       transition: `0.25s ease`
                     }}
                   >
-                    <h3 style={{ fontFamily: "ITC Grouch", color: "white" }}>
+                    <h3 style={{ fontFamily: "Open Sans", color: "#242424" }}>
                       {course.title.length > 35
                         ? `${course.title.substring(0, 35)}...`
                         : course.title}
@@ -189,7 +189,7 @@ const CourseLearningPath = ({ course, index, props }) => {
                         fontSize: "1.2rem",
                         marginTop: "10px",
                         paddingLeft: "2px",
-                        color: "white",
+                        color: "#242424",
                         position: "relative"
                       }}
                     >
