@@ -29,7 +29,7 @@ const useStyles = makeStyles(theme => ({
   card: {
     width: "100%",
     maxWidth: 540,
-    borderRadius: 15,
+    borderRadius: "7px",
     margin: "10px 0",
     boxShadow: "none",
     position: "relative",
@@ -177,7 +177,8 @@ const CourseLearningPath = ({ course, index, props }) => {
                       transition: `0.25s ease`
                     }}
                   >
-                    <h3 style={{ fontFamily: "ITC Grouch", color: "white" }}>
+
+                    <h3 style={{ fontFamily: "Open Sans", color: "#242424" }}>
                       {course.title
                         ? course.title.length > 35
                           ? `${course.title.substring(0, 35)}...`
@@ -185,6 +186,7 @@ const CourseLearningPath = ({ course, index, props }) => {
                         : course.name.length > 35
                         ? `${course.name.substring(0, 35)}...`
                         : course.name}
+
                     </h3>
                     <div
                       style={{
@@ -193,7 +195,7 @@ const CourseLearningPath = ({ course, index, props }) => {
                         fontSize: "1.2rem",
                         marginTop: "10px",
                         paddingLeft: "2px",
-                        color: "white",
+                        color: "#242424",
                         position: "relative"
                       }}
                     >

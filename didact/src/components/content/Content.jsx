@@ -22,6 +22,7 @@ import SearchResults from "../searchResults/SearchResults";
 import About from "../about/About";
 import AllYourCourses from "../courses/AllYourCourses";
 import Contact from "../contact/Contact";
+
 import AddResource from "../administration/AddResource";
 import PromoteUser from "../administration/PromoteUser";
 import EditSource from "../administration/EditSource";
@@ -37,9 +38,11 @@ const Content = props => {
           case "dashboard":
             return <Dashboard props={props} />;
           case "resource-form":
+
             return <AddResource props={props} />;
           case "promote-user":
             return <PromoteUser props={props} />;
+
           case "addcourse":
             return <AddCourse props={props} />;
           case "courses":
@@ -80,22 +83,31 @@ const Content = props => {
             return <YourLearningPaths props={props} />;
           case "tools":
             return <Tools props={props} />;
+
           case "edit-tool":
             return <EditTool props={props} id={props.match.params.id} />;
           case "sources":
             return <Sources props={props} />;
           case "edit-source":
             return <EditSource props={props} id={props.match.params.id} />;
+          case "tool":
+            return <ToolDetailed props={props} id={props.match.params.id} />;
+         
+          case "source":
+            return <SourceDetailed props={props} id={props.match.params.id} />;
+
           case "articles":
             return <Articles props={props} />;
           case "article":
             return <ArticleFull props={props} id={props.match.params.id} />;
+
           case "edit-article":
             return <EditArticle props={props} id={props.match.params.id} />;
           case "edit-external-article":
             return (
               <EditExternalArticle props={props} id={props.match.params.id} />
             );
+
           case "searchresults":
             return (
               <SearchResults

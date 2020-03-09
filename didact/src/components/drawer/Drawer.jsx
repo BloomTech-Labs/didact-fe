@@ -40,7 +40,7 @@ const DrawerComponent = props => {
     drawerOpen: {
       width: "255px",
       height: "100%",
-      margin: " 103px 0 10px 10px",
+      margin: " 80px 0 10px 10px",
       borderRadius: "15px",
       transition: theme.transitions.create("width", {
         easing: theme.transitions.easing.sharp,
@@ -59,7 +59,7 @@ const DrawerComponent = props => {
       [theme.breakpoints.up("sm")]: {
         width: theme.spacing(8) + 1,
         padding: 0,
-        marginTop: "103px",
+        marginTop: "80px",
         height: "600px",
         borderRadius: "15px"
       }
@@ -125,7 +125,7 @@ const DrawerComponent = props => {
       alignItems: "center",
 
       padding: theme.spacing(0, 1),
-      paddingBottom: "100px",
+      paddingBottom: "10px",
 
       background: "#eeeeee",
       ...theme.mixins.toolbar
@@ -181,7 +181,7 @@ const DrawerComponent = props => {
       <div className={classes.drawerDiver}>
         <Drawer
           variant="permanent"
-          // anchor="left"
+          anchor="left"
           className={clsx(classes.drawer, {
             [classes.drawerOpen]: open,
             [classes.drawerClose]: !open
@@ -201,9 +201,11 @@ const DrawerComponent = props => {
                   style={{
                     fontSize: "3.2rem",
                     color: "black",
-                    fontFamily: "dinosaur",
-                    fontFamily: "sans-serif",
-                    fontWeight: "900",
+                    font: "black 32px",
+                    fontFamily: "DINosaur",
+                    letterSpacing: "7px",
+                    color: "#242424",
+                    // fontWeight: "900",
                     fontStyle: "normal"
                   }}
                 >
@@ -216,17 +218,17 @@ const DrawerComponent = props => {
                   edge="start"
                   className={classes.menuButtonDesktop}
                 >
-                  <MenuIcon style={{ fontSize: "28px", textAlign: "center" }} />
+                  <MenuIcon style={{ fontSize: "24px", textAlign: "center" }} />
                 </IconButton>
               </div>
             ) : (
               <div className={classes.didactDivClosed} onClick={handleBack}>
                 <h2
                   style={{
-                    fontSize: "3.2rem",
-                    color: "black",
-                    fontFamily: "dinosaur",
-                    fontFamily: "sans-serif",
+                    fontSize: "32px",
+                    color: "#242424",
+                    // fontFamily: "dinosaur",
+                    // fontFamily: "sans-serif",
                     fontWeight: "900",
                     fontStyle: "normal"
                   }}
@@ -240,7 +242,7 @@ const DrawerComponent = props => {
                   >
                     <MenuIcon
                       style={{
-                        fontSize: "28px",
+                        fontSize: "24px",
 
                         textAlign: "center"
                       }}
