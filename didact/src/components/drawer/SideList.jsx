@@ -8,11 +8,17 @@ import ListItem from "@material-ui/core/ListItem";
 import Collapse from "@material-ui/core/Collapse";
 ////
 
+//Material UI Icons
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import FolderOpenIcon from "@material-ui/icons/FolderOpen";
-//Material UI Icons
+import LinearScaleIcon from "@material-ui/icons/LinearScale";
+import BuildIcon from "@material-ui/icons/Build";
+import LibraryBooksIcon from "@material-ui/icons/LibraryBooks";
+import SchoolIcon from "@material-ui/icons/School";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
+import BookIcon from "@material-ui/icons/Book";
+import CreateIcon from "@material-ui/icons/Create";
 import SettingsIcon from "@material-ui/icons/Settings";
 import { SideListWrapper } from "./SideListStyles";
 
@@ -40,11 +46,21 @@ const SideList = ({ props }) => {
       margin: "10px 0px",
       padding: 0
     },
+    listingThing: {
+      background: "purple"
+    },
+
     listItem: {
       display: "flex",
       flexDirection: "row",
       alignItems: "center",
       width: "225px"
+    },
+
+    listItemSmall: {
+      display: "flex"
+      // flexDirection: "row",
+      // alignItems: "center",
     },
 
     // navigationLinks: {
@@ -76,13 +92,14 @@ const SideList = ({ props }) => {
       paddingLeft: theme.spacing(4),
       marginLeft: "20%",
       textDecoration: "none",
-      color: "black"
+      color: "#242424"
     },
-    nested: {
+
+    nestedSmall: {
       paddingLeft: theme.spacing(4),
-      marginLeft: "20%",
+      marginLeft: "-20%",
       textDecoration: "none",
-      color: "black"
+      color: "#242424"
     }
   }));
 
@@ -102,322 +119,31 @@ const SideList = ({ props }) => {
 
   return (
     <SideListWrapper>
-      <ul className={classes.listing}>
-        <NavLink
-          exact
-          to="/"
-          style={{
-            textDecoration: "none",
-            color: "#242424BF",
-            outline: "none !important"
-          }}
-          activeStyle={{ color: "#242424BF" }}
-          activeClassName={classes.activeTab}
-          className={classes.listItem}
-          key="Dashboard"
-        >
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              width: "100%",
-              alignItems: "center",
-              outline: "none !important"
-            }}
-          >
-            <DashboardIcon style={{ marginLeft: "17px", fontSize: "28px" }} />
-            <p
-              style={{
-                marginLeft: "25px",
-                fontWeight: "bold",
-                fontSize: "14px"
-              }}
-            >
-              Dashboard
-            </p>
-            {props.props.location.pathname === "/" ? (
-              <p className={classes.arrow}>
-                <ChevronRightIcon
-                  style={{ fontSize: "2rem", marginTop: "6px" }}
-                />
-              </p>
-            ) : (
-              <p className={classes.arrow}>
-                <ChevronRightIcon
-                  style={{
-                    fontSize: "2rem",
-                    marginTop: "6px",
-                    color: "#5b5b5b"
-                  }}
-                />
-              </p>
-            )}
-          </div>
-        </NavLink>
-        <NavLink
-          to="/courses"
-          style={{
-            textDecoration: "none",
-            color: "#5b5b5b",
-            outline: "none !important"
-          }}
-          activeStyle={{ color: "black" }}
-          activeClassName={classes.activeTab}
-          className={classes.listItem}
-          key="Add Course"
-        >
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              width: "100%",
-              alignItems: "center"
-            }}
-          >
-            <FolderOpenIcon style={{ marginLeft: "17px", fontSize: "28px" }} />
-            <p
-              style={{
-                marginLeft: "25px",
-                fontWeight: "bold",
-                fontSize: "14px"
-              }}
-            >
-              Courses
-            </p>
-            {props.props.match.path.includes("/courses") ? (
-              <p className={classes.arrow}>
-                <ChevronRightIcon
-                  style={{ fontSize: "2rem", marginTop: "6px" }}
-                />
-              </p>
-            ) : (
-              <p className={classes.arrow}>
-                <ChevronRightIcon
-                  style={{
-                    fontSize: "2rem",
-                    marginTop: "6px",
-                    color: "#5b5b5b"
-                  }}
-                />
-              </p>
-            )}
-          </div>
-        </NavLink>
-
-        <div className={classes.learningPathDiv}>
-          {/* <List component="learning-path-nav" className={classes.root}> */}
-          <nav onClick={handleClick}>
-            <NavLink
-              to="/learning-paths"
-              style={{
-                textDecoration: "none",
-                color: "#5b5b5b",
-                outline: "none !important"
-              }}
-              activeStyle={{ color: "black" }}
-              activeClassName={classes.activeTab}
-              className={classes.listItem}
-              key="Learning Paths"
-            >
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  width: "100%",
-                  alignItems: "center"
-                }}
-              >
-                <InboxIcon style={{ marginLeft: "17px", fontSize: "28px" }} />
-                <p
-                  style={{
-                    marginLeft: "25px",
-                    fontWeight: "bold",
-                    fontSize: "14px"
-                  }}
-                >
-                  Learning Paths
-                </p>
-
-                {props.props.match.path.includes("/learning-paths") ? (
-                  <p className={classes.arrow}>
-                    <ChevronRightIcon
-                      style={{ fontSize: "2rem", marginTop: "6px" }}
-                    />
-                  </p>
-                ) : (
-                  <p className={classes.arrow}>
-                    <ChevronRightIcon
-                      style={{
-                        fontSize: "2rem",
-                        marginTop: "6px",
-                        color: "#5b5b5b"
-                      }}
-                    />
-                  </p>
-                )}
-              </div>
-              {/* {open ? <ExpandLess /> : <ExpandMore />} */}
-            </NavLink>
-          </nav>
-          <div className={classes.collapseNav}>
-            <Collapse in={open} timeout="auto" unmountOnExit>
-              {/* </List> */}
-              <ListItem className={classes.nested}>
-                <Link
-                  to="/learning-paths/current"
-                  style={{
-                    fontSize: "12px",
-
-                    color: "#5b5b5b"
-                  }}
-                >
-                  Current
-                </Link>
-              </ListItem>
-              <ListItem className={classes.nested}>
-                <Link
-                  to="/learning-paths/add"
-                  style={{
-                    fontSize: "12px",
-
-                    color: "#5b5b5b"
-                  }}
-                >
-                  Create
-                </Link>
-              </ListItem>
-              <ListItem className={classes.nested}>
-                <Link
-                  to="/learning-paths/join"
-                  style={{
-                    fontSize: "12px",
-
-                    color: "#5b5b5b"
-                  }}
-                >
-                  Join
-                </Link>
-              </ListItem>
-            </Collapse>
-          </div>
-        </div>
-
-        <div className={classes.resourcesDiv}>
-          <nav onClick={resourcesHandleClick}>
-            <NavLink
-              to={window}
-              style={{
-                textDecoration: "none",
-                color: "#5b5b5b",
-                outline: "none !important"
-              }}
-              activeStyle={{ color: "black" }}
-              activeClassName={classes.activeTab}
-              className={classes.listItem}
-              key="Resources"
-            >
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  width: "100%",
-                  alignItems: "center"
-                }}
-              >
-                <SettingsIcon
-                  style={{ marginLeft: "17px", fontSize: "28px" }}
-                />
-                <p
-                  style={{
-                    marginLeft: "25px",
-                    fontWeight: "bold",
-                    fontSize: "14px"
-                  }}
-                >
-                  Resources
-                </p>
-                {props.props.match.path.includes("/") ? (
-                  <p className={classes.arrow}>
-                    <ChevronRightIcon
-                      style={{ fontSize: "2rem", marginTop: "6px" }}
-                    />
-                  </p>
-                ) : (
-                  <p className={classes.arrow}>
-                    <ChevronRightIcon
-                      style={{
-                        fontSize: "2.4rem",
-
-                        color: "#5b5b5b"
-                      }}
-                    />
-                  </p>
-                )}
-              </div>
-            </NavLink>
-          </nav>
-          <div className={classes.collapseNav}>
-            <Collapse in={resOpen} timeout="auto" unmountOnExit>
-              {/* </List> */}
-              <ListItem className={classes.nested}>
-                <Link
-                  to="/tools"
-                  style={{
-                    fontSize: "12px",
-
-                    color: "#5b5b5b"
-                  }}
-                >
-                  Tools
-                </Link>
-              </ListItem>
-              <ListItem className={classes.nested}>
-                <Link
-                  to="/sources"
-                  style={{
-                    fontSize: "12px",
-
-                    color: "#5b5b5b"
-                  }}
-                >
-                  Sources
-                </Link>
-              </ListItem>
-              <ListItem className={classes.nested}>
-                <Link
-                  to="/articles"
-                  style={{
-                    fontSize: "12px",
-                    marginTop: "6px",
-                    color: "#5b5b5b"
-                  }}
-                >
-                  Articles
-                </Link>
-              </ListItem>
-            </Collapse>
-          </div>
-
+      {props.open ? (
+        <ul className={classes.listing}>
           <NavLink
-            to="/about"
+            exact
+            to="/"
             style={{
               textDecoration: "none",
-              color: "#5b5b5b",
+              color: "#242424BF",
               outline: "none !important"
             }}
-            activeStyle={{ color: "black" }}
+            activeStyle={{ color: "#242424BF" }}
             activeClassName={classes.activeTab}
             className={classes.listItem}
-            key="about"
+            key="Dashboard"
           >
             <div
               style={{
                 display: "flex",
                 flexDirection: "row",
                 width: "100%",
-                marginLeft: "20%"
+                alignItems: "center",
+                outline: "none !important"
               }}
             >
+              <DashboardIcon style={{ marginLeft: "17px", fontSize: "28px" }} />
               <p
                 style={{
                   marginLeft: "25px",
@@ -425,13 +151,29 @@ const SideList = ({ props }) => {
                   fontSize: "14px"
                 }}
               >
-                About
+                Dashboard
               </p>
+              {props.props.location.pathname === "/" ? (
+                <p className={classes.arrow}>
+                  <ChevronRightIcon
+                    style={{ fontSize: "2rem", marginTop: "6px" }}
+                  />
+                </p>
+              ) : (
+                <p className={classes.arrow}>
+                  <ChevronRightIcon
+                    style={{
+                      fontSize: "2rem",
+                      marginTop: "6px",
+                      color: "#5b5b5b"
+                    }}
+                  />
+                </p>
+              )}
             </div>
           </NavLink>
-
           <NavLink
-            to="/contact"
+            to="/courses"
             style={{
               textDecoration: "none",
               color: "#5b5b5b",
@@ -440,21 +182,671 @@ const SideList = ({ props }) => {
             activeStyle={{ color: "black" }}
             activeClassName={classes.activeTab}
             className={classes.listItem}
-            key="about"
+            key="Add Course"
           >
             <div
               style={{
                 display: "flex",
                 flexDirection: "row",
                 width: "100%",
-                marginLeft: "20%"
+                alignItems: "center"
               }}
             >
-              <p style={{ marginLeft: "25px", fontWeight: "bold" }}>Contact</p>
+              <FolderOpenIcon
+                style={{ marginLeft: "17px", fontSize: "28px" }}
+              />
+              <p
+                style={{
+                  marginLeft: "25px",
+                  fontWeight: "bold",
+                  fontSize: "14px"
+                }}
+              >
+                Courses
+              </p>
+              {props.props.match.path.includes("/courses") ? (
+                <p className={classes.arrow}>
+                  <ChevronRightIcon
+                    style={{ fontSize: "2rem", marginTop: "6px" }}
+                  />
+                </p>
+              ) : (
+                <p className={classes.arrow}>
+                  <ChevronRightIcon
+                    style={{
+                      fontSize: "2rem",
+                      marginTop: "6px",
+                      color: "#5b5b5b"
+                    }}
+                  />
+                </p>
+              )}
             </div>
           </NavLink>
-        </div>
-      </ul>
+
+          <div className={classes.learningPathDiv}>
+            {/* <List component="learning-path-nav" className={classes.root}> */}
+            <nav onClick={handleClick}>
+              <NavLink
+                to="/learning-paths"
+                style={{
+                  textDecoration: "none",
+                  color: "#5b5b5b",
+                  outline: "none !important"
+                }}
+                activeStyle={{ color: "black" }}
+                activeClassName={classes.activeTab}
+                className={classes.listItem}
+                key="Learning Paths"
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    width: "100%",
+                    alignItems: "center"
+                  }}
+                >
+                  <InboxIcon style={{ marginLeft: "17px", fontSize: "28px" }} />
+                  <p
+                    style={{
+                      marginLeft: "25px",
+                      fontWeight: "bold",
+                      fontSize: "14px"
+                    }}
+                  >
+                    Learning Paths
+                  </p>
+
+                  {props.props.match.path.includes("/learning-paths") ? (
+                    <p className={classes.arrow}>
+                      <ChevronRightIcon
+                        style={{ fontSize: "2rem", marginTop: "6px" }}
+                      />
+                    </p>
+                  ) : (
+                    <p className={classes.arrow}>
+                      <ChevronRightIcon
+                        style={{
+                          fontSize: "2rem",
+                          marginTop: "6px",
+                          color: "#5b5b5b"
+                        }}
+                      />
+                    </p>
+                  )}
+                </div>
+                {/* {open ? <ExpandLess /> : <ExpandMore />} */}
+              </NavLink>
+            </nav>
+            <div className={classes.collapseNav}>
+              <Collapse in={open} timeout="auto" unmountOnExit>
+                {/* </List> */}
+                <ListItem className={classes.nested}>
+                  <Link
+                    to="/learning-paths/current"
+                    style={{
+                      fontSize: "12px",
+
+                      color: "#5b5b5b"
+                    }}
+                  >
+                    Current
+                  </Link>
+                </ListItem>
+                <ListItem className={classes.nested}>
+                  <Link
+                    to="/learning-paths/add"
+                    style={{
+                      fontSize: "12px",
+
+                      color: "#5b5b5b"
+                    }}
+                  >
+                    Create
+                  </Link>
+                </ListItem>
+                <ListItem className={classes.nested}>
+                  <Link
+                    to="/learning-paths/join"
+                    style={{
+                      fontSize: "12px",
+
+                      color: "#5b5b5b"
+                    }}
+                  >
+                    Join
+                  </Link>
+                </ListItem>
+              </Collapse>
+            </div>
+          </div>
+
+          <div className={classes.resourcesDiv}>
+            <nav onClick={resourcesHandleClick}>
+              <NavLink
+                to={window}
+                style={{
+                  textDecoration: "none",
+                  color: "#5b5b5b",
+                  outline: "none !important"
+                }}
+                activeStyle={{ color: "black" }}
+                activeClassName={classes.activeTab}
+                className={classes.listItem}
+                key="Resources"
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    width: "100%",
+                    alignItems: "center"
+                  }}
+                >
+                  <SettingsIcon
+                    style={{ marginLeft: "17px", fontSize: "28px" }}
+                  />
+                  <p
+                    style={{
+                      marginLeft: "25px",
+                      fontWeight: "bold",
+                      fontSize: "14px"
+                    }}
+                  >
+                    Resources
+                  </p>
+                  {props.props.match.path.includes("/") ? (
+                    <p className={classes.arrow}>
+                      <ChevronRightIcon
+                        style={{ fontSize: "2rem", marginTop: "6px" }}
+                      />
+                    </p>
+                  ) : (
+                    <p className={classes.arrow}>
+                      <ChevronRightIcon
+                        style={{
+                          fontSize: "2.4rem",
+
+                          color: "#5b5b5b"
+                        }}
+                      />
+                    </p>
+                  )}
+                </div>
+              </NavLink>
+            </nav>
+            <div className={classes.collapseNav}>
+              <Collapse in={resOpen} timeout="auto" unmountOnExit>
+                {/* </List> */}
+                <ListItem className={classes.nested}>
+                  <Link
+                    to="/tools"
+                    style={{
+                      fontSize: "12px",
+
+                      color: "#5b5b5b"
+                    }}
+                  >
+                    Tools
+                  </Link>
+                </ListItem>
+                <ListItem className={classes.nested}>
+                  <Link
+                    to="/sources"
+                    style={{
+                      fontSize: "12px",
+
+                      color: "#5b5b5b"
+                    }}
+                  >
+                    Sources
+                  </Link>
+                </ListItem>
+                <ListItem className={classes.nested}>
+                  <Link
+                    to="/articles"
+                    style={{
+                      fontSize: "12px",
+                      marginTop: "6px",
+                      color: "#5b5b5b"
+                    }}
+                  >
+                    Articles
+                  </Link>
+                </ListItem>
+              </Collapse>
+            </div>
+            {/* <div className="naver"> */}
+            <NavLink
+              to="/about"
+              style={{
+                textDecoration: "none",
+                color: "#5b5b5b",
+                outline: "none !important"
+              }}
+              activeStyle={{ color: "black" }}
+              activeClassName={classes.activeTab}
+              className={classes.listItem}
+              key="about"
+            >
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  width: "100%",
+                  marginLeft: "20%"
+                }}
+              >
+                <p
+                  style={{
+                    marginLeft: "25px",
+                    fontWeight: "bold",
+                    fontSize: "14px"
+                  }}
+                >
+                  About
+                </p>
+              </div>
+            </NavLink>
+
+            <NavLink
+              to="/contact"
+              style={{
+                textDecoration: "none",
+                color: "#5b5b5b",
+                outline: "none !important"
+              }}
+              activeStyle={{ color: "black" }}
+              activeClassName={classes.activeTab}
+              className={classes.listItem}
+              key="about"
+            >
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  width: "100%",
+                  marginLeft: "20%"
+                }}
+              >
+                <p style={{ marginLeft: "25px", fontWeight: "bold" }}>
+                  Contact
+                </p>
+              </div>
+            </NavLink>
+          </div>
+          {/* </div> */}
+        </ul>
+      ) : (
+        <ul className={classes.listing}>
+          <NavLink
+            exact
+            to="/"
+            style={{
+              textDecoration: "none",
+              color: "#242424BF",
+              outline: "none !important"
+            }}
+            activeStyle={{ color: "#242424BF" }}
+            activeClassName={classes.activeTab}
+            className={classes.listItem}
+            key="Dashboard"
+          >
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                width: "100%",
+                alignItems: "center",
+                outline: "none !important"
+              }}
+            >
+              <DashboardIcon style={{ marginLeft: "17px", fontSize: "28px" }} />
+              <p
+                style={{
+                  marginLeft: "25px",
+                  fontWeight: "bold",
+                  fontSize: "14px"
+                }}
+              >
+                Dashboard
+              </p>
+              {props.props.location.pathname === "/" ? (
+                <p className={classes.arrow}>
+                  <ChevronRightIcon
+                    style={{ fontSize: "2rem", marginTop: "6px" }}
+                  />
+                </p>
+              ) : (
+                <p className={classes.arrow}>
+                  <ChevronRightIcon
+                    style={{
+                      fontSize: "2rem",
+                      marginTop: "6px",
+                      color: "#5b5b5b"
+                    }}
+                  />
+                </p>
+              )}
+            </div>
+          </NavLink>
+          <NavLink
+            to="/courses"
+            style={{
+              textDecoration: "none",
+              color: "#5b5b5b",
+              outline: "none !important"
+            }}
+            activeStyle={{ color: "black" }}
+            activeClassName={classes.activeTab}
+            className={classes.listItem}
+            key="Add Course"
+          >
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                width: "100%",
+                alignItems: "center"
+              }}
+            >
+              <FolderOpenIcon
+                style={{ marginLeft: "17px", fontSize: "28px" }}
+              />
+              <p
+                style={{
+                  marginLeft: "25px",
+                  fontWeight: "bold",
+                  fontSize: "14px"
+                }}
+              >
+                Courses
+              </p>
+              {props.props.match.path.includes("/courses") ? (
+                <p className={classes.arrow}>
+                  <ChevronRightIcon
+                    style={{ fontSize: "2rem", marginTop: "6px" }}
+                  />
+                </p>
+              ) : (
+                <p className={classes.arrow}>
+                  <ChevronRightIcon
+                    style={{
+                      fontSize: "2rem",
+                      marginTop: "6px",
+                      color: "#5b5b5b"
+                    }}
+                  />
+                </p>
+              )}
+            </div>
+          </NavLink>
+
+          <div className={classes.learningPathDiv}>
+            {/* <List component="learning-path-nav" className={classes.root}> */}
+            <nav onClick={handleClick}>
+              <NavLink
+                to="/learning-paths"
+                style={{
+                  textDecoration: "none",
+                  color: "#5b5b5b",
+                  outline: "none !important"
+                }}
+                activeStyle={{ color: "black" }}
+                activeClassName={classes.activeTab}
+                className={classes.listItem}
+                key="Learning Paths"
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    width: "100%",
+                    alignItems: "center"
+                  }}
+                >
+                  <InboxIcon style={{ marginLeft: "17px", fontSize: "28px" }} />
+                  <p
+                    style={{
+                      marginLeft: "25px",
+                      fontWeight: "bold",
+                      fontSize: "14px"
+                    }}
+                  >
+                    Learning Paths
+                  </p>
+
+                  {props.props.match.path.includes("/learning-paths") ? (
+                    <p className={classes.arrow}>
+                      <ChevronRightIcon
+                        style={{ fontSize: "2rem", marginTop: "6px" }}
+                      />
+                    </p>
+                  ) : (
+                    <p className={classes.arrow}>
+                      <ChevronRightIcon
+                        style={{
+                          fontSize: "2rem",
+                          marginTop: "6px",
+                          color: "#5b5b5b"
+                        }}
+                      />
+                    </p>
+                  )}
+                </div>
+                {/* {open ? <ExpandLess /> : <ExpandMore />} */}
+              </NavLink>
+            </nav>
+            <div className={classes.collapseNav}>
+              <Collapse in={open} timeout="auto" unmountOnExit>
+                {/* </List> */}
+                <ListItem className={classes.nestedSmall}>
+                  <Link
+                    to="/learning-paths/current"
+                    style={{
+                      fontSize: "12px",
+
+                      color: "#5b5b5b"
+                    }}
+                  >
+                    <BookIcon />
+                  </Link>
+                </ListItem>
+                <ListItem className={classes.nestedSmall}>
+                  <Link
+                    to="/learning-paths/add"
+                    style={{
+                      fontSize: "12px",
+
+                      color: "#5b5b5b"
+                    }}
+                  >
+                    <CreateIcon />
+                  </Link>
+                </ListItem>
+                <ListItem className={classes.nestedSmall}>
+                  <Link
+                    to="/learning-paths/join"
+                    style={{
+                      fontSize: "12px",
+
+                      color: "#5b5b5b"
+                    }}
+                  >
+                    <LinearScaleIcon />
+                  </Link>
+                </ListItem>
+              </Collapse>
+            </div>
+          </div>
+
+          <div className={classes.resourcesDiv}>
+            <nav onClick={resourcesHandleClick}>
+              <NavLink
+                to={window}
+                style={{
+                  textDecoration: "none",
+                  color: "#5b5b5b",
+                  outline: "none !important"
+                }}
+                activeStyle={{ color: "black" }}
+                activeClassName={classes.activeTab}
+                className={classes.listItem}
+                key="Resources"
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    width: "100%",
+                    alignItems: "center"
+                  }}
+                >
+                  <SettingsIcon
+                    style={{ marginLeft: "17px", fontSize: "28px" }}
+                  />
+                  <p
+                    style={{
+                      marginLeft: "25px",
+                      fontWeight: "bold",
+                      fontSize: "14px"
+                    }}
+                  >
+                    Resources
+                  </p>
+                  {props.props.match.path.includes("/") ? (
+                    <p className={classes.arrow}>
+                      <ChevronRightIcon
+                        style={{ fontSize: "2rem", marginTop: "6px" }}
+                      />
+                    </p>
+                  ) : (
+                    <p className={classes.arrow}>
+                      <ChevronRightIcon
+                        style={{
+                          fontSize: "2.4rem",
+
+                          color: "#5b5b5b"
+                        }}
+                      />
+                    </p>
+                  )}
+                </div>
+              </NavLink>
+            </nav>
+            <div className={classes.collapseNav}>
+              <Collapse in={resOpen} timeout="auto" unmountOnExit>
+                {/* </List> */}
+                <ListItem className={classes.nestedSmall}>
+                  <Link
+                    to="/tools"
+                    style={{
+                      fontSize: "12px",
+
+                      color: "#5b5b5b"
+                    }}
+                  >
+                    <BuildIcon />
+                  </Link>
+                </ListItem>
+                <ListItem className={classes.nestedSmall}>
+                  <Link
+                    to="/sources"
+                    style={{
+                      fontSize: "12px",
+
+                      color: "#5b5b5b"
+                    }}
+                  >
+                    <SchoolIcon />
+                  </Link>
+                </ListItem>
+                <ListItem className={classes.nestedSmall}>
+                  <Link
+                    to="/articles"
+                    style={{
+                      fontSize: "12px",
+                      marginTop: "6px",
+                      color: "#5b5b5b"
+                    }}
+                  >
+                    <LibraryBooksIcon />
+                  </Link>
+                </ListItem>
+              </Collapse>
+            </div>
+
+            <NavLink
+              to="/about"
+              style={{
+                textDecoration: "none",
+                color: "#5b5b5b",
+                outline: "none !important"
+              }}
+              activeStyle={{ color: "#242424" }}
+              activeClassName={classes.activeTab}
+              className={classes.listItemSmall}
+              key="about"
+            >
+              <div
+                style={
+                  {
+                    // display: "flex",
+                    // flexDirection: "row",
+                    // width: "100%"
+                    // marginLeft: "20%"
+                  }
+                }
+              >
+                <p
+                  style={{
+                    marginLeft: "15%",
+                    fontWeight: "bold",
+                    fontSize: "14px"
+                  }}
+                >
+                  About
+                </p>
+              </div>
+            </NavLink>
+
+            <NavLink
+              to="/contact"
+              style={{
+                textDecoration: "none",
+                color: "#5b5b5b",
+                outline: "none !important"
+              }}
+              activeStyle={{ color: "#242424" }}
+              activeClassName={classes.activeTab}
+              className={classes.listItemSmall}
+              key="about"
+            >
+              <div
+                style={
+                  {
+                    // display: "flex",
+                    // flexDirection: "row",
+                    // width: "100%"
+                    // marginRight: "90%"
+                  }
+                }
+              >
+                <p
+                  style={{
+                    marginRight: "25%",
+                    fontWeight: "bold",
+                    fontSize: "14px"
+                  }}
+                >
+                  Contact
+                </p>
+              </div>
+            </NavLink>
+          </div>
+        </ul>
+      )}
     </SideListWrapper>
   );
 };

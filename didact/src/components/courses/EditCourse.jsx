@@ -45,7 +45,7 @@ const useStyles = makeStyles(theme => ({
   card: {
     width: "100%",
     maxWidth: 540,
-    borderRadius: 15,
+    borderRadius: "7px",
     margin: "10px 0",
     boxShadow: "none"
   },
@@ -194,7 +194,7 @@ const EditCourse = ({ props, id }) => {
             display: "flex",
             justifyContent: "space-between",
             margin: "-10px 10px 10px 10px",
-            borderBottom: "1px solid black"
+            borderTop: "1px solid black"
           }}
         >
           <p

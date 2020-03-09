@@ -22,7 +22,7 @@ import { DidactButton } from "../dashboard/ButtonStyles";
 const useStyles = makeStyles(theme => ({
   card: {
     maxWidth: 540,
-    borderRadius: 15,
+    borderRadius: "7px",
     boxShadow: "none"
   },
   container: {
@@ -70,34 +70,34 @@ const AddLearningPaths = ({ props }) => {
   return (
     <>
       <div
-        style={ {
+        style={{
           display: "flex",
           justifyContent: "space-between",
           margin: "-10px 10px 10px 10px",
-          borderBottom: "1px solid black"
-        } }
+          borderTop: "1px solid black"
+        }}
       >
         <p
-          style={ {
+          style={{
             fontWeight: "bold",
             marginLeft: "10px",
             display: "flex",
             flexDirection: "row",
             alignItems: "center"
-          } }
+          }}
         >
-          <span className={ classes.span } onClick={ handleBack }>
+          <span className={classes.span} onClick={handleBack}>
             Learning Paths
           </span>
-          <ChevronRightIcon style={ { fontSize: "1.6rem" } } />
+          <ChevronRightIcon style={{ fontSize: "1.6rem" }} />
           <span>Add New Path</span>
         </p>
       </div>
-      <Card className={ classes.card }>
+      <Card className={classes.card}>
         <CardContent>
           <form
-            onSubmit={ handleSubmit }
-            className={ classes.container }
+            onSubmit={handleSubmit}
+            className={classes.container}
             noValidate
             autoComplete="off"
           >
@@ -107,8 +107,8 @@ const AddLearningPaths = ({ props }) => {
               <DidactInput
                 id="title"
                 type="text"
-                value={ values.title || "" }
-                onChange={ handleChange("title") }
+                value={values.title || ""}
+                onChange={handleChange("title")}
                 placeholder="Learning Path Title"
               />
             </DidactField>
@@ -116,8 +116,8 @@ const AddLearningPaths = ({ props }) => {
               <DidactLabel htmlFor="description">Description</DidactLabel>
               <DidactTextArea
                 id="description"
-                value={ values.description || "" }
-                onChange={ handleChange("description") }
+                value={values.description || ""}
+                onChange={handleChange("description")}
                 placeholder="Description"
                 rows="8"
               />
@@ -127,12 +127,12 @@ const AddLearningPaths = ({ props }) => {
               <DidactInput
                 id="topic"
                 type="text"
-                value={ values.topic || "" }
-                onChange={ handleChange("topic") }
+                value={values.topic || ""}
+                onChange={handleChange("topic")}
                 placeholder="Topic"
               />
             </DidactField>
-            <DidactButton style={ { marginLeft: "72%" } } type="submit">
+            <DidactButton style={{ marginLeft: "72%" }} type="submit">
               Create Path
             </DidactButton>
           </form>

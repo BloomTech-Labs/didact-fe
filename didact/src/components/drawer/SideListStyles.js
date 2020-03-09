@@ -12,5 +12,9 @@ export const SideListWrapper = styled.div`
 
   ::-webkit-scrollbar {
     display: none;
+    overflow-y: scroll;
   }
+  // .naver {
+
+  // }
 `;

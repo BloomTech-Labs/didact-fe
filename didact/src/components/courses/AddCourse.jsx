@@ -24,7 +24,7 @@ import { DidactButton } from "../dashboard/ButtonStyles";
 const useStyles = makeStyles(theme => ({
   card: {
     maxWidth: 540,
-    borderRadius: 15,
+    borderRadius: "7px",
     boxShadow: "none",
     marginLeft: "5px"
   },
@@ -83,7 +83,7 @@ export default function AddCourse({ props }) {
           display: "flex",
           justifyContent: "space-between",
           margin: "-10px 10px 10px 10px",
-          borderBottom: "1px solid black"
+          borderTop: "1px solid black"
         }}
       >
         <p

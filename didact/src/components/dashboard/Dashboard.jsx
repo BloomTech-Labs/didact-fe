@@ -131,7 +131,8 @@ function Dashboard({ props }) {
             color: "#52bbb4",
             fontSize: "18em",
             margin: 0
-          }} */}
+          }}g
+        /> */}
       </div>
       <TopDashboardCard>
         <div className={classes.topContainer}>
