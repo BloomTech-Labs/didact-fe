@@ -110,7 +110,7 @@ function AllCourses(props) {
       <div className={tabletSize ? classes.rootTablet : classes.root}>
         {tabletSize ? (
           <div className={classes.addButtonDivTablet}>
-            <ButtonStyles
+            {/* <ButtonStyles
               style={{ display: "flex", justifyContent: "flex-start" }}
             >
               <div className="buttons">
@@ -121,7 +121,7 @@ function AllCourses(props) {
                   All Courses
                 </Link>
               </div>
-            </ButtonStyles>
+            </ButtonStyles> */}
           </div>
         ) : null}
         <div>
@@ -136,7 +136,7 @@ function AllCourses(props) {
               ))
             : null}
         </div>
-        {!tabletSize ? (
+        {/* {!tabletSize ? (
           <div className={classes.addButtonDiv}>
             <ButtonStyles
               style={{ display: "flex", justifyContent: "flex-start" }}
@@ -151,7 +151,7 @@ function AllCourses(props) {
               </div>
             </ButtonStyles>
           </div>
-        ) : null}
+        ) : null} */}
       </div>
     </div>
   );

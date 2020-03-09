@@ -24,7 +24,7 @@ import { DidactButton } from "../dashboard/ButtonStyles";
 const useStyles = makeStyles(theme => ({
   card: {
     maxWidth: 540,
-    borderRadius: 15,
+    borderRadius: "7px",
     boxShadow: "none",
     marginLeft: "5px"
   },

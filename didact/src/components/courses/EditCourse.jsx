@@ -45,7 +45,7 @@ const useStyles = makeStyles(theme => ({
   card: {
     width: "100%",
     maxWidth: 540,
-    borderRadius: 15,
+    borderRadius: "7px",
     margin: "10px 0",
     boxShadow: "none"
   },

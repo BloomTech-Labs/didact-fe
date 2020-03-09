@@ -49,7 +49,7 @@ const useStyles = makeStyles(theme => ({
   card: {
     width: "100%",
     maxWidth: 540,
-    borderRadius: 15,
+    borderRadius: "7px",
     margin: "10px 0",
     boxShadow: "none"
   },
@@ -143,12 +143,12 @@ const EditAllCourse = ({ props, id }) => {
     setCourseEdit(!courseEdit);
   };
 
-    const handleCourseSubmit = event => {
-        event.preventDefault();
-        dispatch(editCourseRevised(course.id, changes));
-        toggleEdit();
-        props.history.push("/courses/all")
-    };
+  const handleCourseSubmit = event => {
+    event.preventDefault();
+    dispatch(editCourseRevised(course.id, changes));
+    toggleEdit();
+    props.history.push("/courses/all");
+  };
 
   const handleChange = name => event => {
     setChanges({ ...changes, [name]: event.target.value });

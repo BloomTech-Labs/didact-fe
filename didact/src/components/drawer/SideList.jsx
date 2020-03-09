@@ -417,7 +417,7 @@ const SideList = ({ props }) => {
                 </ListItem>
               </Collapse>
             </div>
-
+            {/* <div className="naver"> */}
             <NavLink
               to="/about"
               style={{
@@ -476,6 +476,7 @@ const SideList = ({ props }) => {
               </div>
             </NavLink>
           </div>
+          {/* </div> */}
         </ul>
       ) : (
         <ul className={classes.listing}>

@@ -129,7 +129,7 @@ export const LearningPathCard = styled.div`
   justify-content: space-between;
   align-items: center;
   background: white;
-  border-radius: 19px;
+  border-radius: 7px;
   padding: 35px 33px 35px 10px;
   margin-bottom: 28px;
   max-width: 540px;

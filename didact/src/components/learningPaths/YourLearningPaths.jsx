@@ -427,12 +427,12 @@ const YourLearningPaths = props => {
         </div>
         {!props.props.phoneSize && !props.props.mediumScreenSize ? (
           <div className={!props.props.open ? "buttonsClosed" : "buttons"}>
-            <Link style={{ fontSize: "1.4rem" }} to={"/learning-paths/join"}>
+            {/* <Link style={{ fontSize: "1.4rem" }} to={"/learning-paths/join"}>
               Join a Learning Path
             </Link>
             <Link style={{ fontSize: "1.4rem" }} to={"/learning-paths/add"}>
               Create a New Learning Path
-            </Link>
+            </Link> */}
           </div>
         ) : null}
       </YourLearningPathsWrapper>
