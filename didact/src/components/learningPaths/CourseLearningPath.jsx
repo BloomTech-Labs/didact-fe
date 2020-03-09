@@ -177,10 +177,16 @@ const CourseLearningPath = ({ course, index, props }) => {
                       transition: `0.25s ease`
                     }}
                   >
+
                     <h3 style={{ fontFamily: "Open Sans", color: "#242424" }}>
-                      {course.title.length > 35
-                        ? `${course.title.substring(0, 35)}...`
-                        : course.title}
+                      {course.title
+                        ? course.title.length > 35
+                          ? `${course.title.substring(0, 35)}...`
+                          : course.title
+                        : course.name.length > 35
+                        ? `${course.name.substring(0, 35)}...`
+                        : course.name}
+
                     </h3>
                     <div
                       style={{

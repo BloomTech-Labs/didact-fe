@@ -15,7 +15,8 @@ export const EDIT_COURSE_DATA_START = "EDIT_COURSE_DATA_START";
 export const EDIT_COURSE_DATA_SUCCESS = "EDIT_COURSE_DATA_SUCCESS";
 export const EDIT_COURSE_DATA_FAIL = "EDIT_COURSE_DATA_FAIL";
 export const EDIT_COURSE_DATA_REVISED_START = "EDIT_COURSE_DATA_REVISED_START";
-export const EDIT_COURSE_DATA_REVISED_SUCCESS = "EDIT_COURSE_DATA_REVISED_SUCCESS";
+export const EDIT_COURSE_DATA_REVISED_SUCCESS =
+  "EDIT_COURSE_DATA_REVISED_SUCCESS";
 export const EDIT_COURSE_DATA_REVISED_FAIL = "EDIT_COURSE_DATA_REVISED_FAIL";
 export const DELETE_COURSE_DATA_START = "DELETE_COURSE_DATA_START";
 export const DELETE_COURSE_DATA_SUCCESS = "DELETE_COURSE_DATA_SUCCESS";
@@ -53,8 +54,8 @@ export const courseEndPoint = results => dispatch => {
       `${baseURL}`,
       results
         ? {
-          headers: { query: results.search, filter: results.filter }
-        }
+            headers: { query: results.search, filter: results.filter }
+          }
         : null
     )
     .then(res => {

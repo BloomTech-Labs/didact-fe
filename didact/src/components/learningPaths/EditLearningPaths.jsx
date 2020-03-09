@@ -444,15 +444,16 @@ const EditLearningPaths = ({ id, props }) => {
                       // innerRef={provided.innerRef}
                       {...provided.droppableProps}
                     >
-                      {itemsCourses &&
-                        itemsCourses.map((order, index) => (
-                          <CourseLearningPath
-                            props={props}
-                            key={index}
-                            course={order}
-                            index={index}
-                          />
-                        ))}
+                      {itemsCourses
+                        ? itemsCourses.map((course, index) => (
+                            <CourseLearningPath
+                              props={props}
+                              key={index}
+                              course={course}
+                              index={index}
+                            />
+                          ))
+                        : null}
                       {provided.placeholder}
                     </DroppableDiv>
                   )}

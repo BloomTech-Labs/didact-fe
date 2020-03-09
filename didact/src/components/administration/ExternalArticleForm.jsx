@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axiosWithAuth from "../../utils/axiosWithAuth";
 import beURL from "../../utils/beURL";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   DidactField,
   DidactInput,
@@ -15,7 +15,7 @@ import { DidactButton } from "../dashboard/ButtonStyles";
 
 import Card from "@material-ui/core/Card";
 
-const ExternalArticleForm = props => {
+const ExternalArticleForm = ({ props, id }) => {
   const dispatch = useDispatch();
   const [article, setArticle] = useState({
     title: "",
@@ -31,6 +31,7 @@ const ExternalArticleForm = props => {
   const handleSubmit = e => {
     e.preventDefault();
     dispatch(addExternalArticle(article));
+    props.history.push("/articles");
   };
 
   return (

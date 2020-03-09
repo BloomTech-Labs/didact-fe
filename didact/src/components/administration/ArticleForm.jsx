@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axiosWithAuth from "../../utils/axiosWithAuth";
 import beURL from "../../utils/beURL";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   DidactField,
   DidactInput,
@@ -15,7 +15,8 @@ import { DidactButton } from "../dashboard/ButtonStyles";
 
 import Card from "@material-ui/core/Card";
 
-const ArticleForm = props => {
+const ArticleForm = ({ props }) => {
+  const user = useSelector(state => state.onboardingReducer.user);
   const dispatch = useDispatch();
   const freshDate = new Date();
   const [article, setArticle] = useState({
@@ -32,6 +33,7 @@ const ArticleForm = props => {
   const handleSubmit = e => {
     e.preventDefault();
     dispatch(addArticle(article));
+    props.history.push("/articles");
   };
 
   return (
@@ -51,6 +53,7 @@ const ArticleForm = props => {
             value={article.body}
             onChange={handleChange}
             name="body"
+            rows="12"
           />
         </DidactField>
         <DidactField>

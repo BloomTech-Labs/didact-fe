@@ -10,7 +10,7 @@ import { DidactButton } from "../dashboard/ButtonStyles";
 
 import Card from "@material-ui/core/Card";
 
-const ToolForm = props => {
+const ToolForm = ({ props }) => {
   const dispatch = useDispatch();
   const [tool, setTool] = useState({
     name: "",
@@ -25,6 +25,7 @@ const ToolForm = props => {
   const handleSubmit = e => {
     e.preventDefault();
     dispatch(addTool(tool));
+    props.history.push("/tools");
   };
 
   return (

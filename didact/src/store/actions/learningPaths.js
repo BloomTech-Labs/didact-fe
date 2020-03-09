@@ -90,8 +90,8 @@ export const getLearningPaths = results => dispatch => {
       `${baseURL}`,
       results
         ? {
-          headers: { query: results.search, filter: results.filter }
-        }
+            headers: { query: results.search, filter: results.filter }
+          }
         : null
     )
     .then(res => {
@@ -308,8 +308,8 @@ export const getYourLearningPaths = (getYours, results) => dispatch => {
       `${baseURL}yours`,
       results
         ? {
-          headers: { query: results.search, filter: results.filter }
-        }
+            headers: { query: results.search, filter: results.filter }
+          }
         : null
     )
     .then(res => {
