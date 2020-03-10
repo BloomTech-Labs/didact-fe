@@ -355,7 +355,7 @@ const SideList = ({ props }) => {
 
           <NavLink
             onClick={resourcesHandleClick}
-            to={window}
+            to="/resources"
             style={{
               textDecoration: "none",
               color: "#5b5b5b",

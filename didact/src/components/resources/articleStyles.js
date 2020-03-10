@@ -56,6 +56,37 @@ export const ArticleGrid = styled.div`
   }
 `;
 
+export const GeneralArticleGrid = styled.div`
+  display: grid;
+  grid-template-columns: 43% 30% 20%;
+  grid-template-rows: 160px;
+  justify-content: start;
+  grid-column-gap: 30px;
+  margin-bottom: 30px;
+  .single-block-fill-article {
+    background-color: #ffffff;
+    border-radius: 7px;
+    padding: 20px 20px 10px 20px;
+    color: #242424;
+    height: 100%;
+    align-self: baseline;
+    .circle {
+      border-radius: 30px;
+      height: 59px;
+      width: 59px;
+      background-color: rgba(242, 212, 174, 1);
+      position: relative;
+      top: 20px;
+      right: -73px;
+    }
+    img {
+      position: relative;
+      z-index: 2;
+      top: -53px;
+    }
+  }
+`;
+
 export const MainArticleGrid = styled.div`
   display: grid;
   grid-template-columns: 43% 53%;
@@ -143,6 +174,7 @@ export const ArticleWrapper = styled.div`
   border-radius: 7px;
   padding: 20px 20px 10px 20px;
   display: grid;
+  height: 100%;
   grid-template-rows: 20% 15% 50% 15%;
   h1,
   h2,
@@ -190,6 +222,7 @@ export const ExternalArticleWrapper = styled.div`
   border-radius: 7px;
   padding: 20px 20px 10px 20px;
   display: grid;
+  height: 100%;
   grid-template-rows: 20% 15% 50% 15%;
   h1,
   h2,
