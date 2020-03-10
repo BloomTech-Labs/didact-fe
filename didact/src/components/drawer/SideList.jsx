@@ -36,8 +36,14 @@ const SideList = ({ props }) => {
       // color: "white",
       height: "50px",
       margin: "10px 0px",
-      borderLeft: "5px solid #242424BF"
+      borderLeft: "5px solid #242424BF",
+      '& .dashIcon': {
+        color: "#242424BF"
+      },
+      '& .folderIcon': { color: "#52BBB4" },
+      '& .boxIcon': { color: "#F8A7A4" }
     },
+
 
     arrow: {
       textAlign: "right",
@@ -78,7 +84,7 @@ const SideList = ({ props }) => {
       height: "30px",
       borderRadius: "50%",
       // marginTop: '20px',
-      objectFit: "cover",
+      objectFit: "cover"
     },
     collapseNav: {
       textDecoration: "none",
@@ -155,7 +161,7 @@ const SideList = ({ props }) => {
                 outline: "none !important"
               } }
             >
-              <DashboardIcon style={ { marginLeft: "17px", fontSize: "28px" } }
+              <DashboardIcon className="dashIcon" style={ { marginLeft: "17px", fontSize: "28px" } }
               />
               <p
                 style={ {
@@ -205,7 +211,7 @@ const SideList = ({ props }) => {
                 alignItems: "center"
               } }
             >
-              <FolderOpenIcon
+              <FolderOpenIcon className="folderIcon"
                 style={ { marginLeft: "17px", fontSize: "28px" } }
 
               />
@@ -261,7 +267,7 @@ const SideList = ({ props }) => {
                     alignItems: "center"
                   } }
                 >
-                  <InboxIcon style={ { marginLeft: "17px", fontSize: "28px" } } />
+                  <InboxIcon className="boxIcon" style={ { marginLeft: "17px", fontSize: "28px" } } />
                   <p
                     style={ {
                       marginLeft: "25px",

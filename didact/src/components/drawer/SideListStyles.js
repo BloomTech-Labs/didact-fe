@@ -4,7 +4,7 @@ export const SideListWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100vh;
+  height: 100%;
   background: #eeeeee;
   // position: relative;
   // overflow: hidden;
