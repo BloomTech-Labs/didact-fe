@@ -9,7 +9,8 @@ import {
   ArticleGrid,
   MainArticleGrid,
   SecondaryArticleGrid,
-  StylishBlock
+  StylishBlock,
+  StylishBlockDub
 } from "./articleStyles";
 import coolimage from "../../images/coolimage.png";
 import { HeaderStyled, ResourceWrapper } from "./resourceStyles";
@@ -87,6 +88,12 @@ const Articles = props => {
               <ExternalArticleBrief article={article} key={article.id} />
             )
           )}
+        {mainArticles.length === 1 && (
+          <StylishBlock>
+            <div className="circle"></div>
+            <img src={coolimage} />
+          </StylishBlock>
+        )}
       </MainArticleGrid>
       <SecondaryArticleGrid>
         {secondaryArticles &&
@@ -97,11 +104,17 @@ const Articles = props => {
               <ExternalArticleBrief article={article} key={article.id} />
             )
           )}
-        {secondaryArticles.length > 1 && (
+        {secondaryArticles.length === 2 && (
           <StylishBlock>
             <div className="circle"></div>
             <img src={coolimage} />
           </StylishBlock>
+        )}
+        {secondaryArticles.length === 1 && (
+          <StylishBlockDub>
+            <div className="circle"></div>
+            <img src={coolimage} />
+          </StylishBlockDub>
         )}
       </SecondaryArticleGrid>
 
@@ -113,6 +126,26 @@ const Articles = props => {
             <ExternalArticleBrief article={article} key={article.id} />
           )
         )}
+        {/* This Div Will Fill Up One Space */}
+        {otherArticles.length === 2 ||
+        otherArticles.length === 5 ||
+        otherArticles.length === 8 ||
+        otherArticles.length === 11 ? (
+          <div className="single-block-fill-article">
+            <div className="circle"></div>
+            <img src={coolimage} />
+          </div>
+        ) : null}
+        {/* This Div Will Fill Up Two Spaces */}
+        {otherArticles.length === 1 ||
+        otherArticles.length === 4 ||
+        otherArticles.length === 7 ||
+        otherArticles.length === 10 ? (
+          <div className="double-block-fill-article">
+            <div className="circle"></div>
+            <img src={coolimage} />
+          </div>
+        ) : null}
       </ArticleGrid>
     </ResourceWrapper>
   );

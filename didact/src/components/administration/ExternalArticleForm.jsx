@@ -13,11 +13,13 @@ import { addExternalArticle } from "../../store/actions";
 
 import { DidactButton } from "../dashboard/ButtonStyles";
 
-import Card from "@material-ui/core/Card";
+import { ResourceForm } from "./AdministrationStyles";
 
 const ExternalArticleForm = ({ props, id }) => {
   const dispatch = useDispatch();
+  const freshDate = new Date();
   const [article, setArticle] = useState({
+    date: freshDate.toLocaleDateString("en-US"),
     title: "",
     description: "",
     topic: "",
@@ -35,7 +37,7 @@ const ExternalArticleForm = ({ props, id }) => {
   };
 
   return (
-    <Card>
+    <ResourceForm>
       <form onSubmit={handleSubmit}>
         <DidactField>
           <DidactLabel>Article Title</DidactLabel>
@@ -69,9 +71,11 @@ const ExternalArticleForm = ({ props, id }) => {
             name="link"
           />
         </DidactField>
-        <DidactButton type="submit">Submit</DidactButton>
+        <DidactButton type="submit" style={{ marginBottom: "15px" }}>
+          Submit
+        </DidactButton>
       </form>
-    </Card>
+    </ResourceForm>
   );
 };
 

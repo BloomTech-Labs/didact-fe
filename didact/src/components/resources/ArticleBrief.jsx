@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Card from "@material-ui/core/Card";
 import { useSelector } from "react-redux";
 import { ArticleWrapper } from "./articleStyles";
+import ArrowRightAltRoundedIcon from "@material-ui/icons/ArrowRightAltRounded";
 const ArticleBrief = props => {
   const article = props.article;
   const user = useSelector(state => state.onboardingReducer.user);
@@ -24,7 +25,14 @@ const ArticleBrief = props => {
         <p>{brief}...</p>
       </div>
       <div className="link-div">
-        <Link to={`/articles/${article.id}`}>Go To Article</Link>
+        <Link className="link-anchor" to={`/articles/${article.id}`}>
+          <span>Go To Article</span>
+          <ArrowRightAltRoundedIcon
+            style={{
+              fontSize: "2em"
+            }}
+          />
+        </Link>
       </div>
     </ArticleWrapper>
   );
