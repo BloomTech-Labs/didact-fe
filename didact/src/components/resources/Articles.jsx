@@ -45,9 +45,9 @@ const Articles = props => {
     <ResourceWrapper>
       <HeaderStyled>
         <p className="header-navs">
-          <span>Resources</span>
+          <Link to="/resources">Resources</Link>
           <ChevronRightIcon style={{ fontSize: "1.6rem" }} />
-          <span>Articles</span>
+          <Link to="/articles">Articles</Link>
         </p>
       </HeaderStyled>
 
