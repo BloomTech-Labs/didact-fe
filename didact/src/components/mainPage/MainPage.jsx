@@ -4,12 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { PageFlex } from "./PageStyles";
 import { makeStyles } from "@material-ui/core/styles";
 
-import { Mixpanel } from '../../utils/mixpanel'
-
-import SearchFiltered from "../searchComponents/searchFiltered";
-
-// import { Link } from "react-router-dom";
-// import styled from "styled-components";
+import { Mixpanel } from "../../utils/mixpanel";
 
 //Material UI Icons
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -20,9 +15,7 @@ import SearchIcon from "@material-ui/icons/Search";
 // import DashboardIcon from "@material-ui/icons/Dashboard";
 // import FolderOpenIcon from "@material-ui/icons/FolderOpen";
 import PermIdentityIcon from "@material-ui/icons/PermIdentity";
-
-// Select Dropdown
-// import { InputLabel, Select, MenuItem } from "@material-ui/core";
+import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 
 import DrawerComponent from "../drawer/Drawer";
 import MobileDrawerComponent from "../drawer/MobileDrawer";
@@ -65,6 +58,21 @@ const useStyles = makeStyles(theme => ({
     ...theme.mixins.toolbar
   },
   // Search Functionality Styles
+
+  searchDivResults: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "#eeeeee",
+    width: "345px",
+    borderRadius: "7px",
+    border: "1px solid black",
+    padding: "0 6px",
+    paddingLeft: "0%",
+    height: "57px",
+    boxShadow: "1px 1px 1px 1px rgba(0,0,0,.5)"
+  },
+
   searchDiv: {
     display: "flex",
     flexDirection: "row",
@@ -84,6 +92,18 @@ const useStyles = makeStyles(theme => ({
     flexDirection: "row",
     height: "57px",
     width: "370px"
+  },
+
+  searchInputResults: {
+    backgroundColor: "inherit",
+    width: "340px",
+    outline: "none",
+    height: "57px",
+    border: "none",
+    fontFamily: "open-sans",
+    fontWeight: "bold",
+    fontSize: "1.6rem",
+    marginLeft: "-5%"
   },
 
   searchInput: {
@@ -111,8 +131,6 @@ const useStyles = makeStyles(theme => ({
     justifyContent: "center",
     borderColor: "green",
     outline: "none !important"
-
-    // boxShadow: "1px 1px 1px 1px rgba(0,0,0,.5)"
   },
 
   dropFilter: {
@@ -128,7 +146,35 @@ const useStyles = makeStyles(theme => ({
     fontSize: "1.5rem",
     textAlign: "center",
     backgroundColor: "#eeeeee"
-    // display: "none"
+  },
+
+  searchButtonResults: {
+    display: "flex",
+    alignItems: "center",
+    border: "none",
+    outline: "none",
+    height: "30px",
+    marginTop: "3.4%",
+    marginLeft: "-49%",
+    borderRadius: "7px",
+    background: "transparent",
+    fontFamily: "open-sans",
+
+    "&:hover": {
+      background: "#ffffff"
+      // border: "1px solid black"
+    },
+    "&:active": {
+      boxShadow: "0 5px #666",
+      transform: "translateY(4px)"
+    },
+    iconImageProfile: {
+      width: "20px",
+      height: "20px",
+      borderRadius: "50%",
+      // marginTop: '20px',
+      objectFit: "cover"
+    }
   },
 
   searchButton: {
@@ -138,7 +184,7 @@ const useStyles = makeStyles(theme => ({
     outline: "none",
     height: "30px",
     marginTop: "3.4%",
-    marginLeft: "-35%",
+    marginLeft: "-25%",
     borderRadius: "7px",
     background: "transparent",
     fontFamily: "open-sans",
@@ -168,9 +214,10 @@ const useStyles = makeStyles(theme => ({
     marginTop: "13%",
     marginLeft: "-4%",
     fontFamily: "open-sans"
+  },
 
-    // fontSize: "1.5rem",
-    // fontWeight: "bold"
+  logoutClass: {
+    border: "1px solid"
   }
 }));
 
@@ -189,8 +236,6 @@ function MainPage(props) {
     filter: "title"
   });
   const [results, setResults] = useState();
-
-  let dropHide = React.createRef();
 
   useEffect(
     _ => {
@@ -230,11 +275,9 @@ function MainPage(props) {
 
   const handleSubmit = event => {
     event.preventDefault();
-    Mixpanel.track("Search Query")
+    Mixpanel.track("Search Query");
     setResults(values);
     props.history.push("/results");
-    // dropHide.style.display = "block";
-    console.log(values);
 
     // setValues('')
   };
@@ -322,14 +365,11 @@ function MainPage(props) {
                   />
                 </div>
                 <div className="headerMain">
-                  {/* <SearchFiltered /> */}
-                  {/* <HeaderComponent props = {props} open={open} /> */}
-                  {/* <HeaderComponent open={open} /> */}
                   <div className="header">
-                    {/* Search Functionality Below */}
+                    {/* Search Functionality for search Below */}
 
                     {props.location.pathname === "/results" ? (
-                      <div className={classes.searchDiv}>
+                      <div className={classes.searchDivResults}>
                         <form
                           className={classes.formPart}
                           onSubmit={handleSubmit}
@@ -349,13 +389,13 @@ function MainPage(props) {
                             </select>
                           </div>
                           <input
-                            className={classes.searchInput}
+                            className={classes.searchInputResults}
                             type="text"
                             value={values.search}
                             onChange={handleChange("search")}
                           />
                           <button
-                            className={classes.searchButton}
+                            className={classes.searchButtonResults}
                             type="submit"
                             onSubmit={handleSubmit}
                           >
@@ -403,20 +443,31 @@ function MainPage(props) {
                     )}
 
                     <div className="profileSection">
-                      {userName.photo ? (
-                        <img
-                          src={userName.photo}
-                          alt="Profile"
-                          className={classes.iconImageProfile}
-                        />
-                      ) : (
-                        <PermIdentityIcon
-                          className={classes.iconImageProfile}
-                        />
-                      )}
-                      <p>{firstName + " " + lastName}</p>
+                      <p className="profile-avatar">
+                        {userName.photo ? (
+                          <img
+                            src={userName.photo}
+                            alt="Profile"
+                            className={classes.iconImageProfile}
+                          />
+                        ) : (
+                          <PermIdentityIcon
+                            className={classes.iconImageProfile}
+                            style={{
+                              color: "#242424BF"
+                            }}
+                          />
+                        )}
+                      </p>
+                      <p className="name">{firstName + " " + lastName}</p>
+
                       <p onClick={handleLogOut} className="logout">
-                        Log Out
+                        <MoreHorizIcon
+                          style={{
+                            fontSize: "1.8rem",
+                            color: "#242424BF"
+                          }}
+                        />
                       </p>
                     </div>
                   </div>

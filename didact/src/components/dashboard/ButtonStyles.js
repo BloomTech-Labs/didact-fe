@@ -106,18 +106,18 @@ export const P = styled.p`
 export const DidactButton = styled.button`
   box-shadow: none;
   border-radius: 12px;
-  color: black;
-  background: rgba(36, 36, 36, 1);
+  color: #242424;
+  background: #ffffff;
+  border: 1px solid #242424;
   height: 35px;
   width: 123px;
-  border: none;
   margin-left: 10px;
   margin-top: 10px;
   cursor: pointer;
   &:hover {
-    color: rgba(0, 0, 0, 1);
-    background-color: rgba(255, 255, 255, 1);
-    border: solid black 1px;
+    color: #ffffff;
+    background-color: #242424bf;
+    // border: solid black 1px;
     outline: none;
   }
 `;

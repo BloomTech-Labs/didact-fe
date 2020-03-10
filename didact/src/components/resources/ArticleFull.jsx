@@ -1,25 +1,45 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { getArticleById } from '../../store/actions';
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getArticleById } from "../../store/actions";
+import { FullArticleStyled } from "./articleStyles";
+import { HeaderStyled } from "./resourceStyles";
+import ChevronRightIcon from "@material-ui/icons/ChevronRight";
+import articlefillerimg from "../../images/articlefillerimg.png";
+import { Link } from "react-router-dom";
+const ArticleFull = ({ props, id }) => {
+  const dispatch = useDispatch();
+  const state = useSelector(state => state);
+  const article = state.articlesReducer.article;
+  const author = article.first_name + " " + article.last_name;
 
-const ArticleFull = ({props, id}) => {
-    const dispatch = useDispatch()
-    const state = useSelector(state => state)
-    const article = state.articlesReducer.article
+  useEffect(() => {
+    dispatch(getArticleById(id));
+  }, [dispatch, id]);
 
-    useEffect(() => {
-        dispatch(getArticleById(id))
-    }, [dispatch, id])
+  return (
+    <FullArticleStyled className="article-full">
+      <HeaderStyled>
+        <p className="header-navs">
+          <span>Resources</span>
 
-    return (
-        <div className="article-full">
-           <h1>{article.title}</h1>
-           <h2>{article.date}</h2>
-           <h2>{article.author}</h2>
-           <p>{article.body}</p>
-        </div>
-
-    )
-}
+          <ChevronRightIcon style={{ fontSize: "1.6rem" }} />
+          <Link to="/articles">
+            <span>Articles</span>
+          </Link>
+          <ChevronRightIcon style={{ fontSize: "1.6rem" }} />
+          <span>{article.title}</span>
+        </p>
+      </HeaderStyled>
+      <h1>{article.title}</h1>
+      <h2>{article.date}</h2>
+      <h2>{author}</h2>
+      <div className="img-div">
+        <img src={articlefillerimg} />
+      </div>
+      {article.body &&
+        article.body.split("\n").map(portion => <p>{portion}</p>)}
+    </FullArticleStyled>
+  );
+};
 
 export default ArticleFull;

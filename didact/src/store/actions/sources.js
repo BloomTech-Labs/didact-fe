@@ -68,7 +68,8 @@ export const editSource = (id, changes) => dispatch => {
 };
 
 export const deleteSource = id => dispatch => {
-  dispatch({ type: DELETE_SOURCE_START })
+  dispatch({ type: DELETE_SOURCE_START });
+  axiosWithAuth()
     .delete(`${baseURL}/${id}`)
     .then(result => {
       dispatch({ type: DELETE_SOURCE_SUCCESS, payload: id });

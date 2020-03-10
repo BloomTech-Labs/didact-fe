@@ -46,9 +46,10 @@ const useStyles = makeStyles(theme => ({
     maxWidth: 540,
     width: "100%",
     margin: "40px 0 40px 0",
-    borderRadius: "15px",
+    borderRadius: "7px",
     boxShadow: "none",
-    position: "relative"
+    position: "relative",
+    color: "#242424"
   },
   title: {
     fontSize: 14,
@@ -203,7 +204,7 @@ const EditLearningPaths = ({ id, props }) => {
             display: "flex",
             justifyContent: "space-between",
             margin: "-10px 10px 10px 10px",
-            borderBottom: "1px solid black"
+            borderTop: "1px solid black"
           } }
         >
           <p
@@ -239,7 +240,7 @@ const EditLearningPaths = ({ id, props }) => {
                       backgroundColor: "#ffffff",
                       border: "none",
                       boxShadow: "none",
-                      color: "black"
+                      color: "#242424"
                     } }
                   >
                     <div
@@ -261,7 +262,7 @@ const EditLearningPaths = ({ id, props }) => {
                         } }
                       >
                         <h3
-                          style={ { fontFamily: "ITC Grouch", color: "white" } }
+                          style={ { fontFamily: "Open Sans", color: "#242424" } }
                         >
                           { learningPath.title && learningPath.title.length > 35
                             ? `${learningPath.title.substring(0, 35)}...`
@@ -274,7 +275,7 @@ const EditLearningPaths = ({ id, props }) => {
                             fontSize: "1.2rem",
                             paddingLeft: "2px",
                             marginTop: "-10px",
-                            color: "white"
+                            color: "#242424"
                           } }
                         >
                           { learningPath.topic ? (
@@ -443,15 +444,16 @@ const EditLearningPaths = ({ id, props }) => {
                       // innerRef={provided.innerRef}
                       { ...provided.droppableProps }
                     >
-                      { itemsCourses &&
-                        itemsCourses.map((order, index) => (
+                      { itemsCourses
+                        ? itemsCourses.map((course, index) => (
                           <CourseLearningPath
                             props={ props }
                             key={ index }
-                            course={ order }
+                            course={ course }
                             index={ index }
                           />
-                        )) }
+                        ))
+                        : null }
                       { provided.placeholder }
                     </DroppableDiv>
                   ) }

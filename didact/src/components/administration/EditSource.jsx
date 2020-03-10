@@ -1,24 +1,52 @@
-import React, { useState } from "react";
-import axiosWithAuth from "../../utils/axiosWithAuth";
-import beURL from "../../utils/beURL";
+import React, { useState, useEffect } from "react";
 
-import { editSource } from "../../store/actions";
+import { useDispatch, useSelector } from "react-redux";
+
+import { editSource, deleteSource, getSourceById } from "../../store/actions";
 
 import { DidactField, DidactInput, DidactLabel } from "../dashboard/FormStyles";
 
 import { DidactButton, TrashCanEdit } from "../dashboard/ButtonStyles";
-
+import DeleteModal from "../courses/DeleteModal";
 import Card from "@material-ui/core/Card";
 
-const EditSource = props => {
+const EditSource = ({ props, id }) => {
+  const dispatch = useDispatch();
+  const source = useSelector(state => state.sourcesReducer.source);
+  const [openModal, setOpenModal] = useState(false);
   const [changes, setChanges] = useState({
     name: "",
     description: "",
     link: ""
   });
 
+  useEffect(() => {
+    dispatch(getSourceById(id));
+  }, []);
+
+  useEffect(() => {
+    setChanges({
+      name: source.name,
+      description: source.description,
+      link: source.link
+    });
+  }, [source]);
+
   const handleChange = e => {
     setChanges({ ...changes, [e.target.name]: e.target.value });
+  };
+
+  const handleModalOpen = e => {
+    setOpenModal(true);
+  };
+
+  const handleModalClose = e => {
+    setOpenModal(false);
+  };
+
+  const handleDelete = e => {
+    dispatch(deleteSource(source.id));
+    props.history.push("/sources");
   };
 
   const handleSubmit = e => {
@@ -28,6 +56,18 @@ const EditSource = props => {
 
   return (
     <Card>
+      <TrashCanEdit
+        onClick={handleModalOpen}
+        style={{ marginTop: "10px", fontSize: "2.6rem" }}
+      ></TrashCanEdit>
+      {openModal ? (
+        <DeleteModal
+          text={"this source"}
+          open={openModal}
+          handleModalClose={handleModalClose}
+          handleDelete={handleDelete}
+        />
+      ) : null}
       <form onSubmit={handleSubmit}>
         <DidactField>
           <DidactLabel>Source Name</DidactLabel>

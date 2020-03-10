@@ -6,7 +6,7 @@ import { DetailedCourseWrapper } from "./DetailedCourseStyles";
 import { DidactButton, TagStyles } from "../dashboard/ButtonStyles";
 
 import { getDetailedCourse } from "../../store/actions/index.js";
-import {Mixpanel} from '../../utils/mixpanel'
+import { Mixpanel } from "../../utils/mixpanel";
 //Material UI Imports
 import { makeStyles } from "@material-ui/core/styles";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
@@ -41,17 +41,15 @@ const DetailedCourse = props => {
   const [lessonExpanded, setLessonExpanded] = useState(false);
 
   useEffect(() => {
-      dispatch(getDetailedCourse(props.id));
-      if(props.location.state.tracked){
-        console.log("yarg")
-        Mixpanel.track("Course Result Clicked")
-      } else {
-        console.log("arg")
-        return
-      }
-    },
-    [dispatch, props.id]
-  );
+    dispatch(getDetailedCourse(props.id));
+    if (props.location.state.tracked) {
+      console.log("yarg");
+      Mixpanel.track("Course Result Clicked");
+    } else {
+      console.log("arg");
+      return;
+    }
+  }, [dispatch, props.id]);
 
   const handleChange = panel => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
@@ -298,7 +296,7 @@ const DetailedCourse = props => {
             display: "flex",
             justifyContent: "space-between",
             margin: "-10px 10px 10px 10px",
-            borderBottom: "1px solid black"
+            borderTop: "1px solid black"
           }}
         >
           <p

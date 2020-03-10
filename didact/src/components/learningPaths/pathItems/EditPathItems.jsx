@@ -29,7 +29,7 @@ const useStyles = makeStyles(theme => ({
   },
   card: {
     maxWidth: 540,
-    borderRadius: 15,
+    borderRadius: "7px",
     marginTop: "10px"
   },
   title: {

@@ -40,7 +40,7 @@ const useStyles = makeStyles(theme => ({
     width: "100%",
     maxWidth: 540,
     minWidth: 220,
-    borderRadius: 15,
+    borderRadius: "7px",
     margin: "10px 0",
     padding: "5px",
     boxShadow: "none"
