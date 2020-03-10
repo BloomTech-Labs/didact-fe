@@ -22,8 +22,29 @@ import CreateIcon from "@material-ui/icons/Create";
 import SettingsIcon from "@material-ui/icons/Settings";
 import { SideListWrapper } from "./SideListStyles";
 
+// import { useSelector, useDispatch } from "react-redux";
+// const state = useSelector(state => state);
+// const owner = state.onboardingReducer.user.owner
+
 const SideList = ({ props }) => {
   const drawerStyles = makeStyles(theme => ({
+    activeTab: {
+      backgroundColor: "#ffffff",
+      borderRadius: "0 7px 7px 0",
+      width: "225px",
+      // color: "white",
+      height: "50px",
+      margin: "10px 0px",
+      borderLeft: "5px solid #242424BF"
+    },
+
+    arrow: {
+      textAlign: "right",
+      marginRight: "10px",
+      width: "100%",
+      fontSize: "2rem",
+      color: "#5b5b5b"
+    },
     listing: {
       display: "flex",
       flexDirection: "column",
@@ -151,7 +172,10 @@ const SideList = ({ props }) => {
               color: "#5b5b5b",
               outline: "none !important"
             }}
-            activeStyle={{ color: "#242424BF" }}
+            activeStyle={{
+              color: "242424BF",
+              borderLeft: "5px solid 242424BF"
+            }}
             activeClassName={classes.activeTab}
             className={classes.listItem}
             key="Dashboard"
@@ -477,6 +501,10 @@ const SideList = ({ props }) => {
                 alignItems: "center",
                 outline: "none !important"
               }}
+              activeStyle={{ color: "#242424BF" }}
+              activeClassName={classes.activeTab}
+              className={classes.listItem}
+              key="Dashboard"
             >
               <DashboardIcon style={{ marginLeft: "17px", fontSize: "28px" }} />
               <p
@@ -660,7 +688,7 @@ const SideList = ({ props }) => {
           <div className={classes.resourcesDiv}>
             <nav onClick={resourcesHandleClick}>
               <NavLink
-                to="/"
+                to={"#"}
                 style={{
                   textDecoration: "none",
                   color: "#5b5b5b",
@@ -754,7 +782,7 @@ const SideList = ({ props }) => {
             </div>
 
             <NavLink
-              to="/about"
+              to="/"
               style={{
                 textDecoration: "none",
                 color: "#5b5b5b",

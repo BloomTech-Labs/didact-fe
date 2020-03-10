@@ -13,11 +13,12 @@ export const TopDashboardCard = styled.div`
   align-items: center;
   background: white;
   border-radius: 7px;
-  padding: 35px 33px 35px 10px;
+  padding: 35px 33px 35px 30px;
   margin-bottom: 28px;
   max-width: 728px;
   width: 100%;
   background-color: #ffffff;
+  text-align: left;
 
   @media (max-width: 600px) {
     width: 100%;
