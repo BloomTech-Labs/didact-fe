@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { ResourceWrapper, ResourceGrid } from "./resourceStyles";
+import { ResourceWrapper, ResourceGrid, HeaderStyled } from "./resourceStyles";
 import { GeneralArticleGrid, StylishBlock } from "./articleStyles";
 import Tool from "./Tool";
 import Source from "./Source";
@@ -29,6 +29,13 @@ const ResourceGeneral = () => {
 
   return (
     <ResourceWrapper>
+      <HeaderStyled>
+        <p className="header-navs">
+          <Link to="/resources/">Resources</Link>
+          <ChevronRightIcon style={{ fontSize: "1.6rem" }} />
+          <Link to="/resources/">Home</Link>
+        </p>
+      </HeaderStyled>
       <div className="gen-header">
         <h1>Tools</h1>
         <Link to="/tools">
