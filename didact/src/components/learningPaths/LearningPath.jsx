@@ -311,7 +311,7 @@ const LearningPath = ({ id, props }) => {
                         color: "#242424",
                         width: "120px",
                         marginLeft: "72%"
-                        // marginTop: "-3%"
+                        // marginBottom: "15%"
                       }}
                     >
                       <span
@@ -414,6 +414,7 @@ const LearningPath = ({ id, props }) => {
                             </a>
                           ) : (
                             <Link
+                              className="yours-link-two"
                               to={{
                                 pathname: `/courses/yours/${itemCourse.id}`
                                 // state: { tracked: tracked }
@@ -423,9 +424,9 @@ const LearningPath = ({ id, props }) => {
                                 justifyContent: "space-between",
                                 color: "#242424",
                                 width: "120px",
-                                marginLeft: "35%",
-                                marginBottom: "15%"
-                                // marginTop: "-3%"
+                                marginLeft: "35%"
+
+                                // marginBottom: "15%"
                               }}
                             >
                               <span
