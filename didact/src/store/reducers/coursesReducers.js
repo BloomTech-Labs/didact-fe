@@ -37,7 +37,7 @@ import {
 
 const initialState = {
   courses: [],
-  isLoading: false,
+  isLoadingCourses: false,
   isLoadingIcon: false,
   error: "",
   course: {},
@@ -54,40 +54,40 @@ export const coursesReducer = (state = initialState, action) => {
     case COURSE_DATA_START:
       return {
         ...state,
-        isLoading: true,
+        isLoadingCourses: true,
         error: ""
       };
     case COURSE_DATA_SUCCESS:
       return {
         ...state,
         courses: action.payload,
-        isLoading: false,
+        isLoadingCourses: false,
         error: ""
       };
     case COURSE_DATA_FAIL:
       return {
         ...state,
-        isLoading: false,
+        isLoadingCourses: false,
         error: action.payload
       };
     // GET ALL COURSES
     case YOUR_COURSE_DATA_START:
       return {
         ...state,
-        isLoading: true,
+        isLoadingCourses: true,
         error: ""
       };
     case YOUR_COURSE_DATA_SUCCESS:
       return {
         ...state,
         yourCourses: action.payload,
-        isLoading: false,
+        isLoadingCourses: false,
         error: ""
       };
     case YOUR_COURSE_DATA_FAIL:
       return {
         ...state,
-        isLoading: false,
+        isLoadingCourses: false,
         error: action.payload
       };
 
@@ -95,20 +95,20 @@ export const coursesReducer = (state = initialState, action) => {
     case SINGLE_COURSE_DATA_START:
       return {
         ...state,
-        isLoading: true,
+        isLoadingCourses: true,
         error: ""
       };
     case SINGLE_COURSE_DATA_SUCCESS:
       return {
         ...state,
         course: action.payload,
-        isLoading: false,
+        isLoadingCourses: false,
         error: ""
       };
     case SINGLE_COURSE_DATA_FAIL:
       return {
         ...state,
-        isLoading: false,
+        isLoadingCourses: false,
         error: action.payload
       };
 
@@ -116,20 +116,20 @@ export const coursesReducer = (state = initialState, action) => {
     case ADD_COURSE_DATA_START:
       return {
         ...state,
-        isLoading: true,
+        isLoadingCourses: true,
         error: ""
       };
     case ADD_COURSE_DATA_SUCCESS:
       return {
         ...state,
         courses: [...state.courses, action.payload],
-        isLoading: false,
+        isLoadingCourses: false,
         error: ""
       };
     case ADD_COURSE_DATA_FAIL:
       return {
         ...state,
-        isLoading: false,
+        isLoadingCourses: false,
         error: action.payload
       };
 
@@ -137,7 +137,7 @@ export const coursesReducer = (state = initialState, action) => {
     case EDIT_COURSE_DATA_START:
       return {
         ...state,
-        isLoading: true,
+        isLoadingCourses: true,
         error: ""
       };
     case EDIT_COURSE_DATA_SUCCESS:
@@ -148,13 +148,13 @@ export const coursesReducer = (state = initialState, action) => {
           ...action.payload
         },
         // course: action.payload,
-        isLoading: false,
+        isLoadingCourses: false,
         error: ""
       };
     case EDIT_COURSE_DATA_FAIL:
       return {
         ...state,
-        isLoading: false,
+        isLoadingCourses: false,
         error: action.payload
       };
 
@@ -162,20 +162,20 @@ export const coursesReducer = (state = initialState, action) => {
     case DELETE_COURSE_DATA_START:
       return {
         ...state,
-        isLoading: true,
+        isLoadingCourses: true,
         error: ""
       };
     case DELETE_COURSE_DATA_SUCCESS:
       return {
         ...state,
         courses: state.courses.filter(el => el.id !== action.payload),
-        isLoading: false,
+        isLoadingCourses: false,
         error: ""
       };
     case DELETE_COURSE_DATA_FAIL:
       return {
         ...state,
-        isLoading: false,
+        isLoadingCourses: false,
         error: action.payload
       };
     // case UPDATE_TAGS:
@@ -211,33 +211,33 @@ export const coursesReducer = (state = initialState, action) => {
     case CHECK_DATABASE_START:
       return {
         ...state,
-        isLoading: true,
+        isLoadingCourses: true,
         error: ""
       };
     case CHECK_DATABASE_SUCCESS:
       return {
         ...state,
-        isLoading: false,
+        isLoadingCourses: false,
         inDB: action.payload,
         error: ""
       };
     case CHECK_DATABASE_FAIL:
       return {
         ...state,
-        isLoading: false,
+        isLoadingCourses: false,
         error: action.payload
       };
     // ADD TAG TO COURSE
     case ADD_TAG_TO_COURSE_START:
       return {
         ...state,
-        isLoading: true,
+        isLoadingCourses: true,
         error: ""
       };
     case ADD_TAG_TO_COURSE_SUCCESS:
       return {
         ...state,
-        isLoading: false,
+        isLoadingCourses: false,
         course: {
           ...state.course,
           tags: [...state.course.tags, action.payload.tag]
@@ -247,7 +247,7 @@ export const coursesReducer = (state = initialState, action) => {
     case ADD_TAG_TO_COURSE_FAIL:
       return {
         ...state,
-        isLoading: false,
+        isLoadingCourses: false,
         error: action.payload
       };
 
@@ -255,7 +255,7 @@ export const coursesReducer = (state = initialState, action) => {
     case DELETE_TAGS_SUCCESS:
       return {
         ...state,
-        isLoading: false,
+        isLoadingCourses: false,
         course: {
           ...state.course,
           tags: state.course.tags.filter(el => el !== action.payload)
@@ -267,20 +267,20 @@ export const coursesReducer = (state = initialState, action) => {
     case TOGGLE_COMPLETE_COURSE_START:
       return {
         ...state,
-        isLoading: false,
+        isLoadingCourses: false,
         error: ""
       };
     case TOGGLE_COMPLETE_COURSE_SUCCESS:
       return {
         ...state,
-        isLoading: false,
+        isLoadingCourses: false,
         course: action.payload,
         error: ""
       };
     case TOGGLE_COMPLETE_COURSE_FAIL:
       return {
         ...state,
-        isLoading: false,
+        isLoadingCourses: false,
         error: action.payload
       };
 
@@ -288,20 +288,20 @@ export const coursesReducer = (state = initialState, action) => {
     case GET_USER_COMPLETION_COURSE_START:
       return {
         ...state,
-        isLoading: false,
+        isLoadingCourses: false,
         error: ""
       };
     case GET_USER_COMPLETION_COURSE_SUCCESS:
       return {
         ...state,
-        isLoading: false,
+        isLoadingCourses: false,
         courseCompletion: action.payload,
         error: ""
       };
     case GET_USER_COMPLETION_COURSE_FAIL:
       return {
         ...state,
-        isLoading: false,
+        isLoadingCourses: false,
         error: action.payload
       };
     default:

@@ -35,7 +35,12 @@ const SideList = ({ props }) => {
       // color: "white",
       height: "50px",
       margin: "10px 0px",
-      borderLeft: "5px solid #242424BF"
+      borderLeft: "5px solid #242424BF",
+      "& .dashIcon": {
+        color: "#242424BF"
+      },
+      "& .folderIcon": { color: "#52BBB4" },
+      "& .boxIcon": { color: "#F8A7A4" }
     },
 
     // arrow: {
@@ -369,7 +374,7 @@ const SideList = ({ props }) => {
 
           <NavLink
             onClick={resourcesHandleClick}
-            to={window}
+            to="/resources"
             style={{
               textDecoration: "none",
               color: "#5b5b5b",
@@ -506,7 +511,10 @@ const SideList = ({ props }) => {
               className={classes.listItem}
               key="Dashboard"
             >
-              <DashboardIcon style={{ marginLeft: "17px", fontSize: "28px" }} />
+              <DashboardIcon
+                className="dashIcon"
+                style={{ marginLeft: "17px", fontSize: "28px" }}
+              />
               <p
                 style={{
                   marginLeft: "25px",
@@ -556,6 +564,7 @@ const SideList = ({ props }) => {
               }}
             >
               <FolderOpenIcon
+                className="folderIcon"
                 style={{ marginLeft: "17px", fontSize: "28px" }}
               />
               <p
@@ -597,7 +606,7 @@ const SideList = ({ props }) => {
                   color: "#5b5b5b",
                   outline: "none !important"
                 }}
-                activeStyle={{ color: "#242424BF" }}
+                activeStyle={{ color: "black" }}
                 activeClassName={classes.activeTab}
                 className={classes.listItem}
                 key="Learning Paths"
@@ -610,7 +619,10 @@ const SideList = ({ props }) => {
                     alignItems: "center"
                   }}
                 >
-                  <InboxIcon style={{ marginLeft: "17px", fontSize: "28px" }} />
+                  <InboxIcon
+                    className="boxIcon"
+                    style={{ marginLeft: "17px", fontSize: "28px" }}
+                  />
                   <p
                     style={{
                       marginLeft: "25px",
@@ -694,7 +706,7 @@ const SideList = ({ props }) => {
                   color: "#5b5b5b",
                   outline: "none !important"
                 }}
-                activeStyle={{ color: "#242424BF" }}
+                activeStyle={{ color: "black" }}
                 activeClassName={classes.activeTab}
                 className={classes.listItem}
                 key="Resources"
@@ -788,10 +800,10 @@ const SideList = ({ props }) => {
                 color: "#5b5b5b",
                 outline: "none !important"
               }}
-              activeStyle={{ color: "#242424" }}
+              activeStyle={{ color: "#242424BF" }}
               activeClassName={classes.activeTab}
-              className={classes.listItemSmall}
-              key="about"
+              className={classes.listItem}
+              key="Learning Paths"
             >
               <div
                 style={
@@ -822,10 +834,10 @@ const SideList = ({ props }) => {
                 color: "#5b5b5b",
                 outline: "none !important"
               }}
-              activeStyle={{ color: "#242424" }}
+              activeStyle={{ color: "#242424BF" }}
               activeClassName={classes.activeTab}
-              className={classes.listItemSmall}
-              key="about"
+              className={classes.listItem}
+              key="Resources"
             >
               <div
                 style={

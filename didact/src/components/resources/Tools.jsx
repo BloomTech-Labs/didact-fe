@@ -31,9 +31,9 @@ const Tools = props => {
     <ResourceWrapper>
       <HeaderStyled>
         <p className="header-navs">
-          <span>Resources</span>
+          <Link to="/resources">Resources</Link>
           <ChevronRightIcon style={{ fontSize: "1.6rem" }} />
-          <span>Tools</span>
+          <Link to="/tools">Tools</Link>
         </p>
       </HeaderStyled>
       <div className={user.owner || user.admin ? "title-admin" : "title"}>

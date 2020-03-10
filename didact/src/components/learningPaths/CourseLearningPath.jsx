@@ -33,8 +33,8 @@ const useStyles = makeStyles(theme => ({
     margin: "10px 0",
     boxShadow: "none",
     position: "relative",
-    color: course => (course.type ? "black" : "white"),
-    backgroundColor: course => (course.type ? "#adc8d9" : "#386581")
+    color: course => (course.type ? "black" : "black"),
+    backgroundColor: course => (course.type ? "#ffffff" : "#ffffff")
   },
   title: {
     fontSize: 14,
@@ -139,57 +139,57 @@ const CourseLearningPath = ({ course, index, props }) => {
   };
 
   return (
-    <Draggable draggableId={`${index}`} index={index} className={classes.root}>
-      {(provided, snapshot) =>
+    <Draggable draggableId={ `${index}` } index={ index } className={ classes.root }>
+      { (provided, snapshot) =>
         !toggleEdit ? (
           <DraggableDiv
-            className={classes.card}
-            {...provided.draggableProps}
-            {...provided.dragHandleProps}
-            ref={provided.innerRef}
-            isdragging={snapshot.isDragging ? "true" : "false"}
+            className={ classes.card }
+            { ...provided.draggableProps }
+            { ...provided.dragHandleProps }
+            ref={ provided.innerRef }
+            isdragging={ snapshot.isDragging ? "true" : "false" }
           >
             <CardContent>
               <div
-                style={{
+                style={ {
                   border: "none",
                   boxShadow: "none",
                   paddingTop: "0",
                   paddingLeft: "10px",
                   display: "flex"
-                }}
+                } }
               >
                 <div
-                  onClick={handleExpandClick}
+                  onClick={ handleExpandClick }
                   aria-controls="panel1a-content"
                   id="panel1a-header"
-                  style={{
+                  style={ {
                     fontSize: "2.8rem",
                     textAlign: "left",
                     paddingLeft: "6px",
                     transition: `0.25s ease`
-                  }}
+                  } }
                 >
                   <div
-                    style={{
+                    style={ {
                       display: "flex",
                       flexDirection: "column",
                       transition: `0.25s ease`
-                    }}
+                    } }
                   >
 
-                    <h3 style={{ fontFamily: "Open Sans", color: "#242424" }}>
-                      {course.title
+                    <h3 style={ { fontFamily: "Open Sans", color: "#242424" } }>
+                      { course.title
                         ? course.title.length > 35
                           ? `${course.title.substring(0, 35)}...`
                           : course.title
                         : course.name.length > 35
-                        ? `${course.name.substring(0, 35)}...`
-                        : course.name}
+                          ? `${course.name.substring(0, 35)}...`
+                          : course.name }
 
                     </h3>
                     <div
-                      style={{
+                      style={ {
                         textAlign: "left",
                         width: "90%",
                         fontSize: "1.2rem",
@@ -197,20 +197,20 @@ const CourseLearningPath = ({ course, index, props }) => {
                         paddingLeft: "2px",
                         color: "#242424",
                         position: "relative"
-                      }}
+                      } }
                     >
-                      {course.foreign_instructors &&
-                      course.foreign_instructors.length >= 43 ? (
-                        <span>
-                          {course.foreign_instructors.substring(0, 43)}...
+                      { course.foreign_instructors &&
+                        course.foreign_instructors.length >= 43 ? (
+                          <span>
+                            { course.foreign_instructors.substring(0, 43) }...
                         </span>
-                      ) : course.foreign_instructors &&
-                        course.foreign_instructors.length <= 43 ? (
-                        <span>{course.foreign_instructors}</span>
-                      ) : null}
-                      {course.description && course.description.length > 55 ? (
+                        ) : course.foreign_instructors &&
+                          course.foreign_instructors.length <= 43 ? (
+                            <span>{ course.foreign_instructors }</span>
+                          ) : null }
+                      { course.description && course.description.length > 55 ? (
                         <>
-                          {!expanded ? (
+                          { !expanded ? (
                             <>
                               <ExpandMoreIcon
                                 className={
@@ -220,121 +220,121 @@ const CourseLearningPath = ({ course, index, props }) => {
                                 }
                               />
                               <div
-                                style={{
+                                style={ {
                                   display: "flex",
                                   alignItems: "baseline",
                                   justifyContent: "space-between",
                                   maxHeight: "35px",
                                   transition: `max-height 1s ease`,
                                   overflow: "hidden"
-                                }}
+                                } }
                               >
-                                {course.description && (
-                                  <p style={{ paddingRight: "42px" }}>
-                                    {course.description}
+                                { course.description && (
+                                  <p style={ { paddingRight: "42px" } }>
+                                    { course.description }
                                   </p>
-                                )}
+                                ) }
                               </div>
                             </>
                           ) : (
-                            <>
-                              <ExpandLessIcon
-                                className={
-                                  course.foreign_instructors
-                                    ? classes.dropArrow
-                                    : classes.dropArrowItem
-                                }
-                              />
-                              <div
-                                style={{
-                                  display: "flex",
-                                  alignItems: "baseline",
-                                  justifyContent: "space-between",
-                                  maxHeight: "1000px",
-                                  transition: `max-height 1s ease`,
-                                  overflow: "visible"
-                                }}
-                              >
-                                {course.description && (
-                                  <p style={{ paddingRight: "42px" }}>
-                                    {course.description}
-                                  </p>
-                                )}
-                              </div>
-                            </>
-                          )}
+                              <>
+                                <ExpandLessIcon
+                                  className={
+                                    course.foreign_instructors
+                                      ? classes.dropArrow
+                                      : classes.dropArrowItem
+                                  }
+                                />
+                                <div
+                                  style={ {
+                                    display: "flex",
+                                    alignItems: "baseline",
+                                    justifyContent: "space-between",
+                                    maxHeight: "1000px",
+                                    transition: `max-height 1s ease`,
+                                    overflow: "visible"
+                                  } }
+                                >
+                                  { course.description && (
+                                    <p style={ { paddingRight: "42px" } }>
+                                      { course.description }
+                                    </p>
+                                  ) }
+                                </div>
+                              </>
+                            ) }
                         </>
                       ) : course.description &&
                         course.description.length <= 55 ? (
-                        course.description && (
-                          <p style={{ paddingRight: "42px" }}>
-                            {course.description}
-                          </p>
-                        )
-                      ) : null}
-                      {course.topic ? (
-                        <p style={{ color: "white" }}>Topic: {course.topic}</p>
-                      ) : null}
-                      {course.type ? (
-                        <p style={{ color: "white" }}>{course.type}</p>
-                      ) : null}
+                            course.description && (
+                              <p style={ { paddingRight: "42px" } }>
+                                { course.description }
+                              </p>
+                            )
+                          ) : null }
+                      { course.topic ? (
+                        <p style={ { color: "#242424" } }>Topic: { course.topic }</p>
+                      ) : null }
+                      { course.type ? (
+                        <p style={ { color: "#242424" } }>{ course.type }</p>
+                      ) : null }
                     </div>
                   </div>
                 </div>
-                {!props.phoneSize ? (
+                { !props.phoneSize ? (
                   <TrashCanEdit
-                    style={{
+                    style={ {
                       fontSize: "2.6rem",
                       position: "absolute",
                       marginLeft: "88%"
-                    }}
-                    onClick={handleModalOpen}
+                    } }
+                    onClick={ handleModalOpen }
                   ></TrashCanEdit>
                 ) : (
-                  <TrashCanEdit
-                    style={{
-                      fontSize: "2.6rem",
-                      position: "absolute",
-                      marginLeft: "82%"
-                    }}
-                    onClick={handleModalOpen}
-                  ></TrashCanEdit>
-                )}
-                {openModal ? (
+                    <TrashCanEdit
+                      style={ {
+                        fontSize: "2.6rem",
+                        position: "absolute",
+                        marginLeft: "82%"
+                      } }
+                      onClick={ handleModalOpen }
+                    ></TrashCanEdit>
+                  ) }
+                { openModal ? (
                   <DeleteModal
-                    handleDelete={() => handleDelete(course)}
-                    text={modalText}
-                    open={openModal}
-                    handleModalClose={handleModalClose}
+                    handleDelete={ () => handleDelete(course) }
+                    text={ modalText }
+                    open={ openModal }
+                    handleModalClose={ handleModalClose }
                   />
-                ) : null}
+                ) : null }
               </div>
-              {/* {course.topic ? (`Topic: ${course.topic}`) : (null)} */}
-              {/* {course.type ? (course.type) : (null)} */}
+              {/* {course.topic ? (`Topic: ${course.topic}`) : (null)} */ }
+              {/* {course.type ? (course.type) : (null)} */ }
             </CardContent>
             <CardActions>
-              {/* <Button style={{marginLeft: '70.5%'}} type='submit' size="small" variant="contained" className={classes.button} >Edit Course</Button> */}
-              {course.path_id ? (
+              {/* <Button style={{marginLeft: '70.5%'}} type='submit' size="small" variant="contained" className={classes.button} >Edit Course</Button> */ }
+              { course.path_id ? (
                 <button
-                  className={classes.button}
-                  onClick={handleToggleEdit}
-                  style={{ margin: "0 20px 15px 70%", width: "100%" }}
+                  className={ classes.button }
+                  onClick={ handleToggleEdit }
+                  style={ { margin: "0 20px 15px 70%", width: "100%" } }
                   type="submit"
                 >
-                  {!props.phoneSize ? (
+                  { !props.phoneSize ? (
                     "Edit Item"
                   ) : (
-                    <EditIcon style={{ fontSize: "1.8rem" }} />
-                  )}
+                      <EditIcon style={ { fontSize: "1.8rem" } } />
+                    ) }
                 </button>
-              ) : null}
+              ) : null }
             </CardActions>
           </DraggableDiv>
         ) : course.path_id ? (
           <EditPathItems
-            course={course}
-            props={props}
-            handleToggleEdit={handleToggleEdit}
+            course={ course }
+            props={ props }
+            handleToggleEdit={ handleToggleEdit }
           />
         ) : null
       }

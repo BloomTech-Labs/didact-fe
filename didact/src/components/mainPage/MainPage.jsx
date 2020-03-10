@@ -297,6 +297,15 @@ function MainPage(props) {
     if (openMobile) setOpenMobile(false);
   };
 
+  //   const highlight = (event) => {
+
+  //     if (event && event.type === "click") {
+
+  //       style = {{ backgroundColor: "#ffffff" }
+  //     }
+  //   }
+  // }
+
   return (
     // MOBILE CODE ****************************************************************************
     <div className={classes.mainPageDiv}>
@@ -377,9 +386,9 @@ function MainPage(props) {
                           <div className={classes.filterDiv}>
                             <select
                               className={classes.dropFilter}
+                              // onClick={ highlight }
                               value={values.filter}
                               onChange={handleChange("filter")}
-
                               // ref={dropHide}
                             >
                               <option value="title">Title</option>

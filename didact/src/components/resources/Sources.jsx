@@ -30,9 +30,9 @@ const Sources = props => {
     <ResourceWrapper>
       <HeaderStyled>
         <p className="header-navs">
-          <span>Resources</span>
+          <Link to="resources">Resources</Link>
           <ChevronRightIcon style={{ fontSize: "1.6rem" }} />
-          <span>Sources</span>
+          <Link to="/sources">Sources</Link>
         </p>
       </HeaderStyled>
       <div className={user.owner || user.admin ? "title-admin" : "title"}>

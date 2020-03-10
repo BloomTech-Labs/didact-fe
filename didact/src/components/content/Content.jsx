@@ -22,7 +22,7 @@ import SearchResults from "../searchResults/SearchResults";
 import About from "../about/About";
 import AllYourCourses from "../courses/AllYourCourses";
 import Contact from "../contact/Contact";
-
+import ResourceGeneral from "../resources/ResourceGeneral";
 import AddResource from "../administration/AddResource";
 import PromoteUser from "../administration/PromoteUser";
 import EditSource from "../administration/EditSource";
@@ -34,95 +34,92 @@ import UsersProfiles from "../profile/UsersProfiles";
 const Content = props => {
   return (
     <div>
-      { (() => {
+      {(() => {
         switch (props.page) {
           case "dashboard":
-            return <Dashboard props={ props } />;
+            return <Dashboard props={props} />;
           case "resource-form":
-
-            return <AddResource props={ props } />;
+            return <AddResource props={props} />;
           case "promote-user":
-            return <PromoteUser props={ props } />;
-
+            return <PromoteUser props={props} />;
           case "addcourse":
-            return <AddCourse props={ props } />;
+            return <AddCourse props={props} />;
           case "courses":
-            return <AllCourses props={ props } />;
+            return <AllCourses props={props} />;
           case "yourcourses":
-            return <AllYourCourses props={ props } />;
+            return <AllYourCourses props={props} />;
           case "detailedcourse":
             return (
               <DetailedCourse
-                id={ props.match.params.id }
-                props={ props }
-                location={ props.location }
+                id={props.match.params.id}
+                props={props}
+                location={props.location}
               />
             );
           case "yourdetailedcourse":
             return (
-              <YourDetailedCourse id={ props.match.params.id } props={ props } />
+              <YourDetailedCourse id={props.match.params.id} props={props} />
             );
           case "editcourse":
-            return <EditCourse id={ props.match.params.id } props={ props } />;
+            return <EditCourse id={props.match.params.id} props={props} />;
           case "editallcourse":
-            return <EditAllCourse id={ props.match.params.id } props={ props } />;
+            return <EditAllCourse id={props.match.params.id} props={props} />;
           case "addlearningpath":
-            return <AddLearningPaths props={ props } />;
+            return <AddLearningPaths props={props} />;
           case "editlearningpath":
             return (
-              <EditLearningPaths id={ props.match.params.id } props={ props } />
+              <EditLearningPaths id={props.match.params.id} props={props} />
             );
           case "learningpath":
-            return <LearningPath props={ props } id={ props.match.params.id } />;
+            return <LearningPath props={props} id={props.match.params.id} />;
           case "addpathitem":
-            return <AddPathItems props={ props } />;
+            return <AddPathItems props={props} />;
           case "editpathitem":
-            return <EditPathItems props={ props } />;
+            return <EditPathItems props={props} />;
           case "learningpaths":
-            return <AllLearningPaths props={ props } />;
+            return <AllLearningPaths props={props} />;
           case "yourlearningpaths":
-            return <YourLearningPaths props={ props } />;
+            return <YourLearningPaths props={props} />;
+          case "resources":
+            return <ResourceGeneral props={props} />;
           case "tools":
-            return <Tools props={ props } />;
-
+            return <Tools props={props} />;
           case "edit-tool":
-            return <EditTool props={ props } id={ props.match.params.id } />;
+            return <EditTool props={props} id={props.match.params.id} />;
           case "sources":
-            return <Sources props={ props } />;
+            return <Sources props={props} />;
           case "edit-source":
-            return <EditSource props={ props } id={ props.match.params.id } />;
+            return <EditSource props={props} id={props.match.params.id} />;
           case "articles":
-            return <Articles props={ props } />;
+            return <Articles props={props} />;
           case "article":
-            return <ArticleFull props={ props } id={ props.match.params.id } />;
+            return <ArticleFull props={props} id={props.match.params.id} />;
 
           case "edit-article":
-            return <EditArticle props={ props } id={ props.match.params.id } />;
+            return <EditArticle props={props} id={props.match.params.id} />;
           case "edit-external-article":
             return (
-              <EditExternalArticle props={ props } id={ props.match.params.id } />
+              <EditExternalArticle props={props} id={props.match.params.id} />
             );
 
           case "searchresults":
             return (
               <SearchResults
-                props={ props }
-                setValues={ props.setValues }
-                results={ props.results }
+                props={props}
+                setValues={props.setValues}
+                results={props.results}
               />
             );
           case "about":
-            return <About props={ props } />;
+            return <About props={props} />;
           case "contact":
-            return <Contact props={ props } />;
+            return <Contact props={props} />;
           case "edit-external-article":
-            return (
-              <UsersProfiles props={ props } id={ props.match.params.id } />
-            );
+            return <UsersProfiles props={props} id={props.match.params.id} />;
           default:
             break;
         }
-      })() }
+      })()}
     </div>
   );
 };
