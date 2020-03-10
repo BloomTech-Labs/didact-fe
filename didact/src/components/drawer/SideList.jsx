@@ -96,6 +96,12 @@ const SideList = ({ props }) => {
       textDecoration: "none",
       color: "#242424"
     },
+
+    bottomNav: {
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center"
+    },
     // resourcesDiv: {
     //   display: "flex",
     //   flexDirection: "row",
@@ -119,6 +125,12 @@ const SideList = ({ props }) => {
 
   const handleClick = () => {
     setOpen(!open);
+  };
+
+  const [courseOpen, courseSetOpen] = React.useState(false);
+
+  const handleClickCourse = () => {
+    courseSetOpen(!courseOpen);
   };
 
   const [resOpen, resSetOpen] = React.useState(false);
@@ -172,13 +184,14 @@ const SideList = ({ props }) => {
           </NavLink>
 
           <NavLink
+            onClick={handleClickCourse}
             to="/courses"
             style={{
               textDecoration: "none",
               color: "#5b5b5b",
               outline: "none !important"
             }}
-            activeStyle={{ color: "#242424" }}
+            activeStyle={{ color: "#242424BF" }}
             activeClassName={classes.activeTab}
             className={classes.listItem}
             key="Add Course"
@@ -213,7 +226,33 @@ const SideList = ({ props }) => {
             </div>
           </NavLink>
 
-          {/* <List component="learning-path-nav" className={classes.root}> */}
+          <div className={classes.collapseNav}>
+            <Collapse in={courseOpen} timeout="auto" unmountOnExit>
+              {/* </List> */}
+              <ListItem className={classes.nested}>
+                <Link
+                  to="/courses/all"
+                  style={{
+                    fontSize: "12px",
+                    color: "#5b5b5b"
+                  }}
+                >
+                  All Courses
+                </Link>
+              </ListItem>
+              <ListItem className={classes.nested}>
+                <Link
+                  to="/courses/yours/add"
+                  style={{
+                    fontSize: "12px",
+                    color: "#5b5b5b"
+                  }}
+                >
+                  Create Course
+                </Link>
+              </ListItem>
+            </Collapse>
+          </div>
 
           <NavLink
             onClick={handleClick}
@@ -334,7 +373,6 @@ const SideList = ({ props }) => {
                   to="/tools"
                   style={{
                     fontSize: "12px",
-
                     color: "#5b5b5b"
                   }}
                 >
@@ -346,7 +384,6 @@ const SideList = ({ props }) => {
                   to="/sources"
                   style={{
                     fontSize: "12px",
-
                     color: "#5b5b5b"
                   }}
                 >
@@ -367,70 +404,57 @@ const SideList = ({ props }) => {
               </ListItem>
             </Collapse>
           </div>
-
-          <NavLink
-            to="/about"
-            style={{
-              textDecoration: "none",
-              color: "#5b5b5b",
-              outline: "none !important"
-            }}
-            activeStyle={{ color: "black" }}
-            activeClassName={classes.activeTab}
-            className={classes.listItem}
-            key="about"
-          >
-            <div
+          <div className={classes.bottomNav}>
+            <NavLink
+              to="/about"
               style={{
-                display: "flex",
-                flexDirection: "row",
-                width: "100%",
-                marginLeft: "20%"
+                textDecoration: "none",
+                color: "#5b5b5b",
+                outline: "none !important"
               }}
+              activeStyle={{ color: "black" }}
+              activeClassName={classes.activeTab}
+              className={classes.listItem}
+              key="about"
             >
               <p
                 style={{
-                  marginLeft: "25px",
+                  marginLeft: "30%",
                   fontWeight: "bold",
-                  fontSize: "14px"
+                  textAlign: "left"
                 }}
               >
                 About
               </p>
-            </div>
-          </NavLink>
+            </NavLink>
 
-          <NavLink
-            to="/contact"
-            style={{
-              textDecoration: "none",
-              color: "#5b5b5b",
-              outline: "none !important"
-            }}
-            activeStyle={{ color: "black" }}
-            activeClassName={classes.activeTab}
-            className={classes.listItem}
-            key="about"
-          >
-            {/* <div
+            <NavLink
+              to="/contact"
               style={{
-                display: "flex",
-                flexDirection: "row",
-                width: "100%",
-                marginLeft: "20%"
+                textDecoration: "none",
+                color: "#5b5b5b",
+                outline: "none !important"
               }}
               activeStyle={{ color: "black" }}
               activeClassName={classes.activeTab}
               className={classes.listItem}
               key="contact"
             >
-              <p style={{ marginLeft: "25px", fontWeight: "bold" }}>Contact</p>
-            </div> */}
-          </NavLink>
-
-          {/* </div> */}
+              <p
+                style={{
+                  marginLeft: "30%",
+                  fontWeight: "bold",
+                  textAlign: "left"
+                }}
+              >
+                Contact
+              </p>
+            </NavLink>
+          </div>
         </ul>
       ) : (
+        //********************************************/
+        ///********MINIMIZED COMPONENT ***********************
         <ul className={classes.listing}>
           <NavLink
             exact
