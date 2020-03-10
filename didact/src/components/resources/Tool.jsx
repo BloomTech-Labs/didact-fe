@@ -4,8 +4,9 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import ExpandLessIcon from "@material-ui/icons/ExpandLess";
-import { ToolWrapper } from "./resourceStyles";
-import discord from "../../images/discord.png";
+import { ToolWrapper } from "./toolStyles";
+import slack from "../../images/slack.png";
+import ArrowRightAltRoundedIcon from "@material-ui/icons/ArrowRightAltRounded";
 const Tool = props => {
   const tool = props.tool;
   const [expanded, setExpanded] = useState(false);
@@ -40,7 +41,9 @@ const Tool = props => {
           </div>
         )}
         <div className="img-div">
-          <img src={discord} />
+          <div>
+            <img src={slack} />
+          </div>
         </div>
         {/* This will be hidden by dropdown */}
         {!expanded ? (
@@ -62,7 +65,16 @@ const Tool = props => {
             }}
           >
             {tool.description && <p>{tool.description}</p>}
-            {tool.link && <a href={tool.link}>Visit Tool</a>}
+            {tool.link && (
+              <a className="link-anchor" href={tool.link}>
+                <span>Visit Tool</span>
+                <ArrowRightAltRoundedIcon
+                  style={{
+                    fontSize: "2em"
+                  }}
+                />
+              </a>
+            )}
           </div>
         )}
       </div>

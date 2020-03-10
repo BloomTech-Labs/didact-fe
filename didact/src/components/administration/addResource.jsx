@@ -3,7 +3,7 @@ import ArticleForm from "./ArticleForm";
 import ToolForm from "./ToolForm";
 import SourceForm from "./SourceForm";
 import ExternalArticleForm from "./ExternalArticleForm";
-
+import NativeSelect from "@material-ui/core/NativeSelect";
 const AddResource = ({ props }) => {
   const [contentType, setContentType] = useState("tool");
 
@@ -14,12 +14,22 @@ const AddResource = ({ props }) => {
 
   return (
     <div>
-      <select value={contentType} onChange={handleType}>
+      <NativeSelect
+        style={{
+          backgoundColor: "#EEEEEE",
+
+          fontSize: "16px",
+          border: "1px black solid"
+        }}
+        children={{ padding: "10px" }}
+        value={contentType}
+        onChange={handleType}
+      >
         <option value="tool">Tool</option>
         <option value="article">Article</option>
         <option value="external-article">External Article</option>
         <option value="source">Source</option>
-      </select>
+      </NativeSelect>
       {(() => {
         switch (contentType) {
           case "tool":

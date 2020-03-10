@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { ExternalArticleWrapper } from "./articleStyles";
 import { HeaderStyled } from "./resourceStyles";
+import ArrowRightAltRoundedIcon from "@material-ui/icons/ArrowRightAltRounded";
 const ArticleBrief = props => {
   const article = props.article;
   const user = useSelector(state => state.onboardingReducer.user);
@@ -22,7 +23,14 @@ const ArticleBrief = props => {
       <h2>{article.date}</h2>
       <p>{description}...</p>
       <div className="link-div">
-        <a href={article.link}>Go To Article</a>
+        <a className="link-anchor" href={article.link}>
+          <span>Go To Article</span>
+          <ArrowRightAltRoundedIcon
+            style={{
+              fontSize: "2em"
+            }}
+          />
+        </a>
       </div>
     </ExternalArticleWrapper>
   );
