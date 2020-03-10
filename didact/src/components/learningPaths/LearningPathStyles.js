@@ -223,8 +223,12 @@ export const LearningPathWrapper = styled.div`
   .learningPathCard {
     color: white;
     background: white;
-    padding: 35px 43px 30px 30px;
-    border-radius: 19px;
+    // padding: 35px 43px 30px 30px;
+    padding-top: 35px;
+    padding-right: 43px;
+    // padding-bottom: 30px;
+    padding-left: 30px;
+    border-radius: 7px;
     width: 540px;
     height: 330px;
     display: flex;
@@ -258,6 +262,8 @@ export const LearningPathWrapper = styled.div`
         h4 {
           margin-left: 15px;
         }
+
+        
       }
 
   //     a {
@@ -273,4 +279,5 @@ export const LearningPathWrapper = styled.div`
   //     }
   //   }
   // }
+
 `;

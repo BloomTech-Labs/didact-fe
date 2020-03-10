@@ -137,13 +137,13 @@ const Course = ({ course, addingCourses, props, tracked }) => {
   const open = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
 
-  useEffect(() => {
-    dispatch(courseEndPoint());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(courseEndPoint());
+  // }, [dispatch]);
 
-  useEffect(() => {
-    dispatch(getYourLearningPathsOwned());
-  }, [dispatch, state.learningPathReducer.learningPath]);
+  // useEffect(() => {
+  //   dispatch(getYourLearningPathsOwned());
+  // }, [dispatch, state.learningPathReducer.learningPath]);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);

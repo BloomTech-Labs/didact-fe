@@ -1,6 +1,29 @@
 import styled from "styled-components";
 
 export const ResourceWrapper = styled.div`
+  .gen-header {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    &:first-child {
+      h1 {
+        margin-right: 65px;
+      }
+    }
+    h1 {
+      font-size: 22px;
+      margin-right: 35px;
+    }
+    a {
+      display: flex;
+      align-items: center;
+      color: #242424;
+      font: SemiBold 14px/21px Open Sans;
+      &:visited {
+        color: #242424;
+      }
+    }
+  }
   .title {
     display: flex;
     justify-content: start;
@@ -10,6 +33,30 @@ export const ResourceWrapper = styled.div`
     display: flex;
     flex-flow: row no-wrap;
     justify-content: space-between;
+    align-items: center;
+  }
+`;
+
+export const HeaderStyled = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin: -10px 0 10px 0;
+  border-top: 1px solid black;
+  width: 100%;
+  a {
+    color: #242424;
+  }
+  a:hover {
+    color: #ffffff;
+  }
+  a:visited {
+    color: #242424;
+  }
+  p {
+    font-weight: bold;
+    margin-left: 10px;
+    display: flex;
+    flex-direction: row;
     align-items: center;
   }
 `;
@@ -114,29 +161,5 @@ export const ResourceGrid = styled.div`
       z-index: 2;
       left: 125px;
     }
-  }
-`;
-
-export const HeaderStyled = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin: -10px 0 10px 0;
-  border-top: 1px solid black;
-  width: 100%;
-  a {
-    color: #242424;
-  }
-  a:hover {
-    color: #ffffff;
-  }
-  a:visited {
-    color: #242424;
-  }
-  p {
-    font-weight: bold;
-    margin-left: 10px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
   }
 `;
