@@ -74,6 +74,28 @@ export const SecondaryArticleGrid = styled.div`
   margin-bottom: 30px;
 `;
 
+export const StylishBlockMainDub = styled.div`
+  background-color: #ffffff;
+  border-radius: 7px;
+  padding: 20px 20px 10px 20px;
+  grid-column: 2 / span 2;
+  .circle {
+    border-radius: 30px;
+    height: 59px;
+    width: 59px;
+    background-color: rgba(242, 212, 174, 1);
+    position: relative;
+    top: 20px;
+    right: -315px;
+  }
+  img {
+    position: relative;
+    z-index: 2;
+    right: -100px;
+    top: -30px;
+  }
+`;
+
 export const StylishBlock = styled.div`
   background-color: #ffffff;
   border-radius: 7px;

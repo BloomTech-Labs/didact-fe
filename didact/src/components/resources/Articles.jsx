@@ -10,7 +10,8 @@ import {
   MainArticleGrid,
   SecondaryArticleGrid,
   StylishBlock,
-  StylishBlockDub
+  StylishBlockDub,
+  StylishBlockMainDub
 } from "./articleStyles";
 import coolimage from "../../images/coolimage.png";
 import { HeaderStyled, ResourceWrapper } from "./resourceStyles";
@@ -89,10 +90,10 @@ const Articles = props => {
             )
           )}
         {mainArticles.length === 1 && (
-          <StylishBlock>
+          <StylishBlockMainDub>
             <div className="circle"></div>
             <img src={coolimage} />
-          </StylishBlock>
+          </StylishBlockMainDub>
         )}
       </MainArticleGrid>
       <SecondaryArticleGrid>
