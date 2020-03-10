@@ -52,9 +52,6 @@ const SideList = ({ props }) => {
       margin: "10px 0px",
       padding: 0
     },
-    listingThing: {
-      background: "purple"
-    },
 
     listItem: {
       display: "flex",
@@ -699,7 +696,7 @@ const SideList = ({ props }) => {
             <div className={ classes.resourcesDiv }>
               <nav onClick={ resourcesHandleClick }>
                 <NavLink
-                  to={ window }
+                  to={ "#" }
                   style={ {
                     textDecoration: "none",
                     color: "#5b5b5b",
@@ -861,8 +858,9 @@ const SideList = ({ props }) => {
               </NavLink>
             </div>
           </ul>
-        ) }
-    </SideListWrapper>
+        )
+      }
+    </SideListWrapper >
   );
 };
 

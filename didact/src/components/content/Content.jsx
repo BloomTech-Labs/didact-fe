@@ -29,6 +29,7 @@ import EditSource from "../administration/EditSource";
 import EditTool from "../administration/EditTool";
 import EditArticle from "../administration/EditArticle";
 import EditExternalArticle from "../administration/EditExternalArticle";
+import UsersProfiles from "../profile/UsersProfiles";
 
 const Content = props => {
   return (
@@ -114,6 +115,10 @@ const Content = props => {
             return <About props={ props } />;
           case "contact":
             return <Contact props={ props } />;
+          case "edit-external-article":
+            return (
+              <UsersProfiles props={ props } id={ props.match.params.id } />
+            );
           default:
             break;
         }

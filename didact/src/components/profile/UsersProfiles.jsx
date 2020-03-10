@@ -1,269 +1,119 @@
-// import React, { useEffect, useState } from 'react'
-// import { useSelector, useDispatch } from "react-redux"
-// import { Link } from "react-router-dom";
-// import { editUser, getUsersProfiles } from '../../store/actions/index'
+import React, { useState, useEffect } from "react";
 
-// import Modal from '@material-ui/core/Modal';
-// import { makeStyles } from '@material-ui/core/styles';
-// //Material UI Icons
-// import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-// import CheckCircleIcon from '@material-ui/icons/CheckCircle';
-// import DragIndicatorIcon from '@material-ui/icons/DragIndicator';
-// // Styled Component Imports
-// import { YourLearningPathsWrapper, LearningPathCard, ButtonStyles } from './YourLearningPathsStyles'
-// import { ButtonDiv, DidactButton } from '../dashboard/ButtonStyles'
-// import { changePathOrder } from '../../utils/changePathOrder'
-// import { DroppableDiv } from "./DraggableStyles.js";
+import { useDispatch, useSelector } from "react-redux";
 
+import { editUser, deleteTool, getToolById } from "../../store/actions";
 
+import { DidactField, DidactInput, DidactLabel } from "../dashboard/FormStyles";
+import DeleteModal from "../courses/DeleteModal";
+import { TrashCanEdit, DidactButton } from "../dashboard/ButtonStyles";
 
-// //imports for react-beautiful-dnd
-// import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import Card from "@material-ui/core/Card";
 
-// function getModalStyle() {
-//     const top = 50;
-//     const left = 50;
+const UsersProfiles = ({ props, id }) => {
+    const dispatch = useDispatch();
+    const user = useSelector(state => state.usersProfilesReducer.user);
+    const [openModal, setOpenModal] = useState(false);
+    const [changes, setChanges] = useState({
+        email: "",
+        owner: "false",
+        admin: "false",
+        moderator: "false"
 
-//     return {
-//         top: `${top}%`,
-//         left: `${left}%`,
-//         transform: `translate(-${top}%, -${left}%)`,
-//     };
-// }
+    });
 
-// const useStyles = makeStyles(theme => ({
-//     paper: {
-//         position: 'absolute',
-//         width: 400,
-//         backgroundColor: theme.palette.background.paper,
-//         border: '2px solid #000',
-//         boxShadow: theme.shadows[5],
-//         padding: theme.spacing(2, 4, 3),
-//     },
-//     cardWidth: {
-//         width: '100%',
-//         maxWidth: '650px'
-//         // minWidth: '600px',
-//         // marginRight: '40px'
-//     },
-//     openCardDiv: {
-//         width: "1000px",
+    // useEffect(() => {
+    //     dispatch(getToolById(id));
+    // }, []);
 
-//     },
-//     buttonClosed: {
-//         marginLeft: '100px'
-//     },
-//     buttonDiv: {
-//         display: 'flex',
-//         justifyContent: 'flex-end',
-//         alignItems: 'center',
-//         width: '220px',
-//         margin: "0 0 0 auto"
-//     },
-//     buttonDivMobile: {
-//         display: 'flex',
-//         flexDirection: "column",
-//         justifyContent: 'space-evenly',
-//         alignItems: 'flex-end',
-//         width: '150px',
-//         margin: "0 0 0 auto"
-//     },
-//     spanMobile: {
-//         color: 'white',
-//         cursor: 'pointer',
-//         marginRight: "35px"
-//     }
-// }));
+    useEffect(() => {
+        setChanges({
+            email: user.email,
+            admin: user.owner,
+            owner: user.admin,
+            moderator: user.moderator
 
-// const UsersProfiles = (props) => {
-//     const [localState, setLocalState] = useState([])
-//     const classes = useStyles();
-//     const dispatch = useDispatch()
-//     const state = useSelector(state => state)
-//     const users = state.usersProfilesReducer.users
+        });
+    }, [user]);
 
+    const handleChange = e => {
+        setChanges({ ...changes, [e.target.name]: e.target.value });
+    };
 
+    const handleModalOpen = e => {
+        setOpenModal(true);
+    };
 
+    const handleModalClose = e => {
+        setOpenModal(false);
+    };
 
-//     useEffect(_ => {
-//         dispatch(getUsersProfiles())
-//     }, [dispatch])
+    const handleDelete = e => {
+        dispatch(deleteTool(id));
+        props.history.push("/tools");
+    };
 
+    const handleSubmit = e => {
+        e.preventDefault();
+        dispatch(editUser(id, changes));
+        props.history.push("/dashboard");
+    };
 
+    return (
+        <Card>
+            <TrashCanEdit
+                onClick={ handleModalOpen }
+                style={ { marginTop: "10px", fontSize: "2.6rem" } }
+            ></TrashCanEdit>
+            { openModal ? (
+                <DeleteModal
+                    text={ "this " }
+                    open={ openModal }
+                    handleModalClose={ handleModalClose }
+                    handleDelete={ handleDelete }
+                />
+            ) : null }
+            <form onSubmit={ handleSubmit }>
+                <DidactField>
+                    <DidactLabel>Email</DidactLabel>
+                    <DidactInput
+                        type="email"
+                        value={ changes.email || "" }
+                        onChange={ handleChange }
+                        name="email"
+                    />
+                </DidactField>
+                <DidactField>
+                    <DidactLabel>Owner</DidactLabel>
+                    <DidactInput
+                        type="boolean"
+                        value={ changes.owner || "" }
+                        onChange={ handleChange }
+                        name="owner"
+                    />
+                </DidactField>
+                <DidactField>
+                    <DidactLabel>Admin</DidactLabel>
+                    <DidactInput
+                        type="boolean"
+                        value={ changes.admin || "" }
+                        onChange={ handleChange }
+                        name="admin"
+                    />
+                </DidactField>
+                <DidactField>
+                    <DidactLabel>Moderator</DidactLabel>
+                    <DidactInput
+                        type="boolean"
+                        value={ changes.moderator || "" }
+                        onChange={ handleChange }
+                        name="moderator"
+                    />
+                    <DidactButton type="submit">Submit</DidactButton>
+                </DidactField>
+            </form>
+        </Card>
+    );
+};
 
-//     const [openModal, setOpenModal] = useState(false);
-//     const [currentId, setCurrentId] = useState(null)
-//     const [modalStyle] = useState(getModalStyle);
-
-
-
-
-//     const handleModalOpen = id => {
-//         setCurrentId(id)
-//         setOpenModal(true);
-//     };
-
-//     const handleModalClose = () => {
-//         setOpenModal(false);
-//     };
-
-//     // function for Drag and Drop calling changeArr above
-//     const onDragEnd = result => {
-//         const { destination, source, draggableId } = result;
-//         if (!destination) {
-//             return
-//         }
-//         if (
-//             destination.droppableId === source.droppableId &&
-//             destination.index === source.index
-//         ) {
-//             return
-//         }
-
-
-
-//         // const handleMarkCompleteLearningPath = (id) => {
-//         //     dispatch(toggleLearningPath(id))
-//         // }
-
-//         return (
-
-//             <div>
-//                 <div style={ { display: 'flex', justifyContent: 'space-between', margin: '-10px 10px 10px 10px', borderBottom: '1px solid black' } }>
-//                     <p style={ { fontWeight: 'bold', marginLeft: '10px', display: 'flex', flexDirection: 'row', alignItems: 'center' } }><span>Learning Paths</span><ChevronRightIcon style={ { fontSize: '1.6rem' } } /><span>Overview</span></p>
-//                 </div>
-//                 { props.props.mediumScreenSize || props.props.phoneSize ?
-//                     (<ButtonStyles style={ { display: "flex", justifyContent: 'flex-start' } }>
-//                         <div className="buttons">
-//                             <Link style={ { fontSize: '1.4rem' } } to={ '/learning-paths/join' }>Join a Learning Path</Link>
-//                             <Link style={ { fontSize: '1.4rem' } } to={ '/learning-paths/add' }>Create a New Learning Path</Link>
-//                         </div>
-//                     </ButtonStyles>) : null }
-//                 <YourLearningPathsWrapper style={ { margin: 'auto' } }>
-//                     <div className={ !props.props.open ? 'mainContentClosed' : 'mainContent' }>
-//                         <DragDropContext onDragEnd={ onDragEnd }>
-//                             <Droppable droppableId="column-2">
-//                                 { provided => (
-//                                     <DroppableDiv ref={ provided.innerRef } { ...provided.droppableProps }>
-//                                         <div className={ !props.props.open ? (classes.openCardDiv) : ('yourLearningPaths') }>
-//                                             {
-//                                                 localState.length > 0 && (localState.map((learningPath, index) => {
-//                                                     return (
-//                                                         <Draggable draggableId={ `${index}` } index={ index } key={ index }>
-//                                                             { (provided, snapshot) => (
-//                                                                 <LearningPathCard key={ index }
-//                                                                     { ...provided.draggableProps }
-//                                                                     { ...provided.dragHandleProps }
-//                                                                     ref={ provided.innerRef }
-//                                                                     isdragging={ snapshot.isDragging ? 'true' : 'false' }
-//                                                                     className={ !props.props.open ? (classes.cardWidth) : (null) }
-
-//                                                                 >
-//                                                                     <div className='title'>
-//                                                                         <div className='pathHeader'>
-//                                                                             <h1 style={ { fontFamily: 'ITC Grouch', marginLeft: '33px' } }>{ learningPath.title }</h1>
-//                                                                             {
-//                                                                                 <CheckCircleIcon onClick={ () => handleMarkCompleteLearningPath(learningPath.id) } style={ { margin: "0 0 19px 10px" } } className='notCompleteButton' />
-//                                                                             }
-//                                                                         </div>
-//                                                                         <DragIndicatorIcon style={ { color: 'white', fontSize: '3rem' } } />
-//                                                                         <div>
-//                                                                             <div style={ { display: 'flex', flexDirection: 'row' } }>
-//                                                                                 <div style={ { display: 'flex', flexDirection: "column", margin: '15px 10px 0 40px', fontSize: '.8rem', color: 'white', fontWeight: 'bold', width: '100px' } }>
-//                                                                                     <span>{ `${learningPath.courses.length} CLASSES` }</span>
-//                                                                                     <span>{ `${learningPath.pathItems.length} ITEMS` }</span>
-//                                                                                 </div>
-//                                                                                 <div className={ !props.props.phoneSize ? classes.buttonDiv : classes.buttonDivMobile }>
-//                                                                                     <Link to={ `/learning-paths/${learningPath.id}` }><button>Go To Path</button></Link>
-//                                                                                     <div>
-//                                                                                         <p className={ props.props.phoneSize ? classes.spanMobile : null } style={ { color: 'white', cursor: 'pointer' } } onClick={ () => handleModalOpen(learningPath.id) } id={ learningPath.id }>Leave Path</p>
-//                                                                                     </div>
-//                                                                                 </div>
-//                                                                             </div>
-//                                                                             { openModal ? (
-//                                                                                 <Modal
-//                                                                                     aria-labelledby="simple-modal-title"
-//                                                                                     aria-describedby="simple-modal-description"
-//                                                                                     open={ openModal }
-//                                                                                     onClose={ handleModalClose }
-//                                                                                 >
-//                                                                                     <div style={ modalStyle } className={ classes.paper }>
-//                                                                                         <h2 style={ { textAlign: 'center' } } id="simple-modal-title">Are you sure you want to leave this Learning Path?</h2>
-//                                                                                         <ButtonDiv>
-//                                                                                             <DidactButton onClick={ handleModalClose }>No</DidactButton>
-//                                                                                             <DidactButton onClick={ handleDelete }>Yes</DidactButton>
-//                                                                                         </ButtonDiv>
-//                                                                                     </div>
-//                                                                                 </Modal>
-//                                                                             ) : null }
-//                                                                         </div>
-//                                                                     </div>
-
-//                                                                 </LearningPathCard>
-//                                                             ) }
-//                                                         </Draggable>
-//                                                     )
-//                                                 }))
-//                                             }
-//                                         </div>
-//                                         { provided.placeholder }
-//                                     </DroppableDiv>) }
-//                             </Droppable>
-//                         </DragDropContext>
-//                         <div>
-//                             {
-//                                 completedPaths.length > 0 && <h3>Completed</h3>
-//                             }
-//                             {
-//                                 completedPaths.length > 0 && (completedPaths.map((learningPath, index) => {
-//                                     return (
-//                                         <LearningPathCard key={ index } className='completed'>
-//                                             <div className='title'>
-//                                                 <div className='pathHeader'>
-//                                                     <h1 style={ { fontWeight: 'bold' } }>{ learningPath.title }</h1>
-//                                                     {
-//                                                         <CheckCircleIcon onClick={ () => handleMarkCompleteLearningPath(learningPath.id) } className='completeButton' />
-//                                                     }
-//                                                 </div>
-//                                                 <div>
-//                                                     <Link to={ `/learning-paths/${learningPath.id}` }><button>Go To Path</button></Link>
-//                                                     <button onClick={ () => handleModalOpen(learningPath.id) } id={ learningPath.id }>Leave Path</button>
-//                                                     { openModal ? (
-//                                                         <Modal
-//                                                             aria-labelledby="simple-modal-title"
-//                                                             aria-describedby="simple-modal-description"
-//                                                             open={ openModal }
-//                                                             onClose={ handleModalClose }
-//                                                         >
-//                                                             <div style={ modalStyle } className={ classes.paper }>
-//                                                                 <h2 style={ { textAlign: 'center' } } id="simple-modal-title">Are you sure you want to leave this Learning Path?</h2>
-//                                                                 <ButtonDiv>
-//                                                                     <DidactButton onClick={ handleModalClose }>No</DidactButton>
-//                                                                     <DidactButton onClick={ handleDelete }>Yes</DidactButton>
-//                                                                 </ButtonDiv>
-//                                                             </div>
-//                                                         </Modal>
-//                                                     ) : null }
-//                                                 </div>
-//                                             </div>
-//                                         </LearningPathCard>
-//                                     )
-//                                 }))
-//                             }
-//                             {
-//                                 learningPaths.length === 0 && <h1>You have not joined any learning paths</h1>
-//                             }
-//                         </div>
-//                     </div>
-//                     { (!props.props.phoneSize && !props.props.mediumScreenSize) ?
-//                         (<div className={ !props.props.open ? ('buttonsClosed') : ('buttons') }>
-//                             <Link style={ { fontSize: '1.4rem' } } to={ '/learning-paths/join' }>Join a Learning Path</Link>
-//                             <Link style={ { fontSize: '1.4rem' } } to={ '/learning-paths/add' }>Create a New Learning Path</Link>
-//                         </div>) : null }
-//                 </YourLearningPathsWrapper>
-//             </div>
-//         )
-//     }
-
-
-//     export default UsersProfiles;
+export default UsersProfiles;

@@ -10,6 +10,7 @@ import {
 
 const initialState = {
     users: [],
+    user: {},
     isLoading: false,
     error: "",
     source: {}

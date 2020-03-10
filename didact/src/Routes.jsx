@@ -194,6 +194,11 @@ const Routes = props => {
         path="/contact"
         render={ routeProps => <MainPage { ...routeProps } page={ "contact" } /> }
       />
+      <Route
+        exact
+        path="/promote"
+        render={ routeProps => <MainPage { ...routeProps } page={ "usersprofiles" } /> }
+      />
     </Switch>
   );
 };
