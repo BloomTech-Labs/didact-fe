@@ -155,7 +155,8 @@ const SideList = ({ props }) => {
                 outline: "none !important"
               } }
             >
-              <DashboardIcon style={ { marginLeft: "17px", fontSize: "28px" } } />
+              <DashboardIcon style={ { marginLeft: "17px", fontSize: "28px" } }
+              />
               <p
                 style={ {
                   marginLeft: "25px",
@@ -206,6 +207,7 @@ const SideList = ({ props }) => {
             >
               <FolderOpenIcon
                 style={ { marginLeft: "17px", fontSize: "28px" } }
+
               />
               <p
                 style={ {

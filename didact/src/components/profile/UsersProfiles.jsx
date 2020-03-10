@@ -48,10 +48,10 @@ const UsersProfiles = ({ props, id }) => {
         setOpenModal(false);
     };
 
-    const handleDelete = e => {
-        dispatch(deleteTool(id));
-        props.history.push("/tools");
-    };
+    // const handleDelete = e => {
+    //     dispatch(deleteTool(id));
+    //     props.history.push("/tools");
+    // };
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -65,14 +65,14 @@ const UsersProfiles = ({ props, id }) => {
                 onClick={ handleModalOpen }
                 style={ { marginTop: "10px", fontSize: "2.6rem" } }
             ></TrashCanEdit>
-            { openModal ? (
+            {/* { openModal ? (
                 <DeleteModal
                     text={ "this " }
                     open={ openModal }
                     handleModalClose={ handleModalClose }
                     handleDelete={ handleDelete }
                 />
-            ) : null }
+            ) : null } */}
             <form onSubmit={ handleSubmit }>
                 <DidactField>
                     <DidactLabel>Email</DidactLabel>
