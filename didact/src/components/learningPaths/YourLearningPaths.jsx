@@ -159,29 +159,29 @@ const YourLearningPaths = props => {
   return (
     <div>
       <div
-        style={{
+        style={ {
           display: "flex",
           justifyContent: "space-between",
           margin: "-10px 10px 10px 10px",
           borderTop: "1px solid black"
-        }}
+        } }
       >
         <p
-          style={{
+          style={ {
             fontWeight: "bold",
             marginLeft: "10px",
             display: "flex",
             flexDirection: "row",
             alignItems: "center"
-          }}
+          } }
         >
           <span>Learning Paths</span>
-          <ChevronRightIcon style={{ fontSize: "1.6rem" }} />
+          <ChevronRightIcon style={ { fontSize: "1.6rem" } } />
           <span>Overview</span>
         </p>
       </div>
-      {props.props.mediumScreenSize || props.props.phoneSize ? (
-        <ButtonStyles style={{ display: "flex", justifyContent: "flex-start" }}>
+      { props.props.mediumScreenSize || props.props.phoneSize ? (
+        <ButtonStyles style={ { display: "flex", justifyContent: "flex-start" } }>
           <div className="buttons">
             {/* <Link style={{ fontSize: "1.4rem" }} to={"/learning-paths/join"}>
               Join a Learning Path
@@ -191,17 +191,17 @@ const YourLearningPaths = props => {
             </Link> */}
           </div>
         </ButtonStyles>
-      ) : null}
-      <YourLearningPathsWrapper style={{ margin: "auto" }}>
+      ) : null }
+      <YourLearningPathsWrapper style={ { margin: "auto" } }>
         <div
-          className={!props.props.open ? "mainContentClosed" : "mainContent"}
+          className={ !props.props.open ? "mainContentClosed" : "mainContent" }
         >
-          <DragDropContext onDragEnd={onDragEnd}>
+          <DragDropContext onDragEnd={ onDragEnd }>
             <Droppable droppableId="column-2">
-              {provided => (
+              { provided => (
                 <DroppableDiv
-                  ref={provided.innerRef}
-                  {...provided.droppableProps}
+                  ref={ provided.innerRef }
+                  { ...provided.droppableProps }
                 >
                   <div
                     className={
@@ -210,20 +210,20 @@ const YourLearningPaths = props => {
                         : "yourLearningPaths"
                     }
                   >
-                    {localState.length > 0 &&
+                    { localState.length > 0 &&
                       localState.map((learningPath, index) => {
                         return (
                           <Draggable
-                            draggableId={`${index}`}
-                            index={index}
-                            key={index}
+                            draggableId={ `${index}` }
+                            index={ index }
+                            key={ index }
                           >
-                            {(provided, snapshot) => (
+                            { (provided, snapshot) => (
                               <LearningPathCard
-                                key={index}
-                                {...provided.draggableProps}
-                                {...provided.dragHandleProps}
-                                ref={provided.innerRef}
+                                key={ index }
+                                { ...provided.draggableProps }
+                                { ...provided.dragHandleProps }
+                                ref={ provided.innerRef }
                                 isdragging={
                                   snapshot.isDragging ? "true" : "false"
                                 }
@@ -234,40 +234,40 @@ const YourLearningPaths = props => {
                                 <div className="title">
                                   <div className="pathHeader">
                                     <h1
-                                      style={{
+                                      style={ {
                                         fontFamily: "ITC Grouch",
                                         marginLeft: "33px"
-                                      }}
+                                      } }
                                     >
-                                      {learningPath.title}
+                                      { learningPath.title }
                                     </h1>
                                     {
                                       <CheckCircleIcon
-                                        onClick={() =>
+                                        onClick={ () =>
                                           handleMarkCompleteLearningPath(
                                             learningPath.id
                                           )
                                         }
-                                        style={{ margin: "0 0 19px 10px" }}
+                                        style={ { margin: "0 0 19px 10px" } }
                                         className="notCompleteButton"
                                       />
                                     }
                                   </div>
                                   <DragIndicatorIcon
-                                    style={{
+                                    style={ {
                                       color: "#242424",
                                       fontSize: "3rem"
-                                    }}
+                                    } }
                                   />
                                   <div>
                                     <div
-                                      style={{
+                                      style={ {
                                         display: "flex",
                                         flexDirection: "row"
-                                      }}
+                                      } }
                                     >
                                       <div
-                                        style={{
+                                        style={ {
                                           display: "flex",
                                           flexDirection: "column",
                                           margin: "15px 10px 0 40px",
@@ -275,10 +275,10 @@ const YourLearningPaths = props => {
                                           color: "#242424",
                                           fontWeight: "bold",
                                           width: "100px"
-                                        }}
+                                        } }
                                       >
-                                        <span>{`${learningPath.courses.length} CLASSES`}</span>
-                                        <span>{`${learningPath.pathItems.length} ITEMS`}</span>
+                                        <span>{ `${learningPath.courses.length} CLASSES` }</span>
+                                        <span>{ `${learningPath.pathItems.length} ITEMS` }</span>
                                       </div>
                                       <div
                                         className={
@@ -288,7 +288,7 @@ const YourLearningPaths = props => {
                                         }
                                       >
                                         <Link
-                                          to={`/learning-paths/${learningPath.id}`}
+                                          to={ `/learning-paths/${learningPath.id}` }
                                         >
                                           <button>Go To Path</button>
                                         </Link>
@@ -299,33 +299,33 @@ const YourLearningPaths = props => {
                                                 ? classes.spanMobile
                                                 : null
                                             }
-                                            style={{
+                                            style={ {
                                               color: "white",
                                               cursor: "pointer"
-                                            }}
-                                            onClick={() =>
+                                            } }
+                                            onClick={ () =>
                                               handleModalOpen(learningPath.id)
                                             }
-                                            id={learningPath.id}
+                                            id={ learningPath.id }
                                           >
                                             Leave Path
                                           </p>
                                         </div>
                                       </div>
                                     </div>
-                                    {openModal ? (
+                                    { openModal ? (
                                       <Modal
                                         aria-labelledby="simple-modal-title"
                                         aria-describedby="simple-modal-description"
-                                        open={openModal}
-                                        onClose={handleModalClose}
+                                        open={ openModal }
+                                        onClose={ handleModalClose }
                                       >
                                         <div
-                                          style={modalStyle}
-                                          className={classes.paper}
+                                          style={ modalStyle }
+                                          className={ classes.paper }
                                         >
                                           <h2
-                                            style={{ textAlign: "center" }}
+                                            style={ { textAlign: "center" } }
                                             id="simple-modal-title"
                                           >
                                             Are you sure you want to leave this
@@ -333,46 +333,46 @@ const YourLearningPaths = props => {
                                           </h2>
                                           <ButtonDiv>
                                             <DidactButton
-                                              onClick={handleModalClose}
+                                              onClick={ handleModalClose }
                                             >
                                               No
                                             </DidactButton>
                                             <DidactButton
-                                              onClick={handleDelete}
+                                              onClick={ handleDelete }
                                             >
                                               Yes
                                             </DidactButton>
                                           </ButtonDiv>
                                         </div>
                                       </Modal>
-                                    ) : null}
+                                    ) : null }
                                   </div>
                                 </div>
                               </LearningPathCard>
-                            )}
+                            ) }
                           </Draggable>
                         );
-                      })}
+                      }) }
                   </div>
-                  {provided.placeholder}
+                  { provided.placeholder }
                 </DroppableDiv>
-              )}
+              ) }
             </Droppable>
           </DragDropContext>
           <div>
-            {completedPaths.length > 0 && <h3>Completed</h3>}
-            {completedPaths.length > 0 &&
+            { completedPaths.length > 0 && <h3>Completed</h3> }
+            { completedPaths.length > 0 &&
               completedPaths.map((learningPath, index) => {
                 return (
-                  <LearningPathCard key={index} className="completed">
+                  <LearningPathCard key={ index } className="completed">
                     <div className="title">
                       <div className="pathHeader">
-                        <h1 style={{ fontWeight: "bold" }}>
-                          {learningPath.title}
+                        <h1 style={ { fontWeight: "bold" } }>
+                          { learningPath.title }
                         </h1>
                         {
                           <CheckCircleIcon
-                            onClick={() =>
+                            onClick={ () =>
                               handleMarkCompleteLearningPath(learningPath.id)
                             }
                             className="completeButton"
@@ -380,53 +380,53 @@ const YourLearningPaths = props => {
                         }
                       </div>
                       <div>
-                        <Link to={`/learning-paths/${learningPath.id}`}>
+                        <Link to={ `/learning-paths/${learningPath.id}` }>
                           <button>Go To Path</button>
                         </Link>
                         <button
-                          onClick={() => handleModalOpen(learningPath.id)}
-                          id={learningPath.id}
+                          onClick={ () => handleModalOpen(learningPath.id) }
+                          id={ learningPath.id }
                         >
                           Leave Path
                         </button>
-                        {openModal ? (
+                        { openModal ? (
                           <Modal
                             aria-labelledby="simple-modal-title"
                             aria-describedby="simple-modal-description"
-                            open={openModal}
-                            onClose={handleModalClose}
+                            open={ openModal }
+                            onClose={ handleModalClose }
                           >
-                            <div style={modalStyle} className={classes.paper}>
+                            <div style={ modalStyle } className={ classes.paper }>
                               <h2
-                                style={{ textAlign: "center" }}
+                                style={ { textAlign: "center" } }
                                 id="simple-modal-title"
                               >
                                 Are you sure you want to leave this Learning
                                 Path?
                               </h2>
                               <ButtonDiv>
-                                <DidactButton onClick={handleModalClose}>
+                                <DidactButton onClick={ handleModalClose }>
                                   No
                                 </DidactButton>
-                                <DidactButton onClick={handleDelete}>
+                                <DidactButton onClick={ handleDelete }>
                                   Yes
                                 </DidactButton>
                               </ButtonDiv>
                             </div>
                           </Modal>
-                        ) : null}
+                        ) : null }
                       </div>
                     </div>
                   </LearningPathCard>
                 );
-              })}
-            {learningPaths.length === 0 && (
+              }) }
+            { learningPaths.length === 0 && (
               <h1>You have not joined any learning paths</h1>
-            )}
+            ) }
           </div>
         </div>
-        {!props.props.phoneSize && !props.props.mediumScreenSize ? (
-          <div className={!props.props.open ? "buttonsClosed" : "buttons"}>
+        { !props.props.phoneSize && !props.props.mediumScreenSize ? (
+          <div className={ !props.props.open ? "buttonsClosed" : "buttons" }>
             {/* <Link style={{ fontSize: "1.4rem" }} to={"/learning-paths/join"}>
               Join a Learning Path
             </Link>
@@ -434,7 +434,7 @@ const YourLearningPaths = props => {
               Create a New Learning Path
             </Link> */}
           </div>
-        ) : null}
+        ) : null }
       </YourLearningPathsWrapper>
     </div>
   );

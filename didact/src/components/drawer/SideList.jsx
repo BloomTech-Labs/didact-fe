@@ -304,7 +304,7 @@ const SideList = ({ props }) => {
                 {/* </List> */ }
                 <ListItem className={ classes.nested }>
                   <Link
-                    to="/learning-paths/current"
+                    to="/learning-paths"
                     style={ {
                       fontSize: "12px",
 

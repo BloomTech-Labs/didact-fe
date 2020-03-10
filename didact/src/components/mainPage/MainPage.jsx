@@ -261,11 +261,11 @@ function MainPage(props) {
 
   const firstName = userName.first_name
     ? userName.first_name.substring(0, 1).toUpperCase() +
-      userName.first_name.substring(1)
+    userName.first_name.substring(1)
     : null;
   const lastName = userName.last_name
     ? userName.last_name.substring(0, 1).toUpperCase() +
-      userName.last_name.substring(1)
+    userName.last_name.substring(1)
     : null;
 
   //Needed for Header Search Function
@@ -297,46 +297,55 @@ function MainPage(props) {
     if (openMobile) setOpenMobile(false);
   };
 
+  //   const highlight = (event) => {
+
+  //     if (event && event.type === "click") {
+
+  //       style = {{ backgroundColor: "#ffffff" }
+  //     }
+  //   }
+  // }
+
   return (
     // MOBILE CODE ****************************************************************************
-    <div className={classes.mainPageDiv}>
+    <div className={ classes.mainPageDiv }>
       <ProfileWrapper>
         <>
-          {phoneSize || tabletSize ? (
-            <div className={classes.root} onClick={() => closeHandleClick()}>
+          { phoneSize || tabletSize ? (
+            <div className={ classes.root } onClick={ () => closeHandleClick() }>
               <CssBaseline />
               <>
                 <div>
                   <MobileDrawerComponent
-                    handleDrawerOpenMobile={handleDrawerOpenMobile()}
-                    openMobile={openMobile}
-                    props={props}
+                    handleDrawerOpenMobile={ handleDrawerOpenMobile() }
+                    openMobile={ openMobile }
+                    props={ props }
                   />
                 </div>
                 <div>
                   <MobileHeaderComponent
-                    handleSubmit={handleSubmit}
-                    handleChange={handleChange}
-                    values={values}
-                    props={props}
-                    tabletSize={tabletSize}
-                    userName={userName}
+                    handleSubmit={ handleSubmit }
+                    handleChange={ handleChange }
+                    values={ values }
+                    props={ props }
+                    tabletSize={ tabletSize }
+                    userName={ userName }
                   />
                   <main
                     className={
                       openMobile ? classes.contentShadow : classes.contentMobile
                     }
                   >
-                    <div className={classes.toolbar} />
+                    <div className={ classes.toolbar } />
                     <Content
-                      phoneSize={phoneSize}
-                      open={open}
-                      {...props}
-                      results={results}
-                      values={values}
-                      setValues={setValues}
+                      phoneSize={ phoneSize }
+                      open={ open }
+                      { ...props }
+                      results={ results }
+                      values={ values }
+                      setValues={ setValues }
                     />
-                    {/*************************ADD COMPONENTS HERE *********************** */}
+                    {/*************************ADD COMPONENTS HERE *********************** */ }
                   </main>
                 </div>
               </>
@@ -349,146 +358,147 @@ function MainPage(props) {
                          } */}
             </div>
           ) : (
-            // END OF MOBILE CODE *******************************************************************
-            // BEGINNING OF DESKTOP CODE ************************************************************
-            <div className={classes.root}>
-              <CssBaseline />
-              <PageFlex>
-                <div
-                  className="drawer"
+              // END OF MOBILE CODE *******************************************************************
+              // BEGINNING OF DESKTOP CODE ************************************************************
+              <div className={ classes.root }>
+                <CssBaseline />
+                <PageFlex>
+                  <div
+                    className="drawer"
                   // style={{ border: "3px solid black", marginTop: "10%" }}
-                >
-                  <DrawerComponent
-                    handleDrawerOpen={handleDrawerOpen}
-                    open={open}
-                    props={props}
-                  />
-                </div>
-                <div className="headerMain">
-                  <div className="header">
-                    {/* Search Functionality for search Below */}
-
-                    {props.location.pathname === "/results" ? (
-                      <div className={classes.searchDivResults}>
-                        <form
-                          className={classes.formPart}
-                          onSubmit={handleSubmit}
-                        >
-                          <div className={classes.filterDiv}>
-                            <select
-                              className={classes.dropFilter}
-                              value={values.filter}
-                              onChange={handleChange("filter")}
-                              // ref={dropHide}
-                            >
-                              <option value="title">Title</option>
-                              <option value="topic">Topic</option>
-                              <option value="creator">Creator</option>
-                              <option value="description">Description</option>
-                              <option value="tag">Tag</option>
-                            </select>
-                          </div>
-                          <input
-                            className={classes.searchInputResults}
-                            type="text"
-                            value={values.search}
-                            onChange={handleChange("search")}
-                          />
-                          <button
-                            className={classes.searchButtonResults}
-                            type="submit"
-                            onSubmit={handleSubmit}
-                          >
-                            <SearchIcon
-                              className={classes.searchIcon}
-                              style={{
-                                fontSize: "1.8rem",
-                                marginRight: "5px",
-                                color: "black"
-                              }}
-                            />
-                            <p className={classes.searcher}>Search</p>
-                          </button>
-                        </form>
-                      </div>
-                    ) : (
-                      <div className={classes.searchDiv}>
-                        <form
-                          className={classes.formPart}
-                          onSubmit={handleSubmit}
-                        >
-                          <input
-                            className={classes.searchInput}
-                            type="text"
-                            value={values.search}
-                            onChange={handleChange("search")}
-                          />
-                          <button
-                            className={classes.searchButton}
-                            type="submit"
-                            onSubmit={handleSubmit}
-                          >
-                            <SearchIcon
-                              className={classes.searchIcon}
-                              style={{
-                                fontSize: "1.8rem",
-                                marginRight: "5px",
-                                color: "black"
-                              }}
-                            />
-                            <p className={classes.searcher}>Search</p>
-                          </button>
-                        </form>
-                      </div>
-                    )}
-
-                    <div className="profileSection">
-                      <p className="profile-avatar">
-                        {userName.photo ? (
-                          <img
-                            src={userName.photo}
-                            alt="Profile"
-                            className={classes.iconImageProfile}
-                          />
-                        ) : (
-                          <PermIdentityIcon
-                            className={classes.iconImageProfile}
-                            style={{
-                              color: "#242424BF"
-                            }}
-                          />
-                        )}
-                      </p>
-                      <p className="name">{firstName + " " + lastName}</p>
-
-                      <p onClick={handleLogOut} className="logout">
-                        <MoreHorizIcon
-                          style={{
-                            fontSize: "1.8rem",
-                            color: "#242424BF"
-                          }}
-                        />
-                      </p>
-                    </div>
-                  </div>
-                  <main className={classes.content}>
-                    {/* <div className={classes.toolbar} /> */}
-                    <Content
-                      mediumScreenSize={mediumScreenSize}
-                      phoneSize={phoneSize}
-                      open={open}
-                      setValues={setValues}
-                      values={values}
-                      tabletSize={tabletSize}
-                      {...props}
-                      results={results}
+                  >
+                    <DrawerComponent
+                      handleDrawerOpen={ handleDrawerOpen }
+                      open={ open }
+                      props={ props }
                     />
-                    {/*************************ADD COMPONENTS HERE *********************** */}
-                  </main>
-                </div>
-              </PageFlex>
-            </div>
-          )}
+                  </div>
+                  <div className="headerMain">
+                    <div className="header">
+                      {/* Search Functionality for search Below */ }
+
+                      { props.location.pathname === "/results" ? (
+                        <div className={ classes.searchDivResults }>
+                          <form
+                            className={ classes.formPart }
+                            onSubmit={ handleSubmit }
+                          >
+                            <div className={ classes.filterDiv }  >
+                              <select
+                                className={ classes.dropFilter }
+                                // onClick={ highlight }
+                                value={ values.filter }
+                                onChange={ handleChange("filter") }
+                              // ref={dropHide}
+                              >
+                                <option value="title">Title</option>
+                                <option value="topic">Topic</option>
+                                <option value="creator">Creator</option>
+                                <option value="description">Description</option>
+                                <option value="tag">Tag</option>
+                              </select>
+                            </div>
+                            <input
+                              className={ classes.searchInputResults }
+                              type="text"
+                              value={ values.search }
+                              onChange={ handleChange("search") }
+                            />
+                            <button
+                              className={ classes.searchButtonResults }
+                              type="submit"
+                              onSubmit={ handleSubmit }
+                            >
+                              <SearchIcon
+                                className={ classes.searchIcon }
+                                style={ {
+                                  fontSize: "1.8rem",
+                                  marginRight: "5px",
+                                  color: "black"
+                                } }
+                              />
+                              <p className={ classes.searcher }>Search</p>
+                            </button>
+                          </form>
+                        </div>
+                      ) : (
+                          <div className={ classes.searchDiv }>
+                            <form
+                              className={ classes.formPart }
+                              onSubmit={ handleSubmit }
+                            >
+                              <input
+                                className={ classes.searchInput }
+                                type="text"
+                                value={ values.search }
+                                onChange={ handleChange("search") }
+                              />
+                              <button
+                                className={ classes.searchButton }
+                                type="submit"
+                                onSubmit={ handleSubmit }
+                              >
+                                <SearchIcon
+                                  className={ classes.searchIcon }
+                                  style={ {
+                                    fontSize: "1.8rem",
+                                    marginRight: "5px",
+                                    color: "black"
+                                  } }
+                                />
+                                <p className={ classes.searcher }>Search</p>
+                              </button>
+                            </form>
+                          </div>
+                        ) }
+
+                      <div className="profileSection">
+                        <p className="profile-avatar">
+                          { userName.photo ? (
+                            <img
+                              src={ userName.photo }
+                              alt="Profile"
+                              className={ classes.iconImageProfile }
+                            />
+                          ) : (
+                              <PermIdentityIcon
+                                className={ classes.iconImageProfile }
+                                style={ {
+                                  color: "#242424BF"
+                                } }
+                              />
+                            ) }
+                        </p>
+                        <p className="name">{ firstName + " " + lastName }</p>
+
+                        <p onClick={ handleLogOut } className="logout">
+                          <MoreHorizIcon
+                            style={ {
+                              fontSize: "1.8rem",
+                              color: "#242424BF"
+                            } }
+                          />
+                        </p>
+                      </div>
+                    </div>
+                    <main className={ classes.content }>
+                      {/* <div className={classes.toolbar} /> */ }
+                      <Content
+                        mediumScreenSize={ mediumScreenSize }
+                        phoneSize={ phoneSize }
+                        open={ open }
+                        setValues={ setValues }
+                        values={ values }
+                        tabletSize={ tabletSize }
+                        { ...props }
+                        results={ results }
+                      />
+                      {/*************************ADD COMPONENTS HERE *********************** */ }
+                    </main>
+                  </div>
+                </PageFlex>
+              </div>
+            ) }
         </>
       </ProfileWrapper>
     </div>
