@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { ResourceGrid, HeaderStyled, ResourceWrapper } from "./resourceStyles";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import { PlusDiv, Plus } from "../dashboard/ButtonStyles";
-
+import coolimage from "../../images/coolimage.png";
 const Sources = props => {
   const dispatch = useDispatch();
   const state = useSelector(state => state);
@@ -36,7 +36,9 @@ const Sources = props => {
         </p>
       </HeaderStyled>
       <div className={user.owner || user.admin ? "title-admin" : "title"}>
-        <h2 style={{ fontSize: "16px" }}>Sources</h2>
+        <h2 style={{ fontSize: "16px" }}>
+          Learning Sources You May Find Useful:
+        </h2>
         {user.owner || user.admin ? (
           <h2>
             <Link to="/resource-form">
@@ -65,6 +67,24 @@ const Sources = props => {
         {sources.map(source => (
           <Source source={source} key={source.id} />
         ))}
+        {/* This Div Will Fill Up One Space */}
+        {sources.length === 2 ||
+        sources.length === 5 ||
+        sources.length === 8 ? (
+          <div className="single-block-fill-source">
+            <div className="circle"></div>
+            <img src={coolimage} />
+          </div>
+        ) : null}
+        {/* This Div Will Fill Up Two Spaces */}
+        {sources.length === 1 ||
+        sources.length === 4 ||
+        sources.length === 7 ? (
+          <div className="double-block-fill-source">
+            <div className="circle"></div>
+            <img src={coolimage} />
+          </div>
+        ) : null}
       </ResourceGrid>
     </ResourceWrapper>
   );

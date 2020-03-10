@@ -8,7 +8,7 @@ import { DidactField, DidactInput, DidactLabel } from "../dashboard/FormStyles";
 
 import { DidactButton } from "../dashboard/ButtonStyles";
 
-import Card from "@material-ui/core/Card";
+import { ResourceForm } from "./AdministrationStyles";
 
 const SourceForm = ({ props }) => {
   const dispatch = useDispatch();
@@ -29,7 +29,7 @@ const SourceForm = ({ props }) => {
   };
 
   return (
-    <Card>
+    <ResourceForm>
       <form onSubmit={handleSubmit}>
         <DidactField>
           <DidactLabel>Source Name</DidactLabel>
@@ -58,9 +58,11 @@ const SourceForm = ({ props }) => {
             name="link"
           />
         </DidactField>
-        <DidactButton type="submit">Submit</DidactButton>
+        <DidactButton type="submit" style={{ marginBottom: "15px" }}>
+          Submit
+        </DidactButton>
       </form>
-    </Card>
+    </ResourceForm>
   );
 };
 

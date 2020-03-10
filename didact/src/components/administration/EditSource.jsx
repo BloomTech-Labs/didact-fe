@@ -52,6 +52,7 @@ const EditSource = ({ props, id }) => {
   const handleSubmit = e => {
     e.preventDefault();
     dispatch(editSource(id, changes));
+    props.history.push("/sources");
   };
 
   return (

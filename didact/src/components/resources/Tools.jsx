@@ -7,6 +7,7 @@ import Icon from "@material-ui/core/Icon";
 import { ResourceGrid, HeaderStyled, ResourceWrapper } from "./resourceStyles";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import { PlusDiv, Plus } from "../dashboard/ButtonStyles";
+import coolimage from "../../images/coolimage.png";
 const Tools = props => {
   const dispatch = useDispatch();
   const state = useSelector(state => state);
@@ -36,7 +37,7 @@ const Tools = props => {
         </p>
       </HeaderStyled>
       <div className={user.owner || user.admin ? "title-admin" : "title"}>
-        <h2 style={{ fontSize: "16px" }}>Tools</h2>
+        <h2 style={{ fontSize: "16px" }}>Some Tools You May Find Useful:</h2>
         {user.owner || user.admin ? (
           <h2>
             <Link to="/resource-form">
@@ -65,6 +66,26 @@ const Tools = props => {
         {tools.map(tool => (
           <Tool tool={tool} key={tool.id} />
         ))}
+        {/* This Div Will Fill Up One Space */}
+        {tools.length === 2 ||
+        tools.length === 5 ||
+        tools.length === 8 ||
+        tools.length === 11 ? (
+          <div className="single-block-fill-tool">
+            <div className="circle"></div>
+            <img src={coolimage} />
+          </div>
+        ) : null}
+        {/* This Div Will Fill Up Two Spaces */}
+        {tools.length === 1 ||
+        tools.length === 4 ||
+        tools.length === 7 ||
+        tools.length === 10 ? (
+          <div className="double-block-fill-tool">
+            <div className="circle"></div>
+            <img src={coolimage} />
+          </div>
+        ) : null}
       </ResourceGrid>
     </ResourceWrapper>
   );

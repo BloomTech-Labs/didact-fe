@@ -13,7 +13,7 @@ import { addArticle } from "../../store/actions";
 
 import { DidactButton } from "../dashboard/ButtonStyles";
 
-import Card from "@material-ui/core/Card";
+import { ResourceForm } from "./AdministrationStyles";
 
 const ArticleForm = ({ props }) => {
   const user = useSelector(state => state.onboardingReducer.user);
@@ -37,7 +37,7 @@ const ArticleForm = ({ props }) => {
   };
 
   return (
-    <Card>
+    <ResourceForm>
       <form onSubmit={handleSubmit}>
         <DidactField>
           <DidactLabel>Article Title</DidactLabel>
@@ -64,9 +64,11 @@ const ArticleForm = ({ props }) => {
             name="topic"
           />
         </DidactField>
-        <DidactButton type="submit">Submit</DidactButton>
+        <DidactButton type="submit" style={{ marginBottom: "15px" }}>
+          Submit
+        </DidactButton>
       </form>
-    </Card>
+    </ResourceForm>
   );
 };
 

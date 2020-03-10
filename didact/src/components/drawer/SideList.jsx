@@ -460,7 +460,7 @@ const SideList = ({ props }) => {
               activeStyle={{ color: "black" }}
               activeClassName={classes.activeTab}
               className={classes.listItem}
-              key="about"
+              key="contact"
             >
               <div
                 style={{

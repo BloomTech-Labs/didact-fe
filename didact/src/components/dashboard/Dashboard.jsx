@@ -53,7 +53,9 @@ function Dashboard({ props }) {
   const classes = useStyles(props);
   const dispatch = useDispatch();
   const state = useSelector(state => state);
-
+  const date = new Date();
+  const today = date.toLocaleDateString();
+  const time = date.toLocaleTimeString();
   const isLoadingVerify = state.onboardingReducer.isLoading;
   const userName = state.onboardingReducer.user;
   const firstName = userName.first_name
@@ -140,7 +142,9 @@ function Dashboard({ props }) {
           <span>SUBTITLE</span>
           <h1>Title </h1>
           <div>
-            <span>Date: Time</span>
+            <span>
+              Date: {today} {time}
+            </span>
           </div>
           <div>
             <p style={{ fontWeight: "bold" }}>

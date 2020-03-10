@@ -38,7 +38,6 @@ const Content = props => {
           case "dashboard":
             return <Dashboard props={props} />;
           case "resource-form":
-
             return <AddResource props={props} />;
           case "promote-user":
             return <PromoteUser props={props} />;
@@ -90,12 +89,6 @@ const Content = props => {
             return <Sources props={props} />;
           case "edit-source":
             return <EditSource props={props} id={props.match.params.id} />;
-          case "tool":
-            return <ToolDetailed props={props} id={props.match.params.id} />;
-         
-          case "source":
-            return <SourceDetailed props={props} id={props.match.params.id} />;
-
           case "articles":
             return <Articles props={props} />;
           case "article":
