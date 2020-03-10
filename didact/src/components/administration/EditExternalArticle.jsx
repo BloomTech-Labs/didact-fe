@@ -23,6 +23,7 @@ const EditExternalArticle = ({ props, id }) => {
   const article = useSelector(state => state.articlesReducer.externalArticle);
   const [openModal, setOpenModal] = useState(false);
   const [changes, setChanges] = useState({
+    date: "",
     title: "",
     description: "",
     topic: "",
@@ -35,6 +36,7 @@ const EditExternalArticle = ({ props, id }) => {
 
   useEffect(() => {
     setChanges({
+      date: article.date,
       title: article.title,
       description: article.description,
       topic: article.topic,
@@ -80,6 +82,14 @@ const EditExternalArticle = ({ props, id }) => {
         />
       ) : null}
       <form onSubmit={handleSubmit}>
+        <DidactField>
+          <DidactLabel>Article Date</DidactLabel>
+          <DidactInput
+            value={changes.date || ""}
+            onChange={handleChange}
+            name="date"
+          />
+        </DidactField>
         <DidactField>
           <DidactLabel>Article Title</DidactLabel>
           <DidactInput

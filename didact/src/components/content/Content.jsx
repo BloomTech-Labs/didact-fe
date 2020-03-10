@@ -23,8 +23,8 @@ import About from "../about/About";
 import AllYourCourses from "../courses/AllYourCourses";
 import Contact from "../contact/Contact";
 
-import AddResource from "../administration/addResource";
-import PromoteUser from "../administration/promoteUser";
+import AddResource from "../administration/AddResource";
+import PromoteUser from "../administration/PromoteUser";
 import EditSource from "../administration/EditSource";
 import EditTool from "../administration/EditTool";
 import EditArticle from "../administration/EditArticle";
@@ -89,12 +89,6 @@ const Content = props => {
             return <Sources props={props} />;
           case "edit-source":
             return <EditSource props={props} id={props.match.params.id} />;
-          // case "tool":
-          //   return <ToolDetailed props={props} id={props.match.params.id} />;
-
-          // case "source":
-          //   return <SourceDetailed props={props} id={props.match.params.id} />;
-
           case "articles":
             return <Articles props={props} />;
           case "article":

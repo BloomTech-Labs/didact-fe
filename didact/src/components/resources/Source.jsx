@@ -5,7 +5,8 @@ import { useSelector } from "react-redux";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 import sourceimg from "../../images/sourceimg.png";
-import { SourceWrapper } from "./resourceStyles";
+import { SourceWrapper } from "./sourceStyles";
+import ArrowRightAltRoundedIcon from "@material-ui/icons/ArrowRightAltRounded";
 const Source = props => {
   const state = useSelector(state => state);
   const [expanded, setExpanded] = useState(false);
@@ -40,7 +41,9 @@ const Source = props => {
           </div>
         )}
         <div className="img-div">
-          <img src={sourceimg} />
+          <div>
+            <img src={sourceimg} />
+          </div>
         </div>
         {/* This will be hidden by dropdown */}
         {!expanded ? (
@@ -62,7 +65,16 @@ const Source = props => {
             }}
           >
             {source.description && <p>{source.description}</p>}
-            {source.link && <a href={source.link}>Visit Source</a>}
+            {source.link && (
+              <a className="link-anchor" href={source.link}>
+                <span>Visit Source</span>
+                <ArrowRightAltRoundedIcon
+                  style={{
+                    fontSize: "2em"
+                  }}
+                />
+              </a>
+            )}
           </div>
         )}
       </div>

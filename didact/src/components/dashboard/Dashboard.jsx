@@ -56,7 +56,6 @@ function Dashboard({ props }) {
   const date = new Date();
   const today = date.toLocaleDateString();
   const time = date.toLocaleTimeString();
-
   const isLoadingVerify = state.onboardingReducer.isLoading;
   const userName = state.onboardingReducer.user;
   const firstName = userName.first_name

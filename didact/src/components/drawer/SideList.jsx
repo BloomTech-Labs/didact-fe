@@ -412,16 +412,20 @@ const SideList = ({ props }) => {
             className={classes.listItem}
             key="about"
           >
-            <div
+            {/* <div
               style={{
                 display: "flex",
                 flexDirection: "row",
                 width: "100%",
                 marginLeft: "20%"
               }}
+              activeStyle={{ color: "black" }}
+              activeClassName={classes.activeTab}
+              className={classes.listItem}
+              key="contact"
             >
               <p style={{ marginLeft: "25px", fontWeight: "bold" }}>Contact</p>
-            </div>
+            </div> */}
           </NavLink>
 
           {/* </div> */}
