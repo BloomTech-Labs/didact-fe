@@ -23,8 +23,8 @@ import About from "../about/About";
 import AllYourCourses from "../courses/AllYourCourses";
 import Contact from "../contact/Contact";
 
-import AddResource from "../administration/AddResource";
-import PromoteUser from "../administration/PromoteUser";
+import AddResource from "../administration/addResource";
+import PromoteUser from "../administration/promoteUser";
 import EditSource from "../administration/EditSource";
 import EditTool from "../administration/EditTool";
 import EditArticle from "../administration/EditArticle";
@@ -38,7 +38,6 @@ const Content = props => {
           case "dashboard":
             return <Dashboard props={props} />;
           case "resource-form":
-
             return <AddResource props={props} />;
           case "promote-user":
             return <PromoteUser props={props} />;
@@ -90,11 +89,11 @@ const Content = props => {
             return <Sources props={props} />;
           case "edit-source":
             return <EditSource props={props} id={props.match.params.id} />;
-          case "tool":
-            return <ToolDetailed props={props} id={props.match.params.id} />;
-         
-          case "source":
-            return <SourceDetailed props={props} id={props.match.params.id} />;
+          // case "tool":
+          //   return <ToolDetailed props={props} id={props.match.params.id} />;
+
+          // case "source":
+          //   return <SourceDetailed props={props} id={props.match.params.id} />;
 
           case "articles":
             return <Articles props={props} />;

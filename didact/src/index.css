@@ -127,7 +127,7 @@ p {
 
 body {
   margin: 0;
-  font-family: ITC Grouch;
+  font-family: Open Sans;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   padding-right: 0 !important;
@@ -137,5 +137,5 @@ body {
 }
 
 code {
-  font-family: ITC Grouch;
+  font-family: Open Sans;
 }

@@ -4,17 +4,13 @@ export const SideListWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100%;
+  // height: 100%;
   background: #eeeeee;
-  // position: relative;
-  // overflow: hidden;
-  overflow-y: scroll;
+  overflow-y: hidden;
+  // height: 100vh;
 
   ::-webkit-scrollbar {
-    display: none;
+    overflow: hidden;
     overflow-y: scroll;
   }
-  // .naver {
-
-  // }
 `;
