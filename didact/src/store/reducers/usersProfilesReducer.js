@@ -13,7 +13,7 @@ const initialState = {
     user: {},
     isLoading: false,
     error: "",
-    source: {}
+    sources: {}
 };
 
 export const usersProfilesReducer = (state = initialState, action) => {

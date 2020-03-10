@@ -44,7 +44,7 @@ export const YourLearningPathsWrapper = styled.div`
   }
 
   .completed {
-    background: #d1e2ea;
+    background: #ffffff;
 
     .title h1 {
       color: #242424;

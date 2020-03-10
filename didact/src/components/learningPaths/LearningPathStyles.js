@@ -107,7 +107,7 @@ export const LearningPathWrapper = styled.div`
     text-align: left;
 
     .completed {
-      background: #d1e2ea;
+      background: #ffffff;
       opacity: 0.5;
       width: 395px;
       color: black;
@@ -192,7 +192,8 @@ export const LearningPathWrapper = styled.div`
     }
 
     .learningPathCard {
-      background: #adc8d9;
+      // background: #adc8d9;
+      background: #ffffff;
       color: black;
       max-width: 395px;
       width: 100%;
@@ -202,7 +203,7 @@ export const LearningPathWrapper = styled.div`
 
   .item {
     .learningPathCard {
-      background: #d1e2ea;
+      background: #ffffff;
       color: black;
       max-width: 826px;
       min-width: 395px;
