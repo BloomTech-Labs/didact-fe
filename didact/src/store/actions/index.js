@@ -318,3 +318,15 @@ export {
   editSource,
   deleteSource
 } from "./sources";
+
+export {
+  GET_USER_DATA_START,
+  GET_USER_DATA_SUCCESS,
+  GET_USER_DATA_FAIL,
+  EDIT_USER_START,
+  EDIT_USER_SUCCESS,
+  EDIT_USER_FAIL,
+  getUsersProfiles,
+  editUser
+} from "./usersProfiles";
+

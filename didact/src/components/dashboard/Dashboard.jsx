@@ -60,7 +60,7 @@ function Dashboard({ props }) {
   const userName = state.onboardingReducer.user;
   const firstName = userName.first_name
     ? userName.first_name.substring(0, 1).toUpperCase() +
-      userName.first_name.substring(1)
+    userName.first_name.substring(1)
     : null;
   const learningPaths = state.learningPathReducer.yourLearningPaths;
   const learningPathCourses = state.learningPathReducer.learningPath.courses;
@@ -100,16 +100,16 @@ function Dashboard({ props }) {
   return (
     <>
       <div
-        style={{
+        style={ {
           display: "flex",
           justifyContent: "space-between",
           margin: "-10px 10px 10px 10px",
           borderBottom: "1px solid black"
-        }}
+        } }
       ></div>
       <div>
         <p
-          style={{
+          style={ {
             fontWeight: "bold",
             fontFamily: "Open Sans",
             marginLeft: "10px",
@@ -117,14 +117,14 @@ function Dashboard({ props }) {
             flexDirection: "row",
             alignItems: "center",
             marginTop: "5%"
-          }}
+          } }
         >
           Dashboard
         </p>
         <TopDashboardArt>
           <img
-            src={sphere}
-            style={{ margin: "0 auto", height: "270px", zIndex: "2" }}
+            src={ sphere }
+            style={ { margin: "0 auto", height: "270px", zIndex: "2" } }
             alt="sphere"
           />
         </TopDashboardArt>
@@ -137,80 +137,78 @@ function Dashboard({ props }) {
         /> */}
       </div>
       <TopDashboardCard>
-        <div className={classes.topContainer}>
+        <div className={ classes.topContainer }>
           <div></div>
-          <span>SUBTITLE</span>
-          <h1>Title </h1>
+          <span style={ { fontWeight: "bold", fontSize: "11px", textAlign: "left" } }>SUBTITLE</span>
+          <h1 style={ { fontWeight: "500", fontSize: "44px", textAlign: "left" } }> Title </h1>
           <div>
-            <span>
-              Date: {today} {time}
-            </span>
+            <span style={ { fontSize: "21px", textAlign: "left" } }>Date: { today } { time }</span>
           </div>
           <div>
-            <p style={{ fontWeight: "bold" }}>
+            <p style={ { fontWeight: "500", fontSize: "44px" } }>
               Welcome Back,
-              <br /> {firstName}!
+              <br /> <span style={ { fontWeight: "bold", fontSize: "44px" } }>{ firstName }! </span>
             </p>
           </div>
         </div>
       </TopDashboardCard>
 
-      <div className={classes.container}>
-        <div className={classes.smallContainer}>
+      <div className={ classes.container }>
+        <div className={ classes.smallContainer }>
           <p
-            style={{
+            style={ {
               fontSize: "2rem",
               fontWeight: "bold",
               textAlign: "left",
               marginLeft: "10px"
-            }}
+            } }
           >
             Recent Activity
           </p>
-          <LearningPathCard className={classes.current}>
+          <LearningPathCard className={ classes.current }>
             <div className="title">
               <h3
-                style={{
+                style={ {
                   fontFamily: "ITC Grouch",
                   color: "black",
                   marginBottom: "40px"
-                }}
+                } }
               >
-                {learningPathOrder.length >= 1
+                { learningPathOrder.length >= 1
                   ? learningPathOrder[0].title
-                  : "Join a Learning Path"}
+                  : "Join a Learning Path" }
               </h3>
-              <div style={{ display: "flex", justifyContent: "flex-end" }}>
-                <div style={{ display: "flex", alignItems: "center" }}></div>
-                {learningPathOrder.length >= 1 ? (
+              <div style={ { display: "flex", justifyContent: "flex-end" } }>
+                <div style={ { display: "flex", alignItems: "center" } }></div>
+                { learningPathOrder.length >= 1 ? (
                   <div
-                    style={{
+                    style={ {
                       color: "black",
                       fontWeight: "bold",
                       display: "flex",
                       justifyContent: "center",
                       marginLeft: "10px",
                       flexDirection: "column"
-                    }}
+                    } }
                   >
-                    <span>{`${learningPathCourses &&
-                      learningPathCourses.length} CLASSES`}</span>
-                    <span>{`${learningPath.pathItems &&
-                      learningPath.pathItems.length} ITEMS`}</span>
+                    <span>{ `${learningPathCourses &&
+                      learningPathCourses.length} CLASSES` }</span>
+                    <span>{ `${learningPath.pathItems &&
+                      learningPath.pathItems.length} ITEMS` }</span>
                   </div>
-                ) : null}
-                <button style={{ margin: "0 10px" }}>
+                ) : null }
+                <button style={ { margin: "0 10px" } }>
                   <Link
                     to={
                       learningPathOrder.length >= 1
                         ? `/learning-paths/${learningPathOrder.length >= 1 &&
-                            learningPathOrder[0].id}`
+                        learningPathOrder[0].id}`
                         : `learning-paths/join`
                     }
                   >
-                    {learningPathOrder.length >= 1
+                    { learningPathOrder.length >= 1
                       ? "Go To Path"
-                      : "Join A Path"}
+                      : "Join A Path" }
                   </Link>
                 </button>
               </div>
@@ -218,30 +216,30 @@ function Dashboard({ props }) {
           </LearningPathCard>
         </div>
         <div>
-          <div className={classes.smallContainer}>
+          <div className={ classes.smallContainer }>
             <p
-              style={{
+              style={ {
                 fontSize: "2rem",
                 fontWeight: "bold",
                 textAlign: "left",
                 marginBottom: "-20px"
-              }}
+              } }
             >
               Next Item
             </p>
-            {coursePathOrder.length >= 1 ? (
+            { coursePathOrder.length >= 1 ? (
               <YourCourse
-                props={props}
-                style={{ color: "black" }}
-                course={coursePathOrder[0]}
+                props={ props }
+                style={ { color: "black" } }
+                course={ coursePathOrder[0] }
               />
             ) : state.coursesReducer.courses[0] ? (
               <Course
-                props={props}
-                style={{ color: "black" }}
-                course={state.coursesReducer.courses[0]}
+                props={ props }
+                style={ { color: "black" } }
+                course={ state.coursesReducer.courses[0] }
               />
-            ) : null}
+            ) : null }
           </div>
         </div>
       </div>
