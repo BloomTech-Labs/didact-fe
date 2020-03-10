@@ -379,6 +379,7 @@ function MainPage(props) {
                               className={classes.dropFilter}
                               value={values.filter}
                               onChange={handleChange("filter")}
+
                               // ref={dropHide}
                             >
                               <option value="title">Title</option>

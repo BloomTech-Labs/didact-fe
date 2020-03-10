@@ -38,13 +38,14 @@ const SideList = ({ props }) => {
       borderLeft: "5px solid #242424BF"
     },
 
-    arrow: {
-      textAlign: "right",
-      marginRight: "10px",
-      width: "100%",
-      fontSize: "2rem",
-      color: "#5b5b5b"
-    },
+    // arrow: {
+    //   textAlign: "right",
+    //   marginRight: "10px",
+    //   width: "100%",
+    //   fontSize: "2rem",
+    //   color: "#5b5b5b"
+    // },
+
     listing: {
       display: "flex",
       flexDirection: "column",
@@ -55,9 +56,9 @@ const SideList = ({ props }) => {
     dashboardDiv: {
       display: "flex",
       height: "55px",
-      margin: "10px 0px",
+      margin: "5px 0px",
       fontSize: "28px"
-      // border: "1px solid black"
+      // padding: "0px 0px 50px 0px"
     },
     paraDiv: {
       marginLeft: "10%",
@@ -68,18 +69,19 @@ const SideList = ({ props }) => {
     coursesDiv: {
       display: "flex",
       height: "55px",
-      margin: "10px 0px"
+      margin: "5px 0px"
     },
     learningPathDiv: {
       width: "100%",
-      outline: "none !important",
+
       display: "flex",
-      alignItems: "center"
+      margin: "5px 0px"
     },
     resourcesDiv: {
+      width: "100%",
+      outline: "none !important",
       display: "flex",
-      height: "55px",
-      margin: "10px 0px"
+      margin: "5px 0px"
     },
 
     activeTab: {
@@ -92,8 +94,7 @@ const SideList = ({ props }) => {
 
     listItem: {
       width: "225px",
-      // display: "flex",
-      margin: "0px",
+      marginTop: "19px",
       height: "55px"
     },
 
@@ -121,14 +122,23 @@ const SideList = ({ props }) => {
     bottomNav: {
       display: "flex",
       flexDirection: "column",
-      justifyContent: "center"
+      marginTop: "35px",
+      padding: 0
     },
-    // resourcesDiv: {
-    //   display: "flex",
-    //   flexDirection: "row",
-    //   alignItems: "center",
-    //   width: "225px"
-    // },
+
+    bottomListItem: {
+      width: "225px",
+      margin: "2px",
+      height: "35px"
+    },
+
+    bottomLink: {
+      marginLeft: "30%",
+      fontWeight: "bold",
+      textAlign: "left",
+      marginTop: "2.4%"
+    },
+
     nestedSmall: {
       paddingLeft: theme.spacing(4),
       marginLeft: "-20%",
@@ -191,15 +201,16 @@ const SideList = ({ props }) => {
               <p className={classes.paraDiv}>Dashboard</p>
               {props.props.match.path.includes("/courses") ? (
                 <p className={classes.arrow}>
-                  <ChevronRightIcon style={{ fontSize: "2rem" }} />
+                  <ChevronRightIcon
+                    style={{ fontSize: "2rem", marginTop: "30%" }}
+                  />
                 </p>
               ) : (
                 <p className={classes.arrow}>
                   <ChevronRightIcon
                     style={{
-                      fontSize: "2rem"
-                      // marginBottom: "6px",
-                      // color: "#5b5b5b"
+                      fontSize: "2rem",
+                      marginTop: "30%"
                     }}
                   />
                 </p>
@@ -232,7 +243,7 @@ const SideList = ({ props }) => {
               {props.props.match.path.includes("/courses") ? (
                 <p className={classes.arrow}>
                   <ChevronRightIcon
-                    style={{ fontSize: "2rem", marginBottom: "6%" }}
+                    style={{ fontSize: "2rem", marginTop: "25%" }}
                   />
                 </p>
               ) : (
@@ -242,7 +253,7 @@ const SideList = ({ props }) => {
                       fontSize: "2rem",
                       // marginTop: "6px",
                       color: "#5b5b5b",
-                      marginBottom: "6%"
+                      marginTop: "25%"
                     }}
                   />
                 </p>
@@ -303,11 +314,15 @@ const SideList = ({ props }) => {
 
               {props.props.match.path.includes("/learning-paths") ? (
                 <p className={classes.arrow}>
-                  <ChevronRightIcon style={{ fontSize: "2rem" }} />
+                  <ChevronRightIcon
+                    style={{ fontSize: "2rem", marginTop: "65%" }}
+                  />
                 </p>
               ) : (
                 <p className={classes.arrow}>
-                  <ChevronRightIcon style={{ fontSize: "2rem" }} />
+                  <ChevronRightIcon
+                    style={{ fontSize: "2rem", marginTop: "65%" }}
+                  />
                 </p>
               )}
             </div>
@@ -321,7 +336,6 @@ const SideList = ({ props }) => {
                   to="/learning-paths/current"
                   style={{
                     fontSize: "12px",
-
                     color: "#5b5b5b"
                   }}
                 >
@@ -378,12 +392,14 @@ const SideList = ({ props }) => {
               {props.props.match.path.includes("/") ? (
                 <p className={classes.arrow}>
                   <ChevronRightIcon
-                    style={{ fontSize: "2rem", marginTop: "6px" }}
+                    style={{ fontSize: "2rem", marginTop: "30%" }}
                   />
                 </p>
               ) : (
                 <p className={classes.arrow}>
-                  <ChevronRightIcon style={{ fontSize: "2rem" }} />
+                  <ChevronRightIcon
+                    style={{ fontSize: "2rem", marginTop: "30%" }}
+                  />
                 </p>
               )}
             </div>
@@ -436,20 +452,12 @@ const SideList = ({ props }) => {
                 color: "#5b5b5b",
                 outline: "none !important"
               }}
-              activeStyle={{ color: "black" }}
-              activeClassName={classes.activeTab}
-              className={classes.listItem}
+              activeStyle={{ color: "#242424BF" }}
+              // activeClassName={classes.activeTab}
+              className={classes.bottomListItem}
               key="about"
             >
-              <p
-                style={{
-                  marginLeft: "30%",
-                  fontWeight: "bold",
-                  textAlign: "left"
-                }}
-              >
-                About
-              </p>
+              <p className={classes.bottomLink}>About</p>
             </NavLink>
 
             <NavLink
@@ -459,20 +467,12 @@ const SideList = ({ props }) => {
                 color: "#5b5b5b",
                 outline: "none !important"
               }}
-              activeStyle={{ color: "black" }}
-              activeClassName={classes.activeTab}
-              className={classes.listItem}
+              activeStyle={{ color: "#242424BF" }}
+              // activeClassName={classes.activeTab}
+              className={classes.bottomListItem}
               key="contact"
             >
-              <p
-                style={{
-                  marginLeft: "30%",
-                  fontWeight: "bold",
-                  textAlign: "left"
-                }}
-              >
-                Contact
-              </p>
+              <p className={classes.bottomLink}>Contact</p>
             </NavLink>
           </div>
         </ul>
@@ -542,7 +542,7 @@ const SideList = ({ props }) => {
               color: "#5b5b5b",
               outline: "none !important"
             }}
-            activeStyle={{ color: "black" }}
+            activeStyle={{ color: "#242424BF" }}
             activeClassName={classes.activeTab}
             className={classes.listItem}
             key="Add Course"
@@ -597,7 +597,7 @@ const SideList = ({ props }) => {
                   color: "#5b5b5b",
                   outline: "none !important"
                 }}
-                activeStyle={{ color: "black" }}
+                activeStyle={{ color: "#242424BF" }}
                 activeClassName={classes.activeTab}
                 className={classes.listItem}
                 key="Learning Paths"
@@ -694,7 +694,7 @@ const SideList = ({ props }) => {
                   color: "#5b5b5b",
                   outline: "none !important"
                 }}
-                activeStyle={{ color: "black" }}
+                activeStyle={{ color: "#242424BF" }}
                 activeClassName={classes.activeTab}
                 className={classes.listItem}
                 key="Resources"
