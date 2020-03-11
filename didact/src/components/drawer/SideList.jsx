@@ -41,7 +41,8 @@ const SideList = ({ props }) => {
         color: "#242424BF"
       },
       "& .folderIcon": { color: "#52BBB4" },
-      "& .boxIcon": { color: "#F8A7A4" }
+      "& .boxIcon": { color: "#F8A7A4" },
+      "& .settingsIcon": { color: "#b3987b" }
     },
 
     listing: {
@@ -82,13 +83,13 @@ const SideList = ({ props }) => {
       margin: "5px 0px"
     },
 
-    activeTab: {
-      backgroundColor: "#ffffff",
-      borderRadius: "0 7px 7px 0",
-      width: "225px",
-      height: "auto",
-      margin: "0px"
-    },
+    // activeTab: {
+    //   backgroundColor: "#ffffff",
+    //   borderRadius: "0 7px 7px 0",
+    //   width: "225px",
+    //   height: "auto",
+    //   margin: "0px"
+    // },
 
     listItem: {
       width: "225px",
@@ -236,7 +237,8 @@ const SideList = ({ props }) => {
                 style={{
                   marginLeft: "17px",
                   marginTop: "4%",
-                  fontSize: "28px"
+                  fontSize: "28px",
+                  color: "#52BBB4"
                 }}
               />
               <p className={classes.paraDiv}>Courses</p>
@@ -304,10 +306,12 @@ const SideList = ({ props }) => {
           >
             <div className={classes.learningPathDiv}>
               <InboxIcon
+                className="boxIcon"
                 style={{
                   marginLeft: "17px",
                   marginTop: "4%",
-                  fontSize: "28px"
+                  fontSize: "28px",
+                  color: "#F8A7A4"
                 }}
               />
               <p className={classes.paraDiv}>Learning Paths</p>
@@ -382,10 +386,12 @@ const SideList = ({ props }) => {
           >
             <div className={classes.resourcesDiv}>
               <SettingsIcon
+                className="settingsIcon"
                 style={{
                   marginLeft: "17px",
                   marginTop: "4%",
-                  fontSize: "28px"
+                  fontSize: "28px",
+                  color: "#b3987b"
                 }}
               />
               <p className={classes.paraDiv}>Resources</p>
@@ -544,7 +550,8 @@ const SideList = ({ props }) => {
                 style={{
                   marginLeft: "17px",
                   marginTop: "4%",
-                  fontSize: "28px"
+                  fontSize: "28px",
+                  color: "#52BBB4"
                 }}
               />
               <p className={classes.paraDiv}>Courses</p>

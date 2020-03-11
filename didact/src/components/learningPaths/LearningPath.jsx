@@ -7,6 +7,7 @@ import {
   toggleLearningPathItem
 } from "../../store/actions/index.js";
 import { Link } from "react-router-dom";
+import PathFirstItem from "./PathFirstItem";
 
 import { LearningPathWrapper } from "./LearningPathStyles";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
@@ -78,6 +79,7 @@ const LearningPath = ({ id, props }) => {
     if (!(index === 0)) {
       upcomingItemsCourses.push(el);
     }
+    console.log("element to the current", el);
   });
 
   const handleMarkCompleteCourse = courseId => {
@@ -109,7 +111,7 @@ const LearningPath = ({ id, props }) => {
   const progress =
     firstItemCourse &&
     ((firstItemCourse.completed / firstItemCourse.total) * 100).toString();
-  const progressPecentage = progress && Number(progress.substring(0, 4));
+  const progressPercentage = progress && Number(progress.substring(0, 4));
 
   const handleBack = () => {
     props.history.push("/learning-paths");
@@ -128,7 +130,6 @@ const LearningPath = ({ id, props }) => {
         <p
           style={{
             fontWeight: "bold",
-            marginLeft: "10px",
             display: "flex",
             flexDirection: "row",
             alignItems: "center"
@@ -215,127 +216,17 @@ const LearningPath = ({ id, props }) => {
                   </div>
                 )}
               </div>
-              <div className="learningPathCard">
-                <div className="currentTitle">
-                  <h1 style={{ fontFamily: "ITC Grouch" }}>
-                    {firstItemCourse.title}
-                  </h1>
-                  {firstItemCourse.path_id &&
-                    (firstItemCourse.automatically_completed ||
-                    firstItemCourse.manually_completed ? (
-                      <CheckCircleIcon
-                        onClick={() =>
-                          handleMarkCompleteItem(firstItemCourse.id)
-                        }
-                        className="completeButton"
-                      />
-                    ) : (
-                      <CheckCircleIcon
-                        onClick={() =>
-                          handleMarkCompleteItem(firstItemCourse.id)
-                        }
-                        className="notCompleteButton"
-                      />
-                    ))}
-                  {!firstItemCourse.path_id &&
-                    (firstItemCourse.automatically_completed ||
-                    firstItemCourse.manually_completed ? (
-                      <CheckCircleIcon
-                        onClick={() =>
-                          handleMarkCompleteCourse(firstItemCourse.id)
-                        }
-                        className="completeButton"
-                      />
-                    ) : (
-                      <CheckCircleIcon
-                        onClick={() =>
-                          handleMarkCompleteCourse(firstItemCourse.id)
-                        }
-                        className="notCompleteButton"
-                      />
-                    ))}
-                </div>
-                {!firstItemCourse.path_id ? (
-                  <div
-                    style={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      width: "80%"
-                    }}
-                  >
-                    <div
-                      style={{
-                        display: "flex",
-                        flexDirection: "column",
-                        textAlign: "left",
-                        margin: "10px 0 -10px 0"
-                      }}
-                    >
-                      <span>Progress</span>
-                      <span>{`${
-                        firstItemCourse && firstItemCourse.total > 1
-                          ? progressPecentage
-                          : 0
-                      } %`}</span>
-                    </div>
-                  </div>
-                ) : null}
-                <p>{firstItemCourse.description}</p>
-                <div className="goToCourse">
-                  <h4>
-                    {firstItemCourse.link !== null
-                      ? firstItemCourse.link.includes("Udemy")
-                        ? "udemy"
-                        : firstItemCourse.link.includes("coursera")
-                        ? "Coursera"
-                        : firstItemCourse.link.includes("youtube")
-                        ? "Youtube"
-                        : null
-                      : null}
-                  </h4>
-                  {firstItemCourse.type ? (
-                    <a href={firstItemCourse.link}>
-                      Go To
-                      {firstItemCourse.type.charAt(0).toUpperCase() +
-                        firstItemCourse.type.slice(1)}
-                    </a>
-                  ) : (
-                    <Link
-                      to={{
-                        pathname: `/courses/yours/${firstItemCourse.id}`
-                        // state: { tracked: tracked }
-                      }}
-                      style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        color: "#242424",
-                        width: "120px",
-                        marginLeft: "72%"
-                        // marginBottom: "15%"
-                      }}
-                    >
-                      <span
-                        style={{
-                          fontWeight: "bold",
-                          marginTop: "2%",
-                          fontFamily: "Open Sans"
-                        }}
-                      >
-                        View Course
-                      </span>
-                      <ArrowRightAltRoundedIcon
-                        style={{
-                          fontSize: "2em"
-                        }}
-                      />
-                    </Link>
-                  )}
-                </div>
-              </div>
+              <PathFirstItem
+                firstItemCourse={firstItemCourse}
+                handleMarkCompleteItem={handleMarkCompleteItem}
+                handleMarkCompleteCourse={handleMarkCompleteCourse}
+                progressPercentage={progressPercentage}
+              />
             </div>
           )}
+
           <div className="learningPathCards">
-            {upcomingItemsCourses.length > 0 && <h3>Upcoming</h3>}
+            {upcomingItemsCourses.length > 0 && <h3>NEXT</h3>}
             <div className="upcomingCards">
               {upcomingItemsCourses.map((itemCourse, index) => {
                 return (
@@ -393,7 +284,7 @@ const LearningPath = ({ id, props }) => {
                               style={{ cursor: "pointer" }}
                               href={itemCourse.link}
                             >
-                              Go To{" "}
+                              Go To
                               {itemCourse.type.charAt(0).toUpperCase() +
                                 itemCourse.type.slice(1)}
                               <div style={{ margin: "0 auto" }}>
@@ -443,7 +334,7 @@ const LearningPath = ({ id, props }) => {
                 );
               })}
             </div>
-            {completedItemsCourses.length > 0 && <h3>Completed</h3>}
+            {completedItemsCourses.length > 0 && <h3>COMPLETED</h3>}
             <div className="completedCards">
               {completedItemsCourses.map((itemCourse, index) => {
                 return (
