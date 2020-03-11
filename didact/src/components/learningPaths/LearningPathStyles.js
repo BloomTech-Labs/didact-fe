@@ -184,7 +184,7 @@ export const LearningPathWrapper = styled.div`
   .upcoming {
     max-width: 395px;
     width: 100%;
-    margin-bottom: 52px;
+    // margin-bottom: 52px;
 
     @media (max-width: 600px) {
       width: 100%;
@@ -192,7 +192,6 @@ export const LearningPathWrapper = styled.div`
     }
 
     .learningPathCard {
-      // background: #adc8d9;
       background: #ffffff;
       color: black;
       max-width: 395px;
@@ -204,7 +203,7 @@ export const LearningPathWrapper = styled.div`
   .item {
     .learningPathCard {
       background: #ffffff;
-      color: black;
+      color: #242424;
       max-width: 826px;
       min-width: 395px;
       width: 100%;
@@ -221,13 +220,10 @@ export const LearningPathWrapper = styled.div`
   }
 
   .learningPathCard {
-    color: white;
-    background: white;
-    // padding: 35px 43px 30px 30px;
-    padding-top: 35px;
-    padding-right: 43px;
-    // padding-bottom: 30px;
-    padding-left: 30px;
+    color: #242424;
+    background: #ffffff;
+    padding: 35px 43px 30px 30px;
+    
     border-radius: 7px;
     width: 540px;
     height: 330px;
@@ -252,32 +248,32 @@ export const LearningPathWrapper = styled.div`
     .goToCourse {
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      margin-top: 25px;
+      
+      
+      
+      // align-items: center;
+      // margin-top: 3%;
+      {
+        a {
+          display: flex;
+          justify-content: space-between;
+          margin: 9% 0% 2% 0%;
+          color: #242424;
+          font-weight: bold;
+          font-family: Open Sans;
+          
+        }
+      }
+      
 
       div {
         display: flex;
         align-items: center;
 
         h4 {
-          margin-left: 15px;
+          // marginTop: 19%;
         }
 
         
-      }
-
-  //     a {
-  //       background-color: #242424;
-  //       color: white;
-  //       padding: 10px 15px;
-  //       border-radius: 16px;
-  //       font-weight: bolder;
-  //     }
-
-  //     h4 {
-  //       margin: 0;
-  //     }
-  //   }
-  // }
-
+      // }
 `;

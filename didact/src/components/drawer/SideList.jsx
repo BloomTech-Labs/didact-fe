@@ -197,6 +197,7 @@ const SideList = ({ props }) => {
           >
             <div className={classes.dashboardDiv}>
               <DashboardIcon
+                className="dashIcon"
                 style={{
                   marginLeft: "17px",
                   marginTop: "4%",
@@ -238,6 +239,7 @@ const SideList = ({ props }) => {
           >
             <div className={classes.coursesDiv}>
               <FolderOpenIcon
+                className="folderIcon"
                 style={{
                   marginLeft: "17px",
                   marginTop: "4%",

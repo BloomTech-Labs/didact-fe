@@ -295,7 +295,7 @@ const LearningPath = ({ id, props }) => {
                   </h4>
                   {firstItemCourse.type ? (
                     <a href={firstItemCourse.link}>
-                      Go To{" "}
+                      Go To
                       {firstItemCourse.type.charAt(0).toUpperCase() +
                         firstItemCourse.type.slice(1)}
                     </a>
@@ -359,34 +359,19 @@ const LearningPath = ({ id, props }) => {
                         <div>
                           <h2>{itemCourse.title || itemCourse.name}</h2>
                           {!itemCourse.path_id ? (
-                            <div
-                              style={{
-                                display: "flex",
-                                justifyContent: "space-between",
-                                width: "80%"
-                              }}
-                            >
-                              <div
-                                style={{
-                                  display: "flex",
-                                  flexDirection: "column",
-                                  textAlign: "left",
-                                  margin: "10px 0 -10px 0"
-                                }}
-                              >
-                                <span>Progress</span>
-                                <span>{`${
-                                  itemCourse && itemCourse.total > 1
-                                    ? (
-                                        (itemCourse.completed /
-                                          itemCourse.total) *
-                                        100
-                                      )
-                                        .toString()
-                                        .substring(0, 4)
-                                    : 0
-                                } %`}</span>
-                              </div>
+                            <div>
+                              <span>Progress</span>
+                              <span>{`${
+                                itemCourse && itemCourse.total > 1
+                                  ? (
+                                      (itemCourse.completed /
+                                        itemCourse.total) *
+                                      100
+                                    )
+                                      .toString()
+                                      .substring(0, 4)
+                                  : 0
+                              } %`}</span>
                             </div>
                           ) : null}
                           <p>{itemCourse.description}</p>
@@ -411,6 +396,14 @@ const LearningPath = ({ id, props }) => {
                               Go To{" "}
                               {itemCourse.type.charAt(0).toUpperCase() +
                                 itemCourse.type.slice(1)}
+                              <div style={{ margin: "0 auto" }}>
+                                <ArrowRightAltRoundedIcon
+                                  style={{
+                                    fontSize: "2em",
+                                    marginLeft: "90%"
+                                  }}
+                                />
+                              </div>
                             </a>
                           ) : (
                             <Link
@@ -424,9 +417,7 @@ const LearningPath = ({ id, props }) => {
                                 justifyContent: "space-between",
                                 color: "#242424",
                                 width: "120px",
-                                marginLeft: "35%"
-
-                                // marginBottom: "15%"
+                                margin: "9% 0% 0% 0%"
                               }}
                             >
                               <span
