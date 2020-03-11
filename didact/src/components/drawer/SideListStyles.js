@@ -7,7 +7,7 @@ export const SideListWrapper = styled.div`
   // height: 100%;
   background: #eeeeee;
   overflow-y: hidden;
-  // height: 100vh;
+  height: 100vh;
 
   ::-webkit-scrollbar {
     overflow: hidden;

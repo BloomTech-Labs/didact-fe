@@ -257,7 +257,7 @@ export const LearningPathWrapper = styled.div`
         a {
           display: flex;
           justify-content: space-between;
-          margin: 9% 0% 2% 0%;
+          margin: 9c% 0% 2% 0%;
           color: #242424;
           font-weight: bold;
           font-family: Open Sans;
