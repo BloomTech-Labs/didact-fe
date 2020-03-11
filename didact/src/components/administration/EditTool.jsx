@@ -8,11 +8,13 @@ import { DidactField, DidactInput, DidactLabel } from "../dashboard/FormStyles";
 import DeleteModal from "../courses/DeleteModal";
 import { TrashCanEdit, DidactButton } from "../dashboard/ButtonStyles";
 
-import Card from "@material-ui/core/Card";
+import { ResourceForm } from "./AdministrationStyles";
 
 const EditTool = ({ props, id }) => {
   const dispatch = useDispatch();
   const tool = useSelector(state => state.toolsReducer.tool);
+  const loading = useSelector(state => state.toolsReducer.isLoadingTools);
+  const editSuccess = useSelector(state => state.toolsReducer.editSuccess);
   const [openModal, setOpenModal] = useState(false);
   const [changes, setChanges] = useState({
     name: "",
@@ -25,11 +27,13 @@ const EditTool = ({ props, id }) => {
   }, []);
 
   useEffect(() => {
-    setChanges({
-      name: tool.name,
-      description: tool.description,
-      link: tool.link
-    });
+    loading === false &&
+      tool &&
+      setChanges({
+        name: tool.name,
+        description: tool.description,
+        link: tool.link
+      });
   }, [tool]);
 
   const handleChange = e => {
@@ -56,7 +60,7 @@ const EditTool = ({ props, id }) => {
   };
 
   return (
-    <Card>
+    <ResourceForm>
       <TrashCanEdit
         onClick={handleModalOpen}
         style={{ marginTop: "10px", fontSize: "2.6rem" }}
@@ -99,7 +103,7 @@ const EditTool = ({ props, id }) => {
         </DidactField>
         <DidactButton type="submit">Submit</DidactButton>
       </form>
-    </Card>
+    </ResourceForm>
   );
 };
 

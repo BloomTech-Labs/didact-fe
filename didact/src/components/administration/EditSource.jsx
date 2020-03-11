@@ -4,15 +4,17 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { editSource, deleteSource, getSourceById } from "../../store/actions";
 
+import { ResourceForm } from "./AdministrationStyles";
+
 import { DidactField, DidactInput, DidactLabel } from "../dashboard/FormStyles";
 
 import { DidactButton, TrashCanEdit } from "../dashboard/ButtonStyles";
 import DeleteModal from "../courses/DeleteModal";
-import Card from "@material-ui/core/Card";
 
 const EditSource = ({ props, id }) => {
   const dispatch = useDispatch();
   const source = useSelector(state => state.sourcesReducer.source);
+  const loading = useSelector(state => state.sourcesReducer.isLoadingSources);
   const [openModal, setOpenModal] = useState(false);
   const [changes, setChanges] = useState({
     name: "",
@@ -25,11 +27,13 @@ const EditSource = ({ props, id }) => {
   }, []);
 
   useEffect(() => {
-    setChanges({
-      name: source.name,
-      description: source.description,
-      link: source.link
-    });
+    loading === false &&
+      source &&
+      setChanges({
+        name: source.name,
+        description: source.description,
+        link: source.link
+      });
   }, [source]);
 
   const handleChange = e => {
@@ -56,7 +60,7 @@ const EditSource = ({ props, id }) => {
   };
 
   return (
-    <Card>
+    <ResourceForm>
       <TrashCanEdit
         onClick={handleModalOpen}
         style={{ marginTop: "10px", fontSize: "2.6rem" }}
@@ -99,7 +103,7 @@ const EditSource = ({ props, id }) => {
         </DidactField>
         <DidactButton type="submit">Submit</DidactButton>
       </form>
-    </Card>
+    </ResourceForm>
   );
 };
 

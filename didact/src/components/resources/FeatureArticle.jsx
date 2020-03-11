@@ -21,10 +21,10 @@ const FeatureArticle = props => {
       )}
 
       <h1>{article.title}</h1>
-      {author ? <h3>{author}</h3> : null}
+      {!author === undefined ? <h3>{author}</h3> : null}
       <h3>{article.date}</h3>
       <p>{description}...</p>
-      {author ? (
+      {!author === null ? (
         <Link className="link-anchor" to={`/articles/${article.id}`}>
           <span>Go To Article</span>
           <ArrowRightAltRoundedIcon
@@ -34,7 +34,7 @@ const FeatureArticle = props => {
           />
         </Link>
       ) : (
-        <a className="link-anchor" href={article.link}>
+        <a target="_blank" className="link-anchor" href={article.link}>
           <span>Go To Article</span>
           <ArrowRightAltRoundedIcon
             style={{

@@ -7,6 +7,8 @@ import {
   DidactTextArea
 } from "../dashboard/FormStyles";
 
+import { ResourceForm } from "./AdministrationStyles";
+
 import {
   getExternalArticleById,
   editExternalArticle,
@@ -15,12 +17,12 @@ import {
 import DeleteModal from "../courses/DeleteModal";
 import { TrashCanEdit, DidactButton } from "../dashboard/ButtonStyles";
 
-import Card from "@material-ui/core/Card";
 import { useDispatch, useSelector } from "react-redux";
 
 const EditExternalArticle = ({ props, id }) => {
   const dispatch = useDispatch();
   const article = useSelector(state => state.articlesReducer.externalArticle);
+  const loading = useSelector(state => state.articlesReducer.isLoadingArticles);
   const [openModal, setOpenModal] = useState(false);
   const [changes, setChanges] = useState({
     date: "",
@@ -35,13 +37,15 @@ const EditExternalArticle = ({ props, id }) => {
   }, []);
 
   useEffect(() => {
-    setChanges({
-      date: article.date,
-      title: article.title,
-      description: article.description,
-      topic: article.topic,
-      link: article.link
-    });
+    loading === false &&
+      article &&
+      setChanges({
+        date: article.date,
+        title: article.title,
+        description: article.description,
+        topic: article.topic,
+        link: article.link
+      });
   }, [article]);
 
   const handleChange = e => {
@@ -68,7 +72,7 @@ const EditExternalArticle = ({ props, id }) => {
   };
 
   return (
-    <Card>
+    <ResourceForm>
       <TrashCanEdit
         onClick={handleModalOpen}
         style={{ marginTop: "10px", fontSize: "2.6rem" }}
@@ -124,7 +128,7 @@ const EditExternalArticle = ({ props, id }) => {
         </DidactField>
         <DidactButton type="submit">Submit</DidactButton>
       </form>
-    </Card>
+    </ResourceForm>
   );
 };
 

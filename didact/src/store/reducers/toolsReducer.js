@@ -19,6 +19,9 @@ import {
 const initialState = {
   tools: [],
   isLoadingTools: false,
+  adding: false,
+  updating: false,
+  deleting: false,
   error: "",
   tool: {}
 };
@@ -33,14 +36,14 @@ export const toolsReducer = (state = initialState, action) => {
     case TOOL_DATA_SUCCESS:
       return {
         ...state,
-        isLoadingTools: false,
-        tools: action.payload
+        tools: action.payload,
+        isLoadingTools: false
       };
     case TOOL_DATA_FAIL:
       return {
         ...state,
-        isLoadingTools: false,
-        error: action.payload
+        error: action.payload,
+        isLoadingTools: false
       };
     case TOOL_BY_ID_START:
       return {
@@ -50,65 +53,67 @@ export const toolsReducer = (state = initialState, action) => {
     case TOOL_BY_ID_SUCCESS:
       return {
         ...state,
-        isLoadingTools: false,
-        tool: action.payload
+        tool: action.payload,
+        isLoadingTools: false
       };
     case TOOL_BY_ID_FAIL:
       return {
         ...state,
-        isLoadingTools: false,
-        error: action.payload
+        error: action.payload,
+        isLoadingTools: false
       };
     case ADD_TOOL_START:
       return {
         ...state,
-        isLoadingTools: true
+        adding: true
       };
     case ADD_TOOL_SUCCESS:
       return {
         ...state,
-        isLoadingTools: false,
-        tools: [...state.tools, action.payload]
+        tools: [...state.tools, action.payload],
+        adding: false
       };
     case ADD_TOOL_FAIL:
       return {
         ...state,
-        isLoadingTools: false,
-        error: action.payload
+        error: action.payload,
+        adding: false
       };
     case EDIT_TOOL_START:
       return {
         ...state,
-        isLoadingTools: true
+        updating: true
       };
     case EDIT_TOOL_SUCCESS:
       return {
         ...state,
-        isLoadingTools: false,
-        tool: action.payload
+        tools: state.tools.map(tool =>
+          tool.id === action.payload.id ? action.payload.changes : tool
+        ),
+        updating: false
       };
     case EDIT_TOOL_FAIL:
       return {
         ...state,
-        isLoadingTools: false,
-        error: action.payload
+        error: action.payload,
+        updating: false
       };
     case DELETE_TOOL_START:
       return {
         ...state,
-        isLoadingTools: true
+        deleting: true
       };
     case DELETE_TOOL_SUCCESS:
       return {
         ...state,
-        isLoadingTools: false,
-        tools: state.tools.filter(el => el.id !== action.payload)
+        tools: state.tools.filter(el => el.id !== action.payload),
+        deleting: false
       };
     case DELETE_TOOL_FAIL:
       return {
         ...state,
-        isLoadingTools: false,
-        error: action.payload
+        error: action.payload,
+        deleting: false
       };
     default:
       return state;

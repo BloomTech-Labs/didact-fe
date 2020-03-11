@@ -8,17 +8,21 @@ const ArticleBrief = props => {
   const article = props.article;
   const user = useSelector(state => state.onboardingReducer.user);
   const brief = article.body.slice(0, 75);
+  const title =
+    article.title.length > 35
+      ? `${article.title.slice(0, 35)}...`
+      : article.title;
   const author = article.first_name + " " + article.last_name;
 
   return (
     <ArticleWrapper>
       {user.owner || user.admin ? (
         <div className="article-header">
-          <h1>{article.title}</h1>
+          <h1>{title}</h1>
           <Link to={`/articles/${article.id}/edit`}>Edit</Link>
         </div>
       ) : (
-        <h1>{article.title}</h1>
+        <h1>{title}</h1>
       )}
       <h2>{article.date}</h2>
       <div className="body-div">
