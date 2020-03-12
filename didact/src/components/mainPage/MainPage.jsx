@@ -3,6 +3,7 @@ import { verifyToken } from "../../store/actions/index.js";
 import { useDispatch, useSelector } from "react-redux";
 import { PageFlex } from "./PageStyles";
 import { makeStyles } from "@material-ui/core/styles";
+import { Link } from "react-router-dom";
 
 import { Mixpanel } from "../../utils/mixpanel";
 
@@ -227,7 +228,10 @@ function MainPage(props) {
   const phoneSize = useMediaQuery("(max-width:600px)");
   const tabletSize = useMediaQuery("(max-width:770px, min-width: 601px");
   const mediumScreenSize = useMediaQuery("(max-width:920px)");
-  const userName = useSelector(state => state.onboardingReducer.user);
+  const state = useSelector(state => state);
+  const userName = state.onboardingReducer.user;
+  const owner = state.onboardingReducer.user.owner;
+  const admin = state.onboardingReducer.user.admin;
   const token = localStorage.getItem("token");
   const [open, setOpen] = React.useState(true);
   const [openMobile, setOpenMobile] = React.useState(false);
@@ -376,7 +380,6 @@ function MainPage(props) {
                 <div className="headerMain">
                   <div className="header">
                     {/* Search Functionality for search Below */}
-
                     {props.location.pathname === "/results" ? (
                       <div className={classes.searchDivResults}>
                         <form
@@ -385,6 +388,11 @@ function MainPage(props) {
                         >
                           <div className={classes.filterDiv}>
                             <select
+                              style={
+                                "&.select & select"
+                                  ? { backgroundColor: "white" }
+                                  : { backgroundColor: "#eeeeee" }
+                              }
                               className={classes.dropFilter}
                               // onClick={ highlight }
                               value={values.filter}
@@ -451,8 +459,17 @@ function MainPage(props) {
                         </form>
                       </div>
                     )}
-
                     <div className="profileSection">
+                      <p
+                        className="usersLink"
+                        style={
+                          owner === false || admin === false
+                            ? { display: "none" }
+                            : { display: "inline-block" }
+                        }
+                      >
+                        <Link to={`/users`}>Edit Users</Link>
+                      </p>
                       <p className="profile-avatar">
                         {userName.photo ? (
                           <img
@@ -470,7 +487,6 @@ function MainPage(props) {
                         )}
                       </p>
                       <p className="name">{firstName + " " + lastName}</p>
-
                       <p onClick={handleLogOut} className="logout">
                         <MoreHorizIcon
                           style={{
