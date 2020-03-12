@@ -24,6 +24,7 @@ export const getTools = () => dispatch => {
   axiosWithAuth()
     .get(baseURL)
     .then(result => {
+      console.log(result);
       dispatch({ type: TOOL_DATA_SUCCESS, payload: result.data });
     })
     .catch(error => {

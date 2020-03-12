@@ -5,7 +5,7 @@ import Loader from "react-loader-spinner";
 
 import { DetailedCourseWrapper } from "../DetailedCourseStyles";
 import { DidactButton, TagStyles } from "../../dashboard/ButtonStyles";
-
+import { Mixpanel } from "../../../utils/mixpanel";
 import {
   getYourDetailedCourse,
   toggleCompleteCourse,
@@ -51,6 +51,13 @@ const YourDetailedCourse = props => {
 
   useEffect(
     _ => {
+      if (props.tracked) {
+        console.log("if trigger");
+        Mixpanel.track("Course Result Selected");
+      } else {
+        console.log("else");
+        return;
+      }
       dispatch(getYourDetailedCourse(props.id));
     },
     [dispatch, props.id]
