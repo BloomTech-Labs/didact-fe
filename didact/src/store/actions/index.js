@@ -261,6 +261,9 @@ export {
   ARTICLE_DATA_START,
   ARTICLE_DATA_SUCCESS,
   ARTICLE_DATA_FAIL,
+  EXTERNAL_ARTICLE_DATA_START,
+  EXTERNAL_ARTICLE_DATA_SUCCESS,
+  EXTERNAL_ARTICLE_DATA_FAIL,
   ARTICLE_BY_ID_START,
   ARTICLE_BY_ID_SUCCESS,
   ARTICLE_BY_ID_FAIL,
@@ -288,6 +291,7 @@ export {
   addArticle,
   addExternalArticle,
   getArticles,
+  getExternalArticles,
   getArticleById,
   getExternalArticleById,
   editArticle,
@@ -333,4 +337,3 @@ export {
   getUserById,
   editUser
 } from "./usersProfiles";
-

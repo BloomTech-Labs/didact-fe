@@ -7,7 +7,12 @@ import Tool from "./Tool";
 import Source from "./Source";
 import ArticleBrief from "./ArticleBrief";
 import ExternalArticleBrief from "./ExternalArticleBrief";
-import { getTools, getSources, getArticles } from "../../store/actions";
+import {
+  getTools,
+  getSources,
+  getArticles,
+  getExternalArticles
+} from "../../store/actions";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import coolimage from "../../images/coolimage.png";
 
@@ -17,14 +22,21 @@ const ResourceGeneral = () => {
   const sourcesGen = useSelector(state =>
     state.sourcesReducer.sources.slice(0, 3)
   );
-  const articlesGen = useSelector(state =>
-    state.articlesReducer.articles.slice(0, 2)
+  const internalArticles = useSelector(state => state.articlesReducer.articles);
+  const externalArticles = useSelector(
+    state => state.articlesReducer.externalArticles
   );
+  const articles = internalArticles.concat(externalArticles);
+  const sortedArticles = articles
+    .slice()
+    .sort((a, b) => new Date(b.date) - new Date(a.date));
+  const articlesGen = sortedArticles.slice(0, 2);
 
   useEffect(() => {
     dispatch(getTools());
     dispatch(getSources());
     dispatch(getArticles());
+    dispatch(getExternalArticles());
   }, [dispatch]);
 
   return (
@@ -54,7 +66,6 @@ const ResourceGeneral = () => {
         </Link>
       </div>
       <ResourceGrid>
-        {" "}
         {sourcesGen &&
           sourcesGen.map(source => <Source source={source} key={source.id} />)}
       </ResourceGrid>
