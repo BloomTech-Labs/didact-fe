@@ -5,7 +5,7 @@ import {
     DidactInput,
     DidactLabel,
     DidactTextArea
-} from "../dashboard/FormStyles";
+} from "./ProfileStyles";
 
 import {
     getUserById,
@@ -19,7 +19,9 @@ import { useSelector, useDispatch } from "react-redux";
 
 const EditUser = ({ props, id }) => {
     const dispatch = useDispatch();
-    const person = useSelector(state => state.usersProfilesReducer.person);
+    const state = useSelector(state => state)
+    const user = state.onboardingReducer.user
+    const person = state.usersProfilesReducer.person;
     const [openModal, setOpenModal] = useState(false);
     const [changes, setChanges] = useState({
         email: "",
@@ -76,8 +78,9 @@ const EditUser = ({ props, id }) => {
                         name="email"
                     />
                 </DidactField>
-                <DidactField>
-                    <DidactLabel>Owner</DidactLabel>
+                <DidactField style={ (user.owner !== true) ? { display: "none" } : { display: "" }
+                }>
+                    <DidactLabel >Owner</DidactLabel>
                     <DidactInput
                         value={ changes.owner }
                         onChange={ handleChange }
@@ -86,7 +89,7 @@ const EditUser = ({ props, id }) => {
                 </DidactField>
                 <DidactField>
                     <DidactLabel>Admin</DidactLabel>
-                    <DidactTextArea
+                    <DidactInput
                         value={ changes.admin }
                         onChange={ handleChange }
                         name="admin"

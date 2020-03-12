@@ -118,8 +118,10 @@ export const TopDashboardArt = styled.div`
   height: 353px;
   margin-left: 30%;
   margin-top: -4%;
-  position: absolute;
-`;
+  position: relative;
+  right:-250px;
+  top:280px;
+ `;
 
 export const CoursesCard = styled.div`
   display: flex;
