@@ -187,7 +187,7 @@ const SideList = ({ props }) => {
             key="Dashboard"
           >
             <div className={ classes.dashboardDiv }>
-              <DashboardIcon
+              <DashboardIcon className="dashIcon"
                 style={ {
                   marginLeft: "17px",
                   marginTop: "4%",
@@ -227,7 +227,7 @@ const SideList = ({ props }) => {
             key="Add Course"
           >
             <div className={ classes.coursesDiv }>
-              <FolderOpenIcon
+              <FolderOpenIcon className="folderIcon"
                 style={ {
                   marginLeft: "17px",
                   marginTop: "4%",
@@ -324,7 +324,7 @@ const SideList = ({ props }) => {
               {/* </List> */ }
               <ListItem className={ classes.nested }>
                 <Link
-                  to="/learning-paths/current"
+                  to="/learning-paths"
                   style={ {
                     fontSize: "12px",
 
