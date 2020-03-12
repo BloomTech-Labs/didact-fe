@@ -4,6 +4,9 @@ import beURL from "../../utils/beURL";
 export const ARTICLE_DATA_START = "ARTICLE_DATA_START";
 export const ARTICLE_DATA_SUCCESS = "ARTICLE_DATA_SUCCESS";
 export const ARTICLE_DATA_FAIL = "ARTICLE_DATA_FAIL";
+export const EXTERNAL_ARTICLE_DATA_START = "EXTERNAL_ARTICLE_DATA_START";
+export const EXTERNAL_ARTICLE_DATA_SUCCESS = "EXTERNAL_ARTICLE_DATA_SUCCESS";
+export const EXTERNAL_ARTICLE_DATA_FAIL = "EXTERNAL_ARTICLE_DATA_FAIL";
 export const ARTICLE_BY_ID_START = "ARTICLE_BY_ID_START";
 export const ARTICLE_BY_ID_SUCCESS = "ARTICLE_BY_ID_SUCCESS";
 export const ARTICLE_BY_ID_FAIL = "ARTICLE_BY_ID_FAIL";
@@ -44,6 +47,18 @@ export const getArticles = () => dispatch => {
     });
 };
 
+export const getExternalArticles = () => dispatch => {
+  dispatch({ type: EXTERNAL_ARTICLE_DATA_START });
+  axiosWithAuth()
+    .get(`${baseURL}/external`)
+    .then(result => {
+      dispatch({ type: EXTERNAL_ARTICLE_DATA_SUCCESS, payload: result.data });
+    })
+    .catch(error => {
+      dispatch({ type: EXTERNAL_ARTICLE_DATA_FAIL, payload: error.response });
+    });
+};
+
 export const getArticleById = id => dispatch => {
   dispatch({ type: ARTICLE_BY_ID_START });
   axiosWithAuth()
@@ -75,7 +90,10 @@ export const editArticle = (id, changes) => dispatch => {
   axiosWithAuth()
     .put(`${baseURL}/${id}`, changes)
     .then(result => {
-      dispatch({ type: EDIT_ARTICLE_SUCCESS, changes });
+      dispatch({
+        type: EDIT_ARTICLE_SUCCESS,
+        payload: { id: id, changes: changes }
+      });
     })
     .catch(error => {
       dispatch({ type: EDIT_ARTICLE_FAIL, payload: error.response });
@@ -123,7 +141,10 @@ export const editExternalArticle = (id, changes) => dispatch => {
   axiosWithAuth()
     .put(`${baseURL}/external/${id}`, changes)
     .then(result => {
-      dispatch({ type: EDIT_EXTERNAL_ARTICLE_SUCCESS, changes });
+      dispatch({
+        type: EDIT_EXTERNAL_ARTICLE_SUCCESS,
+        payload: { id: id, changes: changes }
+      });
     })
     .catch(error => {
       dispatch({ type: EDIT_EXTERNAL_ARTICLE_FAIL, payload: error.response });

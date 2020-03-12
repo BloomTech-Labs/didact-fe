@@ -17,9 +17,10 @@ const AddResource = ({ props }) => {
       <NativeSelect
         style={{
           backgoundColor: "#EEEEEE",
-
+          marginBottom: "20px",
           fontSize: "16px",
-          border: "1px black solid"
+          border: "1px black solid",
+          borderRadius: "3px"
         }}
         children={{ padding: "10px" }}
         value={contentType}

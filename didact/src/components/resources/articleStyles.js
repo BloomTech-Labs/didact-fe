@@ -323,7 +323,9 @@ export const FullArticleStyled = styled.div`
     width: 520px;
     line-height: 1.5;
   }
-
+  h3 {
+    font-size: 14px;
+  }
   h2 {
     font-size: 16px;
   }

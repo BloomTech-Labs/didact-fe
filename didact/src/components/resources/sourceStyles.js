@@ -36,6 +36,7 @@ export const SourceWrapper = styled.div`
       justify-content: space-between;
 
       a {
+        width: 25%;
         font-size: 16px;
         color: green;
       }

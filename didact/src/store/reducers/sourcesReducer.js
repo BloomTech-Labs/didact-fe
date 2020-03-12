@@ -19,6 +19,9 @@ import {
 const initialState = {
   sources: [],
   isLoadingSources: false,
+  adding: false,
+  updating: false,
+  deleting: false,
   error: "",
   source: {}
 };
@@ -33,14 +36,14 @@ export const sourcesReducer = (state = initialState, action) => {
     case SOURCE_DATA_SUCCESS:
       return {
         ...state,
-        isLoadingSources: false,
-        sources: action.payload
+        sources: action.payload,
+        isLoadingSources: false
       };
     case SOURCE_DATA_FAIL:
       return {
         ...state,
-        isLoadingSources: false,
-        error: action.payload
+        error: action.payload,
+        isLoadingSources: false
       };
     case SOURCE_BY_ID_START:
       return {
@@ -50,65 +53,67 @@ export const sourcesReducer = (state = initialState, action) => {
     case SOURCE_BY_ID_SUCCESS:
       return {
         ...state,
-        isLoadingSources: false,
-        source: action.payload
+        source: action.payload,
+        isLoadingSources: false
       };
     case SOURCE_BY_ID_FAIL:
       return {
         ...state,
-        isLoadingSources: false,
-        error: action.payload
+        error: action.payload,
+        isLoadingSources: false
       };
     case ADD_SOURCE_START:
       return {
         ...state,
-        isLoadingSources: true
+        adding: true
       };
     case ADD_SOURCE_SUCCESS:
       return {
         ...state,
-        isLoadingSources: false,
-        sources: [...state.sources, action.payload]
+        sources: [...state.sources, action.payload],
+        adding: false
       };
     case ADD_SOURCE_FAIL:
       return {
         ...state,
-        isLoadingSources: false,
-        error: action.payload
+        error: action.payload,
+        adding: false
       };
     case EDIT_SOURCE_START:
       return {
         ...state,
-        isLoadingSources: true
+        updating: true
       };
     case EDIT_SOURCE_SUCCESS:
       return {
         ...state,
-        isLoadingSources: false,
-        source: action.payload
+        sources: state.sources.map(source =>
+          source.id === action.payload.id ? action.payload.changes : source
+        ),
+        updating: false
       };
     case EDIT_SOURCE_FAIL:
       return {
         ...state,
-        isLoadingSources: false,
-        error: action.payload
+        error: action.payload,
+        updating: false
       };
     case DELETE_SOURCE_START:
       return {
         ...state,
-        isLoadingSources: true
+        deleting: true
       };
     case DELETE_SOURCE_SUCCESS:
       return {
         ...state,
-        isLoadingSources: false,
-        sources: state.sources.filter(el => el.id !== action.payload)
+        sources: state.sources.filter(el => el.id !== action.payload),
+        deleting: false
       };
     case DELETE_SOURCE_FAIL:
       return {
         ...state,
-        isLoadingSources: false,
-        error: action.payload
+        error: action.payload,
+        deleting: false
       };
     default:
       return state;

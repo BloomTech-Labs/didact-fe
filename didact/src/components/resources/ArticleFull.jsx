@@ -10,7 +10,7 @@ const ArticleFull = ({ props, id }) => {
   const dispatch = useDispatch();
   const state = useSelector(state => state);
   const article = state.articlesReducer.article;
-  const author = article.first_name + " " + article.last_name;
+  const loading = state.articlesReducer.isLoadingArticles;
 
   useEffect(() => {
     dispatch(getArticleById(id));
@@ -18,26 +18,31 @@ const ArticleFull = ({ props, id }) => {
 
   return (
     <FullArticleStyled className="article-full">
-      <HeaderStyled>
-        <p className="header-navs">
-          <span>Resources</span>
+      {loading && <h1>I'm Loading</h1>}
+      {article && loading === false && (
+        <>
+          <HeaderStyled>
+            <p className="header-navs">
+              <span>Resources</span>
+              <ChevronRightIcon style={{ fontSize: "1.6rem" }} />
+              <Link to="/articles">
+                <span>Articles</span>
+              </Link>
+              <ChevronRightIcon style={{ fontSize: "1.6rem" }} />
+              {article.title && <span>{article.title.substring(0, 25)}..</span>}
+            </p>
+          </HeaderStyled>
 
-          <ChevronRightIcon style={{ fontSize: "1.6rem" }} />
-          <Link to="/articles">
-            <span>Articles</span>
-          </Link>
-          <ChevronRightIcon style={{ fontSize: "1.6rem" }} />
-          <span>{article.title}</span>
-        </p>
-      </HeaderStyled>
-      <h1>{article.title}</h1>
-      <h2>{article.date}</h2>
-      <h2>{author}</h2>
-      <div className="img-div">
-        <img src={articlefillerimg} />
-      </div>
-      {article.body &&
-        article.body.split("\n").map(portion => <p>{portion}</p>)}
+          <h1>{article.title}</h1>
+          <h2>{article.first_name + " " + article.last_name}</h2>
+          <h3>{article.date}</h3>
+          <div className="img-div">
+            <img src={articlefillerimg} />
+          </div>
+          {article.body &&
+            article.body.split("\n").map(portion => <p>{portion}</p>)}
+        </>
+      )}
     </FullArticleStyled>
   );
 };

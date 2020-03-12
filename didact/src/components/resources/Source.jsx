@@ -66,7 +66,7 @@ const Source = props => {
           >
             {source.description && <p>{source.description}</p>}
             {source.link && (
-              <a className="link-anchor" href={source.link}>
+              <a target="_blank" className="link-anchor" href={source.link}>
                 <span>Visit Source</span>
                 <ArrowRightAltRoundedIcon
                   style={{
