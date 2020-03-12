@@ -60,7 +60,10 @@ export const editSource = (id, changes) => dispatch => {
   axiosWithAuth()
     .put(`${baseURL}/${id}`, changes)
     .then(result => {
-      dispatch({ type: EDIT_SOURCE_SUCCESS, payload: changes });
+      dispatch({
+        type: EDIT_SOURCE_SUCCESS,
+        payload: { id: id, changes: changes }
+      });
     })
     .catch(error => {
       dispatch({ type: EDIT_SOURCE_FAIL, payload: error.response });
