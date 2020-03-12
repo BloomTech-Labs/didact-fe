@@ -57,6 +57,7 @@ export const LearningPathWrapper = styled.div`
       display: flex;
       justify-content: space-between;
       flex-wrap: wrap;
+      // margin-bottom: 10%;
       
       @media (max-width: 600px) {
         width: 100%;
@@ -67,6 +68,7 @@ export const LearningPathWrapper = styled.div`
 
         .upcoming {
           max-width: 826px;
+          // margin-bottom: 10%;
         }
 
         .learningPathCard {
@@ -84,6 +86,7 @@ export const LearningPathWrapper = styled.div`
       display: flex;
       justify-content: space-between;
       flex-wrap: wrap;
+     
 
       @media (max-width: 600px) {
         width: 100%;
@@ -94,6 +97,7 @@ export const LearningPathWrapper = styled.div`
 
         .upcoming {
           max-width: 826px;
+          // margin-bottom: 10%;
         }
 
         .learningPathCard {
@@ -115,7 +119,7 @@ export const LearningPathWrapper = styled.div`
       opacity: 0.5;
       width: 395px;
       color: #242424;
-
+       
       @media (max-width: 600px) {
         width: 100%;
         min-width: 320px;
@@ -201,7 +205,7 @@ export const LearningPathWrapper = styled.div`
   .upcoming {
     max-width: 395px;
     width: 100%;
-    // margin-bottom: 52px;
+    margin-bottom: 10%;
 
     @media (max-width: 600px) {
       width: 100%;
@@ -228,16 +232,16 @@ export const LearningPathWrapper = styled.div`
       width: 549px;
       min-width: 395px;
       width: 100%;
-      margin-bottom: 20px;
+      // margin-bottom: 20px;
     }
 
     .learningPathCard.completed {
-      margin: 0;
+      margin-bottom: 10%;
     }
   }
 
   .completed {
-    margin-bottom: 52px;
+    margin-bottom: 10%;
   }
 
   .learningPathCard {

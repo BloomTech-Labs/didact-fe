@@ -137,6 +137,10 @@ const SideList = ({ props }) => {
       textAlign: "left",
       marginTop: "2.4%"
     },
+    bottomLinkBottom: {
+      marginRight: "75%",
+      fontWeight: "bold"
+    },
 
     nestedSmall: {
       paddingLeft: theme.spacing(4),
@@ -771,7 +775,7 @@ const SideList = ({ props }) => {
               className={classes.bottomListItem}
               key="about"
             >
-              <p className={classes.bottomLink}>About</p>
+              <p className={classes.bottomLinkBottom}>About</p>
             </NavLink>
 
             <NavLink
@@ -786,7 +790,7 @@ const SideList = ({ props }) => {
               className={classes.bottomListItem}
               key="contact"
             >
-              <p className={classes.bottomLink}>Contact</p>
+              <p className={classes.bottomLinkBottom}>Contact</p>
             </NavLink>
           </div>
         </ul>

@@ -356,7 +356,7 @@ const LearningPath = ({ id, props }) => {
                     >
                       <div className="learningPathCard completed">
                         <div>
-                          <h2>{itemCourse.title}</h2>
+                          <h2>{itemCourse.title || itemCourse.name}</h2>
                           <div
                             style={{
                               display: "flex",
