@@ -2,6 +2,9 @@ import {
     GET_USER_DATA_START,
     GET_USER_DATA_SUCCESS,
     GET_USER_DATA_FAIL,
+    GET_SPECIFIC_USER_START,
+    GET_SPECIFIC_USER_SUCCESS,
+    GET_SPECIFIC_USER_FAIL,
     EDIT_USER_START,
     EDIT_USER_SUCCESS,
     EDIT_USER_FAIL,
@@ -10,10 +13,10 @@ import {
 
 const initialState = {
     users: [],
-    user: {},
+    person: {},
     isLoading: false,
     error: "",
-    source: {}
+
 };
 
 export const usersProfilesReducer = (state = initialState, action) => {
@@ -27,9 +30,26 @@ export const usersProfilesReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoading: false,
-                sources: action.payload
+                users: action.payload
             };
         case GET_USER_DATA_FAIL:
+            return {
+                ...state,
+                isLoading: false,
+                error: action.payload
+            };
+        case GET_SPECIFIC_USER_START:
+            return {
+                ...state,
+                isLoading: true
+            };
+        case GET_SPECIFIC_USER_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                person: action.payload
+            };
+        case GET_SPECIFIC_USER_FAIL:
             return {
                 ...state,
                 isLoading: false,
@@ -44,7 +64,7 @@ export const usersProfilesReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoading: false,
-                source: action.payload
+                person: action.payload
             };
         case EDIT_USER_FAIL:
             return {

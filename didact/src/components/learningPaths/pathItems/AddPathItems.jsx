@@ -76,39 +76,39 @@ const AddPathItems = ({ props }) => {
   return (
     <>
       <div
-        style={{
+        style={ {
           display: "flex",
           justifyContent: "space-between",
           margin: "-10px 10px 10px 10px",
           borderTop: "1px solid black"
-        }}
+        } }
       >
         <p
-          style={{
+          style={ {
             fontWeight: "bold",
             marginLeft: "10px",
             display: "flex",
             flexDirection: "row",
             alignItems: "center"
-          }}
+          } }
         >
-          <span className={classes.span} onClick={handleBack}>
+          <span className={ classes.span } onClick={ handleBack }>
             Learning Paths
           </span>
-          <ChevronRightIcon style={{ fontSize: "1.6rem" }} />
-          <span className={classes.span} onClick={backToLearningPath}>
+          <ChevronRightIcon style={ { fontSize: "1.6rem" } } />
+          <span className={ classes.span } onClick={ backToLearningPath }>
             Edit
           </span>
-          <ChevronRightIcon style={{ fontSize: "1.6rem" }} />
+          <ChevronRightIcon style={ { fontSize: "1.6rem" } } />
           <span>Add Path Item</span>
         </p>
       </div>
-      <Card className={classes.card}>
+      <Card className={ classes.card }>
         <CardContent>
-          <p className={classes.title}>Learning Path Item Overview</p>
+          <p className={ classes.title }>Learning Path Item Overview</p>
           <form
-            onSubmit={handleSubmit}
-            className={classes.container}
+            onSubmit={ handleSubmit }
+            className={ classes.container }
             noValidate
             autoComplete="off"
           >
@@ -117,8 +117,8 @@ const AddPathItems = ({ props }) => {
               <DidactInput
                 id="name"
                 type="text"
-                value={values.name || ""}
-                onChange={handleChange("name")}
+                value={ values.name || "" }
+                onChange={ handleChange("name") }
                 placeholder="Item Name"
               />
             </DidactField>
@@ -127,8 +127,8 @@ const AddPathItems = ({ props }) => {
               <DidactTextArea
                 rows="8"
                 id="description"
-                value={values.description || ""}
-                onChange={handleChange("description")}
+                value={ values.description || "" }
+                onChange={ handleChange("description") }
                 placeholder="Description"
               />
             </DidactField>
@@ -137,8 +137,8 @@ const AddPathItems = ({ props }) => {
               <DidactInput
                 id="link"
                 type="text"
-                value={values.link || ""}
-                onChange={handleChange("link")}
+                value={ values.link || "" }
+                onChange={ handleChange("link") }
                 placeholder="Url Link"
               />
             </DidactField>
@@ -147,8 +147,8 @@ const AddPathItems = ({ props }) => {
               <DidactInput
                 id="type"
                 type="text"
-                value={values.type || ""}
-                onChange={handleChange("type")}
+                value={ values.type || "" }
+                onChange={ handleChange("type") }
                 placeholder="Type"
               />
             </DidactField>

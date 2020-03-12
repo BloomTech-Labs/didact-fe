@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Container = styled.div `
+export const Container = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -14,7 +14,7 @@ export const Container = styled.div `
 
 `
 
-export const IconDiv = styled.div `
+export const IconDiv = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
