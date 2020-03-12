@@ -215,6 +215,7 @@ const LearningPath = ({ id, props }) => {
                   </div>
                 )}
               </div>
+
               <div className="learningPathCard">
                 <div className="currentTitle">
                   <h1 style={{ fontFamily: "ITC Grouch" }}>
