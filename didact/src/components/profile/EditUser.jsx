@@ -78,7 +78,7 @@ const EditUser = ({ props, id }) => {
                         name="email"
                     />
                 </DidactField>
-                <DidactField style={ (user.owner !== true) ? { display: "none" } : { display: "block" }
+                <DidactField style={ (user.owner !== true) ? { display: "none" } : { display: "" }
                 }>
                     <DidactLabel >Owner</DidactLabel>
                     <DidactInput
