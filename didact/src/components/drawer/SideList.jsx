@@ -33,10 +33,9 @@ const SideList = ({ props }) => {
       backgroundColor: "#ffffff",
       borderRadius: "0 7px 7px 0",
       width: "225px",
-      // color: "white",
       height: "50px",
       margin: "10px 0px",
-      borderLeft: "5px solid #242424BF",
+      // borderLeft: "5px solid #242424BF",
       "& .dashIcon": {
         color: "#242424BF"
       },
@@ -48,7 +47,7 @@ const SideList = ({ props }) => {
     listing: {
       display: "flex",
       flexDirection: "column",
-      margin: "auto",
+      margin: " 0 auto",
       padding: 0,
       height: "100vh"
     },
@@ -82,14 +81,6 @@ const SideList = ({ props }) => {
       display: "flex",
       margin: "5px 0px"
     },
-
-    // activeTab: {
-    //   backgroundColor: "#ffffff",
-    //   borderRadius: "0 7px 7px 0",
-    //   width: "225px",
-    //   height: "auto",
-    //   margin: "0px"
-    // },
 
     listItem: {
       width: "225px",
@@ -186,8 +177,8 @@ const SideList = ({ props }) => {
               outline: "none !important"
             }}
             activeStyle={{
-              color: "242424BF",
-              borderLeft: "5px solid 242424BF"
+              color: "#242424BF",
+              borderLeft: "5px solid #242424BF"
             }}
             activeClassName={classes.activeTab}
             className={classes.listItem}
@@ -230,7 +221,10 @@ const SideList = ({ props }) => {
               color: "#5b5b5b",
               outline: "none !important"
             }}
-            activeStyle={{ color: "#242424BF" }}
+            activeStyle={{
+              color: "#242424BF",
+              borderLeft: " 5px solid #52BBB4"
+            }}
             activeClassName={classes.activeTab}
             className={classes.listItem}
             key="Add Course"
@@ -303,7 +297,10 @@ const SideList = ({ props }) => {
               color: "#5b5b5b",
               outline: "none !important"
             }}
-            activeStyle={{ color: "#242424BF" }}
+            activeStyle={{
+              color: "#242424BF",
+              borderLeft: "5px solid #F8A7A4"
+            }}
             activeClassName={classes.activeTab}
             className={classes.listItem}
             key="Learning Paths"
@@ -383,7 +380,10 @@ const SideList = ({ props }) => {
               color: "#5b5b5b",
               outline: "none !important"
             }}
-            activeStyle={{ color: "#242424BF" }}
+            activeStyle={{
+              color: "#242424BF",
+              borderLeft: "5px solid #b3987b"
+            }}
             activeClassName={classes.activeTab}
             className={classes.listItem}
             key="Resources"
@@ -626,7 +626,8 @@ const SideList = ({ props }) => {
                 style={{
                   marginLeft: "17px",
                   marginTop: "4%",
-                  fontSize: "28px"
+                  fontSize: "28px",
+                  color: "#F8A7A4"
                 }}
               />
               <p className={classes.paraDiv}>Learning Paths</p>
@@ -703,7 +704,8 @@ const SideList = ({ props }) => {
                 style={{
                   marginLeft: "17px",
                   marginTop: "4%",
-                  fontSize: "28px"
+                  fontSize: "28px",
+                  color: "#b3987b"
                 }}
               />
               <p className={classes.paraDiv}>Resources</p>
