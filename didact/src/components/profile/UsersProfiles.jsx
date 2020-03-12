@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Person from "./Person";
 import { getUsersProfiles } from "../../store/actions";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
+import { PersonWrapper } from "./ProfileStyles";
 
 const UsersProfiles = () => {
     const dispatch = useDispatch();
@@ -15,9 +16,11 @@ const UsersProfiles = () => {
     }, [dispatch]);
 
     return (
-        <div>
+
+        <PersonWrapper className="nameIt" style={ (user.owner === true || user.admin === true) ? { display: "", flexWrap: "wrap" } : { display: "none" }
+        }>
             { usersList && usersList.map(person => <Person person={ person } key={ person.id } email={ person.email } owner={ person.owner } admin={ person.admin } moderator={ person.moderator } />) }
-        </div>
+        </PersonWrapper >
     );
 };
 
