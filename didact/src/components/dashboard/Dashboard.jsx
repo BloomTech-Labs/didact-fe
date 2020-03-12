@@ -138,9 +138,9 @@ function Dashboard({ props }) {
       </div>
       <TopDashboardCard>
         <div className={ classes.topContainer }>
-          <div></div>
+          {/* <div></div>
           <span style={ { fontWeight: "bold", fontSize: "11px", textAlign: "left" } }>SUBTITLE</span>
-          <h1 style={ { fontWeight: "500", fontSize: "44px", textAlign: "left" } }> Title </h1>
+          <h1 style={ { fontWeight: "500", fontSize: "44px", textAlign: "left" } }> Title </h1> */}
           <div>
             <span style={ { fontSize: "21px", textAlign: "left" } }>Date: { today } { time }</span>
           </div>
