@@ -49,8 +49,9 @@ const EditTool = ({ props, id }) => {
   };
 
   const handleDelete = e => {
-    dispatch(deleteTool(id));
-    props.history.push("/tools");
+    dispatch(deleteTool(id)).then(() => {
+      props.history.push("/tools");
+    });
   };
 
   const handleSubmit = e => {

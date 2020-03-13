@@ -60,8 +60,9 @@ const EditArticle = ({ props, id }) => {
   };
 
   const handleDelete = e => {
-    dispatch(deleteArticle(id, article.title));
-    props.history.push("/articles");
+    dispatch(deleteArticle(id, article.title)).then(() => {
+      props.history.push("/articles");
+    });
   };
 
   const handleSubmit = e => {
