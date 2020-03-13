@@ -126,7 +126,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const YourCourse = ({ course, addingCourses, props }) => {
+const YourCourse = ({ course, addingCourses, props, tracked }) => {
   const state = useSelector(state => state);
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -366,31 +366,63 @@ const YourCourse = ({ course, addingCourses, props }) => {
           className={classes.buttonDiv}
           style={{ margin: "0 30px 20px 0" }}
         >
-          <Link
-            to={`/courses/yours/${course.id}`}
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              color: "#242424",
-              width: "120px"
-            }}
-          >
-            <span
+          {tracked ? (
+            <Link
+              to={{
+                pathname: `/courses/yours/${course.id}`,
+                state: { tracked: tracked }
+              }}
               style={{
-                fontWeight: "bold",
-                marginTop: "2%",
-                fontFamily: "Open Sans"
+                display: "flex",
+                justifyContent: "space-between",
+                color: "#242424",
+                width: "120px"
               }}
             >
-              View Item
-            </span>
-            <ArrowRightAltRoundedIcon
-              style={{
-                fontSize: "2em"
+              <span
+                style={{
+                  fontWeight: "bold",
+                  marginTop: "2%",
+                  fontFamily: "Open Sans"
+                }}
+              >
+                View Item
+              </span>
+              <ArrowRightAltRoundedIcon
+                style={{
+                  fontSize: "2em"
+                }}
+              />
+            </Link>
+          ) : (
+            <Link
+              to={{
+                pathname: `/courses/yours/${course.id}`,
+                state: { tracked: false }
               }}
-            />
-            {/* <DidactButton>Go To Course</DidactButton> */}
-          </Link>
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                color: "#242424",
+                width: "120px"
+              }}
+            >
+              <span
+                style={{
+                  fontWeight: "bold",
+                  marginTop: "2%",
+                  fontFamily: "Open Sans"
+                }}
+              >
+                View Item
+              </span>
+              <ArrowRightAltRoundedIcon
+                style={{
+                  fontSize: "2em"
+                }}
+              />
+            </Link>
+          )}
         </CardActions>
       </Card>
     </PopoverWrapper>

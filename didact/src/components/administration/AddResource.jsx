@@ -26,10 +26,18 @@ const AddResource = ({ props }) => {
         value={contentType}
         onChange={handleType}
       >
-        <option value="tool">Tool</option>
-        <option value="article">Article</option>
-        <option value="external-article">External Article</option>
-        <option value="source">Source</option>
+        <option name="tool" value="tool">
+          Tool
+        </option>
+        <option name="article" value="article">
+          Article
+        </option>
+        <option name="external-article" value="external-article">
+          External Article
+        </option>
+        <option name="source" value="source">
+          Source
+        </option>
       </NativeSelect>
       {(() => {
         switch (contentType) {

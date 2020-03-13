@@ -64,7 +64,6 @@ export const getArticleById = id => dispatch => {
   axiosWithAuth()
     .get(`${baseURL}/${id}`)
     .then(result => {
-      console.log(result);
       dispatch({ type: ARTICLE_BY_ID_SUCCESS, payload: result.data });
     })
     .catch(error => {
@@ -73,9 +72,8 @@ export const getArticleById = id => dispatch => {
 };
 
 export const addArticle = article => dispatch => {
-  console.log(article);
   dispatch({ type: ADD_ARTICLE_START });
-  axiosWithAuth()
+  return axiosWithAuth()
     .post(`${baseURL}`, article)
     .then(result => {
       dispatch({ type: ADD_ARTICLE_SUCCESS, payload: article });
@@ -87,7 +85,7 @@ export const addArticle = article => dispatch => {
 
 export const editArticle = (id, changes) => dispatch => {
   dispatch({ type: EDIT_ARTICLE_START });
-  axiosWithAuth()
+  return axiosWithAuth()
     .put(`${baseURL}/${id}`, changes)
     .then(result => {
       dispatch({
@@ -102,7 +100,7 @@ export const editArticle = (id, changes) => dispatch => {
 
 export const deleteArticle = (id, title) => dispatch => {
   dispatch({ type: DELETE_ARTICLE_START });
-  axiosWithAuth()
+  return axiosWithAuth()
     .delete(`${baseURL}/${id}`)
     .then(result => {
       dispatch({ type: DELETE_ARTICLE_SUCCESS, payload: title });
@@ -126,7 +124,7 @@ export const getExternalArticleById = id => dispatch => {
 
 export const addExternalArticle = article => dispatch => {
   dispatch({ type: ADD_EXTERNAL_ARTICLE_START });
-  axiosWithAuth()
+  return axiosWithAuth()
     .post(`${baseURL}/external`, article)
     .then(result => {
       dispatch({ type: ADD_EXTERNAL_ARTICLE_SUCCESS, payload: article });
@@ -138,7 +136,7 @@ export const addExternalArticle = article => dispatch => {
 
 export const editExternalArticle = (id, changes) => dispatch => {
   dispatch({ type: EDIT_EXTERNAL_ARTICLE_START });
-  axiosWithAuth()
+  return axiosWithAuth()
     .put(`${baseURL}/external/${id}`, changes)
     .then(result => {
       dispatch({
@@ -153,7 +151,7 @@ export const editExternalArticle = (id, changes) => dispatch => {
 
 export const deleteExternalArticle = (id, title) => dispatch => {
   dispatch({ type: DELETE_EXTERNAL_ARTICLE_START });
-  axiosWithAuth()
+  return axiosWithAuth()
     .delete(`${baseURL}/external/${id}`)
     .then(result => {
       dispatch({ type: DELETE_EXTERNAL_ARTICLE_SUCCESS, payload: title });

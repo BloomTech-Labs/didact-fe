@@ -49,14 +49,16 @@ const EditTool = ({ props, id }) => {
   };
 
   const handleDelete = e => {
-    dispatch(deleteTool(id));
-    props.history.push("/tools");
+    dispatch(deleteTool(id)).then(() => {
+      props.history.push("/tools");
+    });
   };
 
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(editTool(id, changes));
-    props.history.push("/tools");
+    dispatch(editTool(id, changes)).then(() => {
+      props.history.push("/tools");
+    });
   };
 
   return (

@@ -24,8 +24,9 @@ const ToolForm = ({ props }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(addTool(tool));
-    props.history.push("/tools");
+    dispatch(addTool(tool)).then(() => {
+      props.history.push("/tools");
+    });
   };
 
   return (

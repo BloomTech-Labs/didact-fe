@@ -61,14 +61,16 @@ const EditExternalArticle = ({ props, id }) => {
   };
 
   const handleDelete = e => {
-    dispatch(deleteExternalArticle(id));
-    props.history.push("/articles");
+    dispatch(deleteExternalArticle(id)).then(() => {
+      props.history.push("/articles");
+    });
   };
 
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(editExternalArticle(id, changes));
-    props.history.push("/articles");
+    dispatch(editExternalArticle(id, changes)).then(() => {
+      props.history.push("/articles");
+    });
   };
 
   return (
