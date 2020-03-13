@@ -1,34 +1,39 @@
-import { login } from '../../../support/index'
-
 describe("add external article resource form", () => {
-    it.only('dropdown displays correct form on select', () => {
-        cy.login()
+    beforeEach(() => {
+        cy.Signin({email: "bob@bobmail.com", password: "secretpass"})
         cy.visit('/resource-form')
-        cy.get(select)
+        cy.get("select")
         .select("external-article")
-        cy.get('label:first-child').should('have.value', 'Article Title')
+    })
+
+    it('dropdown displays correct form on select', () => {
+        cy.get('label').first().should('have.text', 'Article Title')
     })
 
     it('inputs display user input', () => {
         const articleTitle = "Article Title"
-        cy.get('[name]="external-article"')
+        cy.get('[name="title"]')
         .type(articleTitle)
         .should('have.value', articleTitle)
 
-        const articleBody = "Article Body"
-        cy.get('[name]="body"')
-        .type(articleBody)
-        .should('have.value', articleBody)
+        const articleDescription = "Article Description"
+        cy.get('[name="description"]')
+        .type(articleDescription)
+        .should('have.value', articleDescription)
 
         const articleTopic = "Topic"
-        cy.get('[name]="topic"')
+        cy.get('[name="topic"]')
         .type(articleTopic)
         .should('have.value', articleTopic)
 
         const articleLink = "Article.article"
-        cy.get('[name]="link"')
+        cy.get('[name="link"]')
         .type(articleLink)
         .should('have.value', articleLink)
+    })
 
+    it('submitting form takes you to articles page', () => {
+        cy.get("button").last().click();
+        cy.url().should('include', '/articles')
     })
 })
