@@ -49,6 +49,7 @@
   },
   "devDependencies": {
     "@testing-library/react": "^9.3.0",
-    "cypress": "^4.1.0"
+    "cypress": "^4.1.0",
+    "faker": "^4.1.0"
   }
 }
