@@ -66,8 +66,9 @@ const EditArticle = ({ props, id }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(editArticle(id, changes));
-    props.history.push("/articles");
+    dispatch(editArticle(id, changes)).then(() => {
+      props.history.push("/articles");
+    });
   };
 
   return (

@@ -32,8 +32,9 @@ const ExternalArticleForm = ({ props, id }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(addExternalArticle(article));
-    props.history.push("/articles");
+    dispatch(addExternalArticle(article)).then(() => {
+      props.history.push("/articles");
+    });
   };
 
   return (

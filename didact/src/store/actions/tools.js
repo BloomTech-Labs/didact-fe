@@ -19,7 +19,7 @@ export const DELETE_TOOL_FAIL = "DELETE_TOOL_FAIL";
 
 const baseURL = `${beURL}tools`;
 
-export const getTools = () => dispatch => {
+export const getTools = () => (dispatch, getState) => {
   dispatch({ type: TOOL_DATA_START });
   axiosWithAuth()
     .get(baseURL)
@@ -46,7 +46,7 @@ export const getToolById = id => dispatch => {
 
 export const addTool = tool => dispatch => {
   dispatch({ type: ADD_TOOL_START });
-  axiosWithAuth()
+  return axiosWithAuth()
     .post(`${baseURL}`, tool)
     .then(result => {
       dispatch({ type: ADD_TOOL_SUCCESS, payload: tool });
@@ -58,7 +58,7 @@ export const addTool = tool => dispatch => {
 
 export const editTool = (id, changes) => dispatch => {
   dispatch({ type: EDIT_TOOL_START });
-  axiosWithAuth()
+  return axiosWithAuth()
     .put(`${baseURL}/${id}`, changes)
     .then(result => {
       dispatch({
@@ -73,7 +73,7 @@ export const editTool = (id, changes) => dispatch => {
 
 export const deleteTool = id => dispatch => {
   dispatch({ type: DELETE_TOOL_START });
-  axiosWithAuth()
+  return axiosWithAuth()
     .delete(`${baseURL}/${id}`)
     .then(result => {
       dispatch({ type: DELETE_TOOL_SUCCESS, payload: id });

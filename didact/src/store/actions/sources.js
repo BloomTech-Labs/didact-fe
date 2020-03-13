@@ -33,7 +33,7 @@ export const getSources = () => dispatch => {
 
 export const addSource = source => dispatch => {
   dispatch({ type: ADD_SOURCE_START });
-  axiosWithAuth()
+  return axiosWithAuth()
     .post(baseURL, source)
     .then(result => {
       dispatch({ type: ADD_SOURCE_SUCCESS, payload: source });
@@ -57,7 +57,7 @@ export const getSourceById = id => dispatch => {
 
 export const editSource = (id, changes) => dispatch => {
   dispatch({ type: EDIT_SOURCE_START });
-  axiosWithAuth()
+  return axiosWithAuth()
     .put(`${baseURL}/${id}`, changes)
     .then(result => {
       dispatch({
@@ -72,7 +72,7 @@ export const editSource = (id, changes) => dispatch => {
 
 export const deleteSource = id => dispatch => {
   dispatch({ type: DELETE_SOURCE_START });
-  axiosWithAuth()
+  return axiosWithAuth()
     .delete(`${baseURL}/${id}`)
     .then(result => {
       dispatch({ type: DELETE_SOURCE_SUCCESS, payload: id });

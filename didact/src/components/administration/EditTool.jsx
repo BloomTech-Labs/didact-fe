@@ -55,8 +55,9 @@ const EditTool = ({ props, id }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(editTool(id, changes));
-    props.history.push("/tools");
+    dispatch(editTool(id, changes)).then(() => {
+      props.history.push("/tools");
+    });
   };
 
   return (

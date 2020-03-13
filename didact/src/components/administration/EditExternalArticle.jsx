@@ -67,8 +67,9 @@ const EditExternalArticle = ({ props, id }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(editExternalArticle(id, changes));
-    props.history.push("/articles");
+    dispatch(editExternalArticle(id, changes)).then(() => {
+      props.history.push("/articles");
+    });
   };
 
   return (

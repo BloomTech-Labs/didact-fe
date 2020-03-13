@@ -49,14 +49,16 @@ const EditSource = ({ props, id }) => {
   };
 
   const handleDelete = e => {
-    dispatch(deleteSource(source.id));
-    props.history.push("/sources");
+    dispatch(deleteSource(source.id)).then(() => {
+      props.history.push("/sources");
+    });
   };
 
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(editSource(id, changes));
-    props.history.push("/sources");
+    dispatch(editSource(id, changes)).then(() => {
+      props.history.push("/sources");
+    });
   };
 
   return (
