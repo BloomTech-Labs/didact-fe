@@ -42,7 +42,6 @@ const SearchResults = ({ props, results, setValues, values }) => {
     setValues({ search: "" });
   };
 
-  console.log(courses);
   return (
     <div>
       <div
