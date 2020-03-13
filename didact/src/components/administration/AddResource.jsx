@@ -32,7 +32,7 @@ const AddResource = ({ props }) => {
         <option name="article" value="article">
           Article
         </option>
-        <option name="externalarticle" value="external-article">
+        <option name="external-article" value="external-article">
           External Article
         </option>
         <option name="source" value="source">

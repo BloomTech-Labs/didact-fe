@@ -51,7 +51,7 @@ const ExternalArticleForm = ({ props, id }) => {
         <DidactField>
           <DidactLabel>Article Description</DidactLabel>
           <DidactTextArea
-            value={article.body}
+            value={article.description}
             onChange={handleChange}
             name="description"
           />

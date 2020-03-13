@@ -1,18 +1,28 @@
+import { login } from '../../../support/index'
+
 describe("add article resource form", () => {
-    beforeEach(() => {
+    it.only('dropdown displays correct form on select', () => {
+        cy.login()
         cy.visit('/resource-form')
-    })
-    
-    it.only('dropdown displays selected value', () => {
         cy.get(select)
         .select("article")
-        .then(cy.get('label:first-child').should('have.value', 'Article Title'))
+        cy.get('label:first-child').should('have.value', 'Article Title')
     })
 
     it('inputs display user input', () => {
-        const typedInput = "Testing example"
-        cy.get('input.name')
-        .type(typedInput)
-        .should('have.value', typedInput)
+        const articleTitle = "Article Title"
+        cy.get('[name]="title"')
+        .type(articleTitle)
+        .should('have.value', articleTitle)
+
+        const articleBody = "Article Body"
+        cy.get('[name]="body"')
+        .type(articleBody)
+        .should('have.value', articleBody)
+
+        const articleTopic = "Topic"
+        cy.get('[name]="Topic"')
+        .type(articleTopic)
+        .should('have.value', articleTopic)
     })
 })
