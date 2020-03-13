@@ -190,225 +190,225 @@ const EditCourse = ({ props, id }) => {
     return (
       <>
         <div
-          style={{
+          style={ {
             display: "flex",
             justifyContent: "space-between",
             margin: "-10px 10px 10px 10px",
             borderTop: "1px solid black"
-          }}
+          } }
         >
           <p
-            style={{
+            style={ {
               fontWeight: "bold",
               marginLeft: "10px",
               display: "flex",
               flexDirection: "row",
               alignItems: "center"
-            }}
+            } }
           >
-            <span className={classes.span} onClick={handleBack}>
+            <span className={ classes.span } onClick={ handleBack }>
               Courses
             </span>
-            <ChevronRightIcon style={{ fontSize: "1.6rem" }} />
-            <span className={classes.span} onClick={backToCourse}>
-              {course.title ? course.title.substring(0, 15) : "Loading"}...
+            <ChevronRightIcon style={ { fontSize: "1.6rem" } } />
+            <span className={ classes.span } onClick={ backToCourse }>
+              { course.title ? course.title.substring(0, 15) : "Loading" }...
             </span>
-            <ChevronRightIcon style={{ fontSize: "1.6rem" }} />
+            <ChevronRightIcon style={ { fontSize: "1.6rem" } } />
             <span>Edit</span>
           </p>
         </div>
-        <div style={{ display: "flex", flexDirection: "row" }}>
-          <div className={classes.root}>
-            {!courseEdit ? (
+        <div style={ { display: "flex", flexDirection: "row" } }>
+          <div className={ classes.root }>
+            { !courseEdit ? (
               <Card
-                className={classes.card}
-                style={{ background: "#ffffff", color: "black" }}
+                className={ classes.card }
+                style={ { background: "#ffffff", color: "black" } }
               >
                 <CardContent>
-                  <h3 style={{ textAlign: "left", marginLeft: "15px" }}>
-                    {course.title}
+                  <h3 style={ { textAlign: "left", marginLeft: "15px" } }>
+                    { course.title }
                   </h3>
                   <CardActions
-                    className={classes.descriptionDiv}
+                    className={ classes.descriptionDiv }
                     disableSpacing
                   >
-                    <p style={{ textAlign: "left", marginLeft: "15px" }}>
-                      {course.description && !expanded
+                    <p style={ { textAlign: "left", marginLeft: "15px" } }>
+                      { course.description && !expanded
                         ? `${course.description.substring(0, 100)} ...`
-                        : null}
+                        : null }
                     </p>
                     <IconButton
-                      className={clsx(classes.expand, {
+                      className={ clsx(classes.expand, {
                         [classes.expandOpen]: expanded
-                      })}
-                      onClick={handleExpandClick}
-                      aria-expanded={expanded}
+                      }) }
+                      onClick={ handleExpandClick }
+                      aria-expanded={ expanded }
                       aria-label="show more"
-                      style={{ color: "black", marginTop: "-15px" }}
+                      style={ { color: "black", marginTop: "-15px" } }
                     >
                       <ExpandMoreIcon />
                     </IconButton>
                   </CardActions>
 
-                  <Collapse in={expanded} timeout="auto" unmountOnExit>
+                  <Collapse in={ expanded } timeout="auto" unmountOnExit>
                     <CardContent>
-                      <p style={{ textAlign: "left", marginLeft: "15px" }}>
-                        {course.description}
+                      <p style={ { textAlign: "left", marginLeft: "15px" } }>
+                        { course.description }
                       </p>
                     </CardContent>
                   </Collapse>
 
-                  <p style={{ textAlign: "left", marginLeft: "15px" }}>
-                    {course.foreign_instructors}
+                  <p style={ { textAlign: "left", marginLeft: "15px" } }>
+                    { course.foreign_instructors }
                   </p>
-                  <p style={{ textAlign: "left", marginLeft: "15px" }}>
-                    {course.foreign_rating}
+                  <p style={ { textAlign: "left", marginLeft: "15px" } }>
+                    { course.foreign_rating }
                   </p>
                   <a
-                    style={{
+                    style={ {
                       color: "black",
                       textAlign: "left",
                       marginLeft: "15px"
-                    }}
-                    href={course.link}
+                    } }
+                    href={ course.link }
                     alt="course link"
                   >
-                    {course.link}
+                    { course.link }
                   </a>
-                  <p style={{ textAlign: "left", marginLeft: "15px" }}>
-                    {course.topic ? `Topic: ${course.topic}` : null}
+                  <p style={ { textAlign: "left", marginLeft: "15px" } }>
+                    { course.topic ? `Topic: ${course.topic}` : null }
                   </p>
                 </CardContent>
                 <CardActions>
                   <button
-                    className={classes.button}
-                    onClick={toggleEdit}
-                    style={{ marginLeft: "75.5%" }}
+                    className={ classes.button }
+                    onClick={ toggleEdit }
+                    style={ { marginLeft: "75.5%" } }
                     type="submit"
                   >
-                    {!props.phoneSize ? (
+                    { !props.phoneSize ? (
                       editCourseText
                     ) : (
-                      <EditIcon style={{ fontSize: "1.8rem" }} />
-                    )}
+                        <EditIcon style={ { fontSize: "1.8rem" } } />
+                      ) }
                   </button>
                 </CardActions>
               </Card>
             ) : (
-              <Card className={classes.card}>
-                <CardContent>
-                  <TrashCanEdit
-                    style={{ fontSize: "2.6rem" }}
-                    onClick={handleModalOpen}
-                  ></TrashCanEdit>
-                  {openModal ? (
-                    <DeleteModal
-                      handleDelete={handleDelete}
-                      text={"this course"}
-                      open={openModal}
-                      handleModalClose={handleModalClose}
-                    />
-                  ) : null}
-                  <form
-                    onSubmit={handleCourseSubmit}
-                    className={classes.container}
-                    noValidate
-                    autoComplete="off"
-                  >
-                    <FormTitle>Course Overview</FormTitle>
-                    <DidactField>
-                      <DidactLabel for="title">Course Title</DidactLabel>
-                      <DidactInput
-                        id="title"
-                        type="text"
-                        value={changes.title || ""}
-                        onChange={handleChange("title")}
-                        placeholder="Course Name"
+                <Card className={ classes.card }>
+                  <CardContent>
+                    <TrashCanEdit
+                      style={ { fontSize: "2.6rem" } }
+                      onClick={ handleModalOpen }
+                    ></TrashCanEdit>
+                    { openModal ? (
+                      <DeleteModal
+                        handleDelete={ handleDelete }
+                        text={ "this course" }
+                        open={ openModal }
+                        handleModalClose={ handleModalClose }
                       />
-                    </DidactField>
-                    <DidactField>
-                      <DidactLabel for="instructors">Instructors</DidactLabel>
-                      <DidactInput
-                        id="instructors"
-                        type="text"
-                        value={changes.foreign_instructors || ""}
-                        onChange={handleChange("foreign_instructors")}
-                        placeholder="Instructors"
-                      />
-                    </DidactField>
-                    <DidactField>
-                      <DidactLabel for="description">Description</DidactLabel>
-                      <DidactTextArea
-                        rows="8"
-                        id="description"
-                        value={changes.description || ""}
-                        onChange={handleChange("description")}
-                        placeholder="Description"
-                      />
-                    </DidactField>
-                    <DidactField>
-                      <DidactLabel for="url">Course Url</DidactLabel>
-                      <DidactInput
-                        id="url"
-                        type="text"
-                        value={changes.link || ""}
-                        onChange={handleChange("link")}
-                        placeholder="Course Url"
-                      />
-                    </DidactField>
-                    <DidactField>
-                      <DidactLabel for="topic">Topic</DidactLabel>
-                      <DidactInput
-                        id="topic"
-                        type="text"
-                        value={changes.topic || ""}
-                        onChange={handleChange("topic")}
-                        placeholder="Topic"
-                      />
-                    </DidactField>
-                    <ButtonDiv>
-                      <DidactButton
-                        style={{ marginLeft: "10px" }}
-                        onClick={handleCancel}
-                      >
-                        Cancel
+                    ) : null }
+                    <form
+                      onSubmit={ handleCourseSubmit }
+                      className={ classes.container }
+                      noValidate
+                      autoComplete="off"
+                    >
+                      <FormTitle>Course Overview</FormTitle>
+                      <DidactField>
+                        <DidactLabel for="title">Course Title</DidactLabel>
+                        <DidactInput
+                          id="title"
+                          type="text"
+                          value={ changes.title || "" }
+                          onChange={ handleChange("title") }
+                          placeholder="Course Title"
+                        />
+                      </DidactField>
+                      <DidactField>
+                        <DidactLabel for="instructors">Instructors</DidactLabel>
+                        <DidactInput
+                          id="instructors"
+                          type="text"
+                          value={ changes.foreign_instructors || "" }
+                          onChange={ handleChange("foreign_instructors") }
+                          placeholder="Instructors"
+                        />
+                      </DidactField>
+                      <DidactField>
+                        <DidactLabel for="description">Description</DidactLabel>
+                        <DidactTextArea
+                          rows="8"
+                          id="description"
+                          value={ changes.description || "" }
+                          onChange={ handleChange("description") }
+                          placeholder="Description"
+                        />
+                      </DidactField>
+                      <DidactField>
+                        <DidactLabel for="url">Course Url</DidactLabel>
+                        <DidactInput
+                          id="url"
+                          type="text"
+                          value={ changes.link || "" }
+                          onChange={ handleChange("link") }
+                          placeholder="Course Url"
+                        />
+                      </DidactField>
+                      <DidactField>
+                        <DidactLabel for="topic">Topic</DidactLabel>
+                        <DidactInput
+                          id="topic"
+                          type="text"
+                          value={ changes.topic || "" }
+                          onChange={ handleChange("topic") }
+                          placeholder="Topic"
+                        />
+                      </DidactField>
+                      <ButtonDiv>
+                        <DidactButton
+                          style={ { marginLeft: "10px" } }
+                          onClick={ handleCancel }
+                        >
+                          Cancel
                       </DidactButton>
-                      <DidactButton type="submit" style={{ marginRight: "4%" }}>
-                        Submit Edit
+                        <DidactButton type="submit" style={ { marginRight: "4%" } }>
+                          Submit Edit
                       </DidactButton>
-                    </ButtonDiv>
-                  </form>
-                </CardContent>
-              </Card>
-            )}
-            <Tags course={course} props={props} />
-            <Sections course={course} props={props} />
-            {addSectionChange ? (
+                      </ButtonDiv>
+                    </form>
+                  </CardContent>
+                </Card>
+              ) }
+            <Tags course={ course } props={ props } />
+            <Sections course={ course } props={ props } />
+            { addSectionChange ? (
               <div>
                 <AddSection
-                  course={course}
-                  props={props}
-                  setAddSectionChange={setAddSectionChange}
+                  course={ course }
+                  props={ props }
+                  setAddSectionChange={ setAddSectionChange }
                 />
-                <AddButton onClick={handleSectionFormToggle}>
-                  <AddCircleRoundedIcon className={classes.circleIcon} />
+                <AddButton onClick={ handleSectionFormToggle }>
+                  <AddCircleRoundedIcon className={ classes.circleIcon } />
                   <ButtonText>Add Section</ButtonText>
                 </AddButton>
               </div>
             ) : (
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "flex-end",
-                  marginBottom: "20px"
-                }}
-              >
-                <AddButton onClick={handleSectionFormToggle}>
-                  <AddCircleRoundedIcon className={classes.circleIcon} />
-                  <ButtonText>Add Section</ButtonText>
-                </AddButton>
-              </div>
-            )}
+                <div
+                  style={ {
+                    display: "flex",
+                    justifyContent: "flex-end",
+                    marginBottom: "20px"
+                  } }
+                >
+                  <AddButton onClick={ handleSectionFormToggle }>
+                    <AddCircleRoundedIcon className={ classes.circleIcon } />
+                    <ButtonText>Add Section</ButtonText>
+                  </AddButton>
+                </div>
+              ) }
           </div>
         </div>
       </>
