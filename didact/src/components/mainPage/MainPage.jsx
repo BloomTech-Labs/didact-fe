@@ -460,17 +460,13 @@ function MainPage(props) {
                           </div>
                         ) }
                       <div className="profileSection">
-                        <p
-                          className="usersLink"
-                          style={
-                            owner === false || admin === false || props.location.pathname === "/users"
-                              ? { display: "none" }
-                              : { display: "inline-block" }
-                          }
+                        { owner === true && props.location.pathname !== "/users" || admin === true && props.location.pathname !== "/users" ?
+                          (<p
+                            className="usersLink"
 
-                        >
-                          <Link to={ `/users` }>Edit Users</Link>
-                        </p>
+                          >
+                            <Link to={ `/users` }>Edit Users</Link>
+                          </p>) : null }
                         <p className="profile-avatar">
                           { userName.photo ? (
                             <img

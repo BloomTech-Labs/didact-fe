@@ -112,16 +112,14 @@ export const TopDashboardCard = styled.div`
     }`;
 
 export const TopDashboardArt = styled.div`
-  display: flex;
-  // border: 1px solid black;
-  width: 354px;
-  height: 353px;
-  margin-left: 30%;
-  margin-top: -4%;
-  position: relative;
-  right:-250px;
-  top:280px;
- `;
+    display: flex;
+    // border: 1px solid black;
+    width: 354px;
+    height: 353px;
+    margin-left: 30%;
+    margin-top: -4%;
+    position: absolute;
+  `;
 
 export const CoursesCard = styled.div`
   display: flex;

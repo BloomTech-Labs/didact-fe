@@ -64,7 +64,6 @@ export const getArticleById = id => dispatch => {
   axiosWithAuth()
     .get(`${baseURL}/${id}`)
     .then(result => {
-      console.log(result);
       dispatch({ type: ARTICLE_BY_ID_SUCCESS, payload: result.data });
     })
     .catch(error => {
@@ -73,7 +72,6 @@ export const getArticleById = id => dispatch => {
 };
 
 export const addArticle = article => dispatch => {
-  console.log(article);
   dispatch({ type: ADD_ARTICLE_START });
   return axiosWithAuth()
     .post(`${baseURL}`, article)
