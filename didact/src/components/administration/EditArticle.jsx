@@ -60,14 +60,16 @@ const EditArticle = ({ props, id }) => {
   };
 
   const handleDelete = e => {
-    dispatch(deleteArticle(id, article.title));
-    props.history.push("/articles");
+    dispatch(deleteArticle(id, article.title)).then(() => {
+      props.history.push("/articles");
+    });
   };
 
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(editArticle(id, changes));
-    props.history.push("/articles");
+    dispatch(editArticle(id, changes)).then(() => {
+      props.history.push("/articles");
+    });
   };
 
   return (

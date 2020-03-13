@@ -24,8 +24,9 @@ const SourceForm = ({ props }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(addSource(source));
-    props.history.push("/sources");
+    dispatch(addSource(source)).then(() => {
+      props.history.push("/sources");
+    });
   };
 
   return (

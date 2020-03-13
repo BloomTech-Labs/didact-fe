@@ -10,16 +10,13 @@ import { PlusDiv, Plus } from "../dashboard/ButtonStyles";
 import coolimage from "../../images/coolimage.png";
 const Tools = props => {
   const dispatch = useDispatch();
-  const toolsReducer = useSelector(state => state.toolsReducer);
+  const tools = useSelector(state => state.toolsReducer.tools);
   const [mouseOver, setMouseOver] = useState(false);
   const user = useSelector(state => state.onboardingReducer.user);
-  const tools = toolsReducer.tools;
-  const loading = toolsReducer.isLoadingTools;
-  const updating = toolsReducer.updating;
-  const deleting = toolsReducer.deleting;
-  const adding = toolsReducer.adding;
-
-  console.log(tools);
+  const loading = useSelector(state => state.toolsReducer.isLoadingTools);
+  const updating = useSelector(state => state.toolsReducer.updating);
+  const deleting = useSelector(state => state.toolsReducer.deleting);
+  const adding = useSelector(state => state.toolsReducer.adding);
 
   useEffect(() => {
     dispatch(getTools());

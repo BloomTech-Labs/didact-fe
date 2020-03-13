@@ -32,8 +32,9 @@ const ArticleForm = ({ props }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(addArticle(article));
-    props.history.push("/articles");
+    dispatch(addArticle(article)).then(() => {
+      props.history.push("/articles");
+    });
   };
 
   return (
