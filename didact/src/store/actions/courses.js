@@ -47,7 +47,6 @@ export const CHECK_DATABASE_FAIL = "CHECK_DATABASE_FAIL";
 const baseURL = `${beURL}courses/`;
 
 export const courseEndPoint = results => dispatch => {
-  console.log("triggered");
   dispatch({ type: COURSE_DATA_START });
 
   axiosWithAuth()

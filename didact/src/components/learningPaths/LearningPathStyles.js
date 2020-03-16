@@ -151,6 +151,7 @@ export const LearningPathWrapper = styled.div`
       display: flex;
       align-items: flex-start;
       color: #242424;
+      // margin-top: 5%;
       
     }
 

@@ -14,48 +14,42 @@ export const EDIT_USER_FAIL = "EDIT_USER_FAIL";
 const baseURL = `${beURL}auth/`;
 
 export const getUsersProfiles = () => dispatch => {
-    dispatch({ type: GET_USER_DATA_START });
+  dispatch({ type: GET_USER_DATA_START });
 
-    axiosWithAuth()
-        .get(
-            `${baseURL}users`
-        )
-        .then(res => {
-            dispatch({ type: GET_USER_DATA_SUCCESS, payload: res.data });
-        })
-        .catch(err => {
-            dispatch({ type: GET_USER_DATA_FAIL, payload: err.response });
-        });
+  axiosWithAuth()
+    .get(`${baseURL}users`)
+    .then(res => {
+      dispatch({ type: GET_USER_DATA_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({ type: GET_USER_DATA_FAIL, payload: err.response });
+    });
 };
 
-export const getUserById = (id) => dispatch => {
-    dispatch({ type: GET_SPECIFIC_USER_START });
+export const getUserById = id => dispatch => {
+  dispatch({ type: GET_SPECIFIC_USER_START });
 
-    axiosWithAuth()
-        .get(
-            `${baseURL}users/${id}`
-        )
-        .then(res => {
-            dispatch({ type: GET_SPECIFIC_USER_SUCCESS, payload: res.data });
-        })
-        .catch(err => {
-            dispatch({ type: GET_SPECIFIC_USER_FAIL, payload: err.response });
-        });
+  axiosWithAuth()
+    .get(`${baseURL}users/${id}`)
+    .then(res => {
+      dispatch({ type: GET_SPECIFIC_USER_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({ type: GET_SPECIFIC_USER_FAIL, payload: err.response });
+    });
 };
 
 export const editUser = (id, changes) => dispatch => {
-    console.log("BBBBBBBBBBBBBBBBBBBBBBBBBB", id)
-    dispatch({ type: EDIT_USER_START });
-    axiosWithAuth()
-        .put(`${baseURL}${id}`, changes)
-        .then(res => {
-            dispatch({ type: EDIT_USER_SUCCESS, payload: changes });
-        })
-        .catch(err => {
-            dispatch({ type: EDIT_USER_FAIL, payload: err.response });
-        });
+  dispatch({ type: EDIT_USER_START });
+  axiosWithAuth()
+    .put(`${baseURL}${id}`, changes)
+    .then(res => {
+      dispatch({ type: EDIT_USER_SUCCESS, payload: changes });
+    })
+    .catch(err => {
+      dispatch({ type: EDIT_USER_FAIL, payload: err.response });
+    });
 };
-
 
 // export const clearState = () => dispatch => {
 //   dispatch({ type: CHECK_DATABASE_SUCCESS, payload: 0 });
@@ -72,4 +66,3 @@ export const editUser = (id, changes) => dispatch => {
 //       dispatch({ type: EDIT_COURSE_DATA_FAIL, payload: err.response });
 //     });
 // };
-
