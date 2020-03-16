@@ -56,7 +56,6 @@ const SideList = ({ props }) => {
       height: "55px",
       margin: "5px 0px",
       fontSize: "28px"
-      // padding: "0px 0px 50px 0px"
     },
     paraDiv: {
       marginLeft: "10%",
