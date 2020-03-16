@@ -25,9 +25,7 @@ describe("add source resource form", () => {
         cy.get('[name="link"]')
         .type(sourceLink)
         .should('have.value', sourceLink)
-    })
 
-    it('submitting form takes you to sources page', () => {
         cy.get("button").last().click();
         cy.url().should('include', '/sources')
     })

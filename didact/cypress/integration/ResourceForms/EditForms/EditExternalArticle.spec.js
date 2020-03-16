@@ -1,3 +1,5 @@
+import faker from 'faker'
+
 describe("edit external article resource form", () => {
     beforeEach(() => {
         cy.Signin({email: "bob@bobmail.com", password: "secretpass"})
@@ -5,13 +7,13 @@ describe("edit external article resource form", () => {
     })
 
     it('inputs display user input', () => {
-        const articleTitle = "Article Title"
+        const articleTitle = faker.lorem.sentence()
         cy.get('[name="title"]')
         .clear()
         .type(articleTitle)
         .should('have.value', articleTitle)
 
-        const articleDescription = "Article Description"
+        const articleDescription = faker.lorem.paragraph();
         cy.get('[name="description"]')
         .clear()
         .type(articleDescription)
@@ -28,9 +30,7 @@ describe("edit external article resource form", () => {
         .clear()
         .type(articleLink)
         .should('have.value', articleLink)
-    })
 
-    it('submitting form takes you to articles page', () => {
         cy.get("button").last().click();
         cy.url().should('include', '/articles')
     })

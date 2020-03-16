@@ -9,13 +9,13 @@ describe("edit source resource form", () => {
     })
 
     it('inputs display user input', () => {
-        const sourceName = "Source Name"
+        const sourceName = "Source Edit"
         cy.get('[name="name"]')
         .clear()
         .type(sourceName)
         .should('have.value', sourceName)
 
-        const sourceDesc = "Source Description"
+        const sourceDesc = "Source Desc Edit"
         cy.get('[name="description"]')
         .clear()
         .type(sourceDesc)
@@ -26,9 +26,7 @@ describe("edit source resource form", () => {
         .clear()
         .type(sourceLink)
         .should('have.value', sourceLink)
-    })
 
-    it('submitting form takes you to sources page', () => {
         cy.get("button").last().click();
         cy.url().should('include', '/sources')
     })
