@@ -24,7 +24,9 @@ import DrawerComponent from "../drawer/Drawer";
 import MobileDrawerComponent from "../drawer/MobileDrawer";
 import MobileHeaderComponent from "../header/MobileHeader";
 import Content from "../content/Content";
+import ProfilePopover from "./ProfilePopover";
 import { ProfileWrapper } from "./profileStyle";
+import ProfilePopOver from "./ProfilePopover";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -490,34 +492,13 @@ function MainPage(props) {
                           }}
                         />
                       </p>
-                      <Popover
+                      <ProfilePopOver
+                        handleClose={handleClose}
+                        openPop={openPop}
                         id={id}
-                        open={openPop}
+                        handleLogOut={handleLogOut}
                         anchorEl={anchorEl}
-                        onClose={handleClose}
-                        anchorOrigin={{
-                          vertical: "bottom",
-                          horizontal: "center"
-                        }}
-                        transformOrigin={{
-                          vertical: "top",
-                          horizontal: "center"
-                        }}
-                      >
-                        <ul>
-                          <h2>User Profile Stuff.</h2>
-                          <a
-                            href="https://discordapp.com/invite/YFZdRp"
-                            className="discord-link"
-                            target="_blank"
-                          >
-                            Discord
-                          </a>
-                          <Link onClick={handleLogOut} className="logout">
-                            Logout
-                          </Link>
-                        </ul>
-                      </Popover>
+                      />
                     </div>
                   </div>
                   <main className={classes.content}>
