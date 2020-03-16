@@ -1,30 +1,33 @@
-describe("add article resource form", () => {
+describe("edit external article resource form", () => {
     beforeEach(() => {
         cy.Signin({email: "bob@bobmail.com", password: "secretpass"})
-        cy.visit('/resource-form')
-        cy.get("select")
-        .select("article")
-    })
-
-    it('dropdown displays correct form on select', () => {
-        cy.get('label').first().should('have.text', 'Article Title')
+        cy.visit('/external-articles/1/edit')
     })
 
     it('inputs display user input', () => {
         const articleTitle = "Article Title"
         cy.get('[name="title"]')
+        .clear()
         .type(articleTitle)
         .should('have.value', articleTitle)
 
-        const articleBody = "Article Body"
-        cy.get('[name="body"]')
-        .type(articleBody)
-        .should('have.value', articleBody)
+        const articleDescription = "Article Description"
+        cy.get('[name="description"]')
+        .clear()
+        .type(articleDescription)
+        .should('have.value', articleDescription)
 
         const articleTopic = "Topic"
         cy.get('[name="topic"]')
+        .clear()
         .type(articleTopic)
         .should('have.value', articleTopic)
+
+        const articleLink = "Article.article"
+        cy.get('[name="link"]')
+        .clear()
+        .type(articleLink)
+        .should('have.value', articleLink)
     })
 
     it('submitting form takes you to articles page', () => {
