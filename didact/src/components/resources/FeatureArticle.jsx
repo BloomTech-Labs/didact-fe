@@ -8,7 +8,7 @@ const FeatureArticle = props => {
   const article = props.article;
   const longDescript = article.body || article.description;
   const description = longDescript.slice(0, 275);
-  const author = article.first_name + " " + article.last_name || null;
+  const author = article.first_name + " " + article.last_name;
   return (
     <FeaturedArticle>
       {user.owner || user.admin ? (
@@ -24,7 +24,7 @@ const FeatureArticle = props => {
       {!author === undefined ? <h3>{author}</h3> : null}
       <h3>{article.date}</h3>
       <p>{description}...</p>
-      {!author === null ? (
+      {!article.link ? (
         <Link className="link-anchor" to={`/articles/${article.id}`}>
           <span>Go To Article</span>
           <ArrowRightAltRoundedIcon
