@@ -11,8 +11,6 @@ import { Mixpanel } from "../../utils/mixpanel";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import SearchIcon from "@material-ui/icons/Search";
-import Popover from "@material-ui/core/Popover";
-import Typography from "@material-ui/core/Typography";
 
 // import InboxIcon from "@material-ui/icons/MoveToInbox";
 // import DashboardIcon from "@material-ui/icons/Dashboard";
