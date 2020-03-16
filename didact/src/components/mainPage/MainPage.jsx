@@ -11,6 +11,8 @@ import { Mixpanel } from "../../utils/mixpanel";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import SearchIcon from "@material-ui/icons/Search";
+import Popover from "@material-ui/core/Popover";
+import Typography from "@material-ui/core/Typography";
 
 // import InboxIcon from "@material-ui/icons/MoveToInbox";
 // import DashboardIcon from "@material-ui/icons/Dashboard";
@@ -299,6 +301,20 @@ function MainPage(props) {
     if (openMobile) setOpenMobile(false);
   };
 
+  // popover
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = event => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const openPop = Boolean(anchorEl);
+  const id = openPop ? "simple-popover" : undefined;
+
   return (
     // MOBILE CODE ****************************************************************************
     <div className={classes.mainPageDiv}>
@@ -462,7 +478,11 @@ function MainPage(props) {
                         )}
                       </p>
                       <p className="name">{firstName + " " + lastName}</p>
-                      <p onClick={handleLogOut} className="logout">
+                      <p
+                        aria-describedby={id}
+                        variant="contained"
+                        onClick={handleClick}
+                      >
                         <MoreHorizIcon
                           style={{
                             fontSize: "1.8rem",
@@ -470,6 +490,34 @@ function MainPage(props) {
                           }}
                         />
                       </p>
+                      <Popover
+                        id={id}
+                        open={openPop}
+                        anchorEl={anchorEl}
+                        onClose={handleClose}
+                        anchorOrigin={{
+                          vertical: "bottom",
+                          horizontal: "center"
+                        }}
+                        transformOrigin={{
+                          vertical: "top",
+                          horizontal: "center"
+                        }}
+                      >
+                        <ul>
+                          <h2>User Profile Stuff.</h2>
+                          <a
+                            href="https://discordapp.com/invite/YFZdRp"
+                            className="discord-link"
+                            target="_blank"
+                          >
+                            Discord
+                          </a>
+                          <Link onClick={handleLogOut} className="logout">
+                            Logout
+                          </Link>
+                        </ul>
+                      </Popover>
                     </div>
                   </div>
                   <main className={classes.content}>
