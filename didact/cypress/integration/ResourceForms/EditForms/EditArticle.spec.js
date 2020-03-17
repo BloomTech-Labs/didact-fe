@@ -1,25 +1,24 @@
-import faker from 'faker'
-
-describe("add article resource form", () => {
+describe("edit article resource form", () => {
     beforeEach(() => {
         cy.Signin({email: "bob@bobmail.com", password: "secretpass"})
-        cy.visit('/articles/1/edit')
-       
+        cy.visit('/articles/3/edit')
     })
-    it('inputs display user input', () => {
-        const articleTitle = faker.lorem.sentence();
+    it('inputs display user input submission takes to articles page', () => {
+        
+
+        const articleTitle = "edit article title test"
         cy.get('[name="title"]')
         .clear()
         .type(articleTitle)
         .should('have.value', articleTitle)
 
-        const articleBody = faker.lorem.paragraphs(2);
+        const articleBody = "edit article body test"
         cy.get('[name="body"]')
         .clear()
         .type(articleBody)
         .should('have.value', articleBody)
 
-        const articleTopic = "Topic"
+        const articleTopic = " edit article topic test"
         cy.get('[name="topic"]')
         .clear()
         .type(articleTopic)

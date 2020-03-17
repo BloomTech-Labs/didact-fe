@@ -1,14 +1,10 @@
 describe("edit source resource form", () => {
     beforeEach(() => {
         cy.Signin({email: "bob@bobmail.com", password: "secretpass"})
-        cy.visit('/sources/1/edit')
+        cy.visit('/sources/4/edit')
     })
 
-    it('dropdown displays correct form on select', () => {
-        cy.get('label').first().should('have.text', 'Source Name')
-    })
-
-    it('inputs display user input', () => {
+    it('inputs display user input submission takes to sources page', () => {
         const sourceName = "Source Edit"
         cy.get('[name="name"]')
         .clear()

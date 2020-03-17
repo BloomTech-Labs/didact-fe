@@ -1,10 +1,10 @@
-describe("add tool resource form", () => {
+describe("edit tool resource form", () => {
     beforeEach(() => {
         cy.Signin({email: "bob@bobmail.com", password: "secretpass"})
-        cy.visit('/tools/1/edit')
+        cy.visit('/tools/4/edit')
     })
 
-    it('inputs display user input', () => {
+    it('inputs display user input and form submission takes you to tools page', () => {
         const toolName = "Tool Edit"
         cy.get('[name="name"]')
         .clear()

@@ -12,7 +12,7 @@ describe("add external article resource form", () => {
         cy.get('label').first().should('have.text', 'Article Title')
     })
 
-    it('inputs display user input', () => {
+    it('inputs display user input submission takes to articles page', () => {
         const articleTitle = faker.lorem.sentence()
         cy.get('[name="title"]')
         .type(articleTitle)

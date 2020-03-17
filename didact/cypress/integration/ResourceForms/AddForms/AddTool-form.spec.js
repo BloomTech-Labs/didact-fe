@@ -10,7 +10,7 @@ describe("add tool resource form", () => {
             cy.get("label").first().should('have.text', 'Tool Name')
     })
 
-    it('inputs display user input and form submission takes you to tool page', () => {
+    it('inputs display user input and form submission takes you to tools page', () => {
         const toolName = "Tool Name"
         cy.get('[name="name"]')
         .type(toolName)

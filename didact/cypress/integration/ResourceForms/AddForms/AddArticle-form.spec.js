@@ -12,13 +12,13 @@ describe("add article resource form", () => {
         cy.get('label').first().should('have.text', 'Article Title')
     })
 
-    it('inputs display user input', () => {
+    it('inputs display user input submission takes to articles page', () => {
         const articleTitle = faker.lorem.sentence();
         cy.get('[name="title"]')
         .type(articleTitle)
         .should('have.value', articleTitle)
 
-        const articleBody = faker.lorem.paragraphs(2)
+        const articleBody = faker.lorem.paragraph()
         cy.get('[name="body"]')
         .type(articleBody)
         .should('have.value', articleBody)

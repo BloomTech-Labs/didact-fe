@@ -76,7 +76,8 @@ const Sources = props => {
             {/* This Div Will Fill Up One Space */}
             {sources.length === 2 ||
             sources.length === 5 ||
-            sources.length === 8 ? (
+            sources.length === 8 ||
+            sources.length === 11 ? (
               <div className="single-block-fill-source">
                 <div className="circle"></div>
                 <img src={coolimage} />
@@ -85,7 +86,8 @@ const Sources = props => {
             {/* This Div Will Fill Up Two Spaces */}
             {sources.length === 1 ||
             sources.length === 4 ||
-            sources.length === 7 ? (
+            sources.length === 7 ||
+            sources.length === 10 ? (
               <div className="double-block-fill-source">
                 <div className="circle"></div>
                 <img src={coolimage} />
