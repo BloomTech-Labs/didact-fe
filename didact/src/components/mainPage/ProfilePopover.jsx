@@ -2,9 +2,23 @@ import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 
 import Popover from "@material-ui/core/Popover";
-// import Typography from "@material-ui/core/Typography";
+import PermIdentityIcon from "@material-ui/icons/PermIdentity";
 import { Link } from "react-router-dom";
+
+// STYLING
+
 const useStyles = makeStyles(theme => ({
+  mainPopDiv: {
+    width: "250px"
+  },
+  avatarDiv: {
+    margin: "1% 0% 1% 15%"
+  },
+
+  name: {
+    margin: "1% 0% 1% 5%"
+  },
+
   unOrderedList: {
     marginRight: "10%"
   },
@@ -18,7 +32,12 @@ const useStyles = makeStyles(theme => ({
   popLinks: { margin: "5px 0px 5px 0px" }
 }));
 
+// Profile Function
+
 const ProfilePopOver = ({
+  firstName,
+  lastName,
+  userName,
   handleClose,
   openPop,
   id,
@@ -26,6 +45,8 @@ const ProfilePopOver = ({
   handleLogOut
 }) => {
   const classes = useStyles();
+
+  // const dispatch = useDispatch();
   return (
     <Popover
       id={id}
@@ -42,8 +63,27 @@ const ProfilePopOver = ({
       }}
     >
       <div className={classes.mainPopDiv}>
+        <div className={classes.avatarDiv}>
+          <p>
+            {userName.photo ? (
+              <img
+                src={userName.photo}
+                alt="Profile"
+                className={classes.iconImageProfile}
+              />
+            ) : (
+              <PermIdentityIcon
+                className={classes.iconImageProfile}
+                style={{
+                  color: "#242424BF"
+                }}
+              />
+            )}
+          </p>
+        </div>
+        <p className={classes.name}>{firstName + " " + lastName}</p>
         <ul className={classes.unOrderedList}>
-          <h3 className={classes.popTitle}>User Profile Info</h3>
+          <h3 className={classes.popTitle}>User Profile </h3>
           <div className={classes.popNav}>
             <a
               href="https://discordapp.com/invite/YFZdRp"
@@ -52,11 +92,19 @@ const ProfilePopOver = ({
             >
               Discord
             </a>
-            <Link onClick={handleLogOut} className={classes.popLinks}>
+            <Link to="#" onClick={handleLogOut} className={classes.popLinks}>
               Logout
             </Link>
           </div>
         </ul>
+        <iframe
+          src="https://discordapp.com/widget?id=689132221864738902&theme=dark"
+          width="230"
+          height="250"
+          allowtransparency="true"
+          frameborder="0"
+          style={{ marginLeft: "4%" }}
+        ></iframe>
       </div>
     </Popover>
   );

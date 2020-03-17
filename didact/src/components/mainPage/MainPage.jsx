@@ -22,7 +22,6 @@ import DrawerComponent from "../drawer/Drawer";
 import MobileDrawerComponent from "../drawer/MobileDrawer";
 import MobileHeaderComponent from "../header/MobileHeader";
 import Content from "../content/Content";
-import ProfilePopover from "./ProfilePopover";
 import { ProfileWrapper } from "./profileStyle";
 import ProfilePopOver from "./ProfilePopover";
 
@@ -458,15 +457,24 @@ function MainPage(props) {
                       (admin === true &&
                         props.location.pathname !== "/users") ? (
                         <p className="usersLink">
-                          <Link to={`/users`}>Edit Users</Link>
+                          <Link to={`/users`} style={{ color: "#242424" }}>
+                            Edit Users
+                          </Link>
                         </p>
                       ) : null}
-                      <p className="profile-avatar">
+
+                      <p
+                        className="profile-avatar"
+                        style={{ cursor: "pointer" }}
+                        onClick={handleClick}
+                      >
                         {userName.photo ? (
                           <img
                             src={userName.photo}
                             alt="Profile"
                             className={classes.iconImageProfile}
+                            style={{ cursor: "pointer" }}
+                            onClick={handleClick}
                           />
                         ) : (
                           <PermIdentityIcon
@@ -477,7 +485,13 @@ function MainPage(props) {
                           />
                         )}
                       </p>
-                      <p className="name">{firstName + " " + lastName}</p>
+                      <p
+                        className="name"
+                        style={{ cursor: "pointer" }}
+                        onClick={handleClick}
+                      >
+                        {firstName + " " + lastName}
+                      </p>
                       <p
                         aria-describedby={id}
                         variant="contained"
@@ -485,20 +499,26 @@ function MainPage(props) {
                       >
                         <MoreHorizIcon
                           style={{
+                            cursor: "pointer",
                             fontSize: "1.8rem",
                             color: "#242424BF"
                           }}
                         />
                       </p>
+
                       <ProfilePopOver
                         handleClose={handleClose}
                         openPop={openPop}
                         id={id}
                         handleLogOut={handleLogOut}
                         anchorEl={anchorEl}
+                        firstName={firstName}
+                        lastName={lastName}
+                        userName={userName}
                       />
                     </div>
                   </div>
+
                   <main className={classes.content}>
                     <Content
                       mediumScreenSize={mediumScreenSize}
