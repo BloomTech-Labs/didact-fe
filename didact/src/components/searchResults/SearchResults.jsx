@@ -1,41 +1,28 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { courseEndPoint, getLearningPaths } from "../../store/actions";
 
-// Component Imports
+import { Link } from "react-router-dom";
 import Course from "../courses/Course";
 import LearningPathResults from "./LearningPathResults";
-import LearningPathYourResults from "./LearningPathYourResults";
 
-// Styling Import
-import styled from "styled-components";
+import { TitleH2 } from "./SearchStyles";
 
-const TitleH2 = styled.div`
-  max-width: 540px;
-  width: 100%;
-  text-align: left;
-  font-size: 2.6rem;
-  font-weight: bold;
-  padding: 10px;
-  font-family: Open sans;
-`;
-
-const SearchResults = ({ props, results, setValues, values }) => {
+const SearchResults = ({ props, setValues }) => {
   const dispatch = useDispatch();
   const state = useSelector(state => state);
-  const courses = state.coursesReducer.courses;
+  const courses = state.coursesReducer.courses.slice(0, 3);
   const coursesLoading = useSelector(
     state => state.coursesReducer.isLoadingCourses
   );
   const pathsLoading = useSelector(
     state => state.learningPathReducer.isLoadingPaths
   );
-  const learningPaths = state.learningPathReducer.learningPaths;
+  const learningPaths = state.learningPathReducer.learningPaths.slice(0, 3);
+  const resultCount = "placeholder";
 
-  useEffect(() => {
-    dispatch(courseEndPoint(results));
-    dispatch(getLearningPaths(results));
-  }, [results]);
+  // useEffect(() => {
+
+  // }, [results]);
 
   const handleBack = () => {
     props.history.push("/");
@@ -61,6 +48,15 @@ const SearchResults = ({ props, results, setValues, values }) => {
       {/* Checking If State Is Still Loading In Store */}
       {!pathsLoading && !coursesLoading ? (
         <>
+          <div>
+            <Link>All</Link>
+            <Link>Courses</Link>
+            <Link>Learning Paths</Link>
+            <Link>Resources</Link>
+          </div>
+          <TitleH2>
+            SEARCH RESULTS <span>{resultCount} RESULTS FOUND</span>
+          </TitleH2>
           <div style={{ minHeight: "300px" }}>
             {learningPaths.length === 0 ? (
               <TitleH2>No Results In Paths</TitleH2>
