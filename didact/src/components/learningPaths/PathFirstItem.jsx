@@ -102,7 +102,6 @@ const PathFirstItem = ({
             <Link
               to={{
                 pathname: `/courses/yours/${firstItemCourse.id}`
-                // state: { tracked: tracked }
               }}
               style={{
                 display: "flex",
@@ -110,7 +109,6 @@ const PathFirstItem = ({
                 color: "#242424",
                 width: "120px",
                 marginLeft: "72%"
-                // marginBottom: "15%"
               }}
             >
               <span
