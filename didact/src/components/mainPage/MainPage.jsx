@@ -12,9 +12,6 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import SearchIcon from "@material-ui/icons/Search";
 
-// import InboxIcon from "@material-ui/icons/MoveToInbox";
-// import DashboardIcon from "@material-ui/icons/Dashboard";
-// import FolderOpenIcon from "@material-ui/icons/FolderOpen";
 import PermIdentityIcon from "@material-ui/icons/PermIdentity";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 
@@ -102,7 +99,7 @@ const useStyles = makeStyles(theme => ({
     outline: "none",
     height: "57px",
     border: "none",
-    fontFamily: "open-sans",
+    fontFamily: "Open-Sans",
     fontWeight: "bold",
     fontSize: "1.6rem",
     marginLeft: "-5%"

@@ -83,10 +83,12 @@ const ProfilePopOver = ({
         </div>
         <p className={classes.name}>{firstName + " " + lastName}</p>
         <ul className={classes.unOrderedList}>
-          <h3 className={classes.popTitle}>User Profile </h3>
           <div className={classes.popNav}>
+            <Link to={`/my-profile`} style={{ color: "#242424" }}>
+              My Profile
+            </Link>
             <a
-              href="https://discordapp.com/invite/YFZdRp"
+              href="https://discord.io/didact"
               className={classes.popLinks}
               target="_blank"
             >
@@ -97,14 +99,14 @@ const ProfilePopOver = ({
             </Link>
           </div>
         </ul>
-        <iframe
+        {/* <iframe
           src="https://discordapp.com/widget?id=689132221864738902&theme=dark"
           width="230"
           height="250"
           allowtransparency="true"
           frameborder="0"
           style={{ marginLeft: "4%" }}
-        ></iframe>
+        ></iframe> */}
       </div>
     </Popover>
   );

@@ -19,7 +19,7 @@ import { makeStyles } from "@material-ui/core/styles";
 // Styled Component Imports
 import { LearningPathCard } from "../learningPaths/YourLearningPathsStyles";
 import { TopDashboardCard } from "./DashboardStyles";
-import { TopDashboardArt } from "./DashboardStyles";
+import zIndex from "@material-ui/core/styles/zIndex";
 
 const useStyles = makeStyles({
   current: {
@@ -47,9 +47,14 @@ function Dashboard({ props }) {
   const classes = useStyles(props);
   const dispatch = useDispatch();
   const state = useSelector(state => state);
+  const options = {
+    weekday: "long"
+    // month: "long",
+    // day: "numeric"
+  };
   const date = new Date();
-  const today = date.toLocaleDateString();
-  const time = date.toLocaleTimeString();
+  const today = date.toLocaleDateString(undefined, options);
+  const time = date.toLocaleTimeString([], { timeStyle: "short" });
   const isLoadingVerify = state.onboardingReducer.isLoading;
   const userName = state.onboardingReducer.user;
   const firstName = userName.first_name
@@ -94,19 +99,21 @@ function Dashboard({ props }) {
   return (
     <>
       <div
+        className="bottom-border"
         style={{
           display: "flex",
           justifyContent: "space-between",
-          margin: "-10px 10px 10px 10px",
+          margin: "-10px 10px 10px 0px",
           borderBottom: "1px solid black"
         }}
       ></div>
+
       <div>
         <p
           style={{
             fontWeight: "bold",
             fontFamily: "Open Sans",
-            marginLeft: "10px",
+            fontSize: "13px",
             display: "flex",
             flexDirection: "row",
             alignItems: "center",
@@ -115,31 +122,34 @@ function Dashboard({ props }) {
         >
           Dashboard
         </p>
-        <TopDashboardArt>
-          <img
-            src={sphere}
-            style={{ margin: "0 auto", height: "270px", zIndex: "2" }}
-            alt="sphere"
-          />
-        </TopDashboardArt>
+
         {/* <FiberManualRecordIcon
           style={{
             color: "#52bbb4",
             fontSize: "18em",
             margin: 0
-          }}g
+          }}
         /> */}
       </div>
+
       <TopDashboardCard>
         <div className={classes.topContainer}>
           <div>
-            <span style={{ fontSize: "21px", textAlign: "left" }}>
-              Date: {today} {time}
+            <span
+              style={{
+                fontSize: "21px",
+                textAlign: "left",
+                fontWeight: "bold",
+                fontFamily: "Helvetica"
+              }}
+            >
+              {today}, {time}
             </span>
           </div>
+
           <div>
             <p style={{ fontWeight: "500", fontSize: "44px" }}>
-              Welcome Back,
+              Welcome,
               <br />{" "}
               <span style={{ fontWeight: "bold", fontSize: "44px" }}>
                 {firstName}!{" "}
@@ -147,13 +157,22 @@ function Dashboard({ props }) {
             </p>
           </div>
         </div>
+        <img
+          src={sphere}
+          style={{
+            margin: "-21% 0 0% 45%",
+            zIndex: "2",
+            height: "320px"
+          }}
+          alt="sphere"
+        />
       </TopDashboardCard>
 
       <div className={classes.container}>
         <div className={classes.smallContainer}>
           <p
             style={{
-              fontSize: "2rem",
+              fontSize: "16px",
               fontWeight: "bold",
               textAlign: "left",
               marginLeft: "10px"
@@ -165,7 +184,7 @@ function Dashboard({ props }) {
             <div className="title">
               <h3
                 style={{
-                  fontFamily: "ITC Grouch",
+                  fontFamily: "Open Sans",
                   color: "black",
                   marginBottom: "40px"
                 }}
@@ -215,7 +234,7 @@ function Dashboard({ props }) {
           <div className={classes.smallContainer}>
             <p
               style={{
-                fontSize: "2rem",
+                fontSize: "16px",
                 fontWeight: "bold",
                 textAlign: "left",
                 marginBottom: "-20px"
@@ -226,13 +245,13 @@ function Dashboard({ props }) {
             {coursePathOrder.length >= 1 ? (
               <YourCourse
                 props={props}
-                style={{ color: "black" }}
+                style={{ color: "#242424" }}
                 course={coursePathOrder[0]}
               />
             ) : state.coursesReducer.courses[0] ? (
               <Course
                 props={props}
-                style={{ color: "black" }}
+                style={{ color: "#242424" }}
                 course={state.coursesReducer.courses[0]}
               />
             ) : null}

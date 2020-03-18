@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const PersonWrapper = styled.div`
-//   background-color: silver;
   border-radius: 7px;
 
   color: #5b5b5b;
@@ -55,95 +54,91 @@ export const PersonWrapper = styled.div`
 `;
 
 export const FormTitle = styled.h6`
-    margin-left: 20px;
-    margin-bottom: 10px;
-    margin-top: 15px;
-`
+  margin-left: 20px;
+  margin-bottom: 10px;
+  margin-top: 15px;
+`;
 export const DidactField = styled.div`
-    width: 90%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    position: relative;
-`
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+`;
 export const DidactInput = styled.input`
-    width: 92%;
-    height: 32px;
-    background: #F4F8FA;
-    border: #D1E2EA solid 1px;
-    border-radius: 8px;
-    padding-left: 12px;
-    display: flex;
-    margin: 5px auto 10px auto;
-    outline: none;
-    ::placeholder {
-        color: #90A1AC;
-        
-    }
-`
+  width: 92%;
+  height: 32px;
+  background: #f4f8fa;
+  border: #d1e2ea solid 1px;
+  border-radius: 8px;
+  padding-left: 12px;
+  display: flex;
+  margin: 5px auto 10px auto;
+  outline: none;
+  ::placeholder {
+    color: #90a1ac;
+  }
+`;
 export const DidactLabel = styled.label`
-    margin: 15px 0 0 20px;
-    padding-bottom: 0;
-    color: #696D6E;
-`
+  margin: 15px 0 0 20px;
+  padding-bottom: 0;
+  color: #696d6e;
+`;
 export const DidactTextArea = styled.textarea`
-    width: 92%;
-    /* height: 32px; */
-    background: #F4F8FA;
-    border: #D1E2EA solid 1px;
-    border-radius: 8px;
-    padding-left: 12px;
-    display: flex;
-    margin: 5px auto 10px auto;
-    outline: none;
-    resize: none;
-    ::placeholder {
-        color: #90A1AC;
-    }
-`
+  width: 92%;
+  /* height: 32px; */
+  background: #f4f8fa;
+  border: #d1e2ea solid 1px;
+  border-radius: 8px;
+  padding-left: 12px;
+  display: flex;
+  margin: 5px auto 10px auto;
+  outline: none;
+  resize: none;
+  ::placeholder {
+    color: #90a1ac;
+  }
+`;
 export const DidactTagForm = styled.input`
-    width: 42%;
-    height: 35px;
-    background: #F4F8FA;
-    border: #D1E2EA solid 1px;
-    border-radius: 8px;
-    padding-left: 12px;
-    display: flex;
-    margin: 5px auto 30px 10px;
-    outline: none;
-    ::placeholder {
-        color: #90A1AC;
-        
-    }
-`
+  width: 42%;
+  height: 35px;
+  background: #f4f8fa;
+  border: #d1e2ea solid 1px;
+  border-radius: 8px;
+  padding-left: 12px;
+  display: flex;
+  margin: 5px auto 30px 10px;
+  outline: none;
+  ::placeholder {
+    color: #90a1ac;
+  }
+`;
 export const DidactButton = styled.input`
-    width: 42%;
-    height: 35px;
-    background: #F4F8FA;
-    border: #D1E2EA solid 1px;
-    border-radius: 8px;
-    padding-left: 12px;
-    display: flex;
-    margin: 5px auto 30px 10px;
-    outline: none;
-    ::placeholder {
-        color: #90A1AC;
-        
-    }
-`
+  width: 42%;
+  height: 35px;
+  background: #f4f8fa;
+  border: #d1e2ea solid 1px;
+  border-radius: 8px;
+  padding-left: 12px;
+  display: flex;
+  margin: 5px auto 30px 10px;
+  outline: none;
+  ::placeholder {
+    color: #90a1ac;
+  }
+`;
 
 export const DidactForm = styled.input`
-    width: 42%;
-    height: 35px;
-    background: #F4F8FA;
-    border: #D1E2EA solid 1px;
-    border-radius: 8px;
-    padding-left: 12px;
-    display: flex;
-    margin: 5px auto 30px 10px;
-    outline: none;
-    ::placeholder {
-        color: #90A1AC;
-      }
-      `
-
+  width: 42%;
+  height: 35px;
+  background: #f4f8fa;
+  border: #d1e2ea solid 1px;
+  border-radius: 8px;
+  padding-left: 12px;
+  display: flex;
+  margin: 5px auto 30px 10px;
+  outline: none;
+  ::placeholder {
+    color: #90a1ac;
+  }
+`;
