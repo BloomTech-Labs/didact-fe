@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { getMyProfile } from "../../store/actions";
 import { Link } from "react-router-dom";
 import {
   MyProfileStyleWrapper,
@@ -16,11 +17,19 @@ import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import PermIdentityIcon from "@material-ui/icons/PermIdentity";
 import discordLogo from "../../assets/discordLogo.png";
 
-import { editMyProfileBio } from "../../store/actions";
-
 const MyProfile = () => {
+  const dispatch = useDispatch();
   const state = useSelector(state => state);
   const userName = state.onboardingReducer.user;
+  const pic = state.myProfileReducer.image;
+  const bio = state.myProfileReducer.bio;
+  const interests = state.myProfileReducer.interests;
+  const facebookLink = state.myProfileReducer.facebookLink;
+  const githubLink = state.myProfileReducer.githubLink;
+  const discordLink = state.myProfileReducer.discordLink;
+  const twitterLink = state.myProfileReducer.twitterLink;
+  const linkedInLink = state.myProfileReducer.linkedInLink;
+  const externalEdLink = state.myProfileReducer.externalEdLink;
 
   const firstName = userName.first_name
     ? userName.first_name.substring(0, 1).toUpperCase() +
@@ -31,25 +40,9 @@ const MyProfile = () => {
       userName.last_name.substring(1)
     : null;
 
-  const [changes, setChanges] = useState({
-    bio: ""
-  });
-
-  // useEffect(() => {
-  //   setChanges({
-  //     bio: person.bio,
-  //   });
-  // }, [person]);
-
-  // const handleChange = e => {
-  //   setChanges({ ...changes, [e.target.name]: e.target.value });
-  // };
-
-  // const handleSubmit = e => {
-  //   e.preventDefault();
-  //   dispatch(editMyProfileBio(changes));
-  //   props.history.push("/my-profile");
-  // };
+  useEffect(() => {
+    dispatch(getMyProfile());
+  }, [dispatch]);
 
   return (
     <MyProfileStyleWrapper>
@@ -88,6 +81,17 @@ const MyProfile = () => {
 
         <p className="name">{firstName + " " + lastName}</p>
       </ProfileAvatar>
+      <div>
+        <img src={pic}></img>
+        <div>{bio}</div>
+        <div>{interests}</div>
+        <span>{facebookLink}</span>
+        <span>{githubLink}</span>
+        <span>{discordLink}</span>
+        <span>{twitterLink}</span>
+        <span>{linkedInLink}</span>
+        <div>{externalEdLink}</div>
+      </div>
 
       <div>
         <form>
@@ -95,7 +99,7 @@ const MyProfile = () => {
           <BioField>
             <BioLabel>Bio</BioLabel>
             <BioInput
-              value={changes.bio}
+              // s
               // onChange={handleChange}
               name="bio"
               placeholder="Bio"
