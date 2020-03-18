@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import {
   MyProfileStyleWrapper,
@@ -15,6 +15,8 @@ import {
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import PermIdentityIcon from "@material-ui/icons/PermIdentity";
 import discordLogo from "../../assets/discordLogo.png";
+
+import { editMyProfileBio } from "../../store/actions";
 
 const MyProfile = () => {
   const state = useSelector(state => state);
@@ -38,6 +40,16 @@ const MyProfile = () => {
   //     bio: person.bio,
   //   });
   // }, [person]);
+
+  // const handleChange = e => {
+  //   setChanges({ ...changes, [e.target.name]: e.target.value });
+  // };
+
+  // const handleSubmit = e => {
+  //   e.preventDefault();
+  //   dispatch(editMyProfileBio(changes));
+  //   props.history.push("/my-profile");
+  // };
 
   return (
     <MyProfileStyleWrapper>
@@ -79,10 +91,11 @@ const MyProfile = () => {
 
       <div>
         <form>
+          {/* <form onSubmit={handleSubmit}> */}
           <BioField>
             <BioLabel>Bio</BioLabel>
             <BioInput
-              // value={changes.bio}
+              value={changes.bio}
               // onChange={handleChange}
               name="bio"
               placeholder="Bio"

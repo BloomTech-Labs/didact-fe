@@ -11,7 +11,7 @@ import Course from "../courses/Course";
 
 //art
 import sphere from "../../assets/sphere.png";
-import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
+// import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
 
 //Material UI Imports
 import { makeStyles } from "@material-ui/core/styles";
