@@ -37,7 +37,6 @@ const initialState = {
   isLoadingArticles: false,
   adding: false,
   updating: false,
-
   deleting: false,
   error: "",
   article: {},

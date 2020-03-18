@@ -5,19 +5,27 @@ import { Link } from "react-router-dom";
 import Course from "../courses/Course";
 import LearningPathResults from "./LearningPathResults";
 
-import { TitleH2 } from "./SearchStyles";
+import {
+  TitleH2,
+  PathGrid,
+  CouresGrid,
+  ResourceGrid
+} from "./SearchGeneralStyles";
 
 const SearchResults = ({ props, setValues }) => {
   const dispatch = useDispatch();
   const state = useSelector(state => state);
   const courses = state.coursesReducer.courses.slice(0, 3);
-  const coursesLoading = useSelector(
-    state => state.coursesReducer.isLoadingCourses
-  );
-  const pathsLoading = useSelector(
-    state => state.learningPathReducer.isLoadingPaths
-  );
-  const learningPaths = state.learningPathReducer.learningPaths.slice(0, 3);
+  const coursesLoading = state.coursesReducer.isLoadingCourses;
+  const paths = state.learningPathReducer.learningPaths.slice(0, 3);
+  const pathsLoading = state.learningPathReducer.isLoadingPaths;
+  const tools = state.toolsReducer.tools;
+  const toolsLoading = state.toolsReducer.isLoadingTools;
+  const sources = state.sourcesReducer.sources;
+  const sourcesLoading = state.sourcesReducer.isLoadingSources;
+  const articles = state.articlesReducer.articles;
+  const articlesLoading = state.articlesReducer.isLoadingArticles;
+
   const resultCount = "placeholder";
 
   // useEffect(() => {
@@ -46,7 +54,11 @@ const SearchResults = ({ props, setValues }) => {
         >{`<${" "} Back To Dashboard`}</p>
       </div>
       {/* Checking If State Is Still Loading In Store */}
-      {!pathsLoading && !coursesLoading ? (
+      {!pathsLoading &&
+      !coursesLoading &&
+      !toolsLoading &&
+      !sourcesLoading &&
+      !articlesLoading ? (
         <>
           <div>
             <Link>All</Link>
@@ -57,42 +69,45 @@ const SearchResults = ({ props, setValues }) => {
           <TitleH2>
             SEARCH RESULTS <span>{resultCount} RESULTS FOUND</span>
           </TitleH2>
-          <div style={{ minHeight: "300px" }}>
-            {learningPaths.length === 0 ? (
+          {/* Paths Results */}
+          <PathGrid style={{ minHeight: "300px" }}>
+            {!paths ? (
               <TitleH2>No Results In Paths</TitleH2>
             ) : (
               <TitleH2>Learning Paths</TitleH2>
             )}
-            {learningPaths.length > 0
-              ? learningPaths.map(path => (
-                  <LearningPathResults
-                    key={path.id}
-                    props={props}
-                    learningPath={path}
-                  />
-                ))
-              : null}
-          </div>
+            {paths &&
+              paths.map(path => (
+                <LearningPathResults
+                  key={path.id}
+                  props={props}
+                  learningPath={path}
+                />
+              ))}
+          </PathGrid>
           {/* Courses Results */}
-          <div>
-            {courses.length === 0 ? (
+          <CourseGrid>
+            {!courses ? (
               <TitleH2 style={{ marginBottom: "-30px" }}>
                 No Results In Courses
               </TitleH2>
             ) : (
               <TitleH2 style={{ marginBottom: "-30px" }}>Courses</TitleH2>
             )}
-            {courses.length > 0
-              ? courses.map(course => (
-                  <Course
-                    props={props}
-                    tracked={true}
-                    course={course}
-                    key={course.title}
-                  />
-                ))
-              : null}
-          </div>
+            {courses &&
+              courses.map(course => (
+                <Course
+                  props={props}
+                  tracked={true}
+                  course={course}
+                  key={course.title}
+                />
+              ))}
+          </CourseGrid>
+          <ResourceGrid>
+            {/* Resource Results */}
+            {tools && articles && sources && <div></div>}
+          </ResourceGrid>
         </>
       ) : (
         <h1>Loading...</h1>

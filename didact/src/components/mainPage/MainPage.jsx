@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { verifyToken } from "../../store/actions/index.js";
+import {
+  verifyToken,
+  getTools,
+  getSources,
+  getExternalArticles,
+  getArticles
+} from "../../store/actions/index.js";
 import { useDispatch, useSelector } from "react-redux";
 import { PageFlex } from "./PageStyles";
 import { makeStyles } from "@material-ui/core/styles";
@@ -280,9 +286,15 @@ function MainPage(props) {
     setResults(values);
     dispatch(courseEndPoint(values));
     dispatch(getLearningPaths(values));
-    props.history.push("/results");
-
-    // setValues('')
+    dispatch(getTools(values));
+    dispatch(getSources(values));
+    dispatch(getExternalArticles(values));
+    //A promise is returned from the below action handler
+    //allowing us to wait until get articles has succeeded
+    //before pushing to new page
+    dispatch(getArticles(values)).then(() => {
+      props.history.push("/results");
+    });
   };
 
   const handleDrawerOpenMobile = () => event => {
