@@ -273,7 +273,7 @@ const Course = ({ course, addingCourses, props, tracked }) => {
                 aria-controls="panel1a-content"
                 id="panel1a-header"
                 style={{
-                  fontSize: "2.8rem",
+                  fontSize: "18px",
                   textAlign: "left",
                   paddingLeft: "6px",
                   transition: `0.25s ease`
@@ -285,10 +285,10 @@ const Course = ({ course, addingCourses, props, tracked }) => {
                     display: "flex",
                     flexDirection: "column",
                     transition: `0.25s ease`,
-                    color: "black"
+                    color: "#242424"
                   }}
                 >
-                  <h3 style={{ fontFamily: "ITC Grouch", color: "black" }}>
+                  <h3 style={{ fontFamily: "Open Sans", color: "#242424" }}>
                     {course.title.length > 35
                       ? `${course.title.substring(0, 35)}...`
                       : course.title}
@@ -386,7 +386,8 @@ const Course = ({ course, addingCourses, props, tracked }) => {
                 style={{
                   fontWeight: "bold",
                   marginTop: "2%",
-                  fontFamily: "Open Sans"
+                  fontFamily: "Open Sans",
+                  fontSize: "14px"
                 }}
               >
                 View Item
@@ -414,7 +415,8 @@ const Course = ({ course, addingCourses, props, tracked }) => {
                 style={{
                   fontWeight: "bold",
                   marginTop: "2%",
-                  fontFamily: "Open Sans"
+                  fontFamily: "Open Sans",
+                  fontSize: "14px"
                 }}
               >
                 View Item

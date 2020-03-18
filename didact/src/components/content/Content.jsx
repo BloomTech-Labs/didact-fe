@@ -31,6 +31,7 @@ import EditArticle from "../administration/EditArticle";
 import EditExternalArticle from "../administration/EditExternalArticle";
 import UsersProfiles from "../profile/UsersProfiles";
 import EditUser from "../profile/EditUser";
+import MyProfile from "../profile/MyProfile";
 
 const Content = props => {
   return (
@@ -119,6 +120,8 @@ const Content = props => {
             return <UsersProfiles props={props} />;
           case "edit-user":
             return <EditUser props={props} id={props.match.params.id} />;
+          case "myprofile":
+            return <MyProfile props={props} />;
           default:
             break;
         }

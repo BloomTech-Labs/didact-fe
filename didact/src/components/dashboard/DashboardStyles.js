@@ -1,11 +1,7 @@
 import styled from "styled-components";
 
 export const TopDashboardCard = styled.div`
-  @media (max-width: 600px) {
-    width: 100%;
-    // z-index: -1;
-    // position: relative;
-    
+  @media (max-width: 600px) {    
   }
 
   display: flex;
@@ -24,102 +20,7 @@ export const TopDashboardCard = styled.div`
     width: 100%;
     min-width: calc(100vw - 100px);
   }
-
-//   .completed {
-//     background: #d1e2ea;
-//     width: 100%;
-//   }
-
-//   .title {
-//     text-align: left;
-//     width: 100%;
-
-//     .pathHeader {
-//       display: flex;
-//       width: 100%;
-//       justify-content: space-between;
-//       align-items: center;
-
-//       h1 {
-//         @media (max-width: 600px) {
-//           font-size: 2rem;
-//         }
-//       }
-
-//       .notCompleteButton {
-//         font-size: 2.2rem;
-//         color: black;
-//         opacity: 0.6;
-//         cursor: pointer;
-
-//         &:hover {
-//           opacity: 1;
-//         }
-//       }
-
-//       .completeButton {
-//         font-size: 2.2rem;
-//         color: black;
-//         cursor: pointer;
-//         opacity: 0.6;
-
-//         &:hover {
-//           opacity: 1;
-//         }
-//       }
-//     }
-
-//     // h1 {
-//     //   margin: 0;
-//     //   padding-bottom: 20px;
-//     //   color: black;
-//     // }
-
-//     button {
-//       background-color: #242424;
-//       color: black;
-//       padding: 8px 20px;
-//       border-radius: 12px;
-//       font-weight: bolder;
-//       text-decoration: none;
-//       border: none;
-//       margin-right: 10px;
-//       width: 125px;
-//       height: 35px;
-//       border: transparent solid 1px;
-
-//       a {
-//         color: black;
-//         /* font-weight: bolder; */
-//         text-decoration: none;
-//       }
-
-//       &:focus {
-//         outline: none;
-//       }
-
-//       &:hover {
-//         color: rgba(0, 0, 0, 1);
-//         background-color: rgba(255, 255, 255, 1);
-//         border: solid black 1px;
-//         outline: none;
-//         cursor: pointer;
-
-//         a {
-//           color: black;
-//         }
-//       }
     }`;
-
-export const TopDashboardArt = styled.div`
-    display: flex;
-    // border: 1px solid black;
-    width: 354px;
-    height: 353px;
-    margin-left: 30%;
-    margin-top: -4%;
-    position: absolute;
-  `;
 
 export const CoursesCard = styled.div`
   display: flex;
