@@ -11,7 +11,12 @@ const ResourceResults = () => {
   return (
     <div>
       <TitleH2>
-        SEARCH RESULTS <span>{resultCount} RESULTS FOUND</span>
+        SEARCH RESULTS
+        {resultCount === 1 ? (
+          <span>{resultCount} RESULT FOUND</span>
+        ) : (
+          <span>{resultCount} RESULTS FOUND</span>
+        )}
       </TitleH2>
     </div>
   );

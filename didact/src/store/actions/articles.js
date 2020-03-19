@@ -55,10 +55,17 @@ export const getArticles = results => dispatch => {
     });
 };
 
-export const getExternalArticles = () => dispatch => {
+export const getExternalArticles = results => dispatch => {
   dispatch({ type: EXTERNAL_ARTICLE_DATA_START });
   axiosWithAuth()
-    .get(baseExtUrl)
+    .get(
+      baseExtUrl,
+      results
+        ? {
+            headers: { query: results.search, filter: results.filter }
+          }
+        : null
+    )
     .then(result => {
       dispatch({ type: EXTERNAL_ARTICLE_DATA_SUCCESS, payload: result.data });
     })

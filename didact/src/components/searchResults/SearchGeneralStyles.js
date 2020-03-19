@@ -15,17 +15,19 @@ export const Navigator = styled.div`
 `;
 
 export const TitleH2 = styled.div`
-  max-width: 540px;
   width: 100%;
   text-align: left;
   font-size: 2rem;
   font-weight: bold;
   padding: 10px 0;
   font-family: Open sans;
+  display: flex;
 
   span {
+    display: flex;
+    align-items: center;
     margin-left: 25px;
-    font-size: 16px;
+    font-size: 1.4rem;
   }
 
   .sub-span-results {
@@ -40,11 +42,19 @@ export const TitleH2 = styled.div`
 `;
 
 export const PathGrid = styled.div`
+  width: 100%;
   display: grid;
+  grid-gap: 30px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 300px;
 `;
 
 export const CourseGrid = styled.div`
+  width: 80%;
   display: grid;
+  grid-gap: 30px;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 150px;
 `;
 
 export const ResourceGrid = styled.div`
