@@ -38,7 +38,7 @@ const baseExtUrl = `${beURL}external-articles`;
 
 export const getArticles = results => dispatch => {
   dispatch({ type: ARTICLE_DATA_START });
-  axiosWithAuth()
+  return axiosWithAuth()
     .get(
       `${baseURL}`,
       results
