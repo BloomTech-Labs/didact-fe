@@ -6,7 +6,7 @@ export const PathCard = styled.div`
   padding: 20px 20px 10px 20px;
   display: grid;
   grid-template-rows: 20px 160px 60px 40px;
-
+  color: #242424;
   h3 {
     margin: 0;
     font-size: 1.3rem;
@@ -41,8 +41,13 @@ export const PathCard = styled.div`
   }
 
   a {
+    font-weight: 600;
     display: flex;
     align-items: center;
+
+    &:visited {
+      color: #242424;
+    }
   }
 `;
 
@@ -50,9 +55,36 @@ export const CourseCard = styled.div`
   background-color: #ffffff;
   border-radius: 7px;
   padding: 20px 20px 10px 20px;
+  color: #242424;
+  display: grid;
+  grid-template-columns: 45% 55%;
 
-  span {
-    font-size: 1rem;
-    cursor: pointer;
+  .img-div {
+    object-fit: cover;
+
+    img {
+      max-width: 100%;
+      max-height: 100%;
+    }
+  }
+
+  .right-div {
+    display: flex;
+    flex-flow: column nowrap;
+
+    align-items: flex-end;
+    h1 {
+      font-size: 1.6rem;
+    }
+
+    a {
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+
+      &:visited {
+        color: #242424;
+      }
+    }
   }
 `;

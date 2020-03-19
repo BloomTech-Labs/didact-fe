@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { TitleH2 } from "./SearchGeneralStyles";
-import Course from "../courses/Course";
+import CourseResultCard from "./CourseResultCard";
 const CourseResults = props => {
   const courses = useSelector(state => state.coursesReducer.courses);
   const resultCount = courses.length;
@@ -16,7 +16,7 @@ const CourseResults = props => {
         )}
       </TitleH2>
       {courses.map(course => (
-        <Course course={course} />
+        <CourseResultCard course={course} />
       ))}
     </div>
   );

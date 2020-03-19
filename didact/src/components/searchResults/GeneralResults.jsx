@@ -8,12 +8,12 @@ import {
 } from "./SearchGeneralStyles";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import LearningPathCard from "./PathResultCard";
-import Course from "../courses/Course";
+import CourseResultCard from "./CourseResultCard";
 
 const GeneralResults = props => {
   //wew thats a lotta state
   const state = useSelector(state => state);
-  const courses = state.coursesReducer.courses.slice(0, 3);
+  const courses = state.coursesReducer.courses.slice(0, 2);
   const coursesLoading = state.coursesReducer.isLoadingCourses;
   const paths = state.learningPathReducer.learningPaths.slice(0, 3);
   const pathsLoading = state.learningPathReducer.isLoadingPaths;
@@ -69,9 +69,8 @@ const GeneralResults = props => {
           {courses.length > 0 ? (
             <CourseGrid style={{ minHeight: "45px" }}>
               {courses.map(course => (
-                <Course
+                <CourseResultCard
                   props={props}
-                  tracked={true}
                   course={course}
                   key={course.title}
                 />

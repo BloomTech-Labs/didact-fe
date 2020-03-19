@@ -6,7 +6,8 @@ import ArrowRightAltRoundedIcon from "@material-ui/icons/ArrowRightAltRounded";
 import { PathCard } from "./ResultCardStyles";
 import { Link } from "react-router-dom";
 import pathfiller from "../../images/pathfiller.png";
-const AllLearningPaths = props => {
+
+const PathResultCard = props => {
   const dispatch = useDispatch();
   const path = props.path;
   const state = useSelector(state => state);
@@ -44,4 +45,4 @@ const AllLearningPaths = props => {
   );
 };
 
-export default AllLearningPaths;
+export default PathResultCard;

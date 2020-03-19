@@ -1,16 +1,35 @@
 import React from "react";
 import { CourseCard } from "./ResultCardStyles";
-const CourseCard = props => {
+import { Link } from "react-router-dom";
+import coursefiller from "../../images/coursefiller.png";
+import ArrowRightAltRoundedIcon from "@material-ui/icons/ArrowRightAltRounded";
+
+const CourseResultCard = props => {
   const course = props.course;
 
   return (
     <CourseCard>
-      <div></div>
-      <div>
+      <div className="img-div">
+        <img src={coursefiller} alt="" />
+      </div>
+      <div className="right-div">
         <div>Playlist</div>
-        <h1>{course.title}</h1>
-        <Link to={`/courses/all/${course.id}`}>View Course</Link>
+        <h1>
+          {course.title.length > 23
+            ? `${course.title.slice(0, 23)}..`
+            : course.title}
+        </h1>
+        <Link to={`/courses/all/${course.id}`}>
+          View Course
+          <ArrowRightAltRoundedIcon
+            style={{
+              fontSize: "2em"
+            }}
+          />
+        </Link>
       </div>
     </CourseCard>
   );
 };
+
+export default CourseResultCard;
