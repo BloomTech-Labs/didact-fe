@@ -7,7 +7,7 @@ import {
   getArticles
 } from "../../store/actions/index.js";
 import { useDispatch, useSelector } from "react-redux";
-import { PageFlex } from "./PageStyles";
+import { PageFlex, MainBorder } from "./PageStyles";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 
@@ -32,8 +32,7 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: "#EEEEEE"
   },
   content: {
-    flexGrow: 1,
-    paddingTop: theme.spacing(3)
+    flexGrow: 1
   },
   contentMobile: {
     flexGrow: 1,
@@ -506,6 +505,9 @@ function MainPage(props) {
                       </p>
                     </div>
                   </div>
+                  {props.location.pathname === "/results" ? null : (
+                    <MainBorder />
+                  )}
                   <main className={classes.content}>
                     {/* <div className={classes.toolbar} /> */}
                     <Content

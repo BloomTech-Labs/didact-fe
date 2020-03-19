@@ -1,5 +1,10 @@
 import styled from "styled-components";
 
+export const MainBorder = styled.div`
+  width: 100%;
+  border-top: 1px solid black;
+`;
+
 export const PageFlex = styled.div`
   width: 100%;
   display: flex;
@@ -22,12 +27,11 @@ export const PageFlex = styled.div`
       width: 100%;
       display: flex;
       background: #eeeeee;
-      border-radius: 19px;
       margin-top: 10px;
       justify-content: space-between;
       align-items: center;
       color: black;
-      padding: 10px 15px;
+      padding: 20px 0;
 
       h2 {
         margin: 0px 0px;

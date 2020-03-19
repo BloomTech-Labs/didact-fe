@@ -17,10 +17,46 @@ const SearchResults = ({ props, setValues }) => {
   return (
     <>
       <Navigator>
-        <span onClick={() => setFilter("all")}>All</span>
-        <span onClick={() => setFilter("courses")}>Courses</span>
-        <span onClick={() => setFilter("paths")}>Learning Paths</span>
-        <span onClick={() => setFilter("resources")}>Resources</span>
+        <span
+          style={
+            filter === "all"
+              ? { borderBottom: "2px solid black" }
+              : { borderBottom: "none" }
+          }
+          onClick={() => setFilter("all")}
+        >
+          All
+        </span>
+        <span
+          style={
+            filter === "courses"
+              ? { borderBottom: "2px solid black" }
+              : { borderBottom: "none" }
+          }
+          onClick={() => setFilter("courses")}
+        >
+          Courses
+        </span>
+        <span
+          style={
+            filter === "paths"
+              ? { borderBottom: "2px solid black" }
+              : { borderBottom: "none" }
+          }
+          onClick={() => setFilter("paths")}
+        >
+          Learning Paths
+        </span>
+        <span
+          style={
+            filter === "resources"
+              ? { borderBottom: "2px solid black" }
+              : { borderBottom: "none" }
+          }
+          onClick={() => setFilter("resources")}
+        >
+          Resources
+        </span>
       </Navigator>
       {(() => {
         switch (filter) {

@@ -40,8 +40,6 @@ export const ResourceWrapper = styled.div`
 export const HeaderStyled = styled.div`
   display: flex;
   justify-content: space-between;
-  margin: -10px 0 10px 0;
-  border-top: 1px solid black;
   width: 100%;
   a {
     color: #242424;

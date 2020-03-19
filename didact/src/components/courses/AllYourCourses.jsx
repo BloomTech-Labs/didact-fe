@@ -76,40 +76,36 @@ function AllCourses(props) {
   return (
     <div>
       <div
-        style={ {
+        style={{
           display: "flex",
-          justifyContent: "space-between",
-          margin: "-10px 10px 10px 10px",
-          borderTop: "1px solid black"
-        } }
+          justifyContent: "space-between"
+        }}
       >
         <p
-          style={ {
+          style={{
             fontWeight: "bold",
-            marginLeft: "10px",
             display: "flex",
             flexDirection: "row",
             alignItems: "center"
-          } }
+          }}
         >
           <span>Courses</span>
-          <ChevronRightIcon style={ { fontSize: "1.6rem" } } />
+          <ChevronRightIcon style={{ fontSize: "1.6rem" }} />
           <span>Overview</span>
         </p>
       </div>
       <h2
-        style={ {
-          margin: "10px",
+        style={{
           maxWidth: "540px",
           width: "100%",
           textAlign: "left"
-        } }
+        }}
       >
         Your Courses
       </h2>
-      <div className={ tabletSize ? classes.rootTablet : classes.root }>
-        { tabletSize ? (
-          <div className={ classes.addButtonDivTablet }>
+      <div className={tabletSize ? classes.rootTablet : classes.root}>
+        {tabletSize ? (
+          <div className={classes.addButtonDivTablet}>
             {/* <ButtonStyles
               style={{ display: "flex", justifyContent: "flex-start" }}
             >
@@ -123,18 +119,18 @@ function AllCourses(props) {
               </div>
             </ButtonStyles> */}
           </div>
-        ) : null }
+        ) : null}
         <div>
-          { state.coursesReducer.yourCourses
+          {state.coursesReducer.yourCourses
             ? state.coursesReducer.yourCourses.map((course, i) => (
-              <YourCourse
-                key={ i }
-                course={ course }
-                addingCourses={ addingCourses }
-                props={ props.props }
-              />
-            ))
-            : null }
+                <YourCourse
+                  key={i}
+                  course={course}
+                  addingCourses={addingCourses}
+                  props={props.props}
+                />
+              ))
+            : null}
         </div>
         {/* {!tabletSize ? (
           <div className={classes.addButtonDiv}>

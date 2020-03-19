@@ -109,6 +109,7 @@ const EditArticle = ({ props, id }) => {
             value={changes.body}
             onChange={handleChange}
             name="body"
+            rows="12"
           />
         </DidactField>
         <DidactField>
