@@ -52,7 +52,6 @@ export const HeaderStyled = styled.div`
   }
   p {
     font-weight: bold;
-    margin-left: 10px;
     display: flex;
     flex-direction: row;
     align-items: center;

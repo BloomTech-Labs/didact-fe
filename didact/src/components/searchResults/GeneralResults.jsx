@@ -6,8 +6,10 @@ import {
   CourseGrid,
   ResourceGrid
 } from "./SearchGeneralStyles";
+import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import LearningPathCard from "./LearningPathCard";
 import Course from "../courses/Course";
+
 const GeneralResults = props => {
   //wew thats a lotta state
   const state = useSelector(state => state);
@@ -20,6 +22,7 @@ const GeneralResults = props => {
   const sources = state.sourcesReducer.sources;
   const sourcesLoading = state.sourcesReducer.isLoadingSources;
   const articles = state.articlesReducer.articles;
+  const extArticles = state.articlesReducer.externalArticles;
   const articlesLoading = state.articlesReducer.isLoadingArticles;
 
   const resultCount =
@@ -27,7 +30,8 @@ const GeneralResults = props => {
     paths.length +
     tools.length +
     sources.length +
-    articles.length;
+    articles.length +
+    extArticles.length;
 
   return (
     <>
@@ -41,31 +45,22 @@ const GeneralResults = props => {
           <TitleH2>
             SEARCH RESULTS <span>{resultCount} RESULTS FOUND</span>
           </TitleH2>
-          {/* Paths Results */}
-          <PathGrid style={{ minHeight: "300px" }}>
-            {!paths ? (
-              <TitleH2>No Results In Paths</TitleH2>
-            ) : (
-              <TitleH2>Learning Paths</TitleH2>
-            )}
-            {paths &&
-              paths.map(path => (
-                <LearningPathCard
-                  key={path.id}
-                  props={props}
-                  learningPath={path}
-                />
-              ))}
-          </PathGrid>
           {/* Courses Results */}
-          <CourseGrid>
-            {!courses ? (
-              <TitleH2 style={{ marginBottom: "-30px" }}>
-                No Results In Courses
-              </TitleH2>
-            ) : (
-              <TitleH2 style={{ marginBottom: "-30px" }}>Courses</TitleH2>
-            )}
+          <CourseGrid style={{ minHeight: "45px" }}>
+            <TitleH2 style={{ marginBottom: "-30px" }}>
+              Courses
+              {courses.length > 0 ? (
+                <span
+                  onClick={() => props.setFilter("courses")}
+                  className="sub-span-results"
+                >
+                  More Results
+                  <ChevronRightIcon style={{ fontSize: "1.6rem" }} />
+                </span>
+              ) : (
+                <span className="sub-span-no-results">No Results</span>
+              )}
+            </TitleH2>
             {courses &&
               courses.map(course => (
                 <Course
@@ -76,7 +71,38 @@ const GeneralResults = props => {
                 />
               ))}
           </CourseGrid>
-          <ResourceGrid>{/* Resource Results */}</ResourceGrid>
+
+          {/* Paths Results */}
+          <PathGrid style={{ minHeight: "45px" }}>
+            <TitleH2>
+              Learning Paths
+              {paths.length > 0 ? (
+                <span
+                  onClick={() => props.setFilter("paths")}
+                  className="sub-span-results"
+                >
+                  More Results
+                  <ChevronRightIcon style={{ fontSize: "1.6rem" }} />
+                </span>
+              ) : (
+                <span className="sub-span-no-results">No Results</span>
+              )}
+            </TitleH2>
+            {paths &&
+              paths.map(path => (
+                <LearningPathCard
+                  key={path.id}
+                  props={props}
+                  learningPath={path}
+                />
+              ))}
+          </PathGrid>
+          {/* Resource Results */}
+          <ResourceGrid>
+            {/* {tools.length > 0 && <Tool />}
+            {articles.length > 0 && <Article />}
+            {sources.length > 0 && <Source />} */}
+          </ResourceGrid>
         </>
       ) : (
         <h1>Loading...</h1>

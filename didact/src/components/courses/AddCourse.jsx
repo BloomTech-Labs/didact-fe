@@ -120,7 +120,7 @@ export default function AddCourse({ props }) {
               <FormTitle>Course Overview</FormTitle>
 
               <DidactField>
-                <DidactLabel for="url">Course Url</DidactLabel>
+                <DidactLabel htmlFor="url">Course Url</DidactLabel>
                 <DidactInput
                   id="url"
                   type="text"
@@ -130,7 +130,7 @@ export default function AddCourse({ props }) {
                 />
               </DidactField>
               <DidactField>
-                <DidactLabel for="title">Course Title</DidactLabel>
+                <DidactLabel htmlFor="title">Course Title</DidactLabel>
                 <DidactInput
                   id="title"
                   type="text"
@@ -140,7 +140,7 @@ export default function AddCourse({ props }) {
                 />
               </DidactField>
               <DidactField>
-                <DidactLabel for="instructors">Instructors</DidactLabel>
+                <DidactLabel htmlFor="instructors">Instructors</DidactLabel>
                 <DidactInput
                   id="instructors"
                   type="text"
@@ -150,7 +150,7 @@ export default function AddCourse({ props }) {
                 />
               </DidactField>
               <DidactField>
-                <DidactLabel for="description">Description</DidactLabel>
+                <DidactLabel htmlFor="description">Description</DidactLabel>
                 <DidactTextArea
                   rows="8"
                   id="description"
@@ -160,7 +160,7 @@ export default function AddCourse({ props }) {
                 />
               </DidactField>
               <DidactField>
-                <DidactLabel for="topic">Topic</DidactLabel>
+                <DidactLabel htmlFor="topic">Topic</DidactLabel>
                 <DidactInput
                   id="topic"
                   type="text"

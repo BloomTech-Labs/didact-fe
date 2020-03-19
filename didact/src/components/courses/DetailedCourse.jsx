@@ -70,9 +70,7 @@ const DetailedCourse = props => {
         <div
           style={{
             display: "flex",
-            justifyContent: "space-between",
-            margin: "-10px 10px 10px 10px",
-            borderBottom: "1px solid black"
+            justifyContent: "space-between"
           }}
         >
           <p

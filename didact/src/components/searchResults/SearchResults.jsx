@@ -16,11 +16,12 @@ const SearchResults = ({ props, setValues }) => {
 
   return (
     <>
+      {/* Filter state checks on each to determine who gets underlined */}
       <Navigator>
         <span
           style={
             filter === "all"
-              ? { borderBottom: "2px solid black" }
+              ? { borderBottom: "2px solid #242424" }
               : { borderBottom: "none" }
           }
           onClick={() => setFilter("all")}
@@ -30,7 +31,7 @@ const SearchResults = ({ props, setValues }) => {
         <span
           style={
             filter === "courses"
-              ? { borderBottom: "2px solid black" }
+              ? { borderBottom: "2px solid #242424" }
               : { borderBottom: "none" }
           }
           onClick={() => setFilter("courses")}
@@ -40,7 +41,7 @@ const SearchResults = ({ props, setValues }) => {
         <span
           style={
             filter === "paths"
-              ? { borderBottom: "2px solid black" }
+              ? { borderBottom: "2px solid #242424" }
               : { borderBottom: "none" }
           }
           onClick={() => setFilter("paths")}
@@ -50,7 +51,7 @@ const SearchResults = ({ props, setValues }) => {
         <span
           style={
             filter === "resources"
-              ? { borderBottom: "2px solid black" }
+              ? { borderBottom: "2px solid #242424" }
               : { borderBottom: "none" }
           }
           onClick={() => setFilter("resources")}
@@ -61,7 +62,7 @@ const SearchResults = ({ props, setValues }) => {
       {(() => {
         switch (filter) {
           case "all":
-            return <GeneralResults {...props} />;
+            return <GeneralResults {...props} setFilter={setFilter} />;
           case "courses":
             return <CourseResults {...props} />;
           case "paths":

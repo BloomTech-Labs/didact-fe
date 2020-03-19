@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const MainBorder = styled.div`
   width: 100%;
-  border-top: 1px solid black;
+  border-top: 1px solid #242424;
 `;
 
 export const PageFlex = styled.div`
