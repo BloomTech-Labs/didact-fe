@@ -34,7 +34,7 @@ const EditArticle = ({ props, id }) => {
 
   useEffect(() => {
     dispatch(getArticleById(id));
-  }, []);
+  }, [dispatch, id]);
 
   useEffect(() => {
     loading === false &&

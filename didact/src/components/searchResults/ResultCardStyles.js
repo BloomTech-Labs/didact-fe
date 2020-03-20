@@ -9,7 +9,18 @@ export const ResourceCard = styled.div`
   flex-flow: column nowrap;
 
   h1 {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
+  }
+
+  .head-div {
+    height: 70%;
+    display: flex;
+    justify-content: start;
+  }
+
+  .link-div {
+    display: flex;
+    justify-content: flex-end;
   }
 
   a {
@@ -18,6 +29,10 @@ export const ResourceCard = styled.div`
     align-items: center;
     color: #242424;
     font-weight: 600;
+
+    &:visited {
+      color: #242424;
+    }
   }
 `;
 
@@ -26,7 +41,7 @@ export const PathCard = styled.div`
   border-radius: 7px;
   padding: 20px 20px 10px 20px;
   display: grid;
-  grid-template-rows: 20px 160px 60px 40px;
+  grid-template-rows: 20px 150px 60px 30px;
   color: #242424;
   h3 {
     margin: 0;
@@ -58,6 +73,7 @@ export const PathCard = styled.div`
       font-weight: 600;
       display: flex;
       flex-flow: column nowrap;
+      padding-bottom: 20px;
     }
   }
 
@@ -96,7 +112,7 @@ export const CourseCard = styled.div`
     align-items: flex-end;
     h1 {
       font-size: 1.6rem;
-      height: 40%;
+      height: 50%;
     }
 
     a {

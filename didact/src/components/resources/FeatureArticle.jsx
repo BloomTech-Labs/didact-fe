@@ -34,7 +34,12 @@ const FeatureArticle = props => {
           />
         </Link>
       ) : (
-        <a target="_blank" className="link-anchor" href={article.link}>
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          className="link-anchor"
+          href={article.link}
+        >
           <span>Go To Article</span>
           <ArrowRightAltRoundedIcon
             style={{

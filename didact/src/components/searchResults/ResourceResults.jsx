@@ -1,13 +1,12 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { TitleH2 } from "./SearchGeneralStyles";
-import { ResourceGrid, ResourceWrapper } from "../resources/resourceStyles";
+import { ResourceGrid } from "../resources/resourceStyles";
 import Tool from "../resources/Tool";
 import Source from "../resources/Source";
 import { ArticleGrid } from "../resources/articleStyles";
 import ExternalArticleBrief from "../resources/ExternalArticleBrief";
 import ArticleBrief from "../resources/ArticleBrief";
-
 const ResourceResults = () => {
   const state = useSelector(state => state);
   const tools = state.toolsReducer.tools;
@@ -27,34 +26,53 @@ const ResourceResults = () => {
           <span>{resultCount} RESULTS FOUND</span>
         )}
       </TitleH2>
-      <ResourceWrapper>
-        <div className="gen-header">
-          <h1>Tools</h1>
-        </div>
+      {/* Tools Section */}
+      <TitleH2>
+        Tools
+        {tools.length > 0 ? null : (
+          <span className="sub-span-no-results">No Results</span>
+        )}
+      </TitleH2>
+      {tools.length > 0 && (
         <ResourceGrid>
-          {tools && tools.map(tool => <Tool tool={tool} key={tool.id} />)}
+          {tools.map(tool => (
+            <Tool tool={tool} key={tool.id} />
+          ))}
         </ResourceGrid>
-        <div className="gen-header">
-          <h1>Sources</h1>
-        </div>
+      )}
+      {/* Sources Section */}
+      <TitleH2>
+        Sources
+        {sources.length > 0 ? null : (
+          <span className="sub-span-no-results">No Results</span>
+        )}
+      </TitleH2>
+      {sources.length > 0 && (
         <ResourceGrid>
-          {sources &&
-            sources.map(source => <Source source={source} key={source.id} />)}
+          {sources.map(source => (
+            <Source source={source} key={source.id} />
+          ))}
         </ResourceGrid>
-        <div className="gen-header">
-          <h1>Articles</h1>
-        </div>
+      )}
+
+      {/* Articles Section */}
+      <TitleH2>
+        Articles
+        {articles.length > 0 ? null : (
+          <span className="sub-span-no-results">No Results</span>
+        )}
+      </TitleH2>
+      {articles.length > 0 && (
         <ArticleGrid>
-          {articles &&
-            articles.map(article =>
-              article.link ? (
-                <ExternalArticleBrief article={article} key={article.title} />
-              ) : (
-                <ArticleBrief article={article} key={article.title} />
-              )
-            )}
+          {articles.map(article =>
+            article.link ? (
+              <ExternalArticleBrief article={article} key={article.title} />
+            ) : (
+              <ArticleBrief article={article} key={article.title} />
+            )
+          )}
         </ArticleGrid>
-      </ResourceWrapper>
+      )}
     </div>
   );
 };

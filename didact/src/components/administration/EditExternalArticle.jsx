@@ -34,7 +34,7 @@ const EditExternalArticle = ({ props, id }) => {
 
   useEffect(() => {
     dispatch(getExternalArticleById(id));
-  }, []);
+  }, [dispatch, id]);
 
   useEffect(() => {
     loading === false &&

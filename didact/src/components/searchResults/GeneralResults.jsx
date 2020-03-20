@@ -132,19 +132,23 @@ const GeneralResults = props => {
               {/* Tools Check */}
               {tools.length > 0 ? (
                 <ResourceCard>
-                  <h1>{tools[0].name}</h1>
-                  <a
-                    href={tools[0].link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    View Tool{" "}
-                    <ArrowRightAltRoundedIcon
-                      style={{
-                        fontSize: "2em"
-                      }}
-                    />
-                  </a>
+                  <div className="head-div">
+                    <h1>{tools[0].name}</h1>
+                  </div>
+                  <div className="link-div">
+                    <a
+                      href={tools[0].link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      View Tool
+                      <ArrowRightAltRoundedIcon
+                        style={{
+                          fontSize: "2em"
+                        }}
+                      />
+                    </a>
+                  </div>
                 </ResourceCard>
               ) : (
                 <ResourceCard>
@@ -155,31 +159,36 @@ const GeneralResults = props => {
               {/* Articles/External Articles Check */}
               {resourceArticles.length > 0 ? (
                 <ResourceCard>
-                  <h1>{resourceArticles[0].title}</h1>
+                  <div className="head-div">
+                    <h1>{resourceArticles[0].title}</h1>
+                  </div>
+
                   {/* If article has a link you know it's an external article */}
-                  {resourceArticles[0].link ? (
-                    <a
-                      href={resourceArticles[0].link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      View Article
-                      <ArrowRightAltRoundedIcon
-                        style={{
-                          fontSize: "2em"
-                        }}
-                      />
-                    </a>
-                  ) : (
-                    <Link to={`/articles/${resourceArticles[0].id}`}>
-                      View Article{" "}
-                      <ArrowRightAltRoundedIcon
-                        style={{
-                          fontSize: "2em"
-                        }}
-                      />
-                    </Link>
-                  )}
+                  <div className="link-div">
+                    {resourceArticles[0].link ? (
+                      <a
+                        href={resourceArticles[0].link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        View Article
+                        <ArrowRightAltRoundedIcon
+                          style={{
+                            fontSize: "2em"
+                          }}
+                        />
+                      </a>
+                    ) : (
+                      <Link to={`/articles/${resourceArticles[0].id}`}>
+                        View Article
+                        <ArrowRightAltRoundedIcon
+                          style={{
+                            fontSize: "2em"
+                          }}
+                        />
+                      </Link>
+                    )}
+                  </div>
                 </ResourceCard>
               ) : (
                 <ResourceCard>
@@ -190,19 +199,23 @@ const GeneralResults = props => {
               {/* Sources Check */}
               {sources.length > 0 ? (
                 <ResourceCard>
-                  <h1>{sources[0].name}</h1>
-                  <a
-                    href={sources[0].link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    View Source
-                    <ArrowRightAltRoundedIcon
-                      style={{
-                        fontSize: "2em"
-                      }}
-                    />
-                  </a>
+                  <div className="head-div">
+                    <h1>{sources[0].name}</h1>
+                  </div>
+                  <div className="link-div">
+                    <a
+                      href={sources[0].link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      View Source
+                      <ArrowRightAltRoundedIcon
+                        style={{
+                          fontSize: "2em"
+                        }}
+                      />
+                    </a>
+                  </div>
                 </ResourceCard>
               ) : (
                 <ResourceCard>
