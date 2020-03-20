@@ -23,7 +23,7 @@ const ArticleFull = ({ props, id }) => {
         <>
           <HeaderStyled>
             <p className="header-navs">
-              <span>Resources</span>
+              <Link to="/resources">Resources</Link>
               <ChevronRightIcon style={{ fontSize: "1.6rem" }} />
               <Link to="/articles">
                 <span>Articles</span>
@@ -37,7 +37,7 @@ const ArticleFull = ({ props, id }) => {
           <h2>{article.first_name + " " + article.last_name}</h2>
           <h3>{article.date}</h3>
           <div className="img-div">
-            <img src={articlefillerimg} />
+            <img src={articlefillerimg} alt="" />
           </div>
           {article.body &&
             article.body.split("\n").map(portion => <p>{portion}</p>)}

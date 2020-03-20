@@ -66,7 +66,12 @@ const Tool = props => {
           >
             {tool.description && <p>{tool.description}</p>}
             {tool.link && (
-              <a target="_blank" className="link-anchor" href={tool.link}>
+              <a
+                target="_blank"
+                className="link-anchor"
+                rel="noopener noreferrer"
+                href={tool.link}
+              >
                 <span>Visit Tool</span>
                 <ArrowRightAltRoundedIcon
                   style={{

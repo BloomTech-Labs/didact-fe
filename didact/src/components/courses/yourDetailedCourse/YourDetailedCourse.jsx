@@ -49,19 +49,15 @@ const YourDetailedCourse = props => {
   const [expanded, setExpanded] = useState(false);
   const [lessonExpanded, setLessonExpanded] = useState(false);
 
-  useEffect(
-    _ => {
-      if (props.tracked) {
-        console.log("if trigger");
-        Mixpanel.track("Course Result Selected");
-      } else {
-        console.log("else");
-        return;
-      }
-      dispatch(getYourDetailedCourse(props.id));
-    },
-    [dispatch, props.id]
-  );
+  useEffect(() => {
+    if (props.tracked) {
+      console.log("if trigger");
+      Mixpanel.track("Course Result Selected");
+    } else {
+      console.log("else");
+    }
+    dispatch(getYourDetailedCourse(props.id));
+  }, [dispatch, props.id]);
 
   const handleChange = panel => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
@@ -92,9 +88,7 @@ const YourDetailedCourse = props => {
         <div
           style={{
             display: "flex",
-            justifyContent: "space-between",
-            margin: "-10px 10px 10px 10px",
-            borderBottom: "1px solid black"
+            justifyContent: "space-between"
           }}
         >
           <p
@@ -398,9 +392,7 @@ const YourDetailedCourse = props => {
         <div
           style={{
             display: "flex",
-            justifyContent: "space-between",
-            margin: "-10px 10px 10px 10px",
-            borderBottom: "1px solid black"
+            justifyContent: "space-between"
           }}
         >
           <p

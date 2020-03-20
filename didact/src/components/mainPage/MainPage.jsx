@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { verifyToken } from "../../store/actions/index.js";
+import {
+  verifyToken,
+  getTools,
+  getSources,
+  getExternalArticles,
+  getArticles
+} from "../../store/actions/index.js";
 import { useDispatch, useSelector } from "react-redux";
-import { PageFlex } from "./PageStyles";
+import { PageFlex, MainBorder } from "./PageStyles";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 
@@ -11,7 +17,7 @@ import { Mixpanel } from "../../utils/mixpanel";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import SearchIcon from "@material-ui/icons/Search";
-
+import { courseEndPoint, getLearningPaths } from "../../store/actions";
 import PermIdentityIcon from "@material-ui/icons/PermIdentity";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 
@@ -27,8 +33,7 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: "#EEEEEE"
   },
   content: {
-    flexGrow: 1,
-    paddingTop: theme.spacing(3)
+    flexGrow: 1
   },
   contentMobile: {
     flexGrow: 1,
@@ -279,7 +284,17 @@ function MainPage(props) {
     event.preventDefault();
     Mixpanel.track("Search Query");
     setResults(values);
-    props.history.push("/results");
+    dispatch(courseEndPoint(values));
+    dispatch(getLearningPaths(values));
+    dispatch(getTools(values));
+    dispatch(getSources(values));
+    dispatch(getExternalArticles(values));
+    //A promise is returned from the below action handler
+    //allowing us to wait until get articles has succeeded
+    //before pushing to new page
+    dispatch(getArticles(values)).then(() => {
+      props.history.push("/results");
+    });
   };
 
   const handleDrawerOpenMobile = () => event => {
@@ -515,7 +530,9 @@ function MainPage(props) {
                       />
                     </div>
                   </div>
-
+                  {props.location.pathname === "/results" ? null : (
+                    <MainBorder />
+                  )}
                   <main className={classes.content}>
                     <Content
                       mediumScreenSize={mediumScreenSize}

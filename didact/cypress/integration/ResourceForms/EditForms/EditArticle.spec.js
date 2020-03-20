@@ -1,32 +1,30 @@
-describe("add article resource form", () => {
+describe("edit article resource form", () => {
     beforeEach(() => {
         cy.Signin({email: "bob@bobmail.com", password: "secretpass"})
-        cy.visit('/articles/1/edit')
-       
+        cy.visit('/articles/3/edit')
     })
+    it('inputs display user input submission takes to articles page', () => {
+        
 
-    it('inputs display user input', () => {
-        const articleTitle = "Article Title"
+        const articleTitle = "edit article title test"
         cy.get('[name="title"]')
         .clear()
         .type(articleTitle)
         .should('have.value', articleTitle)
 
-        const articleBody = "Article Body"
+        const articleBody = "edit article body test"
         cy.get('[name="body"]')
         .clear()
         .type(articleBody)
         .should('have.value', articleBody)
 
-        const articleTopic = "Topic"
+        const articleTopic = " edit article topic test"
         cy.get('[name="topic"]')
         .clear()
         .type(articleTopic)
         .should('have.value', articleTopic)
-    })
 
-    it('submitting form takes you to articles page', () => {
         cy.get("button").last().click();
-        cy.url().should('include', '/articles')
+            cy.url().should('include', '/articles')
     })
 })

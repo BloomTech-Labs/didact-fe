@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import axiosWithAuth from "../../utils/axiosWithAuth";
-import beURL from "../../utils/beURL";
 import { useDispatch, useSelector } from "react-redux";
 import {
   DidactField,

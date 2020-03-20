@@ -10,7 +10,7 @@ describe("add tool resource form", () => {
             cy.get("label").first().should('have.text', 'Tool Name')
     })
 
-    it('inputs display user input', () => {
+    it('inputs display user input and form submission takes you to tools page', () => {
         const toolName = "Tool Name"
         cy.get('[name="name"]')
         .type(toolName)
@@ -25,9 +25,7 @@ describe("add tool resource form", () => {
         cy.get('[name="link"]')
         .type(toolLink)
         .should('have.value', toolLink)
-    })
 
-    it('submitting form takes you to tools page', () => {
         cy.get("button").last().click();
         cy.url().should('include', '/tools')
     })

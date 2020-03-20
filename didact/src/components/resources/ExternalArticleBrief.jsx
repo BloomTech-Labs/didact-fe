@@ -25,7 +25,12 @@ const ArticleBrief = props => {
       <h2>{article.date}</h2>
       <p>{description}...</p>
       <div className="link-div">
-        <a target="_blank" className="link-anchor" href={article.link}>
+        <a
+          target="_blank"
+          className="link-anchor"
+          rel="noopener noreferrer"
+          href={article.link}
+        >
           <span>Go To Article</span>
           <ArrowRightAltRoundedIcon
             style={{
