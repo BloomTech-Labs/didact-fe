@@ -13,11 +13,11 @@ export const ADD_MY_PROFILE_FAIL = "ADD_MY_PROFILE_FAIL";
 
 const baseURL = `${beURL}auth/`;
 
-export const getMyProfile = () => dispatch => {
+export const getMyProfile = id => dispatch => {
   dispatch({ type: GET_MY_PROFILE_START });
 
   axiosWithAuth()
-    .get(`${baseURL}my-profile`)
+    .get(`${baseURL}profile/${id}`)
     .then(res => {
       dispatch({ type: GET_MY_PROFILE_SUCCESS, payload: res.data });
     })
@@ -30,7 +30,7 @@ export const addMyProfile = () => dispatch => {
   dispatch({ type: ADD_MY_PROFILE_START });
 
   axiosWithAuth()
-    .get(`${baseURL}my-profile`)
+    .post(`${baseURL}profile`)
     .then(res => {
       dispatch({ type: ADD_MY_PROFILE_SUCCESS, payload: res.data });
     })
@@ -39,12 +39,12 @@ export const addMyProfile = () => dispatch => {
     });
 };
 
-export const editMyProfile = changes => dispatch => {
+export const editMyProfile = (id, changes) => dispatch => {
   dispatch({ type: EDIT_MY_PROFILE_START });
-  axiosWithAuth()
-    .put(`${baseURL}my-profile`, changes)
+  return axiosWithAuth()
+    .put(`${baseURL}profile/${id}`, changes)
     .then(res => {
-      dispatch({ type: EDIT_MY_PROFILE_SUCCESS, payload: res.changes });
+      dispatch({ type: EDIT_MY_PROFILE_SUCCESS, payload: changes });
     })
     .catch(err => {
       dispatch({ type: EDIT_MY_PROFILE_FAIL, payload: err.response });
