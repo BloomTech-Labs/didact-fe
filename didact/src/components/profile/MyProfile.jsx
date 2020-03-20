@@ -6,6 +6,7 @@ import {
   MyProfileStyleWrapper,
   HeaderStyled,
   ProfileAvatar,
+  profileDivForm,
   BioField,
   BioLabel,
   BioInput,
@@ -17,7 +18,33 @@ import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import PermIdentityIcon from "@material-ui/icons/PermIdentity";
 import discordLogo from "../../assets/discordLogo.png";
 
+// material UI additions **********
+
+import { makeStyles } from "@material-ui/core/styles";
+import clsx from "clsx";
+import Card from "@material-ui/core/Card";
+import CardHeader from "@material-ui/core/CardHeader";
+import CardMedia from "@material-ui/core/CardMedia";
+import CardContent from "@material-ui/core/CardContent";
+import CardActions from "@material-ui/core/CardActions";
+
+// ******************************
+
 const MyProfile = props => {
+  // Material UI**************************************
+  const useStyles = makeStyles(theme => ({
+    root: {
+      maxWidth: 545
+    },
+    media: {
+      height: 0,
+      paddingTop: "56.25%" // 16:9
+    }
+  }));
+  const classes = useStyles();
+
+  // ****************************
+
   const dispatch = useDispatch();
   const state = useSelector(state => state);
   const id = state.onboardingReducer.user.id;
@@ -83,8 +110,6 @@ const MyProfile = props => {
     e.preventDefault();
     dispatch(editMyProfile(id, changes));
     toggleEdit();
-
-    // props.history.push("/my-profile");
   };
 
   return (

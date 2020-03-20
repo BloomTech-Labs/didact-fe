@@ -6,7 +6,6 @@ export const HeaderStyled = styled.div`
   display: flex;
   justify-content: space-between;
   margin: -10px 0 10px 0;
-  border-top: 1px solid black;
   width: 100%;
   a {
     color: #242424;
@@ -24,6 +23,11 @@ export const HeaderStyled = styled.div`
     flex-direction: row;
     align-items: center;
   }
+`;
+
+export const profileDivForm = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
 
 export const ProfileAvatar = styled.div`
