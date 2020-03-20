@@ -23,7 +23,7 @@ const MyProfile = props => {
   const id = state.onboardingReducer.user.id;
   const myProfile = state.myProfileReducer.myProfile;
   const userName = state.onboardingReducer.user;
-  const pic = state.myProfileReducer.myProfile.image;
+  const image = state.myProfileReducer.myProfile.image;
   const bio = state.myProfileReducer.myProfile.bio;
   const facebookLink = state.myProfileReducer.myProfile.facebookLink;
   const githubLink = state.myProfileReducer.myProfile.githubLink;
@@ -48,7 +48,7 @@ const MyProfile = props => {
     : null;
 
   const [changes, setChanges] = useState({
-    pic: "",
+    image: image,
     bio: "",
     facebookLink: "",
     githubLink: "",
@@ -64,7 +64,7 @@ const MyProfile = props => {
 
   useEffect(() => {
     setChanges({
-      pic: pic,
+      image: image,
       bio: bio,
       facebookLink: facebookLink,
       githubLink: githubLink,
@@ -126,7 +126,7 @@ const MyProfile = props => {
       <div>
         {myProfileEdit ? (
           <div>
-            <img src={pic}></img>
+            <img src={image}></img>
             <div>{bio}</div>
             <span>{facebookLink}</span>
             <span>{githubLink}</span>
@@ -149,9 +149,9 @@ const MyProfile = props => {
               ></input>
               <input
                 placeholder="Facebook Link"
-                value={changes.faceBookLink}
+                value={changes.facebookLink}
                 onChange={handleChange}
-                name="faceBookLink"
+                name="facebookLink"
               ></input>
               <input
                 placeholder="Github Link"
