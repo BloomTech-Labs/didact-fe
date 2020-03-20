@@ -40,8 +40,6 @@ export const ResourceWrapper = styled.div`
 export const HeaderStyled = styled.div`
   display: flex;
   justify-content: space-between;
-  margin: -10px 0 10px 0;
-  border-top: 1px solid black;
   width: 100%;
   a {
     color: #242424;
@@ -54,7 +52,6 @@ export const HeaderStyled = styled.div`
   }
   p {
     font-weight: bold;
-    margin-left: 10px;
     display: flex;
     flex-direction: row;
     align-items: center;

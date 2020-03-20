@@ -1,3 +1,5 @@
+import faker from 'faker'
+
 describe("add external article resource form", () => {
     beforeEach(() => {
         cy.Signin({email: "bob@bobmail.com", password: "secretpass"})
@@ -10,13 +12,13 @@ describe("add external article resource form", () => {
         cy.get('label').first().should('have.text', 'Article Title')
     })
 
-    it('inputs display user input', () => {
-        const articleTitle = "Article Title"
+    it('inputs display user input submission takes to articles page', () => {
+        const articleTitle = faker.lorem.sentence()
         cy.get('[name="title"]')
         .type(articleTitle)
         .should('have.value', articleTitle)
 
-        const articleDescription = "Article Description"
+        const articleDescription = faker.lorem.paragraph()
         cy.get('[name="description"]')
         .type(articleDescription)
         .should('have.value', articleDescription)
@@ -26,14 +28,12 @@ describe("add external article resource form", () => {
         .type(articleTopic)
         .should('have.value', articleTopic)
 
-        const articleLink = "Article.article"
+        const articleLink = faker.internet.url();
         cy.get('[name="link"]')
         .type(articleLink)
         .should('have.value', articleLink)
-    })
 
-    it('submitting form takes you to articles page', () => {
         cy.get("button").last().click();
         cy.url().should('include', '/articles')
-    })
+    }) 
 })

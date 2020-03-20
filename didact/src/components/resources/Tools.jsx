@@ -3,7 +3,6 @@ import Tool from "./Tool.jsx";
 import { useSelector, useDispatch } from "react-redux";
 import { getTools } from "../../store/actions";
 import { Link } from "react-router-dom";
-import Icon from "@material-ui/core/Icon";
 import { ResourceGrid, HeaderStyled, ResourceWrapper } from "./resourceStyles";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import { PlusDiv, Plus } from "../dashboard/ButtonStyles";
@@ -80,7 +79,7 @@ const Tools = props => {
             tools.length === 11 ? (
               <div className="single-block-fill-tool">
                 <div className="circle"></div>
-                <img src={coolimage} />
+                <img src={coolimage} alt="" />
               </div>
             ) : null}
             {/* This Div Will Fill Up Two Spaces */}
@@ -90,7 +89,7 @@ const Tools = props => {
             tools.length === 10 ? (
               <div className="double-block-fill-tool">
                 <div className="circle"></div>
-                <img src={coolimage} />
+                <img src={coolimage} alt="" />
               </div>
             ) : null}
           </ResourceGrid>

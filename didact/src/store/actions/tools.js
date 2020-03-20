@@ -19,10 +19,17 @@ export const DELETE_TOOL_FAIL = "DELETE_TOOL_FAIL";
 
 const baseURL = `${beURL}tools`;
 
-export const getTools = () => (dispatch, getState) => {
+export const getTools = results => (dispatch, getState) => {
   dispatch({ type: TOOL_DATA_START });
   axiosWithAuth()
-    .get(baseURL)
+    .get(
+      `${baseURL}`,
+      results
+        ? {
+            headers: { query: results.search, filter: results.filter }
+          }
+        : null
+    )
     .then(result => {
       console.log(result);
       dispatch({ type: TOOL_DATA_SUCCESS, payload: result.data });

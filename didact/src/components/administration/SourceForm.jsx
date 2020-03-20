@@ -1,13 +1,8 @@
 import React, { useState } from "react";
-import axiosWithAuth from "../../utils/axiosWithAuth";
-import beURL from "../../utils/beURL";
 import { useDispatch } from "react-redux";
 import { addSource } from "../../store/actions";
-
 import { DidactField, DidactInput, DidactLabel } from "../dashboard/FormStyles";
-
 import { DidactButton } from "../dashboard/ButtonStyles";
-
 import { ResourceForm } from "./AdministrationStyles";
 
 const SourceForm = ({ props }) => {

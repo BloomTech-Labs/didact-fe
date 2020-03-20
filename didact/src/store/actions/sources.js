@@ -19,10 +19,17 @@ export const DELETE_SOURCE_FAIL = "DELETE_SOURCE_FAIL";
 
 const baseURL = `${beURL}sources`;
 
-export const getSources = () => dispatch => {
+export const getSources = results => dispatch => {
   dispatch({ type: SOURCE_DATA_START });
   axiosWithAuth()
-    .get(baseURL)
+    .get(
+      `${baseURL}`,
+      results
+        ? {
+            headers: { query: results.search, filter: results.filter }
+          }
+        : null
+    )
     .then(result => {
       dispatch({ type: SOURCE_DATA_SUCCESS, payload: result.data });
     })

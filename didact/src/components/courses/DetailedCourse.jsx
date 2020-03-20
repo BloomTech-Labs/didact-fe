@@ -42,7 +42,7 @@ const DetailedCourse = props => {
 
   useEffect(() => {
     dispatch(getDetailedCourse(props.id));
-    if (props.location.state.tracked) {
+    if (props.tracked) {
       console.log("yarg");
       Mixpanel.track("Course Result Clicked");
     } else {
@@ -70,9 +70,7 @@ const DetailedCourse = props => {
         <div
           style={{
             display: "flex",
-            justifyContent: "space-between",
-            margin: "-10px 10px 10px 10px",
-            borderBottom: "1px solid black"
+            justifyContent: "space-between"
           }}
         >
           <p

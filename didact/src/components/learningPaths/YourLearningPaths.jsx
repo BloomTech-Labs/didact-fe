@@ -161,15 +161,12 @@ const YourLearningPaths = props => {
       <div
         style={{
           display: "flex",
-          justifyContent: "space-between",
-          margin: "-10px 10px",
-          borderTop: "1px solid black"
+          justifyContent: "space-between"
         }}
       >
         <p
           style={{
             fontWeight: "bold",
-            marginLeft: "10px",
             display: "flex",
             flexDirection: "row",
             alignItems: "center"

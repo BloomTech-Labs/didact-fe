@@ -50,7 +50,7 @@ const MyProfile = props => {
   const id = state.onboardingReducer.user.id;
   const myProfile = state.myProfileReducer.myProfile;
   const userName = state.onboardingReducer.user;
-  const pic = state.myProfileReducer.myProfile.image;
+  const image = state.myProfileReducer.myProfile.image;
   const bio = state.myProfileReducer.myProfile.bio;
   const facebookLink = state.myProfileReducer.myProfile.facebookLink;
   const githubLink = state.myProfileReducer.myProfile.githubLink;
@@ -75,7 +75,7 @@ const MyProfile = props => {
     : null;
 
   const [changes, setChanges] = useState({
-    pic: "",
+    image: image,
     bio: "",
     facebookLink: "",
     githubLink: "",
@@ -91,7 +91,7 @@ const MyProfile = props => {
 
   useEffect(() => {
     setChanges({
-      // pic: pic,
+      image: image,
       bio: bio,
       facebookLink: facebookLink,
       githubLink: githubLink,
@@ -149,75 +149,69 @@ const MyProfile = props => {
         <p className="name">{firstName + " " + lastName}</p>
       </ProfileAvatar>
       <div>
-        <Card className={classes.root}>
-          {myProfileEdit ? (
-            <div style={{ margin: "25px" }}>
-              {/* <img src={pic}></img> */}
-              <span>{bio}</span>
-              <span>{facebookLink}</span>
-              <span>{githubLink}</span>
-              <span>{discordLink}</span>
-              <span>{twitterLink}</span>
-              <span>{linkedInLink}</span>
-              <div>{externalEdLink}</div>
-              <button type="submit" onClick={toggleEdit}>
-                Edit Profile
-              </button>
-            </div>
-          ) : (
-            <profileDivForm>
-              <form
-                onSubmit={handleSubmit}
-                style={{ display: "flex", flexDirection: "column" }}
-              >
-                <textarea
-                  style={{ height: "200px" }}
-                  placeholder="bio"
-                  value={changes.bio}
-                  onChange={handleChange}
-                  name="bio"
-                ></textarea>
-                <input
-                  placeholder="Facebook Link"
-                  value={changes.faceBookLink}
-                  onChange={handleChange}
-                  name="faceBookLink"
-                ></input>
-                <input
-                  placeholder="Github Link"
-                  value={changes.githubLink}
-                  onChange={handleChange}
-                  name="githubLink"
-                ></input>
-                <input
-                  placeholder="Discord Link"
-                  value={changes.discordLink}
-                  onChange={handleChange}
-                  name="discordLink"
-                ></input>
-                <input
-                  placeholder="Twitter Link"
-                  value={changes.twitterLink}
-                  onChange={handleChange}
-                  name="twitterLink"
-                ></input>
-                <input
-                  placeholder="linkedIn Link"
-                  value={changes.linkedInLink}
-                  onChange={handleChange}
-                  name="linkedInLink"
-                ></input>
-                <input
-                  placeholder="External Ed Link"
-                  value={changes.externalEdLink}
-                  onChange={handleChange}
-                  name="externalEdLink"
-                ></input>
-                <button type="submit">Update</button>
-              </form>
-            </profileDivForm>
-          )}
-        </Card>
+        {myProfileEdit ? (
+          <div>
+            <img src={image}></img>
+            <div>{bio}</div>
+            <span>{facebookLink}</span>
+            <span>{githubLink}</span>
+            <span>{discordLink}</span>
+            <span>{twitterLink}</span>
+            <span>{linkedInLink}</span>
+            <div>{externalEdLink}</div>
+            <button type="submit" onClick={toggleEdit}>
+              Edit
+            </button>
+          </div>
+        ) : (
+          <div>
+            <form onSubmit={handleSubmit}>
+              <input
+                placeholder="bio"
+                value={changes.bio}
+                onChange={handleChange}
+                name="bio"
+              ></input>
+              <input
+                placeholder="Facebook Link"
+                value={changes.facebookLink}
+                onChange={handleChange}
+                name="facebookLink"
+              ></input>
+              <input
+                placeholder="Github Link"
+                value={changes.githubLink}
+                onChange={handleChange}
+                name="githubLink"
+              ></input>
+              <input
+                placeholder="Discord Link"
+                value={changes.discordLink}
+                onChange={handleChange}
+                name="discordLink"
+              ></input>
+              <input
+                placeholder="Twitter Link"
+                value={changes.twitterLink}
+                onChange={handleChange}
+                name="twitterLink"
+              ></input>
+              <input
+                placeholder="linkedIn Link"
+                value={changes.linkedInLink}
+                onChange={handleChange}
+                name="linkedInLink"
+              ></input>
+              <input
+                placeholder="External Ed Link"
+                value={changes.externalEdLink}
+                onChange={handleChange}
+                name="externalEdLink"
+              ></input>
+              <button type="submit">Update</button>
+            </form>
+          </div>
+        )}
       </div>
 
       <DiscordLinkDiv>

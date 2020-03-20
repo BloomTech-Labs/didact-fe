@@ -87,7 +87,7 @@ const ResourceGeneral = () => {
           )}
         <StylishBlock className="single-block-fill-article">
           <div className="circle"></div>
-          <img src={coolimage} />
+          <img src={coolimage} alt="" />
         </StylishBlock>
       </GeneralArticleGrid>
     </ResourceWrapper>

@@ -13,7 +13,7 @@ const AddResource = ({ props }) => {
   };
 
   return (
-    <div>
+    <div style={{ marginTop: "15px" }}>
       <NativeSelect
         style={{
           backgoundColor: "#EEEEEE",
@@ -22,7 +22,6 @@ const AddResource = ({ props }) => {
           border: "1px black solid",
           borderRadius: "3px"
         }}
-        children={{ padding: "10px" }}
         value={contentType}
         onChange={handleType}
       >

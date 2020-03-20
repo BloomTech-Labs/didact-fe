@@ -1,17 +1,17 @@
-describe("add tool resource form", () => {
+describe("edit tool resource form", () => {
     beforeEach(() => {
         cy.Signin({email: "bob@bobmail.com", password: "secretpass"})
-        cy.visit('/tools/1/edit')
+        cy.visit('/tools/4/edit')
     })
 
-    it('inputs display user input', () => {
-        const toolName = "Tool Name"
+    it('inputs display user input and form submission takes you to tools page', () => {
+        const toolName = "Tool Edit"
         cy.get('[name="name"]')
         .clear()
         .type(toolName)
         .should('have.value', toolName)
 
-        const toolDesc = "Tool Description"
+        const toolDesc = "Tool Desc Edit"
         cy.get('[name="description"]')
         .clear()
         .type(toolDesc)
@@ -22,9 +22,7 @@ describe("add tool resource form", () => {
         .clear()
         .type(toolLink)
         .should('have.value', toolLink)
-    })
 
-    it('submitting form takes you to tools page', () => {
         cy.get("button").last().click();
         cy.url().should('include', '/tools')
     })

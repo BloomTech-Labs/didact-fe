@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Card from "@material-ui/core/Card";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
@@ -42,7 +41,7 @@ const Source = props => {
         )}
         <div className="img-div">
           <div>
-            <img src={sourceimg} />
+            <img src={sourceimg} alt="" />
           </div>
         </div>
         {/* This will be hidden by dropdown */}
@@ -66,7 +65,12 @@ const Source = props => {
           >
             {source.description && <p>{source.description}</p>}
             {source.link && (
-              <a target="_blank" className="link-anchor" href={source.link}>
+              <a
+                target="_blank"
+                className="link-anchor"
+                rel="noopener noreferrer"
+                href={source.link}
+              >
                 <span>Visit Source</span>
                 <ArrowRightAltRoundedIcon
                   style={{

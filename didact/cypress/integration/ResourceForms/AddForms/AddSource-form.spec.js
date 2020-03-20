@@ -10,7 +10,7 @@ describe("add source resource form", () => {
         cy.get('label').first().should('have.text', 'Source Name')
     })
 
-    it('inputs display user input', () => {
+    it('inputs display user input submission takes to sources page', () => {
         const sourceName = "Source Name"
         cy.get('[name="name"]')
         .type(sourceName)
@@ -25,9 +25,7 @@ describe("add source resource form", () => {
         cy.get('[name="link"]')
         .type(sourceLink)
         .should('have.value', sourceLink)
-    })
 
-    it('submitting form takes you to sources page', () => {
         cy.get("button").last().click();
         cy.url().should('include', '/sources')
     })
