@@ -337,3 +337,18 @@ export {
   getUserById,
   editUser
 } from "./usersProfiles";
+
+export {
+  GET_MY_PROFILE_START,
+  GET_MY_PROFILE_SUCCESS,
+  GET_MY_PROFILE_FAIL,
+  EDIT_MY_PROFILE_START,
+  EDIT_MY_PROFILE_SUCCESS,
+  EDIT_MY_PROFILE_FAIL,
+  ADD_MY_PROFILE_START,
+  ADD_MY_PROFILE_SUCCESS,
+  ADD_MY_PROFILE_FAIL,
+  getMyProfile,
+  addMyProfile,
+  editMyProfile
+} from "./myProfile";

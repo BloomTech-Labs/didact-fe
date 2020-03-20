@@ -26,6 +26,7 @@ import MobileDrawerComponent from "../drawer/MobileDrawer";
 import MobileHeaderComponent from "../header/MobileHeader";
 import Content from "../content/Content";
 import { ProfileWrapper } from "./profileStyle";
+import ProfilePopOver from "./ProfilePopover";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -103,7 +104,7 @@ const useStyles = makeStyles(theme => ({
     outline: "none",
     height: "57px",
     border: "none",
-    fontFamily: "open-sans",
+    fontFamily: "Open-Sans",
     fontWeight: "bold",
     fontSize: "1.6rem",
     marginLeft: "-5%"
@@ -311,14 +312,19 @@ function MainPage(props) {
     if (openMobile) setOpenMobile(false);
   };
 
-  //   const highlight = (event) => {
+  // popover
+  const [anchorEl, setAnchorEl] = React.useState(null);
 
-  //     if (event && event.type === "click") {
+  const handleClick = event => {
+    setAnchorEl(event.currentTarget);
+  };
 
-  //       style = {{ backgroundColor: "#ffffff" }
-  //     }
-  //   }
-  // }
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const openPop = Boolean(anchorEl);
+  const id = openPop ? "simple-popover" : undefined;
 
   return (
     // MOBILE CODE ****************************************************************************
@@ -363,13 +369,6 @@ function MainPage(props) {
                   </main>
                 </div>
               </>
-              {/* {openMobile ?
-                        (
-                        <div className = {classes.scrollBarMobileFix}>
-                        </div>
-                        ) : ( 
-                        null )
-                         } */}
             </div>
           ) : (
             // END OF MOBILE CODE *******************************************************************
@@ -377,10 +376,7 @@ function MainPage(props) {
             <div className={classes.root}>
               <CssBaseline />
               <PageFlex>
-                <div
-                  className="drawer"
-                  // style={{ border: "3px solid black", marginTop: "10%" }}
-                >
+                <div className="drawer">
                   <DrawerComponent
                     handleDrawerOpen={handleDrawerOpen}
                     open={open}
@@ -404,10 +400,8 @@ function MainPage(props) {
                                   : { backgroundColor: "#eeeeee" }
                               }
                               className={classes.dropFilter}
-                              // onClick={ highlight }
                               value={values.filter}
                               onChange={handleChange("filter")}
-                              // ref={dropHide}
                             >
                               <option value="title">Title</option>
                               <option value="topic">Topic</option>
@@ -475,15 +469,24 @@ function MainPage(props) {
                       (admin === true &&
                         props.location.pathname !== "/users") ? (
                         <p className="usersLink">
-                          <Link to={`/users`}>Edit Users</Link>
+                          <Link to={`/users`} style={{ color: "#242424" }}>
+                            Edit Users
+                          </Link>
                         </p>
                       ) : null}
-                      <p className="profile-avatar">
+
+                      <p
+                        className="profile-avatar"
+                        style={{ cursor: "pointer" }}
+                        onClick={handleClick}
+                      >
                         {userName.photo ? (
                           <img
                             src={userName.photo}
                             alt="Profile"
                             className={classes.iconImageProfile}
+                            style={{ cursor: "pointer" }}
+                            onClick={handleClick}
                           />
                         ) : (
                           <PermIdentityIcon
@@ -494,22 +497,43 @@ function MainPage(props) {
                           />
                         )}
                       </p>
-                      <p className="name">{firstName + " " + lastName}</p>
-                      <p onClick={handleLogOut} className="logout">
+                      <p
+                        className="name"
+                        style={{ cursor: "pointer" }}
+                        onClick={handleClick}
+                      >
+                        {firstName + " " + lastName}
+                      </p>
+                      <p
+                        aria-describedby={id}
+                        variant="contained"
+                        onClick={handleClick}
+                      >
                         <MoreHorizIcon
                           style={{
+                            cursor: "pointer",
                             fontSize: "1.8rem",
                             color: "#242424BF"
                           }}
                         />
                       </p>
+
+                      <ProfilePopOver
+                        handleClose={handleClose}
+                        openPop={openPop}
+                        id={id}
+                        handleLogOut={handleLogOut}
+                        anchorEl={anchorEl}
+                        firstName={firstName}
+                        lastName={lastName}
+                        userName={userName}
+                      />
                     </div>
                   </div>
                   {props.location.pathname === "/results" ? null : (
                     <MainBorder />
                   )}
                   <main className={classes.content}>
-                    {/* <div className={classes.toolbar} /> */}
                     <Content
                       mediumScreenSize={mediumScreenSize}
                       phoneSize={phoneSize}

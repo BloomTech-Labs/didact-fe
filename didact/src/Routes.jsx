@@ -233,6 +233,11 @@ const Routes = props => {
       />
       <Route
         exact
+        path="/my-profile"
+        render={routeProps => <MainPage {...routeProps} page={"my-profile"} />}
+      />
+      <Route
+        exact
         path="/users/:id/edit"
         render={routeProps => <MainPage {...routeProps} page={"edit-user"} />}
       />

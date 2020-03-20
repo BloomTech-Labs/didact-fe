@@ -50,19 +50,3 @@ export const editUser = (id, changes) => dispatch => {
       dispatch({ type: EDIT_USER_FAIL, payload: err.response });
     });
 };
-
-// export const clearState = () => dispatch => {
-//   dispatch({ type: CHECK_DATABASE_SUCCESS, payload: 0 });
-// };
-
-// export const editCourse = (id, changes) => dispatch => {
-//   dispatch({ type: EDIT_COURSE_DATA_START });
-//   axiosWithAuth()
-//     .put(`${baseURL}${id}`, { changes })
-//     .then(res => {
-//       dispatch({ type: EDIT_COURSE_DATA_SUCCESS, payload: changes });
-//     })
-//     .catch(err => {
-//       dispatch({ type: EDIT_COURSE_DATA_FAIL, payload: err.response });
-//     });
-// };

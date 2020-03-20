@@ -104,22 +104,7 @@ function AllCourses(props) {
         Your Courses
       </h2>
       <div className={tabletSize ? classes.rootTablet : classes.root}>
-        {tabletSize ? (
-          <div className={classes.addButtonDivTablet}>
-            {/* <ButtonStyles
-              style={{ display: "flex", justifyContent: "flex-start" }}
-            >
-              <div className="buttons">
-                <Link style={{ fontSize: "1.4rem" }} to={"/courses/yours/add"}>
-                  New Course
-                </Link>
-                <Link style={{ fontSize: "1.4rem" }} to={"/courses/all"}>
-                  All Courses
-                </Link>
-              </div>
-            </ButtonStyles> */}
-          </div>
-        ) : null}
+        {tabletSize ? <div className={classes.addButtonDivTablet}></div> : null}
         <div>
           {state.coursesReducer.yourCourses
             ? state.coursesReducer.yourCourses.map((course, i) => (
@@ -132,22 +117,6 @@ function AllCourses(props) {
               ))
             : null}
         </div>
-        {/* {!tabletSize ? (
-          <div className={classes.addButtonDiv}>
-            <ButtonStyles
-              style={{ display: "flex", justifyContent: "flex-start" }}
-            >
-              <div className="buttons">
-                <Link style={{ fontSize: "1.4rem" }} to={"/courses/yours/add"}>
-                  New Course
-                </Link>
-                <Link style={{ fontSize: "1.4rem" }} to={"/courses/all"}>
-                  All Courses
-                </Link>
-              </div>
-            </ButtonStyles>
-          </div>
-        ) : null} */}
       </div>
     </div>
   );
