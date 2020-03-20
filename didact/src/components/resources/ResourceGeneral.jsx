@@ -48,6 +48,8 @@ const ResourceGeneral = () => {
           <Link to="/resources/">Home</Link>
         </p>
       </HeaderStyled>
+
+      {/* Tools Mapping */}
       <div className="gen-header">
         <h1>Tools</h1>
         <Link to="/tools">
@@ -65,6 +67,8 @@ const ResourceGeneral = () => {
           <ChevronRightIcon style={{ fontSize: "2rem" }} />
         </Link>
       </div>
+
+      {/* Sources Mapping */}
       <ResourceGrid>
         {sourcesGen &&
           sourcesGen.map(source => <Source source={source} key={source.id} />)}
@@ -76,6 +80,8 @@ const ResourceGeneral = () => {
           <ChevronRightIcon style={{ fontSize: "2rem" }} />
         </Link>
       </div>
+
+      {/* Articles Mapping */}
       <GeneralArticleGrid>
         {articlesGen &&
           articlesGen.map(article =>

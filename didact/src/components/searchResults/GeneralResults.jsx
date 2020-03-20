@@ -1,18 +1,26 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+
 import {
   TitleH2,
   PathGrid,
   CourseGrid,
   ResourceGrid
 } from "./SearchGeneralStyles";
-import smallresourcefill from "../../images/smallresourcefill.png";
-import { ResourceCard, ResourceFillSmall } from "./ResultCardStyles";
+import {
+  ResourceCard,
+  ResourceFillSmall,
+  ResourceFillLarge
+} from "./ResultCardStyles";
+
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
+import ArrowRightAltRoundedIcon from "@material-ui/icons/ArrowRightAltRounded";
+import smallresourcefill from "../../images/smallresourcefill.png";
+import coolimage from "../../images/coolimage.png";
+
 import LearningPathCard from "./PathResultCard";
 import CourseResultCard from "./CourseResultCard";
-import ArrowRightAltRoundedIcon from "@material-ui/icons/ArrowRightAltRounded";
-import { Link } from "react-router-dom";
 
 const GeneralResults = props => {
   const state = useSelector(state => state);
@@ -194,9 +202,10 @@ const GeneralResults = props => {
                   </div>
                 </ResourceCard>
               ) : (
-                <ResourceCard>
-                  <h1>I'm filler for now</h1>
-                </ResourceCard>
+                <ResourceFillLarge>
+                  <div className="circle"></div>
+                  <img src={coolimage} alt="" />
+                </ResourceFillLarge>
               )}
 
               {/* Sources Check */}

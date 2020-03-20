@@ -63,6 +63,27 @@ export const ResourceFillSmall = styled.div`
   }
 `;
 
+export const ResourceFillLarge = styled.div`
+  background-color: #ffffff;
+  border-radius: 7px;
+  padding: 20px 20px 10px 20px;
+  .circle {
+    border-radius: 30px;
+    height: 59px;
+    width: 59px;
+    background-color: rgba(242, 212, 174, 1);
+    position: relative;
+    top: 12px;
+    right: -187px;
+  }
+  img {
+    position: relative;
+    z-index: 2;
+    top: -75px;
+    right: 5px;
+  }
+`;
+
 export const PathCard = styled.div`
   background-color: #ffffff;
   border-radius: 7px;
