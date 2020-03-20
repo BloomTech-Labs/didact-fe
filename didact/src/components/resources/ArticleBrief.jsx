@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Card from "@material-ui/core/Card";
 import { useSelector } from "react-redux";
 import { ArticleWrapper } from "./articleStyles";
 import ArrowRightAltRoundedIcon from "@material-ui/icons/ArrowRightAltRounded";
@@ -12,7 +11,6 @@ const ArticleBrief = props => {
     article.title.length > 35
       ? `${article.title.slice(0, 35)}...`
       : article.title;
-  const author = article.first_name + " " + article.last_name;
 
   return (
     <ArticleWrapper>

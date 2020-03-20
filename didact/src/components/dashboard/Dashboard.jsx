@@ -104,16 +104,6 @@ function Dashboard({ props }) {
 
   return (
     <>
-      <div
-        className="bottom-border"
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          margin: "-10px 10px 10px 0px",
-          borderBottom: "1px solid black"
-        }}
-      ></div>
-
       <div>
         <p
           style={{
@@ -128,7 +118,6 @@ function Dashboard({ props }) {
         >
           Dashboard
         </p>
-
         {/* <FiberManualRecordIcon
           style={{
             color: "#52bbb4",
@@ -156,9 +145,9 @@ function Dashboard({ props }) {
           <div>
             <p style={{ fontWeight: "500", fontSize: "44px" }}>
               Welcome,
-              <br />{" "}
+              <br />
               <span style={{ fontWeight: "bold", fontSize: "44px" }}>
-                {firstName}!{" "}
+                {firstName}!
               </span>
             </p>
           </div>

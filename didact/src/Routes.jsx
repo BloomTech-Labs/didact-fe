@@ -199,6 +199,25 @@ const Routes = props => {
       />
       <Route
         exact
+        path="/results/courses"
+        render={routeProps => (
+          <MainPage {...routeProps} page={"courseresults"} />
+        )}
+      />
+      <Route
+        exact
+        path="/results/learning-paths"
+        render={routeProps => <MainPage {...routeProps} page={"pathresults"} />}
+      />
+      <Route
+        exact
+        path="/results/resources"
+        render={routeProps => (
+          <MainPage {...routeProps} page={"resourceresults"} />
+        )}
+      />
+      <Route
+        exact
         path="/about"
         render={routeProps => <MainPage {...routeProps} page={"about"} />}
       />
