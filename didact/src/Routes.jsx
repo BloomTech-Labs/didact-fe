@@ -215,7 +215,7 @@ const Routes = props => {
       <Route
         exact
         path="/my-profile"
-        render={routeProps => <MainPage {...routeProps} page={"myprofile"} />}
+        render={routeProps => <MainPage {...routeProps} page={"my-profile"} />}
       />
       <Route
         exact

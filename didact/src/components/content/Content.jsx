@@ -120,7 +120,7 @@ const Content = props => {
             return <UsersProfiles props={props} />;
           case "edit-user":
             return <EditUser props={props} id={props.match.params.id} />;
-          case "myprofile":
+          case "my-profile":
             return <MyProfile props={props} />;
           default:
             break;

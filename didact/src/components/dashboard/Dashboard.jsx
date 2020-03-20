@@ -8,6 +8,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import YourCourse from "../courses/YourCourse";
 import Course from "../courses/Course";
+import { getMyProfile } from "../../store/actions";
 
 //art
 import sphere from "../../assets/sphere.png";
@@ -64,6 +65,7 @@ function Dashboard({ props }) {
   const learningPaths = state.learningPathReducer.yourLearningPaths;
   const learningPathCourses = state.learningPathReducer.learningPath.courses;
   const learningPath = state.learningPathReducer.learningPath;
+  const id = state.onboardingReducer.user.id;
   const [learningPathOrder, setLearningPathOrder] = useState([]);
   const [coursePathOrder, setCoursePathOrder] = useState([]);
 
@@ -95,6 +97,10 @@ function Dashboard({ props }) {
         [...learningPaths].sort((a, b) => a.user_path_order - b.user_path_order)
       );
   }, [learningPaths]);
+
+  useEffect(() => {
+    dispatch(getMyProfile(id));
+  }, [dispatch]);
 
   return (
     <>
