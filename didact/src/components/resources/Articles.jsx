@@ -101,7 +101,7 @@ const Articles = props => {
             {mainArticles.length === 1 && (
               <StylishBlockMainDub>
                 <div className="circle"></div>
-                <img src={coolimage} />
+                <img src={coolimage} alt="" />
               </StylishBlockMainDub>
             )}
           </MainArticleGrid>
@@ -117,13 +117,13 @@ const Articles = props => {
             {secondaryArticles.length === 2 && (
               <StylishBlock>
                 <div className="circle"></div>
-                <img src={coolimage} />
+                <img src={coolimage} alt="" />
               </StylishBlock>
             )}
             {secondaryArticles.length === 1 && (
               <StylishBlockDub>
                 <div className="circle"></div>
-                <img src={coolimage} />
+                <img src={coolimage} alt="" />
               </StylishBlockDub>
             )}
           </SecondaryArticleGrid>
@@ -144,7 +144,7 @@ const Articles = props => {
             otherArticles.length === 11 ? (
               <div className="single-block-fill-article">
                 <div className="circle"></div>
-                <img src={coolimage} />
+                <img src={coolimage} alt="" />
               </div>
             ) : null}
             {/* This Div Will Fill Up Two Spaces */}
@@ -154,7 +154,7 @@ const Articles = props => {
             otherArticles.length === 10 ? (
               <div className="double-block-fill-article">
                 <div className="circle"></div>
-                <img src={coolimage} />
+                <img src={coolimage} alt="" />
               </div>
             ) : null}
           </ArticleGrid>

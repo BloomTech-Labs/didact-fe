@@ -50,7 +50,7 @@ export const PathGrid = styled.div`
 `;
 
 export const CourseGrid = styled.div`
-  width: 80%;
+  width: 90%;
   display: grid;
   grid-gap: 30px;
   grid-template-columns: repeat(2, 1fr);
@@ -59,4 +59,7 @@ export const CourseGrid = styled.div`
 
 export const ResourceGrid = styled.div`
   display: grid;
+  grid-gap: 30px;
+  grid-template-columns: 20% 45% 25%;
+  grid-template-rows: 140px;
 `;

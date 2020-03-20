@@ -23,7 +23,7 @@ const ArticleFull = ({ props, id }) => {
         <>
           <HeaderStyled>
             <p className="header-navs">
-              <span>Resources</span>
+              <Link to="/resources">Resources</Link>
               <ChevronRightIcon style={{ fontSize: "1.6rem" }} />
               <Link to="/articles">
                 <span>Articles</span>

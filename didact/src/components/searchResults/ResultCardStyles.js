@@ -1,5 +1,26 @@
 import styled from "styled-components";
 
+export const ResourceCard = styled.div`
+  background-color: #ffffff;
+  border-radius: 7px;
+  padding: 20px 20px 10px 20px;
+  display: flex;
+  font-size: 1.2rem;
+  flex-flow: column nowrap;
+
+  h1 {
+    font-size: 1.2rem;
+  }
+
+  a {
+    text-align: right;
+    display: flex;
+    align-items: center;
+    color: #242424;
+    font-weight: 600;
+  }
+`;
+
 export const PathCard = styled.div`
   background-color: #ffffff;
   border-radius: 7px;

@@ -79,7 +79,7 @@ const Tools = props => {
             tools.length === 11 ? (
               <div className="single-block-fill-tool">
                 <div className="circle"></div>
-                <img src={coolimage} />
+                <img src={coolimage} alt="" />
               </div>
             ) : null}
             {/* This Div Will Fill Up Two Spaces */}

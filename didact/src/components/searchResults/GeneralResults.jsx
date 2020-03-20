@@ -6,24 +6,34 @@ import {
   CourseGrid,
   ResourceGrid
 } from "./SearchGeneralStyles";
+import { ResourceCard } from "./ResultCardStyles";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import LearningPathCard from "./PathResultCard";
 import CourseResultCard from "./CourseResultCard";
+import ArrowRightAltRoundedIcon from "@material-ui/icons/ArrowRightAltRounded";
+import { Link } from "react-router-dom";
 
 const GeneralResults = props => {
-  //wew thats a lotta state
   const state = useSelector(state => state);
+  //courses and paths array taking small slices to match UX specs on this page
   const courses = state.coursesReducer.courses.slice(0, 2);
-  const coursesLoading = state.coursesReducer.isLoadingCourses;
   const paths = state.learningPathReducer.learningPaths.slice(0, 3);
+  //Loading states from various reducers
+  const coursesLoading = state.coursesReducer.isLoadingCourses;
   const pathsLoading = state.learningPathReducer.isLoadingPaths;
-  const tools = state.toolsReducer.tools;
   const toolsLoading = state.toolsReducer.isLoadingTools;
-  const sources = state.sourcesReducer.sources;
   const sourcesLoading = state.sourcesReducer.isLoadingSources;
+  const articlesLoading = state.articlesReducer.isLoadingArticles;
+  //Resources arrays for resources results
+  const tools = state.toolsReducer.tools;
+  const sources = state.sourcesReducer.sources;
   const articles = state.articlesReducer.articles;
   const extArticles = state.articlesReducer.externalArticles;
-  const articlesLoading = state.articlesReducer.isLoadingArticles;
+
+  const resourceCount =
+    tools.length + sources.length + articles.length + extArticles.length;
+
+  const resourceArticles = articles.concat(extArticles);
 
   const resultCount =
     courses.length +
@@ -93,7 +103,7 @@ const GeneralResults = props => {
               <span className="sub-span-no-results">No Results</span>
             )}
           </TitleH2>
-          {paths ? (
+          {paths.length > 0 ? (
             <PathGrid style={{ minHeight: "45px" }}>
               {paths.map(path => (
                 <LearningPathCard key={path.id} props={props} path={path} />
@@ -102,11 +112,105 @@ const GeneralResults = props => {
           ) : null}
 
           {/* Resource Results */}
-          <ResourceGrid>
-            {/* {tools.length > 0 && <Tool />}
-            {articles.length > 0 && <Article />}
-            {sources.length > 0 && <Source />} */}
-          </ResourceGrid>
+          <TitleH2>
+            Resources
+            {resourceCount > 0 ? (
+              <span
+                onClick={() => props.setFilter("resources")}
+                className="sub-span-results"
+              >
+                More Results
+                <ChevronRightIcon style={{ fontSize: "1.6rem" }} />
+              </span>
+            ) : (
+              <span className="sub-span-no-results">No Results</span>
+            )}
+          </TitleH2>
+
+          {resourceCount > 0 ? (
+            <ResourceGrid>
+              {/* Tools Check */}
+              {tools.length > 0 ? (
+                <ResourceCard>
+                  <h1>{tools[0].name}</h1>
+                  <a
+                    href={tools[0].link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    View Tool{" "}
+                    <ArrowRightAltRoundedIcon
+                      style={{
+                        fontSize: "2em"
+                      }}
+                    />
+                  </a>
+                </ResourceCard>
+              ) : (
+                <ResourceCard>
+                  <h1>I'm filler for now</h1>
+                </ResourceCard>
+              )}
+
+              {/* Articles/External Articles Check */}
+              {resourceArticles.length > 0 ? (
+                <ResourceCard>
+                  <h1>{resourceArticles[0].title}</h1>
+                  {/* If article has a link you know it's an external article */}
+                  {resourceArticles[0].link ? (
+                    <a
+                      href={resourceArticles[0].link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      View Article
+                      <ArrowRightAltRoundedIcon
+                        style={{
+                          fontSize: "2em"
+                        }}
+                      />
+                    </a>
+                  ) : (
+                    <Link to={`/articles/${resourceArticles[0].id}`}>
+                      View Article{" "}
+                      <ArrowRightAltRoundedIcon
+                        style={{
+                          fontSize: "2em"
+                        }}
+                      />
+                    </Link>
+                  )}
+                </ResourceCard>
+              ) : (
+                <ResourceCard>
+                  <h1>I'm filler for now</h1>
+                </ResourceCard>
+              )}
+
+              {/* Sources Check */}
+              {sources.length > 0 ? (
+                <ResourceCard>
+                  <h1>{sources[0].name}</h1>
+                  <a
+                    href={sources[0].link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    View Source
+                    <ArrowRightAltRoundedIcon
+                      style={{
+                        fontSize: "2em"
+                      }}
+                    />
+                  </a>
+                </ResourceCard>
+              ) : (
+                <ResourceCard>
+                  <h1>I'm filler for now</h1>
+                </ResourceCard>
+              )}
+            </ResourceGrid>
+          ) : null}
         </>
       ) : (
         <h1>Loading...</h1>

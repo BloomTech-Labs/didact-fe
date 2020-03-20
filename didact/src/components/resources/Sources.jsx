@@ -80,7 +80,7 @@ const Sources = props => {
             sources.length === 11 ? (
               <div className="single-block-fill-source">
                 <div className="circle"></div>
-                <img src={coolimage} />
+                <img src={coolimage} alt="" />
               </div>
             ) : null}
             {/* This Div Will Fill Up Two Spaces */}
@@ -90,7 +90,7 @@ const Sources = props => {
             sources.length === 10 ? (
               <div className="double-block-fill-source">
                 <div className="circle"></div>
-                <img src={coolimage} />
+                <img src={coolimage} alt="" />
               </div>
             ) : null}
           </ResourceGrid>

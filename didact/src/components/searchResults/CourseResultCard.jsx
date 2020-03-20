@@ -19,7 +19,12 @@ const CourseResultCard = props => {
             ? `${course.title.slice(0, 23)}..`
             : course.title}
         </h1>
-        <Link to={`/courses/all/${course.id}`}>
+        <Link
+          to={{
+            pathname: `/courses/all/${course.id}`,
+            state: { tracked: true }
+          }}
+        >
           View Course
           <ArrowRightAltRoundedIcon
             style={{

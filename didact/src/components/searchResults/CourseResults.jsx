@@ -16,7 +16,7 @@ const CourseResults = props => {
         )}
       </TitleH2>
       {courses.map(course => (
-        <CourseResultCard course={course} />
+        <CourseResultCard course={course} style={{ margin: "20px 0" }} />
       ))}
     </div>
   );
