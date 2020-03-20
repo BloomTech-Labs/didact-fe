@@ -8,8 +8,18 @@ export const ResourceCard = styled.div`
   font-size: 1.2rem;
   flex-flow: column nowrap;
 
+  .img-div {
+    object-fit: cover;
+    display: grid;
+    grid-auto-row: 70%;
+    img {
+      max-width: 100%;
+      max-height: 100%;
+    }
+  }
+
   h1 {
-    font-size: 1.4rem;
+    font-size: 1.7rem;
   }
 
   .head-div {
@@ -32,6 +42,23 @@ export const ResourceCard = styled.div`
 
     &:visited {
       color: #242424;
+    }
+  }
+`;
+
+export const ResourceFillSmall = styled.div`
+  background-color: #ffffff;
+  border-radius: 7px;
+  padding: 20px 20px 10px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .img-div {
+    object-fit: cover;
+    grid-auto-row: 70%;
+    img {
+      max-width: 100%;
+      max-height: 100%;
     }
   }
 `;

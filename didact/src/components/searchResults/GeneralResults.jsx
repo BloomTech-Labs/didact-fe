@@ -6,7 +6,8 @@ import {
   CourseGrid,
   ResourceGrid
 } from "./SearchGeneralStyles";
-import { ResourceCard } from "./ResultCardStyles";
+import smallresourcefill from "../../images/smallresourcefill.png";
+import { ResourceCard, ResourceFillSmall } from "./ResultCardStyles";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import LearningPathCard from "./PathResultCard";
 import CourseResultCard from "./CourseResultCard";
@@ -151,9 +152,11 @@ const GeneralResults = props => {
                   </div>
                 </ResourceCard>
               ) : (
-                <ResourceCard>
-                  <h1>I'm filler for now</h1>
-                </ResourceCard>
+                <ResourceFillSmall>
+                  <div className="img-div">
+                    <img src={smallresourcefill} alt="" />
+                  </div>
+                </ResourceFillSmall>
               )}
 
               {/* Articles/External Articles Check */}
@@ -218,9 +221,11 @@ const GeneralResults = props => {
                   </div>
                 </ResourceCard>
               ) : (
-                <ResourceCard>
-                  <h1>I'm filler for now</h1>
-                </ResourceCard>
+                <ResourceFillSmall>
+                  <div className="img-div">
+                    <img src={smallresourcefill} alt="" />
+                  </div>
+                </ResourceFillSmall>
               )}
             </ResourceGrid>
           ) : null}
