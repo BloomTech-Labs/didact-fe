@@ -96,12 +96,14 @@ export const CourseCard = styled.div`
     align-items: flex-end;
     h1 {
       font-size: 1.6rem;
+      height: 40%;
     }
 
     a {
       font-weight: 600;
       display: flex;
       align-items: center;
+      color: #242424;
 
       &:visited {
         color: #242424;

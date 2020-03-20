@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { TitleH2 } from "./SearchGeneralStyles";
+import { TitleH2, CourseGrid } from "./SearchGeneralStyles";
 import CourseResultCard from "./CourseResultCard";
 const CourseResults = props => {
   const courses = useSelector(state => state.coursesReducer.courses);
@@ -15,9 +15,11 @@ const CourseResults = props => {
           <span>{resultCount} RESULTS FOUND</span>
         )}
       </TitleH2>
-      {courses.map(course => (
-        <CourseResultCard course={course} style={{ margin: "20px 0" }} />
-      ))}
+      <CourseGrid>
+        {courses.map(course => (
+          <CourseResultCard course={course} style={{ margin: "20px 0" }} />
+        ))}
+      </CourseGrid>
     </div>
   );
 };

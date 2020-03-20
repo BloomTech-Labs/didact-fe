@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { TitleH2 } from "./SearchGeneralStyles";
+import { TitleH2, PathGrid } from "./SearchGeneralStyles";
 import LearningPathCard from "./PathResultCard";
 const PathResults = props => {
   const paths = useSelector(state => state.learningPathReducer.learningPaths);
@@ -16,14 +16,16 @@ const PathResults = props => {
             <span>{resultCount} RESULTS FOUND</span>
           )}
         </TitleH2>
-        {paths.map(path => (
-          <LearningPathCard
-            key={path.id}
-            props={props}
-            path={path}
-            style={{ marginBottom: "30px", height: "200px" }}
-          />
-        ))}
+        <PathGrid>
+          {paths.map(path => (
+            <LearningPathCard
+              key={path.id}
+              props={props}
+              path={path}
+              style={{ marginBottom: "30px", height: "200px" }}
+            />
+          ))}
+        </PathGrid>
       </div>
     </>
   );

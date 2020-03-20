@@ -22,7 +22,7 @@ export const TitleH2 = styled.div`
   padding: 10px 0;
   font-family: Open sans;
   display: flex;
-
+  margin: 10px 0;
   span {
     display: flex;
     align-items: center;
@@ -54,7 +54,7 @@ export const CourseGrid = styled.div`
   display: grid;
   grid-gap: 30px;
   grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: 150px;
+  grid-auto-rows: 150px;
 `;
 
 export const ResourceGrid = styled.div`
