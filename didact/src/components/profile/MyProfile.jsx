@@ -6,6 +6,7 @@ import {
   MyProfileStyleWrapper,
   HeaderStyled,
   ProfileAvatar,
+  profileDivForm,
   BioField,
   BioLabel,
   BioInput,
@@ -17,7 +18,33 @@ import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import PermIdentityIcon from "@material-ui/icons/PermIdentity";
 import discordLogo from "../../assets/discordLogo.png";
 
+// material UI additions **********
+
+import { makeStyles } from "@material-ui/core/styles";
+import clsx from "clsx";
+import Card from "@material-ui/core/Card";
+import CardHeader from "@material-ui/core/CardHeader";
+import CardMedia from "@material-ui/core/CardMedia";
+import CardContent from "@material-ui/core/CardContent";
+import CardActions from "@material-ui/core/CardActions";
+
+// ******************************
+
 const MyProfile = props => {
+  // Material UI**************************************
+  const useStyles = makeStyles(theme => ({
+    root: {
+      maxWidth: 545
+    },
+    media: {
+      height: 0,
+      paddingTop: "56.25%" // 16:9
+    }
+  }));
+  const classes = useStyles();
+
+  // ****************************
+
   const dispatch = useDispatch();
   const state = useSelector(state => state);
   const id = state.onboardingReducer.user.id;
@@ -64,7 +91,7 @@ const MyProfile = props => {
 
   useEffect(() => {
     setChanges({
-      pic: pic,
+      // pic: pic,
       bio: bio,
       facebookLink: facebookLink,
       githubLink: githubLink,
@@ -83,8 +110,6 @@ const MyProfile = props => {
     e.preventDefault();
     dispatch(editMyProfile(id, changes));
     toggleEdit();
-
-    // props.history.push("/my-profile");
   };
 
   return (
@@ -124,69 +149,75 @@ const MyProfile = props => {
         <p className="name">{firstName + " " + lastName}</p>
       </ProfileAvatar>
       <div>
-        {myProfileEdit ? (
-          <div>
-            <img src={pic}></img>
-            <div>{bio}</div>
-            <span>{facebookLink}</span>
-            <span>{githubLink}</span>
-            <span>{discordLink}</span>
-            <span>{twitterLink}</span>
-            <span>{linkedInLink}</span>
-            <div>{externalEdLink}</div>
-            <button type="submit" onClick={toggleEdit}>
-              Edit
-            </button>
-          </div>
-        ) : (
-          <div>
-            <form onSubmit={handleSubmit}>
-              <input
-                placeholder="bio"
-                value={changes.bio}
-                onChange={handleChange}
-                name="bio"
-              ></input>
-              <input
-                placeholder="Facebook Link"
-                value={changes.faceBookLink}
-                onChange={handleChange}
-                name="faceBookLink"
-              ></input>
-              <input
-                placeholder="Github Link"
-                value={changes.githubLink}
-                onChange={handleChange}
-                name="githubLink"
-              ></input>
-              <input
-                placeholder="Discord Link"
-                value={changes.discordLink}
-                onChange={handleChange}
-                name="discordLink"
-              ></input>
-              <input
-                placeholder="Twitter Link"
-                value={changes.twitterLink}
-                onChange={handleChange}
-                name="twitterLink"
-              ></input>
-              <input
-                placeholder="linkedIn Link"
-                value={changes.linkedInLink}
-                onChange={handleChange}
-                name="linkedInLink"
-              ></input>
-              <input
-                placeholder="External Ed Link"
-                value={changes.externalEdLink}
-                onChange={handleChange}
-                name="externalEdLink"
-              ></input>
-              <button type="submit">Update</button>
-            </form>
-          </div>
-        )}
+        <Card className={classes.root}>
+          {myProfileEdit ? (
+            <div style={{ margin: "25px" }}>
+              {/* <img src={pic}></img> */}
+              <span>{bio}</span>
+              <span>{facebookLink}</span>
+              <span>{githubLink}</span>
+              <span>{discordLink}</span>
+              <span>{twitterLink}</span>
+              <span>{linkedInLink}</span>
+              <div>{externalEdLink}</div>
+              <button type="submit" onClick={toggleEdit}>
+                Edit Profile
+              </button>
+            </div>
+          ) : (
+            <profileDivForm>
+              <form
+                onSubmit={handleSubmit}
+                style={{ display: "flex", flexDirection: "column" }}
+              >
+                <textarea
+                  style={{ height: "200px" }}
+                  placeholder="bio"
+                  value={changes.bio}
+                  onChange={handleChange}
+                  name="bio"
+                ></textarea>
+                <input
+                  placeholder="Facebook Link"
+                  value={changes.faceBookLink}
+                  onChange={handleChange}
+                  name="faceBookLink"
+                ></input>
+                <input
+                  placeholder="Github Link"
+                  value={changes.githubLink}
+                  onChange={handleChange}
+                  name="githubLink"
+                ></input>
+                <input
+                  placeholder="Discord Link"
+                  value={changes.discordLink}
+                  onChange={handleChange}
+                  name="discordLink"
+                ></input>
+                <input
+                  placeholder="Twitter Link"
+                  value={changes.twitterLink}
+                  onChange={handleChange}
+                  name="twitterLink"
+                ></input>
+                <input
+                  placeholder="linkedIn Link"
+                  value={changes.linkedInLink}
+                  onChange={handleChange}
+                  name="linkedInLink"
+                ></input>
+                <input
+                  placeholder="External Ed Link"
+                  value={changes.externalEdLink}
+                  onChange={handleChange}
+                  name="externalEdLink"
+                ></input>
+                <button type="submit">Update</button>
+              </form>
+            </profileDivForm>
+          )}
+        </Card>
       </div>
 
       <DiscordLinkDiv>

@@ -26,6 +26,11 @@ export const HeaderStyled = styled.div`
   }
 `;
 
+export const profileDivForm = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
 export const ProfileAvatar = styled.div`
   margin: 5% 55% 10% 0;
   display: flex;
