@@ -87,13 +87,13 @@ const ProfilePopOver = ({
             <Link to={`/my-profile`} style={{ color: "#242424" }}>
               My Profile
             </Link>
-            <a
+            {/* <a
               href="https://discord.io/didact"
               className={classes.popLinks}
               target="_blank"
             >
               Discord
-            </a>
+            </a> */}
             <Link to="#" onClick={handleLogOut} className={classes.popLinks}>
               Logout
             </Link>

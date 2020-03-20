@@ -12,7 +12,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import reducer from "./store/reducers";
 import logger from "redux-logger";
 
-const store = createStore(reducer, applyMiddleware(thunk));
+const store = createStore(reducer, applyMiddleware(thunk, logger));
 dotenv.config();
 
 ReactDOM.render(

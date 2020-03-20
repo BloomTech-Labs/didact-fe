@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getMyProfile } from "../../store/actions";
+import { getMyProfile, addMyProfile, editMyProfile } from "../../store/actions";
 import { Link } from "react-router-dom";
 import {
   MyProfileStyleWrapper,
@@ -17,19 +17,26 @@ import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import PermIdentityIcon from "@material-ui/icons/PermIdentity";
 import discordLogo from "../../assets/discordLogo.png";
 
-const MyProfile = () => {
+const MyProfile = props => {
   const dispatch = useDispatch();
   const state = useSelector(state => state);
+  const id = state.onboardingReducer.user.id;
+  const myProfile = state.myProfileReducer.myProfile;
   const userName = state.onboardingReducer.user;
-  const pic = state.myProfileReducer.image;
-  const bio = state.myProfileReducer.bio;
-  const interests = state.myProfileReducer.interests;
-  const facebookLink = state.myProfileReducer.facebookLink;
-  const githubLink = state.myProfileReducer.githubLink;
-  const discordLink = state.myProfileReducer.discordLink;
-  const twitterLink = state.myProfileReducer.twitterLink;
-  const linkedInLink = state.myProfileReducer.linkedInLink;
-  const externalEdLink = state.myProfileReducer.externalEdLink;
+  const pic = state.myProfileReducer.myProfile.image;
+  const bio = state.myProfileReducer.myProfile.bio;
+  const facebookLink = state.myProfileReducer.myProfile.facebookLink;
+  const githubLink = state.myProfileReducer.myProfile.githubLink;
+  const discordLink = state.myProfileReducer.myProfile.discordLink;
+  const twitterLink = state.myProfileReducer.myProfile.twitterLink;
+  const linkedInLink = state.myProfileReducer.myProfile.linkedInLink;
+  const externalEdLink = state.myProfileReducer.myProfile.externalEdLink;
+
+  const [myProfileEdit, setMyProfileEdit] = useState(true);
+
+  const toggleEdit = () => {
+    setMyProfileEdit(!myProfileEdit);
+  };
 
   const firstName = userName.first_name
     ? userName.first_name.substring(0, 1).toUpperCase() +
@@ -40,9 +47,45 @@ const MyProfile = () => {
       userName.last_name.substring(1)
     : null;
 
+  const [changes, setChanges] = useState({
+    pic: "",
+    bio: "",
+    facebookLink: "",
+    githubLink: "",
+    discordLink: "",
+    twitterLink: "",
+    linkedInLink: "",
+    externalEdLink: ""
+  });
+
   useEffect(() => {
-    dispatch(getMyProfile());
-  }, [dispatch]);
+    dispatch(getMyProfile(id));
+  }, [dispatch, id]);
+
+  useEffect(() => {
+    setChanges({
+      pic: pic,
+      bio: bio,
+      facebookLink: facebookLink,
+      githubLink: githubLink,
+      discordLink: discordLink,
+      twitterLink: twitterLink,
+      linkedInLink: linkedInLink,
+      externalEdLink: externalEdLink
+    });
+  }, [myProfile]);
+
+  const handleChange = e => {
+    setChanges({ ...changes, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    dispatch(editMyProfile(id, changes));
+    toggleEdit();
+
+    // props.history.push("/my-profile");
+  };
 
   return (
     <MyProfileStyleWrapper>
@@ -52,7 +95,6 @@ const MyProfile = () => {
           <ChevronRightIcon style={{ fontSize: "1.6rem" }} />
         </p>
       </HeaderStyled>
-
       <ProfileAvatar>
         {userName.photo ? (
           <img
@@ -82,33 +124,71 @@ const MyProfile = () => {
         <p className="name">{firstName + " " + lastName}</p>
       </ProfileAvatar>
       <div>
-        <img src={pic}></img>
-        <div>{bio}</div>
-        <div>{interests}</div>
-        <span>{facebookLink}</span>
-        <span>{githubLink}</span>
-        <span>{discordLink}</span>
-        <span>{twitterLink}</span>
-        <span>{linkedInLink}</span>
-        <div>{externalEdLink}</div>
+        {myProfileEdit ? (
+          <div>
+            <img src={pic}></img>
+            <div>{bio}</div>
+            <span>{facebookLink}</span>
+            <span>{githubLink}</span>
+            <span>{discordLink}</span>
+            <span>{twitterLink}</span>
+            <span>{linkedInLink}</span>
+            <div>{externalEdLink}</div>
+            <button type="submit" onClick={toggleEdit}>
+              Edit
+            </button>
+          </div>
+        ) : (
+          <div>
+            <form onSubmit={handleSubmit}>
+              <input
+                placeholder="bio"
+                value={changes.bio}
+                onChange={handleChange}
+                name="bio"
+              ></input>
+              <input
+                placeholder="Facebook Link"
+                value={changes.faceBookLink}
+                onChange={handleChange}
+                name="faceBookLink"
+              ></input>
+              <input
+                placeholder="Github Link"
+                value={changes.githubLink}
+                onChange={handleChange}
+                name="githubLink"
+              ></input>
+              <input
+                placeholder="Discord Link"
+                value={changes.discordLink}
+                onChange={handleChange}
+                name="discordLink"
+              ></input>
+              <input
+                placeholder="Twitter Link"
+                value={changes.twitterLink}
+                onChange={handleChange}
+                name="twitterLink"
+              ></input>
+              <input
+                placeholder="linkedIn Link"
+                value={changes.linkedInLink}
+                onChange={handleChange}
+                name="linkedInLink"
+              ></input>
+              <input
+                placeholder="External Ed Link"
+                value={changes.externalEdLink}
+                onChange={handleChange}
+                name="externalEdLink"
+              ></input>
+              <button type="submit">Update</button>
+            </form>
+          </div>
+        )}
       </div>
 
-      <div>
-        <form>
-          {/* <form onSubmit={handleSubmit}> */}
-          <BioField>
-            <BioLabel>Bio</BioLabel>
-            <BioInput
-              // s
-              // onChange={handleChange}
-              name="bio"
-              placeholder="Bio"
-              type="text"
-            />
-          </BioField>
-          <BioButton type="submit">Submit</BioButton>
-        </form>
-      </div>
       <DiscordLinkDiv>
         <a href="https://discord.io/didact" target="_blank">
           <img src={discordLogo} alt="discord logo" />
