@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getMyProfile, addMyProfile, editMyProfile } from "../../store/actions";
+import { getMyProfile, editMyProfile } from "../../store/actions";
 import { Link } from "react-router-dom";
 import {
   MyProfileStyleWrapper,
   HeaderStyled,
   ProfileAvatar,
-  profileDivForm,
-  BioField,
-  BioLabel,
-  BioInput,
-  BioButton,
+  profileDivRender,
   DiscordLinkDiv
 } from "./myProfileStyle";
+
+import FacebookIcon from "@material-ui/icons/Facebook";
+import GitHubIcon from "@material-ui/icons/GitHub";
+import LinkedInIcon from "@material-ui/icons/LinkedIn";
+import TwitterIcon from "@material-ui/icons/Twitter";
 
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import PermIdentityIcon from "@material-ui/icons/PermIdentity";
@@ -112,6 +113,12 @@ const MyProfile = props => {
     toggleEdit();
   };
 
+  const iconer = facebookLink => {
+    if (facebookLink == null) {
+      return null;
+    }
+  };
+
   return (
     <MyProfileStyleWrapper>
       <HeaderStyled>
@@ -150,28 +157,93 @@ const MyProfile = props => {
       </ProfileAvatar>
       <div>
         {myProfileEdit ? (
-          <div>
-            <img src={image}></img>
-            <div>{bio}</div>
-            <span>{facebookLink}</span>
-            <span>{githubLink}</span>
-            <span>{discordLink}</span>
-            <span>{twitterLink}</span>
-            <span>{linkedInLink}</span>
-            <div>{externalEdLink}</div>
-            <button type="submit" onClick={toggleEdit}>
-              Edit
-            </button>
-          </div>
+          <profileDivRender>
+            <img
+              src={image}
+              style={{ height: "120px", borderRadius: "50%" }}
+            ></img>
+            <div>
+              <p>{bio}</p>
+              {facebookLink ? (
+                <p>
+                  <a href={facebookLink} target="_blank">
+                    <FacebookIcon />
+                  </a>
+                </p>
+              ) : (
+                <></>
+              )}
+              {githubLink ? (
+                <p>
+                  <a href={githubLink} target="_blank">
+                    <GitHubIcon />
+                  </a>
+                </p>
+              ) : (
+                <></>
+              )}
+
+              {discordLink ? (
+                <p>
+                  <a href={discordLink} target="_blank">
+                    <img
+                      src={discordLogo}
+                      style={{ height: "20px" }}
+                      alt="discord logo"
+                    />
+                  </a>
+                </p>
+              ) : (
+                <></>
+              )}
+
+              {twitterLink ? (
+                <p>
+                  <a href={twitterLink} target="_blank">
+                    <TwitterIcon />
+                  </a>
+                </p>
+              ) : (
+                <></>
+              )}
+
+              {linkedInLink ? (
+                <p>
+                  <a href={linkedInLink} target="_blank">
+                    <LinkedInIcon />
+                  </a>
+                </p>
+              ) : (
+                <></>
+              )}
+            </div>
+            {/* <div>
+              {externalEdLink ? (
+                <p>
+                  <a href={externalEdLink} target="_blank">
+                    {externalEdLink}
+                  </a>
+                </p>
+              ) : (
+                <></>
+              )}
+            </div> */}
+
+            <div>
+              <button type="submit" onClick={toggleEdit}>
+                Edit My Profile
+              </button>
+            </div>
+          </profileDivRender>
         ) : (
           <div>
             <form onSubmit={handleSubmit}>
-              <input
-                placeholder="bio"
+              <textarea
+                placeholder=" Enter Bio"
                 value={changes.bio}
                 onChange={handleChange}
                 name="bio"
-              ></input>
+              ></textarea>
               <input
                 placeholder="Facebook Link"
                 value={changes.facebookLink}

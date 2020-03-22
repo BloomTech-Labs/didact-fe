@@ -25,11 +25,6 @@ export const HeaderStyled = styled.div`
   }
 `;
 
-export const profileDivForm = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
 export const ProfileAvatar = styled.div`
   margin: 5% 55% 10% 0;
   display: flex;
@@ -37,53 +32,10 @@ export const ProfileAvatar = styled.div`
   justify-content: space-between;
 `;
 
-export const BioField = styled.div`
-  width: 90%;
+export const profileDivRender = styled.nav`
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  position: relative;
-`;
-
-export const BioLabel = styled.label`
-  // margin: 15px 0 0 20px;
-  margin: 1% 50% 0 0;
-  padding-bottom: 0;
-  color: #696d6e;
-`;
-
-export const BioInput = styled.textarea`
-  width: 50%;
-  height: 82px;
-  word-wrap: break;
-  background: #f4f8fa;
-  border: #d1e2ea solid 1px;
-  border-radius: 8px;
-  padding-left: 12px;
-  display: flex;
-  margin: 1% 50% 0 0;
-  box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.5);
-  outline: none;
-  ::placeholder {
-    color: #90a1ac;
-  }
-`;
-
-export const BioButton = styled.button`
-  width: 10%;
-  height: 35px;
-  background: #f4f8fa;
-  border: #d1e2ea solid 1px;
-  border-radius: 8px;
-  padding-left: 12px;
-  display: flex;
-  margin: 1% 50% 0 0;
-  box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.5);
-  outline: none;
-  cursor: pointer;
-  ::placeholder {
-    color: #90a1ac;
-  }
+  justify-content: space-between;
+  background: green;
 `;
 
 export const DiscordLinkDiv = styled.div`
