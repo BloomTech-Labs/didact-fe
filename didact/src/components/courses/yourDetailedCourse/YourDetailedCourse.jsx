@@ -351,7 +351,27 @@ const YourDetailedCourse = props => {
                                       width={20}
                                     />
                                   ) : detail.automatically_completed ||
-                                    detail.manually_completed ? null : null}
+                                    detail.manually_completed ? (
+                                    <CheckCircleIcon
+                                      onClick={() =>
+                                        handleMarkCompleteLesson(
+                                          el.section.id,
+                                          detail.id
+                                        )
+                                      }
+                                      className="completeButton"
+                                    />
+                                  ) : (
+                                    <CheckCircleIcon
+                                      onClick={() =>
+                                        handleMarkCompleteLesson(
+                                          el.section.id,
+                                          detail.id
+                                        )
+                                      }
+                                      className="notCompleteButton"
+                                    />
+                                  )}
                                 </div>
                               );
                             })}
