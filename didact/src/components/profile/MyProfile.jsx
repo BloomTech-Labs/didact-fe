@@ -116,13 +116,6 @@ const MyProfile = () => {
 
   return (
     <MyProfileStyleWrapper>
-      <form onSubmit={handleImgSubmit} className="imgForm">
-        <div>
-          <label>Image</label>
-          <input type="file" onChange={handleImage} name="image" />
-        </div>
-        <button>change profile pic</button>
-      </form>
       <HeaderStyled>
         <p className="header-navs">
           <Link to="/">Dashboard</Link>
@@ -323,6 +316,13 @@ const MyProfile = () => {
           </div>
         ) : (
           <EditProfileDiv style={{ display: "flex", flexDirection: "column" }}>
+            <form onSubmit={handleImgSubmit} className="imgForm">
+              <div>
+                <label>Image</label>
+                <input type="file" onChange={handleImage} name="image" />
+              </div>
+              <button>change profile pic</button>
+            </form>
             <form onSubmit={handleSubmit}>
               <label>About Me</label>
               <textarea
