@@ -250,64 +250,31 @@ const Course = ({ course, props, tracked }) => {
           className={classes.buttonDiv}
           style={{ margin: "0 30px 20px 0" }}
         >
-          {tracked ? (
-            <Link
-              to={{
-                pathname: `/courses/all/${course.id}`,
-                state: { tracked: tracked }
-              }}
+          <Link
+            to={`/courses/all/${course.id}`}
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              color: "#242424",
+              width: "120px"
+            }}
+          >
+            <span
               style={{
-                display: "flex",
-                justifyContent: "space-between",
-                color: "#242424",
-                width: "120px"
+                fontWeight: "bold",
+                marginTop: "2%",
+                fontFamily: "Open Sans",
+                fontSize: "14px"
               }}
             >
-              <span
-                style={{
-                  fontWeight: "bold",
-                  marginTop: "2%",
-                  fontFamily: "Open Sans",
-                  fontSize: "14px"
-                }}
-              >
-                View Item
-              </span>
-              <ArrowRightAltRoundedIcon
-                style={{
-                  fontSize: "2em"
-                }}
-              />
-            </Link>
-          ) : (
-            <Link
-              to={{
-                pathname: `/courses/all/${course.id}`,
-                state: { tracked: false }
-              }}
+              View Item
+            </span>
+            <ArrowRightAltRoundedIcon
               style={{
-                display: "flex",
-                justifyContent: "space-between",
-                color: "#242424",
-                width: "120px"
+                fontSize: "2em"
               }}
-            >
-              <span
-                style={{
-                  fontWeight: "bold",
-                  marginTop: "2%",
-                  fontFamily: "Open Sans",
-                  fontSize: "14px"
-                }}
-              >
-                View Item
-              </span>
-              <ArrowRightAltRoundedIcon
-                style={{
-                  fontSize: "2em"
-                }}
-              />
-            </Link>
+            />
+          </Link>
           )}
         </CardActions>
       </Card>

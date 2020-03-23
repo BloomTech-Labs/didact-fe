@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { ArticleWrapper } from "./articleStyles";
 import ArrowRightAltRoundedIcon from "@material-ui/icons/ArrowRightAltRounded";
+import { Mixpanel } from "../../utils/mixpanel";
 const ArticleBrief = props => {
   const article = props.article;
   const user = useSelector(state => state.onboardingReducer.user);
@@ -11,6 +12,12 @@ const ArticleBrief = props => {
     article.title.length > 35
       ? `${article.title.slice(0, 35)}...`
       : article.title;
+
+  const handleTrack = () => {
+    if (props.queried) {
+      Mixpanel.track("Queried Article Accessed");
+    }
+  };
 
   return (
     <ArticleWrapper>
@@ -27,7 +34,11 @@ const ArticleBrief = props => {
         <p>{brief}...</p>
       </div>
       <div className="link-div">
-        <Link className="link-anchor" to={`/articles/${article.id}`}>
+        <Link
+          onClick={handleTrack}
+          className="link-anchor"
+          to={`/articles/${article.id}`}
+        >
           <span>Go To Article</span>
           <ArrowRightAltRoundedIcon
             style={{

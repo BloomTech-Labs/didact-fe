@@ -26,6 +26,9 @@ const CourseResultCard = props => {
         <Link
           to={{
             pathname: `/courses/all/${course.id}`,
+            //passing state through the location object allows us to
+            //reference it later in the route, in this case to
+            //use a mixpanel.track() to see if user accessed route through search results.
             state: { tracked: true }
           }}
         >
