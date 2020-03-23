@@ -126,6 +126,7 @@ export const PathCard = styled.div`
   }
 
   a {
+    color: #242424;
     font-weight: 600;
     display: flex;
     align-items: center;
