@@ -25,11 +25,6 @@ export const HeaderStyled = styled.div`
   }
 `;
 
-export const profileDivForm = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
 export const ProfileAvatar = styled.div`
   margin: 5% 55% 10% 0;
   display: flex;
@@ -37,57 +32,8 @@ export const ProfileAvatar = styled.div`
   justify-content: space-between;
 `;
 
-export const BioField = styled.div`
-  width: 90%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  position: relative;
-`;
-
-export const BioLabel = styled.label`
-  // margin: 15px 0 0 20px;
-  margin: 1% 50% 0 0;
-  padding-bottom: 0;
-  color: #696d6e;
-`;
-
-export const BioInput = styled.textarea`
-  width: 50%;
-  height: 82px;
-  word-wrap: break;
-  background: #f4f8fa;
-  border: #d1e2ea solid 1px;
-  border-radius: 8px;
-  padding-left: 12px;
-  display: flex;
-  margin: 1% 50% 0 0;
-  box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.5);
-  outline: none;
-  ::placeholder {
-    color: #90a1ac;
-  }
-`;
-
-export const BioButton = styled.button`
-  width: 10%;
-  height: 35px;
-  background: #f4f8fa;
-  border: #d1e2ea solid 1px;
-  border-radius: 8px;
-  padding-left: 12px;
-  display: flex;
-  margin: 1% 50% 0 0;
-  box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.5);
-  outline: none;
-  cursor: pointer;
-  ::placeholder {
-    color: #90a1ac;
-  }
-`;
-
 export const DiscordLinkDiv = styled.div`
-  margin: 5% 80% 0 0;
+  margin: 15% 80% 0 0;
   display: flex;
   width: 100%;
 
@@ -99,6 +45,58 @@ export const DiscordLinkDiv = styled.div`
 
     img {
       margin: 0 auto;
+    }
+
+    span {
+      padding-bottom: 100px;
+      float: right;
+      margin-top: 7%;
+    }
+  }
+`;
+
+export const DidactProfileButton = styled.button`
+  box-shadow: none;
+  border-radius: 7px;
+  color: #242424;
+  background: #ffffff;
+  border: 1px solid #242424;
+  height: 25px;
+  width: 123px;
+
+  cursor: pointer;
+  &:hover {
+    color: #ffffff;
+    background-color: #242424bf;
+    outline: none;
+  }
+`;
+
+export const EditProfileDiv = styled.div`
+  display: flex;
+
+  form {
+    display: flex;
+    flex-direction: column;
+
+    label {
+      font-family: Open Sans;
+      font-weight: bold;
+      font-size: 16px;
+      margin-bottom: 1%;
+    }
+
+    textarea {
+      height: 200px;
+      border-radius: 7px;
+      margin-bottom: 5%;
+    }
+
+    input {
+      height: 40px;
+      border-radius: 7px;
+      margin-bottom: 2%;
+      width: 35%;
     }
   }
 `;
