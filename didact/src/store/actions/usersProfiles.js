@@ -1,4 +1,5 @@
 import axiosWithAuth from "../../utils/axiosWithAuth";
+import axiosWithImg from "../../utils/axiosWithImg";
 import beURL from "../../utils/beURL";
 
 export const GET_USER_DATA_START = "GET_USER_DATA_START";
@@ -40,8 +41,9 @@ export const getUserById = id => dispatch => {
 };
 
 export const editUser = (id, changes) => dispatch => {
+  console.log("IT GOT HERE IN ACTIONS");
   dispatch({ type: EDIT_USER_START });
-  axiosWithAuth()
+  return axiosWithAuth()
     .put(`${baseURL}${id}`, changes)
     .then(res => {
       dispatch({ type: EDIT_USER_SUCCESS, payload: changes });

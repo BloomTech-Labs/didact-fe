@@ -6,7 +6,7 @@ export const PersonWrapper = styled.div`
   color: #5b5b5b;
 
   .person{
-    border: 1px solid gray;
+  border: 1px solid gray;
 	width:30%;
 	margin: 2% auto;
 	padding: 2%;
