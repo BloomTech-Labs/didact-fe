@@ -126,7 +126,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const YourCourse = ({ course, addingCourses, props, tracked }) => {
+const YourCourse = ({ course, props, tracked }) => {
   const state = useSelector(state => state);
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -183,11 +183,9 @@ const YourCourse = ({ course, addingCourses, props, tracked }) => {
               paddingTop: "20px"
             }}
           >
-            {addingCourses && (
-              <button className={classes.addCourse} onClick={handleClick}>
-                <img src={playlistAdd} alt="Add Course" />
-              </button>
-            )}
+            <button className={classes.addCourse} onClick={handleClick}>
+              <img src={playlistAdd} alt="Add Course" />
+            </button>
           </div>
           <div>
             <Popover

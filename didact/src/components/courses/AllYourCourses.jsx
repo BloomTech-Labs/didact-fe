@@ -62,7 +62,6 @@ function AllCourses(props) {
   const tabletSize = useMediaQuery("(max-width:1150px)");
   const classes = useStyles();
   const dispatch = useDispatch();
-  const [addingCourses] = useState(true);
   const state = useSelector(state => state);
 
   useEffect(() => {
@@ -108,12 +107,7 @@ function AllCourses(props) {
         <div>
           {state.coursesReducer.yourCourses
             ? state.coursesReducer.yourCourses.map((course, i) => (
-                <YourCourse
-                  key={i}
-                  course={course}
-                  addingCourses={addingCourses}
-                  props={props.props}
-                />
+                <YourCourse key={i} course={course} props={props.props} />
               ))
             : null}
         </div>

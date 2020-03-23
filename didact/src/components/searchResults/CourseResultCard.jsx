@@ -3,6 +3,8 @@ import { CourseCard } from "./ResultCardStyles";
 import { Link } from "react-router-dom";
 import coursefiller from "../../images/coursefiller.png";
 import ArrowRightAltRoundedIcon from "@material-ui/icons/ArrowRightAltRounded";
+import AddCoursePathPlaylist from "../courses/AddCoursePathPlaylist";
+import { PopoverWrapper } from "../courses/CourseStyles";
 
 const CourseResultCard = props => {
   const course = props.course;
@@ -13,7 +15,9 @@ const CourseResultCard = props => {
         <img src={coursefiller} alt="" />
       </div>
       <div className="right-div">
-        <div>Playlist</div>
+        <PopoverWrapper>
+          <AddCoursePathPlaylist course={course} />
+        </PopoverWrapper>
         <h1>
           {course.title.length > 23
             ? `${course.title.slice(0, 23)}..`
