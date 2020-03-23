@@ -15,6 +15,7 @@ const UsersProfiles = () => {
     dispatch(getUsersProfiles());
   }, [dispatch]);
 
+  console.log("USERLISTXXXXXXX", usersList);
   return (
     <PersonWrapper
       className="nameIt"
@@ -29,7 +30,6 @@ const UsersProfiles = () => {
           <Person
             person={person}
             key={person.id}
-            image={person.image}
             email={person.email}
             owner={person.owner}
             admin={person.admin}

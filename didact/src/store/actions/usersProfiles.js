@@ -43,7 +43,7 @@ export const getUserById = id => dispatch => {
 export const editUser = (id, changes) => dispatch => {
   console.log("IT GOT HERE IN ACTIONS");
   dispatch({ type: EDIT_USER_START });
-  axiosWithAuth()
+  return axiosWithAuth()
     .put(`${baseURL}${id}`, changes)
     .then(res => {
       dispatch({ type: EDIT_USER_SUCCESS, payload: changes });
