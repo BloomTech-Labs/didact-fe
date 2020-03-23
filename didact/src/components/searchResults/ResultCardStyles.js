@@ -8,8 +8,18 @@ export const ResourceCard = styled.div`
   font-size: 1.2rem;
   flex-flow: column nowrap;
 
+  .img-div {
+    object-fit: cover;
+    display: grid;
+    grid-auto-row: 70%;
+    img {
+      max-width: 100%;
+      max-height: 100%;
+    }
+  }
+
   h1 {
-    font-size: 1.4rem;
+    font-size: 1.7rem;
   }
 
   .head-div {
@@ -33,6 +43,44 @@ export const ResourceCard = styled.div`
     &:visited {
       color: #242424;
     }
+  }
+`;
+
+export const ResourceFillSmall = styled.div`
+  background-color: #ffffff;
+  border-radius: 7px;
+  padding: 20px 20px 10px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .img-div {
+    object-fit: cover;
+    grid-auto-row: 70%;
+    img {
+      max-width: 100%;
+      max-height: 100%;
+    }
+  }
+`;
+
+export const ResourceFillLarge = styled.div`
+  background-color: #ffffff;
+  border-radius: 7px;
+  padding: 20px 20px 10px 20px;
+  .circle {
+    border-radius: 30px;
+    height: 59px;
+    width: 59px;
+    background-color: rgba(242, 212, 174, 1);
+    position: relative;
+    top: 12px;
+    right: -187px;
+  }
+  img {
+    position: relative;
+    z-index: 2;
+    top: -75px;
+    right: 5px;
   }
 `;
 
@@ -106,10 +154,6 @@ export const CourseCard = styled.div`
   }
 
   .right-div {
-    display: flex;
-    flex-flow: column nowrap;
-
-    align-items: flex-end;
     h1 {
       font-size: 1.6rem;
       height: 50%;

@@ -58,7 +58,7 @@ export const ArticleGrid = styled.div`
 
 export const GeneralArticleGrid = styled.div`
   display: grid;
-  grid-template-columns: 43% 30% 20%;
+  grid-template-columns: 43% 33% 22%;
   grid-template-rows: 160px;
   justify-content: start;
   grid-column-gap: 30px;
