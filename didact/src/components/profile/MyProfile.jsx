@@ -60,7 +60,7 @@ const MyProfile = () => {
     : null;
 
   const [changes, setChanges] = useState({
-    image: image,
+    image: myProfile.image,
     bio: "",
     facebookLink: "",
     githubLink: "",
@@ -116,13 +116,6 @@ const MyProfile = () => {
 
   return (
     <MyProfileStyleWrapper>
-      <form onSubmit={handleImgSubmit} className="imgForm">
-        <div>
-          <label>Image</label>
-          <input type="file" onChange={handleImage} name="image" />
-        </div>
-        <button>change profile pic</button>
-      </form>
       <HeaderStyled>
         <p className="header-navs">
           <Link to="/">Dashboard</Link>
@@ -323,6 +316,22 @@ const MyProfile = () => {
           </div>
         ) : (
           <EditProfileDiv style={{ display: "flex", flexDirection: "column" }}>
+            <img
+              src={image}
+              style={{
+                height: "120px",
+                borderRadius: "50%",
+                margin: "2% 70% 0 0%"
+              }}
+            ></img>
+
+            <form onSubmit={handleImgSubmit} className="imgForm">
+              <div>
+                <label>Image</label>
+                <input type="file" onChange={handleImage} name="image" />
+              </div>
+              <button>change profile pic</button>
+            </form>
             <form onSubmit={handleSubmit}>
               <label>About Me</label>
               <textarea
