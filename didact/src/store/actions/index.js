@@ -348,7 +348,11 @@ export {
   ADD_MY_PROFILE_START,
   ADD_MY_PROFILE_SUCCESS,
   ADD_MY_PROFILE_FAIL,
+  EDIT_MY_PIC_START,
+  EDIT_MY_PIC_SUCCESS,
+  EDIT_MY_PIC_FAIL,
   getMyProfile,
   addMyProfile,
-  editMyProfile
+  editMyProfile,
+  editMyPic
 } from "./myProfile";

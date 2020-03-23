@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getMyProfile, editMyProfile } from "../../store/actions";
+import { getMyProfile, editMyProfile, editMyPic } from "../../store/actions";
 import { Link } from "react-router-dom";
 
 // STYLED COMPONENTS *******************
@@ -60,7 +60,7 @@ const MyProfile = () => {
     : null;
 
   const [changes, setChanges] = useState({
-    image: image,
+    image: myProfile.image,
     bio: "",
     facebookLink: "",
     githubLink: "",
@@ -95,6 +95,23 @@ const MyProfile = () => {
     e.preventDefault();
     dispatch(editMyProfile(id, changes));
     toggleEdit();
+  };
+
+  const handleImage = e => {
+    setChanges({ ...changes, image: e.target.files[0] });
+    console.log("THIS IS THE CHOSEN IMAGE HANDLEIMAGE", changes.image);
+  };
+
+  //EditUser handleSubmit
+  const handleImgSubmit = e => {
+    console.log("CHANGES!!!!!!!!!!!!!!!!", changes);
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("image", changes.image);
+    dispatch(editMyPic(id, formData));
+    // .then(() => {
+    //   props.history.push("/users");
+    // });
   };
 
   return (
@@ -300,6 +317,22 @@ const MyProfile = () => {
           </div>
         ) : (
           <EditProfileDiv style={{ display: "flex", flexDirection: "column" }}>
+            <img
+              src={image}
+              style={{
+                height: "120px",
+                borderRadius: "50%",
+                margin: "2% 70% 0 0%"
+              }}
+            ></img>
+
+            <form onSubmit={handleImgSubmit} className="imgForm">
+              <div>
+                <label>Image</label>
+                <input type="file" onChange={handleImage} name="image" />
+              </div>
+              <button>change profile pic</button>
+            </form>
             <form onSubmit={handleSubmit}>
               <label>About Me</label>
               <textarea

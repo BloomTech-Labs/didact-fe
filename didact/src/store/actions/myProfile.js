@@ -10,6 +10,9 @@ export const EDIT_MY_PROFILE_FAIL = "EDIT_MY_PROFILE_FAIL";
 export const ADD_MY_PROFILE_START = "ADD_MY_PROFILE_START";
 export const ADD_MY_PROFILE_SUCCESS = "ADD_MY_PROFILE_SUCCESS";
 export const ADD_MY_PROFILE_FAIL = "ADD_MY_PROFILE_FAIL";
+export const EDIT_MY_PIC_START = "EDIT_MY_PIC_START";
+export const EDIT_MY_PIC_SUCCESS = "EDIT_MY_PIC_SUCCESS";
+export const EDIT_MY_PIC_FAIL = "EDIT_MY_PIC_FAIL";
 
 const baseURL = `${beURL}auth/`;
 
@@ -48,5 +51,17 @@ export const editMyProfile = (id, changes) => dispatch => {
     })
     .catch(err => {
       dispatch({ type: EDIT_MY_PROFILE_FAIL, payload: err.response });
+    });
+};
+
+export const editMyPic = (id, changes) => dispatch => {
+  dispatch({ type: EDIT_MY_PIC_START });
+  return axiosWithAuth()
+    .put(`${baseURL}${id}/upload`, changes)
+    .then(res => {
+      dispatch({ type: EDIT_MY_PIC_SUCCESS, payload: changes });
+    })
+    .catch(err => {
+      dispatch({ type: EDIT_MY_PIC_FAIL, payload: err.response });
     });
 };

@@ -7,11 +7,15 @@ import {
   EDIT_MY_PROFILE_FAIL,
   ADD_MY_PROFILE_START,
   ADD_MY_PROFILE_SUCCESS,
-  ADD_MY_PROFILE_FAIL
+  ADD_MY_PROFILE_FAIL,
+  EDIT_MY_PIC_START,
+  EDIT_MY_PIC_SUCCESS,
+  EDIT_MY_PIC_FAIL
 } from "../actions";
 
 const initialState = {
   myProfile: {},
+  myPIC: {},
   isLoading: false,
   error: ""
 };
@@ -64,6 +68,23 @@ export const myProfileReducer = (state = initialState, action) => {
         myProfile: action.payload
       };
     case ADD_MY_PROFILE_FAIL:
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload
+      };
+    case EDIT_MY_PIC_START:
+      return {
+        ...state,
+        isLoading: true
+      };
+    case EDIT_MY_PIC_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        myPIC: action.payload
+      };
+    case EDIT_MY_PIC_FAIL:
       return {
         ...state,
         isLoading: false,
