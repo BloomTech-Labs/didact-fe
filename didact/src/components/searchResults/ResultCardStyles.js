@@ -154,10 +154,6 @@ export const CourseCard = styled.div`
   }
 
   .right-div {
-    display: flex;
-    flex-flow: column nowrap;
-
-    align-items: flex-end;
     h1 {
       font-size: 1.6rem;
       height: 50%;
