@@ -24,26 +24,10 @@ import discordLogo from "../../assets/discordLogo.png";
 
 // MATERIAL UI *************************
 import { makeStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
 
 const MyProfile = () => {
   // Material UI**************************************
-  const useStyles = makeStyles({
-    root: {
-      minWidth: 275
-    },
-    bullet: {
-      display: "inline-block",
-      margin: "0 2px",
-      transform: "scale(0.8)"
-    },
-    title: {
-      fontSize: 14
-    },
-    pos: {
-      marginBottom: 12
-    }
-  });
+
   // ****************************
 
   const dispatch = useDispatch();

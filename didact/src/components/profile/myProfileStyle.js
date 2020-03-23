@@ -93,7 +93,7 @@ export const EditProfileDiv = styled.div`
     }
 
     input {
-      height: 30px;
+      height: 40px;
       border-radius: 7px;
       margin-bottom: 2%;
       width: 35%;
