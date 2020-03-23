@@ -1,17 +1,26 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+
 import {
   TitleH2,
   PathGrid,
   CourseGrid,
   ResourceGrid
 } from "./SearchGeneralStyles";
-import { ResourceCard } from "./ResultCardStyles";
+import {
+  ResourceCard,
+  ResourceFillSmall,
+  ResourceFillLarge
+} from "./ResultCardStyles";
+
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
+import ArrowRightAltRoundedIcon from "@material-ui/icons/ArrowRightAltRounded";
+import smallresourcefill from "../../images/smallresourcefill.png";
+import coolimage from "../../images/coolimage.png";
+
 import LearningPathCard from "./PathResultCard";
 import CourseResultCard from "./CourseResultCard";
-import ArrowRightAltRoundedIcon from "@material-ui/icons/ArrowRightAltRounded";
-import { Link } from "react-router-dom";
 
 const GeneralResults = props => {
   const state = useSelector(state => state);
@@ -151,9 +160,11 @@ const GeneralResults = props => {
                   </div>
                 </ResourceCard>
               ) : (
-                <ResourceCard>
-                  <h1>I'm filler for now</h1>
-                </ResourceCard>
+                <ResourceFillSmall>
+                  <div className="img-div">
+                    <img src={smallresourcefill} alt="" />
+                  </div>
+                </ResourceFillSmall>
               )}
 
               {/* Articles/External Articles Check */}
@@ -163,7 +174,7 @@ const GeneralResults = props => {
                     <h1>{resourceArticles[0].title}</h1>
                   </div>
 
-                  {/* If article has a link you know it's an external article */}
+                  {/* If article has a link you know it's an external article and therefore uses a tag not Link component*/}
                   <div className="link-div">
                     {resourceArticles[0].link ? (
                       <a
@@ -191,9 +202,10 @@ const GeneralResults = props => {
                   </div>
                 </ResourceCard>
               ) : (
-                <ResourceCard>
-                  <h1>I'm filler for now</h1>
-                </ResourceCard>
+                <ResourceFillLarge>
+                  <div className="circle"></div>
+                  <img src={coolimage} alt="" />
+                </ResourceFillLarge>
               )}
 
               {/* Sources Check */}
@@ -218,9 +230,11 @@ const GeneralResults = props => {
                   </div>
                 </ResourceCard>
               ) : (
-                <ResourceCard>
-                  <h1>I'm filler for now</h1>
-                </ResourceCard>
+                <ResourceFillSmall>
+                  <div className="img-div">
+                    <img src={smallresourcefill} alt="" />
+                  </div>
+                </ResourceFillSmall>
               )}
             </ResourceGrid>
           ) : null}
