@@ -162,7 +162,7 @@ const MyProfile = () => {
               <DidactProfileButton
                 type="submit"
                 onClick={toggleEdit}
-                style={{ margin: "2% 70% 2% 0%" }}
+                style={{ margin: "12% 70% 2% 0%" }}
               >
                 Edit My Profile
               </DidactProfileButton>
