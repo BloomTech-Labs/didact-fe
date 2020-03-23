@@ -99,7 +99,6 @@ const MyProfile = () => {
 
   const handleImage = e => {
     setChanges({ ...changes, image: e.target.files[0] });
-    console.log("THIS IS THE CHOSEN IMAGE HANDLEIMAGE", changes.image);
   };
 
   //EditUser handleSubmit
@@ -109,9 +108,6 @@ const MyProfile = () => {
     const formData = new FormData();
     formData.append("image", changes.image);
     dispatch(editMyPic(id, formData));
-    // .then(() => {
-    //   props.history.push("/users");
-    // });
   };
 
   return (
