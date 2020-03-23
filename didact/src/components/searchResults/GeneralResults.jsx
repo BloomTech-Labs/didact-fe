@@ -174,7 +174,7 @@ const GeneralResults = props => {
                     <h1>{resourceArticles[0].title}</h1>
                   </div>
 
-                  {/* If article has a link you know it's an external article */}
+                  {/* If article has a link you know it's an external article and therefore uses a tag not Link component*/}
                   <div className="link-div">
                     {resourceArticles[0].link ? (
                       <a
