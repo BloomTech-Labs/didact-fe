@@ -162,11 +162,12 @@ const MyProfile = () => {
               <DidactProfileButton
                 type="submit"
                 onClick={toggleEdit}
-                style={{ margin: "12% 70% 2% 0%" }}
+                style={{ margin: "0% 0% 100% 0%", position: "absolute" }}
               >
                 Edit My Profile
               </DidactProfileButton>
             </div>
+
             <DiscordLinkDiv>
               <a href="https://discord.io/didact" target="_blank">
                 <img src={discordLogo} alt="discord logo" />
