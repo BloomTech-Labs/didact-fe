@@ -60,7 +60,7 @@ const MyProfile = () => {
     : null;
 
   const [changes, setChanges] = useState({
-    image: image,
+    image: myProfile.image,
     bio: "",
     facebookLink: "",
     githubLink: "",
@@ -316,6 +316,15 @@ const MyProfile = () => {
           </div>
         ) : (
           <EditProfileDiv style={{ display: "flex", flexDirection: "column" }}>
+            <img
+              src={image}
+              style={{
+                height: "120px",
+                borderRadius: "50%",
+                margin: "2% 70% 0 0%"
+              }}
+            ></img>
+
             <form onSubmit={handleImgSubmit} className="imgForm">
               <div>
                 <label>Image</label>

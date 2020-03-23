@@ -14,6 +14,7 @@ import {
 } from "../actions";
 
 const initialState = {
+  myProfile: {},
   myPIC: {},
   isLoading: false,
   error: ""
