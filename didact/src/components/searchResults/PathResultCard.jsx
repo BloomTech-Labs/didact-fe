@@ -17,7 +17,6 @@ const PathResultCard = props => {
     dispatch(joinLearningPath(id, props.history, order));
     Mixpanel.track("Path Result Joined");
   };
-  console.log(path);
   return (
     <PathCard>
       {joined ? <h3>Joined</h3> : <h3>Join</h3>}
@@ -32,7 +31,15 @@ const PathResultCard = props => {
           <span>Classes</span>
           <span>Items</span>
         </div>
-        <Link to={`/learning-paths/${path.id}`}>
+        <Link
+          to={{
+            pathname: `/learning-paths/${path.id}`,
+            //passing state through the location object allows us to
+            //reference it later in the route, in this case to
+            //use a mixpanel.track() to see if user accessed route through search results.
+            state: { queried: true }
+          }}
+        >
           View Path
           <ArrowRightAltRoundedIcon
             style={{

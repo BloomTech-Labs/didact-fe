@@ -7,11 +7,18 @@ import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 import { ToolWrapper } from "./toolStyles";
 import slack from "../../images/slack.png";
 import ArrowRightAltRoundedIcon from "@material-ui/icons/ArrowRightAltRounded";
+import { Mixpanel } from "../../utils/mixpanel";
 const Tool = props => {
   const tool = props.tool;
   const [expanded, setExpanded] = useState(false);
   const state = useSelector(state => state);
   const user = state.onboardingReducer.user;
+
+  const handleTrack = () => {
+    if (props.queried) {
+      Mixpanel.track("Queried Tool Accessed");
+    }
+  };
 
   const handleExpand = () => {
     setExpanded(!expanded);
@@ -67,6 +74,7 @@ const Tool = props => {
             {tool.description && <p>{tool.description}</p>}
             {tool.link && (
               <a
+                onClick={handleTrack}
                 target="_blank"
                 className="link-anchor"
                 rel="noopener noreferrer"

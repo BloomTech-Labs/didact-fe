@@ -3,14 +3,20 @@ import Card from "@material-ui/core/Card";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { ExternalArticleWrapper } from "./articleStyles";
-import { HeaderStyled } from "./resourceStyles";
 import ArrowRightAltRoundedIcon from "@material-ui/icons/ArrowRightAltRounded";
+import { Mixpanel } from "../../utils/mixpanel";
 const ArticleBrief = props => {
   const article = props.article;
   const user = useSelector(state => state.onboardingReducer.user);
   const description = article.description.slice(0, 75);
   const title =
     article.title.length > 35 ? article.title.slice(0, 35) : article.title;
+
+  const handleTrack = () => {
+    if (props.queried) {
+      Mixpanel.track("Queried External Article Accessed");
+    }
+  };
 
   return (
     <ExternalArticleWrapper className="external-article-brief">
@@ -26,6 +32,7 @@ const ArticleBrief = props => {
       <p>{description}...</p>
       <div className="link-div">
         <a
+          onClick={handleTrack}
           target="_blank"
           className="link-anchor"
           rel="noopener noreferrer"

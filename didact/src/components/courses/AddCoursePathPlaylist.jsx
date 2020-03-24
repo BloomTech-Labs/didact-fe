@@ -18,11 +18,9 @@ import { makeStyles } from "@material-ui/core";
 const useStyles = makeStyles(theme => ({
   addCourse: {
     background: "none",
-    border: "black",
-    height: "100%",
+    border: "#242424",
+
     display: "flex",
-    justifyContent: "flex-end",
-    margin: "-21px -4px 15px 0",
     position: "relative",
     zIndex: 12
   }
@@ -61,8 +59,7 @@ const AddCoursePathPlaylist = ({ props, course }) => {
       <div
         style={{
           display: "flex",
-          justifyContent: "flex-end",
-          paddingTop: "20px"
+          justifyContent: "flex-end"
         }}
       >
         <button className={classes.addCourse} onClick={handleClick}>

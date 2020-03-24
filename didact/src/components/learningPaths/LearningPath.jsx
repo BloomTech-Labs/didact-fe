@@ -18,6 +18,7 @@ import { makeStyles } from "@material-ui/core/styles";
 //Material UI Icons
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import ArrowRightAltRoundedIcon from "@material-ui/icons/ArrowRightAltRounded";
+import { Mixpanel } from "../../utils/mixpanel.js";
 
 const useStyles = makeStyles(theme => ({
   span: {
@@ -43,13 +44,15 @@ const LearningPath = ({ id, props }) => {
   const isLoadingLearningPathToggle = state.learningPathReducer.isLoading;
   const user = state.onboardingReducer.user;
 
-  useEffect(
-    _ => {
-      dispatch(getLearningPath(id));
-      dispatch(findForUserId(id));
-    },
-    [dispatch, id]
-  );
+  useEffect(() => {
+    console.log(props);
+    if (props.location.state && props.location.state.queried) {
+      console.log("This learning path is tracked.");
+      Mixpanel.track("Queried Path Accessed");
+    }
+    dispatch(getLearningPath(id));
+    dispatch(findForUserId(id));
+  }, [dispatch, id]);
   useEffect(() => {
     if (learningPathCompletion.pathItems) {
       setCompletionItemsCourses(

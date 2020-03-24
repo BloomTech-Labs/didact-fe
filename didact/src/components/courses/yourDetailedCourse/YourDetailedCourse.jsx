@@ -50,11 +50,10 @@ const YourDetailedCourse = props => {
   const [lessonExpanded, setLessonExpanded] = useState(false);
 
   useEffect(() => {
-    if (props.tracked) {
-      console.log("if trigger");
+    //This is checking for the state "tracked" that we pass through our links
+    //on CourseResultsCard.jsx and PathResultCard.jsx under searchResults folder.
+    if (props.location && props.location.state.tracked) {
       Mixpanel.track("Course Result Selected");
-    } else {
-      console.log("else");
     }
     dispatch(getYourDetailedCourse(props.id));
   }, [dispatch, props.id]);
