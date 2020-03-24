@@ -7,7 +7,21 @@ import { getUserById, editUser } from "../../store/actions";
 import { TrashCanEdit, DidactButton } from "../dashboard/ButtonStyles";
 import DeleteModal from "../courses/DeleteModal";
 import Card from "@material-ui/core/Card";
+import TextField from "@material-ui/core/TextField";
+import InputLabel from "@material-ui/core/InputLabel";
+import Input from "@material-ui/core/Input";
+import FormControl from "@material-ui/core/FormControl";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import RadioGroup from "@material-ui/core/RadioGroup";
+
 import { useSelector, useDispatch } from "react-redux";
+
+// export default function RadioButtons() {
+//     const [selectedValue, setSelectedValue] = React.useState('a');
+
+//     const handleRadioChange = event => {
+//       setSelectedValue(event.target.value);
+//     };
 
 const EditUser = ({ props, id }) => {
   const dispatch = useDispatch();
@@ -61,14 +75,29 @@ const EditUser = ({ props, id }) => {
   return (
     <Card>
       <form onSubmit={handleSubmit}>
-        <DidactField>
+        {/* <DidactField>
           <DidactLabel>Email</DidactLabel>
           <DidactInput
             value={changes.email}
             onChange={handleChange}
             name="email"
           />
-        </DidactField>
+        </DidactField> */}
+        <TextField
+          id="filled-basic"
+          label="Email"
+          variant="filled"
+          value={changes.email}
+          onChange={handleChange}
+          name="email"
+        >
+          <InputLabel htmlFor="email">Email address</InputLabel>
+          <Input id="email" aria-describedby="my-helper-text">
+            Point here
+          </Input>{" "}
+          />
+        </TextField>
+
         <DidactField
           style={user.owner !== true ? { display: "none" } : { display: "" }}
         >
@@ -79,14 +108,30 @@ const EditUser = ({ props, id }) => {
             name="owner"
           />
         </DidactField>
-        <DidactField>
+        {/* <DidactField>
           <DidactLabel>Admin</DidactLabel>
           <DidactInput
             value={changes.admin}
             onChange={handleChange}
             name="admin"
           />
-        </DidactField>
+        </DidactField> */}
+        {/* <RadioGroup
+          aria-label="gender"
+          name="gender1"
+          value={value}
+          onChange={handleChange}
+        >
+          <FormControlLabel value="female" control={<Radio />} label="Female" />
+          <FormControlLabel value="male" control={<Radio />} label="Male" />
+          <FormControlLabel value="other" control={<Radio />} label="Other" />
+          <FormControlLabel
+            value="disabled"
+            disabled
+            control={<Radio />}
+            label="(Disabled option)"
+          />
+        </RadioGroup> */}
         <DidactField>
           <DidactLabel>Moderator</DidactLabel>
           <DidactInput
