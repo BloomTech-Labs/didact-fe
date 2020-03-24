@@ -99,7 +99,6 @@ const MyProfile = () => {
 
   const handleImage = e => {
     setChanges({ ...changes, image: e.target.files[0] });
-    console.log("THIS IS THE CHOSEN IMAGE HANDLEIMAGE", changes.image);
   };
 
   //EditUser handleSubmit
@@ -109,9 +108,6 @@ const MyProfile = () => {
     const formData = new FormData();
     formData.append("image", changes.image);
     dispatch(editMyPic(id, formData));
-    // .then(() => {
-    //   props.history.push("/users");
-    // });
   };
 
   return (
@@ -180,11 +176,12 @@ const MyProfile = () => {
               <DidactProfileButton
                 type="submit"
                 onClick={toggleEdit}
-                style={{ margin: "12% 70% 2% 0%" }}
+                style={{ margin: "0% 70% 0% 0%", position: "relative" }}
               >
                 Edit My Profile
               </DidactProfileButton>
             </div>
+
             <DiscordLinkDiv>
               <a href="https://discord.io/didact" target="_blank">
                 <img src={discordLogo} alt="discord logo" />
