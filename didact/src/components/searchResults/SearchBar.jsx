@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import SearchIcon from "@material-ui/icons/Search";
 
+// ********************************************************
 // NOTE: This file is exported to "../mainPage/MainPage.jsx"
 
 const useStyles = makeStyles(theme => ({
@@ -103,8 +104,6 @@ const useStyles = makeStyles(theme => ({
     outline: "none",
     height: "30px",
     margin: "3.4% -19% 0% 0%",
-    // marginTop: "3.4%",
-    // marginLeft: "-49%",
     borderRadius: "7px",
     background: "transparent",
     fontFamily: "open-sans",
