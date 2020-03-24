@@ -169,7 +169,13 @@ const Course = ({ course, props, tracked }) => {
                     color: "#242424"
                   }}
                 >
-                  <h3 style={{ fontFamily: "Open Sans", color: "#242424" }}>
+                  <h3
+                    style={{
+                      fontFamily: "Open Sans",
+                      color: "#242424",
+                      fontSize: "2rem"
+                    }}
+                  >
                     {course.title.length > 35
                       ? `${course.title.substring(0, 35)}...`
                       : course.title}
@@ -275,7 +281,6 @@ const Course = ({ course, props, tracked }) => {
               }}
             />
           </Link>
-          )}
         </CardActions>
       </Card>
     </PopoverWrapper>

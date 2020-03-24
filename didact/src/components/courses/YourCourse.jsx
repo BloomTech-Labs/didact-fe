@@ -184,7 +184,13 @@ const YourCourse = ({ course, props, tracked }) => {
                     transition: `0.25s ease`
                   }}
                 >
-                  <h3 style={{ fontFamily: "ITC Grouch", color: "black" }}>
+                  <h3
+                    style={{
+                      fontFamily: "Open Sans",
+                      color: "#242424",
+                      fontSize: "2rem"
+                    }}
+                  >
                     {course.title.length > 35
                       ? `${course.title.substring(0, 35)}...`
                       : course.title}

@@ -19,8 +19,8 @@ const CourseResultCard = props => {
           <AddCoursePathPlaylist course={course} />
         </PopoverWrapper>
         <h1>
-          {course.title.length > 23
-            ? `${course.title.slice(0, 23)}..`
+          {course.title.length > 27
+            ? `${course.title.slice(0, 27)}..`
             : course.title}
         </h1>
         <Link
