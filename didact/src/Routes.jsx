@@ -5,16 +5,8 @@ import FormikRegisterForm from "./components/register/Register.jsx";
 import Auth from "./auth/Auth";
 import MainPage from "./components/mainPage/MainPage";
 import Landing from "./components/landing/Landing.jsx";
-import { useSelector } from "react-redux";
-const Routes = props => {
-  const articlesLoading = useSelector(
-    state => state.articlesReducer.isLoadingArticles
-  );
-  const toolsLoading = useSelector(state => state.toolsReducer.isLoadingTools);
-  const sourcesLoading = useSelector(
-    state => state.sourcesReducer.isLoadingSources
-  );
 
+const Routes = props => {
   return (
     <Switch>
       <Route path="/login" component={FormikLoginForm}></Route>

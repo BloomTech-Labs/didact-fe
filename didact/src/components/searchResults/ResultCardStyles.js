@@ -140,7 +140,7 @@ export const PathCard = styled.div`
 export const CourseCard = styled.div`
   background-color: #ffffff;
   border-radius: 7px;
-  padding: 20px 20px 10px 20px;
+  padding: 10px;
   color: #242424;
   display: grid;
   grid-template-columns: 45% 55%;
@@ -156,14 +156,16 @@ export const CourseCard = styled.div`
 
   .right-div {
     h1 {
+      margin: 0;
       font-size: 1.6rem;
-      height: 50%;
+      height: 60%;
     }
 
     a {
       font-weight: 600;
       display: flex;
       align-items: center;
+      justify-content: flex-end;
       color: #242424;
 
       &:visited {

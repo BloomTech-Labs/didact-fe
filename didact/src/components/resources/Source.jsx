@@ -5,6 +5,7 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 import sourceimg from "../../images/sourceimg.png";
 import { SourceWrapper } from "./sourceStyles";
+import { Mixpanel } from "../../utils/mixpanel";
 import ArrowRightAltRoundedIcon from "@material-ui/icons/ArrowRightAltRounded";
 const Source = props => {
   const state = useSelector(state => state);
@@ -14,6 +15,12 @@ const Source = props => {
 
   const handleExpand = () => {
     setExpanded(!expanded);
+  };
+
+  const handleTrack = () => {
+    if (props.queried) {
+      Mixpanel.track("Queried Tool Accessed");
+    }
   };
 
   return (
@@ -63,22 +70,21 @@ const Source = props => {
               overflow: "visible"
             }}
           >
-            {source.description && <p>{source.description}</p>}
-            {source.link && (
-              <a
-                target="_blank"
-                className="link-anchor"
-                rel="noopener noreferrer"
-                href={source.link}
-              >
-                <span>Visit Source</span>
-                <ArrowRightAltRoundedIcon
-                  style={{
-                    fontSize: "2em"
-                  }}
-                />
-              </a>
-            )}
+            <p>{source.description}</p>
+            <a
+              onClick={handleTrack}
+              target="_blank"
+              className="link-anchor"
+              rel="noopener noreferrer"
+              href={source.link}
+            >
+              <span>Visit Source</span>
+              <ArrowRightAltRoundedIcon
+                style={{
+                  fontSize: "2em"
+                }}
+              />
+            </a>
           </div>
         )}
       </div>

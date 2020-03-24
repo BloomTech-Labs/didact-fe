@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getArticleById } from "../../store/actions";
 import { FullArticleStyled } from "./articleStyles";
 import { HeaderStyled } from "./resourceStyles";
+import { Mixpanel } from "../../utils/mixpanel";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import articlefillerimg from "../../images/articlefillerimg.png";
 import { Link } from "react-router-dom";
@@ -14,6 +15,9 @@ const ArticleFull = ({ props, id }) => {
 
   useEffect(() => {
     dispatch(getArticleById(id));
+    if (props.queried) {
+      Mixpanel.track("Queried Article Accessed.");
+    }
   }, [dispatch, id]);
 
   return (

@@ -19,7 +19,6 @@ const EditTool = ({ props, id }) => {
   const dispatch = useDispatch();
   const tool = useSelector(state => state.toolsReducer.tool);
   const loading = useSelector(state => state.toolsReducer.isLoadingTools);
-  const editSuccess = useSelector(state => state.toolsReducer.editSuccess);
   const [openModal, setOpenModal] = useState(false);
   const [changes, setChanges] = useState({
     image: "",

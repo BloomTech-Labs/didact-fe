@@ -34,7 +34,6 @@ export const getTools = results => (dispatch, getState) => {
         : null
     )
     .then(result => {
-      console.log(result);
       dispatch({ type: TOOL_DATA_SUCCESS, payload: result.data });
     })
     .catch(error => {

@@ -36,7 +36,7 @@ const ResourceResults = () => {
       {tools.length > 0 && (
         <ResourceGrid>
           {tools.map(tool => (
-            <Tool tool={tool} key={tool.id} />
+            <Tool tool={tool} key={tool.id} queried={true} />
           ))}
         </ResourceGrid>
       )}
@@ -50,7 +50,7 @@ const ResourceResults = () => {
       {sources.length > 0 && (
         <ResourceGrid>
           {sources.map(source => (
-            <Source source={source} key={source.id} />
+            <Source source={source} key={source.id} queried={true} />
           ))}
         </ResourceGrid>
       )}
@@ -66,9 +66,17 @@ const ResourceResults = () => {
         <ArticleGrid>
           {articles.map(article =>
             article.link ? (
-              <ExternalArticleBrief article={article} key={article.title} />
+              <ExternalArticleBrief
+                article={article}
+                key={article.title}
+                queried={true}
+              />
             ) : (
-              <ArticleBrief article={article} key={article.title} />
+              <ArticleBrief
+                article={article}
+                key={article.title}
+                queried={true}
+              />
             )
           )}
         </ArticleGrid>

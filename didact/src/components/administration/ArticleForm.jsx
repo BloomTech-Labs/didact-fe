@@ -14,7 +14,6 @@ import { DidactButton } from "../dashboard/ButtonStyles";
 import { ResourceForm } from "./AdministrationStyles";
 
 const ArticleForm = ({ props }) => {
-  const user = useSelector(state => state.onboardingReducer.user);
   const dispatch = useDispatch();
   const freshDate = new Date();
   const [article, setArticle] = useState({

@@ -19,13 +19,16 @@ const CourseResultCard = props => {
           <AddCoursePathPlaylist course={course} />
         </PopoverWrapper>
         <h1>
-          {course.title.length > 23
-            ? `${course.title.slice(0, 23)}..`
+          {course.title.length > 27
+            ? `${course.title.slice(0, 27)}..`
             : course.title}
         </h1>
         <Link
           to={{
             pathname: `/courses/all/${course.id}`,
+            //passing state through the location object allows us to
+            //reference it later in the route, in this case to
+            //use a mixpanel.track() to see if user accessed route through search results.
             state: { tracked: true }
           }}
         >

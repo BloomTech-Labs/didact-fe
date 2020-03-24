@@ -42,12 +42,10 @@ const DetailedCourse = props => {
 
   useEffect(() => {
     dispatch(getDetailedCourse(props.id));
-    if (props.tracked) {
-      console.log("yarg");
+    //This is checking for the state "tracked" that we pass through our links
+    //on CourseResultsCard.jsx and PathResultCard.jsx under searchResults folder.
+    if (props.location && props.location.state.tracked) {
       Mixpanel.track("Course Result Clicked");
-    } else {
-      console.log("arg");
-      return;
     }
   }, [dispatch, props.id]);
 
