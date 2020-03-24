@@ -8,7 +8,7 @@ import {
   postCourseToPath
 } from "../../store/actions/index";
 
-import { PopoverWrapper } from "./CourseStyles";
+import { BasicCourseCard } from "./CourseStyles";
 
 import { makeStyles } from "@material-ui/core/styles";
 import ArrowRightAltRoundedIcon from "@material-ui/icons/ArrowRightAltRounded";
@@ -51,19 +51,6 @@ const useStyles = makeStyles(theme => ({
     color: "black",
     position: "relative"
   },
-
-  cardDashboard: {
-    maxWidth: 540,
-    width: "100%",
-    margin: "40px 0 40px 0",
-    borderRadius: "7px",
-    boxShadow: "none",
-    backgroundColor: "#ffffff",
-    color: "black",
-    position: "relative",
-    paddingTop: "20px"
-  },
-
   descriptionDiv: {
     width: "100%",
     display: "flex",
@@ -128,162 +115,105 @@ const Course = ({ course, props, tracked }) => {
   };
 
   return (
-    <PopoverWrapper>
-      <Card
-        className={
-          props &&
-          (props.match.url.includes("results") || props.match.url === "/")
-            ? classes.cardDashboard
-            : classes.card
-        }
+    <BasicCourseCard className={classes.card}>
+      <div
+        aria-controls="panel1a-content"
+        id="panel1a-header"
+        style={{
+          fontSize: "18px",
+          textAlign: "left",
+          transition: `0.25s ease`
+        }}
       >
-        <CardContent>
+        <div className="course-header">
+          <h3>
+            {course.title.length > 35
+              ? `${course.title.substring(0, 35)}...`
+              : course.title}
+          </h3>
           <AddCoursePathPlaylist course={course} />
-          <CardActions disableSpacing>
-            <div
-              style={{
-                marginTop: "-60px",
-                backgroundColor: "#ffffff",
-                border: "none",
-                boxShadow: "none",
-                color: "black"
-              }}
-            >
+        </div>
+        <div
+          onClick={handleExpandClick}
+          style={{
+            textAlign: "left",
+            width: "100%",
+            fontSize: "1.2rem",
+            marginTop: "10px",
+            color: "black"
+          }}
+        >
+          <span>{course.foreign_instructors}</span>
+          {course.description && course.description !== null ? (
+            !expanded ? (
               <div
-                onClick={handleExpandClick}
-                aria-controls="panel1a-content"
-                id="panel1a-header"
                 style={{
-                  fontSize: "18px",
-                  textAlign: "left",
-                  paddingLeft: "6px",
-                  transition: `0.25s ease`
+                  display: "flex",
+                  alignItems: "baseline",
+                  justifyContent: "space-between",
+                  maxHeight: "35px",
+                  transition: `max-height 1s ease`,
+                  overflow: "hidden"
                 }}
               >
-                <div
-                  className="courseTitle"
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    transition: `0.25s ease`,
-                    color: "#242424"
-                  }}
-                >
-                  <h3
-                    style={{
-                      fontFamily: "Open Sans",
-                      color: "#242424",
-                      fontSize: "2rem"
-                    }}
-                  >
-                    {course.title.length > 35
-                      ? `${course.title.substring(0, 35)}...`
-                      : course.title}
-                  </h3>
-                  <div
-                    style={{
-                      textAlign: "left",
-                      width: "100%",
-                      fontSize: "1.2rem",
-                      marginTop: "10px",
-                      paddingLeft: "2px",
-                      color: "black"
-                    }}
-                  >
-                    <span>{course.foreign_instructors}</span>
-                    {!expanded ? (
-                      <ExpandMoreIcon
-                        className={
-                          props && props.match.url === "/"
-                            ? classes.dropArrowDashboard
-                            : classes.dropArrow
-                        }
-                      />
-                    ) : (
-                      <ExpandLessIcon
-                        className={
-                          props && props.match.url === "/"
-                            ? classes.dropArrowDashboard
-                            : classes.dropArrow
-                        }
-                      />
-                    )}
-                    {course.description && course.description !== null ? (
-                      !expanded ? (
-                        <div
-                          style={{
-                            display: "flex",
-                            alignItems: "baseline",
-                            justifyContent: "space-between",
-                            maxHeight: "35px",
-                            transition: `max-height 1s ease`,
-                            overflow: "hidden"
-                          }}
-                        >
-                          {course.description && (
-                            <p style={{ paddingRight: "42px" }}>
-                              {course.description}
-                            </p>
-                          )}
-                        </div>
-                      ) : (
-                        <div
-                          style={{
-                            display: "flex",
-                            alignItems: "baseline",
-                            justifyContent: "space-between",
-                            maxHeight: "1000px",
-                            transition: `max-height 1s ease`,
-                            overflow: "visible"
-                          }}
-                        >
-                          {course.description && (
-                            <p style={{ paddingRight: "42px" }}>
-                              {course.description}
-                            </p>
-                          )}
-                        </div>
-                      )
-                    ) : null}
-                  </div>
-                </div>
+                {course.description && (
+                  <p style={{ paddingRight: "42px" }}>
+                    {course.description}{" "}
+                    <ExpandMoreIcon className={classes.dropArrow} />
+                  </p>
+                )}
               </div>
-            </div>
-          </CardActions>
-          <p>{course.topic ? `Topic: ${course.topic}` : null}</p>
-        </CardContent>
-        <CardActions
-          className={classes.buttonDiv}
-          style={{ margin: "0 30px 20px 0" }}
+            ) : (
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "baseline",
+                  justifyContent: "space-between",
+                  maxHeight: "1000px",
+                  transition: `max-height 1s ease`,
+                  overflow: "visible"
+                }}
+              >
+                {course.description && (
+                  <p style={{ paddingRight: "42px" }}>
+                    {course.description}{" "}
+                    <ExpandLessIcon className={classes.dropArrow} />
+                  </p>
+                )}
+              </div>
+            )
+          ) : null}
+        </div>
+      </div>
+
+      <p>{course.topic ? `Topic: ${course.topic}` : null}</p>
+
+      <Link
+        to={`/courses/all/${course.id}`}
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          color: "#242424",
+          width: "120px"
+        }}
+      >
+        <span
+          style={{
+            fontWeight: "bold",
+            marginTop: "2%",
+            fontFamily: "Open Sans",
+            fontSize: "14px"
+          }}
         >
-          <Link
-            to={`/courses/all/${course.id}`}
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              color: "#242424",
-              width: "120px"
-            }}
-          >
-            <span
-              style={{
-                fontWeight: "bold",
-                marginTop: "2%",
-                fontFamily: "Open Sans",
-                fontSize: "14px"
-              }}
-            >
-              View Item
-            </span>
-            <ArrowRightAltRoundedIcon
-              style={{
-                fontSize: "2em"
-              }}
-            />
-          </Link>
-        </CardActions>
-      </Card>
-    </PopoverWrapper>
+          View Item
+        </span>
+        <ArrowRightAltRoundedIcon
+          style={{
+            fontSize: "2em"
+          }}
+        />
+      </Link>
+    </BasicCourseCard>
   );
 };
 

@@ -7,7 +7,17 @@ export const DetailedCourseWrapper = styled.div`
   .courseWrapper {
     width: 100%;
     background-color: #ffffff;
-    color: black;
+    color: #242424;
+
+    .course-header {
+      backgroundColor: "#ffffff",
+      display: "flex",
+      alignItems: "center",
+      padding: "0px",
+      margin: "0px",
+      color: "black",
+      justifyContent: "space-between"
+    }
 
     .courseFooter {
       margin: 0;

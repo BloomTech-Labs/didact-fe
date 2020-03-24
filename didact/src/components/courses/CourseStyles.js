@@ -1,5 +1,24 @@
 import styled from "styled-components";
 
+export const BasicCourseCard = styled.div`
+  background-color: #ffffff;
+  border-radius: 7px;
+  padding: 20px;
+
+  .course-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h3 {
+      fontfamily: "Open Sans";
+      color: "#242424";
+      fontsize: "2rem";
+      margin: 5px 0;
+    }
+  }
+`;
+
 export const AddCourseToPath = styled.div`
   top: 153px;
   left: 694px;
@@ -66,17 +85,11 @@ export const AddCourseToPath = styled.div`
 `;
 
 export const PopoverWrapper = styled.div`
-  margin: "auto";
+  margin: "0 auto";
 
   button {
     &:focus {
       outline: none;
     }
-  }
-
-  .courseTitle {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
   }
 `;

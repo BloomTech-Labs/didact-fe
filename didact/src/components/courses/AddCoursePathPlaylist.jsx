@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import {
-  getYourLearningPathsOwned,
-  postCourseToPath
-} from "../../store/actions/index";
+import { postCourseToPath } from "../../store/actions/index";
 
 import { DidactButton } from "../dashboard/ButtonStyles";
 
@@ -19,10 +16,7 @@ const useStyles = makeStyles(theme => ({
   addCourse: {
     background: "none",
     border: "#242424",
-
-    display: "flex",
-    position: "relative",
-    zIndex: 12
+    display: "flex"
   }
 }));
 
@@ -56,12 +50,7 @@ const AddCoursePathPlaylist = ({ props, course }) => {
 
   return (
     <PopoverWrapper>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "flex-end"
-        }}
-      >
+      <div>
         <button className={classes.addCourse} onClick={handleClick}>
           <img src={playlistAdd} alt="Add Course" />
         </button>

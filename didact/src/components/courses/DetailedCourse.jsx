@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
+import AddCoursePathPlaylist from "./AddCoursePathPlaylist";
+
 import { DetailedCourseWrapper } from "./DetailedCourseStyles";
 import { DidactButton, TagStyles } from "../dashboard/ButtonStyles";
 
@@ -89,18 +91,9 @@ const DetailedCourse = props => {
         </div>
         <DetailedCourseWrapper>
           <div className="courseWrapper">
-            <div
-              style={{
-                backgroundColor: "#ffffff",
-                display: "flex",
-                alignItems: "center",
-                padding: "0px",
-                margin: "0px",
-                color: "black",
-                justifyContent: "space-between"
-              }}
-            >
+            <div className="course-header">
               <h1>{course.title}</h1>
+              <AddCoursePathPlaylist course={course} />
             </div>
             <p>{course.description}</p>
             <p>{course.topic ? `Topic: ${course.topic}` : null}</p>
@@ -290,9 +283,7 @@ const DetailedCourse = props => {
         <div
           style={{
             display: "flex",
-            justifyContent: "space-between",
-            margin: "-10px 10px 10px 10px",
-            borderTop: "1px solid black"
+            justifyContent: "space-between"
           }}
         >
           <p

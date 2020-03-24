@@ -155,6 +155,10 @@ export const CourseCard = styled.div`
   }
 
   .right-div {
+    div {
+      display: flex;
+      justify-content: flex-end;
+    }
     h1 {
       margin: 0;
       font-size: 1.6rem;
