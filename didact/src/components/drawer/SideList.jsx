@@ -12,21 +12,12 @@ import Collapse from "@material-ui/core/Collapse";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import FolderOpenIcon from "@material-ui/icons/FolderOpen";
-import LinearScaleIcon from "@material-ui/icons/LinearScale";
-import BuildIcon from "@material-ui/icons/Build";
-import LibraryBooksIcon from "@material-ui/icons/LibraryBooks";
-import SchoolIcon from "@material-ui/icons/School";
-import AllOutIcon from "@material-ui/icons/AllOut";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
-import BookIcon from "@material-ui/icons/Book";
-import CreateIcon from "@material-ui/icons/Create";
 import SettingsIcon from "@material-ui/icons/Settings";
 import { SideListWrapper } from "./SideListStyles";
-import SideListClosed from "./SideListClosed";
 
-// import { useSelector, useDispatch } from "react-redux";
-// const state = useSelector(state => state);
-// const owner = state.onboardingReducer.user.owner
+//Components
+import SideListClosed from "./SideListClosed";
 
 const SideList = ({ props }) => {
   const drawerStyles = makeStyles(theme => ({
@@ -131,16 +122,6 @@ const SideList = ({ props }) => {
     bottomLinkBottom: {
       marginRight: "75%",
       fontWeight: "bold"
-    },
-
-    nestedSmall: {
-      paddingLeft: theme.spacing(4),
-      margin: "0 0 0 -5%",
-      textDecoration: "none",
-      color: "#242424"
-    },
-    listItemSmall: {
-      display: "flex"
     }
   }));
 
