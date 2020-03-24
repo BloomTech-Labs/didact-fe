@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
+import { Mixpanel } from "../../utils/mixpanel";
 import {
   TitleH2,
   PathGrid,
@@ -51,6 +52,11 @@ const GeneralResults = props => {
     sources.length +
     articles.length +
     extArticles.length;
+
+  const handleTrack = () => {
+    console.log("Resource tracked.");
+    Mixpanel.track("Queried Resource Accessed");
+  };
 
   return (
     <>
@@ -146,6 +152,7 @@ const GeneralResults = props => {
                   </div>
                   <div className="link-div">
                     <a
+                      onClick={handleTrack}
                       href={tools[0].link}
                       target="_blank"
                       rel="noopener noreferrer"
@@ -178,6 +185,7 @@ const GeneralResults = props => {
                   <div className="link-div">
                     {resourceArticles[0].link ? (
                       <a
+                        onClick={handleTrack}
                         href={resourceArticles[0].link}
                         target="_blank"
                         rel="noopener noreferrer"
@@ -190,7 +198,10 @@ const GeneralResults = props => {
                         />
                       </a>
                     ) : (
-                      <Link to={`/articles/${resourceArticles[0].id}`}>
+                      <Link
+                        onClick={handleTrack}
+                        to={`/articles/${resourceArticles[0].id}`}
+                      >
                         View Article
                         <ArrowRightAltRoundedIcon
                           style={{
@@ -216,6 +227,7 @@ const GeneralResults = props => {
                   </div>
                   <div className="link-div">
                     <a
+                      onClick={handleTrack}
                       href={sources[0].link}
                       target="_blank"
                       rel="noopener noreferrer"
