@@ -15,7 +15,6 @@ const UsersProfiles = () => {
     dispatch(getUsersProfiles());
   }, [dispatch]);
 
-  console.log("USERLISTXXXXXXX", usersList);
   return (
     <PersonWrapper
       className="nameIt"

@@ -13,7 +13,10 @@ import {
   EDIT_TOOL_FAIL,
   DELETE_TOOL_START,
   DELETE_TOOL_SUCCESS,
-  DELETE_TOOL_FAIL
+  DELETE_TOOL_FAIL,
+  EDIT_TOOL_IMAGE_START,
+  EDIT_TOOL_IMAGE_SUCCESS,
+  EDIT_TOOL_IMAGE_FAIL
 } from "../actions";
 
 const initialState = {
@@ -114,6 +117,25 @@ export const toolsReducer = (state = initialState, action) => {
         ...state,
         error: action.payload,
         deleting: false
+      };
+    case EDIT_TOOL_IMAGE_START:
+      return {
+        ...state,
+        updating: true
+      };
+    case EDIT_TOOL_IMAGE_SUCCESS:
+      return {
+        ...state,
+        tools: state.tools.map(tool =>
+          tool.id === action.payload.id ? action.payload.changes : tool.image
+        ),
+        updating: false
+      };
+    case EDIT_TOOL_IMAGE_FAIL:
+      return {
+        ...state,
+        error: action.payload,
+        updating: false
       };
     default:
       return state;

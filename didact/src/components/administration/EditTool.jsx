@@ -2,7 +2,12 @@ import React, { useState, useEffect } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 
-import { editTool, deleteTool, getToolById } from "../../store/actions";
+import {
+  editTool,
+  deleteTool,
+  getToolById,
+  editToolImage
+} from "../../store/actions";
 
 import { DidactField, DidactInput, DidactLabel } from "../dashboard/FormStyles";
 import DeleteModal from "../courses/DeleteModal";
@@ -16,6 +21,7 @@ const EditTool = ({ props, id }) => {
   const loading = useSelector(state => state.toolsReducer.isLoadingTools);
   const [openModal, setOpenModal] = useState(false);
   const [changes, setChanges] = useState({
+    image: "",
     name: "",
     description: "",
     link: ""
@@ -29,6 +35,7 @@ const EditTool = ({ props, id }) => {
     loading === false &&
       tool &&
       setChanges({
+        image: "",
         name: tool.name,
         description: tool.description,
         link: tool.link
@@ -37,6 +44,20 @@ const EditTool = ({ props, id }) => {
 
   const handleChange = e => {
     setChanges({ ...changes, [e.target.name]: e.target.value });
+  };
+
+  const handleImage = e => {
+    setChanges({ ...changes, image: e.target.files[0] });
+  };
+
+  const handleImgSubmit = e => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("image", changes.image);
+    dispatch(editToolImage(id, formData)).then(() => {
+      props.history.push("/tools");
+    });
+    alert("IMAGE SUCCESSFULLY UPLOADED");
   };
 
   const handleModalOpen = e => {
@@ -74,6 +95,14 @@ const EditTool = ({ props, id }) => {
           handleDelete={handleDelete}
         />
       ) : null}
+      <form onSubmit={handleImgSubmit} className="imgForm">
+        <div>
+          <label>Image</label>
+          <input type="file" onChange={handleImage} name="image" />
+        </div>
+        <DidactButton>submit image</DidactButton>
+      </form>
+      <form onSubmit={handleSubmit}></form>
       <form onSubmit={handleSubmit}>
         <DidactField>
           <DidactLabel>Tool Name</DidactLabel>

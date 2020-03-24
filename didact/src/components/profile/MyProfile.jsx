@@ -157,6 +157,7 @@ const MyProfile = () => {
               src={image}
               style={{
                 height: "120px",
+                width: "120px",
                 borderRadius: "50%",
                 margin: "2% 70% 0 0%"
               }}
@@ -317,6 +318,7 @@ const MyProfile = () => {
               src={image}
               style={{
                 height: "120px",
+                width: "120px",
                 borderRadius: "50%",
                 margin: "2% 70% 0 0%"
               }}

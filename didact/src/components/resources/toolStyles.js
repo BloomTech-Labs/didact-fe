@@ -1,14 +1,14 @@
 import styled from "styled-components";
 
 export const ToolWrapper = styled.div`
-background-color: #ffffff;
-border-radius: 7px;
-padding: 20px 20px 10px 20px;
-color: #242424;
-.no-edit {
-  display: flex;
-  justify-content: start;
-}
+  background-color: #ffffff;
+  border-radius: 7px;
+  padding: 20px 20px 10px 20px;
+  color: #242424;
+  .no-edit {
+    display: flex;
+    justify-content: start;
+  }
   .tool {
     display: grid;
     grid-template-rows: 22px 195px 15px;
@@ -83,8 +83,8 @@ color: #242424;
     justify-content: center;
     div {
       img {
-        width: 100%;
-        height: 100%;
+        width: 70%;
+        height: 70%;
         object-fit: contain;
       }
     }
