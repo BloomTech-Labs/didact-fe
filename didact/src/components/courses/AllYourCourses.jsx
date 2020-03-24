@@ -4,14 +4,13 @@ import {
   getYourLearningPaths
 } from "../../store/actions/index.js";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { ButtonStyles } from "../learningPaths/YourLearningPathsStyles";
-import YourCourse from "./YourCourse";
+import Course from "./Course";
 
 //Material UI Imports
 import { makeStyles } from "@material-ui/core/styles";
 //Material UI Icons
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
+import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 const useStyles = makeStyles(theme => ({
@@ -34,7 +33,7 @@ const useStyles = makeStyles(theme => ({
     fontSize: "3.5rem",
     marginRight: "5px",
     marginLeft: "10px",
-    color: "black"
+    color: "#5b5b5b"
   },
 
   expand: {
@@ -49,12 +48,17 @@ const useStyles = makeStyles(theme => ({
   },
   root: {
     display: "flex",
-    flexDirection: "row",
-    marginTop: "-40px"
+    flexDirection: "row"
   },
   rootTablet: {
     display: "flex",
     flexDirection: "column"
+  },
+  span: {
+    cursor: "pointer",
+    "&:hover": {
+      color: "black"
+    }
   }
 }));
 
@@ -66,11 +70,15 @@ function AllCourses(props) {
 
   useEffect(() => {
     dispatch(getYourCourses());
-  }, [dispatch]);
+  }, []);
 
   useEffect(() => {
     dispatch(getYourLearningPaths());
   }, [dispatch]);
+
+  const handleBack = () => {
+    props.props.history.push("/courses/yours");
+  };
 
   return (
     <div>
@@ -88,9 +96,24 @@ function AllCourses(props) {
             alignItems: "center"
           }}
         >
-          <span>Courses</span>
+          <span className={classes.span} onClick={() => handleBack()}>
+            Courses
+          </span>
           <ChevronRightIcon style={{ fontSize: "1.6rem" }} />
-          <span>Overview</span>
+          <span>All</span>
+        </p>
+        <p
+          className={classes.span}
+          style={{
+            fontWeight: "bold",
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center"
+          }}
+          onClick={handleBack}
+        >
+          <ChevronLeftIcon style={{ fontSize: "1.6rem" }} />
+          Your Courses
         </p>
       </div>
       <h2
@@ -103,11 +126,10 @@ function AllCourses(props) {
         Your Courses
       </h2>
       <div className={tabletSize ? classes.rootTablet : classes.root}>
-        {tabletSize ? <div className={classes.addButtonDivTablet}></div> : null}
         <div>
-          {state.coursesReducer.yourCourses
-            ? state.coursesReducer.yourCourses.map((course, i) => (
-                <YourCourse key={i} course={course} props={props.props} />
+          {state.coursesReducer.courses
+            ? state.coursesReducer.courses.map((course, i) => (
+                <Course key={i} course={course} />
               ))
             : null}
         </div>

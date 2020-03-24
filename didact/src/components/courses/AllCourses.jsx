@@ -45,8 +45,7 @@ const useStyles = makeStyles(theme => ({
   },
   root: {
     display: "flex",
-    flexDirection: "row",
-    marginTop: "-40px"
+    flexDirection: "row"
   },
   rootTablet: {
     display: "flex",

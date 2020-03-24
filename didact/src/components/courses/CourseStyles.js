@@ -4,17 +4,52 @@ export const BasicCourseCard = styled.div`
   background-color: #ffffff;
   border-radius: 7px;
   padding: 20px;
+  margin: 20px 0;
+  text-align: left;
+  color: #242424;
+  font-family: Open Sans;
 
   .course-header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: start;
 
     h3 {
-      fontfamily: "Open Sans";
-      color: "#242424";
-      fontsize: "2rem";
+      width: 80%;
+      color: #242424;
+      font-size: 2rem;
       margin: 5px 0;
+    }
+  }
+
+  .instructors {
+    width: 100%;
+    margin-top: 10px;
+    span {
+      font-size: 1.3rem;
+      font-weight: 600;
+    }
+  }
+
+  p {
+    font-size: 1.3rem;
+    font-weight: 600;
+  }
+
+  .link-div {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    a {
+      font-weight: 600;
+      text-align: right;
+      color: #242424;
+      display: flex;
+      align-items: center;
+
+      &:visited {
+        color: #242424;
+      }
     }
   }
 `;
@@ -85,7 +120,7 @@ export const AddCourseToPath = styled.div`
 `;
 
 export const PopoverWrapper = styled.div`
-  margin: "0 auto";
+  margin: 0 auto;
 
   button {
     &:focus {
