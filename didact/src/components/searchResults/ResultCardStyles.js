@@ -157,6 +157,7 @@ export const CourseCard = styled.div`
   .right-div {
     div {
       display: flex;
+      width: 100%;
       justify-content: flex-end;
     }
     h1 {

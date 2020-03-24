@@ -11,6 +11,7 @@ import { PageFlex, MainBorder } from "./PageStyles";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 
+import { useSearch } from "../../utils/useSearch";
 import { Mixpanel } from "../../utils/mixpanel";
 
 //Material UI Icons
@@ -228,6 +229,7 @@ const useStyles = makeStyles(theme => ({
 function MainPage(props) {
   const dispatch = useDispatch();
   const classes = useStyles();
+  const [search, setSearch] = useSearch();
   const phoneSize = useMediaQuery("(max-width:600px)");
   const tabletSize = useMediaQuery("(max-width:770px, min-width: 601px");
   const mediumScreenSize = useMediaQuery("(max-width:920px)");
@@ -284,15 +286,7 @@ function MainPage(props) {
     event.preventDefault();
     Mixpanel.track("Search Query");
     setResults(values);
-    dispatch(courseEndPoint(values));
-    dispatch(getLearningPaths(values));
-    dispatch(getTools(values));
-    dispatch(getSources(values));
-    dispatch(getExternalArticles(values));
-    //A promise is returned from the below action handler
-    //allowing us to wait until get articles has succeeded
-    //before pushing to new page
-    dispatch(getArticles(values)).then(() => {
+    useSearch(values).then(() => {
       props.history.push("/results");
     });
   };

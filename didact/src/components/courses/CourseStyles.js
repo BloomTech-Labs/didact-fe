@@ -1,13 +1,25 @@
 import styled from "styled-components";
 
+export const CoursesWrapper = styled.div`
+  display: flex;
+  flex-flow: column nowrap;
+  width: 60%;
+`;
+
 export const BasicCourseCard = styled.div`
   background-color: #ffffff;
   border-radius: 7px;
   padding: 20px;
   margin: 20px 0;
+
   text-align: left;
   color: #242424;
   font-family: Open Sans;
+
+  max-width: 100%;
+  display: flex;
+  flex-flow: column wrap;
+  overflow: hidden;
 
   .course-header {
     display: flex;
@@ -23,7 +35,7 @@ export const BasicCourseCard = styled.div`
   }
 
   .instructors {
-    width: 100%;
+    max-width: 100%;
     margin-top: 10px;
     span {
       font-size: 1.3rem;

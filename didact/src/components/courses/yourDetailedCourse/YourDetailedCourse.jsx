@@ -13,6 +13,8 @@ import {
   toggleCompleteLesson
 } from "../../../store/actions/index.js";
 
+import AddCoursePathPlaylist from "../AddCoursePathPlaylist";
+
 //Material UI Imports
 import { makeStyles } from "@material-ui/core/styles";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
@@ -48,7 +50,7 @@ const YourDetailedCourse = props => {
   const isLoadingIcon = state.coursesReducer.isLoadingIcon;
   const [expanded, setExpanded] = useState(false);
   const [lessonExpanded, setLessonExpanded] = useState(false);
-
+  console.log(sections);
   useEffect(() => {
     //This is checking for the state "tracked" that we pass through our links
     //on CourseResultsCard.jsx and PathResultCard.jsx under searchResults folder.
@@ -107,7 +109,7 @@ const YourDetailedCourse = props => {
           </p>
         </div>
         <DetailedCourseWrapper>
-          <div className="courseWrapper">
+          <div className="course-wrapper">
             <div
               style={{
                 backgroundColor: "white",
@@ -119,6 +121,7 @@ const YourDetailedCourse = props => {
               }}
             >
               <h1>{course.title}</h1>
+              <AddCoursePathPlaylist course={course} />
               {isLoadingIcon ? (
                 <Loader
                   type="Oval"
@@ -147,8 +150,9 @@ const YourDetailedCourse = props => {
             </div>
             <p>{course.description}</p>
             <p>{course.topic ? `Topic: ${course.topic}` : null}</p>
-            <div className="courseFooter">
+            <div className="course-footer">
               <div className="tags">
+                <span className="tag-title">Tags: </span>
                 {course.tags &&
                   course.tags.map((tag, index) => {
                     return (

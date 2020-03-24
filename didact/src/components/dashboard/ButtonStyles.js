@@ -203,7 +203,7 @@ export const DeleteForm = styled.button`
 // Tag Styling
 
 export const TagStyles = styled.span`
-  font-size: 14;
+  font-size: 1.6rem;
   font-weight: bold;
   margin: 3px;
   padding: 5px 10px 0 0;

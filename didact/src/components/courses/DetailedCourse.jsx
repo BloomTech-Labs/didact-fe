@@ -90,14 +90,14 @@ const DetailedCourse = props => {
           </p>
         </div>
         <DetailedCourseWrapper>
-          <div className="courseWrapper">
+          <div className="course-wrapper">
             <div className="course-header">
               <h1>{course.title}</h1>
               <AddCoursePathPlaylist course={course} />
             </div>
             <p>{course.description}</p>
             <p>{course.topic ? `Topic: ${course.topic}` : null}</p>
-            <div className="courseFooter">
+            <div className="course-footer">
               <div className="tags">
                 {course.tags &&
                   course.tags.map((tag, index) => {
@@ -109,7 +109,6 @@ const DetailedCourse = props => {
                   })}
               </div>
             </div>
-            {/* //replace code below with restrictions when working */}
 
             {course.creator_id === id ||
             owner === true ||
