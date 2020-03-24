@@ -14,22 +14,24 @@ const Person = props => {
       {person.image ? (
         <img
           src={person.image}
-          // alt={}
-          width="50px"
-          height="50px"
-          border-radius="50%"
-          // style={{ objectFit: "cover" }}
+          style={{
+            height: "60px",
+            width: "60px",
+            borderRadius: "50%",
+            margin: "2% 70% 0 0%"
+          }}
         />
       ) : (
         <img
           src={
             "https://res.cloudinary.com/klawd/image/upload/v1584550569/wq3oxtstbdkg8s9jxuhb.png"
           }
-          // alt={}
-          width="50px"
-          height="50px"
-          border-radius="50%"
-          // style={{ objectFit: "cover" }}
+          style={{
+            height: "60px",
+            width: "60px",
+            borderRadius: "50%",
+            margin: "2% 70% 0 0%"
+          }}
         />
       )}
       <p className="pEmail">{person.email}</p>
