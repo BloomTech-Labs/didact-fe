@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import SearchIcon from "@material-ui/icons/Search";
 
+// NOTE: This file is exported to "../mainPage/MainPage.jsx"
+
 const useStyles = makeStyles(theme => ({
   root: {
     backgroundColor: "#EEEEEE"
@@ -11,7 +13,7 @@ const useStyles = makeStyles(theme => ({
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: "#eeeeee",
-    width: "345px",
+    width: "445px",
     borderRadius: "7px",
     border: "1px solid black",
     padding: "0 6px",
@@ -25,7 +27,7 @@ const useStyles = makeStyles(theme => ({
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: "#eeeeee",
-    width: "345px",
+    width: "255px",
     borderRadius: "7px",
     border: "1px solid black",
     padding: "0 6px",
@@ -71,7 +73,6 @@ const useStyles = makeStyles(theme => ({
     marginTop: "3%",
     borderRadius: "7px 0 0 7px",
     height: "35px",
-    // width: "107px",
     outline: "none",
     border: "none",
     display: "flex",
@@ -101,14 +102,15 @@ const useStyles = makeStyles(theme => ({
     border: "none",
     outline: "none",
     height: "30px",
-    marginTop: "3.4%",
-    marginLeft: "-49%",
+    margin: "3.4% -19% 0% 0%",
+    // marginTop: "3.4%",
+    // marginLeft: "-49%",
     borderRadius: "7px",
     background: "transparent",
     fontFamily: "open-sans",
 
     "&:hover": {
-      background: "#ffffff"
+      boxShadow: "1px 1px 1px 1px rgba(0,0,0,.5)"
       // border: "1px solid black"
     },
     "&:active": {
@@ -130,15 +132,14 @@ const useStyles = makeStyles(theme => ({
     border: "none",
     outline: "none",
     height: "30px",
-    marginTop: "3.4%",
-    marginLeft: "-25%",
+    margin: "3.4% 70% 0% -10%",
     borderRadius: "7px",
     background: "transparent",
     fontFamily: "open-sans",
+    cursor: "pointer",
 
     "&:hover": {
-      background: "#ffffff"
-      // border: "1px solid black"
+      boxShadow: "1px 1px 1px 1px rgba(0,0,0,.5)"
     },
     "&:active": {
       boxShadow: "0 5px #666",
@@ -148,7 +149,6 @@ const useStyles = makeStyles(theme => ({
       width: "20px",
       height: "20px",
       borderRadius: "50%",
-      // marginTop: '20px',
       objectFit: "cover"
     }
   },
