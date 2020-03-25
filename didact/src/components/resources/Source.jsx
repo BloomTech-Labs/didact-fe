@@ -48,7 +48,7 @@ const Source = props => {
         )}
         <div className="img-div">
           <div>
-            <img src={sourceimg} alt="" />
+            <img src={source.image} alt="" />
           </div>
         </div>
         {/* This will be hidden by dropdown */}
