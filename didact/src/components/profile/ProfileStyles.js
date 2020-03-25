@@ -20,8 +20,9 @@ export const PersonWrapper = styled.div`
   }
   .person:hover {
 	// transform: translate(-5px) scale(1.03);
-  //   box-shadow: 10px 10px 10px -2px snow;
-    border: 1px solid lightBlue;
+    box-shadow: 10px 10px 10px -2px snow;
+    border: 1px solid silver;
+    background-color:silver;
 }
 .pEmail {
     font-weight:bold;
@@ -149,3 +150,15 @@ export const DidactForm = styled.input`
     color: #90a1ac;
   }
 `;
+
+{
+  /* <p>Please select your role:</p>
+<input type="radio" id="owner" name="role" value="true">
+<label for="owner">Owner</label><br>
+
+<input type="radio" id="admin" name="role" value="true">
+<label for="admin">Admin</label><br>
+
+<input type="radio" id="moderator" name="role" value="true">
+<label for="moderator">Moderator</label> */
+}

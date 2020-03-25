@@ -38,9 +38,46 @@ const PersonAdmin = props => {
         />
       )}
       <p className="pEmail">{person.email}</p>
-      <p className="pOwner">owner={JSON.stringify(person.owner)}</p>
-      <p className="pAdmin">admin={JSON.stringify(person.admin)}</p>
-      <p className="pModerator">moderator={JSON.stringify(person.moderator)}</p>
+      <p
+        style={person.owner !== true ? { display: "" } : { display: "none" }}
+        className="pOwner"
+      >
+        ⚪ Owner
+      </p>
+      <p
+        style={person.owner === true ? { display: "" } : { display: "none" }}
+        className="pOwner"
+      >
+        🔵 Owner
+      </p>
+      <p
+        style={person.admin !== true ? { display: "" } : { display: "none" }}
+        className="pAdmin"
+      >
+        ⚪ Admin
+      </p>
+      <p
+        style={person.admin === true ? { display: "" } : { display: "none" }}
+        className="pAdmin"
+      >
+        🔵 Admin
+      </p>
+      <p
+        style={
+          person.moderator !== true ? { display: "" } : { display: "none" }
+        }
+        className="pModerator"
+      >
+        ⚪ Moderator
+      </p>
+      <p
+        style={
+          person.moderator === true ? { display: "" } : { display: "none" }
+        }
+        className="pModerator"
+      >
+        🔵 Moderator
+      </p>
       <Link className="pEdit" to={`/users/${person.id}/edit`}>
         Edit
       </Link>
