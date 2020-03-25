@@ -57,7 +57,7 @@ const DetailedCourse = props => {
   };
 
   const handleTagSearch = tag => {
-    props.props.setResults({ search: tag, filter: "tag" });
+    props.setResults({ search: tag, filter: "tag" });
     props.props.history.push("/results");
   };
 
@@ -110,7 +110,7 @@ const DetailedCourse = props => {
                       <TagStyles
                         key={index}
                         className="tag"
-                        onClick={tag => handleTagSearch(tag)}
+                        onClick={() => handleTagSearch(tag)}
                       >
                         {tag}
                       </TagStyles>

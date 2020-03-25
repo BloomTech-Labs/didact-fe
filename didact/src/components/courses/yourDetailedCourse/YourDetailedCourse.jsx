@@ -43,7 +43,6 @@ const YourDetailedCourse = props => {
   const admin = state.onboardingReducer.user.admin;
   const owner = state.onboardingReducer.user.owner;
   const moderator = state.onboardingReducer.user.moderator;
-  const user = state.onboardingReducer.user;
   const detailedCourse = state.coursesReducer.detailedCourse;
   const course = detailedCourse.course;
   const sections = detailedCourse.sections;
@@ -66,7 +65,7 @@ const YourDetailedCourse = props => {
   };
 
   const handleTagSearch = tag => {
-    props.props.setResults({ search: tag, filter: "tag" });
+    props.setResults({ search: tag, filter: "tag" });
     props.props.history.push("/results");
   };
 
@@ -164,7 +163,7 @@ const YourDetailedCourse = props => {
                       <TagStyles
                         key={index}
                         className="tag"
-                        onClick={tag => handleTagSearch(tag)}
+                        onClick={() => handleTagSearch(tag)}
                       >
                         {tag}
                       </TagStyles>

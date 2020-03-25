@@ -346,6 +346,7 @@ function MainPage(props) {
                       results={results}
                       values={values}
                       setValues={setValues}
+                      setResults={setResults}
                     />
                     {/*************************ADD COMPONENTS HERE *********************** */}
                   </main>
@@ -523,6 +524,7 @@ function MainPage(props) {
                       setValues={setValues}
                       values={values}
                       tabletSize={tabletSize}
+                      setResults={setResults}
                       {...props}
                       results={results}
                     />

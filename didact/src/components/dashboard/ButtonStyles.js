@@ -205,8 +205,13 @@ export const DeleteForm = styled.button`
 export const TagStyles = styled.span`
   font-size: 1.6rem;
   font-weight: bold;
+  cursor: pointer;
   margin: 3px;
   padding: 5px 10px 0 0;
   border-radius: 10px;
   color: black;
+
+  &:hover {
+    color: #eeeeee;
+  }
 `;
