@@ -13,7 +13,8 @@ import {
   getTools,
   getSources,
   getExternalArticles,
-  getArticles
+  getArticles,
+  getYourLearningPaths
 } from "../../store/actions";
 
 const SearchResults = ({ props, setValues, results }) => {
@@ -26,6 +27,7 @@ const SearchResults = ({ props, setValues, results }) => {
   };
 
   useEffect(() => {
+    dispatch(getYourLearningPaths(results));
     dispatch(courseEndPoint(results));
     dispatch(getLearningPaths(results));
     dispatch(getTools(results));

@@ -238,12 +238,15 @@ function MainPage(props) {
   });
   const [results, setResults] = useState();
 
-  useEffect(
-    _ => {
-      dispatch(verifyToken(props.history));
-    },
-    [token, dispatch, props.history]
-  );
+  useEffect(() => {
+    dispatch(verifyToken(props.history));
+  }, [token, dispatch, props.history]);
+
+  useEffect(() => {
+    if (props.location.pathname !== "/results") {
+      setValues({ search: "", filter: "title" });
+    }
+  }, [props.location.pathname]);
 
   if (!localStorage.getItem("token")) {
     props.history.push("/landing");

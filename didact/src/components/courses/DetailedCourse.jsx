@@ -105,6 +105,7 @@ const DetailedCourse = props => {
             <p>{course.topic ? `Topic: ${course.topic}` : null}</p>
             <div className="course-footer">
               <div className="tags">
+                <span className="tag-title">Tags: </span>
                 {course.tags &&
                   course.tags.map((tag, index) => {
                     return (
