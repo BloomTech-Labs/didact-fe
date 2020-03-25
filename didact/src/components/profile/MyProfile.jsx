@@ -103,7 +103,6 @@ const MyProfile = () => {
 
   //EditUser handleSubmit
   const handleImgSubmit = e => {
-    console.log("CHANGES!!!!!!!!!!!!!!!!", changes);
     e.preventDefault();
     const formData = new FormData();
     formData.append("image", changes.image);

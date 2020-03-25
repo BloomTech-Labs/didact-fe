@@ -61,6 +61,15 @@ export const BoldDiv = styled.div`
   font-weight: bold;
   text-align: left;
 `;
+export const NavButton = styled.button`
+  text-decoration: none;
+  border: none;
+  margin-right: 10%;
+  &:hover {
+    border: none;
+    background-color: silver;
+  }
+`;
 export const FormTitle = styled.h6`
   margin-left: 20px;
   margin-bottom: 10px;
