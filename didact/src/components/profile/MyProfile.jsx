@@ -222,7 +222,6 @@ const MyProfile = () => {
               ) : (
                 <></>
               )}
-
               {githubLink ? (
                 <p>
                   <a
@@ -242,7 +241,6 @@ const MyProfile = () => {
               ) : (
                 <></>
               )}
-
               {discordLink ? (
                 <p>
                   <a
@@ -263,7 +261,6 @@ const MyProfile = () => {
               ) : (
                 <></>
               )}
-
               {twitterLink ? (
                 <p>
                   <a
@@ -281,7 +278,6 @@ const MyProfile = () => {
               ) : (
                 <></>
               )}
-
               {linkedInLink ? (
                 <p>
                   <a
@@ -323,7 +319,6 @@ const MyProfile = () => {
                 margin: "2% 70% 0 0%"
               }}
             ></img>
-
             <form onSubmit={handleImgSubmit} className="imgForm">
               <div>
                 <label>Image</label>
@@ -439,5 +434,4 @@ const MyProfile = () => {
     </MyProfileStyleWrapper>
   );
 };
-
 export default MyProfile;
