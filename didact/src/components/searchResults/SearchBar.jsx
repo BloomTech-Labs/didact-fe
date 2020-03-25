@@ -107,6 +107,7 @@ const useStyles = makeStyles(theme => ({
     borderRadius: "7px",
     background: "transparent",
     fontFamily: "open-sans",
+    cursor: "pointer",
 
     "&:hover": {
       boxShadow: "1px 1px 1px 1px rgba(0,0,0,.5)"
