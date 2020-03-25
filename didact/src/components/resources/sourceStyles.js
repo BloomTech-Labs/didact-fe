@@ -83,8 +83,8 @@ export const SourceWrapper = styled.div`
     justify-content: center;
     div {
       img {
-        width: 70%;
-        height: 70%;
+        width: 60%;
+        height: 60%;
         object-fit: contain;
       }
     }
