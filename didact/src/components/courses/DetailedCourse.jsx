@@ -58,6 +58,7 @@ const DetailedCourse = props => {
 
   const handleTagSearch = tag => {
     props.setResults({ search: tag, filter: "tag" });
+    props.setValues({ search: tag, filter: "tag" });
     props.props.history.push("/results");
   };
 

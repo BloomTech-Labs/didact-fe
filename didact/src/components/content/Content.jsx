@@ -56,6 +56,7 @@ const Content = props => {
                 id={props.match.params.id}
                 props={props}
                 setResults={props.setResults}
+                setValues={props.setValues}
               />
             );
           case "yourdetailedcourse":
@@ -64,6 +65,7 @@ const Content = props => {
                 id={props.match.params.id}
                 props={props}
                 setResults={props.setResults}
+                setValues={props.setValues}
               />
             );
           case "editcourse":
