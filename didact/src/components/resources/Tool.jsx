@@ -49,7 +49,7 @@ const Tool = props => {
         )}
         <div className="img-div">
           <div>
-            <img src={tool.image} />
+            <img src={tool.image} alt="" />
           </div>
         </div>
         {/* This will be hidden by dropdown */}

@@ -103,11 +103,11 @@ const MyProfile = () => {
 
   //EditUser handleSubmit
   const handleImgSubmit = e => {
-    console.log("CHANGES!!!!!!!!!!!!!!!!", changes);
     e.preventDefault();
     const formData = new FormData();
     formData.append("image", changes.image);
     dispatch(editMyPic(id, formData));
+    alert("Successfully updated new profile pic");
   };
 
   return (
@@ -329,7 +329,7 @@ const MyProfile = () => {
                 <label>Image</label>
                 <input type="file" onChange={handleImage} name="image" />
               </div>
-              <button>change profile pic</button>
+              <DidactProfileButton>submit new pic</DidactProfileButton>
             </form>
             <form onSubmit={handleSubmit}>
               <label>About Me</label>

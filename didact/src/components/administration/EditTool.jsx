@@ -35,7 +35,7 @@ const EditTool = ({ props, id }) => {
     loading === false &&
       tool &&
       setChanges({
-        image: "",
+        image: tool.image,
         name: tool.name,
         description: tool.description,
         link: tool.link
@@ -102,7 +102,6 @@ const EditTool = ({ props, id }) => {
         </div>
         <DidactButton>submit image</DidactButton>
       </form>
-      <form onSubmit={handleSubmit}></form>
       <form onSubmit={handleSubmit}>
         <DidactField>
           <DidactLabel>Tool Name</DidactLabel>

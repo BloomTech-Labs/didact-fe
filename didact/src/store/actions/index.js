@@ -320,11 +320,15 @@ export {
   DELETE_SOURCE_START,
   DELETE_SOURCE_SUCCESS,
   DELETE_SOURCE_FAIL,
+  EDIT_SOURCE_IMAGE_START,
+  EDIT_SOURCE_IMAGE_SUCCESS,
+  EDIT_SOURCE_IMAGE_FAIL,
   getSources,
   getSourceById,
   addSource,
   editSource,
-  deleteSource
+  deleteSource,
+  editSourceImage
 } from "./sources";
 
 export {

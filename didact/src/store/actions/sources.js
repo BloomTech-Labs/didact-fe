@@ -16,6 +16,9 @@ export const EDIT_SOURCE_FAIL = "EDIT_SOURCE_FAIL";
 export const DELETE_SOURCE_START = "DELETE_SOURCE_START";
 export const DELETE_SOURCE_SUCCESS = "DELETE_SOURCE_SUCCESS";
 export const DELETE_SOURCE_FAIL = "DELETE_SOURCE_FAIL";
+export const EDIT_SOURCE_IMAGE_START = "EDIT_SOURCE_IMAGE_START";
+export const EDIT_SOURCE_IMAGE_SUCCESS = "EDIT_SOURCE_IMAGE_SUCCESS";
+export const EDIT_SOURCE_IMAGE_FAIL = "EDIT_SOURCE_IMAGE_FAIL";
 
 const baseURL = `${beURL}sources`;
 
@@ -86,5 +89,17 @@ export const deleteSource = id => dispatch => {
     })
     .catch(error => {
       dispatch({ type: DELETE_SOURCE_FAIL, payload: error.response });
+    });
+};
+
+export const editSourceImage = (id, changes) => dispatch => {
+  dispatch({ type: EDIT_SOURCE_IMAGE_START });
+  return axiosWithAuth()
+    .put(`${baseURL}/${id}/image`, changes)
+    .then(res => {
+      dispatch({ type: EDIT_SOURCE_IMAGE_SUCCESS, payload: changes });
+    })
+    .catch(err => {
+      dispatch({ type: EDIT_SOURCE_IMAGE_FAIL, payload: err.response });
     });
 };

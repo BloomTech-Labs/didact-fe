@@ -8,6 +8,7 @@ import { ResourceForm } from "./AdministrationStyles";
 const SourceForm = ({ props }) => {
   const dispatch = useDispatch();
   const [source, setSource] = useState({
+    image: "",
     name: "",
     description: "",
     link: ""
@@ -17,16 +18,30 @@ const SourceForm = ({ props }) => {
     setSource({ ...source, [e.target.name]: e.target.value });
   };
 
+  const handleImage = e => {
+    setSource({ ...source, image: e.target.files[0] });
+    console.log("THIS IS THE CHOSEN IMAGE HANDLEIMAGE", source.image);
+  };
+
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(addSource(source)).then(() => {
+    const formData = new FormData();
+    formData.append("image", source.image);
+    formData.append("name", source.name);
+    formData.append("description", source.description);
+    formData.append("link", source.link);
+    dispatch(addSource(formData)).then(() => {
       props.history.push("/sources");
     });
   };
 
   return (
     <ResourceForm>
-      <form onSubmit={handleSubmit}>
+      <form encType="multipart/form-data" onSubmit={handleSubmit}>
+        <DidactField>
+          <DidactLabel>Source Image</DidactLabel>
+          <DidactInput type="file" onChange={handleImage} name="image" />
+        </DidactField>
         <DidactField>
           <DidactLabel>Source Name</DidactLabel>
           <DidactInput
