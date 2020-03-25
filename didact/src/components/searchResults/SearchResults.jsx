@@ -27,7 +27,7 @@ const SearchResults = ({ props, setValues, results }) => {
   };
 
   useEffect(() => {
-    dispatch(getYourLearningPaths(results));
+    dispatch(getYourLearningPaths());
     dispatch(courseEndPoint(results));
     dispatch(getLearningPaths(results));
     dispatch(getTools(results));
