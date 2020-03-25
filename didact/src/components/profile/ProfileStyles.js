@@ -2,13 +2,14 @@ import styled from "styled-components";
 
 export const PersonWrapper = styled.div`
   border-radius: 7px;
-
   color: #5b5b5b;
-
-  .person{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:start;
+  .person {
   border: 1px solid gray;
 	width:30%;
-	margin: 2% auto;
+  margin: 1% 2% 1% 0;
 	padding: 2%;
 	border-radius: 9px;
 	background-color: #ffffff;
@@ -19,13 +20,13 @@ export const PersonWrapper = styled.div`
   }
   .person:hover {
 	// transform: translate(-5px) scale(1.03);
-    // box-shadow: 10px 10px 10px -2px snow;
+  //   box-shadow: 10px 10px 10px -2px snow;
     border: 1px solid lightBlue;
 }
-.pEmail{
+.pEmail {
     font-weight:bold;
 }
-.eEdit{
+.eEdit {
     color: #5b5b5b;
 }
 
@@ -52,7 +53,13 @@ export const PersonWrapper = styled.div`
     }
   }
 `;
-
+export const BoldDiv = styled.div`
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: left;
+`;
 export const FormTitle = styled.h6`
   margin-left: 20px;
   margin-bottom: 10px;

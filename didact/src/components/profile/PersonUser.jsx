@@ -5,12 +5,21 @@ import { useSelector } from "react-redux";
 import ArrowRightAltRoundedIcon from "@material-ui/icons/ArrowRightAltRounded";
 import { PersonWrapper } from "./ProfileStyles";
 
-const Person = props => {
+const PersonUser = props => {
   const person = props.person;
   const state = useSelector(state => state);
   const user = state.onboardingReducer.user;
   return (
-    <div className="person">
+    <div
+      className="person"
+      style={
+        person.owner === true ||
+        person.admin === true ||
+        person.moderator === true
+          ? { display: "none" }
+          : { display: "" }
+      }
+    >
       {person.image ? (
         <img
           src={person.image}
@@ -45,4 +54,4 @@ const Person = props => {
   );
 };
 
-export default Person;
+export default PersonUser;
