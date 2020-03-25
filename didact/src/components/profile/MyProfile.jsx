@@ -59,8 +59,12 @@ const MyProfile = () => {
       userName.last_name.substring(1)
     : null;
 
+  const [changesPic, setChangesPic] = useState({
+    image: image
+  });
+
   const [changes, setChanges] = useState({
-    image: myProfile.image,
+    image: changesPic,
     bio: "",
     facebookLink: "",
     githubLink: "",
@@ -76,7 +80,7 @@ const MyProfile = () => {
 
   useEffect(() => {
     setChanges({
-      image: image,
+      image: myProfile.image,
       bio: bio,
       facebookLink: facebookLink,
       githubLink: githubLink,
@@ -86,6 +90,12 @@ const MyProfile = () => {
       externalEdLink: externalEdLink
     });
   }, [myProfile]);
+
+  useEffect(() => {
+    setChangesPic({
+      image: myProfile.image
+    });
+  }, [myProfile.image]);
 
   const handleChange = e => {
     setChanges({ ...changes, [e.target.name]: e.target.value });
@@ -98,16 +108,18 @@ const MyProfile = () => {
   };
 
   const handleImage = e => {
-    setChanges({ ...changes, image: e.target.files[0] });
+    setChangesPic({ ...changesPic, image: e.target.files[0] });
   };
 
   //EditUser handleSubmit
   const handleImgSubmit = e => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append("image", changes.image);
-    dispatch(editMyPic(id, formData));
-    alert("Successfully updated new profile pic");
+    formData.append("image", changesPic.image);
+    dispatch(editMyPic(id, formData)).then(() => {
+      dispatch(getMyProfile(id));
+      alert("Successfully updated new profile pic");
+    });
   };
 
   return (
@@ -155,6 +167,7 @@ const MyProfile = () => {
           >
             <img
               src={image}
+              alt={"profile pic"}
               style={{
                 height: "120px",
                 width: "120px",
