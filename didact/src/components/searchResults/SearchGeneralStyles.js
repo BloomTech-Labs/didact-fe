@@ -2,11 +2,11 @@ import styled from "styled-components";
 
 export const Navigator = styled.div`
   width: 50%;
-  font: Bold 1.3rem Open Sans;
+  font: Bold 1.5rem Open Sans;
   display: flex;
   margin-bottom: 20px;
   span {
-    margin-right: 15px;
+    margin-right: 20px;
     padding: 5px;
     &:hover {
       cursor: pointer;

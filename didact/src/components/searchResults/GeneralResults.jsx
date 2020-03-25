@@ -57,7 +57,6 @@ const GeneralResults = props => {
     console.log("Resource tracked.");
     Mixpanel.track("Queried Resource Accessed");
   };
-
   return (
     <>
       {/* Checking If State Is Still Loading In Store */}

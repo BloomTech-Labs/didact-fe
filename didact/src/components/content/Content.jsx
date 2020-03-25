@@ -51,10 +51,20 @@ const Content = props => {
           case "yourcourses":
             return <AllYourCourses props={props} />;
           case "detailedcourse":
-            return <DetailedCourse id={props.match.params.id} props={props} />;
+            return (
+              <DetailedCourse
+                id={props.match.params.id}
+                props={props}
+                setResults={props.setResults}
+              />
+            );
           case "yourdetailedcourse":
             return (
-              <YourDetailedCourse id={props.match.params.id} props={props} />
+              <YourDetailedCourse
+                id={props.match.params.id}
+                props={props}
+                setResults={props.setResults}
+              />
             );
           case "editcourse":
             return <EditCourse id={props.match.params.id} props={props} />;

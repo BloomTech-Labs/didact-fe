@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import GeneralResults from "./GeneralResults";
 import CourseResults from "./CourseResults";
@@ -6,13 +7,32 @@ import PathResults from "./PathResults";
 import ResourceResults from "./ResourceResults";
 import { Navigator } from "./SearchGeneralStyles";
 
-const SearchResults = ({ props, setValues }) => {
+import {
+  courseEndPoint,
+  getLearningPaths,
+  getTools,
+  getSources,
+  getExternalArticles,
+  getArticles
+} from "../../store/actions";
+
+const SearchResults = ({ props, setValues, results }) => {
+  const dispatch = useDispatch();
   const [filter, setFilter] = useState("all");
 
   const handleBack = () => {
     props.history.push("/");
     setValues({ search: "" });
   };
+
+  useEffect(() => {
+    dispatch(courseEndPoint(results));
+    dispatch(getLearningPaths(results));
+    dispatch(getTools(results));
+    dispatch(getSources(results));
+    dispatch(getExternalArticles(results));
+    dispatch(getArticles(results));
+  }, [results]);
 
   return (
     <>

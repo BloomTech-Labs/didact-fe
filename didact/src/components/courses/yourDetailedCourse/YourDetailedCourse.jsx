@@ -65,6 +65,11 @@ const YourDetailedCourse = props => {
     setLessonExpanded(isExpanded ? panel : false);
   };
 
+  const handleTagSearch = tag => {
+    props.props.setResults({ search: tag, filter: "tag" });
+    props.props.history.push("/results");
+  };
+
   const handleLessonExpansion = panel => (event, isExpanded) => {
     setLessonExpanded(isExpanded ? panel : false);
   };
@@ -156,7 +161,11 @@ const YourDetailedCourse = props => {
                 {course.tags &&
                   course.tags.map((tag, index) => {
                     return (
-                      <TagStyles key={index} className="tag">
+                      <TagStyles
+                        key={index}
+                        className="tag"
+                        onClick={tag => handleTagSearch(tag)}
+                      >
                         {tag}
                       </TagStyles>
                     );

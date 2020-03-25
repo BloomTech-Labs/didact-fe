@@ -50,7 +50,7 @@ const ResourceResults = () => {
       {sources.length > 0 && (
         <ResourceGrid>
           {sources.map(source => (
-            <Source source={source} key={source.id} queried={true} />
+            <Source source={source} key={source.link} queried={true} />
           ))}
         </ResourceGrid>
       )}

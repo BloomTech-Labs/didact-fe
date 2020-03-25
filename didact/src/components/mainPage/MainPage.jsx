@@ -1,24 +1,17 @@
 import React, { useEffect, useState } from "react";
-import {
-  verifyToken,
-  getTools,
-  getSources,
-  getExternalArticles,
-  getArticles
-} from "../../store/actions/index.js";
+import { verifyToken } from "../../store/actions/index.js";
 import { useDispatch, useSelector } from "react-redux";
 import { PageFlex, MainBorder } from "./PageStyles";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 
-import { useSearch } from "../../utils/useSearch";
 import { Mixpanel } from "../../utils/mixpanel";
 
 //Material UI Icons
 import CssBaseline from "@material-ui/core/CssBaseline";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import SearchIcon from "@material-ui/icons/Search";
-import { courseEndPoint, getLearningPaths } from "../../store/actions";
+
 import PermIdentityIcon from "@material-ui/icons/PermIdentity";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 
@@ -229,7 +222,6 @@ const useStyles = makeStyles(theme => ({
 function MainPage(props) {
   const dispatch = useDispatch();
   const classes = useStyles();
-  const [search, setSearch] = useSearch();
   const phoneSize = useMediaQuery("(max-width:600px)");
   const tabletSize = useMediaQuery("(max-width:770px, min-width: 601px");
   const mediumScreenSize = useMediaQuery("(max-width:920px)");
@@ -261,8 +253,6 @@ function MainPage(props) {
     setOpen(!open);
   };
 
-  // const userName = useSelector(state => state.onboardingReducer.user);
-
   const handleLogOut = () => {
     localStorage.clear("token");
     props.history.push("/login");
@@ -286,9 +276,7 @@ function MainPage(props) {
     event.preventDefault();
     Mixpanel.track("Search Query");
     setResults(values);
-    useSearch(values).then(() => {
-      props.history.push("/results");
-    });
+    props.history.push("/results");
   };
 
   const handleDrawerOpenMobile = () => event => {
