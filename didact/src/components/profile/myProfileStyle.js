@@ -28,12 +28,12 @@ export const HeaderStyled = styled.div`
 export const ProfileAvatar = styled.div`
   margin: 5% 55% 10% 0;
   display: flex;
-  width: 150px;
-  justify-content: space-between;
+  width: 200px;
+  justify-content: space-evenly;
 `;
 
 export const DiscordLinkDiv = styled.div`
-  margin: 15% 80% 0 0;
+  margin: 20% 80% 0 0;
   display: flex;
   width: 100%;
 
@@ -99,4 +99,8 @@ export const EditProfileDiv = styled.div`
       width: 35%;
     }
   }
+`;
+
+export const EmailChange = styled.div`
+  margin: 10% 0 10% 0;
 `;

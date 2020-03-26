@@ -4,7 +4,8 @@ import {
   getTools,
   getSources,
   getExternalArticles,
-  getArticles
+  getArticles,
+  getMyProfile
 } from "../../store/actions/index.js";
 import { useDispatch, useSelector } from "react-redux";
 import { PageFlex, MainBorder } from "./PageStyles";
@@ -73,6 +74,9 @@ function MainPage(props) {
   const owner = state.onboardingReducer.user.owner;
   const admin = state.onboardingReducer.user.admin;
   const token = localStorage.getItem("token");
+
+  const image = state.myProfileReducer.myProfile.image;
+
   const [open, setOpen] = React.useState(true);
   const [openMobile, setOpenMobile] = React.useState(false);
   const [values, setValues] = useState({
@@ -162,6 +166,10 @@ function MainPage(props) {
 
   const openPop = Boolean(anchorEl);
   const id = openPop ? "simple-popover" : undefined;
+
+  useEffect(() => {
+    dispatch(getMyProfile(userName.id));
+  }, [dispatch, userName.id]);
 
   return (
     // MOBILE CODE ****************************************************************************
@@ -255,10 +263,20 @@ function MainPage(props) {
                             onClick={handleClick}
                           />
                         ) : (
-                          <PermIdentityIcon
-                            className={classes.iconImageProfile}
+                          // <PermIdentityIcon
+                          //   className={classes.iconImageProfile}
+                          //   style={{
+                          //     color: "#242424BF"
+                          //   }}
+                          // />
+                          <img
+                            src={image}
+                            alt={"profile pic"}
                             style={{
-                              color: "#242424BF"
+                              height: "40px",
+                              width: "40px",
+                              borderRadius: "50%",
+                              margin: "2% 0% 0 0%"
                             }}
                           />
                         )}
