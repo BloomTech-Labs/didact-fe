@@ -12,25 +12,31 @@ class PathResultCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      altered: false,
       joined: this.alreadyJoined
     };
     this.joinPath = this.joinPath.bind(this);
     this.quitPath = this.quitPath.bind(this);
   }
-  //a quick check to see if this path is already in yourLearningPaths to set our default ?joined value
+  //a quick check to see if this path is already in yourLearningPaths to set our default joined value
   alreadyJoined = this.props.yourPaths.some(
     item => item.id === this.props.path.id
   );
+  //if yourPaths has at least one item, then in the case that we join this new path
+  //our order will = the existing length plus one. if no items in yourPaths then we need
+  //the pathOrder to be 1 so in the case of joining, it will not error out (and will make it the first path in your list)
+  pathOrder =
+    this.props.yourPaths.length > 0 ? this.props.yourPaths.length + 1 : 1;
 
   joinPath(e) {
     e.preventDefault();
-    this.setState({ joined: true });
+    this.setState({ altered: true, joined: true });
     Mixpanel.track("Path Result Joined");
   }
 
   quitPath(e) {
     e.preventDefault();
-    this.setState({ joined: false });
+    this.setState({ altered: true, joined: false });
   }
   //if you were wondering why we used a class component here, this is your answer
   //this method allows us to send our network request to join/leave a learning path
@@ -38,17 +44,19 @@ class PathResultCard extends React.Component {
   //it will change the state (paths, yourPaths) in the Redux store and trigger
   //a hideous re-render on the searchresults page
   componentWillUnmount() {
-    if (this.state.joined === true) {
-      this.props.dispatch(
-        joinLearningPath(
-          this.props.path.id,
-          this.props.history,
-          this.props.yourPaths.length
-        )
-      );
-    } else if (this.state.joined === false) {
-      this.props.dispatch(quitLearningPath(this.props.path.id));
-    }
+    if (this.state.altered === true) {
+      if (this.state.joined === true) {
+        this.props.dispatch(
+          joinLearningPath(
+            this.props.path.id,
+            this.props.history,
+            this.pathOrder
+          )
+        );
+      } else if (this.state.joined === false) {
+        this.props.dispatch(quitLearningPath(this.props.path.id));
+      }
+    } else return;
   }
 
   render() {

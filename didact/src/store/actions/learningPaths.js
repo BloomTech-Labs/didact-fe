@@ -181,7 +181,6 @@ export const deleteLearningPath = (id, history) => dispatch => {
 
 export const joinLearningPath = (id, history, order) => dispatch => {
   dispatch({ type: JOIN_LEARNING_PATH_START });
-
   return axiosWithAuth()
     .post(`${baseURL}${id}/users`, { order: order })
     .then(res => {

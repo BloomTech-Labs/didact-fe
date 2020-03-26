@@ -57,8 +57,6 @@ const GeneralResults = props => {
     articles.length +
     extArticles.length;
 
-  console.log(yourPaths);
-
   const handleTrack = () => {
     console.log("Resource tracked.");
     Mixpanel.track("Queried Resource Accessed");
