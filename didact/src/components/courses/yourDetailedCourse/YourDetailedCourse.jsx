@@ -13,6 +13,8 @@ import {
   toggleCompleteLesson
 } from "../../../store/actions/index.js";
 
+import AddCoursePathPlaylist from "../AddCoursePathPlaylist";
+
 //Material UI Imports
 import { makeStyles } from "@material-ui/core/styles";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
@@ -41,14 +43,13 @@ const YourDetailedCourse = props => {
   const admin = state.onboardingReducer.user.admin;
   const owner = state.onboardingReducer.user.owner;
   const moderator = state.onboardingReducer.user.moderator;
-  const user = state.onboardingReducer.user;
   const detailedCourse = state.coursesReducer.detailedCourse;
   const course = detailedCourse.course;
   const sections = detailedCourse.sections;
   const isLoadingIcon = state.coursesReducer.isLoadingIcon;
   const [expanded, setExpanded] = useState(false);
   const [lessonExpanded, setLessonExpanded] = useState(false);
-
+  console.log(sections);
   useEffect(() => {
     //This is checking for the state "tracked" that we pass through our links
     //on CourseResultsCard.jsx and PathResultCard.jsx under searchResults folder.
@@ -61,6 +62,12 @@ const YourDetailedCourse = props => {
   const handleChange = panel => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
     setLessonExpanded(isExpanded ? panel : false);
+  };
+
+  const handleTagSearch = tag => {
+    props.setResults({ search: tag, filter: "tag" });
+    props.setValues({ search: tag, filter: "tag" });
+    props.props.history.push("/results");
   };
 
   const handleLessonExpansion = panel => (event, isExpanded) => {
@@ -107,7 +114,7 @@ const YourDetailedCourse = props => {
           </p>
         </div>
         <DetailedCourseWrapper>
-          <div className="courseWrapper">
+          <div className="course-wrapper">
             <div
               style={{
                 backgroundColor: "white",
@@ -119,6 +126,7 @@ const YourDetailedCourse = props => {
               }}
             >
               <h1>{course.title}</h1>
+              <AddCoursePathPlaylist course={course} />
               {isLoadingIcon ? (
                 <Loader
                   type="Oval"
@@ -147,12 +155,17 @@ const YourDetailedCourse = props => {
             </div>
             <p>{course.description}</p>
             <p>{course.topic ? `Topic: ${course.topic}` : null}</p>
-            <div className="courseFooter">
+            <div className="course-footer">
               <div className="tags">
+                <span className="tag-title">Tags: </span>
                 {course.tags &&
                   course.tags.map((tag, index) => {
                     return (
-                      <TagStyles key={index} className="tag">
+                      <TagStyles
+                        key={index}
+                        className="tag"
+                        onClick={() => handleTagSearch(tag)}
+                      >
                         {tag}
                       </TagStyles>
                     );

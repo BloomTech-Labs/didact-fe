@@ -181,8 +181,7 @@ export const deleteLearningPath = (id, history) => dispatch => {
 
 export const joinLearningPath = (id, history, order) => dispatch => {
   dispatch({ type: JOIN_LEARNING_PATH_START });
-
-  axiosWithAuth()
+  return axiosWithAuth()
     .post(`${baseURL}${id}/users`, { order: order })
     .then(res => {
       dispatch({ type: JOIN_LEARNING_PATH_SUCCESS, payload: id });
@@ -196,7 +195,7 @@ export const joinLearningPath = (id, history, order) => dispatch => {
 export const quitLearningPath = id => dispatch => {
   dispatch({ type: QUIT_LEARNING_PATH_START });
 
-  axiosWithAuth()
+  return axiosWithAuth()
     .delete(`${baseURL}${id}/users`)
     .then(res => {
       dispatch({ type: QUIT_LEARNING_PATH_SUCCESS, payload: id });

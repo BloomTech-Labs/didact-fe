@@ -1,5 +1,5 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
 import { Mixpanel } from "../../utils/mixpanel";
@@ -24,10 +24,14 @@ import LearningPathCard from "./PathResultCard";
 import CourseResultCard from "./CourseResultCard";
 
 const GeneralResults = props => {
+  const dispatch = useDispatch();
   const state = useSelector(state => state);
   //courses and paths array taking small slices to match UX specs on this page
   const courses = state.coursesReducer.courses.slice(0, 2);
   const paths = state.learningPathReducer.learningPaths.slice(0, 3);
+  const yourPaths = useSelector(
+    state => state.learningPathReducer.yourLearningPaths
+  );
   //Loading states from various reducers
   const coursesLoading = state.coursesReducer.isLoadingCourses;
   const pathsLoading = state.learningPathReducer.isLoadingPaths;
@@ -57,7 +61,6 @@ const GeneralResults = props => {
     console.log("Resource tracked.");
     Mixpanel.track("Queried Resource Accessed");
   };
-
   return (
     <>
       {/* Checking If State Is Still Loading In Store */}
@@ -121,7 +124,13 @@ const GeneralResults = props => {
           {paths.length > 0 ? (
             <PathGrid style={{ minHeight: "45px" }}>
               {paths.map(path => (
-                <LearningPathCard key={path.id} props={props} path={path} />
+                <LearningPathCard
+                  key={path.id}
+                  props={props}
+                  path={path}
+                  dispatch={dispatch}
+                  yourPaths={yourPaths}
+                />
               ))}
             </PathGrid>
           ) : null}

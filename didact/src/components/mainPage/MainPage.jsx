@@ -1,22 +1,15 @@
 import React, { useEffect, useState } from "react";
-import {
-  verifyToken,
-  getTools,
-  getSources,
-  getExternalArticles,
-  getArticles,
-  getMyProfile
-} from "../../store/actions/index.js";
+import { verifyToken, getMyProfile } from "../../store/actions/index.js";
 import { useDispatch, useSelector } from "react-redux";
 import { PageFlex, MainBorder } from "./PageStyles";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
-
 import { Mixpanel } from "../../utils/mixpanel";
 
 import CssBaseline from "@material-ui/core/CssBaseline";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
-import { courseEndPoint, getLearningPaths } from "../../store/actions";
+import SearchIcon from "@material-ui/icons/Search";
+
 import PermIdentityIcon from "@material-ui/icons/PermIdentity";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 
@@ -85,12 +78,15 @@ function MainPage(props) {
   });
   const [results, setResults] = useState();
 
-  useEffect(
-    _ => {
-      dispatch(verifyToken(props.history));
-    },
-    [token, dispatch, props.history]
-  );
+  useEffect(() => {
+    dispatch(verifyToken(props.history));
+  }, [token, dispatch, props.history]);
+
+  useEffect(() => {
+    if (props.location.pathname !== "/results") {
+      setValues({ search: "", filter: "title" });
+    }
+  }, [props.location.pathname]);
 
   if (!localStorage.getItem("token")) {
     props.history.push("/landing");
@@ -99,8 +95,6 @@ function MainPage(props) {
   const handleDrawerOpen = () => {
     setOpen(!open);
   };
-
-  // const userName = useSelector(state => state.onboardingReducer.user);
 
   const handleLogOut = () => {
     localStorage.clear("token");
@@ -125,17 +119,7 @@ function MainPage(props) {
     event.preventDefault();
     Mixpanel.track("Search Query");
     setResults(values);
-    dispatch(courseEndPoint(values));
-    dispatch(getLearningPaths(values));
-    dispatch(getTools(values));
-    dispatch(getSources(values));
-    dispatch(getExternalArticles(values));
-    //A promise is returned from the below action handler
-    //allowing us to wait until get articles has succeeded
-    //before pushing to new page
-    dispatch(getArticles(values)).then(() => {
-      props.history.push("/results");
-    });
+    props.history.push("/results");
   };
 
   const handleDrawerOpenMobile = () => event => {
@@ -209,6 +193,7 @@ function MainPage(props) {
                       results={results}
                       values={values}
                       setValues={setValues}
+                      setResults={setResults}
                     />
                     {/*************************ADD COMPONENTS HERE *********************** */}
                   </main>
@@ -325,6 +310,7 @@ function MainPage(props) {
                       setValues={setValues}
                       values={values}
                       tabletSize={tabletSize}
+                      setResults={setResults}
                       {...props}
                       results={results}
                     />

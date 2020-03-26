@@ -118,13 +118,6 @@ function Dashboard({ props }) {
         >
           Dashboard
         </p>
-        {/* <FiberManualRecordIcon
-          style={{
-            color: "#52bbb4",
-            fontSize: "18em",
-            margin: 0
-          }}
-        /> */}
       </div>
 
       <TopDashboardCard>
@@ -232,7 +225,7 @@ function Dashboard({ props }) {
                 fontSize: "16px",
                 fontWeight: "bold",
                 textAlign: "left",
-                marginBottom: "-20px"
+                marginBottom: "0"
               }}
             >
               Next Item

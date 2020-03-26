@@ -1,9 +1,13 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { TitleH2, PathGrid } from "./SearchGeneralStyles";
 import LearningPathCard from "./PathResultCard";
 const PathResults = props => {
+  const dispatch = useDispatch();
   const paths = useSelector(state => state.learningPathReducer.learningPaths);
+  const yourPaths = useSelector(
+    state => state.learningPathReducer.yourLearningPaths
+  );
   const resultCount = paths.length;
   return (
     <>
@@ -22,6 +26,8 @@ const PathResults = props => {
               key={path.id}
               props={props}
               path={path}
+              yourPaths={yourPaths}
+              dispatch={dispatch}
               style={{ marginBottom: "30px", height: "200px" }}
             />
           ))}

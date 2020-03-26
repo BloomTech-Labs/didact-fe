@@ -17,7 +17,11 @@ const CourseResults = props => {
       </TitleH2>
       <CourseGrid>
         {courses.map(course => (
-          <CourseResultCard course={course} style={{ margin: "20px 0" }} />
+          <CourseResultCard
+            course={course}
+            key={course.id}
+            style={{ margin: "20px 0" }}
+          />
         ))}
       </CourseGrid>
     </div>

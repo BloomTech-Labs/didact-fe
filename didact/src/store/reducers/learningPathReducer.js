@@ -69,6 +69,8 @@ import {
 
 const initialState = {
   isLoadingPaths: false,
+  joiningPath: false,
+  quittingPath: false,
   error: "",
   learningPaths: [],
   learningPath: {},
@@ -203,13 +205,13 @@ export const learningPathReducer = (state = initialState, action) => {
     case QUIT_LEARNING_PATH_START:
       return {
         ...state,
-        isLoadingPaths: true,
+        quittingPath: true,
         error: ""
       };
     case QUIT_LEARNING_PATH_SUCCESS:
       return {
         ...state,
-        isLoadingPaths: false,
+        quittingPath: false,
         yourLearningPaths: state.yourLearningPaths.filter(
           el => el.id !== Number(action.payload)
         ),
@@ -218,26 +220,26 @@ export const learningPathReducer = (state = initialState, action) => {
     case QUIT_LEARNING_PATH_FAIL:
       return {
         ...state,
-        isLoadingPaths: false,
+        quittingPath: false,
         error: action.payload
       };
     case JOIN_LEARNING_PATH_START:
       return {
         ...state,
-        isLoadingPaths: true,
+        joiningPath: true,
         error: ""
       };
     case JOIN_LEARNING_PATH_SUCCESS:
       return {
         ...state,
-        isLoadingPaths: false,
+        joiningPath: false,
         yourLearningPaths: [...state.yourLearningPaths, action.payload],
         error: ""
       };
     case JOIN_LEARNING_PATH_FAIL:
       return {
         ...state,
-        isLoadingPaths: false,
+        joiningPath: false,
         error: action.payload
       };
     case POST_TAG_TO_PATH_START:

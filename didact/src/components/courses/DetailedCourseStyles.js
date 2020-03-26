@@ -2,14 +2,25 @@ import styled from "styled-components";
 
 export const DetailedCourseWrapper = styled.div`
   width: 100%;
-  box-shadow: "none";
+  box-shadow: none;
+  font-family: Open Sans;
 
-  .courseWrapper {
+  .course-wrapper {
     width: 100%;
     background-color: #ffffff;
-    color: black;
+    color: #242424;
 
-    .courseFooter {
+    .course-header {
+      background-color: #ffffff;
+      display: flex;
+      align-items: center;
+      padding: 0px;
+      margin: 0px;
+      color: black;
+      justify-content: space-between;
+    }
+
+    .course-footer {
       margin: 0;
       padding: 0;
       display: flex;
@@ -22,15 +33,18 @@ export const DetailedCourseWrapper = styled.div`
         margin: 0;
         padding: 0;
       }
-
       .tags {
         display: flex;
+        align-items: baseline;
         justify-content: flex-start;
-        padding-left: 0;
-        flex-flow: row wrap;
+        padding: 0;
+        flex-flow: row nowrap;
         width: 100%;
-        color: black;
-        background-color: #ffffff;
+
+        .tag-title {
+          font-size: 2rem;
+          margin-right: 10px;
+        }
       }
     }
   }
@@ -55,7 +69,7 @@ export const DetailedCourseWrapper = styled.div`
   .expansionPanel {
     margin: 20px 0px;
     padding: 15px 30px;
-    box-shadow: "none";
+    box-shadow: none;
     color: black;
     background-color: #ffffff;
     max-width: 540px;

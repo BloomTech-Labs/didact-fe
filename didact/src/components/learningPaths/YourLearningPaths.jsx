@@ -87,6 +87,9 @@ const YourLearningPaths = props => {
   const dispatch = useDispatch();
   const state = useSelector(state => state);
   const learningPaths = state.learningPathReducer.yourLearningPaths;
+  const loading = state.learningPathReducer.isLoadingPaths;
+  const joining = state.learningPathReducer.joiningPath;
+  const quitting = state.learningPathReducer.quittingPath;
   const notCompletedPaths = [];
   const completedPaths = [];
 
@@ -98,12 +101,11 @@ const YourLearningPaths = props => {
     }
   });
 
-  useEffect(
-    _ => {
+  useEffect(() => {
+    if (joining === false) {
       dispatch(getYourLearningPaths());
-    },
-    [dispatch]
-  );
+    }
+  }, [dispatch, joining, quitting]);
 
   useEffect(() => {
     if (notCompletedPaths)
@@ -200,7 +202,8 @@ const YourLearningPaths = props => {
                         : "yourLearningPaths"
                     }
                   >
-                    {localState.length > 0 &&
+                    {!loading &&
+                      localState.length > 0 &&
                       localState.map((learningPath, index) => {
                         return (
                           <Draggable
@@ -410,7 +413,7 @@ const YourLearningPaths = props => {
                   </LearningPathCard>
                 );
               })}
-            {learningPaths.length === 0 && (
+            {!loading && learningPaths.length === 0 && (
               <h1>You have not joined any learning paths</h1>
             )}
           </div>
