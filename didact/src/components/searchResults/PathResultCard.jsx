@@ -32,7 +32,11 @@ class PathResultCard extends React.Component {
     e.preventDefault();
     this.setState({ joined: false });
   }
-
+  //if you were wondering why we used a class component here, this is your answer
+  //this method allows us to send our network request to join/leave a learning path
+  //right before the component unmounts. if we do it while the component is mounted
+  //it will change the state (paths, yourPaths) in the Redux store and trigger
+  //a hideous re-render on the searchresults page
   componentWillUnmount() {
     if (this.state.joined === true) {
       this.props.dispatch(
