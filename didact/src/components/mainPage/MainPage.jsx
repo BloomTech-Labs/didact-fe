@@ -1,31 +1,15 @@
 import React, { useEffect, useState } from "react";
-<<<<<<< HEAD
-import { verifyToken } from "../../store/actions/index.js";
-=======
-import {
-  verifyToken,
-  getTools,
-  getSources,
-  getExternalArticles,
-  getArticles,
-  getMyProfile
-} from "../../store/actions/index.js";
->>>>>>> bdf6d6a430ec40e43c8aebede2c202c5a96b4175
+import { verifyToken, getMyProfile } from "../../store/actions/index.js";
 import { useDispatch, useSelector } from "react-redux";
 import { PageFlex, MainBorder } from "./PageStyles";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
-
 import { Mixpanel } from "../../utils/mixpanel";
 
 import CssBaseline from "@material-ui/core/CssBaseline";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
-<<<<<<< HEAD
 import SearchIcon from "@material-ui/icons/Search";
 
-=======
-import { courseEndPoint, getLearningPaths } from "../../store/actions";
->>>>>>> bdf6d6a430ec40e43c8aebede2c202c5a96b4175
 import PermIdentityIcon from "@material-ui/icons/PermIdentity";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 
