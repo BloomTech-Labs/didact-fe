@@ -3,12 +3,13 @@ import Card from "@material-ui/core/Card";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import ArrowRightAltRoundedIcon from "@material-ui/icons/ArrowRightAltRounded";
-import { PersonWrapper } from "./ProfileStyles";
+import { PersonWrapperII } from "./ProfileStyles";
 
 const PersonOwner = props => {
   const person = props.person;
   const state = useSelector(state => state);
   const user = state.onboardingReducer.user;
+
   return (
     <div
       className="person"
@@ -17,6 +18,7 @@ const PersonOwner = props => {
       {person.image ? (
         <img
           src={person.image}
+          alt="radiobtn"
           style={{
             height: "60px",
             width: "60px",
@@ -29,6 +31,7 @@ const PersonOwner = props => {
           src={
             "https://res.cloudinary.com/klawd/image/upload/v1584550569/wq3oxtstbdkg8s9jxuhb.png"
           }
+          alt="radiobtn"
           style={{
             height: "60px",
             width: "60px",

@@ -34,9 +34,9 @@ const EditUser = ({ props, id }) => {
   useEffect(() => {
     setChanges({
       email: person.email,
-      owner: person.owner,
-      admin: person.admin,
-      moderator: person.moderator
+      owner: person.owner === null ? "" : true,
+      admin: person.admin === null ? "" : true,
+      moderator: person.moderator === null ? "" : true
     });
   }, [person]);
 
@@ -62,6 +62,8 @@ const EditUser = ({ props, id }) => {
     dispatch(editUser(id, changes));
     props.history.push("/users");
   };
+  console.log("zzzzzzzzzPROPS", props);
+  console.log("XXXXXXXXXX", person);
 
   return (
     <Card>

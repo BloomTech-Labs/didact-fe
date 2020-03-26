@@ -3,7 +3,7 @@ import Card from "@material-ui/core/Card";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import ArrowRightAltRoundedIcon from "@material-ui/icons/ArrowRightAltRounded";
-import { PersonWrapper } from "./ProfileStyles";
+import { PersonWrapperII } from "./ProfileStyles";
 
 const PersonMod = props => {
   const person = props.person;

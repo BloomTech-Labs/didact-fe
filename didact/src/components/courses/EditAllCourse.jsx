@@ -8,6 +8,7 @@ import {
 import Tags from "./Tags";
 import AddSection from "./AddSection";
 import Sections from "./Sections";
+import AddCoursePathPlaylist from "./AddCoursePathPlaylist";
 
 //Material UI Imports
 import { makeStyles } from "@material-ui/core/styles";
@@ -227,6 +228,8 @@ const EditAllCourse = ({ props, id }) => {
                 className={classes.card}
                 style={{ background: "#ffffff", color: "black" }}
               >
+                {" "}
+                <AddCoursePathPlaylist course={course} />
                 <CardContent>
                   <h3 style={{ textAlign: "left", marginLeft: "15px" }}>
                     {course.title}

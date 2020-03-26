@@ -54,6 +54,61 @@ export const PersonWrapper = styled.div`
     }
   }
 `;
+export const PersonWrapperII = styled.div`
+  border-radius: 7px;
+  color: #5b5b5b;
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:start;
+  .person {
+  border: 1px solid gray;
+	width:30%;
+  margin: 1% 2% 1% 0;
+	padding: 2%;
+	border-radius: 9px;
+	background-color: #ffffff;
+	color: color: #5b5b5b;
+	box-shadow: 5px 5px 6px -2px whitesmoke;
+    transition: transform 0.4s ease-in;
+    text-align: left
+  }
+  .person:hover {
+	// transform: translate(-5px) scale(1.03);
+    box-shadow: 10px 10px 10px -2px snow;
+    border: 1px solid silver;
+    background-color:silver;
+}
+.pEmail {
+    font-weight:bold;
+}
+.eEdit {
+    color: #5b5b5b;
+}
+
+  h3 {
+    margin: 0;
+    padding: 0;
+    line-height: 22px;
+    font-size: 22px;
+    color: #5b5b5b;
+  }
+  a {
+    width: 100%;
+    display: block;
+    text-align: right;
+  }
+  .link-anchor {
+    color: #242424;
+    font-weight: 600;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    &:visited {
+      color: #242424;
+    }
+  }
+`;
+
 export const BoldDiv = styled.div`
   margin-top: 20px;
   margin-bottom: 20px;
