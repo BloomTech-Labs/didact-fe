@@ -123,6 +123,7 @@ const Section = ({ course, section, props }) => {
     event.preventDefault();
     dispatch(updateSection(props.match.params.id, section.id, changes));
     setSectionEdit(true);
+    props.history.push(`/courses/all/${props.match.params.id}`);
   };
 
   const handleLessonFormToggle = () => {
