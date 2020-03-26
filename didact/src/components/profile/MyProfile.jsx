@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getMyProfile, editMyProfile, editMyPic } from "../../store/actions";
+import {
+  getMyProfile,
+  editMyProfile,
+  editMyPic,
+  getUserById,
+  editUser
+} from "../../store/actions";
 import { Link } from "react-router-dom";
 
 // STYLED COMPONENTS *******************
@@ -10,7 +16,8 @@ import {
   ProfileAvatar,
   DidactProfileButton,
   DiscordLinkDiv,
-  EditProfileDiv
+  EditProfileDiv,
+  EmailChange
 } from "./myProfileStyle";
 
 // ICONS/IMAGES ************************
@@ -25,7 +32,7 @@ import discordLogo from "../../assets/discordLogo.png";
 // MATERIAL UI *************************
 import { makeStyles } from "@material-ui/core/styles";
 
-const MyProfile = () => {
+const MyProfile = props => {
   // Material UI**************************************
 
   // ****************************
@@ -43,6 +50,36 @@ const MyProfile = () => {
   const twitterLink = state.myProfileReducer.myProfile.twitterLink;
   const linkedInLink = state.myProfileReducer.myProfile.linkedInLink;
   const externalEdLink = state.myProfileReducer.myProfile.externalEdLink;
+  const user = state.onboardingReducer.user;
+  const person = state.usersProfilesReducer.person;
+  // const email = state.myProfileReducer.myProfile.email;
+
+  const [userChanges, setUserChanges] = useState({
+    email: person.email
+  });
+
+  useEffect(() => {
+    setUserChanges({
+      email: person.email
+    });
+  }, [person.email]);
+
+  const handleUserChange = e => {
+    setUserChanges({ ...userChanges, email: e.target.value });
+  };
+  const noToggleEdit = () => {
+    setMyProfileEdit(myProfileEdit);
+  };
+
+  const handleUserSubmit = e => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("email", userChanges.email);
+    dispatch(editUser(id, userChanges));
+
+    alert("Successfully changed login credentials");
+    noToggleEdit();
+  };
 
   const [myProfileEdit, setMyProfileEdit] = useState(true);
 
@@ -143,16 +180,26 @@ const MyProfile = () => {
             }}
           />
         ) : (
-          <PermIdentityIcon
+          <img
+            src={image}
+            alt={"profile pic"}
             style={{
-              color: "#242424BF",
-              width: "20px",
-              height: "20px",
+              height: "40px",
+              width: "40px",
               borderRadius: "50%",
-              marginTop: "9%",
-              objectFit: "cover"
+              margin: "2% 0% 0 0%"
             }}
           />
+          // <PermIdentityIcon
+          //   style={{
+          //     color: "#242424BF",
+          //     width: "20px",
+          //     height: "20px",
+          //     borderRadius: "50%",
+          //     marginTop: "9%",
+          //     objectFit: "cover"
+          //   }}
+          // />
         )}
 
         <p className="name">{firstName + " " + lastName}</p>
@@ -175,41 +222,14 @@ const MyProfile = () => {
                 margin: "2% 70% 0 0%"
               }}
             ></img>
-
-            <p
-              className="bio-paragraph"
-              style={{
-                textAlign: "left",
-                margin: "-15% 5% 1% 30%"
-              }}
+            <DidactProfileButton
+              type="submit"
+              onClick={toggleEdit}
+              style={{ margin: "1% 70% 5% 0%" }}
             >
-              {bio}
-            </p>
-            <div>
-              <DidactProfileButton
-                type="submit"
-                onClick={toggleEdit}
-                style={{ margin: "0% 70% 0% 0%", position: "relative" }}
-              >
-                Edit My Profile
-              </DidactProfileButton>
-            </div>
+              Edit My Profile
+            </DidactProfileButton>
 
-            <DiscordLinkDiv>
-              <a href="https://discord.io/didact" target="_blank">
-                <img src={discordLogo} alt="discord logo" />
-                <span>JOIN US ON DISCORD</span>
-              </a>
-            </DiscordLinkDiv>
-            <iframe
-              src="https://discordapp.com/widget?id=689132221864738902&theme=dark"
-              width="230"
-              height="250"
-              allowtransparency="true"
-              frameborder="0"
-              style={{ margin: "-6% 80% 0 0" }}
-              // style={{ margin: "-25% 0% 0% 60%" }}
-            ></iframe>
             <div
               className="icon-links"
               style={{
@@ -235,7 +255,6 @@ const MyProfile = () => {
               ) : (
                 <></>
               )}
-
               {githubLink ? (
                 <p>
                   <a
@@ -255,7 +274,6 @@ const MyProfile = () => {
               ) : (
                 <></>
               )}
-
               {discordLink ? (
                 <p>
                   <a
@@ -276,7 +294,6 @@ const MyProfile = () => {
               ) : (
                 <></>
               )}
-
               {twitterLink ? (
                 <p>
                   <a
@@ -294,7 +311,6 @@ const MyProfile = () => {
               ) : (
                 <></>
               )}
-
               {linkedInLink ? (
                 <p>
                   <a
@@ -324,6 +340,31 @@ const MyProfile = () => {
                 <></>
               )}
             </div> */}
+
+            <p
+              className="bio-paragraph"
+              style={{
+                textAlign: "left",
+                margin: "-25% 0% 1% 35%"
+              }}
+            >
+              {bio}
+            </p>
+
+            <DiscordLinkDiv>
+              <a href="https://discord.io/didact" target="_blank">
+                <img src={discordLogo} alt="discord logo" />
+                <span>JOIN US ON DISCORD</span>
+              </a>
+            </DiscordLinkDiv>
+            <iframe
+              src="https://discordapp.com/widget?id=689132221864738902&theme=dark"
+              width="230"
+              height="250"
+              allowtransparency="true"
+              frameborder="0"
+              style={{ margin: "-6% 80% 0 0" }}
+            ></iframe>
           </div>
         ) : (
           <EditProfileDiv style={{ display: "flex", flexDirection: "column" }}>
@@ -336,7 +377,6 @@ const MyProfile = () => {
                 margin: "2% 70% 0 0%"
               }}
             ></img>
-
             <form onSubmit={handleImgSubmit} className="imgForm">
               <div>
                 <label>Image</label>
@@ -344,6 +384,27 @@ const MyProfile = () => {
               </div>
               <DidactProfileButton>submit new pic</DidactProfileButton>
             </form>
+
+            <EmailChange>
+              <form onSubmit={handleUserSubmit} className="email-form">
+                <input
+                  placeholder="Enter new email"
+                  value={userChanges.email}
+                  onChange={handleUserChange}
+                  name="email"
+                ></input>
+                {/* <input
+                  placeholder="Enter new password"
+                  value={userChanges.password}
+                  onChange={handleUserChange}
+                  name="password"
+                ></input> */}
+                <DidactProfileButton>Change Email</DidactProfileButton>
+              </form>
+              <div style={{ margin: "2% 90% 0 0" }}></div>
+            </EmailChange>
+            <p>{user.email}</p>
+
             <form onSubmit={handleSubmit}>
               <label>About Me</label>
               <textarea
@@ -352,6 +413,7 @@ const MyProfile = () => {
                 onChange={handleChange}
                 name="bio"
               ></textarea>
+
               <label>
                 <FacebookIcon
                   className="label-icons"
@@ -430,7 +492,7 @@ const MyProfile = () => {
                 onChange={handleChange}
                 name="linkedInLink"
               ></input>
-              <label
+              {/* <label
                 style={{
                   margin: "4% 100% 1% 0",
                   width: "25%"
@@ -443,7 +505,8 @@ const MyProfile = () => {
                 value={changes.externalEdLink}
                 onChange={handleChange}
                 name="externalEdLink"
-              ></input>
+              ></input> */}
+
               <DidactProfileButton type="submit">Update</DidactProfileButton>
             </form>
           </EditProfileDiv>
@@ -452,5 +515,4 @@ const MyProfile = () => {
     </MyProfileStyleWrapper>
   );
 };
-
 export default MyProfile;
