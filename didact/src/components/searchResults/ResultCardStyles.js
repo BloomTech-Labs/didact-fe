@@ -95,6 +95,24 @@ export const PathCard = styled.div`
     margin: 0;
     font-size: 1.3rem;
     text-align: right;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    .notCompleteButton {
+      color: black;
+      opacity: 0.6;
+      cursor: pointer;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+
+    .completeButton {
+      color: black;
+      cursor: pointer;
+    }
   }
 
   h1 {

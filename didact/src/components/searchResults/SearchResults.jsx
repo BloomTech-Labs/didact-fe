@@ -21,11 +21,6 @@ const SearchResults = ({ props, setValues, results }) => {
   const dispatch = useDispatch();
   const [filter, setFilter] = useState("all");
 
-  const handleBack = () => {
-    props.history.push("/");
-    setValues({ search: "" });
-  };
-
   useEffect(() => {
     dispatch(getYourLearningPaths());
     dispatch(courseEndPoint(results));

@@ -18,17 +18,15 @@ const PathResultCard = props => {
 
   const [joined, setJoined] = useState(alreadyJoined);
 
-  const joinPath = () => {
-    dispatch(
-      joinLearningPath(path.id, props.history, yourLearningPaths.length + 1)
-    );
-    setJoined(!joined);
+  const joinPath = e => {
+    e.preventDefault();
+    setJoined(true);
     Mixpanel.track("Path Result Joined");
   };
 
-  const quitPath = () => {
-    dispatch(quitLearningPath(path.id));
-    setJoined(!joined);
+  const quitPath = e => {
+    e.preventDefault();
+    setJoined(false);
   };
 
   return (
@@ -52,8 +50,8 @@ const PathResultCard = props => {
       </h1>
       <div className="low-div">
         <div>
-          <span>Classes</span>
-          <span>Items</span>
+          <span>{path.courses ? path.courses.length : "0"} Classes</span>
+          <span>{path.items ? path.items.length : "0"} Items</span>
         </div>
         <Link
           to={{
