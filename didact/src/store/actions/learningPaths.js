@@ -180,6 +180,7 @@ export const deleteLearningPath = (id, history) => dispatch => {
 };
 
 export const joinLearningPath = (id, history, order) => dispatch => {
+  console.log("It began joining a path");
   dispatch({ type: JOIN_LEARNING_PATH_START });
 
   return axiosWithAuth()
@@ -194,6 +195,7 @@ export const joinLearningPath = (id, history, order) => dispatch => {
 };
 
 export const quitLearningPath = id => dispatch => {
+  console.log("It began quitting a path");
   dispatch({ type: QUIT_LEARNING_PATH_START });
 
   return axiosWithAuth()

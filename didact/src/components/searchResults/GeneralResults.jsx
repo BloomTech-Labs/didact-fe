@@ -29,6 +29,9 @@ const GeneralResults = props => {
   //courses and paths array taking small slices to match UX specs on this page
   const courses = state.coursesReducer.courses.slice(0, 2);
   const paths = state.learningPathReducer.learningPaths.slice(0, 3);
+  const yourPaths = useSelector(
+    state => state.learningPathReducer.yourLearningPaths
+  );
   //Loading states from various reducers
   const coursesLoading = state.coursesReducer.isLoadingCourses;
   const pathsLoading = state.learningPathReducer.isLoadingPaths;
@@ -53,6 +56,8 @@ const GeneralResults = props => {
     sources.length +
     articles.length +
     extArticles.length;
+
+  console.log(yourPaths);
 
   const handleTrack = () => {
     console.log("Resource tracked.");
@@ -121,7 +126,13 @@ const GeneralResults = props => {
           {paths.length > 0 ? (
             <PathGrid style={{ minHeight: "45px" }}>
               {paths.map(path => (
-                <LearningPathCard key={path.id} props={props} path={path} />
+                <LearningPathCard
+                  key={path.id}
+                  props={props}
+                  path={path}
+                  dispatch={dispatch}
+                  yourPaths={yourPaths}
+                />
               ))}
             </PathGrid>
           ) : null}
