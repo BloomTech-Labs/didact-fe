@@ -52,6 +52,7 @@ const MyProfile = props => {
   const externalEdLink = state.myProfileReducer.myProfile.externalEdLink;
   const user = state.onboardingReducer.user;
   const person = state.usersProfilesReducer.person;
+  // const email = state.myProfileReducer.myProfile.email;
 
   const [userChanges, setUserChanges] = useState({
     email: person.email
@@ -61,10 +62,10 @@ const MyProfile = props => {
     setUserChanges({
       email: person.email
     });
-  }, [person]);
+  }, [person.email]);
 
   const handleUserChange = e => {
-    setUserChanges({ ...userChanges, [e.target.name]: e.target.value });
+    setUserChanges({ ...userChanges, email: e.target.value });
   };
   const noToggleEdit = () => {
     setMyProfileEdit(myProfileEdit);
@@ -72,6 +73,8 @@ const MyProfile = props => {
 
   const handleUserSubmit = e => {
     e.preventDefault();
+    const formData = new FormData();
+    formData.append("email", userChanges.email);
     dispatch(editUser(id, userChanges));
 
     alert("Successfully changed login credentials");
@@ -361,7 +364,6 @@ const MyProfile = props => {
               allowtransparency="true"
               frameborder="0"
               style={{ margin: "-6% 80% 0 0" }}
-              // style={{ margin: "-25% 0% 0% 60%" }}
             ></iframe>
           </div>
         ) : (
@@ -399,7 +401,9 @@ const MyProfile = props => {
                 ></input> */}
                 <DidactProfileButton>Change Email</DidactProfileButton>
               </form>
+              <div style={{ margin: "2% 90% 0 0" }}></div>
             </EmailChange>
+            <p>{user.email}</p>
 
             <form onSubmit={handleSubmit}>
               <label>About Me</label>
