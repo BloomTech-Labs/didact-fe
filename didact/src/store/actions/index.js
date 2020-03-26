@@ -250,11 +250,15 @@ export {
   DELETE_TOOL_START,
   DELETE_TOOL_SUCCESS,
   DELETE_TOOL_FAIL,
+  EDIT_TOOL_IMAGE_START,
+  EDIT_TOOL_IMAGE_SUCCESS,
+  EDIT_TOOL_IMAGE_FAIL,
   getTools,
   getToolById,
   addTool,
   editTool,
-  deleteTool
+  deleteTool,
+  editToolImage
 } from "./tools";
 
 export {
@@ -316,11 +320,15 @@ export {
   DELETE_SOURCE_START,
   DELETE_SOURCE_SUCCESS,
   DELETE_SOURCE_FAIL,
+  EDIT_SOURCE_IMAGE_START,
+  EDIT_SOURCE_IMAGE_SUCCESS,
+  EDIT_SOURCE_IMAGE_FAIL,
   getSources,
   getSourceById,
   addSource,
   editSource,
-  deleteSource
+  deleteSource,
+  editSourceImage
 } from "./sources";
 
 export {

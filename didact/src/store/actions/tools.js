@@ -16,6 +16,9 @@ export const EDIT_TOOL_FAIL = "EDIT_TOOL_FAIL";
 export const DELETE_TOOL_START = "DELETE_TOOL_START";
 export const DELETE_TOOL_SUCCESS = "DELETE_TOOL_SUCCESS";
 export const DELETE_TOOL_FAIL = "DELETE_TOOL_FAIL";
+export const EDIT_TOOL_IMAGE_START = "EDIT_TOOL_IMAGE_START";
+export const EDIT_TOOL_IMAGE_SUCCESS = "EDIT_TOOL_IMAGE_SUCCESS";
+export const EDIT_TOOL_IMAGE_FAIL = "EDIT_TOOL_IMAGE_FAIL";
 
 const baseURL = `${beURL}tools`;
 
@@ -86,5 +89,17 @@ export const deleteTool = id => dispatch => {
     })
     .catch(error => {
       dispatch({ type: DELETE_TOOL_FAIL, payload: error.response });
+    });
+};
+
+export const editToolImage = (id, changes) => dispatch => {
+  dispatch({ type: EDIT_TOOL_IMAGE_START });
+  return axiosWithAuth()
+    .put(`${baseURL}/${id}/image`, changes)
+    .then(res => {
+      dispatch({ type: EDIT_TOOL_IMAGE_SUCCESS, payload: changes });
+    })
+    .catch(err => {
+      dispatch({ type: EDIT_TOOL_IMAGE_FAIL, payload: err.response });
     });
 };

@@ -227,8 +227,6 @@ const DrawerComponent = props => {
                   style={{
                     fontSize: "32px",
                     color: "#242424",
-                    // fontFamily: "dinosaur",
-                    // fontFamily: "sans-serif",
                     fontWeight: "900",
                     fontStyle: "normal"
                   }}

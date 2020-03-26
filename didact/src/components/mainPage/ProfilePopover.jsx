@@ -87,26 +87,11 @@ const ProfilePopOver = ({
             <Link to={`/my-profile`} style={{ color: "#242424" }}>
               My Profile
             </Link>
-            {/* <a
-              href="https://discord.io/didact"
-              className={classes.popLinks}
-              target="_blank"
-            >
-              Discord
-            </a> */}
             <Link to="#" onClick={handleLogOut} className={classes.popLinks}>
               Logout
             </Link>
           </div>
         </ul>
-        {/* <iframe
-          src="https://discordapp.com/widget?id=689132221864738902&theme=dark"
-          width="230"
-          height="250"
-          allowtransparency="true"
-          frameborder="0"
-          style={{ marginLeft: "4%" }}
-        ></iframe> */}
       </div>
     </Popover>
   );

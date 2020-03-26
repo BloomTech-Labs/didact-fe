@@ -14,6 +14,7 @@ import {
 } from "../actions";
 
 const initialState = {
+  myProfile: {},
   myPIC: {},
   isLoading: false,
   error: ""
@@ -80,8 +81,13 @@ export const myProfileReducer = (state = initialState, action) => {
     case EDIT_MY_PIC_SUCCESS:
       return {
         ...state,
-        isLoading: false,
-        myPIC: action.payload
+        // myPIC: action.payload
+        myProfile: state.myProfile.map(myProfile =>
+          myProfile.id === action.payload.id
+            ? action.payload.changesPic
+            : myProfile.image
+        ),
+        isLoading: false
       };
     case EDIT_MY_PIC_FAIL:
       return {
