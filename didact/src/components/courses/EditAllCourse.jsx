@@ -71,7 +71,7 @@ const useStyles = makeStyles(theme => ({
     fontSize: "3.5rem",
     marginRight: "5px",
     marginLeft: "10px",
-    color: "black"
+    color: "#eeeeee"
   },
   descriptionDiv: {
     width: "100%",

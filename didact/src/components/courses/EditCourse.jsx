@@ -63,10 +63,10 @@ const useStyles = makeStyles(theme => ({
     flexWrap: "wrap"
   },
   circleIcon: {
+    color: "white",
     fontSize: "3.5rem",
     marginRight: "5px",
-    marginLeft: "10px",
-    color: "black"
+    marginLeft: "10px"
   },
   descriptionDiv: {
     width: "100%",
@@ -111,6 +111,7 @@ const EditCourse = ({ props, id }) => {
     link: ""
   });
   const classes = useStyles(courseEdit);
+  console.log(courseEdit);
 
   useEffect(() => {
     dispatch(getCourseById(id));

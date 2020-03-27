@@ -71,7 +71,7 @@ const useStyles = makeStyles(theme => ({
     marginBottom: "0px"
   },
   iconCircle: {
-    color: "black",
+    color: "#eeeeee",
     fontSize: "2rem"
   },
   button: {
