@@ -1,23 +1,10 @@
 # Didact
 
-You can find the deployed project at [https://didactlmsfe.netlify.com/](https://didactlmsfe.netlify.com/).
+You can find the deployed project at [https://didactlms.com](https://didactlms.com).
 
 ## Contributors
 
-## Labs 21
 
-|                                       [Kodi O'Neil](https://github.com/yutveg)
-|                                       [Nick Alicaya](https://github.com/NickAlicaya)
-|                                       [Leighton Fritze](https://github.com/Lfritze)
-|                                       [Candace Rossi](https://github.com/CandaceRossi)                                            |
-| :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | 
-|                      [<img src="./didact/src/images/labs21/kodi.png" width = "200" />](https://github.com/yutveg) 
-|                      [<img src="./didact/src/images/labs21/nick.png" width = "200" />](https://github.com/NickAlicaya) 
-|                      [<img src="./didact/src/images/labs21/leighton.png" width = "200" />](https://github.com/Lfritze) 
-|                      [<img src="./didact/src/images/labs21/candace.png" width = "200" />](https://github.com/CandaceRossi) 
-                [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/AndrewA0112)                 | 
-
-## Labs 17
 |                                       [Andrew Allen](https://github.com/AndrewA0112)                                        |                                       [Jonathan Scott](https://jonathanscott.io/)                                        |                                       [Eli Sacks](http://www.eli-sacks.com/)                                        |                                       [Seth Nadu](https://www.sethnadu.com/)                                        |                                       [Ben Allen](https://github.com/allenben746)                                        |                                       [Mark Dudlik](http://markdudlik.com/)                                        |                                       [Todd McKenzie](http://www.github.com/toddmckenzie)                                        |
 | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: |
 |                      [<img src="./didact/src/images/team/andrew.png" width = "200" />](https://github.com/AndrewA0112)                       |                      [<img src="./didact/src/images/team/jon.png" width = "200" />](https://jonathanscott.io/)                       |                      [<img src="./didact/src/images/team/eli.png" width = "200" />](http://www.eli-sacks.com/)                       |                      [<img src="./didact/src/images/team/seth.png" width = "200" />](https://www.sethnadu.com/)                       |                      [<img src="./didact/src/images/team/ben.png" width = "200" />](https://github.com/allenben746)                       |                      [<img src="./didact/src/images/team/mark.png" width = "200" />](http://markdudlik.com/)                       |                      [<img src="./didact/src/images/team/todd.png" width = "200" />](http://www.github.com/toddmckenzie)                       |
@@ -38,11 +25,11 @@ You can find the deployed project at [https://didactlmsfe.netlify.com/](https://
 
 ## Project Overview
 
-[Trello Board](https://trello.com/b/RpCtCKty/labs-21-didact)
+[Trello Board](https://trello.com/b/USMOefCg/labs17-didact)
 
 [Product Canvas](https://www.notion.so/Didact-d8e3ae50c35c4179b24eb84ae647059d)
 
-[UX Design files](https://xd.adobe.com/view/b8564949-d31b-43b7-739e-0f158aa9156c-ce67/)
+[UX Design files](https://xd.adobe.com/spec/827f4bac-04fb-419f-57e2-7f7aec06e6df-f44e/)
 
 Didact is a hub that supports self-directed online learners through teaching and learning together
 
@@ -56,7 +43,7 @@ Didact aims to bring together online learning resources in a way that encourages
 -    Adding learning paths
 -    Adding courses and single goal todos to a learning path
 -    Tracking user progress on paths and courses
--    Search functionality for site resources
+-    search functionality for courses/paths
 
 ## Tech Stack
 
@@ -107,6 +94,8 @@ Didact aims to bring together online learning resources in a way that encourages
 - Form validation made easy
 - Native integration with Formik
 
+#### Front end deployed to `https://didact-fe.netlify.com/`
+
 #### [Back end](https://github.com/Lambda-School-Labs/didact-be) built using:
 
 ####  [Node.js](https://nodejs.org/en/about/)
@@ -121,23 +110,6 @@ Didact aims to bring together online learning resources in a way that encourages
 -    It's lightweight
 -    Works with nodejs
 -    Many useful packages
-
-#### [Discord.js](https://discord.js.org/#/)
-
--   Allows interaction between backend and discord server (guild)
--   Send messages and issue commands based on app conditions
-
-#### [Cloudinary](https://cloudinary.com/)
-
--   Hosts our images, free storage
-
-#### [Multer.js](https://www.npmjs.com/package/multer)
-
--   Image upload library gets (file) form data from request
-
-#### [DataURI](https://www.npmjs.com/package/datauri)
-
--   Used to parse image from request body
 
 #### [Passport.js](http://www.passportjs.org/)
 
@@ -177,17 +149,16 @@ Didact aims to bring together online learning resources in a way that encourages
 
 - Generates a 64 bit token containing user credentials
 
+
 #### [PostgreSQL](https://www.postgresql.org/)
 
 - SQL dataBase solution for deployment
 
+#### [Sqlite3](https://www.sqlite.org/index.html)
+
+- SQL dataBase solution for development
+
 # APIs
-
-## Discord.js (discord API)
-
-Discord.js allows you to interact with the Discord API. We use it to handle commands on our Didact server by sending messages with a webhook 
-(essentially a channel-specific bot) and watching for messages to issue commands to by the admin bot (Didact Bot) 
-
 
 ## Passport.js (google/facebook APIs)
 
@@ -205,17 +176,6 @@ It is organized around REST. Our API is designed to have predictable, resource-o
 <br>
 Udemy Affiliate API is currently at version 2.0 and the root endpoint is https://www.udemy.com/api-2.0/ for all resources."
 
-### How To Deploy The Frontend
-
-You can use the hosting service of your preference. To deploy the frontend, ensure you add the environment variable specified below on your hosting platform.
-Your hosting service will need to issue out the "npm run build" command to build your project. 
-
-If using Netlify, here are the deploy settings that worked for us:
-
-Base directory: didact
-Build command: npm run build
-Publish directory: didact/build 
-
 # Environment Variables
 
 In order for the app to function correctly, the user must set up their own environment variables. There should be a .env file containing the following:
@@ -227,6 +187,7 @@ In order for the app to function correctly, the user must set up their own envir
 | Image Filename | Source / Creator | License                                                                      |
 | -------------- | ---------------- | ---------------------------------------------------------------------------- |
 | ITC Grouch Font    | Tom Carnase, Ronne Bonder   | [EULA](https://www.fonts.com/font/bitstream/itc-grouch) |
+| 
 
 # Testing
 
