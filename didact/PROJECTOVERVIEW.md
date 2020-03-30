@@ -15,7 +15,7 @@
     can perform CRUD operations on all user-created content without restrictions. Owners/admins can also assign new user roles.
 
 ## Tasks To Prioritize As New Team
-
+- New design is not responsive to tablet or mobile views. 
 - User flow and app navigation is confusing. Needs UX and front end collab to help.
 - Increase clarity / UI around accessing your own created or cultivated content (your own library, collections, etc)
 - More robust profile pages
