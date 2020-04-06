@@ -1,6 +1,6 @@
 # Didact
 
-You can find the deployed project at [https://didactlms.com](https://didactlms.com).
+You can find the deployed project at [https://didactlmsfe.netlify.com/](https://didactlmsfe.netlify.com/).
 
 ## Contributors
 
